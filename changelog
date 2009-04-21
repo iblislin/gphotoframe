@@ -1,0 +1,5 @@
+2009-04-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe (MakePhoto.rotate): EXIF.process_file ->
+	  pixbuf.get_option. Droped depend on EXIF.py
+	* gphotoframe, gphotoframe.glade: Initial import.
