@@ -13,7 +13,6 @@ import glib
 import gobject
 import gconf
 import sqlite3
-import EXIF
 import urllib
 import os, sys, time
 import simplejson as json
@@ -380,7 +379,8 @@ class MakePhoto(object):
         print self.photo['url']
         try:
             self.pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
-            self.rotate(self.photo['filename'])
+            orientation = self.pixbuf.get_option('orientation')
+            self.rotate(orientation)
             self.scale()
             main.photo_now = self.photo
             main.set_image(self.pixbuf)
@@ -404,17 +404,14 @@ class MakePhoto(object):
 
         self.pixbuf = self.pixbuf.scale_simple( w, h, gtk.gdk.INTERP_BILINEAR )
 
-    def rotate(self,file):
-        self.fp = open(file, 'r')
-        exif = EXIF.process_file(self.fp)
-        orientation = str(exif.get('Image Orientation'))
-
-        rotate = 0
-        if orientation == 'Rotated 90 CCW':
-            rotate = 90
-        elif orientation == 'Rotated 90 CW':
+    def rotate(self, orientation='1'):
+        if orientation == '6':
             rotate = 270
-
+        elif orientation == '8':
+            rotate = 90
+        else:
+            return
+        
         self.pixbuf = self.pixbuf.rotate_simple(rotate)
 
 class MakeDirPhoto (MakePhoto):
@@ -583,11 +580,13 @@ class GConf(object):
         self.gconf.notify_add (self.dir + "interval", self.key_interval_cb)
 
     def key_interval_cb(self, client, id, entry, data):
-        print "interval change!"
+        # print "interval change!"
+        pass
 
     def key_changed_callback(self, client, id, entry, data):
         if not entry.value:
-            print "none"
+            # print "none"
+            pass
         else:
             print entry.value.type
             print entry.value.to_string()
