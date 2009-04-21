@@ -1,3 +1,8 @@
+2009-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe: Added a blank image.
+	* gphotoframe, gphotoframe.glade: Modified source names.
+
 2009-04-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe (MakePhoto.rotate): EXIF.process_file ->

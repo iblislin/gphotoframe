@@ -42,13 +42,15 @@ class PhotoFrame(object):
         window.show_all()
         window.get_position()
 
+        preferences = Preferences()
+
         self.dic = { 
             "on_window1_button_press_event" : self.check_button,
             "on_window1_leave_notify_event" : self.save_geometry,
             "on_window1_destroy" : self.quit,
 
             "on_menuitem5_activate" : self.open_photo,
-            "on_prefs" : prefs.start,
+            "on_prefs" : preferences.start,
             "on_about" : self.about,
             "on_quit"  : self.quit,
             }
@@ -93,16 +95,35 @@ class PhotoFrame(object):
         return False
     
     def set_image(self, pixbuf):
-        self.image.set_from_pixbuf(pixbuf)
         w = pixbuf.get_width()
         h = pixbuf.get_height()
-        border = gconfc.get_int('border_width', 10)
-        self.window.resize(w + border, h + border)
+
+        self.image.set_from_pixbuf(pixbuf)
+        self.set_border(w, h)
 
         tip = self.photo_now.get('title')
         if self.photo_now.get('owner_name') != None:
             tip = tip + "\nby " + self.photo_now.get('owner_name')
         self.window.set_tooltip_markup(tip) 
+
+    def set_blank_image(self):
+        w = gconfc.get_int('max_width', 400)
+        h = gconfc.get_int('max_height', 300)
+
+        pixmap = gtk.gdk.Pixmap(self.window.window, w, h, -1)
+        colormap = gtk.gdk.colormap_get_system()
+        color = colormap.alloc_color(0, 0, 0)
+        gc = gtk.gdk.Drawable.new_gc(pixmap)
+        gc.set_foreground(color)
+        pixmap.draw_rectangle(gc, True, 0,0,400,300)
+
+        self.image.set_from_pixmap(pixmap, None)
+        self.set_border(w, h)
+
+    def set_border(self, w, h):
+        border = gconfc.get_int('border_width', 10)
+        self.window.resize(w + border, h + border)
+
 
 ######################################################################
 
@@ -228,7 +249,7 @@ class PhotoDialog():
         self.dialog = self.gui.get_widget('photo_source')
 
         # source
-        dm = {'dir' : 0, 'fspot' : 1, 'flickr' : 2}
+        dm = {'Folder' : 0, 'F-Spot' : 1, 'Flickr' : 2}
         source_num = dm[self.data[0]] if self.data != None else 0
         self.photo['source'] = self.gui.get_widget('combobox4')
         self.photo['source'].set_active(source_num)
@@ -257,9 +278,9 @@ class PhotoDialog():
 
     def change_combobox(self, combobox, data=None):
         text = combobox.get_active_text()
-        token = { 'dir'    : PhotoTargetDir,
-                  'fspot'  : PhotoTargetFspot,
-                  'flickr' : PhotoTargetFlickr }
+        token = { 'Folder' : PhotoTargetDir,
+                  'F-Spot' : PhotoTargetFspot,
+                  'Flickr' : PhotoTargetFlickr }
         old_widget = self.photo.get('target')
         self.photo['target'] = token[text](self.gui, old_widget, data).make()
 
@@ -320,9 +341,9 @@ class PhotoListStore():
 
     def __init__(self):
         self.token = { 
-            'dir'   : MakeDirPhoto,
-            'fspot' : MakeFSpotPhoto,
-            'flickr' : MakeFlickrPhoto }
+            'Folder' : MakeDirPhoto,
+            'F-Spot' : MakeFSpotPhoto,
+            'Flickr' : MakeFlickrPhoto }
         self.list = gtk.ListStore(str, str, int, object)
 
         for dir in gconfc.all_dirs('sources'):
@@ -362,6 +383,8 @@ class PhotoListStore():
         if len(target_list) > 0:
             target = WeightedRandom(target_list)
             target().get_photo()
+        else:
+            main.set_blank_image()
         return True
 
 class MakePhoto(object):
@@ -639,7 +662,6 @@ class WeightedRandom(object):
 
 if __name__ == "__main__":
     gconfc = GConf()
-    prefs = Preferences()
     main  = PhotoFrame()
     photoliststore = PhotoListStore()
 

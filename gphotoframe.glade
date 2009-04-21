@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Tue Apr 21 02:36:28 2009 -->
+<!--Generated with glade3 3.4.5 on Tue Apr 21 19:33:56 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="window1">
     <signal name="button_press_event" handler="on_window1_button_press_event"/>
@@ -510,9 +510,9 @@
                     <child>
                       <widget class="GtkComboBox" id="combobox4">
                         <property name="visible">True</property>
-                        <property name="items" translatable="yes">dir
-fspot
-flickr</property>
+                        <property name="items" translatable="yes">Folder
+F-Spot
+Flickr</property>
                         <signal name="changed" handler="on_combobox4_changed"/>
                         <signal name="move_active" handler="on_combobox4_move_active"/>
                       </widget>
