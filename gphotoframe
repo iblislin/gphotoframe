@@ -75,7 +75,7 @@ class PhotoFrame(object):
     def open_photo(self, widget):
         url = self.photo_now['page_url'] \
             if self.photo_now.has_key('page_url') else self.photo_now['url']
-        os.system('gnome-open ' + url)
+        os.system("gnome-open '%s'" % url)
 
     def about(self, widget):
         gui = gtk.glade.XML(Glade.glade_file)
@@ -295,8 +295,7 @@ class PhotoTarget(object):
     def make(self, data=None):
         self.constract()
         self.attach()
-        if self.data != None:
-            self.set_default()
+        self.set_default()
         return self.new_widget
 
     def constract(self):
@@ -319,8 +318,9 @@ class PhotoTargetFlickr(PhotoTarget):
                  'flickr.photos.getContactsPublicPhotos', ]
 
     def set_default(self):
-        fr_num = self.label().index(self.data[1])
-        self.new_widget.set_active(fr_num)
+        if self.data != None:
+            fr_num = self.label().index(self.data[1])
+            self.new_widget.set_active(fr_num)
 
 class PhotoTargetFspot(PhotoTarget):
     def label(self):
@@ -332,7 +332,8 @@ class PhotoTargetDir(PhotoTarget):
         self.new_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
 
     def set_default(self):
-        self.new_widget.set_current_folder(self.data[1])
+        folder = self.data[1] if self.data != None else os.environ['HOME']
+        self.new_widget.set_current_folder(folder)
 
 ######################################################################
 
