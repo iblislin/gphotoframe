@@ -1,11 +1,14 @@
 #!/usr/bin/python
 #
 # gphotoframe - Photo Frame for the GNOME Desktop.
+# 
+# Copyright (c) 2009, Yoshizumi Endo.
+# Licence: GPL3
 
 from twisted.internet import gtk2reactor
 gtk2reactor.install()
 from twisted.internet import defer, reactor
-from twisted.web      import client
+from twisted.web import client
 
 import gtk
 import gtk.glade
@@ -19,6 +22,7 @@ import simplejson as json
 import random
 import bisect
 import re
+import threading
 
 VERSION = 0.02
 
@@ -236,7 +240,7 @@ class PreferencesList(object):
                 else:
                     gconfc.set_string( key, value );
 
-class PhotoDialog():
+class PhotoDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, data=None):
@@ -337,7 +341,7 @@ class PhotoTargetDir(PhotoTarget):
 
 ######################################################################
 
-class PhotoListStore():
+class PhotoListStore(object):
     """list"""
 
     def __init__(self):
@@ -398,8 +402,8 @@ class MakePhoto(object):
         self.photos = []
 
     def make(self, *args):
-        if self.photo.has_key('rate'):
-            print self.photo['rate'],
+        #if self.photo.has_key('rate'):
+        #    print self.photo['rate'],
         print self.photo['url']
         try:
             self.pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
@@ -441,6 +445,10 @@ class MakePhoto(object):
 class MakeDirPhoto (MakePhoto):
 
     def prepare(self):
+        th = threading.Thread(target=self.prepare_thread)
+        th.start()
+
+    def prepare_thread(self):
         path = self.method
         r = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)
 
@@ -561,7 +569,7 @@ class TMP(object):
 class UrlGetWithProxy(object):
 
     def __init__(self):
-        proxy = os.environ['http_proxy']
+        proxy = os.environ.get('http_proxy') or ""
         scheme, host, port, path = client._parse(proxy)
 
         if host != "" and port != "":

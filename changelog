@@ -1,6 +1,7 @@
 2009-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* gphotoframe: Added a blank image.
+	* gphotoframe: Added a blank image and checking the F-Spot database.
+	  Use threading for os.walk.  Fixed minor bugs.
 	* gphotoframe, gphotoframe.glade: Modified source names.
 
 2009-04-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
