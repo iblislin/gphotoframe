@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Tue Apr 21 19:33:56 2009 -->
+<!--Generated with glade3 3.4.5 on Wed Apr 22 14:49:42 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="window1">
     <signal name="button_press_event" handler="on_window1_button_press_event"/>
@@ -48,7 +48,7 @@
     <child>
       <widget class="GtkImageMenuItem" id="menuitem5">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">gtk-open</property>
+        <property name="label">gtk-open</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_menuitem5_activate"/>
@@ -57,7 +57,7 @@
     <child>
       <widget class="GtkImageMenuItem" id="menuitem1">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">gtk-preferences</property>
+        <property name="label">gtk-preferences</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_prefs"/>
@@ -66,7 +66,7 @@
     <child>
       <widget class="GtkImageMenuItem" id="menuitem2">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">gtk-about</property>
+        <property name="label">gtk-about</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_about"/>
@@ -80,7 +80,7 @@
     <child>
       <widget class="GtkImageMenuItem" id="menuitem4">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">gtk-quit</property>
+        <property name="label">gtk-quit</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_quit"/>
@@ -324,7 +324,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="label" translatable="yes">gtk-new</property>
+                                    <property name="label">gtk-new</property>
                                     <property name="use_stock">True</property>
                                     <property name="response_id">0</property>
                                     <signal name="clicked" handler="on_button3_clicked"/>
@@ -335,7 +335,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="label" translatable="yes">gtk-preferences</property>
+                                    <property name="label">gtk-preferences</property>
                                     <property name="use_stock">True</property>
                                     <property name="response_id">0</property>
                                     <signal name="clicked" handler="on_button4_clicked"/>
@@ -349,7 +349,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="label" translatable="yes">gtk-delete</property>
+                                    <property name="label">gtk-delete</property>
                                     <property name="use_stock">True</property>
                                     <property name="response_id">0</property>
                                     <signal name="clicked" handler="on_button5_clicked"/>
@@ -408,7 +408,7 @@
                 <property name="sensitive">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label" translatable="yes">gtk-help</property>
+                <property name="label">gtk-help</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">0</property>
               </widget>
@@ -418,7 +418,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label" translatable="yes">gtk-close</property>
+                <property name="label">gtk-close</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">0</property>
                 <signal name="clicked" handler="on_close_button"/>
@@ -561,7 +561,7 @@ Flickr</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">0</property>
               </widget>
@@ -571,7 +571,7 @@ Flickr</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label" translatable="yes">gtk-ok</property>
+                <property name="label">gtk-ok</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">1</property>
               </widget>
