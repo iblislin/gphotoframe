@@ -517,6 +517,8 @@ class MakeFSpotPhoto (MakePhoto):
 
     def prepare(self):
         db_file = os.environ['HOME'] + '/.gnome2/f-spot/photos.db'
+        if not os.access(db_file, os.R_OK): 
+            return
         self.db = sqlite3.connect(db_file) 
         self.photos = self.count()
         self.rnd = WeightedRandom(self.photos)
