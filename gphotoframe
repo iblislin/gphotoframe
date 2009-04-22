@@ -24,7 +24,7 @@ import bisect
 import re
 import threading
 
-VERSION = 0.02
+VERSION = 0.1
 
 class Glade(object):
     glade_dir = os.path.dirname(os.path.abspath(__file__))
