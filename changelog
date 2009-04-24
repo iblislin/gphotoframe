@@ -1,6 +1,7 @@
 2009-04-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* gphotoframe: Code refactoring (Removed a global variable: main).
+	* gphotoframe: Code refactoring (Removed global variables: main,
+	  photoliststore).
 
 2009-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

@@ -33,7 +33,7 @@ class Glade(object):
 class PhotoFrame(object):
     """Photo Frame"""
 
-    def __init__(self):
+    def __init__(self, photolist):
 
         self.gui = gtk.glade.XML(Glade.glade_file)
         self.image = self.gui.get_widget('image1')
@@ -46,7 +46,7 @@ class PhotoFrame(object):
         window.show_all()
         window.get_position()
 
-        preferences = Preferences()
+        preferences = Preferences(photolist)
 
         self.dic = { 
             "on_window1_button_press_event" : self.check_button,
@@ -119,7 +119,7 @@ class PhotoFrame(object):
         color = colormap.alloc_color(0, 0, 0)
         gc = gtk.gdk.Drawable.new_gc(pixmap)
         gc.set_foreground(color)
-        pixmap.draw_rectangle(gc, True, 0,0,400,300)
+        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
 
         self.image.set_from_pixmap(pixmap, None)
         self.set_border(w, h)
@@ -133,6 +133,9 @@ class PhotoFrame(object):
 
 class Preferences(object):
     """Preferences"""
+
+    def __init__(self, photolist):
+        self.photolist = photolist
 
     def start(self, widget):
         self.gui = gtk.glade.XML(Glade.glade_file)
@@ -151,7 +154,7 @@ class Preferences(object):
         if user_id != None:
             self.entry2.set_text(user_id)
 
-        self.preference_list = PreferencesList(self.gui)
+        self.preference_list = PreferencesList(self.gui, self.photolist)
         self.prefs.show_all()
 
         dic = { 
@@ -177,14 +180,15 @@ class Preferences(object):
 class PreferencesList(object):
     """Preferences Photo Source List"""
 
-    def __init__(self, gui):
+    def __init__(self, gui, photoliststore):
         self.treeview = gui.get_widget("treeview1")
 
         self.add_column("Source", 0)
         self.add_column("Option", 1)
         self.add_column("Weight", 2)
 	
-        self.source_list = photoliststore.list
+        self.photoliststore = photoliststore
+        self.source_list = self.photoliststore.list
         self.treeview.set_model(self.source_list)
 
         dic = { 
@@ -205,7 +209,7 @@ class PreferencesList(object):
         (result, v) = photodialog.run()
 
         if result == 1:
-            photoliststore.append(v)
+            self.photoliststore.append(v)
 
     def prefs_button(self, widget):
         treeselection = self.treeview.get_selection()
@@ -215,7 +219,7 @@ class PreferencesList(object):
         (result, v) = photodialog.run()
 
         if result == 1:
-            photoliststore.append(v, iter)
+            self.photoliststore.append(v, iter)
             self.source_list.remove(iter)
 
     def delete_button(self, widget):
@@ -369,7 +373,7 @@ class PhotoListStore(object):
             else:
                 self.append([data['source'], data['target'], data['priority']])
 
-        self.photoframe = PhotoFrame()
+        self.photoframe = PhotoFrame(self)
         self.timer()
 
     def append(self, v, i=None):
@@ -677,6 +681,6 @@ class WeightedRandom(object):
 
 if __name__ == "__main__":
     gconfc = GConf()
-    photoliststore = PhotoListStore()
+    PhotoListStore()
 
     reactor.run()
