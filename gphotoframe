@@ -369,6 +369,7 @@ class PhotoListStore(object):
             else:
                 self.append([data['source'], data['target'], data['priority']])
 
+        self.photoframe = PhotoFrame()
         self.timer()
 
     def append(self, v, i=None):
@@ -387,9 +388,9 @@ class PhotoListStore(object):
         target_list = [ x[3] for x in self.list if len( x[3].photos ) > 0 ]
         if len(target_list) > 0:
             target = WeightedRandom(target_list)
-            target().get_photo()
+            target().get_photo(self.photoframe)
         else:
-            main.set_blank_image()
+            self.photoframe.set_blank_image()
         return True
 
 class MakePhoto(object):
@@ -401,7 +402,7 @@ class MakePhoto(object):
         self.total  = 0
         self.photos = []
 
-    def make(self, *args):
+    def make(self, photoframe, *args):
         #if self.photo.has_key('rate'):
         #    print self.photo['rate'],
         print self.photo['url']
@@ -410,8 +411,8 @@ class MakePhoto(object):
             orientation = self.pixbuf.get_option('orientation')
             self.rotate(orientation)
             self.scale()
-            main.photo_now = self.photo
-            main.set_image(self.pixbuf)
+            photoframe.photo_now = self.photo
+            photoframe.set_image(self.pixbuf)
         except glib.GError:
             print sys.exc_info()[1]
 
@@ -462,9 +463,9 @@ class MakeDirPhoto (MakePhoto):
                     self.photos.append(data)
         self.total = len(self.photos)
 
-    def get_photo(self):
+    def get_photo(self, photoframe):
         self.photo = random.choice(self.photos)
-        self.make()
+        self.make(photoframe)
 
 class MakeFlickrPhoto (MakePhoto):
 
@@ -510,13 +511,16 @@ class MakeFlickrPhoto (MakePhoto):
                     'page_url'   : page_url}
             self.photos.append(data)
 
-    def get_photo(self):
+    def get_photo(self, photoframe):
         self.photo = random.choice(self.photos)
         url = self.photo['url']
         self.photo['filename'] = self.cache_dir + url[ url.rfind('/') + 1: ]
         urlget = UrlGetWithProxy()
         d = urlget.downloadPage(str(url), self.photo['filename'])
-        d.addCallback(self.make)
+        d.addCallback(self.get_photo_cb, photoframe)
+
+    def get_photo_cb(self, cb, photoframe):
+        self.make(photoframe)
 
 class MakeFSpotPhoto (MakePhoto):
 
@@ -549,7 +553,7 @@ class MakeFSpotPhoto (MakePhoto):
 
         return rate_list
 
-    def get_photo(self):
+    def get_photo(self, photoframe):
         rate = self.rnd()
         sql  = 'SELECT uri FROM photos WHERE rating=' + str(rate.name) + \
             ' ORDER BY random() LIMIT 1;'
@@ -559,7 +563,7 @@ class MakeFSpotPhoto (MakePhoto):
 
         self.photo = { 'url' : url, 'rate' : rate.name, 
                        'filename' : file, 'title' : title }
-        self.make()
+        self.make(photoframe)
 
 class TMP(object):
     pass
@@ -673,7 +677,6 @@ class WeightedRandom(object):
 
 if __name__ == "__main__":
     gconfc = GConf()
-    main  = PhotoFrame()
     photoliststore = PhotoListStore()
 
     reactor.run()
