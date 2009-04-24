@@ -37,11 +37,13 @@ class PhotoFrame(object):
 
         self.gui = gtk.glade.XML(Glade.glade_file)
         self.image = self.gui.get_widget('image1')
+        self.conf = GConf()
+        
         self.window = window = self.gui.get_widget('window1')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
         window.set_gravity(gtk.gdk.GRAVITY_CENTER)
-        window.move(gconfc.get_int('root_x'), gconfc.get_int('root_y'))
+        window.move(self.conf.get_int('root_x'), self.conf.get_int('root_y'))
         window.resize(1, 1)
         window.show_all()
         window.get_position()
@@ -94,8 +96,8 @@ class PhotoFrame(object):
 
         x, y = widget.get_position()
         w, h = widget.get_size()
-        gconfc.set_int( 'root_x', x + w / 2);
-        gconfc.set_int( 'root_y', y + h / 2);
+        self.conf.set_int( 'root_x', x + w / 2);
+        self.conf.set_int( 'root_y', y + h / 2);
         return False
     
     def set_image(self, pixbuf):
@@ -111,8 +113,8 @@ class PhotoFrame(object):
         self.window.set_tooltip_markup(tip) 
 
     def set_blank_image(self):
-        w = gconfc.get_int('max_width', 400)
-        h = gconfc.get_int('max_height', 300)
+        w = self.conf.get_int('max_width', 400)
+        h = self.conf.get_int('max_height', 300)
 
         pixmap = gtk.gdk.Pixmap(self.window.window, w, h, -1)
         colormap = gtk.gdk.colormap_get_system()
@@ -125,7 +127,7 @@ class PhotoFrame(object):
         self.set_border(w, h)
 
     def set_border(self, w, h):
-        border = gconfc.get_int('border_width', 10)
+        border = self.conf.get_int('border_width', 10)
         self.window.resize(w + border, h + border)
 
 
@@ -136,16 +138,17 @@ class Preferences(object):
 
     def __init__(self, photolist):
         self.photolist = photolist
+        self.conf = GConf()
 
     def start(self, widget):
         self.gui = gtk.glade.XML(Glade.glade_file)
         self.prefs = self.gui.get_widget('preferences')
         self.spinbutton1 = self.gui.get_widget('spinbutton1')
-        val = gconfc.get_int('interval', 30)
+        val = self.conf.get_int('interval', 30)
         self.spinbutton1.set_value(val)
 
-        api_key = gconfc.get_string('flickr/api_key')
-        user_id = gconfc.get_string('flickr/user_id')
+        api_key = self.conf.get_string('flickr/api_key')
+        user_id = self.conf.get_string('flickr/user_id')
         self.entry1 = self.gui.get_widget('entry1')
         self.entry2 = self.gui.get_widget('entry2')
 
@@ -166,13 +169,13 @@ class Preferences(object):
 
     def interval_changed(self, widget):
         val = self.spinbutton1.get_value_as_int()
-        gconfc.set_int( 'interval', val);
+        self.conf.set_int( 'interval', val);
 
     def close(self, widget):
         flickr_api_key = self.entry1.get_text()
         flickr_user_id = self.entry2.get_text()
-        gconfc.set_string( 'flickr/api_key', flickr_api_key );
-        gconfc.set_string( 'flickr/user_id', flickr_user_id );
+        self.conf.set_string( 'flickr/api_key', flickr_api_key );
+        self.conf.set_string( 'flickr/user_id', flickr_user_id );
 
         self.preference_list.save_all_data()
         self.prefs.destroy()
@@ -181,6 +184,7 @@ class PreferencesList(object):
     """Preferences Photo Source List"""
 
     def __init__(self, gui, photoliststore):
+        self.conf = GConf()
         self.treeview = gui.get_widget("treeview1")
 
         self.add_column("Source", 0)
@@ -229,7 +233,7 @@ class PreferencesList(object):
 
     def save_all_data(self):
         model = self.treeview.get_model()
-        gconfc.recursive_unset('sources')
+        self.conf.recursive_unset('sources')
 
         for i, row in enumerate(model):
             data = {}
@@ -240,9 +244,9 @@ class PreferencesList(object):
                 key = 'sources/%s/%s' % (i, k)
                 value = v if v != None else ""
                 if isinstance(value, int):
-                    gconfc.set_int( key, value );
+                    self.conf.set_int( key, value );
                 else:
-                    gconfc.set_string( key, value );
+                    self.conf.set_string( key, value );
 
 class PhotoDialog(object):
     """Photo Source Dialog"""
@@ -354,11 +358,12 @@ class PhotoListStore(object):
             'F-Spot' : MakeFSpotPhoto,
             'Flickr' : MakeFlickrPhoto }
         self.list = gtk.ListStore(str, str, int, object)
+        self.conf = GConf()
 
-        for dir in gconfc.all_dirs('sources'):
+        for dir in self.conf.all_dirs('sources'):
             data = {}
 
-            for e in gconfc.all_entries(dir):
+            for e in self.conf.all_entries(dir):
                 if e.get_value() == None:
                     break
 
@@ -384,7 +389,7 @@ class PhotoListStore(object):
 
     def timer(self):
         self.change_photo()
-        self.interval = gconfc.get_int('interval', 30)
+        self.interval = self.conf.get_int('interval', 30)
         gobject.timeout_add( self.interval * 1000, self.timer )
         return False
 
@@ -405,6 +410,7 @@ class MakePhoto(object):
         self.method = method
         self.total  = 0
         self.photos = []
+        self.conf = GConf()
 
     def make(self, photoframe, *args):
         #if self.photo.has_key('rate'):
@@ -421,8 +427,8 @@ class MakePhoto(object):
             print sys.exc_info()[1]
 
     def scale(self):
-        max_w = float( gconfc.get_int('max_width', 400) )
-        max_h = float( gconfc.get_int('max_height', 300) )
+        max_w = float( self.conf.get_int('max_width', 400) )
+        max_h = float( self.conf.get_int('max_height', 300) )
 
         src_w = self.pixbuf.get_width() 
         src_h = self.pixbuf.get_height()
@@ -474,8 +480,8 @@ class MakeDirPhoto (MakePhoto):
 class MakeFlickrPhoto (MakePhoto):
 
     def prepare(self):
-        api_key = gconfc.get_string('flickr/api_key')
-        user_id = gconfc.get_string('flickr/user_id')
+        api_key = self.conf.get_string('flickr/api_key')
+        user_id = self.conf.get_string('flickr/user_id')
 
         if api_key == None or user_id == None:
             return
@@ -614,6 +620,11 @@ class UrlGetWithProxy(object):
 class GConf(object):
     """Gconf"""
 
+    def __new__(cls, *args, **kwargs):
+        if '_inst' not in vars(cls):
+            cls._inst = super(GConf, cls).__new__(cls, *args, **kwargs)
+        return cls._inst
+
     def __init__(self):
         self.dir = "/apps/gphotoframe/"
 
@@ -680,7 +691,6 @@ class WeightedRandom(object):
         return self.list[item]
 
 if __name__ == "__main__":
-    gconfc = GConf()
     PhotoListStore()
 
     reactor.run()
