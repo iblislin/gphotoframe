@@ -1,8 +1,8 @@
 import gtk
 import gtk.glade
 import os
+import constants
 
-from glade import Glade
 from config import GConf
 from plugins import *
 
@@ -14,7 +14,7 @@ class Preferences(object):
         self.conf = GConf()
 
     def start(self, widget):
-        self.gui = gtk.glade.XML(Glade.glade_file)
+        self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.prefs = self.gui.get_widget('preferences')
         self.spinbutton1 = self.gui.get_widget('spinbutton1')
         val = self.conf.get_int('interval', 30)
@@ -125,7 +125,7 @@ class PhotoDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, data=None):
-        self.gui = gtk.glade.XML(Glade.glade_file)
+        self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.photo = {}
         self.widget = None
         self.data = data

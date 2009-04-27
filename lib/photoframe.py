@@ -1,10 +1,10 @@
 import gtk
 import gtk.glade
 import os
-from twisted.internet import reactor
+import constants
 
+from twisted.internet import reactor
 from config import GConf
-from glade import Glade
 from preferences import Preferences
 
 class PhotoFrame(object):
@@ -12,7 +12,7 @@ class PhotoFrame(object):
 
     def __init__(self, photolist):
 
-        self.gui = gtk.glade.XML(Glade.glade_file)
+        self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.image = self.gui.get_widget('image1')
         self.conf = GConf()
         
@@ -61,10 +61,9 @@ class PhotoFrame(object):
         os.system("gnome-open '%s'" % url)
 
     def about(self, widget):
-        gui = gtk.glade.XML(Glade.glade_file)
+        gui = gtk.glade.XML(constants.GLADE_FILE)
         about = gui.get_widget('aboutdialog')
-        #about.set_property('version', VERSION)
-        about.set_property('version', 0.1)
+        about.set_property('version', constants.VERSION)
         about.run()
         about.destroy()
 
