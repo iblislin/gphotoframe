@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gphotoframe VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-27 14:53+0900\n"
+"PO-Revision-Date: 2009-04-27 15:36+0900\n"
+"Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gphotoframe.glade:29
+msgid "2009 © Yoshizumi Endo."
+msgstr ""
+
+#: gphotoframe.glade:30
+msgid "Photo Frame for GNOME Desktop"
+msgstr "GNOME デスクトップ向けのフォトフレームです。"
+
+#: gphotoframe.glade:92
+msgid "Preferences"
+msgstr "設定"
+
+#: gphotoframe.glade:143
+msgid "seconds"
+msgstr "秒"
+
+#: gphotoframe.glade:155
+msgid "_Interval:"
+msgstr "表示間隔(_I):"
+
+#: gphotoframe.glade:169
+msgid "<b>General</b>"
+msgstr "<b>一般</b>"
+
+#: gphotoframe.glade:215
+msgid "I_D:"
+msgstr "ID(_I):"
+
+#: gphotoframe.glade:241
+msgid "_API Key:"
+msgstr "API キー(_A):"
+
+#: gphotoframe.glade:256
+msgid "<b>Flickr</b>"
+msgstr ""
+
+#: gphotoframe.glade:273
+msgid "General"
+msgstr "一般"
+
+#: gphotoframe.glade:375
+msgid "<b>Photo Sources</b>"
+msgstr "<b>写真のソース</b>"
+
+#: gphotoframe.glade:392
+msgid "Photos"
+msgstr "写真"
+
+#: gphotoframe.glade:473
+msgid "_Weight:"
+msgstr "重み(_W):"
+
+#: gphotoframe.glade:500
+msgid "_Target:"
+msgstr "ターゲット(_T):"
+
+#: gphotoframe.glade:513
+msgid ""
+"Folder\n"
+"F-Spot\n"
+"Flickr"
+msgstr ""
+
+#: gphotoframe.glade:528
+msgid "_Source:"
+msgstr "ソース(_S):"
+
+#: gphotoframe.glade:543
+msgid "<b>Photo Source</b>"
+msgstr "<b>写真のソース</b>"
+
+#: lib/preferences.py:65
+msgid "Weight"
+msgstr ""
