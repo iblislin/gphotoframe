@@ -10,11 +10,9 @@ gtk2reactor.install()
 from twisted.internet import reactor
 
 try:
-    from gphotoframe.photoliststore import PhotoListStore
-except:
     from lib.photoliststore import PhotoListStore
-
-VERSION = 0.1
+except:
+    from gphotoframe.photoliststore import PhotoListStore
 
 if __name__ == "__main__":
     PhotoListStore()

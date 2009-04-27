@@ -1,5 +1,6 @@
 2009-04-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* gphotoframe: Try to load local modules at first.
 	* gphotoframe.glade: Modified positions of labels.
 
 2009-04-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
