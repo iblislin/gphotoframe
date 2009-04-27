@@ -1,5 +1,6 @@
 2009-04-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* ja.po: Updated translation.
 	* setup.py, lib/__init__.py, po/: Added gettext support.
 	* setup.py, MANIFEST.in: Initial import.
 	* glade.py, constants.py: Removed glade.py and added constants.py.

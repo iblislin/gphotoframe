@@ -3,6 +3,7 @@ import gtk.glade
 import os
 import constants
 
+from gettext import gettext as _
 from config import GConf
 from plugins import *
 
@@ -60,9 +61,9 @@ class PreferencesList(object):
         self.conf = GConf()
         self.treeview = gui.get_widget("treeview1")
 
-        self.add_column("Source", 0)
-        self.add_column("Option", 1)
-        self.add_column("Weight", 2)
+        self.add_column(_("Source"), 0)
+        self.add_column(_("Target"), 1)
+        self.add_column(_("Weight"), 2)
 	
         self.photoliststore = photoliststore
         self.source_list = self.photoliststore.list
