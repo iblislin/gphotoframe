@@ -1,5 +1,6 @@
 2009-04-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* setup.py, MANIFEST.in: Initial import.
 	* glade.py, constants.py: Removed glade.py and added constants.py.
 	* gphotoframe: Try to load local modules at first.
 	* gphotoframe.glade: Modified positions of labels.
