@@ -4,8 +4,7 @@ import re
 import random
 import threading
 
-from base import MakePhoto
-from base import PhotoTarget
+from base import *
 
 class MakeDirPhoto (MakePhoto):
 

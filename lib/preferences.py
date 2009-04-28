@@ -79,6 +79,8 @@ class PreferencesList(object):
     def add_column(self, title, id):
         column = gtk.TreeViewColumn(title, gtk.CellRendererText(), text=id)
         column.set_resizable(True)
+        # column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        # column.set_fixed_width(80)
         column.set_sort_column_id(id)
         self.treeview.append_column(column)
 
@@ -135,9 +137,12 @@ class PhotoDialog(object):
         self.dialog = self.gui.get_widget('photo_source')
 
         # source
-        dm = {'Folder' : 0, 'F-Spot' : 1, 'Flickr' : 2}
-        source_num = dm[self.data[0]] if self.data != None else 0
+        self.source_list = [ 'Folder', 'F-Spot', 'Flickr' ]
+        source_num = self.source_list.index(self.data[0]) \
+            if self.data != None else 0
         self.photo['source'] = self.gui.get_widget('combobox4')
+        for str in self.source_list:
+            self.photo['source'].append_text(str)
         self.photo['source'].set_active(source_num)
 
         # target

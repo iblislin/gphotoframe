@@ -3,9 +3,7 @@ import urllib
 import simplejson as json
 import random
 
-from base import MakePhoto
-from base import PhotoTarget
-
+from base import *
 from ..urlget import UrlGetWithProxy
 
 class MakeFlickrPhoto (MakePhoto):
