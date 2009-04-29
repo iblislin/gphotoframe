@@ -1,3 +1,8 @@
+2009-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* lib/plugins/__init__.py, photoliststore.py, preferences.py:
+	  Code refactoring. __init__.py manages plug-in tokens.
+
 2009-04-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py: Added support for F-Spot tags.

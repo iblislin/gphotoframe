@@ -137,7 +137,7 @@ class PhotoDialog(object):
         self.dialog = self.gui.get_widget('photo_source')
 
         # source
-        self.source_list = [ 'Folder', 'F-Spot', 'Flickr' ]
+        self.source_list = source_list
         source_num = self.source_list.index(self.data[0]) \
             if self.data != None else 0
         self.photo['source'] = self.gui.get_widget('combobox4')
@@ -169,8 +169,6 @@ class PhotoDialog(object):
 
     def change_combobox(self, combobox, data=None):
         text = combobox.get_active_text()
-        token = { 'Folder' : PhotoTargetDir,
-                  'F-Spot' : PhotoTargetFspot,
-                  'Flickr' : PhotoTargetFlickr }
+        token = photo_target_token
         old_widget = self.photo.get('target')
         self.photo['target'] = token[text](self.gui, old_widget, data).make()

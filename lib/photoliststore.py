@@ -12,10 +12,7 @@ class PhotoListStore(object):
     """list"""
 
     def __init__(self):
-        self.token = { 
-            'Folder' : MakeDirPhoto,
-            'F-Spot' : MakeFSpotPhoto,
-            'Flickr' : MakeFlickrPhoto }
+        self.token = make_photo_token
         self.list = gtk.ListStore(str, str, int, object)
         self.conf = GConf()
 
