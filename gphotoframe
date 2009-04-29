@@ -11,7 +11,7 @@ from twisted.internet import reactor
 
 try:
     from lib.photoliststore import PhotoListStore
-except:
+except ImportError:
     from gphotoframe.photoliststore import PhotoListStore
 
 if __name__ == "__main__":
