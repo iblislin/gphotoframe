@@ -18,9 +18,11 @@ class MakeFSpotPhoto (MakePhoto):
         self.rnd = WeightedRandom(self.photos)
 
     def count(self):
+        rate_list = []
         sql = self.sql_statement('COUNT(*)')
         self.total = self.db.fetchone(sql)
-        rate_list = []
+        if self.total ==0:
+            return rate_list
 
         for rate in xrange(6):
             sql = self.sql_statement('COUNT(*)', rate)
@@ -83,6 +85,7 @@ class PhotoTargetFspot(PhotoTarget):
             self.new_widget.set_active(fr_num)
 
 class FSpotDB(object):
+
     def __init__(self):
         db_file = os.environ['HOME'] + '/.gnome2/f-spot/photos.db'
         if not os.access(db_file, os.R_OK): 

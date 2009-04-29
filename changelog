@@ -1,5 +1,6 @@
 2009-04-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* fspot.py: Added support for F-Spot tags.
 	* gphotoframe.glade: Removed combobox initial text.
 
 2009-04-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
