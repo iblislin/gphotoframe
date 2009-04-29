@@ -18,10 +18,11 @@ class PhotoListStore(object):
 
         for dir in self.conf.all_dirs('sources'):
             data = {}
+            data['weight'] = 1  # for Ver. 0.1
 
             for e in self.conf.all_entries(dir):
                 if e.get_value() == None:
-                    break
+                    continue
 
                 if e.get_value().type == gconf.VALUE_INT:
                     value = e.get_value().get_int()
@@ -31,8 +32,8 @@ class PhotoListStore(object):
                 path = e.get_key()
                 key = path[ path.rfind('/') + 1: ]
                 data[key] = value
-            else:
-                self.append([data['source'], data['target'], data['priority']])
+
+            self.append([data['source'], data['target'], data['weight']])
 
         self.photoframe = PhotoFrame(self)
         self.timer()

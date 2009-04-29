@@ -108,7 +108,7 @@ class PreferencesList(object):
 
         for i, row in enumerate(model):
             data = {}
-            for num, v in enumerate(('source', 'target', 'priority')):
+            for num, v in enumerate(('source', 'target', 'weight')):
                 data[v] = row[num]
 
             for k, v in data.iteritems():
