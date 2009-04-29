@@ -1,5 +1,7 @@
 2009-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoframe.py, preferences.py, config.py, gphotoframe.glade:
+	  Added new option for sticky mode.
 	* preferences.py, flickr.py: Embedded Flickr api_key.
 	* lib/plugins/__init__.py, photoliststore.py, preferences.py:
 	  Code refactoring. __init__.py manages plug-in tokens.

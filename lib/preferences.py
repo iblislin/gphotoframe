@@ -17,13 +17,17 @@ class Preferences(object):
     def start(self, widget):
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.prefs = self.gui.get_widget('preferences')
+
         self.spinbutton1 = self.gui.get_widget('spinbutton1')
         val = self.conf.get_int('interval', 30)
         self.spinbutton1.set_value(val)
 
+        self.checkbutton1 = self.gui.get_widget('checkbutton1')
+        sticky = self.conf.get_bool('sticky')
+        self.checkbutton1.set_active(sticky)
+
         user_id = self.conf.get_string('plugins/flickr/user_id')
         self.entry2 = self.gui.get_widget('entry2')
-
         if user_id != None:
             self.entry2.set_text(user_id)
 
@@ -34,12 +38,17 @@ class Preferences(object):
             "on_close_button" : self.close,
             "on_spinbutton1_value_changed" : self.interval_changed,
             "on_entry1_editing_done"       : self.interval_changed,
+            "checkbutton1_toggled_cb"      : self.sticky_toggled_cb,
             "on_quit"         : gtk.main_quit }
         self.gui.signal_autoconnect(dic)
 
     def interval_changed(self, widget):
         val = self.spinbutton1.get_value_as_int()
         self.conf.set_int( 'interval', val);
+
+    def sticky_toggled_cb(self, widget):
+        sticky = self.checkbutton1.get_active()
+        self.conf.set_bool( 'sticky', sticky );
 
     def close(self, widget):
         flickr_user_id = self.entry2.get_text()

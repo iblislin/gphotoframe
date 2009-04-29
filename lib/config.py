@@ -15,6 +15,9 @@ class GConf(object):
         self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
         self.gconf.notify_add (self.dir + "interval", self.key_interval_cb)
 
+    def set_notify_add(self, key, cb):
+        self.gconf.notify_add (self.dir + key, cb)
+
     def key_interval_cb(self, client, id, entry, data):
         # print "interval change!"
         pass
@@ -43,6 +46,13 @@ class GConf(object):
 
     def get_string(self, key):
         val = self.gconf.get_string(self.dir + key)
+        return val
+
+    def set_bool(self, key, val):
+        return self.gconf.set_bool(self.dir + key, val)
+
+    def get_bool(self, key):
+        val = self.gconf.get_bool(self.dir + key)
         return val
 
     def recursive_unset(self, key):

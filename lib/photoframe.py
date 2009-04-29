@@ -14,11 +14,15 @@ class PhotoFrame(object):
 
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.image = self.gui.get_widget('image1')
+
         self.conf = GConf()
+        self.conf.set_notify_add('sticky', self.change_sticky_cb)
         
         self.window = window = self.gui.get_widget('window1')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
+        if self.conf.get_bool('sticky'):
+            window.stick()
         window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         window.move(self.conf.get_int('root_x'), self.conf.get_int('root_y'))
         window.resize(1, 1)
@@ -76,6 +80,12 @@ class PhotoFrame(object):
         self.conf.set_int( 'root_x', x + w / 2);
         self.conf.set_int( 'root_y', y + h / 2);
         return False
+
+    def change_sticky_cb(self, client, id, entry, data):
+        if entry.value.get_bool():
+            self.window.stick()
+        else:
+            self.window.unstick()
     
     def set_image(self, pixbuf):
         w = pixbuf.get_width()
