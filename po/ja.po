@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-27 22:22+0900\n"
-"PO-Revision-Date: 2009-04-27 15:36+0900\n"
+"POT-Creation-Date: 2009-04-28 00:06+0900\n"
+"PO-Revision-Date: 2009-04-28 00:13+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr "<b>Flickr</b>"
 
 #: ../gphotoframe.glade.h:2
 msgid "<b>General</b>"
-msgstr "<b>一般</b>"
+msgstr "<b>全般</b>"
 
 #: ../gphotoframe.glade.h:3
 msgid "<b>Photo Source</b>"
@@ -40,45 +40,49 @@ msgstr ""
 
 #: ../gphotoframe.glade.h:8
 msgid "General"
-msgstr "一般"
+msgstr "全般"
 
 #: ../gphotoframe.glade.h:9
 msgid "I_D:"
 msgstr "ID(_I):"
 
 #: ../gphotoframe.glade.h:10
+msgid "Photo Frame Preferences"
+msgstr "フォトフレームの設定"
+
+#: ../gphotoframe.glade.h:11
 msgid "Photo Frame for GNOME Desktop"
 msgstr "GNOME デスクトップ向けのフォトフレームです。"
 
-#: ../gphotoframe.glade.h:11
+#: ../gphotoframe.glade.h:12
+msgid "Photo Source"
+msgstr "写真のソース"
+
+#: ../gphotoframe.glade.h:13
 msgid "Photos"
 msgstr "写真"
 
-#: ../gphotoframe.glade.h:12
-msgid "Preferences"
-msgstr "設定"
-
-#: ../gphotoframe.glade.h:13
+#: ../gphotoframe.glade.h:14
 msgid "_API Key:"
 msgstr "API キー(_A):"
 
-#: ../gphotoframe.glade.h:14
+#: ../gphotoframe.glade.h:15
 msgid "_Interval:"
 msgstr "表示間隔(_I):"
 
-#: ../gphotoframe.glade.h:15
+#: ../gphotoframe.glade.h:16
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:16
+#: ../gphotoframe.glade.h:17
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:17
+#: ../gphotoframe.glade.h:18
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../gphotoframe.glade.h:18
+#: ../gphotoframe.glade.h:19
 msgid "seconds"
 msgstr "秒"
 
@@ -93,3 +97,7 @@ msgstr "ターゲット"
 #: ../lib/preferences.py:66
 msgid "Weight"
 msgstr "重み"
+
+#: ../lib/preferences.py:66
+msgid "Folder"
+msgstr "フォルダ"
