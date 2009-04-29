@@ -9,8 +9,9 @@ from ..urlget import UrlGetWithProxy
 class MakeFlickrPhoto (MakePhoto):
 
     def prepare(self):
-        api_key = self.conf.get_string('flickr/api_key')
-        user_id = self.conf.get_string('flickr/user_id')
+        #api_key = self.conf.get_string('plugins/flickr/api_key')
+        api_key = '343677ff5aa31f37042513d533293062'
+        user_id = self.conf.get_string('plugins/flickr/user_id')
 
         if api_key == None or user_id == None:
             return

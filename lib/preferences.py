@@ -21,13 +21,9 @@ class Preferences(object):
         val = self.conf.get_int('interval', 30)
         self.spinbutton1.set_value(val)
 
-        api_key = self.conf.get_string('flickr/api_key')
-        user_id = self.conf.get_string('flickr/user_id')
-        self.entry1 = self.gui.get_widget('entry1')
+        user_id = self.conf.get_string('plugins/flickr/user_id')
         self.entry2 = self.gui.get_widget('entry2')
 
-        if api_key != None:
-            self.entry1.set_text(api_key)
         if user_id != None:
             self.entry2.set_text(user_id)
 
@@ -46,10 +42,8 @@ class Preferences(object):
         self.conf.set_int( 'interval', val);
 
     def close(self, widget):
-        flickr_api_key = self.entry1.get_text()
         flickr_user_id = self.entry2.get_text()
-        self.conf.set_string( 'flickr/api_key', flickr_api_key );
-        self.conf.set_string( 'flickr/user_id', flickr_user_id );
+        self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id );
 
         self.preference_list.save_all_data()
         self.prefs.destroy()
@@ -110,6 +104,7 @@ class PreferencesList(object):
     def save_all_data(self):
         model = self.treeview.get_model()
         self.conf.recursive_unset('sources')
+        self.conf.recursive_unset('flickr') # for ver. 0.1 
 
         for i, row in enumerate(model):
             data = {}
