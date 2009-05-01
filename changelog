@@ -1,5 +1,7 @@
 2009-05-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoframe.py (PhotoFrame.set_accelerator): 
+	  Added support for accelerator keys.
 	* photoframe.py, preferences.py: Added new gconf keys:
 	  window_keep_below and window_non_movable (issue #1).
 

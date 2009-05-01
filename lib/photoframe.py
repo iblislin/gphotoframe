@@ -18,7 +18,7 @@ class PhotoFrame(object):
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self.change_sticky_cb)
         self.conf.set_notify_add('window_keep_below', self.change_keep_below_cb)
-        
+
         self.window = window = self.gui.get_widget('window1')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
@@ -32,6 +32,7 @@ class PhotoFrame(object):
         window.show_all()
         window.get_position()
 
+        self.set_accelerator()
         preferences = Preferences(photolist)
 
         self.dic = { 
@@ -46,7 +47,19 @@ class PhotoFrame(object):
             }
         self.gui.signal_autoconnect(self.dic)
 
-    def quit(self, widget):
+    def set_accelerator(self):
+        accel_group = gtk.AccelGroup()
+
+        ac_set = [[ "<gph>/quit", "<control>q", self.quit ],
+                  [ "<gph>/open", "<control>o", self.open_photo ]]
+        for ac in ac_set:
+            key, mod = gtk.accelerator_parse(ac[1])
+            gtk.accel_map_add_entry(ac[0], key, mod)
+            accel_group.connect_by_path(ac[0], ac[2])
+
+        self.window.add_accel_group(accel_group) 
+
+    def quit(self, *args):
         reactor.stop()
 
     def check_button(self, widget, event):
@@ -63,7 +76,7 @@ class PhotoFrame(object):
         menu = self.gui.get_widget('menu1')
         menu.popup(None, None, None, event.button, event.time)
     
-    def open_photo(self, widget):
+    def open_photo(self, *args):
         url = self.photo_now['page_url'] \
             if self.photo_now.has_key('page_url') else self.photo_now['url']
         os.system("gnome-open '%s'" % url)
