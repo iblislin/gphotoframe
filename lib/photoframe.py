@@ -16,12 +16,15 @@ class PhotoFrame(object):
         self.image = self.gui.get_widget('image1')
 
         self.conf = GConf()
-        self.conf.set_notify_add('sticky', self.change_sticky_cb)
+        self.conf.set_notify_add('window_sticky', self.change_sticky_cb)
+        self.conf.set_notify_add('window_keep_below', self.change_keep_below_cb)
         
         self.window = window = self.gui.get_widget('window1')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
-        if self.conf.get_bool('sticky'):
+        if self.conf.get_bool('window_keep_below'):
+            window.set_keep_below(True)
+        if self.conf.get_bool('window_sticky'):
             window.stick()
         window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         window.move(self.conf.get_int('root_x'), self.conf.get_int('root_y'))
@@ -47,7 +50,8 @@ class PhotoFrame(object):
         reactor.stop()
 
     def check_button(self, widget, event):
-        if event.button == 1:
+        if event.button == 1 and \
+                self.conf.get_bool('window_non_movable') == False:
             widget.begin_move_drag \
                 (event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
@@ -80,6 +84,9 @@ class PhotoFrame(object):
         self.conf.set_int( 'root_x', x + w / 2);
         self.conf.set_int( 'root_y', y + h / 2);
         return False
+
+    def change_keep_below_cb(self, client, id, entry, data):
+        self.window.set_keep_below(entry.value.get_bool())
 
     def change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -116,4 +123,3 @@ class PhotoFrame(object):
     def set_border(self, w, h):
         border = self.conf.get_int('border_width', 10)
         self.window.resize(w + border, h + border)
-

@@ -23,7 +23,7 @@ class Preferences(object):
         self.spinbutton1.set_value(val)
 
         self.checkbutton1 = self.gui.get_widget('checkbutton1')
-        sticky = self.conf.get_bool('sticky')
+        sticky = self.conf.get_bool('window_sticky')
         self.checkbutton1.set_active(sticky)
 
         user_id = self.conf.get_string('plugins/flickr/user_id')
@@ -32,6 +32,8 @@ class Preferences(object):
             self.entry2.set_text(user_id)
 
         self.preference_list = PreferencesList(self.gui, self.photolist)
+        if self.conf.get_bool('window_sticky'):
+            self.prefs.stick()
         self.prefs.show_all()
 
         dic = { 
@@ -48,7 +50,7 @@ class Preferences(object):
 
     def sticky_toggled_cb(self, widget):
         sticky = self.checkbutton1.get_active()
-        self.conf.set_bool( 'sticky', sticky );
+        self.conf.set_bool( 'window_sticky', sticky );
 
     def close(self, widget):
         flickr_user_id = self.entry2.get_text()
