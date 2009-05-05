@@ -17,13 +17,14 @@ class PhotoFrame(object):
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self.change_sticky_cb)
-        self.conf.set_notify_add('window_keep_below', self.change_keep_below_cb)
+        self.conf.set_notify_add('window_fix', self.change_window_fix_cb)
 
         self.window = window = self.gui.get_widget('window1')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
-        if self.conf.get_bool('window_keep_below'):
+        if self.conf.get_bool('window_fix'):
             window.set_keep_below(True)
+            self.gui.get_widget('menuitem6').set_active(True)
         if self.conf.get_bool('window_sticky'):
             window.stick()
         window.set_gravity(gtk.gdk.GRAVITY_CENTER)
@@ -41,6 +42,7 @@ class PhotoFrame(object):
             "on_window1_destroy" : self.quit,
 
             "on_menuitem5_activate" : self.open_photo,
+            "on_menuitem6_toggled" : self.fix_window,
             "on_prefs" : preferences.start,
             "on_about" : self.about,
             "on_quit"  : self.quit,
@@ -63,8 +65,7 @@ class PhotoFrame(object):
         reactor.stop()
 
     def check_button(self, widget, event):
-        if event.button == 1 and \
-                self.conf.get_bool('window_non_movable') == False:
+        if event.button == 1 and self.conf.get_bool('window_fix') == False:
             widget.begin_move_drag \
                 (event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
@@ -80,6 +81,9 @@ class PhotoFrame(object):
         url = self.photo_now['page_url'] \
             if self.photo_now.has_key('page_url') else self.photo_now['url']
         os.system("gnome-open '%s'" % url)
+
+    def fix_window(self, widget):
+        self.conf.set_bool('window_fix', widget.get_active())
 
     def about(self, widget):
         gui = gtk.glade.XML(constants.GLADE_FILE)
@@ -98,7 +102,7 @@ class PhotoFrame(object):
         self.conf.set_int( 'root_y', y + h / 2);
         return False
 
-    def change_keep_below_cb(self, client, id, entry, data):
+    def change_window_fix_cb(self, client, id, entry, data):
         self.window.set_keep_below(entry.value.get_bool())
 
     def change_sticky_cb(self, client, id, entry, data):

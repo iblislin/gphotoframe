@@ -1,3 +1,9 @@
+2009-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, gphotoframe.glade: Added the menu "Fix Photo
+	  Frame" (issue #1). Added new gconf key: window_fix. 
+	  Removed redundant keys: window_keep_below and window_non_movable.
+
 2009-05-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py (PhotoFrame.set_accelerator): 
