@@ -1,5 +1,7 @@
 2009-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* ja.po: Updated translation.
+	* gphotoframe.desktop.in: Initial import.
 	* photoframe.py, gphotoframe.glade: Added the menu "Fix Photo
 	  Frame" (issue #1). Added new gconf key: window_fix. 
 	  Removed redundant keys: window_keep_below and window_non_movable.
