@@ -1,3 +1,8 @@
+2009-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, gphotoframe.glade: Added support for
+	  gtk.gdk.WINDOW_TYPE_HINT_DOCK.  Added check_window_state.
+
 2009-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* ja.po: Updated translation.

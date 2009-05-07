@@ -23,7 +23,7 @@ class PhotoFrame(object):
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
         if self.conf.get_bool('window_fix'):
-            window.set_keep_below(True)
+            window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
             self.gui.get_widget('menuitem6').set_active(True)
         if self.conf.get_bool('window_sticky'):
             window.stick()
@@ -39,6 +39,7 @@ class PhotoFrame(object):
         self.dic = { 
             "on_window1_button_press_event" : self.check_button,
             "on_window1_leave_notify_event" : self.save_geometry,
+            "on_window1_window_state_event" : self.check_window_state,
             "on_window1_destroy" : self.quit,
 
             "on_menuitem5_activate" : self.open_photo,
@@ -73,6 +74,11 @@ class PhotoFrame(object):
         elif event.button == 3:
             self.popup_menu(widget, event)
 
+    def check_window_state(self, widget, event):
+        if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
+            state = event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED
+            self.window.set_skip_taskbar_hint(not state)
+
     def popup_menu(self, widget, event):
         menu = self.gui.get_widget('menu1')
         menu.popup(None, None, None, event.button, event.time)
@@ -103,7 +109,16 @@ class PhotoFrame(object):
         return False
 
     def change_window_fix_cb(self, client, id, entry, data):
-        self.window.set_keep_below(entry.value.get_bool())
+        hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK \
+            if entry.value.get_bool() else gtk.gdk.WINDOW_TYPE_HINT_NORMAL
+
+        self.window.hide()
+        self.window.set_type_hint(hint)
+        self.image.clear()
+        self.window.move(self.conf.get_int('root_x'), 
+                         self.conf.get_int('root_y'))
+        self.window.resize(1, 1)
+        self.window.show()
 
     def change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
