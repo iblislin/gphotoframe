@@ -57,5 +57,5 @@ class PhotoListStore(object):
             target = WeightedRandom(target_list)
             target().get_photo(self.photoframe)
         else:
-            self.photoframe.set_blank_image()
+            self.photoframe.set_image(None)
         return True

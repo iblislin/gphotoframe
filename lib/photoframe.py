@@ -23,17 +23,14 @@ class PhotoFrame(object):
         self.window = window = self.gui.get_widget('window1')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
+        window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         if self.conf.get_bool('window_fix'):
             window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DESKTOP)
             self.gui.get_widget('menuitem6').set_active(True)
         if self.conf.get_bool('window_sticky'):
             window.stick()
-        window.set_gravity(gtk.gdk.GRAVITY_CENTER)
-        window.move(self.conf.get_int('root_x'), self.conf.get_int('root_y'))
-        window.resize(1, 1)
-        window.show_all()
-        window.get_position()
 
+        self.set_window_position()
         self.set_accelerator()
         preferences = Preferences(photolist)
 
@@ -50,6 +47,14 @@ class PhotoFrame(object):
             "on_quit"  : self.quit,
             }
         self.gui.signal_autoconnect(self.dic)
+
+    def set_window_position(self):
+        self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
+        self.window.move(self.conf.get_int('root_x'), 
+                         self.conf.get_int('root_y'))
+        self.window.resize(1, 1)
+        self.window.show_all()
+        self.window.get_position()
 
     def set_accelerator(self):
         accel_group = gtk.AccelGroup()
@@ -118,11 +123,7 @@ class PhotoFrame(object):
         pixbuf = self.image.get_pixbuf()
         self.image.clear()
 
-        self.window.move(self.conf.get_int('root_x'), 
-                         self.conf.get_int('root_y'))
-        self.window.resize(1, 1)
-        self.window.show_all()
-        self.window.get_position()
+        self.set_window_position()
         time.sleep(0.5)
         self.set_image(pixbuf)
 
@@ -133,22 +134,37 @@ class PhotoFrame(object):
             self.window.unstick()
     
     def set_image(self, pixbuf):
+        if pixbuf == None:
+            self.noimage = NoImage(self.window.window)
+            pixbuf = self.noimage()
+
         w = pixbuf.get_width()
         h = pixbuf.get_height()
 
         self.image.set_from_pixbuf(pixbuf)
         self.set_border(w, h)
 
-        tip = self.photo_now.get('title')
-        if self.photo_now.get('owner_name') != None:
-            tip = tip + "\nby " + self.photo_now.get('owner_name')
-        self.window.set_tooltip_markup(tip) 
+        try:
+            tip = self.photo_now.get('title')
+            if self.photo_now.get('owner_name') != None:
+                tip = tip + "\nby " + self.photo_now.get('owner_name')
+                self.window.set_tooltip_markup(tip) 
+        except:
+            pass
 
-    def set_blank_image(self):
+    def set_border(self, w, h):
+        border = self.conf.get_int('border_width', 10)
+        self.window.resize(w + border, h + border)
+
+class NoImage(object):
+    def __init__(self, window):
+        self.gdk_window = window
+        self.conf = GConf()
+
+    def __call__(self):
         w = self.conf.get_int('max_width', 400)
         h = self.conf.get_int('max_height', 300)
-
-        pixmap = gtk.gdk.Pixmap(self.window.window, w, h, -1)
+        pixmap = gtk.gdk.Pixmap(self.gdk_window, w, h, -1)
         colormap = gtk.gdk.colormap_get_system()
         gc = gtk.gdk.Drawable.new_gc(pixmap)
         gc.set_foreground(colormap.alloc_color(0, 0, 0))
@@ -157,9 +173,4 @@ class PhotoFrame(object):
         pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
         pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
 
-        self.image.set_from_pixbuf(pixbuf)
-        self.set_border(w, h)
-
-    def set_border(self, w, h):
-        border = self.conf.get_int('border_width', 10)
-        self.window.resize(w + border, h + border)
+        return pixbuf

@@ -80,4 +80,3 @@ class PhotoTarget(object):
 
     def set_default(self):
         pass
-        
