@@ -24,7 +24,7 @@ class PhotoFrame(object):
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
         if self.conf.get_bool('window_fix'):
-            window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+            window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DESKTOP)
             self.gui.get_widget('menuitem6').set_active(True)
         if self.conf.get_bool('window_sticky'):
             window.stick()
@@ -110,7 +110,7 @@ class PhotoFrame(object):
         return False
 
     def change_window_fix_cb(self, client, id, entry, data):
-        hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK \
+        hint = gtk.gdk.WINDOW_TYPE_HINT_DESKTOP \
             if entry.value.get_bool() else gtk.gdk.WINDOW_TYPE_HINT_NORMAL
 
         self.window.hide()

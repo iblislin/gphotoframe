@@ -1,9 +1,10 @@
 2009-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoframe.py: Fixed the window position.
+	  gtk.gdk.WINDOW_TYPE_HINT_DOCK. -> gtk.gdk.WINDOW_TYPE_HINT_DESKTOP.
 	* base.py: Added 'import sys' (issue #6).
 	* photoliststore.py: Added checking source configurations.
 	* gphotoframe.desktop.in, ja.po: Updated strings.
-	* photoframe.py: Fixed the window position.
 
 2009-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
