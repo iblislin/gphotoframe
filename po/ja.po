@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-05-05 23:38+0900\n"
-"PO-Revision-Date: 2009-05-05 23:38+0900\n"
+"PO-Revision-Date: 2009-05-08 13:53+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gphotoframe.desktop.in.h:1
-msgid "GNOME Photo Frame"
-msgstr "GNOME 写真フレーム"
+msgid "Photo Frame"
+msgstr "写真フレーム"
 
 #: ../gphotoframe.desktop.in.h:2
 msgid "Image Viewer"

@@ -1,5 +1,6 @@
 2009-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* gphotoframe.desktop.in, ja.po: Updated strings.
 	* photoframe.py: Fixed the window position.
 
 2009-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

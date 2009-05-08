@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Version=0.1
-_Name=GNOME Photo Frame
+_Name=Photo Frame
 _Comment=Show photos on Desktop
 _GenericName=Image Viewer
 Exec=gphotoframe
