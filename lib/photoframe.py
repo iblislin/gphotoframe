@@ -33,6 +33,7 @@ class PhotoFrame(object):
         self.set_window_position()
         self.set_accelerator()
         preferences = Preferences(photolist)
+        about = AboutDialog()
 
         self.dic = { 
             "on_window1_button_press_event" : self.check_button,
@@ -43,7 +44,7 @@ class PhotoFrame(object):
             "on_menuitem5_activate" : self.open_photo,
             "on_menuitem6_toggled" : self.fix_window,
             "on_prefs" : preferences.start,
-            "on_about" : self.about,
+            "on_about" : about.start,
             "on_quit"  : self.quit,
             }
         self.gui.signal_autoconnect(self.dic)
@@ -97,13 +98,6 @@ class PhotoFrame(object):
     def fix_window(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
 
-    def about(self, widget):
-        gui = gtk.glade.XML(constants.GLADE_FILE)
-        about = gui.get_widget('aboutdialog')
-        about.set_property('version', constants.VERSION)
-        about.run()
-        about.destroy()
-
     def save_geometry(self, widget, event):
         if event.mode != 2:
             return True
@@ -155,6 +149,14 @@ class PhotoFrame(object):
     def set_border(self, w, h):
         border = self.conf.get_int('border_width', 10)
         self.window.resize(w + border, h + border)
+
+class AboutDialog(object):
+    def start(self, *args):
+        gui = gtk.glade.XML(constants.GLADE_FILE)
+        about = gui.get_widget('aboutdialog')
+        about.set_property('version', constants.VERSION)
+        about.run()
+        about.destroy()
 
 class NoImage(object):
     def __init__(self, window):
