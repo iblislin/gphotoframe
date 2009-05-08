@@ -142,7 +142,7 @@ class PhotoFrame(object):
             tip = self.photo_now.get('title')
             if self.photo_now.get('owner_name') != None:
                 tip = tip + "\nby " + self.photo_now.get('owner_name')
-                self.window.set_tooltip_markup(tip) 
+            self.window.set_tooltip_markup(tip) 
         except:
             pass
 
