@@ -33,7 +33,8 @@ class PhotoListStore(object):
                 key = path[ path.rfind('/') + 1: ]
                 data[key] = value
 
-            self.append([data['source'], data['target'], data['weight']])
+            if 'source' in data:
+                self.append([data['source'], data['target'], data['weight']])
 
         self.photoframe = PhotoFrame(self)
         self.timer()
