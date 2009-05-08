@@ -1,5 +1,6 @@
 import glib
 import gtk
+import sys
 from ..config import GConf
 
 class MakePhoto(object):

@@ -1,5 +1,6 @@
 2009-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* base.py: Added 'import sys' (issue #6).
 	* photoliststore.py: Added checking source configurations.
 	* gphotoframe.desktop.in, ja.po: Updated strings.
 	* photoframe.py: Fixed the window position.
