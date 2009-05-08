@@ -1,8 +1,8 @@
 2009-05-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoframe.py: Code refactoring.  Added new class NoImage &
+	  AboutDialog.  Fixed the hidden bug (behind the nautilus).
 	* preferences.py: AboutDialog.set_transient_for(Preferences).
-	* photoframe.py: Code refactoring. Added new class NoImage &
-	  AboutDialog.
 
 2009-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
