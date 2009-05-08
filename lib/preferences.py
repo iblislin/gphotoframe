@@ -31,7 +31,8 @@ class Preferences(object):
         if user_id != None:
             self.entry2.set_text(user_id)
 
-        self.preference_list = PreferencesList(self.gui, self.photolist)
+        self.preference_list = PreferencesList(
+            self.gui, self.photolist, self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
         self.prefs.show_all()
@@ -62,14 +63,15 @@ class Preferences(object):
 class PreferencesList(object):
     """Preferences Photo Source List"""
 
-    def __init__(self, gui, photoliststore):
+    def __init__(self, gui, photoliststore, parent):
         self.conf = GConf()
         self.treeview = gui.get_widget("treeview1")
 
         self.add_column(_("Source"), 0)
         self.add_column(_("Target"), 1)
         self.add_column(_("Weight"), 2)
-	
+
+        self.parent = parent
         self.photoliststore = photoliststore
         self.source_list = self.photoliststore.list
         self.treeview.set_model(self.source_list)
@@ -90,7 +92,7 @@ class PreferencesList(object):
         self.treeview.append_column(column)
 
     def new_button(self, widget):
-        photodialog = PhotoDialog();  
+        photodialog = PhotoDialog(self.parent);  
         (result, v) = photodialog.run()
 
         if result == 1:
@@ -100,7 +102,7 @@ class PreferencesList(object):
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 
-        photodialog = PhotoDialog(model[iter]);  
+        photodialog = PhotoDialog(self.parent, model[iter]);  
         (result, v) = photodialog.run()
 
         if result == 1:
@@ -133,14 +135,15 @@ class PreferencesList(object):
 class PhotoDialog(object):
     """Photo Source Dialog"""
 
-    def __init__(self, data=None):
+    def __init__(self, parent, data=None):
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.photo = {}
-        self.widget = None
+        self.parent = parent
         self.data = data
 
     def run(self):
         self.dialog = self.gui.get_widget('photo_source')
+        self.dialog.set_transient_for(self.parent)
 
         # source
         self.source_list = source_list

@@ -1,5 +1,6 @@
 2009-05-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences.py: AboutDialog.set_transient_for(Preferences).
 	* photoframe.py: Code refactoring. Added new class NoImage &
 	  AboutDialog.
 
