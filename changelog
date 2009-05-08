@@ -1,3 +1,7 @@
+2009-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Fixed the window position.
+
 2009-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, gphotoframe.glade: Added support for

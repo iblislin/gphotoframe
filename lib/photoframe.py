@@ -1,6 +1,7 @@
 import gtk
 import gtk.glade
 import os
+import time
 import constants
 
 from twisted.internet import reactor
@@ -114,11 +115,16 @@ class PhotoFrame(object):
 
         self.window.hide()
         self.window.set_type_hint(hint)
+        pixbuf = self.image.get_pixbuf()
         self.image.clear()
+
         self.window.move(self.conf.get_int('root_x'), 
                          self.conf.get_int('root_y'))
         self.window.resize(1, 1)
-        self.window.show()
+        self.window.show_all()
+        self.window.get_position()
+        time.sleep(0.5)
+        self.set_image(pixbuf)
 
     def change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -144,12 +150,14 @@ class PhotoFrame(object):
 
         pixmap = gtk.gdk.Pixmap(self.window.window, w, h, -1)
         colormap = gtk.gdk.colormap_get_system()
-        color = colormap.alloc_color(0, 0, 0)
         gc = gtk.gdk.Drawable.new_gc(pixmap)
-        gc.set_foreground(color)
+        gc.set_foreground(colormap.alloc_color(0, 0, 0))
         pixmap.draw_rectangle(gc, True, 0, 0, w, h)
 
-        self.image.set_from_pixmap(pixmap, None)
+        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+        pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
+
+        self.image.set_from_pixbuf(pixbuf)
         self.set_border(w, h)
 
     def set_border(self, w, h):
