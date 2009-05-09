@@ -42,25 +42,28 @@ class MakeFlickrPhoto (MakePhoto):
                 s['farm'], s['server'], s['id'], s['secret'])
             page_url = "http://www.flickr.com/photos/%s/%s" % (
                 s['owner'], s['id'])
+            filename = self.cache_dir + url[ url.rfind('/') + 1: ]
 
             data = {'url'        : url,
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
                     'title'      : s['title'],
-                    'page_url'   : page_url}
-            self.photos.append(data)
+                    'page_url'   : page_url,
+                    'filename'   : filename }
+
+            photo = Photo()
+            photo.update(data)
+            self.photos.append(photo)
 
     def get_photo(self, photoframe):
         self.photo = random.choice(self.photos)
-        url = self.photo['url']
-        self.photo['filename'] = self.cache_dir + url[ url.rfind('/') + 1: ]
         urlget = UrlGetWithProxy()
-        d = urlget.downloadPage(str(url), self.photo['filename'])
+        d = urlget.downloadPage(str(self.photo['url']), self.photo['filename'])
         d.addCallback(self.get_photo_cb, photoframe)
 
     def get_photo_cb(self, cb, photoframe):
-        self.make(photoframe)
+        self.photo.show(photoframe)
 
 class PhotoTargetFlickr(PhotoTarget):
     def label(self):

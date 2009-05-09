@@ -23,12 +23,14 @@ class MakeDirPhoto (MakePhoto):
                     data = { 'url'      : 'file://' + filename,
                              'filename' : filename,
                              'title'    : f }
-                    self.photos.append(data)
+                    photo = Photo()
+                    photo.update(data)
+                    self.photos.append(photo)
         self.total = len(self.photos)
 
     def get_photo(self, photoframe):
         self.photo = random.choice(self.photos)
-        self.make(photoframe)
+        self.photo.show(photoframe)
 
 class PhotoTargetDir(PhotoTarget):
     def constract(self):

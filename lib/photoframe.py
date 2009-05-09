@@ -1,6 +1,5 @@
 import gtk
 import gtk.glade
-import os
 import time
 import constants
 
@@ -92,9 +91,7 @@ class PhotoFrame(object):
         menu.popup(None, None, None, event.button, event.time)
     
     def open_photo(self, *args):
-        url = self.photo['page_url'] \
-            if self.photo.has_key('page_url') else self.photo['url']
-        os.system("gnome-open '%s'" % url)
+        self.photo.open()
 
     def fix_window(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())

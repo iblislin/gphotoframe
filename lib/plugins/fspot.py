@@ -47,9 +47,11 @@ class MakeFSpotPhoto (MakePhoto):
         file = url.replace('file://', '')
         title = url[ url.rfind('/') + 1: ]
 
-        self.photo = { 'url' : url, 'rate' : rate.name, 
-                       'filename' : file, 'title' : title }
-        self.make(photoframe)
+        data = { 'url' : url, 'rate' : rate.name, 
+                 'filename' : file, 'title' : title }
+        self.photo = Photo()
+        self.photo.update(data)
+        self.photo.show(photoframe)
 
     def sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
