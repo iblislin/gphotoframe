@@ -92,8 +92,8 @@ class PhotoFrame(object):
         menu.popup(None, None, None, event.button, event.time)
     
     def open_photo(self, *args):
-        url = self.photo_now['page_url'] \
-            if self.photo_now.has_key('page_url') else self.photo_now['url']
+        url = self.photo['page_url'] \
+            if self.photo.has_key('page_url') else self.photo['url']
         os.system("gnome-open '%s'" % url)
 
     def fix_window(self, widget):
@@ -127,8 +127,11 @@ class PhotoFrame(object):
             self.window.stick()
         else:
             self.window.unstick()
-    
-    def set_image(self, pixbuf):
+
+    def set_photo(self, photo):
+        self.photo = photo
+        pixbuf = self.photo['pixbuf']
+
         if pixbuf == None:
             self.noimage = NoImage(self.window.window)
             pixbuf = self.noimage()
@@ -140,9 +143,9 @@ class PhotoFrame(object):
         self.set_border(w, h)
 
         try:
-            tip = self.photo_now.get('title')
-            if self.photo_now.get('owner_name') != None:
-                tip = tip + "\nby " + self.photo_now.get('owner_name')
+            tip = self.photo.get('title')
+            if self.photo.get('owner_name') != None:
+                tip = tip + "\nby " + self.photo.get('owner_name')
             self.window.set_tooltip_markup(tip) 
         except:
             pass

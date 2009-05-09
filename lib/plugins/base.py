@@ -22,8 +22,9 @@ class MakePhoto(object):
             orientation = self.pixbuf.get_option('orientation')
             self.rotate(orientation)
             self.scale()
-            photoframe.photo_now = self.photo
-            photoframe.set_image(self.pixbuf)
+
+            self.photo['pixbuf'] = self.pixbuf
+            photoframe.set_photo(self.photo)
         except glib.GError:
             print sys.exc_info()[1]
 
