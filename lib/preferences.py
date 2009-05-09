@@ -65,6 +65,7 @@ class PreferencesList(object):
 
     def __init__(self, gui, photoliststore, parent):
         self.conf = GConf()
+        self.gui = gui
         self.treeview = gui.get_widget("treeview1")
 
         self.add_column(_("Source"), 0)
@@ -75,11 +76,13 @@ class PreferencesList(object):
         self.photoliststore = photoliststore
         self.source_list = self.photoliststore.list
         self.treeview.set_model(self.source_list)
+        self.set_button_sensitive(False)
 
         dic = { 
             "on_button3_clicked" : self.new_button,
             "on_button4_clicked" : self.prefs_button,
             "on_button5_clicked" : self.delete_button,
+            "on_treeview1_cursor_changed" : self.cursor_changed_cb
             }
         gui.signal_autoconnect(dic)
 
@@ -90,6 +93,10 @@ class PreferencesList(object):
         # column.set_fixed_width(80)
         column.set_sort_column_id(id)
         self.treeview.append_column(column)
+
+    def set_button_sensitive(self, state):
+        self.gui.get_widget('button4').set_sensitive(state)
+        self.gui.get_widget('button5').set_sensitive(state)
 
     def new_button(self, widget):
         photodialog = PhotoDialog(self.parent);  
@@ -113,6 +120,11 @@ class PreferencesList(object):
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
         self.source_list.remove(iter)
+        self.set_button_sensitive(False)
+
+    def cursor_changed_cb(self, widget):
+        if self.treeview.get_selection().get_selected()[1] != None:
+            self.set_button_sensitive(True)
 
     def save_all_data(self):
         model = self.treeview.get_model()
