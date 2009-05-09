@@ -25,26 +25,21 @@ class PhotoFrame(object):
         window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         if self.conf.get_bool('window_fix'):
             window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
-            self.gui.get_widget('menuitem6').set_active(True)
         if self.conf.get_bool('window_sticky'):
             window.stick()
 
         self.set_window_position()
-        self.set_accelerator()
         preferences = Preferences(photolist)
+        self.popup_menu = PopUpMenu(photolist, self)
+        self.set_accelerator()
+
         about = AboutDialog()
 
         self.dic = { 
             "on_window1_button_press_event" : self.check_button,
             "on_window1_leave_notify_event" : self.save_geometry,
             "on_window1_window_state_event" : self.check_window_state,
-            "on_window1_destroy" : self.quit,
-
-            "on_menuitem5_activate" : self.open_photo,
-            "on_menuitem6_toggled" : self.fix_window,
-            "on_prefs" : preferences.start,
-            "on_about" : about.start,
-            "on_quit"  : self.quit,
+            "on_window1_destroy" : reactor.stop,
             }
         self.gui.signal_autoconnect(self.dic)
 
@@ -59,18 +54,14 @@ class PhotoFrame(object):
 
     def set_accelerator(self):
         accel_group = gtk.AccelGroup()
-
-        ac_set = [[ "<gph>/quit", "<control>q", self.quit ],
-                  [ "<gph>/open", "<control>o", self.open_photo ]]
+        ac_set = [[ "<gph>/quit", "<control>q", self.popup_menu.quit ],
+                  [ "<gph>/open", "<control>o", self.popup_menu.open_photo ]]
         for ac in ac_set:
             key, mod = gtk.accelerator_parse(ac[1])
             gtk.accel_map_add_entry(ac[0], key, mod)
             accel_group.connect_by_path(ac[0], ac[2])
 
         self.window.add_accel_group(accel_group) 
-
-    def quit(self, *args):
-        reactor.stop()
 
     def check_button(self, widget, event):
         if event.button == 1 and self.conf.get_bool('window_fix') == False:
@@ -79,17 +70,13 @@ class PhotoFrame(object):
         elif event.button == 2:
             pass
         elif event.button == 3:
-            self.popup_menu(widget, event)
+            self.popup_menu.start(widget, event)
 
     def check_window_state(self, widget, event):
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
             state = event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED
             self.window.set_skip_taskbar_hint(not state)
 
-    def popup_menu(self, widget, event):
-        menu = self.gui.get_widget('menu1')
-        menu.popup(None, None, None, event.button, event.time)
-    
     def open_photo(self, *args):
         self.photo.open()
 
@@ -128,7 +115,9 @@ class PhotoFrame(object):
     def set_photo(self, photo):
         self.photo = photo
         pixbuf = self.photo['pixbuf']
+        self.set_image(pixbuf)
 
+    def set_image(self, pixbuf):
         if pixbuf == None:
             self.noimage = NoImage(self.window.window)
             pixbuf = self.noimage()
@@ -150,6 +139,40 @@ class PhotoFrame(object):
     def set_border(self, w, h):
         border = self.conf.get_int('border_width', 10)
         self.window.resize(w + border, h + border)
+
+class PopUpMenu(object):
+    def __init__(self, photolist, photoframe):
+        self.photoframe = photoframe
+        self.gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.conf = GConf()
+
+        about = AboutDialog()
+        preferences = Preferences(photolist)
+
+        self.dic = { 
+            "on_menuitem5_activate" : self.open_photo,
+            "on_menuitem6_toggled" : self.fix_window,
+            "on_prefs" : preferences.start,
+            "on_about" : about.start,
+            "on_quit"  : self.quit,
+            }
+        self.gui.signal_autoconnect(self.dic)
+
+        if self.conf.get_bool('window_fix'):
+            self.gui.get_widget('menuitem6').set_active(True)
+
+    def start(self, widget, event):
+        menu = self.gui.get_widget('menu1')
+        menu.popup(None, None, None, event.button, event.time)
+
+    def open_photo(self, *args):
+        self.photo = self.photoframe.photo.open()
+
+    def fix_window(self, widget):
+        self.conf.set_bool('window_fix', widget.get_active())
+
+    def quit(self, *args):
+        reactor.stop()
 
 class AboutDialog(object):
     def start(self, *args):

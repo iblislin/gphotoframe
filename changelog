@@ -1,3 +1,7 @@
+2009-05-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Code refactoring (Added new class PopUpMenu).
+
 2009-05-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, lib/*.py: Code refactoring.
