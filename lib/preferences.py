@@ -57,7 +57,7 @@ class Preferences(object):
         flickr_user_id = self.entry2.get_text()
         self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id );
 
-        self.preference_list.save_all_data()
+        self.photolist.save_gconf()
         self.prefs.destroy()
 
 class PreferencesList(object):
@@ -126,25 +126,6 @@ class PreferencesList(object):
     def cursor_changed_cb(self, widget):
         if self.treeview.get_selection().get_selected()[1] != None:
             self.set_button_sensitive(True)
-
-    def save_all_data(self):
-        model = self.treeview.get_model()
-        self.conf.recursive_unset('sources')
-        self.conf.recursive_unset('flickr') # for ver. 0.1 
-
-        for i, row in enumerate(model):
-            data = {}
-            for num, v in enumerate(( 
-                    'source', 'target', 'argument', 'weight', 'options')):
-                data[v] = row[num]
-
-            for k, v in data.iteritems():
-                key = 'sources/%s/%s' % (i, k)
-                value = v if v != None else ""
-                if isinstance(value, int):
-                    self.conf.set_int( key, value );
-                else:
-                    self.conf.set_string( key, value );
 
 class PhotoDialog(object):
     """Photo Source Dialog"""

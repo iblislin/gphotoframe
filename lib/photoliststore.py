@@ -16,30 +16,11 @@ class PhotoListStore(object):
     """
 
     def __init__(self):
-        self.token = make_photo_token
-        self.liststore = gtk.ListStore(str, str, str, int, str, object)
         self.conf = GConf()
 
-        for dir in self.conf.all_dirs('sources'):
-            data = { 'argument' : '', 'weight' : 1, 'options' : '' }
-
-
-            for e in self.conf.all_entries(dir):
-                if e.get_value() == None:
-                    continue
-
-                if e.get_value().type == gconf.VALUE_INT:
-                    value = e.get_value().get_int()
-                else:
-                    value = e.get_value().get_string()
-
-                path = e.get_key()
-                key = path[ path.rfind('/') + 1: ]
-                data[key] = value
-
-            if 'source' in data:
-                self.append([data['source'], data['target'], 
-                             data['argument'], data['weight'], data['options']])
+        self.token = make_photo_token
+        self.liststore = gtk.ListStore(str, str, str, int, str, object)
+        self.load_gconf()
 
         self.photoframe = PhotoFrame(self)
         self.timer()
@@ -66,3 +47,42 @@ class PhotoListStore(object):
             nophoto = NoPhoto()
             nophoto.show(self.photoframe)
         return True
+
+    def load_gconf(self):
+        for dir in self.conf.all_dirs('sources'):
+            data = { 'argument' : '', 'weight' : 1, 'options' : '' }
+
+            for e in self.conf.all_entries(dir):
+                if e.get_value() == None:
+                    continue
+
+                if e.get_value().type == gconf.VALUE_INT:
+                    value = e.get_value().get_int()
+                else:
+                    value = e.get_value().get_string()
+
+                path = e.get_key()
+                key = path[ path.rfind('/') + 1: ]
+                data[key] = value
+
+            if 'source' in data:
+                self.append([data['source'], data['target'], 
+                             data['argument'], data['weight'], data['options']])
+
+    def save_gconf(self):
+        self.conf.recursive_unset('sources')
+        self.conf.recursive_unset('flickr') # for ver. 0.1 
+
+        for i, row in enumerate(self.liststore):
+            data = {}
+            for num, v in enumerate(( 
+                    'source', 'target', 'argument', 'weight', 'options')):
+                data[v] = row[num]
+
+            for k, v in data.iteritems():
+                key = 'sources/%s/%s' % (i, k)
+                value = v if v != None else ""
+                if isinstance(value, int):
+                    self.conf.set_int( key, value );
+                else:
+                    self.conf.set_string( key, value );
