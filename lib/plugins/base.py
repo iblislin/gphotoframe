@@ -7,9 +7,11 @@ from ..config import GConf
 class MakePhoto(object):
     """Photo Factory"""
 
-    def __init__(self, method, weight):
+    def __init__(self, method, argument, weight):
         self.weight = weight
+        self.argument = argument
         self.method = method
+
         self.total  = 0
         self.photos = []
         self.conf = GConf()

@@ -152,6 +152,11 @@ class PhotoDialog(object):
         # target
         self.change_combobox(self.photo['source'], self.data)
 
+        # argument
+        self.photo['argument'] = self.gui.get_widget('entry1')
+        if self.data != None:
+            self.photo['argument'].set_text(self.data[2])
+
         # weight
         weight = self.data[3] if self.data != None else 0
         self.photo['weight'] = self.gui.get_widget('spinbutton3')
@@ -167,7 +172,7 @@ class PhotoDialog(object):
 
         v = { 'source'  : self.photo['source'].get_active_text(),
               'target'  : target, 
-              'argument' : '',
+              'argument' : self.photo['argument'].get_text(),
               'weight'  : self.photo['weight'].get_value(),
               'options' : '' }
 

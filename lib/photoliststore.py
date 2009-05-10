@@ -28,7 +28,7 @@ class PhotoListStore(object):
     def append(self, d, i=None):
         if 'source' not in d: return 
 
-        obj = self.token[ d['source'] ]( d['target'], d['weight'] )
+        obj = self.token[ d['source'] ]( d['target'], d['argument'], d['weight'] )
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]
 

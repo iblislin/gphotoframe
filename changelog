@@ -1,3 +1,8 @@
+2009-05-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, preferences.py, base.py: Added new photo
+	  source options: argument.
+
 2009-05-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, photoliststore.py, base.py: Code refactoring.
