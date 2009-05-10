@@ -25,11 +25,14 @@ class PhotoListStore(object):
         self.photoframe = PhotoFrame(self)
         self.timer()
 
-    def append(self, v, i=None):
-        if not v[0]: return 
-        obj = self.token[ v[0] ]( v[1], v[3] )
-        v.append(obj)
-        self.liststore.insert_before(i, v)
+    def append(self, d, i=None):
+        if 'source' not in d: return 
+
+        obj = self.token[ d['source'] ]( d['target'], d['weight'] )
+        list = [ d['source'], d['target'], d['argument'], d['weight'],
+                 d['options'], obj ]
+
+        self.liststore.insert_before(i, list)
         obj.prepare()
 
     def timer(self):
@@ -50,7 +53,7 @@ class PhotoListStore(object):
 
     def load_gconf(self):
         for dir in self.conf.all_dirs('sources'):
-            data = { 'argument' : '', 'weight' : 1, 'options' : '' }
+            data = { 'target' : '', 'argument' : '', 'weight' : 1, 'options' : '' }
 
             for e in self.conf.all_entries(dir):
                 if e.get_value() == None:
@@ -66,22 +69,19 @@ class PhotoListStore(object):
                 data[key] = value
 
             if 'source' in data:
-                self.append([data['source'], data['target'], 
-                             data['argument'], data['weight'], data['options']])
+                self.append(data)
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')
         self.conf.recursive_unset('flickr') # for ver. 0.1 
 
         for i, row in enumerate(self.liststore):
-            data = {}
-            for num, v in enumerate(( 
+            for num, k in enumerate(( 
                     'source', 'target', 'argument', 'weight', 'options')):
-                data[v] = row[num]
-
-            for k, v in data.iteritems():
+                value = row[num]
+                if not value: continue
                 key = 'sources/%s/%s' % (i, k)
-                value = v if v != None else ""
+
                 if isinstance(value, int):
                     self.conf.set_int( key, value );
                 else:

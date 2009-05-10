@@ -164,11 +164,12 @@ class PhotoDialog(object):
         target = self.photo['target'].get_current_folder() \
             if isinstance(self.photo['target'], gtk.FileChooserButton) \
             else self.photo['target'].get_active_text()
-        v = [ self.photo['source'].get_active_text(),
-              target, 
-              '',
-              self.photo['weight'].get_value(),
-              '' ]
+
+        v = { 'source'  : self.photo['source'].get_active_text(),
+              'target'  : target, 
+              'argument' : '',
+              'weight'  : self.photo['weight'].get_value(),
+              'options' : '' }
 
         self.dialog.destroy()
         return self.result, v
