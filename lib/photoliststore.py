@@ -9,16 +9,20 @@ from photoframe import PhotoFrame
 from plugins import *
 
 class PhotoListStore(object):
-    """list"""
+    """ListStore for Photo sources.
+
+    0,      1,      2,        3,      4,       5
+    source, target, argument, weight, options, object
+    """
 
     def __init__(self):
         self.token = make_photo_token
-        self.list = gtk.ListStore(str, str, int, object)
+        self.liststore = gtk.ListStore(str, str, str, int, str, object)
         self.conf = GConf()
 
         for dir in self.conf.all_dirs('sources'):
-            data = {}
-            data['weight'] = 1  # for Ver. 0.1
+            data = { 'argument' : '', 'weight' : 1, 'options' : '' }
+
 
             for e in self.conf.all_entries(dir):
                 if e.get_value() == None:
@@ -34,15 +38,17 @@ class PhotoListStore(object):
                 data[key] = value
 
             if 'source' in data:
-                self.append([data['source'], data['target'], data['weight']])
+                self.append([data['source'], data['target'], 
+                             data['argument'], data['weight'], data['options']])
 
         self.photoframe = PhotoFrame(self)
         self.timer()
 
     def append(self, v, i=None):
-        obj = self.token[ v[0] ]( v[1], v[2] )
+        if not v[0]: return 
+        obj = self.token[ v[0] ]( v[1], v[3] )
         v.append(obj)
-        self.list.insert_before(i, v)
+        self.liststore.insert_before(i, v)
         obj.prepare()
 
     def timer(self):
@@ -52,7 +58,7 @@ class PhotoListStore(object):
         return False
 
     def change_photo(self):
-        target_list = [ x[3] for x in self.list if len( x[3].photos ) > 0 ]
+        target_list = [ x[5] for x in self.liststore if x[5].photos ]
         if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self.photoframe)

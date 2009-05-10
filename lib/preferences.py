@@ -70,11 +70,12 @@ class PreferencesList(object):
 
         self.add_column(_("Source"), 0)
         self.add_column(_("Target"), 1)
-        self.add_column(_("Weight"), 2)
+        self.add_column(_("Argument"), 2)
+        self.add_column(_("Weight"), 3)
 
         self.parent = parent
         self.photoliststore = photoliststore
-        self.source_list = self.photoliststore.list
+        self.source_list = self.photoliststore.liststore
         self.treeview.set_model(self.source_list)
         self.set_button_sensitive(False)
 
@@ -133,7 +134,8 @@ class PreferencesList(object):
 
         for i, row in enumerate(model):
             data = {}
-            for num, v in enumerate(('source', 'target', 'weight')):
+            for num, v in enumerate(( 
+                    'source', 'target', 'argument', 'weight', 'options')):
                 data[v] = row[num]
 
             for k, v in data.iteritems():
@@ -170,7 +172,7 @@ class PhotoDialog(object):
         self.change_combobox(self.photo['source'], self.data)
 
         # weight
-        weight = self.data[2] if self.data != None else 0
+        weight = self.data[3] if self.data != None else 0
         self.photo['weight'] = self.gui.get_widget('spinbutton3')
         self.photo['weight'].set_value(weight)
 
@@ -180,10 +182,12 @@ class PhotoDialog(object):
 
         target = self.photo['target'].get_current_folder() \
             if isinstance(self.photo['target'], gtk.FileChooserButton) \
-            else  self.photo['target'].get_active_text()
+            else self.photo['target'].get_active_text()
         v = [ self.photo['source'].get_active_text(),
               target, 
-              self.photo['weight'].get_value() ]
+              '',
+              self.photo['weight'].get_value(),
+              '' ]
 
         self.dialog.destroy()
         return self.result, v
