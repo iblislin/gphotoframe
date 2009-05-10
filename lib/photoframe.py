@@ -99,12 +99,11 @@ class PhotoFrame(object):
 
         self.window.hide()
         self.window.set_type_hint(hint)
-        pixbuf = self.image.get_pixbuf()
         self.image.clear()
 
         self.set_window_position()
         time.sleep(0.5)
-        self.set_image(pixbuf)
+        self.set_photo(self.photo)
 
     def change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():

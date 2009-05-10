@@ -53,9 +53,10 @@ class PhotoListStore(object):
 
     def change_photo(self):
         target_list = [ x[3] for x in self.list if len( x[3].photos ) > 0 ]
-        if len(target_list) > 0:
+        if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self.photoframe)
         else:
-            self.photoframe.set_image(None)
+            nophoto = NoPhoto()
+            nophoto.show(self.photoframe)
         return True

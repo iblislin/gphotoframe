@@ -93,4 +93,25 @@ class Photo(dict):
         h = int( src_h * ratio + 0.4 );
 
         self['pixbuf'] = self['pixbuf'].scale_simple( 
-            w, h, gtk.gdk.INTERP_BILINEAR )
+            w, h, gtk.gdk.INTERP_BILINEAR)
+
+class NoPhoto(Photo):
+
+    def show(self, photoframe, *args):
+        gdk_window = photoframe.window.window
+
+        w = self.conf.get_int('max_width', 400)
+        h = self.conf.get_int('max_height', 300)
+        pixmap = gtk.gdk.Pixmap(gdk_window, w, h, -1)
+        colormap = gtk.gdk.colormap_get_system()
+        gc = gtk.gdk.Drawable.new_gc(pixmap)
+        gc.set_foreground(colormap.alloc_color(0, 0, 0))
+        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
+
+        self['pixbuf'] = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+        self['pixbuf'].get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
+
+        photoframe.set_photo(self)
+
+    def open(self, *args):
+        pass
