@@ -114,12 +114,6 @@ class PhotoFrame(object):
     def set_photo(self, photo):
         self.photo = photo
         pixbuf = self.photo['pixbuf']
-        self.set_image(pixbuf)
-
-    def set_image(self, pixbuf):
-        if pixbuf == None:
-            self.noimage = NoImage(self.window.window)
-            pixbuf = self.noimage()
 
         w = pixbuf.get_width()
         h = pixbuf.get_height()
