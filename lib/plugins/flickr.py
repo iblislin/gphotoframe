@@ -21,6 +21,9 @@ class MakeFlickrPhoto (MakePhoto):
 
         if self.method == 'flickr.groups.pools.getPhotos':
             values['group_id'] = argument = self.argument
+        elif self.method == 'flickr.photos.search':
+            values['tags'] = argument = self.argument
+            values['tag_mode'] = 'all'
         else:
             values['user_id'] = argument = self.argument or user_id
         if not argument: return
@@ -63,6 +66,9 @@ class PhotoTargetFlickr(PhotoTarget):
         if target == 'flickr.groups.pools.getPhotos':
             state = True
             label = _('_Group ID:')
+        elif target == 'flickr.photos.search':
+            state = True
+            label = _('_Tags:')
         else:
             state = False
             label = _('_User ID:')
@@ -72,12 +78,15 @@ class PhotoTargetFlickr(PhotoTarget):
         self.gui.get_widget('entry1').set_sensitive(state)
 
     def _label(self):
-        return  ['flickr.interestingness.getList',
-                 'flickr.favorites.getPublicList',
-                 'flickr.photos.getContactsPublicPhotos', 
-                 'flickr.groups.pools.getPhotos', ]
+        return  [
+            'flickr.favorites.getPublicList',
+            'flickr.groups.pools.getPhotos', 
+            'flickr.interestingness.getList',
+            'flickr.photos.getContactsPublicPhotos', 
+            'flickr.photos.search'
+            ]
 
     def _set_default(self):
         if self.data != None:
-            fr_num = self.label().index(self.data[1])
+            fr_num = self._label().index(self.data[1])
             self.new_widget.set_active(fr_num)

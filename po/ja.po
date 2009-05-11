@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-11 23:49+0900\n"
-"PO-Revision-Date: 2009-05-11 23:49+0900\n"
+"POT-Creation-Date: 2009-05-12 01:57+0900\n"
+"PO-Revision-Date: 2009-05-12 01:58+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "写真のソース"
 msgid "Photos"
 msgstr "写真"
 
-#: ../gphotoframe.glade.h:12 ../lib/preferences.py:185
+#: ../gphotoframe.glade.h:12 ../lib/preferences.py:184
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -87,7 +87,7 @@ msgstr "ソース(_S):"
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:16 ../lib/plugins/flickr.py:68
+#: ../gphotoframe.glade.h:16 ../lib/plugins/flickr.py:74
 msgid "_User ID:"
 msgstr "ユーザID(_U)"
 
@@ -115,6 +115,10 @@ msgstr "引数"
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/flickr.py:65
+#: ../lib/plugins/flickr.py:68
 msgid "_Group ID:"
 msgstr "グループID(_G)"
+
+#: ../lib/plugins/flickr.py:71
+msgid "_Tags:"
+msgstr "タグ(_T):"

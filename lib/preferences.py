@@ -157,7 +157,6 @@ class PhotoDialog(object):
         self.photo['argument'] = self.gui.get_widget('entry1')
         if self.data != None:
             self.photo['argument'].set_text(self.data[2])
-        self.set_argument_sensitive(False)
 
         # weight
         weight = self.data[3] if self.data != None else 0
