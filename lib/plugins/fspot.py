@@ -2,8 +2,7 @@ import os
 import sqlite3
 
 from base import *
-from ..wrandom import WeightedRandom
-from ..urlget import UrlGetWithProxy
+from ..utils.wrandom import WeightedRandom
 
 class MakeFSpotPhoto (MakePhoto):
 

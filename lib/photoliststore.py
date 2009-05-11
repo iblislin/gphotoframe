@@ -3,9 +3,9 @@ import glib
 import gobject
 import gconf
 
-from config import GConf
-from wrandom import WeightedRandom
 from photoframe import PhotoFrame
+from utils.config import GConf
+from utils.wrandom import WeightedRandom
 from plugins import *
 
 class PhotoListStore(object):

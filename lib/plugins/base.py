@@ -5,9 +5,9 @@ import glib
 import gtk
 import random
 
-from ..config import GConf
 from ..constants import CACHE_DIR
-from ..urlget import UrlGetWithProxy
+from ..utils.config import GConf
+from ..utils.urlget import UrlGetWithProxy
 
 class MakePhoto(object):
     """Photo Factory"""

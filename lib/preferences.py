@@ -1,10 +1,11 @@
+import os
+
 import gtk
 import gtk.glade
-import os
-import constants
-
 from gettext import gettext as _
-from config import GConf
+
+import constants
+from utils.config import GConf
 from plugins import *
 
 class Preferences(object):

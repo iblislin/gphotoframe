@@ -1,11 +1,12 @@
+import time
+
 import gtk
 import gtk.glade
-import time
-import constants
-
 from twisted.internet import reactor
-from config import GConf
+
+import constants
 from preferences import Preferences
+from utils.config import GConf
 
 class PhotoFrame(object):
     """Photo Frame"""
