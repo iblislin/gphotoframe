@@ -239,7 +239,7 @@
                               <widget class="GtkLabel" id="label2">
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
-                                <property name="label" translatable="yes">I_D:</property>
+                                <property name="label" translatable="yes">_User ID:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">entry2</property>
                                 <property name="single_line_mode">True</property>

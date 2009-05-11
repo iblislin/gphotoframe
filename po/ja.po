@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-05 23:38+0900\n"
-"PO-Revision-Date: 2009-05-08 13:53+0900\n"
+"POT-Creation-Date: 2009-05-11 23:49+0900\n"
+"PO-Revision-Date: 2009-05-11 23:49+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gphotoframe.desktop.in.h:1
-msgid "Photo Frame"
-msgstr "写真フレーム"
-
-#: ../gphotoframe.desktop.in.h:2
 msgid "Image Viewer"
 msgstr "イメージビューア"
+
+#: ../gphotoframe.desktop.in.h:2
+msgid "Photo Frame"
+msgstr "写真フレーム"
 
 #: ../gphotoframe.desktop.in.h:3
 msgid "Show photos on Desktop"
@@ -52,44 +52,44 @@ msgid "General"
 msgstr "全般"
 
 #: ../gphotoframe.glade.h:7
-msgid "I_D:"
-msgstr "ID(_D):"
-
-#: ../gphotoframe.glade.h:8
 msgid "Option"
 msgstr "オプション"
 
-#: ../gphotoframe.glade.h:9
+#: ../gphotoframe.glade.h:8
 msgid "Photo Frame Preferences"
 msgstr "写真フレームの設定"
 
-#: ../gphotoframe.glade.h:10
+#: ../gphotoframe.glade.h:9
 msgid "Photo Frame for GNOME Desktop"
 msgstr "GNOME デスクトップ向けの写真フレームです。"
 
-#: ../gphotoframe.glade.h:11
+#: ../gphotoframe.glade.h:10
 msgid "Photo Source"
 msgstr "写真のソース"
 
-#: ../gphotoframe.glade.h:12
+#: ../gphotoframe.glade.h:11
 msgid "Photos"
 msgstr "写真"
 
-#: ../gphotoframe.glade.h:13
+#: ../gphotoframe.glade.h:12 ../lib/preferences.py:185
 msgid "_Argument:"
 msgstr "引数(_A):"
 
-#: ../gphotoframe.glade.h:14
+#: ../gphotoframe.glade.h:13
 msgid "_Interval:"
 msgstr "表示間隔(_I):"
 
-#: ../gphotoframe.glade.h:15
+#: ../gphotoframe.glade.h:14
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:16
+#: ../gphotoframe.glade.h:15
 msgid "_Target:"
 msgstr "ターゲット(_T):"
+
+#: ../gphotoframe.glade.h:16 ../lib/plugins/flickr.py:68
+msgid "_User ID:"
+msgstr "ユーザID(_U)"
 
 #: ../gphotoframe.glade.h:17
 msgid "_Weight:"
@@ -99,14 +99,22 @@ msgstr "重み(_W):"
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/preferences.py:69
+#: ../lib/preferences.py:72
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:70
+#: ../lib/preferences.py:73
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:71
+#: ../lib/preferences.py:74
+msgid "Argument"
+msgstr "引数"
+
+#: ../lib/preferences.py:75
 msgid "Weight"
 msgstr "重み"
+
+#: ../lib/plugins/flickr.py:65
+msgid "_Group ID:"
+msgstr "グループID(_G)"
