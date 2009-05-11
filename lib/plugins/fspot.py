@@ -82,7 +82,7 @@ class PhotoTargetFspot(PhotoTarget):
 
     def _set_default(self):
         if self.data != None:
-            fr_num = self.label().index(self.data[1])
+            fr_num = self._label().index(self.data[1])
             self.new_widget.set_active(fr_num)
 
 class FSpotDB(object):
