@@ -2,6 +2,7 @@ import urllib
 import simplejson as json
 
 from base import *
+from gettext import gettext as _
 
 class MakeFlickrPhoto (MakePhoto):
 
@@ -59,8 +60,14 @@ class PhotoTargetFlickr(PhotoTarget):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        state = True if target == 'flickr.groups.pools.getPhotos' else False
+        if target == 'flickr.groups.pools.getPhotos':
+            state = True
+            label = _('_Group ID:')
+        else:
+            state = False
+            label = _('_User ID:')
 
+        self.gui.get_widget('label12').set_text_with_mnemonic(label)
         self.gui.get_widget('label12').set_sensitive(state)
         self.gui.get_widget('entry1').set_sensitive(state)
 
