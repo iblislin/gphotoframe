@@ -45,25 +45,25 @@ class PhotoTarget(object):
         self.data = data
 
     def make(self, data=None):
-        self.constract()
-        self.attach()
-        self.set_default()
+        self._construct_widget()
+        self._attach_widget()
+        self._set_default()
         return self.new_widget
 
-    def constract(self):
+    def _construct_widget(self):
         self.new_widget = gtk.combo_box_new_text()
-        for text in self.label():
+        for text in self._label():
             self.new_widget.append_text(text)
         self.new_widget.set_active(0)
 
-    def attach(self):
+    def _attach_widget(self):
         self.new_widget.show()
         self.table.attach(self.new_widget, 1, 2, 1, 2, xpadding=0, ypadding=0)
 
-    def set_default(self):
+    def _set_default(self):
         pass
 
-    def label(self):
+    def _label(self):
         pass
 
 class Photo(dict):

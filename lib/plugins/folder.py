@@ -1,8 +1,9 @@
-import gtk
 import os
 import re
 import random
 import threading
+
+import gtk
 
 from base import *
 
@@ -33,10 +34,10 @@ class MakeDirPhoto (MakePhoto):
         self.photo.show(photoframe)
 
 class PhotoTargetDir(PhotoTarget):
-    def constract(self):
+    def _construct_widget(self):
         self.new_widget = gtk.FileChooserButton("button")
         self.new_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
 
-    def set_default(self):
+    def _set_default(self):
         folder = self.data[1] if self.data != None else os.environ['HOME']
         self.new_widget.set_current_folder(folder)

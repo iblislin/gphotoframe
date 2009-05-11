@@ -1,6 +1,6 @@
 2009-05-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-
+	* flickr.py, preferences.py: Set sensitive of the argument widget.
 	* config.py, urlget.py, wrandom.py: Moved to utils/.
 	* flickr.py: Added support user_id or group_id.
 	* photoliststore.py, preferences.py, base.py: Added new photo

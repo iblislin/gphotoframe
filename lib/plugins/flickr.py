@@ -50,13 +50,27 @@ class MakeFlickrPhoto (MakePhoto):
             self.photos.append(photo)
 
 class PhotoTargetFlickr(PhotoTarget):
-    def label(self):
+
+    def _construct_widget(self):
+        super(PhotoTargetFlickr, self)._construct_widget()
+ 
+        self._widget_cb(self.new_widget)
+        self.new_widget.connect('changed', self._widget_cb)
+
+    def _widget_cb(self, widget):
+        target = widget.get_active_text()
+        state = True if target == 'flickr.groups.pools.getPhotos' else False
+
+        self.gui.get_widget('label12').set_sensitive(state)
+        self.gui.get_widget('entry1').set_sensitive(state)
+
+    def _label(self):
         return  ['flickr.interestingness.getList',
                  'flickr.favorites.getPublicList',
                  'flickr.photos.getContactsPublicPhotos', 
                  'flickr.groups.pools.getPhotos', ]
 
-    def set_default(self):
+    def _set_default(self):
         if self.data != None:
             fr_num = self.label().index(self.data[1])
             self.new_widget.set_active(fr_num)

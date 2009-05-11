@@ -70,7 +70,7 @@ class MakeFSpotPhoto (MakePhoto):
         return sql
 
 class PhotoTargetFspot(PhotoTarget):
-    def label(self):
+    def _label(self):
         list = ['']
         db = FSpotDB()
         if db != None:
@@ -80,7 +80,7 @@ class PhotoTargetFspot(PhotoTarget):
             db.close()
         return list
 
-    def set_default(self):
+    def _set_default(self):
         if self.data != None:
             fr_num = self.label().index(self.data[1])
             self.new_widget.set_active(fr_num)
