@@ -1,3 +1,7 @@
+2009-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe.glade, photoframe.py: Renamed some object names.
+
 2009-05-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.glade, POTFILES.in, ja.po: Updated translation.

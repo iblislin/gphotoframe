@@ -2,16 +2,16 @@
 <glade-interface>
   <!-- interface-requires gtk+ 2.16 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <widget class="GtkWindow" id="window1">
-    <signal name="button_press_event" handler="on_window1_button_press_event"/>
-    <signal name="destroy" handler="on_window1_destroy"/>
-    <signal name="leave_notify_event" handler="on_window1_leave_notify_event"/>
-    <signal name="window_state_event" handler="on_window1_window_state_event"/>
+  <widget class="GtkWindow" id="window">
+    <signal name="button_press_event" handler="on_window_button_press_event"/>
+    <signal name="destroy" handler="on_window_destroy"/>
+    <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
+    <signal name="window_state_event" handler="on_window_window_state_event"/>
     <child>
-      <widget class="GtkEventBox" id="eventbox1">
+      <widget class="GtkEventBox" id="eventbox">
         <property name="visible">True</property>
         <child>
-          <widget class="GtkImage" id="image1">
+          <widget class="GtkImage" id="image">
             <property name="visible">True</property>
           </widget>
         </child>
@@ -44,7 +44,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="GtkMenu" id="menu1">
+  <widget class="GtkMenu" id="menu">
     <property name="visible">True</property>
     <child>
       <widget class="GtkImageMenuItem" id="menuitem5">

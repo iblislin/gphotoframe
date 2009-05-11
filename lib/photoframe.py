@@ -14,13 +14,13 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.image = self.gui.get_widget('image1')
+        self.image = self.gui.get_widget('image')
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self.change_sticky_cb)
         self.conf.set_notify_add('window_fix', self.change_window_fix_cb)
 
-        self.window = window = self.gui.get_widget('window1')
+        self.window = window = self.gui.get_widget('window')
         window.set_decorated(False)
         window.set_skip_taskbar_hint(True)
         window.set_gravity(gtk.gdk.GRAVITY_CENTER)
@@ -37,10 +37,10 @@ class PhotoFrame(object):
         about = AboutDialog()
 
         self.dic = { 
-            "on_window1_button_press_event" : self.check_button,
-            "on_window1_leave_notify_event" : self.save_geometry,
-            "on_window1_window_state_event" : self.check_window_state,
-            "on_window1_destroy" : reactor.stop,
+            "on_window_button_press_event" : self.check_button,
+            "on_window_leave_notify_event" : self.save_geometry,
+            "on_window_window_state_event" : self.check_window_state,
+            "on_window_destroy" : reactor.stop,
             }
         self.gui.signal_autoconnect(self.dic)
 
@@ -156,7 +156,7 @@ class PopUpMenu(object):
             self.gui.get_widget('menuitem6').set_active(True)
 
     def start(self, widget, event):
-        menu = self.gui.get_widget('menu1')
+        menu = self.gui.get_widget('menu')
         menu.popup(None, None, None, event.button, event.time)
 
     def open_photo(self, *args):
