@@ -156,6 +156,7 @@ class PhotoDialog(object):
         self.photo['argument'] = self.gui.get_widget('entry1')
         if self.data != None:
             self.photo['argument'].set_text(self.data[2])
+        self.set_argument_sensitive()
 
         # weight
         weight = self.data[3] if self.data != None else 0
@@ -179,8 +180,17 @@ class PhotoDialog(object):
         self.dialog.destroy()
         return self.result, v
 
+    def set_argument_sensitive(self):
+        source = self.photo['source'].get_active_text()
+        state = True if source == 'Flickr' else False
+
+        self.gui.get_widget('label12').set_sensitive(state)
+        self.gui.get_widget('entry1').set_sensitive(state)
+
     def change_combobox(self, combobox, data=None):
         text = combobox.get_active_text()
         token = photo_target_token
         old_widget = self.photo.get('target')
         self.photo['target'] = token[text](self.gui, old_widget, data).make()
+
+        self.set_argument_sensitive()

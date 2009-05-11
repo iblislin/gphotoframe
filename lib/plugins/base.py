@@ -1,8 +1,13 @@
+import os
+import sys
+
 import glib
 import gtk
-import sys
-import os
+import random
+
 from ..config import GConf
+from ..constants import CACHE_DIR
+from ..urlget import UrlGetWithProxy
 
 class MakePhoto(object):
     """Photo Factory"""
@@ -12,15 +17,24 @@ class MakePhoto(object):
         self.argument = argument
         self.method = method
 
+        self.conf = GConf()
         self.total  = 0
         self.photos = []
-        self.conf = GConf()
 
     def prepare(self):
         pass
 
     def get_photo(self, photoframe):
-        pass
+        self.photo = random.choice(self.photos)
+        url = self.photo['url']
+        self.photo['filename'] = CACHE_DIR + url[ url.rfind('/') + 1: ]
+
+        urlget = UrlGetWithProxy()
+        d = urlget.downloadPage(str(url), self.photo['filename'])
+        d.addCallback(self._get_photo_cb, photoframe)
+
+    def _get_photo_cb(self, cb, photoframe):
+        self.photo.show(photoframe)
 
 class PhotoTarget(object):
     def __init__(self, gui, old_widget=None, data=None):
@@ -49,6 +63,9 @@ class PhotoTarget(object):
     def set_default(self):
         pass
 
+    def label(self):
+        pass
+
 class Photo(dict):
 
     def __init__(self):
@@ -58,8 +75,8 @@ class Photo(dict):
         print self['url']
         try:
             self['pixbuf'] = gtk.gdk.pixbuf_new_from_file(self['filename'])
-            self.__rotate(self['pixbuf'].get_option('orientation'))
-            self.__scale()
+            self._rotate(self['pixbuf'].get_option('orientation'))
+            self._scale()
 
             photoframe.set_photo(self)
         except glib.GError:
@@ -69,7 +86,7 @@ class Photo(dict):
         url = self['page_url'] if 'page_url' in self else self['url']
         os.system("gnome-open '%s'" % url)
 
-    def __rotate(self, orientation='1'):
+    def _rotate(self, orientation='1'):
         if orientation == '6':
             rotate = 270
         elif orientation == '8':
@@ -79,7 +96,7 @@ class Photo(dict):
         
         self['pixbuf'] = self['pixbuf'].rotate_simple(rotate)
 
-    def __scale(self):
+    def _scale(self):
         max_w = float( self.conf.get_int('max_width', 400) )
         max_h = float( self.conf.get_int('max_height', 300) )
 
