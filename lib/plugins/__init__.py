@@ -12,10 +12,10 @@ token_base = (
     )
 
 SOURCE_LIST=[]
-make_photo_token ={}
-photo_target_token={}
+MAKE_PHOTO_TOKEN ={}
+PHOTO_TARGET_TOKEN={}
 
 for k in token_base:
     SOURCE_LIST.append(k[0])
-    make_photo_token[k[0]] = k[1]
-    photo_target_token[k[0]] = k[2]
+    MAKE_PHOTO_TOKEN[k[0]] = k[1]
+    PHOTO_TARGET_TOKEN[k[0]] = k[2]

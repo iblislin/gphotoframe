@@ -201,6 +201,6 @@ class PhotoDialog(object):
         self.set_argument_sensitive(False)
 
         text = combobox.get_active_text()
-        token = photo_target_token
+        token = PHOTO_TARGET_TOKEN
         old_widget = self.photo.get('target')
         self.photo['target'] = token[text](self.gui, old_widget, data).make()

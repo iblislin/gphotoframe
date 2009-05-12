@@ -18,7 +18,7 @@ class PhotoListStore(object):
     def __init__(self):
         self.conf = GConf()
 
-        self.token = make_photo_token
+        self.token = MAKE_PHOTO_TOKEN
         self.liststore = gtk.ListStore(str, str, str, int, str, object)
         self.load_gconf()
 

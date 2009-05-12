@@ -1,5 +1,6 @@
 2009-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/__init__.py: Capitalized some valiables.
 	* preferences.py: Save the recent preference tab / source.
 	* flickr.py: Added support for flickr.photos.search.
 	* fspot.py: Fixed a bug.
