@@ -34,6 +34,9 @@ class MakeDirPhoto (MakePhoto):
         self.photo.show(photoframe)
 
 class PhotoTargetDir(PhotoTarget):
+    def get(self):
+        return self.new_widget.get_current_folder()
+
     def _construct_widget(self):
         self.new_widget = gtk.FileChooserButton("button")
         self.new_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)

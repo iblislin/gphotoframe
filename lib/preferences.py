@@ -173,16 +173,13 @@ class PhotoDialog(object):
         self.photo['weight'] = self.gui.get_widget('spinbutton3')
         self.photo['weight'].set_value(weight)
 
+        # run
         dic = { "on_combobox4_changed" : self.change_combobox }
         self.gui.signal_autoconnect(dic)
         self.result = self.dialog.run()
 
-        target = self.photo['target'].get_current_folder() \
-            if isinstance(self.photo['target'], gtk.FileChooserButton) \
-            else self.photo['target'].get_active_text()
-
         v = { 'source'  : self.photo['source'].get_active_text(),
-              'target'  : target, 
+              'target'  : self.taget_widget.get(), 
               'argument' : self.photo['argument'].get_text(),
               'weight'  : self.photo['weight'].get_value(),
               'options' : '' }
@@ -203,4 +200,6 @@ class PhotoDialog(object):
         text = combobox.get_active_text()
         token = PHOTO_TARGET_TOKEN
         old_widget = self.photo.get('target')
-        self.photo['target'] = token[text](self.gui, old_widget, data).make()
+
+        self.taget_widget = token[text](self.gui, old_widget, data)
+        self.photo['target'] = self.taget_widget.make()

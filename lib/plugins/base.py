@@ -50,6 +50,9 @@ class PhotoTarget(object):
         self._set_default()
         return self.new_widget
 
+    def get(self):
+        return self.new_widget.get_active_text()
+
     def _construct_widget(self):
         self.new_widget = gtk.combo_box_new_text()
         for text in self._label():
