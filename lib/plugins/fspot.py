@@ -70,20 +70,43 @@ class MakeFSpotPhoto (MakePhoto):
         return sql
 
 class PhotoTargetFspot(PhotoTarget):
+
+    def get(self):
+        iter = self.new_widget.get_active_iter()
+        return self.treestore.get_value(iter, 0)
+
+    def _construct_widget(self):
+        self.treestore = gtk.TreeStore(str)
+        iter_db = {}
+        self.tree_list = {}
+
+        for item in self._label():
+            iter = iter_db[ item[2] ] if item[2] != 0 else None
+            iter_db[item[0]] =  self.treestore.append(iter, [ item[1] ])
+            self.tree_list[str(item[1])] = iter_db[item[0]]
+
+        self.new_widget = gtk.ComboBox(model=self.treestore)
+        self.new_widget.set_active(0)
+
+        cell = gtk.CellRendererText()
+        self.new_widget.pack_start(cell, True)
+        self.new_widget.add_attribute(cell, 'text', 0)
+
     def _label(self):
-        list = ['']
+        list = [0, '', 0]
+        yield list
+
         db = FSpotDB()
         if db != None:
-            sql = 'SELECT * FROM tags'
-            for a in db.fetchall(sql):
-                list.append(a[1])
+            sql = 'SELECT * FROM tags ORDER BY category_id'
+            for tag in db.fetchall(sql):
+                yield tag
             db.close()
-        return list
 
     def _set_default(self):
         if self.data != None:
-            fr_num = self._label().index(self.data[1])
-            self.new_widget.set_active(fr_num)
+            iter = self.tree_list[self.data[1]]
+            self.new_widget.set_active_iter(iter)
 
 class FSpotDB(object):
 
