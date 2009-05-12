@@ -11,11 +11,11 @@ token_base = (
 #    ['Picasa', MakePicasaPhoto, PhotoTargetPicasa ],
     )
 
-source_list=[]
+SOURCE_LIST=[]
 make_photo_token ={}
 photo_target_token={}
 
 for k in token_base:
-    source_list.append(k[0])
+    SOURCE_LIST.append(k[0])
     make_photo_token[k[0]] = k[1]
     photo_target_token[k[0]] = k[2]

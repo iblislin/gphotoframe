@@ -36,6 +36,10 @@ class Preferences(object):
             self.gui, self.photolist, self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
+
+        recent = self.conf.get_int('recents/preferences')
+        if recent: 
+            self.gui.get_widget('notebook1').set_current_page(recent)
         self.prefs.show_all()
 
         dic = { 
@@ -57,6 +61,9 @@ class Preferences(object):
     def close(self, widget):
         flickr_user_id = self.entry2.get_text()
         self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id );
+
+        page = self.gui.get_widget('notebook1').get_current_page()
+        self.conf.set_int('recents/preferences', page);
 
         self.photolist.save_gconf()
         self.prefs.destroy()
@@ -133,21 +140,24 @@ class PhotoDialog(object):
 
     def __init__(self, parent, data=None):
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.photo = {}
+        self.conf = GConf()
         self.parent = parent
         self.data = data
+        self.photo = {}
 
     def run(self):
         self.dialog = self.gui.get_widget('photo_source')
         self.dialog.set_transient_for(self.parent)
 
         # source
-        self.source_list = source_list
-        source_num = self.source_list.index(self.data[0]) \
-            if self.data != None else 0
         self.photo['source'] = self.gui.get_widget('combobox4')
-        for str in self.source_list:
+        for str in SOURCE_LIST:
             self.photo['source'].append_text(str)
+
+        recent = self.conf.get_string('recents/source')
+        source_num = SOURCE_LIST.index(self.data[0]) if self.data \
+            else SOURCE_LIST.index(recent) if recent \
+            else 0
         self.photo['source'].set_active(source_num)
 
         # target
@@ -178,6 +188,8 @@ class PhotoDialog(object):
               'options' : '' }
 
         self.dialog.destroy()
+        if self.result: 
+            self.conf.set_string('recents/source', v['source'])
         return self.result, v
 
     def set_argument_sensitive(self, state):
