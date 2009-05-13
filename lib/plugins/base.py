@@ -4,6 +4,7 @@ import sys
 import glib
 import gtk
 import random
+from gettext import gettext as _
 
 from ..constants import CACHE_DIR
 from ..utils.config import GConf
@@ -45,6 +46,7 @@ class PhotoTarget(object):
         self.data = data
 
     def make(self, data=None):
+        self._set_sensitive()
         self._construct_widget()
         self._attach_widget()
         self._set_default()
@@ -63,11 +65,16 @@ class PhotoTarget(object):
         self.new_widget.show()
         self.table.attach(self.new_widget, 1, 2, 1, 2, xpadding=0, ypadding=0)
 
+    def _set_sensitive(self, label=_('_Argument:'), state=False):
+        self.gui.get_widget('label12').set_text_with_mnemonic(label)
+        self.gui.get_widget('label12').set_sensitive(state)
+        self.gui.get_widget('entry1').set_sensitive(state)
+
     def _set_default(self):
         pass
 
     def _label(self):
-        pass
+        return  [ '', ]
 
 class Photo(dict):
 
@@ -75,7 +82,7 @@ class Photo(dict):
         self.conf = GConf()
 
     def show(self, photoframe, *args):
-        print self['url']
+        print self.get('page_url') or self.get('url')
         try:
             self['pixbuf'] = gtk.gdk.pixbuf_new_from_file(self['filename'])
             self._rotate(self['pixbuf'].get_option('orientation'))

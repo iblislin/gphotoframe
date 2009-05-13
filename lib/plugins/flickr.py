@@ -1,4 +1,5 @@
 import urllib
+
 import simplejson as json
 
 from base import *
@@ -7,29 +8,13 @@ from gettext import gettext as _
 class MakeFlickrPhoto (MakePhoto):
 
     def prepare(self):
-        api_key = self.conf.get_string('plugins/flickr/api_key') \
-            or '343677ff5aa31f37042513d533293062'
-        user_id = self.conf.get_string('plugins/flickr/user_id')
 
-        url = 'http://api.flickr.com/services/rest/?'
-        values = {'api_key' : api_key,
-                  'count'   : 50,
-                  'method'  : self.method,
-                  'format'  : 'json',
-                  'extras'  : 'owner_name',
-                  'nojsoncallback' : '1' }
-
-        if self.method == 'flickr.groups.pools.getPhotos':
-            values['group_id'] = argument = self.argument
-        elif self.method == 'flickr.photos.search':
-            values['tags'] = argument = self.argument
-            values['tag_mode'] = 'all'
-        else:
-            values['user_id'] = argument = self.argument or user_id
-        if not argument: return
+        api = FlickrAPI().api_list()[self.method]
+        url = api().get_url(self.method, self.argument) 
+        if not url: return
 
         urlget = UrlGetWithProxy()
-        d = urlget.getPage(url + urllib.urlencode(values))
+        d = urlget.getPage(url)
         d.addCallback(self._prepare_cb)
 
     def _prepare_cb(self, data):
@@ -63,30 +48,89 @@ class PhotoTargetFlickr(PhotoTarget):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        if target == 'flickr.groups.pools.getPhotos':
-            state = True
-            label = _('_Group ID:')
-        elif target == 'flickr.photos.search':
-            state = True
-            label = _('_Tags:')
-        else:
-            state = False
-            label = _('_User ID:')
+        api = FlickrAPI().api_list()[target]
+        state, label = api().set_entry_label()
 
-        self.gui.get_widget('label12').set_text_with_mnemonic(label)
-        self.gui.get_widget('label12').set_sensitive(state)
-        self.gui.get_widget('entry1').set_sensitive(state)
+        self._set_sensitive(label, state)
+        self.gui.get_widget('button8').set_sensitive(not state)
+        self.gui.get_widget('entry1').connect('changed',
+                                              self._set_sensitive_ok_button_cb)
 
     def _label(self):
-        return  [
-            'flickr.favorites.getPublicList',
-            'flickr.groups.pools.getPhotos', 
-            'flickr.interestingness.getList',
-            'flickr.photos.getContactsPublicPhotos', 
-            'flickr.photos.search'
-            ]
+        keys = FlickrAPI().api_list().keys()
+        keys.sort()
+        return [ api for api in keys ]
 
     def _set_default(self):
         if self.data != None:
             fr_num = self._label().index(self.data[1])
             self.new_widget.set_active(fr_num)
+
+    def _set_sensitive_ok_button_cb(self, widget):
+        target = widget.get_text()
+        state = True if target else False
+        self.gui.get_widget('button8').set_sensitive(state)
+
+class FlickrAPI(object):
+
+    def __init__(self):
+        self.conf = GConf()
+
+    def api_list(self):
+        api = { 
+            'flickr.favorites.getPublicList' : FlickrAPI,
+            'flickr.groups.pools.getPhotos' : FlickrGroupAPI,
+            'flickr.interestingness.getList' : FlickrAPI,
+            'flickr.photos.getContactsPublicPhotos' : FlickrAPI, 
+            'flickr.photos.search' : FlickrSearchAPI, 
+            }
+        return api
+
+    def get_url(self, method, argument):
+        url = 'http://api.flickr.com/services/rest/?'
+
+        api_key = self.conf.get_string('plugins/flickr/api_key') \
+            or '343677ff5aa31f37042513d533293062'
+        self.values = { 'api_key' : api_key,
+                        'count'   : 50,
+                        'method'  : method,
+                        'format'  : 'json',
+                        'extras'  : 'owner_name',
+                        'nojsoncallback' : '1' }
+
+        arg = self._url_argument(argument)
+        url = url + urllib.urlencode(self.values) if arg else None
+        return url
+
+    def _url_argument(self, argument):
+        user_id = self.conf.get_string('plugins/flickr/user_id')
+        self.values['user_id'] = argument or user_id
+        return argument
+
+    def set_entry_label(self):
+        sensitive = False
+        label = _('_User ID:')
+        return sensitive, label
+
+class FlickrGroupAPI(FlickrAPI):
+
+    def _url_argument(self, argument):
+        self.values['group_id'] = argument
+        return argument
+
+    def set_entry_label(self):
+        sensitive = True
+        label = _('_Group ID:')
+        return sensitive, label
+
+class FlickrSearchAPI(FlickrAPI):
+
+    def _url_argument(self, argument):
+        self.values['tags'] = argument
+        self.values['tag_mode'] = 'all'
+        return argument
+
+    def set_entry_label(self):
+        sensitive = True
+        label = _('_Tags:')
+        return sensitive, label

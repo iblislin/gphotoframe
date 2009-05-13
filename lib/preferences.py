@@ -189,13 +189,8 @@ class PhotoDialog(object):
             self.conf.set_string('recents/source', v['source'])
         return self.result, v
 
-    def set_argument_sensitive(self, state):
-        self.gui.get_widget('label12').set_text_with_mnemonic(_('_Argument:'))
-        self.gui.get_widget('label12').set_sensitive(state)
-        self.gui.get_widget('entry1').set_sensitive(state)
-
     def change_combobox(self, combobox, data=None):
-        self.set_argument_sensitive(False)
+        self.gui.get_widget('button8').set_sensitive(True)
 
         text = combobox.get_active_text()
         token = PHOTO_TARGET_TOKEN
