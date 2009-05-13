@@ -52,18 +52,18 @@ class Preferences(object):
 
     def interval_changed(self, widget):
         val = self.spinbutton1.get_value_as_int()
-        self.conf.set_int( 'interval', val);
+        self.conf.set_int( 'interval', val)
 
     def sticky_toggled_cb(self, widget):
         sticky = self.checkbutton1.get_active()
-        self.conf.set_bool( 'window_sticky', sticky );
+        self.conf.set_bool( 'window_sticky', sticky )
 
     def close(self, widget):
         flickr_user_id = self.entry2.get_text()
-        self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id );
+        self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )
 
         page = self.gui.get_widget('notebook1').get_current_page()
-        self.conf.set_int('recents/preferences', page);
+        self.conf.set_int('recents/preferences', page)
 
         self.photolist.save_gconf()
         self.prefs.destroy()
@@ -108,7 +108,7 @@ class PreferencesList(object):
         self.gui.get_widget('button5').set_sensitive(state)
 
     def new_button(self, widget):
-        photodialog = PhotoDialog(self.parent);  
+        photodialog = PhotoDialog(self.parent)
         (result, v) = photodialog.run()
 
         if result == 1:
@@ -118,7 +118,7 @@ class PreferencesList(object):
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 
-        photodialog = PhotoDialog(self.parent, model[iter]);  
+        photodialog = PhotoDialog(self.parent, model[iter])
         (result, v) = photodialog.run()
 
         if result == 1:
@@ -179,7 +179,7 @@ class PhotoDialog(object):
         self.result = self.dialog.run()
 
         v = { 'source'  : self.photo['source'].get_active_text(),
-              'target'  : self.taget_widget.get(), 
+              'target'  : self.target_widget.get(), 
               'argument' : self.photo['argument'].get_text(),
               'weight'  : self.photo['weight'].get_value(),
               'options' : '' }
@@ -196,5 +196,5 @@ class PhotoDialog(object):
         token = PHOTO_TARGET_TOKEN
         old_widget = self.photo.get('target')
 
-        self.taget_widget = token[text](self.gui, old_widget, data)
-        self.photo['target'] = self.taget_widget.make()
+        self.target_widget = token[text](self.gui, old_widget, data)
+        self.photo['target'] = self.target_widget.make()

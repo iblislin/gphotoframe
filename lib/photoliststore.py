@@ -83,6 +83,6 @@ class PhotoListStore(object):
                 key = 'sources/%s/%s' % (i, k)
 
                 if isinstance(value, int):
-                    self.conf.set_int( key, value );
+                    self.conf.set_int( key, value )
                 else:
-                    self.conf.set_string( key, value );
+                    self.conf.set_string( key, value )

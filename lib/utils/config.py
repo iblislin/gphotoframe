@@ -31,7 +31,7 @@ class GConf(object):
             print entry.value.to_string()
 
     def set_int(self, key, val):
-        #self.gconf.set(self.dir + key + '1', { 'type': 'int', 'value': val});
+        #self.gconf.set(self.dir + key + '1', { 'type': 'int', 'value': val})
         return self.gconf.set_int(self.dir + key, val)
 
     def get_int(self, key, default = 0):

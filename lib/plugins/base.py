@@ -118,8 +118,8 @@ class Photo(dict):
         else:
             ratio = max_h / src_h
 
-        w = int( src_w * ratio + 0.4 );
-        h = int( src_h * ratio + 0.4 );
+        w = int( src_w * ratio + 0.4 )
+        h = int( src_h * ratio + 0.4 )
 
         self['pixbuf'] = self['pixbuf'].scale_simple( 
             w, h, gtk.gdk.INTERP_BILINEAR)
