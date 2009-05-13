@@ -1,5 +1,6 @@
 2009-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* setup.py: Added gphotoframe.utils package.
 	* fspot.py (PhotoTargetFspot): Support for F-Spot tag tree.
 	* preferences.py, base.py, folder.py: Code refactoring.
 
