@@ -5,13 +5,17 @@
 # Copyright (c) 2009, Yoshizumi Endo.
 # Licence: GPL3
 
+import os
+from os.path import join, abspath,  dirname
+
 from twisted.internet import gtk2reactor
 gtk2reactor.install()
 from twisted.internet import reactor
 
-try:
+if os.access(
+    abspath(join(dirname(__file__), 'lib/photoliststore.py')), os.R_OK):
     from lib.photoliststore import PhotoListStore
-except ImportError:
+else:
     from gphotoframe.photoliststore import PhotoListStore
 
 if __name__ == "__main__":
