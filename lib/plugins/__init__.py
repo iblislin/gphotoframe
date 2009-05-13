@@ -3,12 +3,14 @@ from folder import *
 from fspot import *
 from flickr import *
 #from picasa import *
+#from tumblr import *
 
 token_base = (
     ['Folder', MakeDirPhoto,    PhotoTargetDir    ],
     ['F-Spot', MakeFSpotPhoto,  PhotoTargetFspot  ],
     ['Flickr', MakeFlickrPhoto, PhotoTargetFlickr ],
-#    ['Picasa', MakePicasaPhoto, PhotoTargetPicasa ],
+#    ['Picasa Web', MakePicasaPhoto, PhotoTargetPicasa ],
+#    ['Tumblr', MakeTumblrPhoto, PhotoTargetTumblr ],
     )
 
 SOURCE_LIST=[]

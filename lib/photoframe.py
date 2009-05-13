@@ -78,9 +78,6 @@ class PhotoFrame(object):
             state = event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED
             self.window.set_skip_taskbar_hint(not state)
 
-    def open_photo(self, *args):
-        self.photo.open()
-
     def fix_window(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
 
