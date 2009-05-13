@@ -105,7 +105,7 @@ class FlickrAPI(object):
     def _url_argument(self, argument):
         user_id = self.conf.get_string('plugins/flickr/user_id')
         self.values['user_id'] = argument or user_id
-        return argument
+        return self.values['user_id']
 
     def set_entry_label(self):
         sensitive = False
