@@ -1,3 +1,8 @@
+2009-05-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, autostart.py, gphotoframe.glade: Added support
+	  for auto start.
+
 2009-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoliststore.py, base.py: Dropped depend on the glib module

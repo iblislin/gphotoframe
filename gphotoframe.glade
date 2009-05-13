@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <glade-interface>
-  <!-- interface-requires gtk+ 2.16 -->
+  <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="window">
     <signal name="button_press_event" handler="on_window_button_press_event"/>
@@ -50,7 +50,6 @@
       <widget class="GtkImageMenuItem" id="menuitem5">
         <property name="label">gtk-open</property>
         <property name="visible">True</property>
-        <property name="accel_path">&lt;gph&gt;/open</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_menuitem5_activate"/>
@@ -96,7 +95,6 @@
       <widget class="GtkImageMenuItem" id="menuitem4">
         <property name="label">gtk-quit</property>
         <property name="visible">True</property>
-        <property name="accel_path">&lt;gph&gt;/quit</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
         <signal name="activate" handler="on_quit"/>
@@ -197,6 +195,21 @@
                               </widget>
                               <packing>
                                 <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkCheckButton" id="checkbutton2">
+                                <property name="label" translatable="yes">_Auto Start</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">False</property>
+                                <property name="use_underline">True</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <signal name="toggled" handler="checkbutton2_toggled_cb"/>
+                              </widget>
+                              <packing>
+                                <property name="position">2</property>
                               </packing>
                             </child>
                           </widget>

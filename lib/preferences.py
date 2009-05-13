@@ -6,6 +6,7 @@ from gettext import gettext as _
 
 import constants
 from utils.config import GConf
+from utils.autostart import AutoStart
 from plugins import *
 
 class Preferences(object):
@@ -27,6 +28,10 @@ class Preferences(object):
         sticky = self.conf.get_bool('window_sticky')
         self.checkbutton1.set_active(sticky)
 
+        self.checkbutton2 = self.gui.get_widget('checkbutton2')
+        self.auto_start = AutoStart('gphotoframe')
+        self.checkbutton2.set_active(self.auto_start.get())
+
         user_id = self.conf.get_string('plugins/flickr/user_id')
         self.entry2 = self.gui.get_widget('entry2')
         if user_id != None:
@@ -47,6 +52,7 @@ class Preferences(object):
             "on_spinbutton1_value_changed" : self.interval_changed,
             "on_entry1_editing_done"       : self.interval_changed,
             "checkbutton1_toggled_cb"      : self.sticky_toggled_cb,
+            "checkbutton2_toggled_cb"      : self.autostart_toggled_cb,
             "on_quit"         : gtk.main_quit }
         self.gui.signal_autoconnect(dic)
 
@@ -57,6 +63,10 @@ class Preferences(object):
     def sticky_toggled_cb(self, widget):
         sticky = self.checkbutton1.get_active()
         self.conf.set_bool( 'window_sticky', sticky )
+
+    def autostart_toggled_cb(self, widget):
+        state = self.checkbutton2.get_active()
+        self.auto_start.set(state)
 
     def close(self, widget):
         flickr_user_id = self.entry2.get_text()
