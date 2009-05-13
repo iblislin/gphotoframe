@@ -1,7 +1,7 @@
 import os
 import sys
 
-import glib
+import gobject
 import gtk
 import random
 from gettext import gettext as _
@@ -89,7 +89,7 @@ class Photo(dict):
             self._scale()
 
             photoframe.set_photo(self)
-        except glib.GError:
+        except gobject.GError:
             print sys.exc_info()[1]
 
     def open(self, *args):

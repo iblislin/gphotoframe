@@ -1,5 +1,7 @@
 2009-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoliststore.py, base.py: Dropped depend on the glib module
+	  (issue #6).
 	* preferences.py, base.py, folder.py, flicke.py: Code refactoring.
 	* gphotoframe: Updated lib loading.
 	* setup.py: Added gphotoframe.utils package.
