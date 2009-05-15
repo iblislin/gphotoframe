@@ -28,9 +28,8 @@ class PhotoFrame(object):
             window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
         if self.conf.get_bool('window_sticky'):
             window.stick()
-
         self.set_window_position()
-        preferences = Preferences(photolist)
+
         self.popup_menu = PopUpMenu(photolist, self)
         self.set_accelerator()
 
@@ -45,7 +44,6 @@ class PhotoFrame(object):
         self.gui.signal_autoconnect(self.dic)
 
     def set_window_position(self):
-        self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         self.window.move(self.conf.get_int('root_x'), 
                          self.conf.get_int('root_y'))
         self.window.resize(1, 1)
