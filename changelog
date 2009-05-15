@@ -1,5 +1,6 @@
 2009-05-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences.py (PhotoDialog.run): Delete disused arguments.
 	* photoframe.py, plugins/*.py: Code refactoring.
 	* urlget.py: Added the copyright notice.
 

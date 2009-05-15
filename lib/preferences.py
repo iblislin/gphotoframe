@@ -188,9 +188,12 @@ class PhotoDialog(object):
         self.gui.signal_autoconnect(dic)
         self.result = self.dialog.run()
 
+        argument = self.photo['argument'].get_text() \
+            if self.photo['argument'].get_property('sensitive') else ''
+
         v = { 'source'  : self.photo['source'].get_active_text(),
               'target'  : self.target_widget.get(), 
-              'argument' : self.photo['argument'].get_text(),
+              'argument' : argument,
               'weight'  : self.photo['weight'].get_value(),
               'options' : '' }
 
