@@ -62,7 +62,7 @@ class PhotoTargetFlickr(PhotoTarget):
         return [ api for api in keys ]
 
     def _set_default(self):
-        if self.data != None:
+        if self.data:
             fr_num = self._label().index(self.data[1])
             self.new_widget.set_active(fr_num)
 

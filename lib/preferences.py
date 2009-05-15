@@ -175,11 +175,11 @@ class PhotoDialog(object):
 
         # argument
         self.photo['argument'] = self.gui.get_widget('entry1')
-        if self.data != None:
+        if self.data:
             self.photo['argument'].set_text(self.data[2])
 
         # weight
-        weight = self.data[3] if self.data != None else 0
+        weight = self.data[3] if self.data else 1
         self.photo['weight'] = self.gui.get_widget('spinbutton3')
         self.photo['weight'].set_value(weight)
 

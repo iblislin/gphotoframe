@@ -11,10 +11,9 @@ class MakeFSpotPhoto (MakePhoto):
 
     def prepare(self):
         self.db = FSpotDB()
-        if self.db == None:
-            return
-        self.photos = self.count()
-        self.rnd = WeightedRandom(self.photos)
+        if self.db:
+            self.photos = self.count()
+            self.rnd = WeightedRandom(self.photos)
 
     def count(self):
         rate_list = []
@@ -55,7 +54,7 @@ class MakeFSpotPhoto (MakePhoto):
     def sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
 
-        if self.method != None and self.method != "" :
+        if self.method:
             sql += ('INNER JOIN tags T ON PT.tag_id=T.id ' 
                     'INNER JOIN photo_tags PT ON PT.photo_id=P.id '
                     'WHERE T.id IN ( SELECT id FROM tags WHERE name="%s" ' 
@@ -63,8 +62,8 @@ class MakeFSpotPhoto (MakePhoto):
                     'IN (SELECT id FROM tags WHERE name="%s")) ' ) % \
                     ( str(self.method), str(self.method) )
 
-        if rate_name != None:
-            c = 'WHERE' if self.method == None or self.method == "" else 'AND'
+        if rate_name:
+            c = 'AND' if self.method else 'WHERE'
             sql += '%s rating=%s ' % ( c, str(rate_name) )
 
         return sql
@@ -97,14 +96,14 @@ class PhotoTargetFspot(PhotoTarget):
         yield list
 
         db = FSpotDB()
-        if db != None:
+        if db:
             sql = 'SELECT * FROM tags ORDER BY category_id'
             for tag in db.fetchall(sql):
                 yield tag
             db.close()
 
     def _set_default(self):
-        if self.data != None:
+        if self.data:
             iter = self.tree_list[self.data[1]]
             self.new_widget.set_active_iter(iter)
 

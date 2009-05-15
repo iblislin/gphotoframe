@@ -1,5 +1,6 @@
 2009-05-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/*: Code refactoring.
 	* urlget.py: Added the copyright notice.
 
 2009-05-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

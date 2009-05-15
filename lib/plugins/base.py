@@ -41,7 +41,7 @@ class PhotoTarget(object):
     def __init__(self, gui, old_widget=None, data=None):
         self.gui = gui
         self.table = gui.get_widget('table4')
-        if old_widget != None:
+        if old_widget:
             self.table.remove(old_widget)
         self.data = data
 

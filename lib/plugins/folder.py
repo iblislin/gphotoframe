@@ -42,5 +42,5 @@ class PhotoTargetDir(PhotoTarget):
         self.new_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
 
     def _set_default(self):
-        folder = self.data[1] if self.data != None else os.environ['HOME']
+        folder = self.data[1] if self.data else os.environ['HOME']
         self.new_widget.set_current_folder(folder)
