@@ -1,4 +1,5 @@
 import time
+from xml.sax.saxutils import escape
 
 import gtk
 import gtk.glade
@@ -117,11 +118,15 @@ class PhotoFrame(object):
         self.image.set_from_pixbuf(pixbuf)
         self.set_border(w, h)
 
+        title = self.photo.get('title')
+        owner = self.photo.get('owner_name')
+        title = "<big>%s</big>" % escape(title) if title else ""
+        owner = "by " + escape(owner) if owner else ""
+        if title and owner:
+            title += "\n"
+
         try:
-            tip = self.photo.get('title')
-            if self.photo.get('owner_name') != None:
-                tip = tip + "\nby " + self.photo.get('owner_name')
-            self.window.set_tooltip_markup(tip) 
+            self.window.set_tooltip_markup(title + owner)
         except:
             pass
 

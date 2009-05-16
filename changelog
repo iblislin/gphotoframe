@@ -1,3 +1,8 @@
+2009-05-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py (PhotoFrame.set_photo): Fixed tooltips for
+	  photo information.
+
 2009-05-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences.py (PhotoDialog.run): Delete disused arguments.
