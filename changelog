@@ -1,5 +1,6 @@
 2009-05-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 0.2 release.
 	* autostart.py: Fixed bugs for non-install mode.
 	* photoframe.py (PhotoFrame.set_photo): Fixed tooltips for
 	  photo information.
