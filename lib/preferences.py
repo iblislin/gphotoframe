@@ -30,6 +30,7 @@ class Preferences(object):
 
         self.checkbutton2 = self.gui.get_widget('checkbutton2')
         self.auto_start = AutoStart('gphotoframe')
+        self.checkbutton2.set_sensitive(self.auto_start.check_enable())
         self.checkbutton2.set_active(self.auto_start.get())
 
         user_id = self.conf.get_string('plugins/flickr/user_id')
