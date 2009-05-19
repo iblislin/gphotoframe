@@ -19,28 +19,29 @@ class PhotoListStore(object):
 
         self.token = MAKE_PHOTO_TOKEN
         self.liststore = gtk.ListStore(str, str, str, int, str, object)
-        self.load_gconf()
+        self._load_gconf()
 
         self.photoframe = PhotoFrame(self)
-        self.timer()
+        self._timer()
 
-    def append(self, d, i=None):
+    def append(self, d, num=None):
         if 'source' not in d: return 
 
-        obj = self.token[ d['source'] ]( d['target'], d['argument'], d['weight'] )
+        obj = self.token[ d['source'] ]( 
+            d['target'], d['argument'], d['weight'] )
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]
 
-        self.liststore.insert_before(i, list)
+        self.liststore.insert_before(num, list)
         obj.prepare()
 
-    def timer(self):
-        self.change_photo()
+    def _timer(self):
+        self._change_photo()
         self.interval = self.conf.get_int('interval', 30)
-        gobject.timeout_add( self.interval * 1000, self.timer )
+        gobject.timeout_add(self.interval * 1000, self._timer)
         return False
 
-    def change_photo(self):
+    def _change_photo(self):
         target_list = [ x[5] for x in self.liststore if x[5].photos ]
         if target_list:
             target = WeightedRandom(target_list)
@@ -50,9 +51,10 @@ class PhotoListStore(object):
             nophoto.show(self.photoframe)
         return True
 
-    def load_gconf(self):
+    def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):
-            data = { 'target' : '', 'argument' : '', 'weight' : 1, 'options' : '' }
+            data = { 'target' : '', 'argument' : '', 
+                     'weight' : 1, 'options' : '' }
 
             for e in self.conf.all_entries(dir):
                 if e.get_value() == None:
