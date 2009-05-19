@@ -1,8 +1,11 @@
 #!/usr/bin/python
 
+import os
 from distutils.core import setup
 from DistUtilsExtra.command import *
 import lib.constants as constants
+
+os.chmod("gphotoframe.glade", 0644)
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,

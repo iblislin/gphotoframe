@@ -1,3 +1,7 @@
+2009-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* setup.py: Set the permission for data_files (issue #8).
+
 2009-05-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 0.2 release.
