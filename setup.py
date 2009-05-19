@@ -10,6 +10,7 @@ os.chmod("gphotoframe.glade", 0644)
 setup(name = 'gphotoframe',
       version = constants.VERSION,
       description = 'Gnome Photo Frame',
+      long_description = 'A Photo Frame Gadget for the GNOME Desktop.',
       author = 'Yoshizumi Endo',
       author_email = 'y-endo@ceres.dti.ne.jp',
       url = 'http://code.google.com/p/gphotoframe/',
