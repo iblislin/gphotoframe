@@ -94,8 +94,7 @@ class PreferencesList(object):
 
         self.parent = parent
         self.photoliststore = photoliststore
-        self.source_list = self.photoliststore.liststore
-        self.treeview.set_model(self.source_list)
+        self.treeview.set_model(self.photoliststore.liststore)
         self._set_button_sensitive(False)
 
         dic = { 
@@ -120,9 +119,9 @@ class PreferencesList(object):
 
     def _new_button_cb(self, widget):
         photodialog = PhotoDialog(self.parent)
-        (result, v) = photodialog.run()
+        (response_id, v) = photodialog.run()
 
-        if result == 1:
+        if response_id == gtk.RESPONSE_OK:
             self.photoliststore.append(v)
 
     def _prefs_button_cb(self, widget):
@@ -130,16 +129,16 @@ class PreferencesList(object):
         (model, iter) = treeselection.get_selected()
 
         photodialog = PhotoDialog(self.parent, model[iter])
-        (result, v) = photodialog.run()
+        (response_id, v) = photodialog.run()
 
-        if result == 1:
+        if response_id == gtk.RESPONSE_OK:
             self.photoliststore.append(v, iter)
-            self.source_list.remove(iter)
+            self.photoliststore.remove(iter)
 
     def _delete_button_cb(self, widget):
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
-        self.source_list.remove(iter)
+        self.photoliststore.remove(iter)
         self._set_button_sensitive(False)
 
     def _cursor_changed_cb(self, widget):
@@ -187,7 +186,7 @@ class PhotoDialog(object):
         # run
         dic = { "on_combobox4_changed" : self._change_combobox }
         self.gui.signal_autoconnect(dic)
-        self.result = self.dialog.run()
+        response_id = self.dialog.run()
 
         argument = self.photo['argument'].get_text() \
             if self.photo['argument'].get_property('sensitive') else ''
@@ -199,9 +198,9 @@ class PhotoDialog(object):
               'options' : '' }
 
         self.dialog.destroy()
-        if self.result: 
+        if response_id == gtk.RESPONSE_OK: 
             self.conf.set_string('recents/source', v['source'])
-        return self.result, v
+        return response_id, v
 
     def _change_combobox(self, combobox, data=None):
         self.gui.get_widget('button8').set_sensitive(True)

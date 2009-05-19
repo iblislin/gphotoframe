@@ -24,7 +24,7 @@ class PhotoListStore(object):
         self.photoframe = PhotoFrame(self)
         self._timer()
 
-    def append(self, d, num=None):
+    def append(self, d, iter=None):
         if 'source' not in d: return 
 
         obj = self.token[ d['source'] ]( 
@@ -32,8 +32,11 @@ class PhotoListStore(object):
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]
 
-        self.liststore.insert_before(num, list)
+        self.liststore.insert_before(iter, list)
         obj.prepare()
+
+    def remove(self, iter):
+        self.liststore.remove(iter)
 
     def _timer(self):
         self._change_photo()

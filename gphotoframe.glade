@@ -679,7 +679,7 @@
             <child>
               <widget class="GtkButton" id="button8">
                 <property name="label">gtk-ok</property>
-                <property name="response_id">1</property>
+                <property name="response_id">-5</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
