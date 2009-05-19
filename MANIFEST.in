@@ -1,2 +1,4 @@
 include *.glade
 include changelog
+include gphotoframe.desktop.in
+recursive-include po *.in *.po
