@@ -1,0 +1,49 @@
+GNOME Photo Frame - A Photo Frame Gadget for the GNOME Desktop. 
+
+* Installation
+
+** Depends
+
+- PyGTK
+- Twisted (twisted.internet, twisted.web)
+- simplejson
+- PyXDG (except v.0.16 which has a bug)
+- Python-Distutils-Extra (for installation) 
+
+** Installation
+
+You can install with the setup script.
+
+  python ./setup.py install 
+
+Or, you can launch without installation. (Some functions are restricted.)
+
+  ./gphotoframe 
+
+* Configuration
+
+You can change the Photo Frame size:
+
+  gconftool-2 --type int --set /apps/gphotoframe/max_width 400 
+  gconftool-2 --type int --set /apps/gphotoframe/max_height 300 
+
+* License
+
+GPL 3. (except lib/utils/urlget.py)
+
+  Copyright (c) 2009 Yoshizumi Endo.
+
+See source code for details. (lib/utils/urlget.py)
+
+  Copyright (c) 2009 Yoshizumi Endo.
+  Copyright (c) 2001-2008 Twisted Matrix Laboratories.
+
+* Contact
+
+Web: http://code.google.com/p/gphotoframe/
+E-mail: y-endo@ceres.dti.ne.jp
+Twitter: yendo0206
+
+Local variables:
+mode: outline
+end:
