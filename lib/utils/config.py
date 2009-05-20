@@ -41,10 +41,27 @@ class GConf(object):
         return val
 
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key, 1)
+        self.gconf.recursive_unset(self.dir + key, 
+                                   gconf.UNSET_INCLUDING_SCHEMA_NAMES)
 
     def all_entries(self, key):
         return self.gconf.all_entries(key)
 
     def all_dirs(self, key):
         return self.gconf.all_dirs(self.dir + key)
+
+    def set_value(self, key, value):
+        if isinstance(value, int):
+            self.set_int( key, value )
+        else:
+            self.set_string( key, value )
+
+    def get_value(self, entry):
+        if entry.get_value() is None:
+            value = None
+        elif entry.get_value().type == gconf.VALUE_INT:
+            value = entry.get_value().get_int()
+        else:
+            value = entry.get_value().get_string()
+
+        return value

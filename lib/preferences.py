@@ -94,7 +94,7 @@ class PreferencesList(object):
 
         self.parent = parent
         self.photoliststore = photoliststore
-        self.treeview.set_model(self.photoliststore.liststore)
+        self.treeview.set_model(self.photoliststore)
         self._set_button_sensitive(False)
 
         dic = { 
