@@ -60,6 +60,7 @@ class PhotoTarget(object):
         for text in self._label():
             self.new_widget.append_text(text)
         self.new_widget.set_active(0)
+        self.gui.get_widget('label15').set_text_with_mnemonic(_('_Target:'))
 
     def _attach_widget(self):
         self.new_widget.show()

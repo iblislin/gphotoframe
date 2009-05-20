@@ -4,7 +4,10 @@ import sqlite3
 from base import *
 from ..utils.wrandom import WeightedRandom
 
-class MakeFSpotPhoto (MakePhoto):
+def info():
+    return ['F-Spot', MakeFSpotPhoto, PhotoTargetFspot]
+
+class MakeFSpotPhoto(MakePhoto):
 
     def __del__(self):
         self.db.close()

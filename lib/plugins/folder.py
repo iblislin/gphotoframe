@@ -7,6 +7,9 @@ import gtk
 
 from base import *
 
+def info():
+    return ['Folder', MakeDirPhoto, PhotoTargetDir]
+
 class MakeDirPhoto (MakePhoto):
 
     def prepare(self):

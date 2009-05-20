@@ -5,6 +5,9 @@ import simplejson as json
 from base import *
 from gettext import gettext as _
 
+def info():
+    return ['Flickr', MakeFlickrPhoto, PhotoTargetFlickr]
+
 class MakeFlickrPhoto (MakePhoto):
 
     def prepare(self):
