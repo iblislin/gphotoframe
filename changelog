@@ -1,3 +1,9 @@
+2009-05-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Initial import (issue #12).
+	* tumblr.py: Initial import (issue #11).
+	* *: Code refactoring.
+
 2009-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 0.2.1 release.

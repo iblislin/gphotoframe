@@ -4,3 +4,4 @@ lib/preferences.py
 lib/plugins/base.py
 lib/plugins/flickr.py
 lib/plugins/tumblr.py
+lib/plugins/rss.py
