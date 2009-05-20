@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-14 00:34+0900\n"
-"PO-Revision-Date: 2009-05-14 00:34+0900\n"
+"POT-Creation-Date: 2009-05-20 23:28+0900\n"
+"PO-Revision-Date: 2009-05-20 23:29+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "写真のソース"
 msgid "Photos"
 msgstr "写真"
 
-#: ../gphotoframe.glade.h:12 ../lib/plugins/base.py:68
+#: ../gphotoframe.glade.h:12 ../lib/plugins/base.py:69
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -87,11 +87,11 @@ msgstr "表示間隔(_I):"
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:16
+#: ../gphotoframe.glade.h:16 ../lib/plugins/base.py:63
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:17 ../lib/plugins/flickr.py:112
+#: ../gphotoframe.glade.h:17 ../lib/plugins/flickr.py:115
 msgid "_User ID:"
 msgstr "ユーザ ID(_U)"
 
@@ -103,26 +103,30 @@ msgstr "重み(_W):"
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/preferences.py:89
+#: ../lib/preferences.py:90
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:90
+#: ../lib/preferences.py:91
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:91
+#: ../lib/preferences.py:92
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:92
+#: ../lib/preferences.py:93
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/flickr.py:123
+#: ../lib/plugins/flickr.py:126
 msgid "_Group ID:"
 msgstr "グループ ID(_G)"
 
-#: ../lib/plugins/flickr.py:135
+#: ../lib/plugins/flickr.py:138
 msgid "_Tags:"
 msgstr "タグ(_T):"
+
+#: ../lib/plugins/tumblr.py:53
+msgid "_User Name:"
+msgstr "ユーザ名(_U)"
