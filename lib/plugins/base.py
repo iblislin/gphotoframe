@@ -77,6 +77,15 @@ class PhotoTarget(object):
     def _label(self):
         return  [ '', ]
 
+    def _set_sensitive_ok_button(self, entry_widget, button_state):
+        self.gui.get_widget('button8').set_sensitive(button_state)
+        entry_widget.connect('changed', self._set_sensitive_ok_button_cb)
+
+    def _set_sensitive_ok_button_cb(self, widget):
+       target = widget.get_text()
+       state = True if target else False
+       self.gui.get_widget('button8').set_sensitive(state)
+
 class Photo(dict):
 
     def __init__(self):

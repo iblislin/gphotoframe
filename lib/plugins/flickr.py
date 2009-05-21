@@ -55,9 +55,7 @@ class PhotoTargetFlickr(PhotoTarget):
         state, label = api().set_entry_label()
 
         self._set_sensitive(label, state)
-        self.gui.get_widget('button8').set_sensitive(not state)
-        self.gui.get_widget('entry1').connect('changed',
-                                              self._set_sensitive_ok_button_cb)
+        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _label(self):
         keys = FlickrAPI().api_list().keys()
@@ -68,11 +66,6 @@ class PhotoTargetFlickr(PhotoTarget):
         if self.data:
             fr_num = self._label().index(self.data[1])
             self.new_widget.set_active(fr_num)
-
-    def _set_sensitive_ok_button_cb(self, widget):
-        target = widget.get_text()
-        state = True if target else False
-        self.gui.get_widget('button8').set_sensitive(state)
 
 class FlickrAPI(object):
 

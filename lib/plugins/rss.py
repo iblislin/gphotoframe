@@ -50,15 +50,8 @@ class PhotoTargetRSS(PhotoTarget):
         self._set_sensitive(_("_URL:"), True)
 
         # button
-        self.gui.get_widget('button8').set_sensitive(False)
-        self.gui.get_widget('entry1').connect('changed', 
-                                              self._set_sensitive_ok_button_cb)
-
-    def _set_sensitive_ok_button_cb(self, widget):
-        # copy from flickr.py
-        target = widget.get_text()
-        state = True if target else False
-        self.gui.get_widget('button8').set_sensitive(state)
+        self._set_sensitive_ok_button(self.new_widget, False)
+        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), False)
 
     def _set_default(self):
         if self.data:

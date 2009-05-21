@@ -51,14 +51,7 @@ class PhotoTargetTumblr(PhotoTarget):
         self.new_widget = gtk.Entry()
 
         self.gui.get_widget('label15').set_text_with_mnemonic(_('_User Name:'))
-        self.gui.get_widget('button8').set_sensitive(False)
-        self.new_widget.connect('changed', self._set_sensitive_ok_button_cb)
-
-    def _set_sensitive_ok_button_cb(self, widget):
-        # copy from flickr.py
-        target = widget.get_text()
-        state = True if target else False
-        self.gui.get_widget('button8').set_sensitive(state)
+        self._set_sensitive_ok_button(self.new_widget, False)
 
     def _set_default(self):
         if self.data:
