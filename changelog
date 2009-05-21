@@ -1,3 +1,7 @@
+2009-05-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Fixed the plugins path.
+
 2009-05-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* rss.py: Initial import (issue #12).

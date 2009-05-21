@@ -1,11 +1,12 @@
 import os
 import inspect
+from os.path import join, abspath,  dirname
 
 from base import *
 
 token_base = []
 
-for item in os.listdir('.'):
+for item in os.listdir( abspath(join(dirname(__file__))) ):
     if item.endswith('.py') and item != '__init__.py' and item != 'base.py':
         module_name = inspect.getmodulename(item)
         module = __import__(module_name, globals(), locals(), [])
