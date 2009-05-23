@@ -2,6 +2,7 @@ import os
 from os.path import join, abspath,  dirname
 
 VERSION = '0.2.1'
+APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(join(dirname(__file__), '..'))
 if not os.access(SHARED_DATA_DIR + '/gphotoframe.glade', os.R_OK):

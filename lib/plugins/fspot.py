@@ -57,16 +57,16 @@ class MakeFSpotPhoto(MakePhoto):
     def sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
 
-        if self.method:
+        if self.target:
             sql += ('INNER JOIN tags T ON PT.tag_id=T.id ' 
                     'INNER JOIN photo_tags PT ON PT.photo_id=P.id '
                     'WHERE T.id IN ( SELECT id FROM tags WHERE name="%s" ' 
                     'UNION SELECT id FROM tags WHERE category_id ' 
                     'IN (SELECT id FROM tags WHERE name="%s")) ' ) % \
-                    ( str(self.method), str(self.method) )
+                    ( str(self.target), str(self.target) )
 
         if rate_name:
-            c = 'AND' if self.method else 'WHERE'
+            c = 'AND' if self.target else 'WHERE'
             sql += '%s rating=%s ' % ( c, str(rate_name) )
 
         return sql

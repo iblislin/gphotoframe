@@ -13,10 +13,10 @@ from ..utils.urlget import UrlGetWithProxy
 class MakePhoto(object):
     """Photo Factory"""
 
-    def __init__(self, method, argument, weight):
+    def __init__(self, target, argument, weight):
         self.weight = weight
         self.argument = argument
-        self.method = method
+        self.target = target
 
         self.conf = GConf()
         self.total  = 0

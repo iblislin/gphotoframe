@@ -17,7 +17,7 @@ class MakeDirPhoto (MakePhoto):
         th.start()
 
     def prepare_thread(self):
-        path = self.method
+        path = self.target
         r = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)
 
         for root, dirs, files in os.walk(path):

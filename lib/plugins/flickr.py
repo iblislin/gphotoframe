@@ -12,8 +12,8 @@ class MakeFlickrPhoto (MakePhoto):
 
     def prepare(self):
 
-        api = FlickrAPI().api_list()[self.method]
-        url = api().get_url(self.method, self.argument) 
+        api = FlickrAPI().api_list()[self.target]
+        url = api().get_url(self.target, self.argument) 
         if not url: return
 
         urlget = UrlGetWithProxy()
@@ -82,14 +82,14 @@ class FlickrAPI(object):
             }
         return api
 
-    def get_url(self, method, argument):
+    def get_url(self, target, argument):
         url = 'http://api.flickr.com/services/rest/?'
 
         api_key = self.conf.get_string('plugins/flickr/api_key') \
             or '343677ff5aa31f37042513d533293062'
         self.values = { 'api_key' : api_key,
                         'count'   : 50,
-                        'method'  : method,
+                        'method'  : target,
                         'format'  : 'json',
                         'extras'  : 'owner_name',
                         'nojsoncallback' : '1' }

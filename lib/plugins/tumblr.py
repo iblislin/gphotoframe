@@ -11,7 +11,7 @@ def info():
 class MakeTumblrPhoto (MakePhoto):
 
     def prepare(self):
-        user_id = self.method
+        user_id = self.target
         if not user_id:
             return
 
