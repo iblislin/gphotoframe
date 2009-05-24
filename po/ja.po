@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-21 01:15+0900\n"
-"PO-Revision-Date: 2009-05-21 01:17+0900\n"
+"POT-Creation-Date: 2009-05-24 23:22+0900\n"
+"PO-Revision-Date: 2009-05-24 23:19+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,90 +40,98 @@ msgid "<b>Photo Sources</b>"
 msgstr "<b>写真のソース</b>"
 
 #: ../gphotoframe.glade.h:4
+msgid "<b>Plugins</b>"
+msgstr "<b>プラグイン</b>"
+
+#: ../gphotoframe.glade.h:5
 msgid "Always on _Visible Workspace"
 msgstr "全てのワークスペースに配置する(_V)"
 
-#: ../gphotoframe.glade.h:5
+#: ../gphotoframe.glade.h:6
 msgid "Fix Photo Frame"
 msgstr "写真フレームの固定"
 
-#: ../gphotoframe.glade.h:6
+#: ../gphotoframe.glade.h:7
 msgid "General"
 msgstr "全般"
 
-#: ../gphotoframe.glade.h:7
+#: ../gphotoframe.glade.h:8
 msgid "Option"
 msgstr "オプション"
 
-#: ../gphotoframe.glade.h:8
+#: ../gphotoframe.glade.h:9
 msgid "Photo Frame Preferences"
 msgstr "写真フレームの設定"
 
-#: ../gphotoframe.glade.h:9
+#: ../gphotoframe.glade.h:10
 msgid "Photo Frame for GNOME Desktop"
 msgstr "GNOME デスクトップ向けの写真フレームです。"
 
-#: ../gphotoframe.glade.h:10
+#: ../gphotoframe.glade.h:11
 msgid "Photo Source"
 msgstr "写真のソース"
 
-#: ../gphotoframe.glade.h:11
+#: ../gphotoframe.glade.h:12
 msgid "Photos"
 msgstr "写真"
 
-#: ../gphotoframe.glade.h:12 ../lib/plugins/base.py:69
+#: ../gphotoframe.glade.h:13
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: ../gphotoframe.glade.h:14 ../lib/plugins/base.py:69
 msgid "_Argument:"
 msgstr "引数(_A):"
 
-#: ../gphotoframe.glade.h:13
+#: ../gphotoframe.glade.h:15
 msgid "_Auto Start"
 msgstr "ログイン時に自動起動する(_A)"
 
-#: ../gphotoframe.glade.h:14
+#: ../gphotoframe.glade.h:16
 msgid "_Interval:"
 msgstr "表示間隔(_I):"
 
-#: ../gphotoframe.glade.h:15
+#: ../gphotoframe.glade.h:17
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:16 ../lib/plugins/base.py:63
+#: ../gphotoframe.glade.h:18 ../lib/plugins/base.py:63
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:17 ../lib/plugins/flickr.py:115
+#: ../gphotoframe.glade.h:19 ../lib/plugins/flickr.py:108
 msgid "_User ID:"
 msgstr "ユーザ ID(_U)"
 
-#: ../gphotoframe.glade.h:18
+#: ../gphotoframe.glade.h:20
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../gphotoframe.glade.h:19
+#: ../gphotoframe.glade.h:21
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/preferences.py:90
+#: ../lib/preferences.py:92
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:91
+#: ../lib/preferences.py:93
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:92
+#: ../lib/preferences.py:94
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:93
+#: ../lib/preferences.py:95
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/flickr.py:126
+#: ../lib/plugins/flickr.py:119
 msgid "_Group ID:"
 msgstr "グループ ID(_G)"
 
-#: ../lib/plugins/flickr.py:138
+#: ../lib/plugins/flickr.py:131
 msgid "_Tags:"
 msgstr "タグ(_T):"
 

@@ -38,7 +38,9 @@ class Preferences(object):
         if user_id != None:
             self.entry2.set_text(user_id)
 
-        self.preference_list = PreferencesList(
+        self.preference_list = PhotoSourceTreeView(
+            self.gui, self.photolist, self.prefs)
+        self.plugins_list = PluginTreeView(
             self.gui, self.photolist, self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
@@ -79,7 +81,7 @@ class Preferences(object):
         self.photolist.save_gconf()
         self.prefs.destroy()
 
-class PreferencesList(object):
+class PhotoSourceTreeView(object):
     """Preferences Photo Source List"""
 
     def __init__(self, gui, photoliststore, parent):
@@ -144,6 +146,79 @@ class PreferencesList(object):
     def _cursor_changed_cb(self, widget):
         if self.treeview.get_selection().get_selected()[1] != None:
             self._set_button_sensitive(True)
+
+class PluginTreeView(object):
+    """Preferences Plugin List"""
+
+    def __init__(self, gui, photoliststore, parent):
+        self.conf = GConf()
+        self.gui = gui
+        self.treeview = gui.get_widget("treeview2")
+        self._set_button_sensitive(False) # copy
+
+        self.treeview.set_property("headers-visible", False)
+        #self.set_property("rules-hint", True)
+        #self.set_reorderable(True)
+
+        # bool
+        cell_enabled = gtk.CellRendererToggle()
+        cell_enabled.set_property("activatable", True)
+        #cell_enabled.connect('toggled', self.emit_row_toggled, model)
+        self.column_enabled = gtk.TreeViewColumn("Enabled", cell_enabled, active=0)
+        self.column_enabled.set_sort_column_id(0)
+        self.treeview.append_column(self.column_enabled)
+
+        # icon
+        cell_icon = gtk.CellRendererPixbuf()
+        self.column_icon = gtk.TreeViewColumn("Icon", cell_icon)
+        self.column_icon.set_max_width(36)
+        self.treeview.append_column(self.column_icon)
+        #self.column_icon.set_attributes(cell_icon, pixbuf=1)
+        #self.column_icon.set_sort_column_id(1)
+
+        # plugin name
+        cell_description = gtk.CellRendererText()
+        self.column_description = gtk.TreeViewColumn("Description", cell_description, markup=2)
+        self.column_description.set_sort_column_id(2)
+        self.treeview.append_column(self.column_description)
+
+        self.parent = parent
+        self.liststore()
+        self.treeview.set_model(self.liststore)
+
+        dic = { 
+            "on_button6_clicked" : self._prefs_button_cb,
+            "on_treeview2_cursor_changed" : self._cursor_changed_cb
+            }
+        gui.signal_autoconnect(dic)
+
+
+    def _prefs_button_cb(self, widget):
+        "copy"
+        treeselection = self.treeview.get_selection()
+        (model, iter) = treeselection.get_selected()
+
+        #photodialog = PhotoDialog(self.parent, model[iter])
+        #(response_id, v) = photodialog.run()
+
+        #if response_id == gtk.RESPONSE_OK:
+        #    self.photoliststore.append(v, iter)
+        #    self.photoliststore.remove(iter)
+
+    def _cursor_changed_cb(self, widget):
+        "copy"
+        if self.treeview.get_selection().get_selected()[1] != None:
+            self._set_button_sensitive(True)
+
+    def _set_button_sensitive(self, state):
+        self.gui.get_widget('button6').set_sensitive(state)
+
+    def liststore(self):
+        self.liststore = gtk.ListStore(bool, str, str)
+
+        for i in SOURCE_LIST:
+            list = [ False, None, i ]
+            self.liststore.append(list)
 
 class PhotoDialog(object):
     """Photo Source Dialog"""

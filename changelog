@@ -1,3 +1,8 @@
+2009-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, gphotoframe.glade, ja.po:
+	  Added plugin preferences.
+
 2009-05-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/__init__.py: Fixed the plugins path.
