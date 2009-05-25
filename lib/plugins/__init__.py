@@ -17,11 +17,14 @@ for item in os.listdir( abspath(join(dirname(__file__))) ):
 SOURCE_LIST=[]
 MAKE_PHOTO_TOKEN ={}
 PHOTO_TARGET_TOKEN={}
+PLUGIN_DIALOG_TOKEN={}
 
 for k in sorted(token_base):
     SOURCE_LIST.append(k[0])
     MAKE_PHOTO_TOKEN[k[0]] = k[1]
     PHOTO_TARGET_TOKEN[k[0]] = k[2]
+    if len(k) > 3:
+        PLUGIN_DIALOG_TOKEN[k[0]] = k[3]
 
 class PluginListStore(gtk.ListStore):
 

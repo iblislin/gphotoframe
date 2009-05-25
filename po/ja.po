@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-24 23:22+0900\n"
-"PO-Revision-Date: 2009-05-24 23:19+0900\n"
+"POT-Creation-Date: 2009-05-25 16:59+0900\n"
+"PO-Revision-Date: 2009-05-25 17:03+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,8 +28,8 @@ msgid "Show photos on Desktop"
 msgstr "デスクトップに写真を表示します"
 
 #: ../gphotoframe.glade.h:1
-msgid "<b>Flickr</b>"
-msgstr "<b>Flickr</b>"
+msgid "<b>Desktop</b>"
+msgstr "<b>デスクトップ</b>"
 
 #: ../gphotoframe.glade.h:2
 msgid "<b>General</b>"
@@ -79,7 +79,7 @@ msgstr "写真"
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: ../gphotoframe.glade.h:14 ../lib/plugins/base.py:69
+#: ../gphotoframe.glade.h:14 ../lib/plugins/base.py:70
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -92,44 +92,48 @@ msgid "_Interval:"
 msgstr "表示間隔(_I):"
 
 #: ../gphotoframe.glade.h:17
+msgid "_Password:"
+msgstr "パスワード(_P):"
+
+#: ../gphotoframe.glade.h:18
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:18 ../lib/plugins/base.py:63
+#: ../gphotoframe.glade.h:19 ../lib/plugins/base.py:64
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:19 ../lib/plugins/flickr.py:108
+#: ../gphotoframe.glade.h:20 ../lib/plugins/flickr.py:108
 msgid "_User ID:"
-msgstr "ユーザ ID(_U)"
+msgstr "ユーザ ID(_U):"
 
-#: ../gphotoframe.glade.h:20
+#: ../gphotoframe.glade.h:21
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../gphotoframe.glade.h:21
+#: ../gphotoframe.glade.h:22
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/preferences.py:92
+#: ../lib/preferences.py:115
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:93
+#: ../lib/preferences.py:116
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:94
+#: ../lib/preferences.py:117
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:95
+#: ../lib/preferences.py:118
 msgid "Weight"
 msgstr "重み"
 
 #: ../lib/plugins/flickr.py:119
 msgid "_Group ID:"
-msgstr "グループ ID(_G)"
+msgstr "グループ ID(_G):"
 
 #: ../lib/plugins/flickr.py:131
 msgid "_Tags:"
@@ -137,7 +141,7 @@ msgstr "タグ(_T):"
 
 #: ../lib/plugins/tumblr.py:53
 msgid "_User Name:"
-msgstr "ユーザ名(_U)"
+msgstr "ユーザ名(_U):"
 
 #: ../lib/plugins/rss.py:45
 msgid "_Title:"

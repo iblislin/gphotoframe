@@ -33,11 +33,6 @@ class Preferences(object):
         self.checkbutton2.set_sensitive(self.auto_start.check_enable())
         self.checkbutton2.set_active(self.auto_start.get())
 
-        user_id = self.conf.get_string('plugins/flickr/user_id')
-        self.entry2 = self.gui.get_widget('entry2')
-        if user_id != None:
-            self.entry2.set_text(user_id)
-
         self.preference_list = PhotoSourceTreeView(
             self.gui, "treeview1", self.photolist, self.prefs)
         self.plugins_list = PluginTreeView(
@@ -72,9 +67,6 @@ class Preferences(object):
         self.auto_start.set(state)
 
     def _close_cb(self, widget):
-        flickr_user_id = self.entry2.get_text()
-        self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )
-
         page = self.gui.get_widget('notebook1').get_current_page()
         self.conf.set_int('recents/preferences', page)
 
@@ -130,7 +122,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.gui.get_widget('button5').set_sensitive(state)
 
     def _new_button_cb(self, widget):
-        photodialog = PhotoDialog(self.parent)
+        photodialog = PhotoSourceDialog(self.parent)
         (response_id, v) = photodialog.run()
 
         if response_id == gtk.RESPONSE_OK:
@@ -140,7 +132,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 
-        photodialog = PhotoDialog(self.parent, model[iter])
+        photodialog = PhotoSourceDialog(self.parent, model[iter])
         (response_id, v) = photodialog.run()
 
         if response_id == gtk.RESPONSE_OK:
@@ -194,19 +186,22 @@ class PluginTreeView(PreferencesTreeView):
     def _toggle_plugin_enabled_cb(self, cell, row):
         print row
 
+    def _cursor_changed_cb(self, widget):
+        (model, iter) = self.treeview.get_selection().get_selected()
+        plugin_type = model[iter][2]
+
+        state = True if plugin_type in PLUGIN_DIALOG_TOKEN else False
+        self._set_button_sensitive(state)
+            
     def _prefs_button_cb(self, widget):
-        "copy"
-        treeselection = self.treeview.get_selection()
-        (model, iter) = treeselection.get_selected()
+        (model, iter) = self.treeview.get_selection().get_selected()
+        plugin_type = model[iter][2]
 
-        #photodialog = PhotoDialog(self.parent, model[iter])
-        #(response_id, v) = photodialog.run()
+        if plugin_type in PLUGIN_DIALOG_TOKEN:
+            photodialog = PLUGIN_DIALOG_TOKEN[type](self.parent, model[iter])
+            (response_id, v) = photodialog.run()
 
-        #if response_id == gtk.RESPONSE_OK:
-        #    self.liststore.append(v, iter)
-        #    self.liststore.remove(iter)
-
-class PhotoDialog(object):
+class PhotoSourceDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, parent, data=None):

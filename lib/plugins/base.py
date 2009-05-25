@@ -7,6 +7,7 @@ import random
 from gettext import gettext as _
 
 from ..constants import CACHE_DIR
+from ..constants import GLADE_FILE
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 
@@ -154,3 +155,30 @@ class NoPhoto(Photo):
 
     def open(self, *args):
         pass
+
+class PluginDialog(object):
+    """Photo Source Dialog"""
+
+    def __init__(self, parent, data=None):
+        self.gui = gtk.glade.XML(GLADE_FILE)
+        self.conf = GConf()
+        self.parent = parent
+
+        self.data = data
+        # self.photo = {}
+
+    def run(self):
+        self.dialog = self.gui.get_widget('plugin_dialog')
+        self.dialog.set_transient_for(self.parent)
+        print self.data[2]
+
+        self._read_gconf()
+
+        # run
+        response_id = self.dialog.run()
+
+        if response_id == gtk.RESPONSE_OK: 
+            self._write_gconf()
+
+        self.dialog.destroy()
+        return response_id, {}

@@ -6,7 +6,7 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['Flickr', MakeFlickrPhoto, PhotoTargetFlickr]
+    return ['Flickr', MakeFlickrPhoto, PhotoTargetFlickr, PluginFlickrDialog]
 
 class MakeFlickrPhoto (MakePhoto):
 
@@ -130,3 +130,18 @@ class FlickrSearchAPI(FlickrAPI):
         sensitive = True
         label = _('_Tags:')
         return sensitive, label
+
+class PluginFlickrDialog(PluginDialog):
+
+    def _read_gconf(self):
+        user_id = self.conf.get_string('plugins/flickr/user_id')
+        self.entry1 = self.gui.get_widget('entry3')
+        if user_id != None:
+            self.entry1.set_text(user_id)
+
+        self.gui.get_widget('label2').set_sensitive(False)
+        self.gui.get_widget('entry4').set_sensitive(False)
+
+    def _write_gconf(self):
+        flickr_user_id = self.entry2.get_text()
+        self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )
