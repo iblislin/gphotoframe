@@ -1,3 +1,8 @@
+2009-05-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* picasa.py: Added support for Picasa Web Album.
+	* keyring.py: Added support for GNOME Keyring.
+
 2009-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences.py, gphotoframe.glade, ja.po, plugins/*:
