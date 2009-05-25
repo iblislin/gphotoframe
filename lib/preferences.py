@@ -198,8 +198,9 @@ class PluginTreeView(PreferencesTreeView):
         plugin_type = model[iter][2]
 
         if plugin_type in PLUGIN_DIALOG_TOKEN:
-            photodialog = PLUGIN_DIALOG_TOKEN[type](self.parent, model[iter])
-            (response_id, v) = photodialog.run()
+            plugindialog = PLUGIN_DIALOG_TOKEN[plugin_type](
+                self.parent, model[iter])
+            plugindialog.run()
 
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""

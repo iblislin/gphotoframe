@@ -163,18 +163,14 @@ class PluginDialog(object):
         self.gui = gtk.glade.XML(GLADE_FILE)
         self.conf = GConf()
         self.parent = parent
-
         self.data = data
-        # self.photo = {}
 
     def run(self):
         self.dialog = self.gui.get_widget('plugin_dialog')
         self.dialog.set_transient_for(self.parent)
-        print self.data[2]
 
         self._read_gconf()
 
-        # run
         response_id = self.dialog.run()
 
         if response_id == gtk.RESPONSE_OK: 

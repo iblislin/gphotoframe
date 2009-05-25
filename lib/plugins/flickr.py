@@ -143,5 +143,5 @@ class PluginFlickrDialog(PluginDialog):
         self.gui.get_widget('entry4').set_sensitive(False)
 
     def _write_gconf(self):
-        flickr_user_id = self.entry2.get_text()
+        flickr_user_id = self.entry1.get_text()
         self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )
