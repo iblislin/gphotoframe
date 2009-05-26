@@ -5,8 +5,6 @@ import gdata.photos.service
 import gdata.media
 import gdata.geo
 
-#from ..preferences import PluginDialog
-
 from base import *
 from ..utils.keyring import Keyring
 from ..constants import APP_NAME
@@ -18,15 +16,15 @@ def info():
 class MakePicasaPhoto (MakePhoto):
 
     def prepare(self):
-        print self.target, self.argument
-
-        self.username = 'yendo0206'
-
-        key = Keyring('Google Account', protocol='http')
-        key.get_passwd_async(self.username, self._prepare_cb)
+        self.username = self.conf.get_string('plugins/picasa/user_id')
+        if self.username:
+            key = Keyring('Google Account', protocol='http')
+            key.get_passwd_async(self.username, self._prepare_cb)
 
     def _prepare_cb(self, identity):
-        if identity is None: return
+        if identity is None: 
+            print "Certification Error"
+            return
 
         self.gd_client = gdata.photos.service.PhotosService()
         self.gd_client.email = self.username + '@gmail.com'
@@ -55,7 +53,6 @@ class MakePicasaPhoto (MakePhoto):
         return album_list
 
     def _get_album(self, album_list, uid):
-        print uid, album_list
         for album_id in album_list:
             photos = self._get_feed('Album', uid, album_id)
             self._set_photo_db(photos)
@@ -72,7 +69,6 @@ class MakePicasaPhoto (MakePhoto):
             } 
 
         url = "/data/feed/api" + url[target]
-        print url
         photos = self.gd_client.GetFeed(url)
 
         return photos
@@ -100,6 +96,17 @@ class PhotoTargetPicasa(PhotoTarget):
         super(PhotoTargetPicasa, self)._construct_widget()
         self._set_sensitive(state=True)
 
+        self._widget_cb(self.new_widget)
+        self.new_widget.connect('changed', self._widget_cb)
+
+    def _widget_cb(self, widget):
+        target = widget.get_active_text()
+
+        state = False if target == 'Featured' else True
+
+        self._set_sensitive(state=state)
+        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
+
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
@@ -109,34 +116,30 @@ class PhotoTargetPicasa(PhotoTarget):
 class PluginPicasaDialog(PluginDialog):
 
     def run(self):
-        self.dialog = self.gui.get_widget('plugin_dialog')
-        self.dialog.set_transient_for(self.parent)
+        self.dialog.set_title('Picasa Web')
 
         user_id = self.conf.get_string('plugins/picasa/user_id')
+        self.passwd = None
         self.entry3 = self.gui.get_widget('entry3')
         self.entry4 = self.gui.get_widget('entry4')
 
         if user_id != None:
             self.entry3.set_text(user_id)
             self.key = Keyring('Google Account', protocol='http')
-            self.passwd = None
-
             self.key.get_passwd_async(user_id, self._run_cb)
 
     def _run_cb(self, identity):
-
-        self.passwd = None
         if identity:
             self.passwd = identity[1]
             self.entry4.set_text(self.passwd)
 
         response_id = self.dialog.run()
         if response_id == gtk.RESPONSE_OK: 
-            self._write_gconf()
+            self._write_conf()
         else:
             self.dialog.destroy()
 
-    def _write_gconf(self):
+    def _write_conf(self):
         user_id = self.entry3.get_text()
         self.conf.set_string( 'plugins/picasa/user_id', user_id )
 
@@ -148,4 +151,3 @@ class PluginPicasaDialog(PluginDialog):
 
     def _destroy_cb(self, *args):
         self.dialog.destroy()
-

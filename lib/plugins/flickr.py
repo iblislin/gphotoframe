@@ -133,15 +133,15 @@ class FlickrSearchAPI(FlickrAPI):
 
 class PluginFlickrDialog(PluginDialog):
 
-    def _read_gconf(self):
+    def _read_conf(self):
         user_id = self.conf.get_string('plugins/flickr/user_id')
-        self.entry1 = self.gui.get_widget('entry3')
+        self.entry = self.gui.get_widget('entry3')
         if user_id != None:
-            self.entry1.set_text(user_id)
+            self.entry.set_text(user_id)
 
         self.gui.get_widget('label2').set_sensitive(False)
         self.gui.get_widget('entry4').set_sensitive(False)
 
-    def _write_gconf(self):
-        flickr_user_id = self.entry1.get_text()
+    def _write_conf(self):
+        flickr_user_id = self.entry.get_text()
         self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )

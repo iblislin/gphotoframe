@@ -162,19 +162,20 @@ class PluginDialog(object):
     def __init__(self, parent, data=None):
         self.gui = gtk.glade.XML(GLADE_FILE)
         self.conf = GConf()
-        self.parent = parent
         self.data = data
 
-    def run(self):
-        self.dialog = self.gui.get_widget('plugin_dialog')
-        self.dialog.set_transient_for(self.parent)
+        self._set_ui()
+        self.dialog.set_transient_for(parent)
 
-        self._read_gconf()
+    def _set_ui(self):
+        self.dialog = self.gui.get_widget('plugin_dialog')
+
+    def run(self):
+        self._read_conf()
 
         response_id = self.dialog.run()
-
         if response_id == gtk.RESPONSE_OK: 
-            self._write_gconf()
+            self._write_conf()
 
         self.dialog.destroy()
         return response_id, {}
