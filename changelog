@@ -1,3 +1,7 @@
+2009-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr.py: Changed API name labels.
+
 2009-05-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* picasa.py: Added support for Picasa Web Album.

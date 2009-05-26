@@ -12,7 +12,11 @@ class MakeFlickrPhoto (MakePhoto):
 
     def prepare(self):
 
-        api = FlickrAPI().api_list()[self.target]
+        api_list = FlickrAPI().api_list()
+        if not self.target in api_list:
+            print "oops"
+            return
+        api = api_list[self.target][1]
         url = api().get_url(self.target, self.argument) 
         if not url: return
 
@@ -51,7 +55,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        api = FlickrAPI().api_list()[target]
+        api = FlickrAPI().api_list()[target][1]
         state, label = api().set_entry_label()
 
         self._set_argument_sensitive(label, state)
@@ -74,11 +78,11 @@ class FlickrAPI(object):
 
     def api_list(self):
         api = { 
-            'flickr.favorites.getPublicList' : FlickrAPI,
-            'flickr.groups.pools.getPhotos' : FlickrGroupAPI,
-            'flickr.interestingness.getList' : FlickrAPI,
-            'flickr.photos.getContactsPublicPhotos' : FlickrAPI, 
-            'flickr.photos.search' : FlickrSearchAPI, 
+            'Favorites'       : ['flickr.favorites.getPublicList', FlickrAPI],
+            'Group Pool'      : ['flickr.groups.pools.getPhotos', FlickrGroupAPI],
+            'Interestingness' : ['flickr.interestingness.getList', FlickrAPI],
+            'Contacts Photos' : ['flickr.photos.getContactsPublicPhotos', FlickrAPI], 
+            'Photo Search'    : ['flickr.photos.search', FlickrSearchAPI], 
             }
         return api
 
@@ -89,7 +93,7 @@ class FlickrAPI(object):
             or '343677ff5aa31f37042513d533293062'
         self.values = { 'api_key' : api_key,
                         'count'   : 50,
-                        'method'  : target,
+                        'method'  : self.api_list()[target][0],
                         'format'  : 'json',
                         'extras'  : 'owner_name',
                         'nojsoncallback' : '1' }
