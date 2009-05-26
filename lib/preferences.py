@@ -188,11 +188,10 @@ class PluginTreeView(PreferencesTreeView):
 
     def _cursor_changed_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
-        plugin_type = model[iter][2]
-
+        plugin_type = model[iter][2] if iter else None
         state = True if plugin_type in PLUGIN_DIALOG_TOKEN else False
         self._set_button_sensitive(state)
-            
+
     def _prefs_button_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2]
@@ -264,7 +263,7 @@ class PhotoSourceDialog(object):
 
         text = combobox.get_active_text()
         token = PHOTO_TARGET_TOKEN
-        old_widget = self.photo.get('target')
+        old_target_widget = self.photo.get('target')
 
-        self.target_widget = token[text](self.gui, old_widget, data)
+        self.target_widget = token[text](self.gui, old_target_widget, data)
         self.photo['target'] = self.target_widget.make()
