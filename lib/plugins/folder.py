@@ -8,7 +8,7 @@ import gtk
 from base import *
 
 def info():
-    return ['Folder', MakeDirPhoto, PhotoTargetDir]
+    return ['Folder', MakeDirPhoto, PhotoSourceDirUI]
 
 class MakeDirPhoto (MakePhoto):
 
@@ -36,14 +36,14 @@ class MakeDirPhoto (MakePhoto):
         self.photo = random.choice(self.photos)
         self.photo.show(photoframe)
 
-class PhotoTargetDir(PhotoTarget):
+class PhotoSourceDirUI(PhotoSourceUI):
     def get(self):
-        return self.new_widget.get_current_folder()
+        return self.target_widget.get_current_folder()
 
-    def _construct_widget(self):
-        self.new_widget = gtk.FileChooserButton("button")
-        self.new_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
+    def _build_target_widget(self):
+        self.target_widget = gtk.FileChooserButton("button")
+        self.target_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
 
-    def _set_default(self):
+    def _set_target_default(self):
         folder = self.data[1] if self.data else os.environ['HOME']
-        self.new_widget.set_current_folder(folder)
+        self.target_widget.set_current_folder(folder)

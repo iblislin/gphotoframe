@@ -38,41 +38,41 @@ class MakePhoto(object):
     def _get_photo_cb(self, cb, photoframe):
         self.photo.show(photoframe)
 
-class PhotoTarget(object):
-    def __init__(self, gui, old_widget=None, data=None):
+class PhotoSourceUI(object):
+    def __init__(self, gui, old_target_widget=None, data=None):
         self.gui = gui
         self.table = gui.get_widget('table4')
-        if old_widget:
-            self.table.remove(old_widget)
+        if old_target_widget:
+            self.table.remove(old_target_widget)
         self.data = data
 
     def make(self, data=None):
-        self._set_sensitive()
-        self._construct_widget()
-        self._attach_widget()
-        self._set_default()
-        return self.new_widget
+        self._set_argument_sensitive()
+        self._build_target_widget()
+        self._attach_target_widget()
+        self._set_target_default()
+        return self.target_widget
 
     def get(self):
-        return self.new_widget.get_active_text()
+        return self.target_widget.get_active_text()
 
-    def _construct_widget(self):
-        self.new_widget = gtk.combo_box_new_text()
+    def _build_target_widget(self):
+        self.target_widget = gtk.combo_box_new_text()
         for text in self._label():
-            self.new_widget.append_text(text)
-        self.new_widget.set_active(0)
+            self.target_widget.append_text(text)
+        self.target_widget.set_active(0)
         self.gui.get_widget('label15').set_text_with_mnemonic(_('_Target:'))
 
-    def _attach_widget(self):
-        self.new_widget.show()
-        self.table.attach(self.new_widget, 1, 2, 1, 2, xpadding=0, ypadding=0)
+    def _attach_target_widget(self):
+        self.target_widget.show()
+        self.table.attach(self.target_widget, 1, 2, 1, 2, xpadding=0, ypadding=0)
 
-    def _set_sensitive(self, label=_('_Argument:'), state=False):
+    def _set_argument_sensitive(self, label=_('_Argument:'), state=False):
         self.gui.get_widget('label12').set_text_with_mnemonic(label)
         self.gui.get_widget('label12').set_sensitive(state)
         self.gui.get_widget('entry1').set_sensitive(state)
 
-    def _set_default(self):
+    def _set_target_default(self):
         pass
 
     def _label(self):
@@ -83,8 +83,7 @@ class PhotoTarget(object):
         entry_widget.connect('changed', self._set_sensitive_ok_button_cb)
 
     def _set_sensitive_ok_button_cb(self, widget):
-       target = widget.get_text()
-       state = True if target else False
+       state = True if widget.get_text() else False
        self.gui.get_widget('button8').set_sensitive(state)
 
 class Photo(dict):
@@ -98,7 +97,6 @@ class Photo(dict):
             self['pixbuf'] = gtk.gdk.pixbuf_new_from_file(self['filename'])
             self._rotate(self['pixbuf'].get_option('orientation'))
             self._scale()
-
             photoframe.set_photo(self)
         except gobject.GError:
             print sys.exc_info()[1]
@@ -159,13 +157,13 @@ class NoPhoto(Photo):
 class PluginDialog(object):
     """Photo Source Dialog"""
 
-    def __init__(self, parent, data=None):
+    def __init__(self, parent, model_iter=None):
         self.gui = gtk.glade.XML(GLADE_FILE)
         self.conf = GConf()
-        self.data = data
 
         self._set_ui()
         self.dialog.set_transient_for(parent)
+        self.dialog.set_title(model_iter[2])
 
     def _set_ui(self):
         self.dialog = self.gui.get_widget('plugin_dialog')

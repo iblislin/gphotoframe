@@ -5,7 +5,7 @@ from base import *
 from ..utils.wrandom import WeightedRandom
 
 def info():
-    return ['F-Spot', MakeFSpotPhoto, PhotoTargetFspot]
+    return ['F-Spot', MakeFSpotPhoto, PhotoSourceFspotUI]
 
 class MakeFSpotPhoto(MakePhoto):
 
@@ -71,13 +71,13 @@ class MakeFSpotPhoto(MakePhoto):
 
         return sql
 
-class PhotoTargetFspot(PhotoTarget):
+class PhotoSourceFspotUI(PhotoSourceUI):
 
     def get(self):
-        iter = self.new_widget.get_active_iter()
+        iter = self.target_widget.get_active_iter()
         return self.treestore.get_value(iter, 0)
 
-    def _construct_widget(self):
+    def _build_target_widget(self):
         self.treestore = gtk.TreeStore(str)
         iter_db = {}
         self.tree_list = {}
@@ -87,12 +87,12 @@ class PhotoTargetFspot(PhotoTarget):
             iter_db[item[0]] =  self.treestore.append(iter, [ item[1] ])
             self.tree_list[str(item[1])] = iter_db[item[0]]
 
-        self.new_widget = gtk.ComboBox(model=self.treestore)
-        self.new_widget.set_active(0)
+        self.target_widget = gtk.ComboBox(model=self.treestore)
+        self.target_widget.set_active(0)
 
         cell = gtk.CellRendererText()
-        self.new_widget.pack_start(cell, True)
-        self.new_widget.add_attribute(cell, 'text', 0)
+        self.target_widget.pack_start(cell, True)
+        self.target_widget.add_attribute(cell, 'text', 0)
 
     def _label(self):
         list = [0, '', 0]
@@ -105,10 +105,10 @@ class PhotoTargetFspot(PhotoTarget):
                 yield tag
             db.close()
 
-    def _set_default(self):
+    def _set_target_default(self):
         if self.data:
             iter = self.tree_list[self.data[1]]
-            self.new_widget.set_active_iter(iter)
+            self.target_widget.set_active_iter(iter)
 
 class FSpotDB(object):
 

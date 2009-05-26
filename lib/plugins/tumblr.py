@@ -6,7 +6,7 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['Tumblr', MakeTumblrPhoto, PhotoTargetTumblr ]
+    return ['Tumblr', MakeTumblrPhoto, PhotoSourceTumblrUI]
 
 class MakeTumblrPhoto (MakePhoto):
 
@@ -31,7 +31,6 @@ class MakeTumblrPhoto (MakePhoto):
         title = d['tumblelog']['title']
         description = d['tumblelog']['description']
 
-        self.total = len(d['posts'])
         for s in d['posts']:
             data = {'url'        : s['photo-url-500'],
                     'id'         : s['id'],
@@ -43,16 +42,17 @@ class MakeTumblrPhoto (MakePhoto):
             photo.update(data)
             self.photos.append(photo)
 
-class PhotoTargetTumblr(PhotoTarget):
+class PhotoSourceTumblrUI (PhotoSourceUI):
     def get(self):
         return self.new_widget.get_text();
-
-    def _construct_widget(self):
+        return self.target_widget.get_text();
+    def _build_target_widget(self):
         self.new_widget = gtk.Entry()
-
+        self.target_widget = gtk.Entry()
         self.gui.get_widget('label15').set_text_with_mnemonic(_('_User Name:'))
         self._set_sensitive_ok_button(self.new_widget, False)
-
-    def _set_default(self):
+        self._set_sensitive_ok_button(self.target_widget, False)
+    def _set_target_default(self):
         if self.data:
             self.new_widget.set_text(self.data[1])
+            self.target_widget.set_text(self.data[1])

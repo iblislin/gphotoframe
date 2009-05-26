@@ -5,7 +5,7 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['RSS', MakeRSSPhoto, PhotoTargetRSS ]
+    return ['RSS', MakeRSSPhoto, PhotoSourceRSSUI]
 
 class MakeRSSPhoto (MakePhoto):
 
@@ -35,24 +35,24 @@ class MakeRSSPhoto (MakePhoto):
                 photo.update(data)
                 self.photos.append(photo)
 
-class PhotoTargetRSS(PhotoTarget):
+class PhotoSourceRSSUI(PhotoSourceUI):
     def get(self):
-        return self.new_widget.get_text();
+        return self.target_widget.get_text();
 
-    def _construct_widget(self):
+    def _build_target_widget(self):
         # target widget
-        self.new_widget = gtk.Entry()
+        self.target_widget = gtk.Entry()
         self.gui.get_widget('label15').set_text_with_mnemonic(_('_Title:'))
-        self.new_widget.set_sensitive(False)
+        self.target_widget.set_sensitive(False)
         self.gui.get_widget('label15').set_sensitive(False)
 
         # argument widget
-        self._set_sensitive(_("_URL:"), True)
+        self._set_argument_sensitive(_("_URL:"), True)
 
         # button
-        self._set_sensitive_ok_button(self.new_widget, False)
+        self._set_sensitive_ok_button(self.target_widget, False)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), False)
 
-    def _set_default(self):
+    def _set_target_default(self):
         if self.data:
-            self.new_widget.set_text(self.data[1])
+            self.target_widget.set_text(self.data[1])

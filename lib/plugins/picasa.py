@@ -10,8 +10,8 @@ from ..utils.keyring import Keyring
 from ..constants import APP_NAME
 
 def info():
-    return ['Picasa Web', MakePicasaPhoto, PhotoTargetPicasa,
-            PluginPicasaDialog ]
+    return ['Picasa Web', MakePicasaPhoto, PhotoSourcePicasaUI,
+            PluginPicasaDialog]
 
 class MakePicasaPhoto (MakePhoto):
 
@@ -90,34 +90,32 @@ class MakePicasaPhoto (MakePhoto):
             photo.update(data)
             self.photos.append(photo)
 
-class PhotoTargetPicasa(PhotoTarget):
+class PhotoSourcePicasaUI(PhotoSourceUI):
 
-    def _construct_widget(self):
-        super(PhotoTargetPicasa, self)._construct_widget()
-        self._set_sensitive(state=True)
+    def _build_target_widget(self):
+        super(PhotoSourcePicasaUI, self)._build_target_widget()
+        self._set_argument_sensitive(state=True)
 
-        self._widget_cb(self.new_widget)
-        self.new_widget.connect('changed', self._widget_cb)
+        self._widget_cb(self.target_widget)
+        self.target_widget.connect('changed', self._widget_cb)
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
 
         state = False if target == 'Featured' else True
 
-        self._set_sensitive(state=state)
+        self._set_argument_sensitive(state=state)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
-    def _set_default(self):
+    def _set_target_default(self):
         pass
 
 class PluginPicasaDialog(PluginDialog):
 
     def run(self):
-        self.dialog.set_title('Picasa Web')
-
         user_id = self.conf.get_string('plugins/picasa/user_id')
         self.passwd = None
         self.entry3 = self.gui.get_widget('entry3')

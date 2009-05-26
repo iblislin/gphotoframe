@@ -6,7 +6,7 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['Flickr', MakeFlickrPhoto, PhotoTargetFlickr, PluginFlickrDialog]
+    return ['Flickr', MakeFlickrPhoto, PhotoSourceFlickrUI, PluginFlickrDialog]
 
 class MakeFlickrPhoto (MakePhoto):
 
@@ -41,20 +41,20 @@ class MakeFlickrPhoto (MakePhoto):
             photo.update(data)
             self.photos.append(photo)
 
-class PhotoTargetFlickr(PhotoTarget):
+class PhotoSourceFlickrUI(PhotoSourceUI):
 
-    def _construct_widget(self):
-        super(PhotoTargetFlickr, self)._construct_widget()
+    def _build_target_widget(self):
+        super(PhotoSourceFlickrUI, self)._build_target_widget()
  
-        self._widget_cb(self.new_widget)
-        self.new_widget.connect('changed', self._widget_cb)
+        self._widget_cb(self.target_widget)
+        self.target_widget.connect('changed', self._widget_cb)
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
         api = FlickrAPI().api_list()[target]
         state, label = api().set_entry_label()
 
-        self._set_sensitive(label, state)
+        self._set_argument_sensitive(label, state)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _label(self):
@@ -62,10 +62,10 @@ class PhotoTargetFlickr(PhotoTarget):
         keys.sort()
         return [ api for api in keys ]
 
-    def _set_default(self):
+    def _set_target_default(self):
         if self.data:
             fr_num = self._label().index(self.data[1])
-            self.new_widget.set_active(fr_num)
+            self.target_widget.set_active(fr_num)
 
 class FlickrAPI(object):
 
