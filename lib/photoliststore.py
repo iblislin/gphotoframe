@@ -35,8 +35,8 @@ class PhotoListStore(gtk.ListStore):
 
     def _timer(self):
         self._change_photo()
-        self.interval = self.conf.get_int('interval', 30)
-        gobject.timeout_add(self.interval * 1000, self._timer)
+        interval = self.conf.get_int('interval', 30)
+        gobject.timeout_add(interval * 1000, self._timer)
         return False
 
     def _change_photo(self):
@@ -68,12 +68,11 @@ class PhotoListStore(gtk.ListStore):
     def save_gconf(self):
         self.conf.recursive_unset('sources')
         self.conf.recursive_unset('flickr') # for ver. 0.1 
+        data_list = ['source', 'target', 'argument', 'weight', 'options']
 
         for i, row in enumerate(self):
-            for num, k in enumerate(( 
-                    'source', 'target', 'argument', 'weight', 'options')):
+            for num, key in enumerate(data_list):
                 value = row[num]
-                if not value: continue
-                key = 'sources/%s/%s' % (i, k)
-
-                self.conf.set_value(key, value)
+                if value:
+                    full_key = 'sources/%s/%s' % (i, key)
+                    self.conf.set_value(full_key, value)

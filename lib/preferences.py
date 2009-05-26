@@ -17,32 +17,33 @@ class Preferences(object):
         self.conf = GConf()
 
     def start(self, widget):
-        self.gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.prefs = self.gui.get_widget('preferences')
+        gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.prefs = gui.get_widget('preferences')
+        self.notebook = gui.get_widget('notebook1')
 
-        self.spinbutton1 = self.gui.get_widget('spinbutton1')
+        self.spinbutton1 = gui.get_widget('spinbutton1')
         val = self.conf.get_int('interval', 30)
         self.spinbutton1.set_value(val)
 
-        self.checkbutton1 = self.gui.get_widget('checkbutton1')
+        self.checkbutton1 = gui.get_widget('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
         self.checkbutton1.set_active(sticky)
 
-        self.checkbutton2 = self.gui.get_widget('checkbutton2')
+        self.checkbutton2 = gui.get_widget('checkbutton2')
         self.auto_start = AutoStart('gphotoframe')
         self.checkbutton2.set_sensitive(self.auto_start.check_enable())
         self.checkbutton2.set_active(self.auto_start.get())
 
         self.preference_list = PhotoSourceTreeView(
-            self.gui, "treeview1", self.photolist, self.prefs)
+            gui, "treeview1", self.photolist, self.prefs)
         self.plugins_list = PluginTreeView(
-            self.gui, "treeview2", PluginListStore(), self.prefs)
+            gui, "treeview2", PluginListStore(), self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
 
         recent = self.conf.get_int('recents/preferences')
         if recent: 
-            self.gui.get_widget('notebook1').set_current_page(recent)
+            gui.get_widget('notebook1').set_current_page(recent)
         self.prefs.show_all()
 
         dic = { 
@@ -52,7 +53,7 @@ class Preferences(object):
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
-        self.gui.signal_autoconnect(dic)
+        gui.signal_autoconnect(dic)
 
     def _interval_changed_cb(self, widget):
         val = self.spinbutton1.get_value_as_int()
@@ -67,7 +68,7 @@ class Preferences(object):
         self.auto_start.set(state)
 
     def _close_cb(self, widget):
-        page = self.gui.get_widget('notebook1').get_current_page()
+        page = self.notebook.get_current_page()
         self.conf.set_int('recents/preferences', page)
 
         self.photolist.save_gconf()
@@ -212,8 +213,8 @@ class PhotoSourceDialog(object):
         self.photo = {}
 
     def run(self):
-        self.dialog = self.gui.get_widget('photo_source')
-        self.dialog.set_transient_for(self.parent)
+        dialog = self.gui.get_widget('photo_source')
+        dialog.set_transient_for(self.parent)
 
         # source
         self.photo['source'] = self.gui.get_widget('combobox4')
@@ -242,7 +243,7 @@ class PhotoSourceDialog(object):
         # run
         dic = { "on_combobox4_changed" : self._change_combobox }
         self.gui.signal_autoconnect(dic)
-        response_id = self.dialog.run()
+        response_id = dialog.run()
 
         argument = self.photo['argument'].get_text() \
             if self.photo['argument'].get_property('sensitive') else ''
@@ -253,7 +254,7 @@ class PhotoSourceDialog(object):
               'weight'  : self.photo['weight'].get_value(),
               'options' : '' }
 
-        self.dialog.destroy()
+        dialog.destroy()
         if response_id == gtk.RESPONSE_OK: 
             self.conf.set_string('recents/source', v['source'])
         return response_id, v

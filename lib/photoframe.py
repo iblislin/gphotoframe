@@ -14,14 +14,14 @@ class PhotoFrame(object):
 
     def __init__(self, photolist):
 
-        self.gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.image = self.gui.get_widget('image')
+        gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.image = gui.get_widget('image')
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
         self.conf.set_notify_add('window_fix', self._change_window_fix_cb)
 
-        self.window = self.gui.get_widget('window')
+        self.window = gui.get_widget('window')
         self.window.set_decorated(False)
         self.window.set_skip_taskbar_hint(True)
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
@@ -34,13 +34,13 @@ class PhotoFrame(object):
         self.popup_menu = PopUpMenu(photolist, self)
         self._set_accelerator()
 
-        self.dic = { 
+        dic = { 
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
             "on_window_destroy" : reactor.stop,
             }
-        self.gui.signal_autoconnect(self.dic)
+        gui.signal_autoconnect(dic)
 
     def set_photo(self, photo):
         self.photo = photo
@@ -89,7 +89,7 @@ class PhotoFrame(object):
         self.window.add_accel_group(accel_group) 
 
     def _check_button_cb(self, widget, event):
-        if event.button == 1 and self.conf.get_bool('window_fix') == False:
+        if event.button == 1:
             widget.begin_move_drag \
                 (event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
@@ -132,28 +132,28 @@ class PhotoFrame(object):
 
 class PopUpMenu(object):
     def __init__(self, photolist, photoframe):
+        gui = gtk.glade.XML(constants.GLADE_FILE)
         self.photoframe = photoframe
-        self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.conf = GConf()
+        self.menu = gui.get_widget('menu')
 
-        about = AboutDialog()
         preferences = Preferences(photolist)
+        about = AboutDialog()
 
-        self.dic = { 
+        dic = { 
             "on_menuitem5_activate" : self.open_photo,
-            "on_menuitem6_toggled" : self._fix_window_cb,
+            "on_menuitem6_toggled"  : self._fix_window_cb,
             "on_prefs" : preferences.start,
             "on_about" : about.start,
             "on_quit"  : self.quit,
             }
-        self.gui.signal_autoconnect(self.dic)
+        gui.signal_autoconnect(dic)
 
         if self.conf.get_bool('window_fix'):
-            self.gui.get_widget('menuitem6').set_active(True)
+            gui.get_widget('menuitem6').set_active(True)
 
     def start(self, widget, event):
-        menu = self.gui.get_widget('menu')
-        menu.popup(None, None, None, event.button, event.time)
+        self.menu.popup(None, None, None, event.button, event.time)
 
     def quit(self, *args):
         reactor.stop()
