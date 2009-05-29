@@ -154,6 +154,9 @@ class NoPhoto(Photo):
 
         photoframe.set_photo(self)
 
+    def get_photo(self, photoframe, *args):
+        self.show(photoframe, *args)
+
     def open(self, *args):
         pass
 

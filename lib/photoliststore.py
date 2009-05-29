@@ -20,7 +20,7 @@ class PhotoListStore(gtk.ListStore):
         self._load_gconf()
 
         self.photoframe = PhotoFrame(self)
-        self._timer()
+        self._start_timer()
 
     def append(self, d, iter=None):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
@@ -34,21 +34,25 @@ class PhotoListStore(gtk.ListStore):
         self.insert_before(iter, list)
         obj.prepare()
 
-    def _timer(self):
-        self._change_photo()
-        interval = self.conf.get_int('interval', 30)
-        gobject.timeout_add(interval * 1000, self._timer)
+    def next_photo(self):
+        gobject.source_remove(self._timer)
+        self._start_timer()
+
+    def _start_timer(self):
+        state = self._change_photo()
+        interval = self.conf.get_int('interval', 30) if state else 10
+        self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
         return False
 
     def _change_photo(self):
         target_list = [ x[5] for x in self if x[5].photos ]
         if target_list:
-            target = WeightedRandom(target_list)
-            target().get_photo(self.photoframe)
+            target, state = WeightedRandom(target_list), True
         else:
-            nophoto = plugins.NoPhoto()
-            nophoto.show(self.photoframe)
-        return True
+            target, state = plugins.NoPhoto, False
+
+        target().get_photo(self.photoframe)
+        return state
 
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):

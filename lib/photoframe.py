@@ -14,6 +14,7 @@ class PhotoFrame(object):
 
     def __init__(self, photolist):
 
+        self.photolist = photolist
         gui = gtk.glade.XML(constants.GLADE_FILE)
         self.image = gui.get_widget('image')
 
@@ -31,7 +32,7 @@ class PhotoFrame(object):
             self.window.stick()
         self._set_window_position()
 
-        self.popup_menu = PopUpMenu(photolist, self)
+        self.popup_menu = PopUpMenu(self.photolist, self)
         self._set_accelerator()
 
         dic = { 
@@ -96,6 +97,8 @@ class PhotoFrame(object):
             pass
         elif event.button == 3:
             self.popup_menu.start(widget, event)
+        elif event.button == 9:
+            self.photolist.next_photo()
 
     def _window_state_cb(self, widget, event):
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
