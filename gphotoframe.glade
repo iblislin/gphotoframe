@@ -172,6 +172,8 @@
                                     <property name="xalign">0</property>
                                     <property name="label" translatable="yes">_Interval:</property>
                                     <property name="use_underline">True</property>
+                                    <property name="justify">right</property>
+                                    <property name="mnemonic_widget">spinbutton1</property>
                                   </widget>
                                   <packing>
                                     <property name="x_options"></property>
@@ -615,6 +617,7 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Weight:</property>
                         <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">spinbutton3</property>
                       </widget>
                       <packing>
                         <property name="top_attach">3</property>
@@ -670,6 +673,7 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Source:</property>
                         <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">combobox4</property>
                       </widget>
                       <packing>
                         <property name="x_options">GTK_FILL</property>
@@ -682,6 +686,7 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Argument:</property>
                         <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">entry1</property>
                       </widget>
                       <packing>
                         <property name="top_attach">2</property>
@@ -820,6 +825,7 @@
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">_User ID:</property>
                 <property name="use_underline">True</property>
+                <property name="mnemonic_widget">entry3</property>
                 <property name="angle">0.040000000000000001</property>
               </widget>
               <packing>
@@ -833,6 +839,7 @@
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">_Password:</property>
                 <property name="use_underline">True</property>
+                <property name="mnemonic_widget">entry4</property>
               </widget>
               <packing>
                 <property name="top_attach">1</property>
