@@ -65,7 +65,9 @@ class PhotoSourceUI(object):
 
     def _attach_target_widget(self):
         self.target_widget.show()
-        self.table.attach(self.target_widget, 1, 2, 1, 2, xpadding=0, ypadding=0)
+        self.gui.get_widget('label15').set_mnemonic_widget(self.target_widget)
+        self.table.attach(self.target_widget, 1, 2, 1, 2, 
+                          xpadding=0, ypadding=0)
 
     def _set_argument_sensitive(self, label=_('_Argument:'), state=False):
         self.gui.get_widget('label12').set_text_with_mnemonic(label)
