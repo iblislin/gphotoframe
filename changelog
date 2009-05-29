@@ -1,3 +1,8 @@
+2009-05-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py (PreferencesTreeView): Truncate long arguments on
+	  Photo Source TreeView.
+
 2009-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr.py: Changed API name labels.

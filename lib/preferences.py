@@ -2,6 +2,7 @@ import os
 
 import gtk
 import gtk.glade
+import pango
 from gettext import gettext as _
 
 import constants
@@ -87,12 +88,16 @@ class PreferencesTreeView(object):
         self.treeview.set_model(self.liststore)
         self._set_button_sensitive(False)
 
-    def _add_column(self, title, id):
-        column = gtk.TreeViewColumn(title, gtk.CellRendererText(), markup=id)
+    def _add_text_column(self, title, id, size=None, expand=True):
+        cell = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(title, cell, markup=id)
         column.set_resizable(True)
         column.set_sort_column_id(id)
-        # column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        # column.set_fixed_width(80)
+        if size:
+            cell.set_property('ellipsize', pango.ELLIPSIZE_END)
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_expand(expand)
+            column.set_fixed_width(size)
         self.treeview.append_column(column)
 
     def _cursor_changed_cb(self, widget):
@@ -105,10 +110,10 @@ class PhotoSourceTreeView(PreferencesTreeView):
     def __init__(self, gui, widget, liststore, parent):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
 
-        self._add_column(_("Source"), 0)
-        self._add_column(_("Target"), 1)
-        self._add_column(_("Argument"), 2)
-        self._add_column(_("Weight"), 3)
+        self._add_text_column(_("Source"), 0)
+        self._add_text_column(_("Target"), 1)
+        self._add_text_column(_("Argument"), 2, 100, True)
+        self._add_text_column(_("Weight"), 3)
 
         dic = { 
             "on_button3_clicked" : self._new_button_cb,
@@ -173,7 +178,7 @@ class PluginTreeView(PreferencesTreeView):
         self.column_icon.set_sort_column_id(1)
 
         # plugin name
-        self._add_column("Description", 2)
+        self._add_text_column("Description", 2)
 
         dic = { 
             "on_button6_clicked" : self._prefs_button_cb,
