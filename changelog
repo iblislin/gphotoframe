@@ -1,5 +1,6 @@
 2009-05-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/__init__.py: Improved plugin imports.
 	* gphotoframe.glade: Added mnemonics.
 	* preferences.py (PreferencesTreeView): Truncate long arguments on
 	  Photo Source TreeView.

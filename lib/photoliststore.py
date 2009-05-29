@@ -1,10 +1,10 @@
 import gtk
 import gobject
 
+import plugins
 from photoframe import PhotoFrame
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
-from plugins import *
 
 class PhotoListStore(gtk.ListStore):
     """ListStore for Photo sources.
@@ -23,9 +23,10 @@ class PhotoListStore(gtk.ListStore):
         self._timer()
 
     def append(self, d, iter=None):
-        if 'source' not in d: return 
+        if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
+            return
 
-        obj = MAKE_PHOTO_TOKEN[ d['source'] ]( 
+        obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ]( 
             d['target'], d['argument'], d['weight'] )
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]

@@ -9,22 +9,26 @@ token_base = []
 for item in os.listdir( abspath(join(dirname(__file__))) ):
     if item.endswith('.py') and item != '__init__.py' and item != 'base.py':
         module_name = inspect.getmodulename(item)
-        module = __import__(module_name, globals(), locals(), [])
-        for function in inspect.getmembers(module, inspect.isfunction):
-            if 'info' in function:
-                token_base.append(module.info())
+        try:
+            module = __import__(module_name, globals(), locals(), [])
+        except ImportError, value:
+            print "Can't import %s plugin: %s." % (module_name, value)
+        else:
+            for function in inspect.getmembers(module, inspect.isfunction):
+                if 'info' in function:
+                    token_base.append(module.info())
 
 SOURCE_LIST=[]
 MAKE_PHOTO_TOKEN ={}
 PHOTO_TARGET_TOKEN={}
-PLUGIN_DIALOG_TOKEN={}
+DIALOG_TOKEN={}
 
 for k in sorted(token_base):
     SOURCE_LIST.append(k[0])
     MAKE_PHOTO_TOKEN[k[0]] = k[1]
     PHOTO_TARGET_TOKEN[k[0]] = k[2]
     if len(k) > 3:
-        PLUGIN_DIALOG_TOKEN[k[0]] = k[3]
+        DIALOG_TOKEN[k[0]] = k[3]
 
 class PluginListStore(gtk.ListStore):
 

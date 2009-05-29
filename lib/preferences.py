@@ -6,9 +6,9 @@ import pango
 from gettext import gettext as _
 
 import constants
+import plugins
 from utils.config import GConf
 from utils.autostart import AutoStart
-from plugins import *
 
 class Preferences(object):
     """Preferences"""
@@ -38,7 +38,7 @@ class Preferences(object):
         self.preference_list = PhotoSourceTreeView(
             gui, "treeview1", self.photolist, self.prefs)
         self.plugins_list = PluginTreeView(
-            gui, "treeview2", PluginListStore(), self.prefs)
+            gui, "treeview2", plugins.PluginListStore(), self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
 
@@ -195,15 +195,15 @@ class PluginTreeView(PreferencesTreeView):
     def _cursor_changed_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2] if iter else None
-        state = True if plugin_type in PLUGIN_DIALOG_TOKEN else False
+        state = True if plugin_type in plugins.DIALOG_TOKEN else False
         self._set_button_sensitive(state)
 
     def _prefs_button_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2]
 
-        if plugin_type in PLUGIN_DIALOG_TOKEN:
-            plugindialog = PLUGIN_DIALOG_TOKEN[plugin_type](
+        if plugin_type in plugins.DIALOG_TOKEN:
+            plugindialog = plugins.DIALOG_TOKEN[plugin_type](
                 self.parent, model[iter])
             plugindialog.run()
 
@@ -220,15 +220,16 @@ class PhotoSourceDialog(object):
     def run(self):
         dialog = self.gui.get_widget('photo_source')
         dialog.set_transient_for(self.parent)
+        source_list = plugins.SOURCE_LIST
 
         # source
         self.photo['source'] = self.gui.get_widget('combobox4')
-        for str in SOURCE_LIST:
+        for str in source_list:
             self.photo['source'].append_text(str)
 
         recent = self.conf.get_string('recents/source')
-        source_num = SOURCE_LIST.index(self.data[0]) if self.data \
-            else SOURCE_LIST.index(recent) if recent \
+        source_num = source_list.index(self.data[0]) if self.data \
+            else source_list.index(recent) if recent in source_list \
             else 0
         self.photo['source'].set_active(source_num)
 
@@ -268,7 +269,7 @@ class PhotoSourceDialog(object):
         self.gui.get_widget('button8').set_sensitive(True)
 
         text = combobox.get_active_text()
-        token = PHOTO_TARGET_TOKEN
+        token = plugins.PHOTO_TARGET_TOKEN
         old_target_widget = self.photo.get('target')
 
         self.target_widget = token[text](self.gui, old_target_widget, data)
