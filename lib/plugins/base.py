@@ -95,11 +95,12 @@ class Photo(dict):
         print self.get('page_url') or self.get('url')
         try:
             self['pixbuf'] = gtk.gdk.pixbuf_new_from_file(self['filename'])
+        except gobject.GError:
+            print sys.exc_info()[1]
+        else:
             self._rotate(self['pixbuf'].get_option('orientation'))
             self._scale()
             photoframe.set_photo(self)
-        except gobject.GError:
-            print sys.exc_info()[1]
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']

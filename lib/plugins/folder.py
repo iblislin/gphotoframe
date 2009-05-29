@@ -1,8 +1,8 @@
 import os
 import re
 import random
-import threading
 
+from twisted.internet import threads
 import gtk
 
 from base import *
@@ -13,10 +13,9 @@ def info():
 class MakeDirPhoto (MakePhoto):
 
     def prepare(self):
-        th = threading.Thread(target=self.prepare_thread)
-        th.start()
+        d = threads.deferToThread(self._prepare_cb)
 
-    def prepare_thread(self):
+    def _prepare_cb(self):
         path = self.target
         r = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)
 
