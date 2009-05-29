@@ -46,7 +46,7 @@ class PhotoListStore(gtk.ListStore):
             target = WeightedRandom(target_list)
             target().get_photo(self.photoframe)
         else:
-            nophoto = NoPhoto()
+            nophoto = plugins.NoPhoto()
             nophoto.show(self.photoframe)
         return True
 
