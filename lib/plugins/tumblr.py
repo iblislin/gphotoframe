@@ -44,15 +44,13 @@ class MakeTumblrPhoto (MakePhoto):
 
 class PhotoSourceTumblrUI (PhotoSourceUI):
     def get(self):
-        return self.new_widget.get_text();
         return self.target_widget.get_text();
+
     def _build_target_widget(self):
-        self.new_widget = gtk.Entry()
         self.target_widget = gtk.Entry()
         self.gui.get_widget('label15').set_text_with_mnemonic(_('_User Name:'))
-        self._set_sensitive_ok_button(self.new_widget, False)
         self._set_sensitive_ok_button(self.target_widget, False)
+
     def _set_target_default(self):
         if self.data:
-            self.new_widget.set_text(self.data[1])
             self.target_widget.set_text(self.data[1])

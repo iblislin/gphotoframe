@@ -1,5 +1,6 @@
 2009-05-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* tumblr.py (PhotoSourceTumblrUI): Fixed bugs.
 	* photoliststore.py, photoframe.py, base.py: Improved the timer
 	  implementation.  Added next_photo (restart timer).
 
