@@ -22,18 +22,18 @@ class Preferences(object):
         self.prefs = gui.get_widget('preferences')
         self.notebook = gui.get_widget('notebook1')
 
-        self.spinbutton1 = gui.get_widget('spinbutton1')
+        spinbutton1 = gui.get_widget('spinbutton1')
         val = self.conf.get_int('interval', 30)
-        self.spinbutton1.set_value(val)
+        spinbutton1.set_value(val)
 
-        self.checkbutton1 = gui.get_widget('checkbutton1')
+        checkbutton1 = gui.get_widget('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
-        self.checkbutton1.set_active(sticky)
+        checkbutton1.set_active(sticky)
 
-        self.checkbutton2 = gui.get_widget('checkbutton2')
+        checkbutton2 = gui.get_widget('checkbutton2')
         self.auto_start = AutoStart('gphotoframe')
-        self.checkbutton2.set_sensitive(self.auto_start.check_enable())
-        self.checkbutton2.set_active(self.auto_start.get())
+        checkbutton2.set_sensitive(self.auto_start.check_enable())
+        checkbutton2.set_active(self.auto_start.get())
 
         self.preference_list = PhotoSourceTreeView(
             gui, "treeview1", self.photolist, self.prefs)
@@ -50,22 +50,21 @@ class Preferences(object):
         dic = { 
             "on_close_button"              : self._close_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
-            "on_entry1_editing_done"       : self._interval_changed_cb,
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
         gui.signal_autoconnect(dic)
 
     def _interval_changed_cb(self, widget):
-        val = self.spinbutton1.get_value_as_int()
-        self.conf.set_int( 'interval', val)
+        val = widget.get_value_as_int()
+        self.conf.set_int('interval', val)
 
     def _sticky_toggled_cb(self, widget):
-        sticky = self.checkbutton1.get_active()
-        self.conf.set_bool( 'window_sticky', sticky )
+        sticky = widget.get_active()
+        self.conf.set_bool('window_sticky', sticky)
 
     def _autostart_toggled_cb(self, widget):
-        state = self.checkbutton2.get_active()
+        state = widget.get_active()
         self.auto_start.set(state)
 
     def _close_cb(self, widget):
@@ -190,7 +189,8 @@ class PluginTreeView(PreferencesTreeView):
         self.gui.get_widget('button6').set_sensitive(state)
 
     def _toggle_plugin_enabled_cb(self, cell, row):
-        print row
+        # self.liststore[row][0] = not self.liststore[row][0]
+        print self.liststore[row][2]
 
     def _cursor_changed_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
