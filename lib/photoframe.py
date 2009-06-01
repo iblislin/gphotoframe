@@ -1,6 +1,7 @@
 import time
 from xml.sax.saxutils import escape
 
+import gobject
 import gtk
 import gtk.glade
 from twisted.internet import reactor
@@ -16,7 +17,6 @@ class PhotoFrame(object):
 
         self.photolist = photolist
         gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.image = gui.get_widget('image')
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
@@ -32,6 +32,7 @@ class PhotoFrame(object):
             self.window.stick()
         self._set_window_position()
 
+        self.photoimage = PhotoImage(gui)
         self.popup_menu = PopUpMenu(self.photolist, self)
         self._set_accelerator()
 
@@ -44,31 +45,10 @@ class PhotoFrame(object):
         gui.signal_autoconnect(dic)
 
     def set_photo(self, photo):
-        self.photo = photo
-        pixbuf = self.photo['pixbuf']
+        self.photoimage.set_photo(photo)
 
-        w = pixbuf.get_width()
-        h = pixbuf.get_height()
-
-        # set image
-        self.image.set_from_pixbuf(pixbuf)
-
-        # set border
-        border = self.conf.get_int('border_width', 10)
-        self.window.resize(w + border, h + border)
-
-        # set tips
-        title = self.photo.get('title')
-        owner = self.photo.get('owner_name')
-        title = "<big>%s</big>" % escape(title) if title else ""
-        owner = "by " + escape(owner) if owner else ""
-        if title and owner:
-            title += "\n"
-
-        try:
-            self.window.set_tooltip_markup(title + owner)
-        except:
-            pass
+    def set_no_photo(self):
+        self.photoimage.set_no_photo()
 
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x'), 
@@ -121,11 +101,11 @@ class PhotoFrame(object):
 
         self.window.hide()
         self.window.set_type_hint(hint)
-        self.image.clear()
+        self.photoimage.clear()
 
         self._set_window_position()
         time.sleep(0.5)
-        self.set_photo(self.photo)
+        self.photoimage.set_photo(None)
 
     def _change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -133,10 +113,108 @@ class PhotoFrame(object):
         else:
             self.window.unstick()
 
+class PhotoImage(object):
+    def __init__(self, gui):
+        self.image = gui.get_widget('image')
+        self.window = gui.get_widget('window')
+        self.conf = GConf()
+
+    def set_photo(self, photo):
+        if photo:
+            self.photo = photo
+
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
+        except gobject.GError:
+            print sys.exc_info()[1]
+            return
+        else:
+            pixbuf = self._rotate(pixbuf)
+            pixbuf = self._scale(pixbuf)
+
+        # set image
+        self._set_image(pixbuf)
+
+        # set tips
+        title = self.photo.get('title')
+        owner = self.photo.get('owner_name')
+        title = "<big>%s</big>" % escape(title) if title else ""
+        owner = "by " + escape(owner) if owner else ""
+        if title and owner:
+            title += "\n"
+
+        try:
+            self.window.set_tooltip_markup(title + owner)
+        except:
+            pass
+
+    def set_no_photo(self):
+        pixbuf = self._no_image()
+        self._set_image(pixbuf)
+
+    def clear(self):
+        self.image.clear()
+
+    def _set_image(self, pixbuf):
+        self.image.set_from_pixbuf(pixbuf)
+
+        w = pixbuf.get_width()
+        h = pixbuf.get_height()
+        border = self.conf.get_int('border_width', 10)
+        self.window.resize(w + border, h + border)
+
+    def _rotate(self, pixbuf):
+        orientation = pixbuf.get_option('orientation') or 1
+
+        if orientation == '6':
+            rotate = 270
+        elif orientation == '8':
+            rotate = 90
+        else:
+            rotate = 0
+            #return
+
+        pixbuf = pixbuf.rotate_simple(rotate)
+        return pixbuf
+
+    def _scale(self, pixbuf):
+        max_w = float( self.conf.get_int('max_width', 400) )
+        max_h = float( self.conf.get_int('max_height', 300) )
+
+        src_w = pixbuf.get_width() 
+        src_h = pixbuf.get_height()
+
+        if src_w / max_w > src_h / max_h:
+            ratio = max_w / src_w
+        else:
+            ratio = max_h / src_h
+
+        w = int( src_w * ratio + 0.4 )
+        h = int( src_h * ratio + 0.4 )
+
+        pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
+        return pixbuf
+
+    def _no_image(self):
+        gdk_window = self.window.window
+        w = self.conf.get_int('max_width', 400)
+        h = self.conf.get_int('max_height', 300)
+
+        pixmap = gtk.gdk.Pixmap(gdk_window, w, h, -1)
+        colormap = gtk.gdk.colormap_get_system()
+        gc = gtk.gdk.Drawable.new_gc(pixmap)
+        gc.set_foreground(colormap.alloc_color(0, 0, 0))
+        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
+
+        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+        pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
+
+        return pixbuf
+
 class PopUpMenu(object):
     def __init__(self, photolist, photoframe):
         gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.photoframe = photoframe
+        self.photoimage = photoframe.photoimage
         self.conf = GConf()
         self.menu = gui.get_widget('menu')
 
@@ -162,7 +240,7 @@ class PopUpMenu(object):
         reactor.stop()
 
     def open_photo(self, *args):
-        self.photoframe.photo.open()
+        self.photoimage.photo.open()
 
     def _fix_window_cb(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
@@ -174,22 +252,3 @@ class AboutDialog(object):
         about.set_property('version', constants.VERSION)
         about.run()
         about.destroy()
-
-class NoImage(object):
-    def __init__(self, gdk_window):
-        self.gdk_window = gdk_window
-        self.conf = GConf()
-
-    def __call__(self):
-        w = self.conf.get_int('max_width', 400)
-        h = self.conf.get_int('max_height', 300)
-        pixmap = gtk.gdk.Pixmap(self.gdk_window, w, h, -1)
-        colormap = gtk.gdk.colormap_get_system()
-        gc = gtk.gdk.Drawable.new_gc(pixmap)
-        gc.set_foreground(colormap.alloc_color(0, 0, 0))
-        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
-
-        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
-
-        return pixbuf

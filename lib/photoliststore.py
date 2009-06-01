@@ -47,11 +47,13 @@ class PhotoListStore(gtk.ListStore):
     def _change_photo(self):
         target_list = [ x[5] for x in self if x[5].photos ]
         if target_list:
-            target, state = WeightedRandom(target_list), True
+            target = WeightedRandom(target_list)
+            target().get_photo(self.photoframe)
+            state = True
         else:
-            target, state = plugins.NoPhoto, False
+            self.photoframe.set_no_photo()
+            state = False
 
-        target().get_photo(self.photoframe)
         return state
 
     def _load_gconf(self):
