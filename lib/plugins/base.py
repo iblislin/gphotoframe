@@ -5,8 +5,7 @@ import gtk
 import random
 from gettext import gettext as _
 
-from ..constants import CACHE_DIR
-from ..constants import GLADE_FILE
+from .. import constants
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 
@@ -28,7 +27,7 @@ class MakePhoto(object):
     def get_photo(self, photoframe):
         self.photo = random.choice(self.photos)
         url = self.photo['url']
-        self.photo['filename'] = CACHE_DIR + url[ url.rfind('/') + 1: ]
+        self.photo['filename'] = constants.CACHE_DIR + url[url.rfind('/') + 1:]
 
         urlget = UrlGetWithProxy()
         d = urlget.downloadPage(str(url), self.photo['filename'])
@@ -60,13 +59,17 @@ class PhotoSourceUI(object):
         for text in self._label():
             self.target_widget.append_text(text)
         self.target_widget.set_active(0)
-        self.gui.get_widget('label15').set_text_with_mnemonic(_('_Target:'))
+        self._set_target_sensitive(state=True)
 
     def _attach_target_widget(self):
         self.target_widget.show()
         self.gui.get_widget('label15').set_mnemonic_widget(self.target_widget)
         self.table.attach(self.target_widget, 1, 2, 1, 2, 
                           xpadding=0, ypadding=0)
+
+    def _set_target_sensitive(self, label=_('_Target:'), state=False):
+        self.gui.get_widget('label15').set_text_with_mnemonic(label)
+        self.gui.get_widget('label15').set_sensitive(state)
 
     def _set_argument_sensitive(self, label=_('_Argument:'), state=False):
         self.gui.get_widget('label12').set_text_with_mnemonic(label)
@@ -101,7 +104,7 @@ class PluginDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, parent, model_iter=None):
-        self.gui = gtk.glade.XML(GLADE_FILE)
+        self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.conf = GConf()
 
         self._set_ui()

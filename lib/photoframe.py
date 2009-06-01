@@ -1,3 +1,4 @@
+import os
 import time
 from xml.sax.saxutils import escape
 
@@ -71,8 +72,8 @@ class PhotoFrame(object):
 
     def _check_button_cb(self, widget, event):
         if event.button == 1:
-            widget.begin_move_drag \
-                (event.button, int(event.x_root), int(event.y_root), event.time)
+            widget.begin_move_drag(
+                event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
             pass
         elif event.button == 3:
@@ -105,7 +106,7 @@ class PhotoFrame(object):
 
         self._set_window_position()
         time.sleep(0.5)
-        self.photoimage.set_photo(None)
+        self.photoimage.set_photo()
 
     def _change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -119,7 +120,7 @@ class PhotoImage(object):
         self.window = gui.get_widget('window')
         self.conf = GConf()
 
-    def set_photo(self, photo):
+    def set_photo(self, photo=None):
         if photo:
             self.photo = photo
 
@@ -132,25 +133,13 @@ class PhotoImage(object):
             pixbuf = self._rotate(pixbuf)
             pixbuf = self._scale(pixbuf)
 
-        # set image
-        self._set_image(pixbuf)
-
-        # set tips
-        title = self.photo.get('title')
-        owner = self.photo.get('owner_name')
-        title = "<big>%s</big>" % escape(title) if title else ""
-        owner = "by " + escape(owner) if owner else ""
-        if title and owner:
-            title += "\n"
-
-        try:
-            self.window.set_tooltip_markup(title + owner)
-        except:
-            pass
+            self._set_image(pixbuf)
+            self._set_tips()
 
     def set_no_photo(self):
         pixbuf = self._no_image()
         self._set_image(pixbuf)
+        self.window.set_tooltip_markup(None)
 
     def clear(self):
         self.image.clear()
@@ -163,6 +152,19 @@ class PhotoImage(object):
         border = self.conf.get_int('border_width', 10)
         self.window.resize(w + border, h + border)
 
+    def _set_tips(self):
+        title = self.photo.get('title')
+        owner = self.photo.get('owner_name')
+        title = "<big>%s</big>" % escape(title) if title else ""
+        owner = "by " + escape(owner) if owner else ""
+        if title and owner:
+            title += "\n"
+
+        try:
+            self.window.set_tooltip_markup(title + owner)
+        except:
+            pass
+
     def _rotate(self, pixbuf):
         orientation = pixbuf.get_option('orientation') or 1
 
@@ -172,7 +174,6 @@ class PhotoImage(object):
             rotate = 90
         else:
             rotate = 0
-            #return
 
         pixbuf = pixbuf.rotate_simple(rotate)
         return pixbuf
@@ -250,5 +251,9 @@ class AboutDialog(object):
         gui = gtk.glade.XML(constants.GLADE_FILE)
         about = gui.get_widget('aboutdialog')
         about.set_property('version', constants.VERSION)
+        gtk.about_dialog_set_url_hook(self._open_url)
         about.run()
         about.destroy()
+
+    def _open_url(self, about, url):
+        os.system("gnome-open '%s'" % url)
