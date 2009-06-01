@@ -42,15 +42,12 @@ class PhotoSourceRSSUI(PhotoSourceUI):
     def _build_target_widget(self):
         # target widget
         self.target_widget = gtk.Entry()
-        self.gui.get_widget('label15').set_text_with_mnemonic(_('_Title:'))
-        self.target_widget.set_sensitive(False)
-        self.gui.get_widget('label15').set_sensitive(False)
+        self._set_target_sensitive(_('_Title:'), False)
 
         # argument widget
         self._set_argument_sensitive(_("_URL:"), True)
 
         # button
-        self._set_sensitive_ok_button(self.target_widget, False)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), False)
 
     def _set_target_default(self):

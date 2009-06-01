@@ -70,6 +70,7 @@ class PhotoSourceUI(object):
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
         self.gui.get_widget('label15').set_text_with_mnemonic(label)
         self.gui.get_widget('label15').set_sensitive(state)
+        self.target_widget.set_sensitive(state)
 
     def _set_argument_sensitive(self, label=_('_Argument:'), state=False):
         self.gui.get_widget('label12').set_text_with_mnemonic(label)
