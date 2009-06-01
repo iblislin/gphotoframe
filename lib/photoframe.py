@@ -1,5 +1,6 @@
 import os
 import time
+import sys
 from xml.sax.saxutils import escape
 
 import gobject
