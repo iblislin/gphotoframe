@@ -6,9 +6,9 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['Tumblr', MakeTumblrPhoto, PhotoSourceTumblrUI]
+    return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI]
 
-class MakeTumblrPhoto (MakePhoto):
+class TumblrPhotoList(PhotoList):
 
     def prepare(self):
         user_id = self.target

@@ -8,10 +8,10 @@ from ..utils.keyring import Keyring
 from ..constants import APP_NAME
 
 def info():
-    return ['Picasa Web', MakePicasaPhoto, PhotoSourcePicasaUI,
+    return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
             PluginPicasaDialog]
 
-class MakePicasaPhoto (MakePhoto):
+class PicasaPhotoList(PhotoList):
 
     def prepare(self):
         self.username = self.conf.get_string('plugins/picasa/user_id')

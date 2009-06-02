@@ -5,9 +5,9 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['RSS', MakeRSSPhoto, PhotoSourceRSSUI]
+    return ['RSS', RSSPhotoList, PhotoSourceRSSUI]
 
-class MakeRSSPhoto (MakePhoto):
+class RSSPhotoList(PhotoList):
 
     def prepare(self):
         url = self.argument

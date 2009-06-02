@@ -5,9 +5,9 @@ from base import *
 from ..utils.wrandom import WeightedRandom
 
 def info():
-    return ['F-Spot', MakeFSpotPhoto, PhotoSourceFspotUI]
+    return ['F-Spot', FSpotPhotoList, PhotoSourceFspotUI]
 
-class MakeFSpotPhoto(MakePhoto):
+class FSpotPhotoList(PhotoList):
 
     def __del__(self):
         self.db.close()

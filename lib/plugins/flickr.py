@@ -6,9 +6,9 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['Flickr', MakeFlickrPhoto, PhotoSourceFlickrUI, PluginFlickrDialog]
+    return ['Flickr', FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
 
-class MakeFlickrPhoto (MakePhoto):
+class FlickrPhotoList(PhotoList):
 
     def prepare(self):
 

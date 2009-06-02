@@ -8,9 +8,9 @@ import gtk
 from base import *
 
 def info():
-    return ['Folder', MakeDirPhoto, PhotoSourceDirUI]
+    return ['Folder', DirPhotoList, PhotoSourceDirUI]
 
-class MakeDirPhoto (MakePhoto):
+class DirPhotoList(PhotoList):
 
     def prepare(self):
         d = threads.deferToThread(self._prepare_cb)

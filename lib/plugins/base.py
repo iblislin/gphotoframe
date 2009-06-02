@@ -1,5 +1,4 @@
 import os
-import sys
 
 import gtk
 import random
@@ -9,7 +8,7 @@ from .. import constants
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 
-class MakePhoto(object):
+class PhotoList(object):
     """Photo Factory"""
 
     def __init__(self, target, argument, weight):
