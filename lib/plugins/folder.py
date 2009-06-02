@@ -42,6 +42,7 @@ class PhotoSourceDirUI(PhotoSourceUI):
     def _build_target_widget(self):
         self.target_widget = gtk.FileChooserButton("button")
         self.target_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
+        self._set_target_sensitive(state=True)
 
     def _set_target_default(self):
         folder = self.data[1] if self.data else os.environ['HOME']

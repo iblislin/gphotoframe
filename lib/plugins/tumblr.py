@@ -23,8 +23,7 @@ class TumblrPhotoList(PhotoList):
         d.addCallback(self._prepare_cb)
 
     def _prepare_cb(self, data):
-        j = re.match("^.*?({.*}).*$", data, 
-                     re.DOTALL | re.MULTILINE | re.UNICODE)
+        j = re.match("^.*?({.*}).*$", data, re.DOTALL | re.MULTILINE | re.UNICODE)
         d = json.loads(j.group(1))
 
         owner = d['tumblelog']['name']
@@ -42,13 +41,13 @@ class TumblrPhotoList(PhotoList):
             photo.update(data)
             self.photos.append(photo)
 
-class PhotoSourceTumblrUI (PhotoSourceUI):
+class PhotoSourceTumblrUI(PhotoSourceUI):
     def get(self):
         return self.target_widget.get_text();
 
     def _build_target_widget(self):
         self.target_widget = gtk.Entry()
-        self.gui.get_widget('label15').set_text_with_mnemonic(_('_User Name:'))
+        self._set_target_sensitive(_('_User Name:'), True)
         self._set_sensitive_ok_button(self.target_widget, False)
 
     def _set_target_default(self):

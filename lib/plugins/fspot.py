@@ -89,6 +89,7 @@ class PhotoSourceFspotUI(PhotoSourceUI):
 
         self.target_widget = gtk.ComboBox(model=self.treestore)
         self.target_widget.set_active(0)
+        self._set_target_sensitive(state=True)
 
         cell = gtk.CellRendererText()
         self.target_widget.pack_start(cell, True)
