@@ -139,6 +139,7 @@ class PhotoImage(object):
 
     def set_no_photo(self):
         pixbuf = self._no_image()
+        self.photo = None
         self._set_image(pixbuf)
         self.window.set_tooltip_markup(None)
 
@@ -215,10 +216,9 @@ class PhotoImage(object):
 
 class PopUpMenu(object):
     def __init__(self, photolist, photoframe):
-        gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.photoimage = photoframe.photoimage
         self.conf = GConf()
-        self.menu = gui.get_widget('menu')
 
         preferences = Preferences(photolist)
         about = AboutDialog()
@@ -230,13 +230,16 @@ class PopUpMenu(object):
             "on_about" : about.start,
             "on_quit"  : self.quit,
             }
-        gui.signal_autoconnect(dic)
+        self.gui.signal_autoconnect(dic)
 
         if self.conf.get_bool('window_fix'):
-            gui.get_widget('menuitem6').set_active(True)
+            self.gui.get_widget('menuitem6').set_active(True)
 
     def start(self, widget, event):
-        self.menu.popup(None, None, None, event.button, event.time)
+        state = True if self.photoimage.photo else False;
+        self.gui.get_widget('menuitem5').set_sensitive(state)
+        menu = self.gui.get_widget('menu')
+        menu.popup(None, None, None, event.button, event.time)
 
     def quit(self, *args):
         reactor.stop()

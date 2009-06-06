@@ -1,3 +1,8 @@
+2009-06-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py (PopUpMenu): Set the sensitiveness of
+	  the menu item 'open'.
+
 2009-06-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, base.py: Added new class PhotoImage in
