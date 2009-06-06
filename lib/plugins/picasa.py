@@ -14,10 +14,13 @@ def info():
 class PicasaPhotoList(PhotoList):
 
     def prepare(self):
+        self.photos = []
+
         self.username = self.conf.get_string('plugins/picasa/user_id')
         if self.username:
             key = Keyring('Google Account', protocol='http')
             key.get_passwd_async(self.username, self._prepare_cb)
+            self._start_timer()
 
     def _prepare_cb(self, identity):
         if identity is None: 

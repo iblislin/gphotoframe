@@ -1,5 +1,7 @@
 2009-06-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/*.py: Added support for updating the photo list
+	  periodically.
 	* photoframe.py (PopUpMenu): Set the sensitiveness of
 	  the menu item 'open'.
 

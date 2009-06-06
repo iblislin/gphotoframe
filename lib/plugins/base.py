@@ -2,6 +2,7 @@ import os
 
 import gtk
 import random
+import gobject
 from gettext import gettext as _
 
 from .. import constants
@@ -22,6 +23,15 @@ class PhotoList(object):
 
     def prepare(self):
         pass
+
+    def _get_url_with_twisted(self, url):
+        urlget = UrlGetWithProxy()
+        d = urlget.getPage(url)
+        d.addCallback(self._prepare_cb)
+
+    def _start_timer(self, interval=3600):
+        self._timer = gobject.timeout_add(interval * 1000, self.prepare)
+        return False
 
     def get_photo(self, photoframe):
         self.photo = random.choice(self.photos)

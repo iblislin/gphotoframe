@@ -11,6 +11,8 @@ def info():
 class TumblrPhotoList(PhotoList):
 
     def prepare(self):
+        self.photos = []
+
         user_id = self.target
         if not user_id:
             return
@@ -18,9 +20,8 @@ class TumblrPhotoList(PhotoList):
         url = 'http://%s.tumblr.com/api/read/json?' % user_id
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
-        urlget = UrlGetWithProxy()
-        d = urlget.getPage(url + urllib.urlencode(values))
-        d.addCallback(self._prepare_cb)
+        self._get_url_with_twisted(url + urllib.urlencode(values))
+        self._start_timer()
 
     def _prepare_cb(self, data):
         j = re.match("^.*?({.*}).*$", data, re.DOTALL | re.MULTILINE | re.UNICODE)

@@ -10,11 +10,11 @@ def info():
 class RSSPhotoList(PhotoList):
 
     def prepare(self):
+        self.photos = []
         url = self.argument
 
-        urlget = UrlGetWithProxy()
-        d = urlget.getPage(url)
-        d.addCallback(self._prepare_cb)
+        self._get_url_with_twisted(url)
+        self._start_timer()
 
     def _prepare_cb(self, data):
         rss = feedparser.parse(data)

@@ -11,6 +11,7 @@ def info():
 class FlickrPhotoList(PhotoList):
 
     def prepare(self):
+        self.photos = []
 
         api_list = FlickrAPI().api_list()
         if not self.target in api_list:
@@ -20,9 +21,8 @@ class FlickrPhotoList(PhotoList):
         url = api().get_url(self.target, self.argument) 
         if not url: return
 
-        urlget = UrlGetWithProxy()
-        d = urlget.getPage(url)
-        d.addCallback(self._prepare_cb)
+        self._get_url_with_twisted(url)
+        self._start_timer()
 
     def _prepare_cb(self, data):
         d = json.loads(data)
