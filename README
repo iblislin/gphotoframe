@@ -1,14 +1,29 @@
 GNOME Photo Frame - A Photo Frame Gadget for the GNOME Desktop. 
 
+It shows pictures from:
+
+- Local folders
+- F-Spot database
+- Flickr API
+- Tumblr API
+- Picasa Web Album API
+- RSS
+
 * Installation
 
 ** Depends
 
 - PyGTK
 - Twisted (twisted.internet, twisted.web)
-- simplejson
 - PyXDG (except v.0.16 which has a bug)
 - Python-Distutils-Extra (for installation) 
+
+** Recommends
+
+- simplejson: for flickr and Tumblr plugins
+- feedparser: for RSS plugin
+- gdata-python-client: for Picasa Web plugin
+- gnome-python-desktop (gnomekeyring): for Picasa Web plugin
 
 ** Installation
 
