@@ -2,6 +2,7 @@ import os
 import time
 import sys
 from xml.sax.saxutils import escape
+from urlparse import urlparse
 
 import gobject
 import gtk
@@ -146,6 +147,16 @@ class PhotoImage(object):
     def clear(self):
         self.image.clear()
 
+    def is_accessible_local_file(self):
+        if self.photo is None:
+            return False
+
+        url = urlparse(self.photo['url'])
+        if url.scheme == 'file' and not os.path.exists(self.photo['filename']):
+            return False
+        else:
+            return True
+
     def _set_image(self, pixbuf):
         self.image.set_from_pixbuf(pixbuf)
 
@@ -236,7 +247,7 @@ class PopUpMenu(object):
             self.gui.get_widget('menuitem6').set_active(True)
 
     def start(self, widget, event):
-        state = True if self.photoimage.photo else False;
+        state = self.photoimage.is_accessible_local_file()
         self.gui.get_widget('menuitem5').set_sensitive(state)
         menu = self.gui.get_widget('menu')
         menu.popup(None, None, None, event.button, event.time)

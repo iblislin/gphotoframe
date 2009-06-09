@@ -1,3 +1,7 @@
+2009-06-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py (PhotoImage): Check if the local file exists.
+
 2009-06-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/*.py: Added support for updating the photo list
