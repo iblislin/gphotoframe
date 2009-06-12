@@ -29,7 +29,7 @@ It shows pictures from:
 
 You can install with the setup script.
 
-  python ./setup.py install 
+  python ./setup.py install --force
 
 Or, you can launch without installation. (Some functions are restricted.)
 
