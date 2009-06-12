@@ -119,10 +119,13 @@ class PluginPicasaDialog(PluginDialog):
         self.entry3 = self.gui.get_widget('entry3')
         self.entry4 = self.gui.get_widget('entry4')
 
+        self.key = Keyring('Google Account', protocol='http')
+
         if user_id != None:
             self.entry3.set_text(user_id)
-            self.key = Keyring('Google Account', protocol='http')
             self.key.get_passwd_async(user_id, self._run_cb)
+        else:
+            self._run_cb(None);
 
     def _run_cb(self, identity):
         if identity:
