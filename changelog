@@ -1,7 +1,12 @@
+2009-06-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* picasa.py (PicasaPhotoList): Fixed issue #18. (The User target of
+	  the Picasa Web Plugin shows only one album.)
+
 2009-06-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* picasa.py (PluginPicasaDialog): Fixed a bug (issue #17: Can't
-	  set the Google Account).
+	* picasa.py (PluginPicasaDialog): Fixed issue #17. (Can't set the
+	  Google Account).
 
 2009-06-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

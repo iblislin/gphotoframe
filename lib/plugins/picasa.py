@@ -33,14 +33,17 @@ class PicasaPhotoList(PhotoList):
         self.gd_client.source = APP_NAME
         self.gd_client.ProgrammaticLogin()
 
-        func = self._get_user_feed if self.target == 'User' else self._get_feed
-        d = threads.deferToThread(func, self.target, self.argument)
-        d.addCallback(self._set_photo_db)
+        if self.target == 'User':
+            d = threads.deferToThread(self._get_album_list, self.argument)
+            d.addCallback(self._get_user_feed_cb, self.argument)
+        else:
+            d = threads.deferToThread(self._get_feed, self.target, self.argument)
+            d.addCallback(self._set_photo_db)
 
-    def _get_user_feed(self, target, uid):
-        album_list = self._get_album_list(uid)
-        photos = self._get_album(album_list, uid)
-        return photos
+    def _get_user_feed_cb(self, album_id_list, uid):
+        for album_id in album_id_list:
+            d = threads.deferToThread(self._get_feed, 'Album', uid, album_id)
+            d.addCallback(self._set_photo_db)
 
     def _get_album_list(self, uid):
         album_list = []
@@ -49,11 +52,6 @@ class PicasaPhotoList(PhotoList):
             album_list.append(album.gphoto_id.text)
             #album_list.append(album.title.text)
         return album_list
-
-    def _get_album(self, album_list, uid):
-        for album_id in album_list:
-            photos = self._get_feed('Album', uid, album_id)
-        return photos
 
     def _get_feed(self, target, argument, option=None):
 
