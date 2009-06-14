@@ -66,11 +66,6 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         keys.sort()
         return [ api for api in keys ]
 
-    def _set_target_default(self):
-        if self.data:
-            fr_num = self._label().index(self.data[1])
-            self.target_widget.set_active(fr_num)
-
 class FlickrAPI(object):
 
     def __init__(self):

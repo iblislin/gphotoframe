@@ -87,7 +87,9 @@ class PhotoSourceUI(object):
         self.gui.get_widget('entry1').set_sensitive(state)
 
     def _set_target_default(self):
-        pass
+        if self.data:
+            fr_num = self._label().index(self.data[1])
+            self.target_widget.set_active(fr_num)
 
     def _label(self):
         return  [ '', ]

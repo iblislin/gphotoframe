@@ -106,9 +106,6 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
-    def _set_target_default(self):
-        pass
-
 class PluginPicasaDialog(PluginDialog):
 
     def run(self):
