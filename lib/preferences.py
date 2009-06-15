@@ -89,7 +89,7 @@ class PreferencesTreeView(object):
 
     def _add_text_column(self, title, id, size=None, expand=True):
         cell = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(title, cell, markup=id)
+        column = gtk.TreeViewColumn(title, cell, text=id)
         column.set_resizable(True)
         column.set_sort_column_id(id)
         if size:

@@ -1,5 +1,7 @@
 2009-06-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences.py (PreferencesTreeView): Dont' use markup on
+	  gtk.CellRendererText.
 	* base.py, flickr.py, picasa.py: Fixed issue #19. (Can't
 	  reconfigure photo source settings of Picasa Web Album.)
 
