@@ -1,4 +1,5 @@
 import re
+import copy
 import feedparser
 
 from base import *
@@ -24,12 +25,16 @@ class RSSPhotoList(PhotoList):
 
         for num, item in enumerate(rss.entries):
             m = re_rss.findall(item.description)
+            entry = rss.entries[num]
+
             for image in m:
-                data = {'url'        : image[0],
+                url = entry.media_content_attrs['url'] \
+                    if hasattr(entry, 'media_content_attrs') else image[0]
+                data = {'url'        : url,
                         'owner_name' : rss.feed.title,
                         'owner'      : rss.feed.title,
-                        'title'      : rss.entries[num].title,
-                        'page_url'   : rss.entries[num].link, }
+                        'title'      : entry.title,
+                        'page_url'   : entry.link, }
 
                 photo = Photo()
                 photo.update(data)
@@ -53,3 +58,10 @@ class PhotoSourceRSSUI(PhotoSourceUI):
     def _set_target_default(self):
         if self.data:
             self.target_widget.set_text(self.data[1])
+
+class FeedParserPlus(feedparser._StrictFeedParser):
+	 
+    def _start_media_content(self, data):
+        self.entries[-1]['media_content_attrs'] = copy.deepcopy(data)
+
+feedparser._StrictFeedParser = FeedParserPlus
