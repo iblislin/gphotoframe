@@ -110,6 +110,7 @@ class Photo(dict):
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']
+        url = url.replace("'", "%27")
         os.system("gnome-open '%s'" % url)
 
 class PluginDialog(object):
