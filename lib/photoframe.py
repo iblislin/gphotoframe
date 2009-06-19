@@ -19,12 +19,13 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.photolist = photolist
-        gui = gtk.glade.XML(constants.GLADE_FILE)
+        gui = self.gui = gtk.glade.XML(constants.GLADE_FILE)
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
         self.conf.set_notify_add('window_fix', self._change_window_fix_cb)
 
+        gui.get_widget('eventbox').set_resize_mode(gtk.RESIZE_IMMEDIATE)
         self.window = gui.get_widget('window')
         self.window.set_decorated(False)
         self.window.set_skip_taskbar_hint(True)
@@ -35,9 +36,11 @@ class PhotoFrame(object):
             self.window.stick()
         self._set_window_position()
 
-        self.photoimage = PhotoImage(gui)
+        self.photoimage = PhotoImage(gui, self)
         self.popup_menu = PopUpMenu(self.photolist, self)
         self._set_accelerator()
+
+        self.fullscreen = False
 
         dic = { 
             "on_window_button_press_event" : self._check_button_cb,
@@ -49,6 +52,7 @@ class PhotoFrame(object):
 
     def set_photo(self, photo):
         self.photoimage.set_photo(photo)
+        self.window.resize(1,1)
 
     def set_no_photo(self):
         self.photoimage.set_no_photo()
@@ -59,7 +63,7 @@ class PhotoFrame(object):
         self.window.resize(1, 1)
         self.window.show_all()
         self.window.get_position()
-        self.window.set_keep_below(True)
+        #self.window.set_keep_below(True)
 
     def _set_accelerator(self):
         accel_group = gtk.AccelGroup()
@@ -77,11 +81,36 @@ class PhotoFrame(object):
             widget.begin_move_drag(
                 event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
-            pass
+            if self.fullscreen:
+                self._unfullscreen()
+            else:
+                self._fullscreen()
+        elif event.button == 8:
+            self._unfullscreen()
         elif event.button == 3:
             self.popup_menu.start(widget, event)
         elif event.button == 9:
             self.photolist.next_photo()
+
+    def _fullscreen(self):
+        self.fullscreen = True
+        self.gui.get_widget('eventbox').modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+        self.window.fullscreen()
+        self.photoimage.set_photo()
+
+    def _unfullscreen(self):
+        self.fullscreen = False
+        self.gui.get_widget('eventbox').modify_bg(gtk.STATE_NORMAL, None)
+        self.window.unfullscreen()
+        #self.photoimage.set_photo()
+        #return
+
+        self.window.hide()
+        self.photoimage.clear()
+        self._set_window_position()
+        time.sleep(0.5)
+        self.photoimage.set_photo()
+        # self.window.show()
 
     def _window_state_cb(self, widget, event):
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
@@ -117,10 +146,13 @@ class PhotoFrame(object):
             self.window.unstick()
 
 class PhotoImage(object):
-    def __init__(self, gui):
+    def __init__(self, gui, photoframe):
         self.image = gui.get_widget('image')
+        self.ebox = gui.get_widget('eventbox')
         self.window = gui.get_widget('window')
+
         self.conf = GConf()
+        self.photoframe = photoframe
 
     def set_photo(self, photo=None):
         if photo:
@@ -162,8 +194,8 @@ class PhotoImage(object):
 
         w = pixbuf.get_width()
         h = pixbuf.get_height()
-        border = self.conf.get_int('border_width', 10)
-        self.window.resize(w + border, h + border)
+        #border = self.conf.get_int('border_width', 10)
+        #self.window.resize(w + border, h + border)
 
     def _set_tips(self):
         title = self.photo.get('title')
@@ -194,6 +226,13 @@ class PhotoImage(object):
     def _scale(self, pixbuf):
         max_w = float( self.conf.get_int('max_width', 400) )
         max_h = float( self.conf.get_int('max_height', 300) )
+
+        if self.photoframe.fullscreen:
+            screen = gtk.gdk.screen_get_default()
+            display_num = screen.get_monitor_at_window(self.window.window)
+            geometry = screen.get_monitor_geometry(display_num)
+            max_w = float(geometry.width)
+            max_h = float(geometry.height)
 
         src_w = pixbuf.get_width() 
         src_h = pixbuf.get_height()

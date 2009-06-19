@@ -1,3 +1,7 @@
+2009-06-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Added support for full screen mode.
+
 2009-06-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* base.py (Photo.open): Escape "'" characters in url.  Fixed issue #20.
