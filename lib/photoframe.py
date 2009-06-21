@@ -13,6 +13,8 @@ import constants
 from preferences import Preferences
 from utils.config import GConf
 
+GConf().set_bool('fullscreen', False)
+
 class PhotoFrame(object):
     """Photo Frame Window"""
 
@@ -24,6 +26,7 @@ class PhotoFrame(object):
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
         self.conf.set_notify_add('window_fix', self._change_window_fix_cb)
+        self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
 
         self.window = gui.get_widget('window')
         self.window.set_decorated(False)
@@ -67,11 +70,6 @@ class PhotoFrame(object):
             self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
         self.window.set_keep_below(True)
 
-    def _toggle_fullscreen(self):
-        self.fullframe = PhotoFrameFullScreen(self.photolist)
-        photo = self.photoimage.photo
-        self.fullframe.set_photo(photo)
-
     def _set_accelerator(self):
         accel_group = gtk.AccelGroup()
         ac_set = [[ "<gph>/quit", "<control>q", self.popup_menu.quit ],
@@ -88,7 +86,8 @@ class PhotoFrame(object):
             widget.begin_move_drag(
                 event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
-            self._toggle_fullscreen()
+            state = not self.conf.get_bool('fullscreen')
+            self.conf.set_bool('fullscreen', state)
         elif event.button == 3:
             self.popup_menu.start(widget, event)
         elif event.button == 9:
@@ -121,6 +120,12 @@ class PhotoFrame(object):
         time.sleep(0.5)
         self.photoimage.set_photo()
 
+    def _change_fullscreen_cb(self, client, id, entry, data):
+        if entry.value.get_bool():
+            self.fullframe = PhotoFrameFullScreen(self.photolist)
+            photo = self.photoimage.photo
+            self.fullframe.set_photo(photo)
+
     def _change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
             self.window.stick()
@@ -136,14 +141,15 @@ class PhotoFrameFullScreen(PhotoFrame):
             widget.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
 
-    def _toggle_fullscreen(self):
-        self.window.destroy()
-
     def _save_geometry_cb(self, widget, event):
         pass
 
     def _change_window_fix_cb(self, client, id, entry, data):
         pass
+
+    def _change_fullscreen_cb(self, client, id, entry, data):
+        if not entry.value.get_bool():
+            self.window.destroy()
 
 class PhotoImage(object):
     def __init__(self, gui, photoframe):
@@ -274,6 +280,7 @@ class PopUpMenu(object):
         dic = { 
             "on_menuitem5_activate" : self.open_photo,
             "on_menuitem6_toggled"  : self._fix_window_cb,
+            "on_menuitem8_toggled"  : self._full_screen_cb,
             "on_prefs" : preferences.start,
             "on_about" : about.start,
             "on_quit"  : self.quit,
@@ -282,10 +289,16 @@ class PopUpMenu(object):
 
         if self.conf.get_bool('window_fix'):
             self.gui.get_widget('menuitem6').set_active(True)
+        if isinstance(photoframe, PhotoFrameFullScreen):
+            self.gui.get_widget('menuitem6').set_sensitive(False)
 
     def start(self, widget, event):
         state = self.photoimage.is_accessible_local_file()
         self.gui.get_widget('menuitem5').set_sensitive(state)
+
+        fullscreen = True if self.conf.get_bool('fullscreen') else False
+        self.gui.get_widget('menuitem8').set_active(fullscreen)
+
         menu = self.gui.get_widget('menu')
         menu.popup(None, None, None, event.button, event.time)
 
@@ -297,6 +310,9 @@ class PopUpMenu(object):
 
     def _fix_window_cb(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
+
+    def _full_screen_cb(self, widget, *args):
+        self.conf.set_bool('fullscreen', widget.get_active())
 
 class AboutDialog(object):
     def start(self, *args):

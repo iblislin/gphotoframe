@@ -1,3 +1,7 @@
+2009-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Added UI for full screen mode.
+
 2009-06-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py: Improved the implementation of full screen mode.

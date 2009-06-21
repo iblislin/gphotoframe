@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-25 16:59+0900\n"
-"PO-Revision-Date: 2009-05-25 17:03+0900\n"
+"POT-Creation-Date: 2009-06-21 23:21+0900\n"
+"PO-Revision-Date: 2009-06-21 00:46+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,8 +48,8 @@ msgid "Always on _Visible Workspace"
 msgstr "全てのワークスペースに配置する(_V)"
 
 #: ../gphotoframe.glade.h:6
-msgid "Fix Photo Frame"
-msgstr "写真フレームの固定"
+msgid "Fi_x Photo Frame"
+msgstr "写真フレームの固定 (_X)"
 
 #: ../gphotoframe.glade.h:7
 msgid "General"
@@ -79,7 +79,7 @@ msgstr "写真"
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: ../gphotoframe.glade.h:14 ../lib/plugins/base.py:70
+#: ../gphotoframe.glade.h:14 ../lib/plugins/base.py:84
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -88,66 +88,70 @@ msgid "_Auto Start"
 msgstr "ログイン時に自動起動する(_A)"
 
 #: ../gphotoframe.glade.h:16
+msgid "_Full Screen"
+msgstr "フルスクリーン表示(_F)"
+
+#: ../gphotoframe.glade.h:17
 msgid "_Interval:"
 msgstr "表示間隔(_I):"
 
-#: ../gphotoframe.glade.h:17
+#: ../gphotoframe.glade.h:18
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../gphotoframe.glade.h:18
+#: ../gphotoframe.glade.h:19
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:19 ../lib/plugins/base.py:64
+#: ../gphotoframe.glade.h:20 ../lib/plugins/base.py:79
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:20 ../lib/plugins/flickr.py:108
+#: ../gphotoframe.glade.h:21 ../lib/plugins/flickr.py:107
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../gphotoframe.glade.h:21
+#: ../gphotoframe.glade.h:22
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../gphotoframe.glade.h:22
+#: ../gphotoframe.glade.h:23
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/preferences.py:115
+#: ../lib/preferences.py:112
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:116
+#: ../lib/preferences.py:113
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:117
+#: ../lib/preferences.py:114
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:118
+#: ../lib/preferences.py:115
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/flickr.py:119
+#: ../lib/plugins/flickr.py:118
 msgid "_Group ID:"
 msgstr "グループ ID(_G):"
 
-#: ../lib/plugins/flickr.py:131
+#: ../lib/plugins/flickr.py:130
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/tumblr.py:53
+#: ../lib/plugins/tumblr.py:51
 msgid "_User Name:"
 msgstr "ユーザ名(_U):"
 
-#: ../lib/plugins/rss.py:45
+#: ../lib/plugins/rss.py:50
 msgid "_Title:"
 msgstr "タイトル(_T)"
 
 #. argument widget
-#: ../lib/plugins/rss.py:50
+#: ../lib/plugins/rss.py:53
 msgid "_URL:"
 msgstr "URL(_U)"

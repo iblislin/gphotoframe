@@ -56,9 +56,22 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkSeparatorMenuItem" id="menuitem9">
+        <property name="visible">True</property>
+      </widget>
+    </child>
+    <child>
+      <widget class="GtkCheckMenuItem" id="menuitem8">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">_Full Screen</property>
+        <property name="use_underline">True</property>
+        <signal name="toggled" handler="on_menuitem8_toggled"/>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkCheckMenuItem" id="menuitem6">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">Fix Photo Frame</property>
+        <property name="label" translatable="yes">Fi_x Photo Frame</property>
         <property name="use_underline">True</property>
         <signal name="toggled" handler="on_menuitem6_toggled"/>
       </widget>
