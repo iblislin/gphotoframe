@@ -32,6 +32,7 @@ class PhotoFrame(object):
         self.window.set_decorated(False)
         self.window.set_skip_taskbar_hint(True)
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
+        self.window.add_events(gtk.gdk.POINTER_MOTION_MASK)
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
         self._set_window_state(gui)
@@ -128,7 +129,11 @@ class PhotoFrame(object):
         if entry.value.get_bool():
             self.fullframe = PhotoFrameFullScreen(self.photolist)
             photo = self.photoimage.photo
-            self.fullframe.set_photo(photo)
+            if photo:
+                self.fullframe.set_photo(photo)
+            else:
+                self.fullframe.set_no_photo()
+
 
     def _change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -217,7 +222,8 @@ class PhotoImage(object):
             pixbuf = self._scale(pixbuf)
 
             self._set_image(pixbuf)
-            self._set_tips()
+            if not isinstance(self.photoframe, PhotoFrameFullScreen):
+                self._set_tips()
 
     def set_no_photo(self):
         pixbuf = self._no_image()
