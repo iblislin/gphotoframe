@@ -144,7 +144,12 @@ class PhotoFrameFullScreen(PhotoFrame):
         for widget in [gui.get_widget('eventbox'), gui.get_widget('window')]:
             widget.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
+
+        self.cursor = True
         self.window.connect("key-press-event", self._keypress_cb)
+        self.window.connect("motion-notify-event", self._show_cursor_cb)
+        self.window.connect("button-press-event", self._show_cursor_cb)
+        self.window.connect("realize", self._hide_cursor_cb)
 
     def _save_geometry_cb(self, widget, event):
         pass
@@ -159,6 +164,22 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _keypress_cb(self, widget, event):
         if event.keyval == gtk.keysyms.Escape:
             self.conf.set_bool('fullscreen', False)
+
+    def _show_cursor_cb(self, widget, evevt):
+        if not self.cursor:
+            self.cursor = True
+            widget.window.set_cursor(None)
+            timer = gobject.timeout_add(5 * 1000, self._hide_cursor_cb, widget)
+
+    def _hide_cursor_cb(self, widget):
+        if self.cursor:
+            widget.set_tooltip_markup(None)
+
+            self.cursor = False
+            pixmap = gtk.gdk.Pixmap(None, 1, 1, 1)
+            color = gtk.gdk.Color()
+            cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
+            widget.window.set_cursor(cursor)
 
 class PhotoImage(object):
     def __init__(self, gui, photoframe):

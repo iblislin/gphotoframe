@@ -1,6 +1,7 @@
 2009-06-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py: Added a key board accelerator for full screen mode.
+	  Hide the mouse cursor in full screen mode.
 
 2009-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
