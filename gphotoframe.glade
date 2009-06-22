@@ -5,7 +5,10 @@
   <widget class="GtkWindow" id="window">
     <signal name="button_press_event" handler="on_window_button_press_event"/>
     <signal name="destroy" handler="on_window_destroy"/>
+    <signal name="key_press_event" handler="on_window_key_press_event"/>
+    <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
     <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
+    <signal name="realize" handler="on_window_realize"/>
     <signal name="window_state_event" handler="on_window_window_state_event"/>
     <child>
       <widget class="GtkEventBox" id="eventbox">

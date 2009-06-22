@@ -145,11 +145,15 @@ class PhotoFrameFullScreen(PhotoFrame):
             widget.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
 
-        self.cursor = True
-        self.window.connect("key-press-event", self._keypress_cb)
-        self.window.connect("motion-notify-event", self._show_cursor_cb)
-        self.window.connect("button-press-event", self._show_cursor_cb)
-        self.window.connect("realize", self._hide_cursor_cb)
+        cursor = Cursor()
+        dic = { 
+            "on_window_key_press_event" : self._keypress_cb,
+            "on_window_button_press_event" : cursor.show_cb,
+            "on_window_motion_notify_event" : cursor.show_cb,
+            "on_window_realize" : cursor.hide_cb,
+            "on_window_destroy" : cursor.stop_timer_cb,
+            }
+        gui.signal_autoconnect(dic)
 
     def _save_geometry_cb(self, widget, event):
         pass
@@ -165,21 +169,32 @@ class PhotoFrameFullScreen(PhotoFrame):
         if event.keyval == gtk.keysyms.Escape:
             self.conf.set_bool('fullscreen', False)
 
-    def _show_cursor_cb(self, widget, evevt):
-        if not self.cursor:
-            self.cursor = True
-            widget.window.set_cursor(None)
-            timer = gobject.timeout_add(5 * 1000, self._hide_cursor_cb, widget)
+class Cursor(object):
+    def __init__(self):
+        self._is_show = True
 
-    def _hide_cursor_cb(self, widget):
-        if self.cursor:
+    def show_cb(self, widget, evevt):
+        if not self._is_show:
+            self._is_show = True
+            widget.window.set_cursor(None)
+
+        self.stop_timer_cb()
+        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget)
+
+    def hide_cb(self, widget):
+        if self._is_show:
             widget.set_tooltip_markup(None)
 
-            self.cursor = False
+            self._is_show = False
             pixmap = gtk.gdk.Pixmap(None, 1, 1, 1)
             color = gtk.gdk.Color()
             cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
             widget.window.set_cursor(cursor)
+            return False
+
+    def stop_timer_cb(self, *args):
+        if hasattr(self, "_timer"):
+            gobject.source_remove(self._timer)
 
 class PhotoImage(object):
     def __init__(self, gui, photoframe):
@@ -317,16 +332,17 @@ class PopUpMenu(object):
             }
         self.gui.signal_autoconnect(dic)
 
-        if self.conf.get_bool('window_fix'):
-            self.gui.get_widget('menuitem6').set_active(True)
         if isinstance(photoframe, PhotoFrameFullScreen):
             self.gui.get_widget('menuitem6').set_sensitive(False)
 
     def start(self, widget, event):
-        state = self.photoimage.is_accessible_local_file()
-        self.gui.get_widget('menuitem5').set_sensitive(state)
+        if self.conf.get_bool('window_fix'):
+            self.gui.get_widget('menuitem6').set_active(True)
 
-        fullscreen = True if self.conf.get_bool('fullscreen') else False
+        accessible = self.photoimage.is_accessible_local_file()
+        self.gui.get_widget('menuitem5').set_sensitive(accessible)
+
+        fullscreen = self.conf.get_bool('fullscreen')
         self.gui.get_widget('menuitem8').set_active(fullscreen)
 
         menu = self.gui.get_widget('menu')
