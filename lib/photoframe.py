@@ -70,10 +70,15 @@ class PhotoFrame(object):
             self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
         self.window.set_keep_below(True)
 
+    def _toggle_fullscreen(self, *args):
+        state = not self.conf.get_bool('fullscreen')
+        self.conf.set_bool('fullscreen', state)
+
     def _set_accelerator(self):
         accel_group = gtk.AccelGroup()
         ac_set = [[ "<gph>/quit", "<control>q", self.popup_menu.quit ],
-                  [ "<gph>/open", "<control>o", self.popup_menu.open_photo ]]
+                  [ "<gph>/open", "<control>o", self.popup_menu.open_photo ],
+                  [ "<gph>/fullscreen", "F11", self._toggle_fullscreen ]]
         for ac in ac_set:
             key, mod = gtk.accelerator_parse(ac[1])
             gtk.accel_map_add_entry(ac[0], key, mod)
@@ -86,8 +91,7 @@ class PhotoFrame(object):
             widget.begin_move_drag(
                 event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
-            state = not self.conf.get_bool('fullscreen')
-            self.conf.set_bool('fullscreen', state)
+            pass
         elif event.button == 3:
             self.popup_menu.start(widget, event)
         elif event.button == 9:
@@ -140,6 +144,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         for widget in [gui.get_widget('eventbox'), gui.get_widget('window')]:
             widget.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
+        self.window.connect("key-press-event", self._keypress_cb)
 
     def _save_geometry_cb(self, widget, event):
         pass
@@ -150,6 +155,10 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _change_fullscreen_cb(self, client, id, entry, data):
         if not entry.value.get_bool():
             self.window.destroy()
+
+    def _keypress_cb(self, widget, event):
+        if event.keyval == gtk.keysyms.Escape:
+            self.conf.set_bool('fullscreen', False)
 
 class PhotoImage(object):
     def __init__(self, gui, photoframe):

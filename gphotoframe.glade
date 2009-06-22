@@ -66,6 +66,7 @@
         <property name="label" translatable="yes">_Full Screen</property>
         <property name="use_underline">True</property>
         <signal name="toggled" handler="on_menuitem8_toggled"/>
+        <accelerator key="F11" signal="activate"/>
       </widget>
     </child>
     <child>
