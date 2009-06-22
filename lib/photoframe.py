@@ -29,10 +29,7 @@ class PhotoFrame(object):
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
 
         self.window = gui.get_widget('window')
-        self.window.set_decorated(False)
-        self.window.set_skip_taskbar_hint(True)
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
-        self.window.add_events(gtk.gdk.POINTER_MOTION_MASK)
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
         self._set_window_state(gui)
@@ -55,9 +52,6 @@ class PhotoFrame(object):
 
         if hasattr(self, "fullframe") and self.fullframe.window.window:
             self.fullframe.set_photo(photo)
-
-    def set_no_photo(self):
-        self.photoimage.set_no_photo()
 
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x'), 
@@ -122,6 +116,7 @@ class PhotoFrame(object):
         self.photoimage.clear()
 
         self._set_window_position()
+        self.window.set_keep_below(True)
         time.sleep(0.5)
         self.photoimage.set_photo()
 
@@ -129,11 +124,7 @@ class PhotoFrame(object):
         if entry.value.get_bool():
             self.fullframe = PhotoFrameFullScreen(self.photolist)
             photo = self.photoimage.photo
-            if photo:
-                self.fullframe.set_photo(photo)
-            else:
-                self.fullframe.set_no_photo()
-
+            self.fullframe.set_photo(photo)
 
     def _change_sticky_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -208,28 +199,25 @@ class PhotoImage(object):
         self.conf = GConf()
         self.photoframe = photoframe
 
-    def set_photo(self, photo=None):
-        if photo:
+    def set_photo(self, photo=False):
+        if photo is not False:
             self.photo = photo
 
-        try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
-        except gobject.GError:
-            print sys.exc_info()[1]
-            return
+        if self.photo:
+            try:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
+            except gobject.GError:
+                print sys.exc_info()[1]
+                return
+            else:
+                pixbuf = self._rotate(pixbuf)
+                pixbuf = self._scale(pixbuf)
         else:
-            pixbuf = self._rotate(pixbuf)
-            pixbuf = self._scale(pixbuf)
+            pixbuf = self._no_image()
 
-            self._set_image(pixbuf)
-            if not isinstance(self.photoframe, PhotoFrameFullScreen):
-                self._set_tips()
-
-    def set_no_photo(self):
-        pixbuf = self._no_image()
-        self.photo = None
+        if not isinstance(self.photoframe, PhotoFrameFullScreen):
+            self._set_tips(self.photo)
         self._set_image(pixbuf)
-        self.window.set_tooltip_markup(None)
 
     def clear(self):
         self.image.clear()
@@ -252,16 +240,20 @@ class PhotoImage(object):
         border = self.conf.get_int('border_width', 10)
         self.window.resize(w + border, h + border)
 
-    def _set_tips(self):
-        title = self.photo.get('title')
-        owner = self.photo.get('owner_name')
-        title = "<big>%s</big>" % escape(title) if title else ""
-        owner = "by " + escape(owner) if owner else ""
-        if title and owner:
-            title += "\n"
+    def _set_tips(self, photo):
+        if photo:
+            title = photo.get('title')
+            owner = photo.get('owner_name')
+            title = "<big>%s</big>" % escape(title) if title else ""
+            owner = "by " + escape(owner) if owner else ""
+            if title and owner:
+                title += "\n"
+            tip = title + owner
+        else:
+            tip = None
 
         try:
-            self.window.set_tooltip_markup(title + owner)
+            self.window.set_tooltip_markup(tip)
         except:
             pass
 

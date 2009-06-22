@@ -51,7 +51,7 @@ class PhotoListStore(gtk.ListStore):
             target().get_photo(self.photoframe)
             state = True
         else:
-            self.photoframe.set_no_photo()
+            self.photoframe.set_photo(None)
             state = False
 
         return state
