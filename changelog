@@ -1,5 +1,6 @@
 2009-06-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr.py: Added support for getting original phtos.
 	* photoframe.py, photoliststore.py, gphotoframe.glade:
 	  Added support for Recent Photos (issue #14).
 

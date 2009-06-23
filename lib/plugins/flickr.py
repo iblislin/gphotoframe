@@ -15,7 +15,7 @@ class FlickrPhotoList(PhotoList):
 
         api_list = FlickrAPI().api_list()
         if not self.target in api_list:
-            print "oops"
+            print "flickr: %s is invalid target." % self.target
             return
         api = api_list[self.target][1]
         url = api().get_url(self.target, self.argument) 
@@ -29,8 +29,16 @@ class FlickrPhotoList(PhotoList):
 
         self.total = len(d['photos']['photo'])
         for s in d['photos']['photo']:
-            url = "http://farm%s.static.flickr.com/%s/%s_%s.jpg" % (
-                s['farm'], s['server'], s['id'], s['secret'])
+            if s['media'] == 'video': continue
+
+            url = "http://farm%s.static.flickr.com/%s/%s_" % (
+                s['farm'], s['server'], s['id'])
+
+            if s.has_key('originalsecret') and False:
+                url += "%s_o.%s" % (s['originalsecret'], s['originalformat'])
+            else:
+                url += "%s.jpg" % s['secret']
+
             page_url = "http://www.flickr.com/photos/%s/%s" % (
                 s['owner'], s['id'])
 
@@ -90,7 +98,7 @@ class FlickrAPI(object):
                         'count'   : 50,
                         'method'  : self.api_list()[target][0],
                         'format'  : 'json',
-                        'extras'  : 'owner_name',
+                        'extras'  : 'owner_name,original_format,media',
                         'nojsoncallback' : '1' }
 
         arg = self._url_argument(argument)
