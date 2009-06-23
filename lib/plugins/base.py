@@ -24,6 +24,16 @@ class PhotoList(object):
     def prepare(self):
         pass
 
+    def get_photo(self, cb):
+        self.photo = random.choice(self.photos)
+        url = self.photo['url']
+        self.photo['filename'] = constants.CACHE_DIR + url[url.rfind('/') + 1:]
+
+        urlget = UrlGetWithProxy()
+        d = urlget.downloadPage(str(url), self.photo['filename'])
+        d.addCallback(self._get_photo_cb, cb)
+        d.addErrback(self._catch_error)
+
     def _get_url_with_twisted(self, url):
         urlget = UrlGetWithProxy()
         d = urlget.getPage(url)
@@ -33,17 +43,11 @@ class PhotoList(object):
         self._timer = gobject.timeout_add(interval * 1000, self.prepare)
         return False
 
-    def get_photo(self, cb):
-        self.photo = random.choice(self.photos)
-        url = self.photo['url']
-        self.photo['filename'] = constants.CACHE_DIR + url[url.rfind('/') + 1:]
-
-        urlget = UrlGetWithProxy()
-        d = urlget.downloadPage(str(url), self.photo['filename'])
-        d.addCallback(self._get_photo_cb, cb)
-
     def _get_photo_cb(self, data, cb):
         cb(self.photo)
+
+    def _catch_error(self, error):
+        print error, self.photo
 
 class PhotoSourceUI(object):
     def __init__(self, gui, old_target_widget=None, data=None):
