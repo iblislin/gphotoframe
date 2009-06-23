@@ -48,13 +48,17 @@ class PhotoListStore(gtk.ListStore):
         target_list = [ x[5] for x in self if x[5].photos ]
         if target_list:
             target = WeightedRandom(target_list)
-            target().get_photo(self.photoframe)
+            target().get_photo(self._show_photo_cb)
             state = True
         else:
             self.photoframe.set_photo(None)
             state = False
 
         return state
+
+    def _show_photo_cb(self, photo):
+        print photo.get('page_url') or photo.get('url')
+        self.photoframe.set_photo(photo)
 
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):

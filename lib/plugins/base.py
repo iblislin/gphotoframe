@@ -33,17 +33,17 @@ class PhotoList(object):
         self._timer = gobject.timeout_add(interval * 1000, self.prepare)
         return False
 
-    def get_photo(self, photoframe):
+    def get_photo(self, cb):
         self.photo = random.choice(self.photos)
         url = self.photo['url']
         self.photo['filename'] = constants.CACHE_DIR + url[url.rfind('/') + 1:]
 
         urlget = UrlGetWithProxy()
         d = urlget.downloadPage(str(url), self.photo['filename'])
-        d.addCallback(self._get_photo_cb, photoframe)
+        d.addCallback(self._get_photo_cb, cb)
 
-    def _get_photo_cb(self, cb, photoframe):
-        self.photo.show(photoframe)
+    def _get_photo_cb(self, data, cb):
+        cb(self.photo)
 
 class PhotoSourceUI(object):
     def __init__(self, gui, old_target_widget=None, data=None):
@@ -104,9 +104,9 @@ class PhotoSourceUI(object):
 
 class Photo(dict):
 
-    def show(self, photoframe, *args):
-        print self.get('page_url') or self.get('url')
-        photoframe.set_photo(self)
+#    def show(self, photoframe, *args):
+#        print self.get('page_url') or self.get('url')
+#        photoframe.set_photo(self)
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']

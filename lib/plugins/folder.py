@@ -31,9 +31,9 @@ class DirPhotoList(PhotoList):
                     self.photos.append(photo)
         self.total = len(self.photos)
 
-    def get_photo(self, photoframe):
+    def get_photo(self, cb):
         self.photo = random.choice(self.photos)
-        self.photo.show(photoframe)
+        cb(self.photo)
 
 class PhotoSourceDirUI(PhotoSourceUI):
     def get(self):

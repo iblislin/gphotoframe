@@ -39,7 +39,7 @@ class FSpotPhotoList(PhotoList):
 
         return rate_list
 
-    def get_photo(self, photoframe):
+    def get_photo(self, cb):
         rate = self.rnd()
         sql = self.sql_statement('uri', rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
@@ -52,7 +52,7 @@ class FSpotPhotoList(PhotoList):
                  'filename' : file, 'title' : title }
         self.photo = Photo()
         self.photo.update(data)
-        self.photo.show(photoframe)
+        cb(self.photo)
 
     def sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
