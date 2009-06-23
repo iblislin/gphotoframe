@@ -7,7 +7,9 @@ from urlparse import urlparse
 import gobject
 import gtk
 import gtk.glade
+import pango
 from twisted.internet import reactor
+from gettext import gettext as _
 
 import constants
 from preferences import Preferences
@@ -315,6 +317,7 @@ class PopUpMenu(object):
     def __init__(self, photolist, photoframe):
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.photoimage = photoframe.photoimage
+        self.photolist = photolist
         self.conf = GConf()
 
         preferences = Preferences(photolist)
@@ -334,6 +337,11 @@ class PopUpMenu(object):
             self.gui.get_widget('menuitem6').set_sensitive(False)
 
     def start(self, widget, event):
+        recent = self.gui.get_widget('menuitem10')
+        recent_menu, recent_sensitive = self._recent_menu(self.photolist)
+        recent.set_submenu(recent_menu)
+        recent.set_sensitive(recent_sensitive)
+
         if self.conf.get_bool('window_fix'):
             self.gui.get_widget('menuitem6').set_active(True)
 
@@ -352,11 +360,47 @@ class PopUpMenu(object):
     def open_photo(self, *args):
         self.photoimage.photo.open()
 
+    def _recent_menu(self, photolist):
+        menu = gtk.Menu()
+
+        for photo in photolist.queue:
+            item = RecentMenuItem(photo)
+            menu.prepend(item)
+
+        state = True if len(photolist.queue) else False
+        return menu, state
+
     def _fix_window_cb(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
 
     def _full_screen_cb(self, widget, *args):
         self.conf.set_bool('fullscreen', widget.get_active())
+
+class RecentMenuItem(gtk.ImageMenuItem):
+
+    def __init__(self, photo):
+        title = photo.get('title') or _('(No Title)')
+        title = title.replace ( "\n", " " )
+
+        super(RecentMenuItem, self).__init__(title)
+
+        label = self.get_child()
+        label.set_use_underline(False)
+        label.set_max_width_chars(20)
+        label.set_property('ellipsize', pango.ELLIPSIZE_END)
+
+        #theme = gtk.IconTheme()
+        #icon = theme.load_icon('f-spot', 
+        #                       24, gtk.ICON_LOOKUP_USE_BUILTIN)
+        #img = gtk.image_new_from_pixbuf(icon)
+
+        img = gtk.Image()
+        file = '/usr/share/icons/gnome/16x16/mimetypes/image-x-generic.png'
+        img.set_from_file(file)
+        self.set_image(img)
+
+        self.connect('activate', photo.open)
+        self.show()
 
 class AboutDialog(object):
     def start(self, *args):

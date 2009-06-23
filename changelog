@@ -1,3 +1,8 @@
+2009-06-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoliststore.py, gphotoframe.glade:
+	  Added support for Recent Photos (issue #14).
+
 2009-06-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py: Added a key board accelerator for full screen mode.

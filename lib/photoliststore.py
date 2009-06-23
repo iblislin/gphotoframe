@@ -18,6 +18,7 @@ class PhotoListStore(gtk.ListStore):
 
         self.conf = GConf()
         self._load_gconf()
+        self.queue = []
 
         self.photoframe = PhotoFrame(self)
         self._start_timer()
@@ -59,6 +60,10 @@ class PhotoListStore(gtk.ListStore):
     def _show_photo_cb(self, photo):
         print photo.get('page_url') or photo.get('url')
         self.photoframe.set_photo(photo)
+
+        self.queue.append(photo)
+        if len(self.queue) > 5:
+            self.queue.pop(0)
 
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):

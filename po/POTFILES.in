@@ -1,5 +1,6 @@
 gphotoframe.desktop.in
 gphotoframe.glade
+lib/photoframe.py
 lib/preferences.py
 lib/plugins/base.py
 lib/plugins/flickr.py
