@@ -12,10 +12,11 @@ from ..utils.urlget import UrlGetWithProxy
 class PhotoList(object):
     """Photo Factory"""
 
-    def __init__(self, target, argument, weight):
+    def __init__(self, target, argument, weight, options):
         self.weight = weight
         self.argument = argument
         self.target = target
+        self.options = options
 
         self.conf = GConf()
         self.total  = 0

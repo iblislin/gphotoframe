@@ -1,3 +1,8 @@
+2009-06-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, preferences.py, base.py, fspot.py:
+	  Started implementation for advanced plugin options.
+
 2009-06-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr.py: Added support for getting original phtos.

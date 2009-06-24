@@ -14,7 +14,7 @@ class PhotoListStore(gtk.ListStore):
     """
 
     def __init__(self):
-        super(PhotoListStore, self).__init__(str, str, str, int, str, object)
+        super(PhotoListStore, self).__init__(str, str, str, int, object, object)
 
         self.conf = GConf()
         self._load_gconf()
@@ -28,7 +28,7 @@ class PhotoListStore(gtk.ListStore):
             return
 
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ]( 
-            d['target'], d['argument'], d['weight'] )
+            d['target'], d['argument'], d['weight'], d['options'] )
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]
 
@@ -68,7 +68,8 @@ class PhotoListStore(gtk.ListStore):
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):
             data = { 'target' : '', 'argument' : '', 
-                     'weight' : 1, 'options' : '' }
+                     'weight' : 1, 'options' : {} }
+            options = {}
 
             for entry in self.conf.all_entries(dir):
                 value = self.conf.get_value(entry)
@@ -76,19 +77,32 @@ class PhotoListStore(gtk.ListStore):
                 if value:
                     path = entry.get_key()
                     key = path[ path.rfind('/') + 1: ]
-                    data[key] = value
+
+                    if key in ['source', 'target', 'argument', 'weight']:
+                        data[key] = value
+                    else:
+                        options[key] = value
 
             if 'source' in data:
+                data['options'] = options 
                 self.append(data)
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')
         self.conf.recursive_unset('flickr') # for ver. 0.1 
-        data_list = ['source', 'target', 'argument', 'weight', 'options']
+        data_list = ['source', 'target', 'argument', 'weight']
 
         for i, row in enumerate(self):
             for num, key in enumerate(data_list):
                 value = row[num]
                 if value:
-                    full_key = 'sources/%s/%s' % (i, key)
-                    self.conf.set_value(full_key, value)
+                    self._set_gconf(i, key, value)
+
+            if row[4]: # options
+                for key, value in row[4].iteritems():
+                    self._set_gconf(i, key, value)
+                    # print key, value
+
+    def _set_gconf(self, i, key, value):
+        full_key = 'sources/%s/%s' % (i, key)
+        self.conf.set_value(full_key, value)

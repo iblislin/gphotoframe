@@ -25,7 +25,10 @@ class FSpotPhotoList(PhotoList):
         if self.total ==0:
             return rate_list
 
-        for rate in xrange(6):
+        rate_min = self.options.get('rate_min', 0)
+        rate_max = self.options.get('rate_max', 6)
+
+        for rate in xrange(rate_min, rate_max):
             sql = self.sql_statement('COUNT(*)', rate)
 
             total_in_this = self.db.fetchone(sql)
