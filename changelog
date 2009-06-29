@@ -1,5 +1,6 @@
 2009-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoliststore.py: Regard False as data in gconf.
 	* config.py: Added bool type in get_value and set_value.
 
 2009-06-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

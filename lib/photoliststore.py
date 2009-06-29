@@ -74,7 +74,7 @@ class PhotoListStore(gtk.ListStore):
             for entry in self.conf.all_entries(dir):
                 value = self.conf.get_value(entry)
 
-                if value:
+                if value is not None:
                     path = entry.get_key()
                     key = path[ path.rfind('/') + 1: ]
 
@@ -95,7 +95,7 @@ class PhotoListStore(gtk.ListStore):
         for i, row in enumerate(self):
             for num, key in enumerate(data_list):
                 value = row[num]
-                if value:
+                if value is not None:
                     self._set_gconf(i, key, value)
 
             if row[4]: # options
