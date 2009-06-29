@@ -215,7 +215,6 @@ class PhotoSourceDialog(object):
         self.conf = GConf()
         self.parent = parent
         self.data = data
-        self.photo = {}
 
     def run(self):
         dialog = self.gui.get_widget('photo_source')
@@ -223,41 +222,41 @@ class PhotoSourceDialog(object):
         source_list = plugins.SOURCE_LIST
 
         # source
-        self.photo['source'] = self.gui.get_widget('combobox4')
+        source_widget = self.gui.get_widget('combobox4')
         for str in source_list:
-            self.photo['source'].append_text(str)
+            source_widget.append_text(str)
 
         recent = self.conf.get_string('recents/source')
         source_num = source_list.index(self.data[0]) if self.data \
             else source_list.index(recent) if recent in source_list \
             else 0
-        self.photo['source'].set_active(source_num)
+        source_widget.set_active(source_num)
 
         # target
-        self._change_combobox(self.photo['source'], self.data)
+        self._change_combobox(source_widget, self.data)
 
         # argument
-        self.photo['argument'] = self.gui.get_widget('entry1')
+        argument_widget = self.gui.get_widget('entry1')
         if self.data:
-            self.photo['argument'].set_text(self.data[2])
+            argument_widget.set_text(self.data[2])
 
         # weight
         weight = self.data[3] if self.data else 1
-        self.photo['weight'] = self.gui.get_widget('spinbutton3')
-        self.photo['weight'].set_value(weight)
+        weight_widget = self.gui.get_widget('spinbutton3')
+        weight_widget.set_value(weight)
 
         # run
         dic = { "on_combobox4_changed" : self._change_combobox }
         self.gui.signal_autoconnect(dic)
         response_id = dialog.run()
 
-        argument = self.photo['argument'].get_text() \
-            if self.photo['argument'].get_property('sensitive') else ''
+        argument = argument_widget.get_text() \
+            if argument_widget.get_property('sensitive') else ''
 
-        v = { 'source'  : self.photo['source'].get_active_text(),
-              'target'  : self.target_widget.get(), 
+        v = { 'source'  : source_widget.get_active_text(),
+              'target'  : self.ui.get(), 
               'argument' : argument,
-              'weight'  : self.photo['weight'].get_value(),
+              'weight'  : weight_widget.get_value(),
               'options' : {} }
 
         dialog.destroy()
@@ -270,7 +269,6 @@ class PhotoSourceDialog(object):
 
         text = combobox.get_active_text()
         token = plugins.PHOTO_TARGET_TOKEN
-        old_target_widget = self.photo.get('target')
 
-        self.target_widget = token[text](self.gui, old_target_widget, data)
-        self.photo['target'] = self.target_widget.make()
+        self.ui = token[text](self.gui, data)
+        self.ui.make()

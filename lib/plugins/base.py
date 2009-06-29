@@ -51,19 +51,22 @@ class PhotoList(object):
         print error, self.photo
 
 class PhotoSourceUI(object):
-    def __init__(self, gui, old_target_widget=None, data=None):
+
+    old_target_widget = None
+
+    def __init__(self, gui, data=None):
         self.gui = gui
         self.table = gui.get_widget('table4')
-        if old_target_widget:
-            self.table.remove(old_target_widget)
         self.data = data
+
+        if PhotoSourceUI.old_target_widget in self.table.get_children():
+            self.table.remove(PhotoSourceUI.old_target_widget)
 
     def make(self, data=None):
         self._set_argument_sensitive()
         self._build_target_widget()
         self._attach_target_widget()
         self._set_target_default()
-        return self.target_widget
 
     def get(self):
         return self.target_widget.get_active_text()
@@ -80,6 +83,7 @@ class PhotoSourceUI(object):
         self.gui.get_widget('label15').set_mnemonic_widget(self.target_widget)
         self.table.attach(self.target_widget, 1, 2, 1, 2, 
                           xpadding=0, ypadding=0)
+        PhotoSourceUI.old_target_widget = self.target_widget
 
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
         self.gui.get_widget('label15').set_text_with_mnemonic(label)
