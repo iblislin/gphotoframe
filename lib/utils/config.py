@@ -52,15 +52,19 @@ class GConf(object):
 
     def set_value(self, key, value):
         if isinstance(value, int):
-            self.set_int( key, value )
+            self.set_int(key, value)
+        elif isinstance(value, bool):
+            self.set_bool(key, value)
         else:
-            self.set_string( key, value )
+            self.set_string(key, value)
 
     def get_value(self, entry):
         if entry.get_value() is None:
             value = None
         elif entry.get_value().type == gconf.VALUE_INT:
             value = entry.get_value().get_int()
+        elif entry.get_value().type == gconf.VALUE_BOOL:
+            value = entry.get_value().get_bool()
         else:
             value = entry.get_value().get_string()
 
