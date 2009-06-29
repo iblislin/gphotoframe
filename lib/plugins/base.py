@@ -68,6 +68,7 @@ class PhotoSourceUI(object):
         self._attach_target_widget()
         self._set_target_default()
 
+        self._delete_options_ui()
         self._make_options_ui()
 
     def get(self):
@@ -76,10 +77,13 @@ class PhotoSourceUI(object):
     def get_options(self):
         return {}
 
-    def _make_options_ui(self):
+    def _delete_options_ui(self):
         notebook = self.gui.get_widget('notebook2')
         if notebook.get_n_pages() > 1:
             notebook.remove_page(1)
+
+    def _make_options_ui(self):
+        pass
 
     def _build_target_widget(self):
         self.target_widget = gtk.combo_box_new_text()

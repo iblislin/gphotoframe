@@ -1,12 +1,14 @@
 2009-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* base.py, folder.py, gphotoframe.glade: Added subfolders settings
+	  for Folder plguin.
 	* photoliststore.py: Regard False as data in gconf.
 	* config.py: Added bool type in get_value and set_value.
 
 2009-06-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* base.py, fspot.py, preferences.py, gphotoframe.glade:
-	  Added rate settings for F-Spot plguin.
+	* base.py, fspot.py, preferences.py, gphotoframe.glade: Added rate
+	  settings for F-Spot plguin.
 
 2009-06-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
