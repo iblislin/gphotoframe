@@ -257,7 +257,7 @@ class PhotoSourceDialog(object):
               'target'  : self.ui.get(), 
               'argument' : argument,
               'weight'  : weight_widget.get_value(),
-              'options' : {} }
+              'options' : self.ui.get_options() }
 
         dialog.destroy()
         if response_id == gtk.RESPONSE_OK: 

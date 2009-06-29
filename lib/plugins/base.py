@@ -68,8 +68,18 @@ class PhotoSourceUI(object):
         self._attach_target_widget()
         self._set_target_default()
 
+        self._make_options_ui()
+
     def get(self):
         return self.target_widget.get_active_text()
+
+    def get_options(self):
+        return {}
+
+    def _make_options_ui(self):
+        notebook = self.gui.get_widget('notebook2')
+        if notebook.get_n_pages() > 1:
+            notebook.remove_page(1)
 
     def _build_target_widget(self):
         self.target_widget = gtk.combo_box_new_text()

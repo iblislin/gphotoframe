@@ -26,7 +26,7 @@ class FSpotPhotoList(PhotoList):
             return rate_list
 
         rate_min = self.options.get('rate_min', 0)
-        rate_max = self.options.get('rate_max', 6)
+        rate_max = self.options.get('rate_max', 5) + 1
 
         for rate in xrange(rate_min, rate_max):
             sql = self.sql_statement('COUNT(*)', rate)
@@ -74,11 +74,47 @@ class FSpotPhotoList(PhotoList):
 
         return sql
 
+class PhotoSourceOptionsFspotUI(object):
+
+    def __init__(self, gui, data):
+        self.gui = gui
+
+        note = self.gui.get_widget('notebook2')
+        label = gtk.Label('Options')
+
+        table = self.gui.get_widget('fspot_table')
+        note.append_page(table, tab_label=label)
+
+        if data:
+            self.options = data[4]
+            self._set_default()
+
+    def _set_default(self):
+        rate_min = self.options.get('rate_min', 0)
+        self.gui.get_widget('hscale1').set_value(rate_min)
+
+        rate_max = self.options.get('rate_max', 5)
+        self.gui.get_widget('hscale2').set_value(rate_max)
+
+    def get_value(self):
+        value = {}
+
+        value['rate_min'] = int(self.gui.get_widget('hscale1').get_value())
+        value['rate_max'] = int(self.gui.get_widget('hscale2').get_value())
+
+        return value
+
 class PhotoSourceFspotUI(PhotoSourceUI):
 
     def get(self):
         iter = self.target_widget.get_active_iter()
         return self.treestore.get_value(iter, 0)
+
+    def get_options(self):
+        return self.options_ui.get_value()
+
+    def _make_options_ui(self):
+        self.options_ui = PhotoSourceOptionsFspotUI(self.gui, self.data)
 
     def _build_target_widget(self):
         self.treestore = gtk.TreeStore(str)
