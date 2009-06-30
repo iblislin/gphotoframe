@@ -966,6 +966,12 @@
     <child>
       <widget class="GtkComboBox" id="combobox_fs1">
         <property name="visible">True</property>
+        <property name="items" translatable="yes">All
+Last 7 days
+Last 30 days
+Last 90 days
+Last 180 days
+Last 360 days</property>
       </widget>
       <packing>
         <property name="left_attach">1</property>

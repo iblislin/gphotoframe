@@ -135,13 +135,11 @@ class PhotoSourceOptionsUI(object):
         self._set_ui()
         note.append_page(self.child, tab_label=label)
 
-        if data:
-            self.options = data[4]
-            self._set_default()
+        self.options = data[4] if data else {}
+        self._set_default()
 
     def _set_ui(self):
         pass
-
 
 class Photo(dict):
 

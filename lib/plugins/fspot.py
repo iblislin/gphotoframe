@@ -1,5 +1,7 @@
 import os
 import sqlite3
+import time
+import datetime
 
 from base import *
 from ..utils.wrandom import WeightedRandom
@@ -31,8 +33,9 @@ class FSpotPhotoList(PhotoList):
         for rate in xrange(rate_min, rate_max):
             sql = self.sql_statement('COUNT(*)', rate)
             total_in_this = self.db.fetchone(sql)
-            rate_info = Rate(rate, total_in_this, self.total, weight)
-            rate_list.append(rate_info)
+            if total_in_this:
+                rate_info = Rate(rate, total_in_this, self.total, weight)
+                rate_list.append(rate_info)
 
         return rate_list
 
@@ -65,6 +68,17 @@ class FSpotPhotoList(PhotoList):
         if rate_name:
             c = 'AND' if self.target else 'WHERE'
             sql += '%s rating=%s ' % ( c, str(rate_name) )
+
+        if self.options.get('period'):
+            period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
+            period_days = period_dic[self.options.get('period')]
+
+            d = datetime.datetime.now() - \
+                datetime.timedelta(days=period_days)
+            epoch = int(time.mktime(d.timetuple()))
+
+            c = 'AND' if self.target or rate_name else 'WHERE'
+            sql += '%s time>%s ' % ( c, epoch )
 
         return sql
 
@@ -121,6 +135,7 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
             'rate_min' : int(self.gui.get_widget('hscale1').get_value()),
             'rate_max' : int(self.gui.get_widget('hscale2').get_value()),
             'rate_weight' : int(self.rate_weight_widget.get_value()),
+            'period' : self.gui.get_widget('combobox_fs1').get_active(),
             }
         return value
 
@@ -136,6 +151,9 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
         self.gui.get_widget('hscale2').set_value(rate_max)
 
         self.rate_weight_widget.set_value(self.options.get('rate_weight', 2))
+
+        period = self.options.get('period', 0)
+        self.gui.get_widget('combobox_fs1').set_active(period)
 
 class FSpotDB(object):
 
