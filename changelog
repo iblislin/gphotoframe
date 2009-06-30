@@ -1,5 +1,6 @@
 2009-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* fspot.py: Added a rate weight option.
 	* base.py, folder.py, gphotoframe.glade: Added subfolders settings
 	  for Folder plguin.
 	* photoliststore.py: Regard False as data in gconf.

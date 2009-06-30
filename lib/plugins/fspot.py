@@ -27,18 +27,13 @@ class FSpotPhotoList(PhotoList):
 
         rate_min = self.options.get('rate_min', 0)
         rate_max = self.options.get('rate_max', 5) + 1
+        weight = self.options.get('rate_weight', 2)
 
         for rate in xrange(rate_min, rate_max):
             sql = self.sql_statement('COUNT(*)', rate)
-
             total_in_this = self.db.fetchone(sql)
-
-            tmp_list = TMP()
-            tmp_list.name = rate
-            tmp_list.total = float(total_in_this)
-            tmp_list.weight = total_in_this / float(self.total) * (rate * 2 + 1)
-            # tmp_list.weight = rate * 2 + 1
-            rate_list.append(tmp_list)
+            rate_info = Rate(rate, total_in_this, self.total, weight)
+            rate_list.append(rate_info)
 
         return rate_list
 
@@ -85,6 +80,8 @@ class PhotoSourceOptionsFspotUI(object):
         table = self.gui.get_widget('fspot_table')
         note.append_page(table, tab_label=label)
 
+        self.rate_weight_widget = gui.get_widget('spinbutton_fs1')
+
         if data:
             self.options = data[4]
             self._set_default()
@@ -96,11 +93,14 @@ class PhotoSourceOptionsFspotUI(object):
         rate_max = self.options.get('rate_max', 5)
         self.gui.get_widget('hscale2').set_value(rate_max)
 
+        self.rate_weight_widget.set_value(self.options.get('rate_weight', 2))
+
     def get_value(self):
         value = {}
 
         value['rate_min'] = int(self.gui.get_widget('hscale1').get_value())
         value['rate_max'] = int(self.gui.get_widget('hscale2').get_value())
+        value['rate_weight'] = int(self.rate_weight_widget.get_value())
 
         return value
 
@@ -169,5 +169,9 @@ class FSpotDB(object):
     def close(self):
         self.db.close()
 
-class TMP(object):
-    pass
+class Rate(object):
+
+    def __init__(self, rate, total_in_this, total_all, weight=2):
+        self.name = rate
+        self.total = float(total_in_this)
+        self.weight = total_in_this / float(self.total) * (rate * weight + 1)
