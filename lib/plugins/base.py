@@ -95,8 +95,7 @@ class PhotoSourceUI(object):
     def _attach_target_widget(self):
         self.target_widget.show()
         self.gui.get_widget('label15').set_mnemonic_widget(self.target_widget)
-        self.table.attach(self.target_widget, 1, 2, 1, 2, 
-                          xpadding=0, ypadding=0)
+        self.table.attach(self.target_widget, 1, 2, 1, 2, yoptions=gtk.SHRINK)
         PhotoSourceUI.old_target_widget = self.target_widget
 
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
