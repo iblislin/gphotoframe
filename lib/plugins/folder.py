@@ -62,25 +62,15 @@ class PhotoSourceDirUI(PhotoSourceUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsDirUI(self.gui, self.data)
 
-class PhotoSourceOptionsDirUI(object):
-
-    def __init__(self, gui, data):
-        self.gui = gui
-
-        note = self.gui.get_widget('notebook2')
-        label = gtk.Label('Options')
-
-        table = self.gui.get_widget('folder_vbox')
-        note.append_page(table, tab_label=label)
-
-        if data:
-            self.options = data[4]
-            self._set_default()
-
-    def _set_default(self):
-        state = self.options.get('subfolders', True)
-        self.gui.get_widget('checkbutton_dir').set_active(state)
+class PhotoSourceOptionsDirUI(PhotoSourceOptionsUI):
 
     def get_value(self):
         state = self.gui.get_widget('checkbutton_dir').get_active()
         return {'subfolders' : state}
+
+    def _set_ui(self):
+        self.child = self.gui.get_widget('folder_vbox')
+
+    def _set_default(self):
+        state = self.options.get('subfolders', True)
+        self.gui.get_widget('checkbutton_dir').set_active(state)

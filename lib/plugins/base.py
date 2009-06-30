@@ -125,6 +125,25 @@ class PhotoSourceUI(object):
        state = True if widget.get_text() else False
        self.gui.get_widget('button8').set_sensitive(state)
 
+class PhotoSourceOptionsUI(object):
+
+    def __init__(self, gui, data):
+        self.gui = gui
+
+        note = self.gui.get_widget('notebook2')
+        label = gtk.Label(_('Options'))
+
+        self._set_ui()
+        note.append_page(self.child, tab_label=label)
+
+        if data:
+            self.options = data[4]
+            self._set_default()
+
+    def _set_ui(self):
+        pass
+
+
 class Photo(dict):
 
 #    def show(self, photoframe, *args):

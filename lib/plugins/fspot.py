@@ -22,8 +22,7 @@ class FSpotPhotoList(PhotoList):
         rate_list = []
         sql = self.sql_statement('COUNT(*)')
         self.total = self.db.fetchone(sql)
-        if self.total ==0:
-            return rate_list
+        if self.total == 0: return rate_list
 
         rate_min = self.options.get('rate_min', 0)
         rate_max = self.options.get('rate_max', 5) + 1
@@ -68,41 +67,6 @@ class FSpotPhotoList(PhotoList):
             sql += '%s rating=%s ' % ( c, str(rate_name) )
 
         return sql
-
-class PhotoSourceOptionsFspotUI(object):
-
-    def __init__(self, gui, data):
-        self.gui = gui
-
-        note = self.gui.get_widget('notebook2')
-        label = gtk.Label('Options')
-
-        table = self.gui.get_widget('fspot_table')
-        note.append_page(table, tab_label=label)
-
-        self.rate_weight_widget = gui.get_widget('spinbutton_fs1')
-
-        if data:
-            self.options = data[4]
-            self._set_default()
-
-    def _set_default(self):
-        rate_min = self.options.get('rate_min', 0)
-        self.gui.get_widget('hscale1').set_value(rate_min)
-
-        rate_max = self.options.get('rate_max', 5)
-        self.gui.get_widget('hscale2').set_value(rate_max)
-
-        self.rate_weight_widget.set_value(self.options.get('rate_weight', 2))
-
-    def get_value(self):
-        value = {}
-
-        value['rate_min'] = int(self.gui.get_widget('hscale1').get_value())
-        value['rate_max'] = int(self.gui.get_widget('hscale2').get_value())
-        value['rate_weight'] = int(self.rate_weight_widget.get_value())
-
-        return value
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 
@@ -149,6 +113,29 @@ class PhotoSourceFspotUI(PhotoSourceUI):
         if self.data:
             iter = self.tree_list[self.data[1]]
             self.target_widget.set_active_iter(iter)
+
+class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
+
+    def get_value(self):
+        value = {
+            'rate_min' : int(self.gui.get_widget('hscale1').get_value()),
+            'rate_max' : int(self.gui.get_widget('hscale2').get_value()),
+            'rate_weight' : int(self.rate_weight_widget.get_value()),
+            }
+        return value
+
+    def _set_ui(self):
+        self.rate_weight_widget = self.gui.get_widget('spinbutton_fs1')
+        self.child = self.gui.get_widget('fspot_table')
+
+    def _set_default(self):
+        rate_min = self.options.get('rate_min', 0)
+        self.gui.get_widget('hscale1').set_value(rate_min)
+
+        rate_max = self.options.get('rate_max', 5)
+        self.gui.get_widget('hscale2').set_value(rate_max)
+
+        self.rate_weight_widget.set_value(self.options.get('rate_weight', 2))
 
 class FSpotDB(object):
 
