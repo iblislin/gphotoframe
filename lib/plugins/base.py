@@ -25,6 +25,9 @@ class PhotoList(object):
     def prepare(self):
         pass
 
+    def exit(self):
+        pass
+
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
         url = self.photo['url']

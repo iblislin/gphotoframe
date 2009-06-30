@@ -35,6 +35,10 @@ class PhotoListStore(gtk.ListStore):
         self.insert_before(iter, list)
         obj.prepare()
 
+    def remove(self, iter):
+        self.get_value(iter, 5).exit() # photolist object
+        super(PhotoListStore, self).remove(iter)
+
     def next_photo(self):
         gobject.source_remove(self._timer)
         self._start_timer()
