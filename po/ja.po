@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-23 17:39+0900\n"
-"PO-Revision-Date: 2009-06-23 17:40+0900\n"
+"POT-Creation-Date: 2009-06-30 19:03+0900\n"
+"PO-Revision-Date: 2009-06-30 18:31+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,82 +44,114 @@ msgid "<b>Plugins</b>"
 msgstr "<b>プラグイン</b>"
 
 #: ../gphotoframe.glade.h:5
+msgid ""
+"All\n"
+"Last 7 days\n"
+"Last 30 days\n"
+"Last 90 days\n"
+"Last 180 days\n"
+"Last 360 days"
+msgstr ""
+"すべて\n"
+"過去 7 日間\n"
+"過去 30 日間\n"
+"過去 90 日間\n"
+"過去 180 日間\n"
+"過去 360 日間"
+
+#: ../gphotoframe.glade.h:11
 msgid "Always on _Visible Workspace"
 msgstr "全てのワークスペースに配置する(_V)"
 
-#: ../gphotoframe.glade.h:6
+#: ../gphotoframe.glade.h:12
 msgid "Fi_x Photo Frame"
 msgstr "写真フレームの固定 (_X)"
 
-#: ../gphotoframe.glade.h:7
+#: ../gphotoframe.glade.h:13
 msgid "General"
 msgstr "全般"
 
-#: ../gphotoframe.glade.h:8
+#: ../gphotoframe.glade.h:14
+msgid "Ma_x Rate:"
+msgstr "最大の評価(_X):"
+
+#: ../gphotoframe.glade.h:15
+msgid "Mi_n Rate:"
+msgstr "最小の評価(_N):"
+
+#: ../gphotoframe.glade.h:16
 msgid "Open _Recent"
 msgstr "最近表示した写真(_R)"
 
-#: ../gphotoframe.glade.h:9
-msgid "Option"
-msgstr "オプション"
-
-#: ../gphotoframe.glade.h:10
+#: ../gphotoframe.glade.h:17
 msgid "Photo Frame Preferences"
 msgstr "写真フレームの設定"
 
-#: ../gphotoframe.glade.h:11
+#: ../gphotoframe.glade.h:18
 msgid "Photo Frame for GNOME Desktop"
 msgstr "GNOME デスクトップ向けの写真フレームです。"
 
-#: ../gphotoframe.glade.h:12
+#: ../gphotoframe.glade.h:19
 msgid "Photo Source"
 msgstr "写真のソース"
 
-#: ../gphotoframe.glade.h:13
+#: ../gphotoframe.glade.h:20
 msgid "Photos"
 msgstr "写真"
 
-#: ../gphotoframe.glade.h:14
+#: ../gphotoframe.glade.h:21
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: ../gphotoframe.glade.h:15 ../lib/plugins/base.py:84
+#: ../gphotoframe.glade.h:22
+msgid "Rate _Weight:"
+msgstr "評価の重み(_W):"
+
+#: ../gphotoframe.glade.h:23 ../lib/plugins/base.py:106
 msgid "_Argument:"
 msgstr "引数(_A):"
 
-#: ../gphotoframe.glade.h:16
+#: ../gphotoframe.glade.h:24
 msgid "_Auto Start"
 msgstr "ログイン時に自動起動する(_A)"
 
-#: ../gphotoframe.glade.h:17
+#: ../gphotoframe.glade.h:25
 msgid "_Full Screen"
 msgstr "フルスクリーン表示(_F)"
 
-#: ../gphotoframe.glade.h:18
+#: ../gphotoframe.glade.h:26
+msgid "_Include subfolders"
+msgstr "サブフォルダを含める(_I)"
+
+#: ../gphotoframe.glade.h:27
 msgid "_Interval:"
 msgstr "表示間隔(_I):"
 
-#: ../gphotoframe.glade.h:19
+#: ../gphotoframe.glade.h:28
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../gphotoframe.glade.h:20
+#: ../gphotoframe.glade.h:29
+msgid "_Period:"
+msgstr "期間(_P):"
+
+#: ../gphotoframe.glade.h:30
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../gphotoframe.glade.h:21 ../lib/plugins/base.py:79
+#: ../gphotoframe.glade.h:31 ../lib/plugins/base.py:101
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../gphotoframe.glade.h:22 ../lib/plugins/flickr.py:107
+#: ../gphotoframe.glade.h:32 ../lib/plugins/flickr.py:115
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../gphotoframe.glade.h:23
+#: ../gphotoframe.glade.h:33
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../gphotoframe.glade.h:24
+#: ../gphotoframe.glade.h:34
 msgid "seconds"
 msgstr "秒"
 
@@ -143,11 +175,15 @@ msgstr "引数"
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/flickr.py:118
+#: ../lib/plugins/base.py:133
+msgid "Options"
+msgstr "オプション"
+
+#: ../lib/plugins/flickr.py:126
 msgid "_Group ID:"
 msgstr "グループ ID(_G):"
 
-#: ../lib/plugins/flickr.py:130
+#: ../lib/plugins/flickr.py:138
 msgid "_Tags:"
 msgstr "タグ(_T):"
 

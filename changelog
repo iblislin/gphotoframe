@@ -1,5 +1,6 @@
 2009-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* ja.po: Updated translation.
 	* fspot.py: Added a rate weight option.  Added advanced options.
 	* base.py, gphotoframe.glade: Adjust UI.
 	* base.py, folder.py, gphotoframe.glade: Added subfolders settings
