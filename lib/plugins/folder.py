@@ -78,6 +78,8 @@ class DirPhotoList(PhotoList):
             if photo['filename'] == fullpath:
                 self.photos.pop(i)
 
+        self.photolist.delete_photo(fullpath)
+
     def _add_dir(self, fullpath):
         pass
 

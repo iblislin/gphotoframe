@@ -18,8 +18,8 @@ class PhotoListStore(gtk.ListStore):
 
         self.conf = GConf()
         self._load_gconf()
-        self.queue = []
 
+        self.queue = RecentQueue()
         self.photoframe = PhotoFrame(self)
         self._start_timer()
 
@@ -28,7 +28,7 @@ class PhotoListStore(gtk.ListStore):
             return
 
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ]( 
-            d['target'], d['argument'], d['weight'], d['options'] )
+            d['target'], d['argument'], d['weight'], d['options'], self)
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]
 
@@ -43,9 +43,14 @@ class PhotoListStore(gtk.ListStore):
         gobject.source_remove(self._timer)
         self._start_timer()
 
+    def delete_photo(self, filename):
+        if self.photoframe.photoimage.photo['filename'] == filename:
+            self.photoframe.set_photo(None)
+        self.queue.remove(filename)
+
     def _start_timer(self):
         state = self._change_photo()
-        interval = self.conf.get_int('interval', 30) if state else 10
+        interval = self.conf.get_int('interval', 30) if state else 5
         self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
         return False
 
@@ -64,10 +69,7 @@ class PhotoListStore(gtk.ListStore):
     def _show_photo_cb(self, photo):
         # print photo.get('page_url') or photo.get('url')
         self.photoframe.set_photo(photo)
-
         self.queue.append(photo)
-        if len(self.queue) > 5:
-            self.queue.pop(0)
 
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):
@@ -110,3 +112,16 @@ class PhotoListStore(gtk.ListStore):
     def _set_gconf(self, i, key, value):
         full_key = 'sources/%s/%s' % (i, key)
         self.conf.set_value(full_key, value)
+
+class RecentQueue(list):
+
+    def append(self, photo):
+        self.remove(photo['filename'])
+        super(RecentQueue, self).append(photo)
+        if len(self) > 5:
+            self.pop(0)
+
+    def remove(self, filename):
+        for i, queue_photo in enumerate(self):
+            if queue_photo['filename'] == filename:
+                self.pop(i)
