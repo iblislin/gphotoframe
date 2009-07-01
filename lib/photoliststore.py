@@ -44,9 +44,8 @@ class PhotoListStore(gtk.ListStore):
         self._start_timer()
 
     def delete_photo(self, filename):
-        if self.photoframe.photoimage.photo['filename'] == filename:
-            self.photoframe.set_photo(None)
         self.queue.remove(filename)
+        self.photoframe.remove_photo(filename)
 
     def _start_timer(self):
         state = self._change_photo()

@@ -55,6 +55,14 @@ class PhotoFrame(object):
         if hasattr(self, "fullframe") and self.fullframe.window.window:
             self.fullframe.set_photo(photo)
 
+    def remove_photo(self, filename):
+        if self.photoimage.photo and self.photoimage.photo['filename'] == filename:
+            self.set_photo(None)
+        self.popup_menu.update_menu()
+
+        if hasattr(self, "fullframe") and self.fullframe.window.window:
+            self.fullframe.popup_menu.update_menu()
+
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x'), 
                          self.conf.get_int('root_y'))
@@ -359,6 +367,18 @@ class PopUpMenu(object):
 
     def open_photo(self, *args):
         self.photoimage.photo.open()
+
+    def update_menu(self):
+        accessible = False
+        self.gui.get_widget('menuitem5').set_sensitive(accessible)
+
+        recent = self.gui.get_widget('menuitem10')
+        if recent.get_submenu(): recent.get_submenu().popdown()
+        recent.remove_submenu()
+
+        recent_menu, recent_sensitive = self._recent_menu(self.photolist)
+        recent.set_submenu(recent_menu)
+        recent.set_sensitive(recent_sensitive)
 
     def _recent_menu(self, photolist):
         menu = gtk.Menu()
