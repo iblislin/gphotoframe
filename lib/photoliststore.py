@@ -67,8 +67,8 @@ class PhotoListStore(gtk.ListStore):
 
     def _show_photo_cb(self, photo):
         # print photo.get('page_url') or photo.get('url')
-        self.photoframe.set_photo(photo)
         self.queue.append(photo)
+        self.photoframe.set_photo(photo)
 
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):

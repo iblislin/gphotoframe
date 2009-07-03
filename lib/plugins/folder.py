@@ -67,12 +67,13 @@ class DirPhotoList(PhotoList):
         inotify.add_cb('del_dir', self._del_dir)
 
     def _add_file(self, fullpath):
-        print "add!", fullpath
+        # print "add!", fullpath
+
         if self.re_image.search(fullpath):
             self._set_photo(fullpath)
 
     def _del_file(self, fullpath):
-        print "del!", fullpath
+        # print "del!", fullpath
 
         for i, photo in enumerate(self.photos):
             if photo['filename'] == fullpath:

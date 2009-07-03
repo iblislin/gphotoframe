@@ -49,20 +49,22 @@ class PhotoFrame(object):
             }
         gui.signal_autoconnect(dic)
 
-    def set_photo(self, photo):
-        self.photoimage.set_photo(photo)
+    def set_photo(self, photo, change=True):
+        state = True if photo else False
+
+        if change:
+            self.photoimage.set_photo(photo)
+        self.popup_menu.set_open_menu_sensitive(state)
+        self.popup_menu.set_recent_menu()
 
         if hasattr(self, "fullframe") and self.fullframe.window.window:
-            self.fullframe.set_photo(photo)
+            self.fullframe.set_photo(photo, change)
 
     def remove_photo(self, filename):
-        if self.photoimage.photo and self.photoimage.photo['filename'] == filename:
-            self.set_photo(None)
-        self.popup_menu.update_menu()
-
-        if hasattr(self, "fullframe") and self.fullframe.window.window:
-            self.fullframe.popup_menu.update_menu()
-
+        change = True if self.photoimage.photo and \
+            self.photoimage.photo['filename'] == filename else False
+        self.set_photo(None, change)
+        
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x'), 
                          self.conf.get_int('root_y'))
@@ -143,9 +145,6 @@ class PhotoFrame(object):
             self.window.unstick()
 
 class PhotoFrameFullScreen(PhotoFrame):
-    def set_photo(self, photo):
-        self.photoimage.set_photo(photo)
-
     def _set_window_state(self, gui):
         for widget in [gui.get_widget('eventbox'), gui.get_widget('window')]:
             widget.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
@@ -345,16 +344,13 @@ class PopUpMenu(object):
             self.gui.get_widget('menuitem6').set_sensitive(False)
 
     def start(self, widget, event):
-        recent = self.gui.get_widget('menuitem10')
-        recent_menu, recent_sensitive = self._recent_menu(self.photolist)
-        recent.set_submenu(recent_menu)
-        recent.set_sensitive(recent_sensitive)
+        self.set_recent_menu()
 
         if self.conf.get_bool('window_fix'):
             self.gui.get_widget('menuitem6').set_active(True)
 
         accessible = self.photoimage.is_accessible_local_file()
-        self.gui.get_widget('menuitem5').set_sensitive(accessible)
+        self.set_open_menu_sensitive(accessible)
 
         fullscreen = self.conf.get_bool('fullscreen')
         self.gui.get_widget('menuitem8').set_active(fullscreen)
@@ -368,27 +364,22 @@ class PopUpMenu(object):
     def open_photo(self, *args):
         self.photoimage.photo.open()
 
-    def update_menu(self):
-        accessible = False
-        self.gui.get_widget('menuitem5').set_sensitive(accessible)
-
+    def set_recent_menu(self):
         recent = self.gui.get_widget('menuitem10')
         if recent.get_submenu(): recent.get_submenu().popdown()
         recent.remove_submenu()
 
-        recent_menu, recent_sensitive = self._recent_menu(self.photolist)
-        recent.set_submenu(recent_menu)
-        recent.set_sensitive(recent_sensitive)
-
-    def _recent_menu(self, photolist):
         menu = gtk.Menu()
-
-        for photo in photolist.queue:
+        for photo in self.photolist.queue:
             item = RecentMenuItem(photo)
             menu.prepend(item)
 
-        state = True if len(photolist.queue) else False
-        return menu, state
+        sensitive = True if len(self.photolist.queue) else False
+        recent.set_submenu(menu)
+        recent.set_sensitive(sensitive)
+
+    def set_open_menu_sensitive(self, state):
+        self.gui.get_widget('menuitem5').set_sensitive(state)
 
     def _fix_window_cb(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
