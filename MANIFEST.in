@@ -1,4 +1,5 @@
-include *.glade
 include changelog
-include gphotoframe.desktop.in
+include gphotoframe-screensaver
+recursive-include share/ *.glade *.desktop.in
+recursive-include lib/extras *.py
 recursive-include po *.in *.po

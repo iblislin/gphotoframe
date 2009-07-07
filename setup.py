@@ -6,7 +6,7 @@ from DistUtilsExtra.command import *
 import lib.constants as constants
 import lib.extras.build_i18n
 
-os.chmod("gphotoframe.glade", 0644)
+os.chmod("share/gphotoframe.glade", 0644)
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,
@@ -19,7 +19,7 @@ setup(name = 'gphotoframe',
       package_dir = {'gphotoframe' : 'lib'},
       packages = ['gphotoframe', 'gphotoframe.plugins', 'gphotoframe.utils'],
       scripts = ['gphotoframe'],
-      data_files = [('share/gphotoframe', ['gphotoframe.glade']),
+      data_files = [('share/gphotoframe', ['share/gphotoframe.glade']),
                     ('lib/gnome-screensaver/gnome-screensaver', 
                      ['gphotoframe-screensaver'])],
       cmdclass = {"build" : build_extra.build_extra,
