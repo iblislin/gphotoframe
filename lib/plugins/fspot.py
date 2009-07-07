@@ -65,7 +65,7 @@ class FSpotPhotoList(PhotoList):
                     'IN (SELECT id FROM tags WHERE name="%s")) ' ) % \
                     ( str(self.target), str(self.target) )
 
-        if rate_name:
+        if rate_name is not None:
             c = 'AND' if self.target else 'WHERE'
             sql += '%s rating=%s ' % ( c, str(rate_name) )
 
@@ -179,4 +179,4 @@ class Rate(object):
     def __init__(self, rate, total_in_this, total_all, weight=2):
         self.name = rate
         self.total = float(total_in_this)
-        self.weight = total_in_this / float(self.total) * (rate * weight + 1)
+        self.weight = total_in_this / float(total_all) * (rate * weight + 1)

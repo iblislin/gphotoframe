@@ -3,6 +3,7 @@
 	* photoframe.py, gnomescreensaver.py, etc: Added support for
 	  gnome-screensaver (issue #21).
 	* extras/build_i18n.py: Added distutils.extras hacks.
+	* fspot.py: Fixed bugs of ratings.
 
 2009-07-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
