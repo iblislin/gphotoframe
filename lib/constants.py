@@ -10,6 +10,7 @@ if not os.access(SHARED_DATA_DIR + '/gphotoframe.glade', os.R_OK):
 
 GLADE_FILE = SHARED_DATA_DIR + '/gphotoframe.glade'
 
-CACHE_DIR = '/tmp/gphotoframe-' + os.environ['USER'] + '/'
+user = os.environ.get('USER', os.path.split(os.environ.get('HOME'))[1])
+CACHE_DIR = '/tmp/gphotoframe-' + user + '/'
 if not os.access(CACHE_DIR, os.W_OK):
     os.makedirs(CACHE_DIR)
