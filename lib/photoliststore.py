@@ -2,7 +2,7 @@ import gtk
 import gobject
 
 import plugins
-from photoframe import PhotoFrame
+from photoframe import PhotoFrameFactory
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
 
@@ -20,7 +20,7 @@ class PhotoListStore(gtk.ListStore):
         self._load_gconf()
 
         self.queue = RecentQueue()
-        self.photoframe = PhotoFrame(self)
+        self.photoframe = PhotoFrameFactory().create(self)
         self._start_timer()
 
     def append(self, d, iter=None):

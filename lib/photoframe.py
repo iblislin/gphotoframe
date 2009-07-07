@@ -14,8 +14,20 @@ from gettext import gettext as _
 import constants
 from preferences import Preferences
 from utils.config import GConf
+from utils.gnomescreensaver import GsThemeWindow
 
 GConf().set_bool('fullscreen', False)
+
+class PhotoFrameFactory(object):
+
+    def create(self, photolist):
+
+        if GsThemeWindow().get_anid():
+            photoframe = PhotoFrameScreenSaver()
+        else:
+            photoframe = PhotoFrame(photolist)
+
+        return photoframe
 
 class PhotoFrame(object):
     """Photo Frame Window"""
@@ -34,10 +46,18 @@ class PhotoFrame(object):
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
-        self._set_window_state(gui)
         self._set_window_position()
 
-        self.photoimage = PhotoImage(gui, self)
+        max_w, max_h = self.set_photo_max_size()
+        self.photoimage = PhotoImage(self, max_w, max_h)
+
+        self.ebox = gtk.EventBox()
+        self.ebox.show()
+        self.ebox.add(self.photoimage.image)
+        self.window.add(self.ebox)
+
+        self._set_window_state(gui)
+
         self.popup_menu = PopUpMenu(self.photolist, self)
         self._set_accelerator()
 
@@ -53,7 +73,10 @@ class PhotoFrame(object):
         state = True if photo else False
 
         if change:
-            self.photoimage.set_photo(photo)
+            w, h = self.photoimage.set_photo(photo)
+            border = self.conf.get_int('border_width', 10)
+            self.window.resize(w + border, h + border)
+
         self.popup_menu.set_open_menu_sensitive(state)
         self.popup_menu.set_recent_menu()
 
@@ -64,7 +87,12 @@ class PhotoFrame(object):
         change = True if self.photoimage.photo and \
             self.photoimage.photo['filename'] == filename else False
         self.set_photo(None, change)
-        
+
+    def set_photo_max_size(self):
+        max_w = self.conf.get_int('max_width', 400)
+        max_h = self.conf.get_int('max_height', 300)
+        return max_w, max_h
+
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x'), 
                          self.conf.get_int('root_y'))
@@ -146,8 +174,7 @@ class PhotoFrame(object):
 
 class PhotoFrameFullScreen(PhotoFrame):
     def _set_window_state(self, gui):
-        for widget in [gui.get_widget('eventbox'), gui.get_widget('window')]:
-            widget.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
 
         cursor = Cursor()
@@ -159,6 +186,13 @@ class PhotoFrameFullScreen(PhotoFrame):
             "on_window_destroy" : cursor.stop_timer_cb,
             }
         gui.signal_autoconnect(dic)
+
+    def set_photo_max_size(self):
+        screen = gtk.gdk.screen_get_default()
+        display_num = screen.get_monitor_at_window(self.window.window)
+        geometry = screen.get_monitor_geometry(display_num)
+        max_w, max_h = geometry.width, geometry.height
+        return max_w, max_h
 
     def _save_geometry_cb(self, widget, event):
         pass
@@ -173,6 +207,31 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _keypress_cb(self, widget, event):
         if event.keyval == gtk.keysyms.Escape:
             self.conf.set_bool('fullscreen', False)
+
+class PhotoFrameScreenSaver(object):
+
+    def __init__(self):
+        gobject.type_register(GsThemeWindow)
+        self.window = GsThemeWindow()
+        self.window.show()
+
+        max_w, max_h = self.set_photo_max_size()
+        self.photoimage = PhotoImage(self, max_w, max_h)
+
+        ebox = gtk.EventBox()
+        self.window.add(ebox)
+        ebox.show()
+        ebox.add(self.photoimage.image)
+
+        ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+
+    def set_photo(self, photo, change=True):
+        self.photoimage.set_photo(photo)
+
+    def set_photo_max_size(self):
+        max_w = self.window.w
+        max_h = self.window.h
+        return max_w, max_h
 
 class Cursor(object):
     def __init__(self):
@@ -202,11 +261,16 @@ class Cursor(object):
             gobject.source_remove(self._timer)
 
 class PhotoImage(object):
-    def __init__(self, gui, photoframe):
-        self.image = gui.get_widget('image')
-        self.window = gui.get_widget('window')
+    def __init__(self, photoframe, w=400, h=300):
+        self.image = gtk.Image()
+        self.image.show()
+        self.window = photoframe.window
+
         self.conf = GConf()
         self.photoframe = photoframe
+
+        self.max_w = float(w)
+        self.max_h = float(h)
 
     def set_photo(self, photo=False):
         if photo is not False:
@@ -226,7 +290,11 @@ class PhotoImage(object):
 
         if not isinstance(self.photoframe, PhotoFrameFullScreen):
             self._set_tips(self.photo)
-        self._set_image(pixbuf)
+
+        self.image.set_from_pixbuf(pixbuf)
+        w = pixbuf.get_width()
+        h = pixbuf.get_height()
+        return w, h
 
     def clear(self):
         self.image.clear()
@@ -240,14 +308,6 @@ class PhotoImage(object):
             return False
         else:
             return True
-
-    def _set_image(self, pixbuf):
-        self.image.set_from_pixbuf(pixbuf)
-
-        w = pixbuf.get_width()
-        h = pixbuf.get_height()
-        border = self.conf.get_int('border_width', 10)
-        self.window.resize(w + border, h + border)
 
     def _set_tips(self, photo):
         if photo:
@@ -280,15 +340,8 @@ class PhotoImage(object):
         return pixbuf
 
     def _scale(self, pixbuf):
-        max_w = float( self.conf.get_int('max_width', 400) )
-        max_h = float( self.conf.get_int('max_height', 300) )
-
-        if isinstance(self.photoframe, PhotoFrameFullScreen):
-            screen = gtk.gdk.screen_get_default()
-            display_num = screen.get_monitor_at_window(self.window.window)
-            geometry = screen.get_monitor_geometry(display_num)
-            max_w = float(geometry.width)
-            max_h = float(geometry.height)
+        max_w = self.max_w
+        max_h = self.max_h
 
         src_w = pixbuf.get_width() 
         src_h = pixbuf.get_height()
@@ -306,8 +359,8 @@ class PhotoImage(object):
 
     def _no_image(self):
         gdk_window = self.window.window
-        w = self.conf.get_int('max_width', 400)
-        h = self.conf.get_int('max_height', 300)
+        w = int(self.max_w)
+        h = int(self.max_h)
 
         pixmap = gtk.gdk.Pixmap(gdk_window, w, h, -1)
         colormap = gtk.gdk.colormap_get_system()

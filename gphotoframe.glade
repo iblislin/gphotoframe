@@ -14,14 +14,7 @@
     <signal name="realize" handler="on_window_realize"/>
     <signal name="window_state_event" handler="on_window_window_state_event"/>
     <child>
-      <widget class="GtkEventBox" id="eventbox">
-        <property name="visible">True</property>
-        <child>
-          <widget class="GtkImage" id="image">
-            <property name="visible">True</property>
-          </widget>
-        </child>
-      </widget>
+      <placeholder/>
     </child>
   </widget>
   <widget class="GtkAboutDialog" id="aboutdialog">
