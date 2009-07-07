@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-07 22:36+0900\n"
-"PO-Revision-Date: 2009-06-30 18:31+0900\n"
+"POT-Creation-Date: 2009-07-07 22:48+0900\n"
+"PO-Revision-Date: 2009-07-07 22:48+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,17 @@ msgid "Image Viewer"
 msgstr "イメージビューア"
 
 #: ../share/gphotoframe.desktop.in.h:2
-#: ../share/gphotoframe-screensaver.desktop.in.h:1
+#: ../share/gphotoframe-screensaver.desktop.in.h:2
 msgid "Photo Frame"
 msgstr "写真フレーム"
 
 #: ../share/gphotoframe.desktop.in.h:3
 msgid "Show photos on Desktop"
 msgstr "デスクトップに写真を表示します"
+
+#: ../share/gphotoframe-screensaver.desktop.in.h:1
+msgid "Display a slideshow from your Photo Frame"
+msgstr "写真フレームの画像をスライドショー形式で表示します"
 
 #: ../share/gphotoframe.glade.h:1
 msgid "<b>Desktop</b>"

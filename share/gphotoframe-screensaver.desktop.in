@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 _Name=Photo Frame
-_Comment=Photo Frame
+_Comment=Display a slideshow from your Photo Frame
 Exec=gphotoframe-screensaver
 TryExec=gphotoframe-screensaver
 StartupNotify=false
