@@ -225,7 +225,6 @@ class PhotoFrameFullScreen(PhotoFrame):
 class PhotoFrameScreenSaver(object):
 
     def __init__(self):
-        gobject.type_register(GsThemeWindow)
         self.window = GsThemeWindow()
         self.window.show()
 
@@ -237,9 +236,7 @@ class PhotoFrameScreenSaver(object):
         self.photoimage.set_photo(photo)
 
     def set_photo_max_size(self):
-        max_w = self.window.w
-        max_h = self.window.h
-        return max_w, max_h
+        return return max_w, self.window.h
 
 class Cursor(object):
     def __init__(self):

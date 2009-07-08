@@ -40,6 +40,8 @@ class GsThemeWindow(gtk.Window):
         id = os.environ.get('XSCREENSAVER_WINDOW')
         return int(id, 16) if id else None
 
+gobject.type_register(GsThemeWindow)
+
 #if __name__ == "__main__":
 #    gobject.type_register(GsThemeWindow)
 #    window = GsThemeWindow()
