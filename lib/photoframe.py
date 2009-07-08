@@ -46,28 +46,16 @@ class PhotoFrame(object):
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
+        self._set_window_state()
         self._set_window_position()
 
         max_w, max_h = self.set_photo_max_size()
         self.photoimage = PhotoImage(self, max_w, max_h)
 
-        self.ebox = gtk.EventBox()
-        self.ebox.show()
-        self.ebox.add(self.photoimage.image)
-        self.window.add(self.ebox)
-
-        self._set_window_state(gui)
-
+        self._set_event_box()
         self.popup_menu = PopUpMenu(self.photolist, self)
         self._set_accelerator()
-
-        dic = { 
-            "on_window_button_press_event" : self._check_button_cb,
-            "on_window_leave_notify_event" : self._save_geometry_cb,
-            "on_window_window_state_event" : self._window_state_cb,
-            # "on_window_destroy" : reactor.stop,
-            }
-        gui.signal_autoconnect(dic)
+        self._set_signal_cb(gui)
 
     def set_photo(self, photo, change=True):
         state = True if photo else False
@@ -100,14 +88,17 @@ class PhotoFrame(object):
         self.window.show_all()
         self.window.get_position()
 
-    def _set_window_state(self, gui):
+    def _set_event_box(self):
+        ebox = gtk.EventBox()
+        ebox.add(self.photoimage.image)
+        ebox.show()
+        self.window.add(ebox)
+        return ebox
+
+    def _set_window_state(self):
         if self.conf.get_bool('window_fix'):
             self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
         self.window.set_keep_below(True)
-
-    def _toggle_fullscreen(self, *args):
-        state = not self.conf.get_bool('fullscreen')
-        self.conf.set_bool('fullscreen', state)
 
     def _set_accelerator(self):
         accel_group = gtk.AccelGroup()
@@ -120,6 +111,19 @@ class PhotoFrame(object):
             accel_group.connect_by_path(ac[0], ac[2])
 
         self.window.add_accel_group(accel_group) 
+
+    def _set_signal_cb(self, gui):
+        dic = { 
+            "on_window_button_press_event" : self._check_button_cb,
+            "on_window_leave_notify_event" : self._save_geometry_cb,
+            "on_window_window_state_event" : self._window_state_cb,
+            # "on_window_destroy" : reactor.stop,
+            }
+        gui.signal_autoconnect(dic)
+
+    def _toggle_fullscreen(self, *args):
+        state = not self.conf.get_bool('fullscreen')
+        self.conf.set_bool('fullscreen', state)
 
     def _check_button_cb(self, widget, event):
         if event.button == 1:
@@ -158,7 +162,10 @@ class PhotoFrame(object):
         self._set_window_position()
         self.window.set_keep_below(True)
         time.sleep(0.5)
-        self.photoimage.set_photo()
+
+        w, h = self.photoimage.set_photo()
+        border = self.conf.get_int('border_width', 10)
+        self.window.resize(w + border, h + border)
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -173,9 +180,23 @@ class PhotoFrame(object):
             self.window.unstick()
 
 class PhotoFrameFullScreen(PhotoFrame):
-    def _set_window_state(self, gui):
-        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+    def set_photo_max_size(self):
+        screen = gtk.gdk.screen_get_default()
+        display_num = screen.get_monitor_at_window(self.window.window)
+        geometry = screen.get_monitor_geometry(display_num)
+        max_w, max_h = geometry.width, geometry.height
+        return max_w, max_h
+
+    def _set_window_state(self):
+        self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
+
+    def _set_event_box(self):
+        ebox = super(PhotoFrameFullScreen, self)._set_event_box()
+        ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+
+    def _set_signal_cb(self, gui):
+        super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
         cursor = Cursor()
         dic = { 
@@ -186,13 +207,6 @@ class PhotoFrameFullScreen(PhotoFrame):
             "on_window_destroy" : cursor.stop_timer_cb,
             }
         gui.signal_autoconnect(dic)
-
-    def set_photo_max_size(self):
-        screen = gtk.gdk.screen_get_default()
-        display_num = screen.get_monitor_at_window(self.window.window)
-        geometry = screen.get_monitor_geometry(display_num)
-        max_w, max_h = geometry.width, geometry.height
-        return max_w, max_h
 
     def _save_geometry_cb(self, widget, event):
         pass
@@ -217,14 +231,8 @@ class PhotoFrameScreenSaver(object):
 
         max_w, max_h = self.set_photo_max_size()
         self.photoimage = PhotoImage(self, max_w, max_h)
-
-        ebox = gtk.EventBox()
-        self.window.add(ebox)
-        ebox.show()
-        ebox.add(self.photoimage.image)
-
-        ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
-
+        self.window.add(self.photoimage.image)
+ 
     def set_photo(self, photo, change=True):
         self.photoimage.set_photo(photo)
 
