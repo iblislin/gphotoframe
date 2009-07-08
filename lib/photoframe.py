@@ -236,7 +236,7 @@ class PhotoFrameScreenSaver(object):
         self.photoimage.set_photo(photo)
 
     def set_photo_max_size(self):
-        return return max_w, self.window.h
+        return max_w, self.window.h
 
 class Cursor(object):
     def __init__(self):
