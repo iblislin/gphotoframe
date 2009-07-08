@@ -1,6 +1,6 @@
 2009-07-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* photoimage.py, photoframe.py: Divided photoframe.py.
+	* photoimage.py, menu.py, photoframe.py: Divided photoframe.py.
 
 2009-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
