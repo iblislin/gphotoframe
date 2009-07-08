@@ -7,7 +7,7 @@ import gtk.glade
 
 import constants
 from photoimage import PhotoImage, PhotoImageFullScreen
-from menu import PopUpMenu
+from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
 
@@ -48,7 +48,7 @@ class PhotoFrame(object):
         self._set_photoimage(max_w, max_h)
 
         self._set_event_box()
-        self.popup_menu = PopUpMenu(self.photolist, self)
+        self._set_popupmenu(self.photolist, self)
         self._set_accelerator()
         self._set_signal_cb(gui)
 
@@ -92,6 +92,9 @@ class PhotoFrame(object):
 
     def _set_photoimage(self, max_w, max_h):
         self.photoimage = PhotoImage(self, max_w, max_h)
+
+    def _set_popupmenu(self, photolist, frame):
+        self.popup_menu = PopUpMenu(self.photolist, self)
 
     def _set_window_state(self):
         if self.conf.get_bool('window_fix'):
@@ -195,6 +198,9 @@ class PhotoFrameFullScreen(PhotoFrame):
 
     def _set_photoimage(self, max_w, max_h):
         self.photoimage = PhotoImageFullScreen(self, max_w, max_h)
+
+    def _set_popupmenu(self, photolist, frame):
+        self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
 
     def _set_signal_cb(self, gui):
         super(PhotoFrameFullScreen, self)._set_signal_cb(gui)

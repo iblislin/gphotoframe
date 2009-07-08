@@ -11,6 +11,7 @@ from utils.config import GConf
 from preferences import Preferences
 
 class PopUpMenu(object):
+
     def __init__(self, photolist, photoframe):
         self.gui = gtk.glade.XML(constants.GLADE_FILE)
         self.photoimage = photoframe.photoimage
@@ -29,10 +30,6 @@ class PopUpMenu(object):
             "on_quit"  : self.quit,
             }
         self.gui.signal_autoconnect(dic)
-
-# FIXME:
-#        if isinstance(photoframe, PhotoFrameFullScreen):
-#            self.gui.get_widget('menuitem6').set_sensitive(False)
 
     def start(self, widget, event):
         self.set_recent_menu()
@@ -78,6 +75,12 @@ class PopUpMenu(object):
     def _full_screen_cb(self, widget, *args):
         self.conf.set_bool('fullscreen', widget.get_active())
 
+class PopUpMenuFullScreen(PopUpMenu):
+
+    def __init__(self, photolist, photoframe):
+        super(PopUpMenuFullScreen, self).__init__(photolist, photoframe)
+        self.gui.get_widget('menuitem6').set_sensitive(False)
+
 class RecentMenuItem(gtk.ImageMenuItem):
 
     def __init__(self, photo):
@@ -105,6 +108,7 @@ class RecentMenuItem(gtk.ImageMenuItem):
         self.show()
 
 class AboutDialog(object):
+
     def start(self, *args):
         gui = gtk.glade.XML(constants.GLADE_FILE)
         about = gui.get_widget('aboutdialog')
