@@ -1,7 +1,5 @@
 import os
 import time
-import sys
-from urlparse import urlparse
 
 import gobject
 import gtk

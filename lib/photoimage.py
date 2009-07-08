@@ -1,5 +1,10 @@
+import os
+import sys
+
 import gtk
+from urlparse import urlparse
 from xml.sax.saxutils import escape
+
 from utils.config import GConf
 
 class PhotoImage(object):
