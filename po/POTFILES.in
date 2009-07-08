@@ -1,7 +1,7 @@
 share/gphotoframe.desktop.in
 share/gphotoframe-screensaver.desktop.in
 share/gphotoframe.glade
-lib/photoframe.py
+lib/menu.py
 lib/preferences.py
 lib/plugins/base.py
 lib/plugins/flickr.py
