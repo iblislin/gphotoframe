@@ -1,5 +1,6 @@
 2009-07-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 0.4 release.
 	* gnomescreensaver.py (GsThemeWindow): Code refactoring.
 	* photoimage.py: Fixed a bug.
 
