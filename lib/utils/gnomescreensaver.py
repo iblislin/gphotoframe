@@ -5,10 +5,9 @@ import gobject
 from gtk import gdk
 
 class GsThemeWindow(gtk.Window):
+    __gtype_name__ = 'GsThemeWindow'
 
     def do_realize(self):
-        self.set_flags(self.flags() | gtk.REALIZED)
-
         anid = self.get_anid()
         if anid:
             self.window = gdk.window_foreign_new(anid)
@@ -23,27 +22,23 @@ class GsThemeWindow(gtk.Window):
                 wclass=gdk.INPUT_OUTPUT,
                 event_mask=self.get_events() | gdk.EXPOSURE_MASK)
 
-        self.modify_bg(gtk.STATE_NORMAL, gdk.color_parse("black"))
-
+        self.window.set_user_data(self)
         x, y, w, h, depth = self.window.get_geometry()
         self.w, self.h  = w,h
         self.size_allocate(gdk.Rectangle(x=x, y=y, width=w, height=h))
         self.set_default_size(w, h)
 
+        self.set_flags(self.flags() | gtk.REALIZED)
+        self.set_decorated(False)
         self.style.attach(self.window)
         self.style.set_background(self.window, gtk.STATE_NORMAL)
-        self.set_decorated(False)
-        self.window.set_user_data(self)
-        #self.set_name('gs-window')
+        self.modify_bg(gtk.STATE_NORMAL, gdk.color_parse("black"))
 
     def get_anid(self):
         id = os.environ.get('XSCREENSAVER_WINDOW')
         return int(id, 16) if id else None
 
-gobject.type_register(GsThemeWindow)
-
 #if __name__ == "__main__":
-#    gobject.type_register(GsThemeWindow)
 #    window = GsThemeWindow()
 #    window.show()
 #

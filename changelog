@@ -1,5 +1,6 @@
 2009-07-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* gnomescreensaver.py (GsThemeWindow): Code refactoring.
 	* photoimage.py: Fixed a bug.
 
 2009-07-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
