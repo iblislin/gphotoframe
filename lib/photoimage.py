@@ -1,6 +1,7 @@
 import os
 import sys
 
+import gobject
 import gtk
 from urlparse import urlparse
 from xml.sax.saxutils import escape
