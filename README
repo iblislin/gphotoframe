@@ -44,9 +44,14 @@ You can change the Photo Frame size:
 
 * License
 
-GPL 3. (except lib/utils/urlget.py)
+GPL 3. (except lib/extras/build_i18n.py and lib/utils/urlget.py)
 
   Copyright (c) 2009 Yoshizumi Endo.
+
+GPL 2. (lib/extras/build_i18n.py)
+
+  Copyright (c) 2009 Yoshizumi Endo.
+  Copyright (c) 2007, 2008 Sebastian Heinlein.
 
 See source code for details. (lib/utils/urlget.py)
 
