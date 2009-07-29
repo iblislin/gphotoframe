@@ -77,7 +77,7 @@ class FSpotPhotoList(PhotoList):
                 datetime.timedelta(days=period_days)
             epoch = int(time.mktime(d.timetuple()))
 
-            c = 'AND' if self.target or rate_name else 'WHERE'
+            c = 'AND' if self.target or rate_name is not None else 'WHERE'
             sql += '%s time>%s ' % ( c, epoch )
 
         return sql
