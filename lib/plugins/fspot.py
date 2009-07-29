@@ -180,12 +180,12 @@ class FSpotPhotoTags(object):
             list.append(tag)
         db.close()
 
-        self._sort_tags(list)
+        self._sort_tags(list, [0])
 
     def get(self):
         return self.stags
 
-    def _sort_tags(self, all_tags, ex_tags=[0]):
+    def _sort_tags(self, all_tags, ex_tags):
         unadded_tags = []
 
         for tag in all_tags:
