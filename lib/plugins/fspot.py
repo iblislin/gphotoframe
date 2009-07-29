@@ -113,15 +113,9 @@ class PhotoSourceFspotUI(PhotoSourceUI):
         self.target_widget.add_attribute(cell, 'text', 0)
 
     def _label(self):
-        list = [0, '', 0]
-        yield list
-
-        db = FSpotDB()
-        if db:
-            sql = 'SELECT * FROM tags ORDER BY category_id'
-            for tag in db.fetchall(sql):
-                yield tag
-            db.close()
+        tags = FSpotPhotoTags()
+        sorted_tags = tags.get()
+        return sorted_tags
 
     def _set_target_default(self):
         if self.data:
@@ -173,6 +167,36 @@ class FSpotDB(object):
 
     def close(self):
         self.db.close()
+
+class FSpotPhotoTags(object):
+    "Sorted F-Spot Photo Tags"
+
+    def __init__(self):
+        self.stags = []
+        list = [[0, '', 0]]
+        db = FSpotDB()
+        sql = 'SELECT * FROM tags ORDER BY id'
+        for tag in db.fetchall(sql):
+            list.append(tag)
+        db.close()
+
+        self._sort_tags(list)
+
+    def get(self):
+        return self.stags
+
+    def _sort_tags(self, all_tags, ex_tags=[0]):
+        unadded_tags = []
+
+        for tag in all_tags:
+            if tag[2] in ex_tags:
+                self.stags.append(tag)
+                ex_tags.append(tag[0])
+            else:
+                unadded_tags.append(tag)
+            
+        if unadded_tags:
+            self._sort_tags(unadded_tags, ex_tags)
 
 class Rate(object):
 
