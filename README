@@ -42,23 +42,6 @@ You can change the Photo Frame size:
   gconftool-2 --type int --set /apps/gphotoframe/max_width 400 
   gconftool-2 --type int --set /apps/gphotoframe/max_height 300 
 
-* License
-
-GPL 3. <http://www.gnu.org/licenses/gpl-3.0.html>
-(except lib/extras/build_i18n.py and lib/utils/urlget.py)
-
-  Copyright (c) 2009 Yoshizumi Endo.
-
-GPL 2. (lib/extras/build_i18n.py)
-
-  Copyright (c) 2009 Yoshizumi Endo.
-  Copyright (c) 2007, 2008 Sebastian Heinlein.
-
-See source code for details. (lib/utils/urlget.py)
-
-  Copyright (c) 2009 Yoshizumi Endo.
-  Copyright (c) 2001-2008 Twisted Matrix Laboratories.
-
 * Contact
 
 Web: http://code.google.com/p/gphotoframe/
