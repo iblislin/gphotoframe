@@ -3,6 +3,8 @@ import sqlite3
 import time
 import datetime
 
+from xdg.BaseDirectory import xdg_config_home
+
 from base import *
 from ..utils.wrandom import WeightedRandom
 
@@ -23,7 +25,7 @@ class FSpotPhotoList(PhotoList):
     def count(self):
         rate_list = []
         sql = self.sql_statement('COUNT(*)')
-        self.total = self.db.fetchone(sql)
+        self.total = self.db.fetchone(sql) if self.db.is_accessible else 0
         if self.total == 0: return rate_list
 
         rate_min = self.options.get('rate_min', 0)
@@ -41,10 +43,11 @@ class FSpotPhotoList(PhotoList):
 
     def get_photo(self, cb):
         rate = self.rnd()
-        sql = self.sql_statement('uri', rate.name)
+        columns = 'base_uri, filename' if self.db.is_new else 'uri'
+        sql = self.sql_statement(columns, rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
 
-        url = self.db.fetchone(sql)
+        url = ''.join(self.db.fetchall(sql)[0])
         file = url.replace('file://', '')
         title = url[ url.rfind('/') + 1: ]
 
@@ -86,7 +89,8 @@ class PhotoSourceFspotUI(PhotoSourceUI):
 
     def get(self):
         iter = self.target_widget.get_active_iter()
-        return self.treestore.get_value(iter, 0)
+        if iter: 
+            return self.treestore.get_value(iter, 0)
 
     def get_options(self):
         return self.options_ui.get_value()
@@ -152,10 +156,10 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
 class FSpotDB(object):
 
     def __init__(self):
-        db_file = os.environ['HOME'] + '/.gnome2/f-spot/photos.db'
-        if not os.access(db_file, os.R_OK): 
-            return None
-        self.db = sqlite3.connect(db_file) 
+        db_file, self.is_new = self.get_db_file()
+        self.is_accessible = True if db_file else False
+        if db_file:
+            self.db = sqlite3.connect(db_file) 
 
     def fetchall(self, sql):
         data = self.db.execute(sql).fetchall()
@@ -168,6 +172,20 @@ class FSpotDB(object):
     def close(self):
         self.db.close()
 
+    def get_db_file(self):
+        db_file_base = 'f-spot/photos.db'
+        db_file_new = os.path.join(xdg_config_home, db_file_base)
+        db_file_old = os.path.join(os.environ['HOME'], '.gnome2', db_file_base)
+
+        if os.access(db_file_new, os.R_OK):
+            db_file, is_new = db_file_new, True
+        elif os.access(db_file_old, os.R_OK):
+            db_file, is_new = db_file_old, False
+        else:
+            db_file = is_new = None
+
+        return db_file, is_new
+
 class FSpotPhotoTags(object):
     "Sorted F-Spot Photo Tags"
 
@@ -175,6 +193,10 @@ class FSpotPhotoTags(object):
         self.stags = []
         list = [[0, '', 0]]
         db = FSpotDB()
+
+        if not db.is_accessible:
+            return
+
         sql = 'SELECT * FROM tags ORDER BY id'
         for tag in db.fetchall(sql):
             list.append(tag)

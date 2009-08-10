@@ -1,7 +1,7 @@
 import os
 from os.path import join, abspath,  dirname
 
-VERSION = '0.4.1-b1'
+VERSION = '0.4.1-b2'
 APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(join(dirname(__file__), '..'))
