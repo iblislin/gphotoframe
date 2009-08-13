@@ -1,3 +1,7 @@
+2009-08-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.4.1 release.
+
 2009-08-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py: Added support for F-Spot 0.6.0 database (issue #28).
