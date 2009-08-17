@@ -1,3 +1,7 @@
+2009-08-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* constants.py: Fixed the glade file directory.
+
 2009-08-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 0.4.1 release.

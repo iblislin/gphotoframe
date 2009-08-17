@@ -1,10 +1,10 @@
 import os
 from os.path import join, abspath,  dirname
 
-VERSION = '0.4.1'
+VERSION = '0.4.2-b1'
 APP_NAME = 'gphotoframe'
 
-SHARED_DATA_DIR = abspath(join(dirname(__file__), '..'))
+SHARED_DATA_DIR = abspath(join(dirname(__file__), '../share'))
 if not os.access(SHARED_DATA_DIR + '/gphotoframe.glade', os.R_OK):
     SHARED_DATA_DIR = '/usr/share/gphotoframe'
 
