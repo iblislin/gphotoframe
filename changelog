@@ -3,6 +3,7 @@
 	* photoframe.py, photoimage.py: Fixed a frame position bug (issue #31).
 	* COPYING, gphotoframe.glade: Updated copyright years.
 	* picasa.py: Removed gdata-python-client dependency.
+	* setup.cfg: Enabled gnome-screensaver support (issue #21).
 
 2009-08-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
