@@ -56,9 +56,10 @@ class PhotoFrame(object):
         state = True if photo else False
 
         if change:
-            w, h = self.photoimage.set_photo(photo)
+            if not self.photoimage.set_photo(photo): return
             border = self.conf.get_int('border_width', 10)
-            self.window.resize(w + border, h + border)
+            self.window.resize(self.photoimage.w + border, 
+                               self.photoimage.h + border)
 
         self.popup_menu.set_open_menu_sensitive(state)
         self.popup_menu.set_recent_menu()
@@ -143,8 +144,8 @@ class PhotoFrame(object):
             self.window.set_skip_taskbar_hint(not state)
 
     def _save_geometry_cb(self, widget, event):
-        if event.mode != 2:
-            return True
+#        if event.mode != 2:
+#            return True
 
         x, y = widget.get_position()
         w, h = widget.get_size()
@@ -164,9 +165,10 @@ class PhotoFrame(object):
         self.window.set_keep_below(True)
         time.sleep(0.5)
 
-        w, h = self.photoimage.set_photo()
+        if not self.photoimage.set_photo(): return
         border = self.conf.get_int('border_width', 10)
-        self.window.resize(w + border, h + border)
+        self.window.resize(self.photoimage.w + border, 
+                           self.photoimage.h + border)
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():

@@ -29,7 +29,7 @@ class PhotoImage(object):
                 pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
             except gobject.GError:
                 print sys.exc_info()[1]
-                return
+                return False
             else:
                 pixbuf = self._rotate(pixbuf)
                 pixbuf = self._scale(pixbuf)
@@ -39,9 +39,10 @@ class PhotoImage(object):
         self._set_tips(self.photo)
 
         self.image.set_from_pixbuf(pixbuf)
-        w = pixbuf.get_width()
-        h = pixbuf.get_height()
-        return w, h
+        self.w = pixbuf.get_width()
+        self.h = pixbuf.get_height()
+
+        return True
 
     def clear(self):
         self.image.clear()
