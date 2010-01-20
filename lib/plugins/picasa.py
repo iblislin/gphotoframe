@@ -1,11 +1,11 @@
-from twisted.internet import threads
-import gdata.photos.service
-import gdata.media
-import gdata.geo
+from twisted.web import client
+import urllib
+import simplejson as json
+import pprint
 
 from base import *
 from ..utils.keyring import Keyring
-from ..constants import APP_NAME
+from ..constants import APP_NAME, VERSION
 
 def info():
     return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
@@ -19,72 +19,85 @@ class PicasaPhotoList(PhotoList):
         self.username = self.conf.get_string('plugins/picasa/user_id')
         if self.username:
             key = Keyring('Google Account', protocol='http')
-            key.get_passwd_async(self.username, self._prepare_cb)
+            key.get_passwd_async(self.username, self._google_auth_cb)
             self._start_timer()
 
-    def _prepare_cb(self, identity):
+    def _google_auth_cb(self, identity):
+        "Get Google Auth Token (ClientLogin)."
+
         if identity is None: 
             print "Certification Error"
             return
 
-        self.gd_client = gdata.photos.service.PhotosService()
-        self.gd_client.email = self.username + '@gmail.com'
-        self.gd_client.password = identity[1]
-        self.gd_client.source = APP_NAME
-        self.gd_client.ProgrammaticLogin()
+        url = 'https://www.google.com/accounts/ClientLogin'
+        source = '%s-%s-%s' % ('yendo', APP_NAME, VERSION.replace('-', '_'))
 
-        if self.target == 'User':
-            d = threads.deferToThread(self._get_album_list, self.argument)
-            d.addCallback(self._get_user_feed_cb, self.argument)
-        else:
-            d = threads.deferToThread(self._get_feed, self.target, self.argument)
-            d.addCallback(self._set_photo_db)
+        arg = {'accountType': 'GOOGLE', 
+               'Email' : self.username + '@gmail.com',
+               'Passwd' : identity[1], 
+               'service': 'lh2', 
+               'source' : source}
+        content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-    def _get_user_feed_cb(self, album_id_list, uid):
-        for album_id in album_id_list:
-            d = threads.deferToThread(self._get_feed, 'Album', uid, album_id)
-            d.addCallback(self._set_photo_db)
+        d = client.getPage(url, method='POST', 
+                           postdata = urllib.urlencode(arg),
+                           headers = content_type)
+        d.addCallback(self._get_feed_cb)
 
-    def _get_album_list(self, uid):
-        album_list = []
-        albums = self.gd_client.GetUserFeed(user=uid)
-        for album in albums.entry:
-            album_list.append(album.gphoto_id.text)
-            #album_list.append(album.title.text)
-        return album_list
+    def _get_feed_cb(self, raw_token):
+        "Get a Photo Feed from Google with Auth Token."
 
-    def _get_feed(self, target, argument, option=None):
+        auth_token = raw_token.splitlines()[2].replace("Auth=","") 
+        auth_header = {'Authorization' : 'GoogleLogin auth=%s' %  auth_token}
 
-        url = {
-            'Album' : '/user/%s/albumid/%s?kind=photo' % ( argument, option),
-            'Community Search' : '/all?kind=photo&q=%s' % argument,
-            'Featured' : '/featured'
-            # 'User' : '/user/%s/?kind=%s' % ( argument, 'photo'),
-            # 'contacts' : '/user/%s/contacts?kind=%s' % ( argumrnt, 'user'),
-            # 'photo' : "/user/%s/albumid/%s/photoid/%s?kind=kinds",
-            } 
+        url = self._get_feed_url(self.target, self.argument)
+        # print url
+ 
+        d = client.getPage(url, headers = auth_header)
+        d.addCallback(self._set_photo_cb)
 
-        url = "/data/feed/api" + url[target]
-        photos = self.gd_client.GetFeed(url)
+    def _set_photo_cb(self, photos):
+        "Set Photo Entries from JSON Data."
 
-        return photos
+        d = json.loads(photos)
+        #pp = pprint.PrettyPrinter(indent=4)
 
-    def _set_photo_db(self, photos):
-        for entry in photos.entry:
-            owner_name = entry.author[0].name.text if entry.author \
-                else self.username
+        for entry in d['feed']['entry']:
+            owner_name = entry['author'][0]['name']['$t'] \
+                if entry.get('author') else self.argument
+            #pp.pprint(entry)
 
-            data = {'url'        : entry.content.src,
+            data = {'url'        : entry['content']['src'],
                     'owner_name' : owner_name,
                     'owner'      : owner_name,
-                    'id'         : entry.gphoto_id.text,
-                    'title'      : entry.title.text,
-                    'summary'    : entry.summary.text,
-                    'page_url'   : entry.GetHtmlLink().href,}
+                    'id'         : entry['gphoto$id']['$t'],
+                    'title'      : entry['title']['$t'],
+                    'summary'    : entry['summary']['$t'],
+                    'page_url'   : entry['link'][1]['href'],}
 
             photo = Photo()
             photo.update(data)
             self.photos.append(photo)
+
+    def _get_feed_url(self, target, argument, option=None):
+        "Get a Feed URL for Picasa Web API."
+
+        url_base = "http://picasaweb.google.com/data/feed/api"
+        api = {
+            'Album' : '/user/%s/albumid/%s?kind=photo' % ( argument, option),
+            'Community Search' : '/all?kind=photo&q=%s' % argument,
+            'Featured' : '/featured?', 
+            'User' : '/user/%s/?kind=%s' % ( argument, 'photo'),
+            # 'contacts' : '/user/%s/contacts?kind=%s' % ( argumrnt, 'user'),
+            # 'photo' : "/user/%s/albumid/%s/photoid/%s?kind=kinds",
+            } 
+        url = url_base + api[target] + '&alt=json'
+
+        max_result = 100000 if target == 'User' else 0
+        if max_result:
+            url += '&max-results=%s' % max_result
+
+        return url
 
 class PhotoSourcePicasaUI(PhotoSourceUI):
 
