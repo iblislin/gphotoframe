@@ -33,6 +33,7 @@ class PhotoImage(object):
             else:
                 pixbuf = self._rotate(pixbuf)
                 pixbuf = self._scale(pixbuf)
+                if not self._aspect_ratio_is_ok(pixbuf): return False
         else:
             pixbuf = self._no_image()
 
@@ -104,6 +105,27 @@ class PhotoImage(object):
 
         pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
         return pixbuf
+
+    def _aspect_ratio_is_ok(self, pixbuf):
+        aspect = float(pixbuf.get_width()) / pixbuf.get_height()
+
+        max = self.conf.get_float('aspect_max', 0)
+        min = self.conf.get_float('aspect_min', 0)
+
+        # print aspect, max, min
+
+        if min < 0 or max < 0:
+            print "Error: aspect_max or aspect_min is less than 0."
+            return True
+        elif min > 0 and max > 0 and min >= max:
+            print "Error: aspect_max is not greater than aspect_min."
+            return True
+
+        if (min > 0 and aspect < min ) or (max > 0 and max < aspect):
+            print "Skip a tall or wide image (aspect ratio: %s)." % aspect
+            return False
+        else:
+            return True
 
     def _no_image(self):
         gdk_window = self.window.window

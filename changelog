@@ -1,5 +1,8 @@
 2010-01-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoframe.py, photoimage.py, photoliststore.py: Added GConf
+	  options (aspect_max, aspect_min: aspect = width / height) to
+	  disable display of very tall or wide images. (issue #22) 
 	* config.py: Added set_float & get_float.
 
 2010-01-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

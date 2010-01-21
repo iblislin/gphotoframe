@@ -56,7 +56,7 @@ class PhotoFrame(object):
         state = True if photo else False
 
         if change:
-            if not self.photoimage.set_photo(photo): return
+            if not self.photoimage.set_photo(photo): return False
             border = self.conf.get_int('border_width', 10)
             self.window.resize(self.photoimage.w + border, 
                                self.photoimage.h + border)
@@ -66,6 +66,8 @@ class PhotoFrame(object):
 
         if hasattr(self, "fullframe") and self.fullframe.window.window:
             self.fullframe.set_photo(photo, change)
+
+        return True
 
     def remove_photo(self, filename):
         change = True if self.photoimage.photo and \
