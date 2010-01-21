@@ -1,3 +1,7 @@
+2010-01-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* config.py: Added set_float & get_float.
+
 2010-01-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, photoimage.py: Fixed a frame position bug (issue #31).

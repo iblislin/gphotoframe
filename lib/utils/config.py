@@ -17,7 +17,7 @@ class GConf(object):
         self.gconf.notify_add (self.dir + key, cb)
 
     def set_int(self, key, val):
-        return self.gconf.set_int(self.dir + key, val)
+        return self.gconf.set_int(self.dir + key, int(val))
 
     def get_int(self, key, default = 0):
         val = self.gconf.get_int(self.dir + key)
@@ -25,6 +25,13 @@ class GConf(object):
             return default
         else:
             return val
+
+    def set_float(self, key, val):
+        return self.gconf.set_float(self.dir + key, float(val))
+
+    def get_float(self, key, default=0.0):
+        val = self.gconf.get_float(self.dir + key)
+        return val if val != 0.0 else default
 
     def set_string(self, key, val):
         return self.gconf.set_string(self.dir + key, val)
