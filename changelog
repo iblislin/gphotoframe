@@ -1,3 +1,8 @@
+2010-01-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Fixed a bug (set_photo should return value in
+	  screen saver mode).
+
 2010-01-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, photoimage.py, photoliststore.py: Added GConf
