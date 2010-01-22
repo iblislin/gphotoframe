@@ -14,7 +14,6 @@ class PhotoImage(object):
         self.image.show()
         self.window = photoframe.window
 
-        self.conf = GConf()
         self.photoframe = photoframe
 
         self.max_w = float(w)
@@ -24,24 +23,15 @@ class PhotoImage(object):
         if photo is not False:
             self.photo = photo
 
-        if self.photo:
-            try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
-            except gobject.GError:
-                print sys.exc_info()[1]
-                return False
-            else:
-                pixbuf = self._rotate(pixbuf)
-                pixbuf = self._scale(pixbuf)
-                if not self._aspect_ratio_is_ok(pixbuf): return False
-        else:
-            pixbuf = self._no_image()
+        pixbuf = PhotoImagePixbuf()
+        if pixbuf.set(self.photo, self.max_w, self.max_h) is False:
+            return False
 
         self._set_tips(self.photo)
 
-        self.image.set_from_pixbuf(pixbuf)
-        self.w = pixbuf.get_width()
-        self.h = pixbuf.get_height()
+        self.image.set_from_pixbuf(pixbuf.data)
+        self.w = pixbuf.data.get_width()
+        self.h = pixbuf.data.get_height()
 
         return True
 
@@ -74,6 +64,29 @@ class PhotoImage(object):
             self.window.set_tooltip_markup(tip)
         except:
             pass
+
+class PhotoImagePixbuf(object):
+
+    def set(self, photo, max_w, max_h):
+        self.max_w = max_w
+        self.max_h = max_h
+        self.conf = GConf()
+
+        if photo:
+            try:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(photo['filename'])
+            except gobject.GError:
+                print sys.exc_info()[1]
+                return False
+            else:
+                pixbuf = self._rotate(pixbuf)
+                pixbuf = self._scale(pixbuf)
+                if not self._aspect_ratio_is_ok(pixbuf): return False
+        else:
+            pixbuf = self._no_image()
+
+        self.data = pixbuf
+        return True
 
     def _rotate(self, pixbuf):
         orientation = pixbuf.get_option('orientation') or 1
