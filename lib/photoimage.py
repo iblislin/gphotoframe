@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 import sys
 
@@ -9,39 +10,29 @@ from xml.sax.saxutils import escape
 from utils.config import GConf
 
 class PhotoImage(object):
-    def __init__(self, photoframe, w=400, h=300):
+    def __init__(self, photoframe, w, h):
         self.image = gtk.Image()
         self.image.show()
         self.window = photoframe.window
 
-        self.conf = GConf()
         self.photoframe = photoframe
 
-        self.max_w = float(w)
-        self.max_h = float(h)
+        self.max_w = w
+        self.max_h = h
 
     def set_photo(self, photo=False):
         if photo is not False:
             self.photo = photo
 
-        if self.photo:
-            try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(self.photo['filename'])
-            except gobject.GError:
-                print sys.exc_info()[1]
-                return False
-            else:
-                pixbuf = self._rotate(pixbuf)
-                pixbuf = self._scale(pixbuf)
-                if not self._aspect_ratio_is_ok(pixbuf): return False
-        else:
-            pixbuf = self._no_image()
+        pixbuf = PhotoImagePixbuf(self.max_w, self.max_h)
+        if pixbuf.set(self.photo) is False:
+            return False
 
         self._set_tips(self.photo)
 
-        self.image.set_from_pixbuf(pixbuf)
-        self.w = pixbuf.get_width()
-        self.h = pixbuf.get_height()
+        self.image.set_from_pixbuf(pixbuf.data)
+        self.w = pixbuf.data.get_width()
+        self.h = pixbuf.data.get_height()
 
         return True
 
@@ -75,6 +66,30 @@ class PhotoImage(object):
         except:
             pass
 
+class PhotoImagePixbuf(object):
+
+    def __init__(self, max_w=400, max_h=300):
+        self.max_w = max_w
+        self.max_h = max_h
+        self.conf = GConf()
+
+    def set(self, photo):
+        if photo:
+            try:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(photo['filename'])
+            except gobject.GError:
+                print sys.exc_info()[1]
+                return False
+            else:
+                pixbuf = self._rotate(pixbuf)
+                pixbuf = self._scale(pixbuf)
+                if not self._aspect_ratio_is_ok(pixbuf): return False
+        else:
+            pixbuf = self._no_image()
+
+        self.data = pixbuf
+        return True
+
     def _rotate(self, pixbuf):
         orientation = pixbuf.get_option('orientation') or 1
 
@@ -107,7 +122,7 @@ class PhotoImage(object):
         return pixbuf
 
     def _aspect_ratio_is_ok(self, pixbuf):
-        aspect = float(pixbuf.get_width()) / pixbuf.get_height()
+        aspect = pixbuf.get_width() / pixbuf.get_height()
 
         max = self.conf.get_float('aspect_max', 0)
         min = self.conf.get_float('aspect_min', 0)
