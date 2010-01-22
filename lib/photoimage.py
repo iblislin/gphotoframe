@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 import sys
 
@@ -9,22 +10,22 @@ from xml.sax.saxutils import escape
 from utils.config import GConf
 
 class PhotoImage(object):
-    def __init__(self, photoframe, w=400, h=300):
+    def __init__(self, photoframe, w, h):
         self.image = gtk.Image()
         self.image.show()
         self.window = photoframe.window
 
         self.photoframe = photoframe
 
-        self.max_w = float(w)
-        self.max_h = float(h)
+        self.max_w = w
+        self.max_h = h
 
     def set_photo(self, photo=False):
         if photo is not False:
             self.photo = photo
 
-        pixbuf = PhotoImagePixbuf()
-        if pixbuf.set(self.photo, self.max_w, self.max_h) is False:
+        pixbuf = PhotoImagePixbuf(self.max_w, self.max_h)
+        if pixbuf.set(self.photo) is False:
             return False
 
         self._set_tips(self.photo)
@@ -67,11 +68,12 @@ class PhotoImage(object):
 
 class PhotoImagePixbuf(object):
 
-    def set(self, photo, max_w, max_h):
+    def __init__(self, max_w=400, max_h=300):
         self.max_w = max_w
         self.max_h = max_h
         self.conf = GConf()
 
+    def set(self, photo):
         if photo:
             try:
                 pixbuf = gtk.gdk.pixbuf_new_from_file(photo['filename'])
@@ -120,7 +122,7 @@ class PhotoImagePixbuf(object):
         return pixbuf
 
     def _aspect_ratio_is_ok(self, pixbuf):
-        aspect = float(pixbuf.get_width()) / pixbuf.get_height()
+        aspect = pixbuf.get_width() / pixbuf.get_height()
 
         max = self.conf.get_float('aspect_max', 0)
         min = self.conf.get_float('aspect_min', 0)
