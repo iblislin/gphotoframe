@@ -4,6 +4,7 @@ import gtk
 import random
 import gobject
 from gettext import gettext as _
+from xdg.BaseDirectory import xdg_cache_home
 
 from .. import constants
 from ..utils.config import GConf
@@ -179,3 +180,38 @@ class PluginDialog(object):
 
         self.dialog.destroy()
         return response_id, {}
+
+class SourceIcon(object):
+
+    def __init__(self, size=16):
+        self.size = size
+        self.cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
+
+    def get_image(self):
+        file = self._get_icon_file()
+        image = gtk.Image()
+        image.set_from_file(file)
+
+        return image
+
+    def _get_icon_file(self):
+        dir = "/usr/share/icons/gnome/"
+        size = "%sx%s" % (self.size, self.size) 
+        file = "mimetypes/image-x-generic.png"
+        
+        full_path = os.path.join(dir, size, file)
+        return full_path
+
+class SourceWebIcon(SourceIcon):
+
+    def _get_icon_file(self):
+        self._set_file()
+        file = os.path.join(self.cache_dir, self.icon_filename)
+        if not os.access(file, os.R_OK):
+            file = super(FlickrIcon, self)._get_icon_file()
+
+        return file
+
+    def _set_file(self):
+        pass
+

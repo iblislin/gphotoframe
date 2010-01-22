@@ -52,7 +52,8 @@ class FSpotPhotoList(PhotoList):
         title = url[ url.rfind('/') + 1: ]
 
         data = { 'url' : url, 'rate' : rate.name, 
-                 'filename' : file, 'title' : title }
+                 'filename' : file, 'title' : title,
+                 'icon' : FSpotIcon }
         self.photo = Photo()
         self.photo.update(data)
         cb(self.photo)
@@ -226,3 +227,12 @@ class Rate(object):
         self.name = rate
         self.total = float(total_in_this)
         self.weight = total_in_this / float(total_all) * (rate * weight + 1)
+
+class FSpotIcon(SourceIcon):
+
+    def get_image(self):
+        theme = gtk.IconTheme()
+        icon = theme.load_icon('f-spot', self.size, gtk.ICON_LOOKUP_USE_BUILTIN)
+        image = gtk.image_new_from_pixbuf(icon)
+
+        return image

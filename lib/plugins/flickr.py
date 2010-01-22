@@ -47,7 +47,8 @@ class FlickrPhotoList(PhotoList):
                     'owner'      : s['owner'],
                     'id'         : s['id'],
                     'title'      : s['title'],
-                    'page_url'   : page_url }
+                    'page_url'   : page_url,
+                    'icon'       : FlickrIcon}
 
             photo = Photo()
             photo.update(data)
@@ -152,3 +153,8 @@ class PluginFlickrDialog(PluginDialog):
     def _write_conf(self):
         flickr_user_id = self.entry.get_text()
         self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )
+
+class FlickrIcon(SourceWebIcon):
+
+    def _set_file(self):
+        self.icon_filename = 'flickr.ico'

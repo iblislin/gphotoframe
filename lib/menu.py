@@ -9,6 +9,7 @@ from gettext import gettext as _
 import constants
 from utils.config import GConf
 from preferences import Preferences
+from plugins import SourceIcon
 
 class PopUpMenu(object):
 
@@ -94,15 +95,9 @@ class RecentMenuItem(gtk.ImageMenuItem):
         label.set_max_width_chars(20)
         label.set_property('ellipsize', pango.ELLIPSIZE_END)
 
-        #theme = gtk.IconTheme()
-        #icon = theme.load_icon('f-spot', 
-        #                       24, gtk.ICON_LOOKUP_USE_BUILTIN)
-        #img = gtk.image_new_from_pixbuf(icon)
-
-        img = gtk.Image()
-        file = '/usr/share/icons/gnome/16x16/mimetypes/image-x-generic.png'
-        img.set_from_file(file)
-        self.set_image(img)
+        icon = photo.get('icon') or SourceIcon
+        icon_img = icon().get_image()
+        self.set_image(icon_img)
 
         self.connect('activate', photo.open)
         self.show()

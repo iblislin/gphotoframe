@@ -73,7 +73,8 @@ class PicasaPhotoList(PhotoList):
                     'id'         : entry['gphoto$id']['$t'],
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
-                    'page_url'   : entry['link'][1]['href'],}
+                    'page_url'   : entry['link'][1]['href'],
+                    'icon'       : PicasaIcon}
 
             photo = Photo()
             photo.update(data)
@@ -158,3 +159,8 @@ class PluginPicasaDialog(PluginDialog):
 
     def _destroy_cb(self, *args):
         self.dialog.destroy()
+
+class PicasaIcon(SourceWebIcon):
+
+    def _set_file(self):
+        self.icon_filename = 'picasa.ico'
