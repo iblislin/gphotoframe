@@ -129,9 +129,12 @@ class PhotoSourceTreeView(PreferencesTreeView):
 
         if path_tuple is not None:
             row, col, cx, cy = path_tuple
-            treeview.set_tooltip_row(tooltip, row)
-            tooltip.set_text(self.liststore[row][0])
-            return True
+            tip = self.liststore[row][5].get_tooltip()
+
+            if tip is not None:
+                treeview.set_tooltip_row(tooltip, row)
+                tooltip.set_text(tip)
+                return True
 
         return False
 

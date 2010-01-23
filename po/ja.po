@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-07 22:48+0900\n"
-"PO-Revision-Date: 2009-07-07 22:48+0900\n"
+"POT-Creation-Date: 2010-01-24 02:45+0900\n"
+"PO-Revision-Date: 2010-01-24 02:47+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "プラグイン"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.glade.h:23 ../lib/plugins/base.py:110
+#: ../share/gphotoframe.glade.h:23 ../lib/plugins/base.py:113
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -144,7 +144,7 @@ msgstr "期間(_P):"
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:31 ../lib/plugins/base.py:105
+#: ../share/gphotoframe.glade.h:31 ../lib/plugins/base.py:108
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -160,7 +160,7 @@ msgstr "重み(_W):"
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/photoframe.py:446
+#: ../lib/menu.py:87
 msgid "(No Title)"
 msgstr "(無題)"
 
@@ -180,7 +180,7 @@ msgstr "引数"
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/base.py:137
+#: ../lib/plugins/base.py:140
 msgid "Options"
 msgstr "オプション"
 
@@ -192,13 +192,30 @@ msgstr "グループ ID(_G):"
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
+#: ../lib/plugins/fspot.py:66
+#, python-format
+msgid "Last %s days"
+msgstr "過去 %s 日間"
+
+#: ../lib/plugins/fspot.py:66
+msgid "All"
+msgstr "すべて"
+
+#: ../lib/plugins/fspot.py:69
+msgid "Rate"
+msgstr "評価"
+
+#: ../lib/plugins/fspot.py:70
+msgid "Period"
+msgstr "期間"
+
 #: ../lib/plugins/tumblr.py:51
 msgid "_User Name:"
 msgstr "ユーザ名(_U):"
 
 #: ../lib/plugins/rss.py:50
 msgid "_Title:"
-msgstr "タイトル(_T)"
+msgstr "タイトル(_T):"
 
 #. argument widget
 #: ../lib/plugins/rss.py:53

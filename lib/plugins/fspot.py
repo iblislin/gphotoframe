@@ -4,6 +4,7 @@ import time
 import datetime
 
 from xdg.BaseDirectory import xdg_config_home
+from gettext import gettext as _
 
 from base import *
 from ..utils.wrandom import WeightedRandom
@@ -57,6 +58,18 @@ class FSpotPhotoList(PhotoList):
         self.photo.update(data)
         cb(self.photo)
 
+    def get_tooltip(self):
+        rate_min = self.options.get('rate_min', 0)
+        rate_max = self.options.get('rate_max', 5)
+
+        period_days = self._get_period_days()
+        period = _('Last %s days') % period_days if period_days else _("All")
+
+        tip = "%s: %s-%s\n%s: %s" % ( 
+            _('Rate'), rate_min, rate_max, 
+            _('Period'), period)
+        return tip
+
     def sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
 
@@ -73,9 +86,7 @@ class FSpotPhotoList(PhotoList):
             sql += '%s rating=%s ' % ( c, str(rate_name) )
 
         if self.options.get('period'):
-            period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
-            period_days = period_dic[self.options.get('period')]
-
+            period_days = self._get_period_days()
             d = datetime.datetime.now() - \
                 datetime.timedelta(days=period_days)
             epoch = int(time.mktime(d.timetuple()))
@@ -84,6 +95,11 @@ class FSpotPhotoList(PhotoList):
             sql += '%s time>%s ' % ( c, epoch )
 
         return sql
+
+    def _get_period_days(self):
+        period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
+        period_days = period_dic[self.options.get('period')]
+        return period_days 
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 
