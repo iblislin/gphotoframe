@@ -1,3 +1,8 @@
+2010-01-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, gphotoframe.glade: Implemented tooltips for
+	  photo source treeview.
+
 2010-01-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 0.5 release.
