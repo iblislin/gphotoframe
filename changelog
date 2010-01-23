@@ -1,5 +1,6 @@
 2010-01-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 0.5 release.
 	* photoframe.py: Fixed a bug (set_photo should return value in
 	  screen saver mode).
 
