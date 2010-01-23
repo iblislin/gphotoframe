@@ -24,7 +24,7 @@ class PhotoImage(object):
         if photo is not False:
             self.photo = photo
 
-        pixbuf = PhotoImagePixbuf(self.max_w, self.max_h)
+        pixbuf = PhotoImagePixbuf(self.window, self.max_w, self.max_h)
         if pixbuf.set(self.photo) is False:
             return False
 
@@ -68,7 +68,8 @@ class PhotoImage(object):
 
 class PhotoImagePixbuf(object):
 
-    def __init__(self, max_w=400, max_h=300):
+    def __init__(self, window, max_w=400, max_h=300):
+        self.window = window
         self.max_w = max_w
         self.max_h = max_h
         self.conf = GConf()
