@@ -118,9 +118,22 @@ class PhotoSourceTreeView(PreferencesTreeView):
             "on_button3_clicked" : self._new_button_cb,
             "on_button4_clicked" : self._prefs_button_cb,
             "on_button5_clicked" : self._delete_button_cb,
-            "on_treeview1_cursor_changed" : self._cursor_changed_cb
+            "on_treeview1_cursor_changed" : self._cursor_changed_cb,
+            "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
             }
         gui.signal_autoconnect(dic)
+
+    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+        nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
+        path_tuple = treeview.get_path_at_pos(nx, ny)
+
+        if path_tuple is not None:
+            row, col, cx, cy = path_tuple
+            treeview.set_tooltip_row(tooltip, row)
+            tooltip.set_text(self.liststore[row][0])
+            return True
+
+        return False
 
     def _set_button_sensitive(self, state):
         self.gui.get_widget('button4').set_sensitive(state)
