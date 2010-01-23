@@ -1,5 +1,7 @@
 2010-01-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* fspot.py, base.py, POTFILES.in, ja.po: Implemented F-Spot
+	  options tooltip on photo source treeview.
 	* preferences.py, gphotoframe.glade: Implemented tooltips for
 	  photo source treeview.
 

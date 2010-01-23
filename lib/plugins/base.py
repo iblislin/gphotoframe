@@ -39,6 +39,9 @@ class PhotoList(object):
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
 
+    def get_tooltip(self):
+        pass
+
     def _get_url_with_twisted(self, url):
         urlget = UrlGetWithProxy()
         d = urlget.getPage(url)
