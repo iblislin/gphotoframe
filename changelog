@@ -10,6 +10,7 @@
 	  options (aspect_max, aspect_min: aspect = width / height) to
 	  disable display of very tall or wide images. (issue #22) 
 	* config.py: Added set_float & get_float.
+	* photoimage.py: Code refactoring. Added new PhotoImagePixbuf class.
 
 2010-01-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
