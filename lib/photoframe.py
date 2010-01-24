@@ -186,7 +186,7 @@ class PhotoFrame(object):
             self.window.unstick()
 
     def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
-        pixbuf = self.photoimage.photo.get('icon')().get_pixbuf()
+        pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
         tooltip.set_icon(pixbuf)
 
 class PhotoFrameFullScreen(PhotoFrame):

@@ -75,6 +75,11 @@ class PhotoImage(object):
         except:
             pass
 
+    def get_photo_source_icon_pixbuf(self):
+        icon = self.photo.get('icon')
+        pixbuf = icon().get_pixbuf()
+        return pixbuf
+
     def _rotate(self, pixbuf):
         orientation = pixbuf.get_option('orientation') or 1
 
