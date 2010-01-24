@@ -162,6 +162,6 @@ class PluginPicasaDialog(PluginDialog):
 
 class PicasaIcon(SourceWebIcon):
 
-    def _set_icon_name(self):
+    def __init__(self):
         self.icon_name = 'picasa.ico'
         self.icon_url = 'http://picasa.google.com/assets/picasa.ico'

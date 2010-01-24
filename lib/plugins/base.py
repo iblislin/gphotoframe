@@ -185,12 +185,13 @@ class PluginDialog(object):
 
 class SourceIcon(object):
 
-    def __init__(self, size=16):
+    def __init__(self):
+        self.icon_name = 'image-x-generic'
+
+    def get_image(self, size=16):
         self.size = size
         self.cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
-        self._set_icon_name()
 
-    def get_image(self):
         file = self._get_icon_file()
         image = gtk.Image()
         image.set_from_file(file)
@@ -201,9 +202,6 @@ class SourceIcon(object):
         icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
         return icon_path
 
-    def _set_icon_name(self):
-        self.icon_name = 'image-x-generic'
-
 class SourceWebIcon(SourceIcon):
 
     def _get_icon_file(self):
@@ -212,7 +210,7 @@ class SourceWebIcon(SourceIcon):
         if not os.access(file, os.R_OK):
             self._download_icon()
 
-            super(SourceWebIcon, self)._set_icon_name()
+            super(SourceWebIcon, self).__init__()
             file = super(SourceWebIcon, self)._get_icon_file()
 
         return file
@@ -224,6 +222,3 @@ class SourceWebIcon(SourceIcon):
         icon_file = os.path.join(self.cache_dir, self.icon_name)
         urlget = UrlGetWithProxy()
         d = urlget.downloadPage(self.icon_url, icon_file)
-
-    def _set_icon_name(self):
-        pass

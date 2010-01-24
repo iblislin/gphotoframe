@@ -1,7 +1,7 @@
 2010-01-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* base.py, flickr.py, picasa.py, fspot.py: Introduced
-	  xdg.IconTheme.getIconPath.  Support for downloading favicons.
+	* plugins/*.py: Introduced xdg.IconTheme.getIconPath.  Support for
+	  downloading favicons.
 
 2010-01-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

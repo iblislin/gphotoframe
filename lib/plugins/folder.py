@@ -52,7 +52,8 @@ class DirPhotoList(PhotoList):
 
         data = { 'url'      : 'file://' + fullpath,
                  'filename' : fullpath,
-                 'title'    : filename }
+                 'title'    : filename,
+                 'icon'     : FolderIcon}
         photo = Photo()
         photo.update(data)
         self.photos.append(photo)
@@ -121,3 +122,8 @@ class PhotoSourceOptionsDirUI(PhotoSourceOptionsUI):
     def _set_default(self):
         state = self.options.get('subfolders', True)
         self.gui.get_widget('checkbutton_dir').set_active(state)
+
+class FolderIcon(SourceIcon):
+
+    def __init__(self):
+        self.icon_name = 'folder'

@@ -36,7 +36,8 @@ class TumblrPhotoList(PhotoList):
                     'id'         : s['id'],
                     'owner_name' : owner,
                     'title'      : s['photo-caption'],
-                    'page_url'   : s['url'] }
+                    'page_url'   : s['url'],
+                    'icon'       : TumblrIcon}
 
             photo = Photo()
             photo.update(data)
@@ -54,3 +55,9 @@ class PhotoSourceTumblrUI(PhotoSourceUI):
     def _set_target_default(self):
         if self.data:
             self.target_widget.set_text(self.data[1])
+
+class TumblrIcon(SourceWebIcon):
+
+    def __init__(self):
+        self.icon_name = 'tumblr.gif'
+        self.icon_url = 'http://assets.tumblr.com/images/favicon.gif'

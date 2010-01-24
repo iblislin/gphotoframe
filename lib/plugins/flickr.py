@@ -156,6 +156,6 @@ class PluginFlickrDialog(PluginDialog):
 
 class FlickrIcon(SourceWebIcon):
 
-    def _set_icon_name(self):
+    def __init__(self):
         self.icon_name = 'flickr.ico'
         self.icon_url = 'http://www.flickr.com/favicon.ico'
