@@ -34,7 +34,8 @@ class RSSPhotoList(PhotoList):
                         'owner_name' : rss.feed.title,
                         'owner'      : rss.feed.title,
                         'title'      : entry.title,
-                        'page_url'   : entry.link, }
+                        'page_url'   : entry.link, 
+                        'icon'       : RSSIcon}
 
                 photo = Photo()
                 photo.update(data)
@@ -58,6 +59,11 @@ class PhotoSourceRSSUI(PhotoSourceUI):
     def _set_target_default(self):
         if self.data:
             self.target_widget.set_text(self.data[1])
+
+class RSSIcon(SourceLocalIcon):
+
+    def __init__(self):
+        self.icon_name = 'rss-16.png'
 
 class FeedParserPlus(feedparser._StrictFeedParser):
 	 

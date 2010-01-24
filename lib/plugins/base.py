@@ -202,6 +202,12 @@ class SourceIcon(object):
         icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
         return icon_path
 
+class SourceLocalIcon(SourceIcon):
+
+    def _get_icon_file(self):
+        icon_path = os.path.join(constants.SHARED_DATA_DIR, self.icon_name)
+        return icon_path
+
 class SourceWebIcon(SourceIcon):
 
     def _get_icon_file(self):
