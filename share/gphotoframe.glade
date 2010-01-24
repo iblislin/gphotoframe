@@ -455,9 +455,11 @@
                                   <widget class="GtkTreeView" id="treeview1">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="has_tooltip">True</property>
                                     <property name="reorderable">True</property>
                                     <property name="rules_hint">True</property>
                                     <signal name="cursor_changed" handler="on_treeview1_cursor_changed"/>
+                                    <signal name="query_tooltip" handler="on_treeview1_query_tooltip"/>
                                   </widget>
                                 </child>
                               </widget>
