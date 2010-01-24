@@ -20,21 +20,21 @@ class FSpotPhotoList(PhotoList):
     def prepare(self):
         self.db = FSpotDB()
         if self.db:
-            self.photos = self.count()
+            self.photos = self._count()
             self.rnd = WeightedRandom(self.photos)
 
-    def count(self):
+    def _count(self):
         rate_list = []
-        sql = self.sql_statement('COUNT(*)')
+        sql = self._sql_statement('COUNT(*)')
         self.total = self.db.fetchone(sql) if self.db.is_accessible else 0
         if self.total == 0: return rate_list
 
         rate_min = self.options.get('rate_min', 0)
-        rate_max = self.options.get('rate_max', 5) + 1
+        rate_max = self.options.get('rate_max', 5)
         weight = self.options.get('rate_weight', 2)
 
-        for rate in xrange(rate_min, rate_max):
-            sql = self.sql_statement('COUNT(*)', rate)
+        for rate in xrange(rate_min, rate_max+1):
+            sql = self._sql_statement('COUNT(*)', rate)
             total_in_this = self.db.fetchone(sql)
             if total_in_this:
                 rate_info = Rate(rate, total_in_this, self.total, weight)
@@ -45,7 +45,7 @@ class FSpotPhotoList(PhotoList):
     def get_photo(self, cb):
         rate = self.rnd()
         columns = 'base_uri, filename' if self.db.is_new else 'uri'
-        sql = self.sql_statement(columns, rate.name)
+        sql = self._sql_statement(columns, rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
 
         url = ''.join(self.db.fetchall(sql)[0])
@@ -70,7 +70,7 @@ class FSpotPhotoList(PhotoList):
             _('Period'), period)
         return tip
 
-    def sql_statement(self, select, rate_name=None):
+    def _sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
 
         if self.target:
@@ -172,7 +172,7 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
 class FSpotDB(object):
 
     def __init__(self):
-        db_file, self.is_new = self.get_db_file()
+        db_file, self.is_new = self._get_db_file()
         self.is_accessible = True if db_file else False
         if db_file:
             self.db = sqlite3.connect(db_file) 
@@ -188,7 +188,7 @@ class FSpotDB(object):
     def close(self):
         self.db.close()
 
-    def get_db_file(self):
+    def _get_db_file(self):
         db_file_base = 'f-spot/photos.db'
         db_file_new = os.path.join(xdg_config_home, db_file_base)
         db_file_old = os.path.join(os.environ['HOME'], '.gnome2', db_file_base)
