@@ -14,18 +14,11 @@ class PhotoImage(object):
         self.image.show()
         self.window = photoframe.window
 
-        self.window.set_property("has-tooltip", True)
-        self.window.connect("query-tooltip", self._query_tooltip_cb)
-
         self.conf = GConf()
         self.photoframe = photoframe
 
         self.max_w = float(w)
         self.max_h = float(h)
-
-    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
-        pixbuf = self.photo.get('icon')().get_pixbuf()
-        tooltip.set_icon(pixbuf)
 
     def set_photo(self, photo=False):
         if photo is not False:

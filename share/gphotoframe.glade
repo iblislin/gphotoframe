@@ -4,15 +4,17 @@
   <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="window">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_STRUCTURE_MASK</property>
+    <property name="has_tooltip">True</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
-    <signal name="button_press_event" handler="on_window_button_press_event"/>
-    <signal name="destroy" handler="on_window_destroy"/>
-    <signal name="key_press_event" handler="on_window_key_press_event"/>
-    <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
-    <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
-    <signal name="realize" handler="on_window_realize"/>
     <signal name="window_state_event" handler="on_window_window_state_event"/>
+    <signal name="realize" handler="on_window_realize"/>
+    <signal name="destroy" handler="on_window_destroy"/>
+    <signal name="button_press_event" handler="on_window_button_press_event"/>
+    <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
+    <signal name="query_tooltip" handler="on_window_query_tooltip"/>
+    <signal name="key_press_event" handler="on_window_key_press_event"/>
+    <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
     <child>
       <placeholder/>
     </child>

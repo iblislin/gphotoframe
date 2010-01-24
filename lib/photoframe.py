@@ -121,6 +121,7 @@ class PhotoFrame(object):
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
+            "on_window_query_tooltip"      : self._query_tooltip_cb,
             # "on_window_destroy" : reactor.stop,
             }
         gui.signal_autoconnect(dic)
@@ -183,6 +184,10 @@ class PhotoFrame(object):
             self.window.stick()
         else:
             self.window.unstick()
+
+    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+        pixbuf = self.photoimage.photo.get('icon')().get_pixbuf()
+        tooltip.set_icon(pixbuf)
 
 class PhotoFrameFullScreen(PhotoFrame):
     def set_photo_max_size(self):
