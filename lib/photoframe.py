@@ -249,7 +249,7 @@ class PhotoFrameScreenSaver(object):
         self.window.add(self.photoimage.image)
  
     def set_photo(self, photo, change=True):
-        self.photoimage.set_photo(photo)
+        return self.photoimage.set_photo(photo)
 
     def set_photo_max_size(self):
         return self.window.w, self.window.h

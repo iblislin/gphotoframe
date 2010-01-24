@@ -8,12 +8,19 @@
 	* plugins/*.py: Introduced xdg.IconTheme.getIconPath.  Support for
 	  downloading favicons.
 
+2010-01-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.5 release.
+	* photoframe.py: Fixed a bug (set_photo should return value in
+	  screen saver mode).
+
 2010-01-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, photoimage.py, photoliststore.py: Added GConf
 	  options (aspect_max, aspect_min: aspect = width / height) to
 	  disable display of very tall or wide images. (issue #22) 
 	* config.py: Added set_float & get_float.
+	* photoimage.py: Code refactoring. Added new PhotoImagePixbuf class.
 	* menu.py, base.py, flickr.py, fspot.py, picasa.py: Added basic
 	  support for source icons.
 
