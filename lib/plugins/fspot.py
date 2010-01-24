@@ -230,9 +230,5 @@ class Rate(object):
 
 class FSpotIcon(SourceIcon):
 
-    def get_image(self):
-        theme = gtk.IconTheme()
-        icon = theme.load_icon('f-spot', self.size, gtk.ICON_LOOKUP_USE_BUILTIN)
-        image = gtk.image_new_from_pixbuf(icon)
-
-        return image
+    def _set_icon_name(self):
+        self.icon_name = 'f-spot'

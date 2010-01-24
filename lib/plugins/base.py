@@ -5,6 +5,8 @@ import random
 import gobject
 from gettext import gettext as _
 from xdg.BaseDirectory import xdg_cache_home
+from xdg.IconTheme import getIconPath
+from urlparse import urlparse
 
 from .. import constants
 from ..utils.config import GConf
@@ -186,6 +188,7 @@ class SourceIcon(object):
     def __init__(self, size=16):
         self.size = size
         self.cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
+        self._set_icon_name()
 
     def get_image(self):
         file = self._get_icon_file()
@@ -195,23 +198,32 @@ class SourceIcon(object):
         return image
 
     def _get_icon_file(self):
-        dir = "/usr/share/icons/gnome/"
-        size = "%sx%s" % (self.size, self.size) 
-        file = "mimetypes/image-x-generic.png"
-        
-        full_path = os.path.join(dir, size, file)
-        return full_path
+        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
+        return icon_path
+
+    def _set_icon_name(self):
+        self.icon_name = 'image-x-generic'
 
 class SourceWebIcon(SourceIcon):
 
     def _get_icon_file(self):
-        self._set_file()
-        file = os.path.join(self.cache_dir, self.icon_filename)
+        file = os.path.join(self.cache_dir, self.icon_name)
+
         if not os.access(file, os.R_OK):
-            file = super(FlickrIcon, self)._get_icon_file()
+            self._download_icon()
+
+            super(SourceWebIcon, self)._set_icon_name()
+            file = super(SourceWebIcon, self)._get_icon_file()
 
         return file
 
-    def _set_file(self):
-        pass
+    def _download_icon(self):
+        if not os.access(self.cache_dir, os.W_OK):
+            os.makedirs(self.cache_dir)
 
+        icon_file = os.path.join(self.cache_dir, self.icon_name)
+        urlget = UrlGetWithProxy()
+        d = urlget.downloadPage(self.icon_url, icon_file)
+
+    def _set_icon_name(self):
+        pass
