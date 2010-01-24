@@ -190,13 +190,18 @@ class SourceIcon(object):
 
     def get_image(self, size=16):
         self.size = size
-        self.cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
-
         file = self._get_icon_file()
+
         image = gtk.Image()
         image.set_from_file(file)
-
         return image
+
+    def get_pixbuf(self, size=16):
+        self.size = size
+        file = self._get_icon_file()
+
+        pixbuf = gtk.gdk.pixbuf_new_from_file(file)
+        return pixbuf
 
     def _get_icon_file(self):
         icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
@@ -211,20 +216,21 @@ class SourceLocalIcon(SourceIcon):
 class SourceWebIcon(SourceIcon):
 
     def _get_icon_file(self):
-        file = os.path.join(self.cache_dir, self.icon_name)
+        cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
+        file = os.path.join(cache_dir, self.icon_name)
 
         if not os.access(file, os.R_OK):
-            self._download_icon()
+            self._download_icon(self.icon_url, cache_dir, self.icon_name)
 
             super(SourceWebIcon, self).__init__()
             file = super(SourceWebIcon, self)._get_icon_file()
 
         return file
 
-    def _download_icon(self):
-        if not os.access(self.cache_dir, os.W_OK):
-            os.makedirs(self.cache_dir)
+    def _download_icon(self, icon_url, cache_dir, icon_name):
+        if not os.access(cache_dir, os.W_OK):
+            os.makedirs(cache_dir)
 
-        icon_file = os.path.join(self.cache_dir, self.icon_name)
+        icon_file = os.path.join(cache_dir, icon_name)
         urlget = UrlGetWithProxy()
-        d = urlget.downloadPage(self.icon_url, icon_file)
+        d = urlget.downloadPage(icon_url, icon_file)

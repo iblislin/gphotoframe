@@ -1,5 +1,6 @@
 2010-01-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoimage.py, base.py: Added photo source icons in Tooltips.
 	* base.py, rss.py, rss-16.png: Added RSS icon.
 
 2010-01-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
