@@ -19,12 +19,12 @@ class GConf(object):
     def set_int(self, key, val):
         return self.gconf.set_int(self.dir + key, int(val))
 
-    def get_int(self, key, default = 0):
-        val = self.gconf.get_int(self.dir + key)
-        if val == 0 and default != 0:
-            return default
+    def get_int(self, key, default=None):
+        if self.gconf.get(self.dir + key) is None:
+            val = default
         else:
-            return val
+            val = self.gconf.get_int(self.dir + key)
+        return val
 
     def set_float(self, key, val):
         return self.gconf.set_float(self.dir + key, float(val))
