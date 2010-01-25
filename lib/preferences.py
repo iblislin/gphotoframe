@@ -110,8 +110,8 @@ class PhotoSourceTreeView(PreferencesTreeView):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
 
         self._add_text_column(_("Source"), 0)
-        self._add_text_column(_("Target"), 1)
-        self._add_text_column(_("Argument"), 2, 100, True)
+        self._add_text_column(_("Target"), 1, 150)
+        self._add_text_column(_("Argument"), 2, 100)
         self._add_text_column(_("Weight"), 3)
 
         dic = { 
