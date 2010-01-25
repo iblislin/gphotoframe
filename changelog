@@ -1,5 +1,7 @@
 2010-01-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* rss.py: Added support for images in <content:encoded>, feed
+	  titles in Photo Source Preferences.
 	* photoimage.py, base.py: Added photo source icons in Tooltips.
 	* base.py, rss.py, rss-16.png: Added RSS icon.
 
