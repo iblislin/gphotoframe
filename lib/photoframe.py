@@ -36,6 +36,7 @@ class PhotoFrame(object):
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
         self.conf.set_notify_add('window_fix', self._change_window_fix_cb)
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
+        self.conf.set_notify_add('border_color', self._set_border_color)
 
         self.window = gui.get_widget('window')
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
@@ -87,11 +88,17 @@ class PhotoFrame(object):
         self.window.get_position()
 
     def _set_event_box(self):
-        ebox = gtk.EventBox()
-        ebox.add(self.photoimage.image)
-        ebox.show()
-        self.window.add(ebox)
-        return ebox
+        self.ebox = gtk.EventBox()
+        self.ebox.add(self.photoimage.image)
+        self.ebox.show()
+        self.window.add(self.ebox)
+
+        self._set_border_color()
+
+    def _set_border_color(self, *args):
+        color = self.conf.get_string('border_color')
+        if color:
+            self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
 
     def _set_photoimage(self, max_w, max_h):
         self.photoimage = PhotoImage(self, max_w, max_h)
@@ -201,9 +208,8 @@ class PhotoFrameFullScreen(PhotoFrame):
         self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
 
-    def _set_event_box(self):
-        ebox = super(PhotoFrameFullScreen, self)._set_event_box()
-        ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+    def _set_border_color(self):
+        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
 
     def _set_photoimage(self, max_w, max_h):
         self.photoimage = PhotoImageFullScreen(self, max_w, max_h)
