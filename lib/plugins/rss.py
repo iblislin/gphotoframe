@@ -20,14 +20,17 @@ class RSSPhotoList(PhotoList):
     def _prepare_cb(self, data):
         rss = feedparser.parse(data)
         re_rss = re.compile( "<img [^>]*src=\"?" + 
-                             "([A-Za-z0-9\'~+\-=_.,/%\?!;:@#\*&\(\)]+" +
+                             "([ A-Za-z0-9\'~+\-=_.,/%\?!;:@#\*&\(\)]+" +
                              "\.(jpe?g|png))", re.IGNORECASE)
+        self.options['feed_title'] = rss.feed.title
 
         for num, item in enumerate(rss.entries):
-            m = re_rss.findall(item.description)
+            match = re_rss.findall(item.description)
+            if not match and hasattr(item, 'content'):
+                match = re_rss.findall(item.content[0]['value'])
             entry = rss.entries[num]
 
-            for image in m:
+            for image in match:
                 url = entry.media_content_attrs['url'] \
                     if hasattr(entry, 'media_content_attrs') else image[0]
                 data = {'url'        : url,
@@ -48,7 +51,7 @@ class PhotoSourceRSSUI(PhotoSourceUI):
     def _build_target_widget(self):
         # target widget
         self.target_widget = gtk.Entry()
-        self._set_target_sensitive(_('_Title:'), False)
+        self._set_target_sensitive(_('_Title:'), True)
 
         # argument widget
         self._set_argument_sensitive(_("_URL:"), True)
@@ -58,7 +61,8 @@ class PhotoSourceRSSUI(PhotoSourceUI):
 
     def _set_target_default(self):
         if self.data:
-            self.target_widget.set_text(self.data[1])
+            feed_title = self.data[1] or self.data[4].get('feed_title') or ""
+            self.target_widget.set_text(feed_title)
 
 class RSSIcon(SourceLocalIcon):
 
