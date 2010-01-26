@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-26 12:44+0900\n"
-"PO-Revision-Date: 2010-01-26 12:44+0900\n"
+"POT-Creation-Date: 2010-01-26 17:25+0900\n"
+"PO-Revision-Date: 2010-01-26 17:26+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -217,10 +217,14 @@ msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
 #: ../share/gphotoframe.schemas.in.h:15
+msgid "Photo source default weight"
+msgstr "写真ソースのデフォルトの重み"
+
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:16
+#: ../share/gphotoframe.schemas.in.h:17
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
