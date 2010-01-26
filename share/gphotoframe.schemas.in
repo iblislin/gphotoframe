@@ -49,6 +49,17 @@
       </locale>
     </schema>
 
+    <schema>
+      <key>/schemas/apps/gphotoframe/default_weight</key>
+      <applyto>/apps/gphotoframe/default_weight</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>3</default>
+      <locale name="C">
+        <short>Photo source default weight</short>
+        <long>Photo source default weight</long>
+      </locale>
+    </schema>
 
     <schema>
       <key>/schemas/apps/gphotoframe/fullscreen</key>

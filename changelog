@@ -2,7 +2,7 @@
 
 	* gphotoframe.schemas.in, setup.cfg: Added Gconf schemas file.
 	* POTFILES.in, po/ja.po: Updated translation.
-
+	
 2010-01-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* config.py (GConf.get_int): Fixed a bug. If the key is invalid,
