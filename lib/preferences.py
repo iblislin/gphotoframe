@@ -26,6 +26,10 @@ class Preferences(object):
         val = self.conf.get_int('interval', 30)
         spinbutton1.set_value(val)
 
+        spinbutton2 = gui.get_widget('spinbutton2')
+        val = self.conf.get_int('interval_fullscreen', 10)
+        spinbutton2.set_value(val)
+
         checkbutton1 = gui.get_widget('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
         checkbutton1.set_active(sticky)
@@ -50,6 +54,7 @@ class Preferences(object):
         dic = { 
             "on_close_button"              : self._close_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
+            "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
@@ -58,6 +63,10 @@ class Preferences(object):
     def _interval_changed_cb(self, widget):
         val = widget.get_value_as_int()
         self.conf.set_int('interval', val)
+
+    def _interval_fullscreen_changed_cb(self, widget):
+        val = widget.get_value_as_int()
+        self.conf.set_int('interval_fullscreen', val)
 
     def _sticky_toggled_cb(self, widget):
         sticky = widget.get_active()

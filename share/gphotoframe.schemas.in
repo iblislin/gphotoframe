@@ -80,8 +80,20 @@
       <type>int</type>
       <default>30</default>
       <locale name="C">
-        <short>Interval seconds</short>
-        <long>Interval seconds</long>
+        <short>Interval seconds in window mode</short>
+        <long>Interval seconds in window mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/interval_fullscreen</key>
+      <applyto>/apps/gphotoframe/interval_fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>10</default>
+      <locale name="C">
+        <short>Interval seconds in full screen mode</short>
+        <long>Interval seconds in full screen mode</long>
       </locale>
     </schema>
 
