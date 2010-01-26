@@ -49,7 +49,15 @@ class PhotoListStore(gtk.ListStore):
 
     def _start_timer(self):
         state = self._change_photo()
-        interval = self.conf.get_int('interval', 30) if state else 5
+
+        if state is False:
+            interval = 5
+        elif self.conf.get_bool('fullscreen'):
+            interval = self.conf.get_int('interval_fullscreen', 10)
+        else:
+            interval = self.conf.get_int('interval', 30)
+        
+        print interval
         self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
         return False
 

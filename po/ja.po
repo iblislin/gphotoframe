@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-26 17:25+0900\n"
-"PO-Revision-Date: 2010-01-26 17:26+0900\n"
+"POT-Creation-Date: 2010-01-27 00:54+0900\n"
+"PO-Revision-Date: 2010-01-27 00:55+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,8 +37,8 @@ msgid "<b>Desktop</b>"
 msgstr "<b>デスクトップ</b>"
 
 #: ../share/gphotoframe.glade.h:2
-msgid "<b>General</b>"
-msgstr "<b>全般</b>"
+msgid "<b>Interval</b>"
+msgstr "<b>表示間隔</b>"
 
 #: ../share/gphotoframe.glade.h:3
 msgid "<b>Photo Sources</b>"
@@ -77,86 +77,90 @@ msgid "General"
 msgstr "全般"
 
 #: ../share/gphotoframe.glade.h:14
+msgid "In _Full Screen Mode:"
+msgstr "フルスクリーン表示時(_F):"
+
+#: ../share/gphotoframe.glade.h:15
+msgid "In _Window Mode:"
+msgstr "ウィンドウ表示時(_W)"
+
+#: ../share/gphotoframe.glade.h:16
 msgid "Ma_x Rate:"
 msgstr "最大の評価(_X):"
 
-#: ../share/gphotoframe.glade.h:15
+#: ../share/gphotoframe.glade.h:17
 msgid "Mi_n Rate:"
 msgstr "最小の評価(_N):"
 
-#: ../share/gphotoframe.glade.h:16
+#: ../share/gphotoframe.glade.h:18
 msgid "Open _Recent"
 msgstr "最近表示した写真(_R)"
 
-#: ../share/gphotoframe.glade.h:17
+#: ../share/gphotoframe.glade.h:19
 msgid "Photo Frame Preferences"
 msgstr "写真フレームの設定"
 
-#: ../share/gphotoframe.glade.h:18
+#: ../share/gphotoframe.glade.h:20
 msgid "Photo Frame for GNOME Desktop"
 msgstr "GNOME デスクトップ向けの写真フレームです。"
 
-#: ../share/gphotoframe.glade.h:19
+#: ../share/gphotoframe.glade.h:21
 msgid "Photo Source"
 msgstr "写真のソース"
 
-#: ../share/gphotoframe.glade.h:20
+#: ../share/gphotoframe.glade.h:22
 msgid "Photos"
 msgstr "写真"
 
-#: ../share/gphotoframe.glade.h:21
+#: ../share/gphotoframe.glade.h:23
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: ../share/gphotoframe.glade.h:22
+#: ../share/gphotoframe.glade.h:24
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.glade.h:23 ../lib/plugins/base.py:116
+#: ../share/gphotoframe.glade.h:25 ../lib/plugins/base.py:116
 msgid "_Argument:"
 msgstr "引数(_A):"
 
-#: ../share/gphotoframe.glade.h:24
+#: ../share/gphotoframe.glade.h:26
 msgid "_Auto Start"
 msgstr "ログイン時に自動起動する(_A)"
 
-#: ../share/gphotoframe.glade.h:25
+#: ../share/gphotoframe.glade.h:27
 msgid "_Full Screen"
 msgstr "フルスクリーン表示(_F)"
 
-#: ../share/gphotoframe.glade.h:26
+#: ../share/gphotoframe.glade.h:28
 msgid "_Include subfolders"
 msgstr "サブフォルダを含める(_I)"
 
-#: ../share/gphotoframe.glade.h:27
-msgid "_Interval:"
-msgstr "表示間隔(_I):"
-
-#: ../share/gphotoframe.glade.h:28
+#: ../share/gphotoframe.glade.h:29
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../share/gphotoframe.glade.h:29
+#: ../share/gphotoframe.glade.h:30
 msgid "_Period:"
 msgstr "期間(_P):"
 
-#: ../share/gphotoframe.glade.h:30
+#: ../share/gphotoframe.glade.h:31
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:31 ../lib/plugins/base.py:111
+#: ../share/gphotoframe.glade.h:32 ../lib/plugins/base.py:111
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.glade.h:32 ../lib/plugins/flickr.py:117
+#: ../share/gphotoframe.glade.h:33 ../lib/plugins/flickr.py:117
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../share/gphotoframe.glade.h:33
+#: ../share/gphotoframe.glade.h:34
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../share/gphotoframe.glade.h:34
+#: ../share/gphotoframe.glade.h:35
 msgid "seconds"
 msgstr "秒"
 
@@ -169,62 +173,66 @@ msgid "Fix the photo frame on the root window"
 msgstr "写真フレームをデスクトップに固定します"
 
 #: ../share/gphotoframe.schemas.in.h:3
-msgid "Interval seconds"
-msgstr "表示間隔 (秒)"
+msgid "Interval seconds in full screen mode"
+msgstr "フルスクリーン表示時の表示間隔 (秒)"
 
 #: ../share/gphotoframe.schemas.in.h:4
+msgid "Interval seconds in window mode"
+msgstr "ウィンドウ表示時の表示間隔 (秒)"
+
+#: ../share/gphotoframe.schemas.in.h:5
 msgid "Max aspect ratio for Photo"
 msgstr "表示する写真の最大アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:5
+#: ../share/gphotoframe.schemas.in.h:6
 msgid "Minimum aspect ratio for Photo"
 msgstr "表示する写真の最小アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:6
+#: ../share/gphotoframe.schemas.in.h:7
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:7
+#: ../share/gphotoframe.schemas.in.h:8
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:8
+#: ../share/gphotoframe.schemas.in.h:9
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:9
+#: ../share/gphotoframe.schemas.in.h:10
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:10
+#: ../share/gphotoframe.schemas.in.h:11
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:11
+#: ../share/gphotoframe.schemas.in.h:12
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:12
+#: ../share/gphotoframe.schemas.in.h:13
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
 
-#: ../share/gphotoframe.schemas.in.h:13
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "Photo image max height"
 msgstr "写真の最大表示高"
 
-#: ../share/gphotoframe.schemas.in.h:14
+#: ../share/gphotoframe.schemas.in.h:15
 msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
-#: ../share/gphotoframe.schemas.in.h:15
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
-#: ../share/gphotoframe.schemas.in.h:16
+#: ../share/gphotoframe.schemas.in.h:17
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:17
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
@@ -232,19 +240,19 @@ msgstr "最後に選択された写真ソース"
 msgid "(No Title)"
 msgstr "(無題)"
 
-#: ../lib/preferences.py:112
+#: ../lib/preferences.py:121
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:113
+#: ../lib/preferences.py:122
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:114
+#: ../lib/preferences.py:123
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:115
+#: ../lib/preferences.py:124
 msgid "Weight"
 msgstr "重み"
 
@@ -289,3 +297,6 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:57
 msgid "_URL:"
 msgstr "URL(_U)"
+
+#~ msgid "_Interval:"
+#~ msgstr "表示間隔(_I):"

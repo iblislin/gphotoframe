@@ -1,3 +1,8 @@
+2010-01-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, photoliststore.py, gphotoframe.glade: Added new
+	  option "Display Interval in Full Screen Mode".
+
 2010-01-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences.py (PhotoSourceDialog.run): Added new GConf key
