@@ -1,3 +1,8 @@
+2010-01-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr.py (FlickrAPI.get_url): Fixed a bug. "Interestingness"
+	  API doesn't need any argument. (issue #37)
+
 2010-01-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* config.py (GConf.get_int): Fixed a bug. If the key is invalid,

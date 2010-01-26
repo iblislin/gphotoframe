@@ -103,7 +103,8 @@ class FlickrAPI(object):
                         'nojsoncallback' : '1' }
 
         arg = self._url_argument(argument)
-        url = url + urllib.urlencode(self.values) if arg else None
+        url = url + urllib.urlencode(self.values) \
+            if arg or target == 'Interestingness' else None
         return url
 
     def _url_argument(self, argument):
