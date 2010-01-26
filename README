@@ -1,5 +1,7 @@
 GNOME Photo Frame - A Photo Frame Gadget for the GNOME Desktop. 
 
+* About
+
 It shows pictures from:
 
 - Local folders
@@ -22,14 +24,14 @@ It shows pictures from:
 
 - simplejson: for flickr and Tumblr plugins
 - feedparser: for RSS plugin
-- gdata-python-client: for Picasa Web plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web plugin
 
 ** Installation
 
 You can install with the setup script.
 
-  python ./setup.py install --force
+  sudo python ./setup.py install --force
+  sudo gconf-schemas --register gphotoframe.schemas
 
 Or, you can launch without installation. (Some functions are restricted.)
 

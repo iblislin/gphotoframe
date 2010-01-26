@@ -4,6 +4,8 @@
 	  "default_weight".  The default value was changed to 3.
 	* flickr.py (FlickrAPI.get_url): Fixed a bug. "Interestingness"
 	  API doesn't need any argument. (issue #37)
+	* gphotoframe.schemas.in, setup.cfg: Added Gconf schemas file.
+	* POTFILES.in, po/ja.po: Updated translation.
 
 2010-01-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

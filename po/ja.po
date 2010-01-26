@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-24 02:45+0900\n"
-"PO-Revision-Date: 2010-01-24 02:47+0900\n"
+"POT-Creation-Date: 2010-01-26 12:44+0900\n"
+"PO-Revision-Date: 2010-01-26 12:44+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "全てのワークスペースに配置する(_V)"
 
 #: ../share/gphotoframe.glade.h:12
 msgid "Fi_x Photo Frame"
-msgstr "写真フレームの固定 (_X)"
+msgstr "写真フレームの固定(_X)"
 
 #: ../share/gphotoframe.glade.h:13
 msgid "General"
@@ -112,7 +112,7 @@ msgstr "プラグイン"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.glade.h:23 ../lib/plugins/base.py:113
+#: ../share/gphotoframe.glade.h:23 ../lib/plugins/base.py:116
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -144,11 +144,11 @@ msgstr "期間(_P):"
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:31 ../lib/plugins/base.py:108
+#: ../share/gphotoframe.glade.h:31 ../lib/plugins/base.py:111
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.glade.h:32 ../lib/plugins/flickr.py:115
+#: ../share/gphotoframe.glade.h:32 ../lib/plugins/flickr.py:117
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
@@ -160,7 +160,71 @@ msgstr "重み(_W):"
 msgid "seconds"
 msgstr "秒"
 
-#: ../lib/menu.py:87
+#: ../share/gphotoframe.schemas.in.h:1
+msgid "Always on Visible Workspace"
+msgstr "全てのワークスペースに配置します"
+
+#: ../share/gphotoframe.schemas.in.h:2
+msgid "Fix the photo frame on the root window"
+msgstr "写真フレームをデスクトップに固定します"
+
+#: ../share/gphotoframe.schemas.in.h:3
+msgid "Interval seconds"
+msgstr "表示間隔 (秒)"
+
+#: ../share/gphotoframe.schemas.in.h:4
+msgid "Max aspect ratio for Photo"
+msgstr "表示する写真の最大アスペクト率"
+
+#: ../share/gphotoframe.schemas.in.h:5
+msgid "Minimum aspect ratio for Photo"
+msgstr "表示する写真の最小アスペクト率"
+
+#: ../share/gphotoframe.schemas.in.h:6
+msgid "Photo frame X position"
+msgstr "写真フレームの X 座標"
+
+#: ../share/gphotoframe.schemas.in.h:7
+msgid "Photo frame Y position"
+msgstr "写真フレームの Y 座標"
+
+#: ../share/gphotoframe.schemas.in.h:8
+msgid "Photo frame border color"
+msgstr "写真フレームのボーダー色"
+
+#: ../share/gphotoframe.schemas.in.h:9
+msgid "Photo frame border width"
+msgstr "写真フレームのボーダーの幅"
+
+#: ../share/gphotoframe.schemas.in.h:10
+msgid "Photo frame fix mode"
+msgstr "写真フレームの固定モード"
+
+#: ../share/gphotoframe.schemas.in.h:11
+msgid "Photo frame full screen mode"
+msgstr "写真フレームのフルスクリーン表示"
+
+#: ../share/gphotoframe.schemas.in.h:12
+msgid "Photo frame sticky mode"
+msgstr "写真フレームのスティッキーモード"
+
+#: ../share/gphotoframe.schemas.in.h:13
+msgid "Photo image max height"
+msgstr "写真の最大表示高"
+
+#: ../share/gphotoframe.schemas.in.h:14
+msgid "Photo image max width"
+msgstr "写真の最大表示幅"
+
+#: ../share/gphotoframe.schemas.in.h:15
+msgid "Recent opend preferences page number"
+msgstr "設定画面で最後に開かれたペイン"
+
+#: ../share/gphotoframe.schemas.in.h:16
+msgid "Recent selected photo source"
+msgstr "最後に選択された写真ソース"
+
+#: ../lib/menu.py:88
 msgid "(No Title)"
 msgstr "(無題)"
 
@@ -180,44 +244,44 @@ msgstr "引数"
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/base.py:140
+#: ../lib/plugins/base.py:143
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/flickr.py:126
+#: ../lib/plugins/flickr.py:128
 msgid "_Group ID:"
 msgstr "グループ ID(_G):"
 
-#: ../lib/plugins/flickr.py:138
+#: ../lib/plugins/flickr.py:140
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/fspot.py:66
+#: ../lib/plugins/fspot.py:67
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot.py:66
+#: ../lib/plugins/fspot.py:67
 msgid "All"
 msgstr "すべて"
 
-#: ../lib/plugins/fspot.py:69
+#: ../lib/plugins/fspot.py:70
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot.py:70
+#: ../lib/plugins/fspot.py:71
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/tumblr.py:51
+#: ../lib/plugins/tumblr.py:52
 msgid "_User Name:"
 msgstr "ユーザ名(_U):"
 
-#: ../lib/plugins/rss.py:50
+#: ../lib/plugins/rss.py:54
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:53
+#: ../lib/plugins/rss.py:57
 msgid "_URL:"
 msgstr "URL(_U)"
