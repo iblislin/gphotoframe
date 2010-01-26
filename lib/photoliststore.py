@@ -57,7 +57,6 @@ class PhotoListStore(gtk.ListStore):
         else:
             interval = self.conf.get_int('interval', 30)
         
-        print interval
         self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
         return False
 
