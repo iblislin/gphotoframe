@@ -34,6 +34,7 @@
     <property name="authors">Yoshizumi Endo &lt;y-endo@ceres.dti.ne.jp&gt;</property>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox1">
+        <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <widget class="GtkHButtonBox" id="dialog-action_area1"/>
           <packing>
@@ -132,6 +133,7 @@
     <child>
       <widget class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">12</property>
         <child>
           <widget class="GtkNotebook" id="notebook1">
@@ -141,6 +143,7 @@
               <widget class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
                 <property name="border_width">12</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
                   <widget class="GtkFrame" id="frame1">
@@ -155,6 +158,7 @@
                         <child>
                           <widget class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <widget class="GtkTable" id="table1">
@@ -349,6 +353,7 @@
                             <child>
                               <widget class="GtkVButtonBox" id="vbuttonbox2">
                                 <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <property name="layout_style">start</property>
                                 <child>
@@ -428,6 +433,7 @@
               <widget class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
                 <property name="border_width">12</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
                   <widget class="GtkFrame" id="frame3">
@@ -470,6 +476,7 @@
                             <child>
                               <widget class="GtkVButtonBox" id="vbuttonbox1">
                                 <property name="visible">True</property>
+                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
                                 <property name="layout_style">start</property>
                                 <child>
@@ -616,6 +623,7 @@
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <widget class="GtkNotebook" id="notebook2">
