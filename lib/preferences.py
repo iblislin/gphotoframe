@@ -257,7 +257,8 @@ class PhotoSourceDialog(object):
             argument_widget.set_text(self.data[2])
 
         # weight
-        weight = self.data[3] if self.data else 1
+        weight = self.data[3] if self.data \
+            else self.conf.get_int('default_weight', 3)
         weight_widget = self.gui.get_widget('spinbutton3')
         weight_widget.set_value(weight)
 

@@ -1,5 +1,7 @@
 2010-01-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences.py (PhotoSourceDialog.run): Added new GConf key
+	  "default_weight".  The default value was changed to 3.
 	* flickr.py (FlickrAPI.get_url): Fixed a bug. "Interestingness"
 	  API doesn't need any argument. (issue #37)
 
