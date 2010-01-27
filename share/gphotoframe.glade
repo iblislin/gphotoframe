@@ -65,6 +65,22 @@
       </widget>
     </child>
     <child>
+      <widget class="GtkImageMenuItem" id="menuitem11">
+        <property name="label" translatable="yes">_Next Photo</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">False</property>
+        <signal name="activate" handler="on_next_photo"/>
+        <child internal-child="image">
+          <widget class="GtkImage" id="image1">
+            <property name="visible">True</property>
+            <property name="stock">gtk-go-forward</property>
+            <property name="icon-size">1</property>
+          </widget>
+        </child>
+      </widget>
+    </child>
+    <child>
       <widget class="GtkSeparatorMenuItem" id="menuitem9">
         <property name="visible">True</property>
       </widget>

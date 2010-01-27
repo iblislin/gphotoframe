@@ -39,7 +39,7 @@ class PhotoListStore(gtk.ListStore):
         self.get_value(iter, 5).exit() # photolist object
         super(PhotoListStore, self).remove(iter)
 
-    def next_photo(self):
+    def next_photo(self, *args):
         gobject.source_remove(self._timer)
         self._start_timer()
 
