@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-27 00:54+0900\n"
-"PO-Revision-Date: 2010-01-27 00:55+0900\n"
+"POT-Creation-Date: 2010-01-27 11:47+0900\n"
+"PO-Revision-Date: 2010-01-27 11:49+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -137,30 +137,34 @@ msgid "_Include subfolders"
 msgstr "サブフォルダを含める(_I)"
 
 #: ../share/gphotoframe.glade.h:29
+msgid "_Next Photo"
+msgstr "次の写真(_N)"
+
+#: ../share/gphotoframe.glade.h:30
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../share/gphotoframe.glade.h:30
+#: ../share/gphotoframe.glade.h:31
 msgid "_Period:"
 msgstr "期間(_P):"
 
-#: ../share/gphotoframe.glade.h:31
+#: ../share/gphotoframe.glade.h:32
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:32 ../lib/plugins/base.py:111
+#: ../share/gphotoframe.glade.h:33 ../lib/plugins/base.py:111
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.glade.h:33 ../lib/plugins/flickr.py:117
+#: ../share/gphotoframe.glade.h:34 ../lib/plugins/flickr.py:117
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../share/gphotoframe.glade.h:34
+#: ../share/gphotoframe.glade.h:35
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../share/gphotoframe.glade.h:35
+#: ../share/gphotoframe.glade.h:36
 msgid "seconds"
 msgstr "秒"
 
