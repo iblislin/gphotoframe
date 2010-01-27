@@ -2,6 +2,7 @@
 
 	* preferences.py, photoliststore.py, gphotoframe.glade: Added new
 	  option "Display Interval in Full Screen Mode".
+	* folder.py: Set default folder to the xdg user dir (Pictures).
 
 2010-01-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

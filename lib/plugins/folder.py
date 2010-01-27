@@ -4,6 +4,7 @@ import random
 
 from twisted.internet import threads
 import gtk
+import glib
 
 from base import *
 from ..utils.inotify import Inotify
@@ -104,7 +105,11 @@ class PhotoSourceDirUI(PhotoSourceUI):
         self._set_target_sensitive(state=True)
 
     def _set_target_default(self):
-        folder = self.data[1] if self.data else os.environ['HOME']
+        try:
+            default = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
+        except:
+            default = os.environ['HOME']
+        folder = self.data[1] if self.data else default
         self.target_widget.set_current_folder(folder)
 
     def _make_options_ui(self):
