@@ -4,6 +4,7 @@ Version=1.0
 _Name=Photo Frame
 _Comment=Show photos on Desktop
 _GenericName=Image Viewer
+Icon=gphotoframe
 Exec=gphotoframe
 StartupNotify=true
 Terminal=false
