@@ -17,12 +17,6 @@ Overall, Gnome Photo Frame is licensed the following terms:
 
 The following files are licensed under the following term:
 
-  The lib/extras/build_i18n.py file (a modified version of
-  DistUtilsExtra.command.build_i18n):
-
-  Copyright (c) 2009 Yoshizumi Endo.
-  Copyright (c) 2007, 2008 Sebastian Heinlein.
-
   The share/rss*.png files from Evolution RSS Readers:
 
   Copyright (c) 2007-2008  Lucian Langa

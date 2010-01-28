@@ -4,7 +4,6 @@ import os
 from distutils.core import setup
 from DistUtilsExtra.command import *
 import lib.constants as constants
-import lib.extras.build_i18n
 
 os.chmod("share/gphotoframe.glade", 0644)
 
