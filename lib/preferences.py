@@ -134,11 +134,8 @@ class PreferencesTreeView(object):
 class PhotoSourceTreeView(PreferencesTreeView):
     """Photo Source TreeView"""
 
-    def __init__(self, gui2, widget, liststore, parent):
+    def __init__(self, gui, widget, liststore, parent):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
-#        gui = gtk.Builder()
-#        gui.add_objects_from_file(constants.GLADE_FILE, ["preferences"])
-
         self._add_text_column(_("Source"), 0)
         self._add_text_column(_("Target"), 1, 150)
         self._add_text_column(_("Argument"), 2, 100)
