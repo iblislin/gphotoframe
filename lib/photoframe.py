@@ -124,8 +124,16 @@ class PhotoFrame(object):
             "on_window_window_state_event" : self._window_state_cb,
             "on_window_query_tooltip"      : self._query_tooltip_cb,
             # "on_window_destroy" : reactor.stop,
+
+            "on_window_key_press_event" : self._none,
+            "on_window_motion_notify_event" : self._none,
+            "on_window_realize" : self._none,
+            "on_window_destroy" : self._none,
             }
         gui.connect_signals(dic)
+
+    def _none(self, *args):
+        pass
 
     def _toggle_fullscreen(self, *args):
         state = not self.conf.get_bool('fullscreen')
@@ -206,10 +214,15 @@ class PhotoFrameFullScreen(PhotoFrame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
 
     def _set_signal_cb(self, gui):
-        super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
+        # super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
         cursor = Cursor()
         dic = { 
+            "on_window_button_press_event" : self._check_button_cb,
+            "on_window_leave_notify_event" : self._save_geometry_cb,
+            "on_window_window_state_event" : self._window_state_cb,
+            "on_window_query_tooltip"      : self._query_tooltip_cb,
+
             "on_window_key_press_event" : self._keypress_cb,
             "on_window_button_press_event" : cursor.show_cb,
             "on_window_motion_notify_event" : cursor.show_cb,
