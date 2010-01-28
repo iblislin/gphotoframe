@@ -13,9 +13,10 @@ class PhotoImage(object):
     def __init__(self, photoframe, w, h):
         self.image = gtk.Image()
         self.image.show()
-        self.window = photoframe.window
 
+        self.window = photoframe.window
         self.photoframe = photoframe
+        self.conf = GConf()
 
         self.max_w = w
         self.max_h = h
@@ -24,7 +25,9 @@ class PhotoImage(object):
         if photo is not False:
             self.photo = photo
 
-        pixbuf = PhotoImagePixbuf(self.window, self.max_w, self.max_h)
+        width, height = self._get_max_display_size()
+        pixbuf = PhotoImagePixbuf(self.window, width, height)
+
         if pixbuf.set(self.photo) is False:
             return False
 
@@ -53,6 +56,11 @@ class PhotoImage(object):
         icon = self.photo.get('icon')
         pixbuf = icon().get_pixbuf()
         return pixbuf
+
+    def _get_max_display_size(self):
+        width = self.conf.get_int('max_width', 400)
+        height = self.conf.get_int('max_height', 400)
+        return width, height
 
     def _set_tips(self, photo):
         if photo:
@@ -165,6 +173,11 @@ class PhotoImagePixbuf(object):
         return pixbuf
 
 class PhotoImageFullScreen(PhotoImage):
+
+    def _get_max_display_size(self):
+        width = self.max_w
+        height = self.max_h
+        return width, height
 
     def _set_tips(self, photo):
         pass

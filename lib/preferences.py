@@ -30,6 +30,9 @@ class Preferences(object):
         val = self.conf.get_int('interval_fullscreen', 10)
         spinbutton2.set_value(val)
 
+        self._set_spinbutton_value(gui, 'spinbutton_w', 'max_width', 400)
+        self._set_spinbutton_value(gui, 'spinbutton_h', 'max_height', 300)
+
         checkbutton1 = gui.get_widget('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
         checkbutton1.set_active(sticky)
@@ -55,6 +58,8 @@ class Preferences(object):
             "on_close_button"              : self._close_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
             "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
+            "on_spinbutton_w_value_changed" : self._width_changed_cb,
+            "on_spinbutton_h_value_changed" : self._height_changed_cb,
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
@@ -67,6 +72,14 @@ class Preferences(object):
     def _interval_fullscreen_changed_cb(self, widget):
         val = widget.get_value_as_int()
         self.conf.set_int('interval_fullscreen', val)
+
+    def _width_changed_cb(self, widget):
+        val = widget.get_value_as_int()
+        self.conf.set_int('max_width', val)
+
+    def _height_changed_cb(self, widget):
+        val = widget.get_value_as_int()
+        self.conf.set_int('max_height', val)
 
     def _sticky_toggled_cb(self, widget):
         sticky = widget.get_active()
@@ -82,6 +95,11 @@ class Preferences(object):
 
         self.photolist.save_gconf()
         self.prefs.destroy()
+
+    def _set_spinbutton_value(self, gui, widget, key, default_value):
+        spinbutton = gui.get_widget(widget)
+        value = self.conf.get_int(key, default_value)
+        spinbutton.set_value(value)
 
 class PreferencesTreeView(object):
     """Preferences Tree View"""

@@ -296,6 +296,127 @@
                   </packing>
                 </child>
                 <child>
+                  <widget class="GtkFrame" id="frame5">
+                    <property name="visible">True</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">none</property>
+                    <child>
+                      <widget class="GtkAlignment" id="alignment5">
+                        <property name="visible">True</property>
+                        <property name="top_padding">6</property>
+                        <property name="left_padding">12</property>
+                        <child>
+                          <widget class="GtkTable" id="table2">
+                            <property name="visible">True</property>
+                            <property name="n_rows">2</property>
+                            <property name="n_columns">3</property>
+                            <property name="column_spacing">6</property>
+                            <property name="row_spacing">6</property>
+                            <child>
+                              <widget class="GtkSpinButton" id="spinbutton_w">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="adjustment">400 100 3000 1 0 0</property>
+                                <property name="numeric">True</property>
+                                <signal name="value_changed" handler="on_spinbutton_w_value_changed"/>
+                              </widget>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="x_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label13">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">pixels</property>
+                              </widget>
+                              <packing>
+                                <property name="left_attach">2</property>
+                                <property name="right_attach">3</property>
+                                <property name="x_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label14">
+                                <property name="visible">True</property>
+                                <property name="xalign">0</property>
+                                <property name="label" translatable="yes">Wi_dth:</property>
+                                <property name="use_underline">True</property>
+                                <property name="justify">right</property>
+                                <property name="mnemonic_widget">spinbutton1</property>
+                              </widget>
+                              <packing>
+                                <property name="x_options">GTK_FILL</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label15">
+                                <property name="visible">True</property>
+                                <property name="xalign">0</property>
+                                <property name="label" translatable="yes">_Height:</property>
+                                <property name="use_underline">True</property>
+                                <property name="justify">right</property>
+                                <property name="mnemonic_widget">spinbutton1</property>
+                              </widget>
+                              <packing>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
+                                <property name="x_options">GTK_FILL</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkSpinButton" id="spinbutton_h">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="adjustment">300 100 2000 1 0 0</property>
+                                <property name="numeric">True</property>
+                                <signal name="value_changed" handler="on_spinbutton_h_value_changed"/>
+                              </widget>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
+                                <property name="x_options"></property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="label16">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">pixels</property>
+                              </widget>
+                              <packing>
+                                <property name="left_attach">2</property>
+                                <property name="right_attach">3</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
+                                <property name="x_options"></property>
+                              </packing>
+                            </child>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label12">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Maximum Display Size&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="type">label_item</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="GtkFrame" id="frame2">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
@@ -359,7 +480,7 @@
                   </widget>
                   <packing>
                     <property name="expand">False</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </widget>
@@ -389,11 +510,11 @@
                       <widget class="GtkAlignment" id="alignment4">
                         <property name="visible">True</property>
                         <property name="top_padding">6</property>
-                        <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
                           <widget class="GtkHBox" id="hbox1">
                             <property name="visible">True</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <child>
                               <widget class="GtkScrolledWindow" id="scrolledwindow2">
@@ -416,11 +537,10 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkVButtonBox" id="vbuttonbox2">
+                              <widget class="GtkHButtonBox" id="vbuttonbox2">
                                 <property name="visible">True</property>
-                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
-                                <property name="layout_style">start</property>
+                                <property name="layout_style">end</property>
                                 <child>
                                   <widget class="GtkButton" id="button6">
                                     <property name="label">gtk-preferences</property>
@@ -455,7 +575,6 @@
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
-                                <property name="padding">6</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
@@ -509,12 +628,12 @@
                       <widget class="GtkAlignment" id="alignment3">
                         <property name="visible">True</property>
                         <property name="top_padding">6</property>
-                        <property name="bottom_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
                           <widget class="GtkHBox" id="hbox2">
                             <property name="visible">True</property>
-                            <property name="spacing">6</property>
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">10</property>
                             <child>
                               <widget class="GtkScrolledWindow" id="scrolledwindow1">
                                 <property name="visible">True</property>
@@ -539,11 +658,10 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkVButtonBox" id="vbuttonbox1">
+                              <widget class="GtkHButtonBox" id="vbuttonbox1">
                                 <property name="visible">True</property>
-                                <property name="orientation">vertical</property>
                                 <property name="spacing">6</property>
-                                <property name="layout_style">start</property>
+                                <property name="layout_style">end</property>
                                 <child>
                                   <widget class="GtkButton" id="button3">
                                     <property name="label">gtk-new</property>
@@ -592,7 +710,6 @@
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
-                                <property name="padding">6</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
