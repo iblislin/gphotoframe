@@ -68,7 +68,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         state, label = api().set_entry_label()
 
         self._set_argument_sensitive(label, state)
-        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
+        self._set_sensitive_ok_button(self.gui.get_object('entry1'), not state)
 
     def _label(self):
         keys = FlickrAPI().api_list().keys()
@@ -144,12 +144,12 @@ class PluginFlickrDialog(PluginDialog):
 
     def _read_conf(self):
         user_id = self.conf.get_string('plugins/flickr/user_id')
-        self.entry = self.gui.get_widget('entry3')
+        self.entry = self.gui.get_object('entry3')
         if user_id != None:
             self.entry.set_text(user_id)
 
-        self.gui.get_widget('label2').set_sensitive(False)
-        self.gui.get_widget('entry4').set_sensitive(False)
+        self.gui.get_object('label2').set_sensitive(False)
+        self.gui.get_object('entry4').set_sensitive(False)
 
     def _write_conf(self):
         flickr_user_id = self.entry.get_text()
