@@ -147,28 +147,28 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
 
     def get_value(self):
         value = {
-            'rate_min' : int(self.gui.get_widget('hscale1').get_value()),
-            'rate_max' : int(self.gui.get_widget('hscale2').get_value()),
+            'rate_min' : int(self.gui.get_object('hscale1').get_value()),
+            'rate_max' : int(self.gui.get_object('hscale2').get_value()),
             'rate_weight' : int(self.rate_weight_widget.get_value()),
-            'period' : self.gui.get_widget('combobox_fs1').get_active(),
+            'period' : self.gui.get_object('combobox_fs1').get_active(),
             }
         return value
 
     def _set_ui(self):
-        self.rate_weight_widget = self.gui.get_widget('spinbutton_fs1')
-        self.child = self.gui.get_widget('fspot_table')
+        self.rate_weight_widget = self.gui.get_object('spinbutton_fs1')
+        self.child = self.gui.get_object('fspot_table')
 
     def _set_default(self):
         rate_min = self.options.get('rate_min', 0)
-        self.gui.get_widget('hscale1').set_value(rate_min)
+        self.gui.get_object('hscale1').set_value(rate_min)
 
         rate_max = self.options.get('rate_max', 5)
-        self.gui.get_widget('hscale2').set_value(rate_max)
+        self.gui.get_object('hscale2').set_value(rate_max)
 
         self.rate_weight_widget.set_value(self.options.get('rate_weight', 2))
 
         period = self.options.get('period', 0)
-        self.gui.get_widget('combobox_fs1').set_active(period)
+        self.gui.get_object('combobox_fs1').set_active(period)
 
 class FSpotDB(object):
 

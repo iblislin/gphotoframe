@@ -115,7 +115,7 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
         state = False if target == 'Featured' else True
 
         self._set_argument_sensitive(state=state)
-        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
+        self._set_sensitive_ok_button(self.gui.get_object('entry1'), not state)
 
     def _label(self):
         return ['User', 'Community Search', 'Featured']
@@ -125,8 +125,8 @@ class PluginPicasaDialog(PluginDialog):
     def run(self):
         user_id = self.conf.get_string('plugins/picasa/user_id')
         self.passwd = None
-        self.entry3 = self.gui.get_widget('entry3')
-        self.entry4 = self.gui.get_widget('entry4')
+        self.entry3 = self.gui.get_object('entry3')
+        self.entry4 = self.gui.get_object('entry4')
 
         self.key = Keyring('Google Account', protocol='http')
 

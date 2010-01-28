@@ -3,7 +3,6 @@ import time
 
 import gobject
 import gtk
-import gtk.glade
 
 import constants
 from photoimage import PhotoImage, PhotoImageFullScreen
@@ -30,7 +29,9 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.photolist = photolist
-        gui = gtk.glade.XML(constants.GLADE_FILE)
+
+        gui = gtk.Builder()
+        gui.add_objects_from_file(constants.GLADE_FILE, ["window"])
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
@@ -38,7 +39,7 @@ class PhotoFrame(object):
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
         self.conf.set_notify_add('border_color', self._set_border_color)
 
-        self.window = gui.get_widget('window')
+        self.window = gui.get_object('window')
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
@@ -124,7 +125,7 @@ class PhotoFrame(object):
             "on_window_query_tooltip"      : self._query_tooltip_cb,
             # "on_window_destroy" : reactor.stop,
             }
-        gui.signal_autoconnect(dic)
+        gui.connect_signals(dic)
 
     def _toggle_fullscreen(self, *args):
         state = not self.conf.get_bool('fullscreen')
@@ -215,7 +216,7 @@ class PhotoFrameFullScreen(PhotoFrame):
             "on_window_realize" : cursor.hide_cb,
             "on_window_destroy" : cursor.stop_timer_cb,
             }
-        gui.signal_autoconnect(dic)
+        gui.connect_signals(dic)
 
     def _save_geometry_cb(self, widget, event):
         pass
