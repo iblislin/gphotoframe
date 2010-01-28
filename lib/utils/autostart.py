@@ -11,8 +11,8 @@ class AutoStart(object):
 
     def __init__(self, app_name):
         system_entry = '/usr/share/applications/%s.desktop' % app_name
-        self.local_entry = os.environ['HOME'] + \
-            '/.config/autostart/%s.desktop' % app_name
+        self.local_entry = os.path.join(
+            os.environ['HOME'], '.config/autostart/%s.desktop' % app_name)
         self.key = 'X-GNOME-Autostart-enabled'
 
         self.load_file = self.local_entry \

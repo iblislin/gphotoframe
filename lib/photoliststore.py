@@ -103,7 +103,6 @@ class PhotoListStore(gtk.ListStore):
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')
-        self.conf.recursive_unset('flickr') # for ver. 0.1 
         data_list = ['source', 'target', 'argument', 'weight']
 
         for i, row in enumerate(self):

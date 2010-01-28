@@ -35,7 +35,8 @@ class PhotoList(object):
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
         url = self.photo['url']
-        self.photo['filename'] = constants.CACHE_DIR + url[url.rfind('/') + 1:]
+        self.photo['filename'] = os.path.join(constants.CACHE_DIR,
+                                              url[url.rfind('/') + 1:])
 
         urlget = UrlGetWithProxy()
         d = urlget.downloadPage(str(url), self.photo['filename'])
