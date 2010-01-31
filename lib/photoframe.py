@@ -6,7 +6,7 @@ import gtk
 import gtk.glade
 
 import constants
-from photoimage import PhotoImage, PhotoImageFullScreen
+from photoimage import PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
