@@ -1,3 +1,5 @@
+import os
+
 import gtk
 import gobject
 
@@ -132,3 +134,9 @@ class RecentQueue(list):
         for i, queue_photo in enumerate(self):
             if queue_photo['filename'] == filename:
                 self.pop(i)
+
+    def pop(self, num):
+        pop_photo = super(RecentQueue, self).pop(num)
+        filename = pop_photo['filename']
+        if filename.startswith('/tmp/gphotoframe-'):
+            os.remove(filename)
