@@ -138,5 +138,6 @@ class RecentQueue(list):
     def pop(self, num):
         pop_photo = super(RecentQueue, self).pop(num)
         filename = pop_photo['filename']
-        if filename.startswith('/tmp/gphotoframe-'):
+        if filename.startswith('/tmp/gphotoframe-') \
+                and os.access(filename, os.R_OK):
             os.remove(filename)
