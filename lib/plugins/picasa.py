@@ -1,7 +1,7 @@
 from twisted.web import client
 import urllib
 import simplejson as json
-import pprint
+# import pprint
 
 from base import *
 from ..utils.keyring import Keyring
