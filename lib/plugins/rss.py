@@ -1,5 +1,7 @@
 import re
 import copy
+# import pprint
+
 import feedparser
 
 from base import *
@@ -30,12 +32,19 @@ class RSSPhotoList(PhotoList):
                 match = re_rss.findall(item.content[0]['value'])
             entry = rss.entries[num]
 
+            #pp = pprint.PrettyPrinter(indent=4)
+            #pp.pprint(entry)
+
+            owner = entry.source.title if entry.get('source') \
+                else rss.feed.title
+            print owner
+
             for image in match:
                 url = entry.media_content_attrs['url'] \
                     if hasattr(entry, 'media_content_attrs') else image[0]
                 data = {'url'        : url,
-                        'owner_name' : rss.feed.title,
-                        'owner'      : rss.feed.title,
+                        'owner_name' : owner,
+                        'owner'      : owner,
                         'title'      : entry.title,
                         'page_url'   : entry.link, 
                         'icon'       : RSSIcon}
