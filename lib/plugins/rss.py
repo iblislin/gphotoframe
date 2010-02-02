@@ -37,7 +37,6 @@ class RSSPhotoList(PhotoList):
 
             owner = entry.source.title if entry.get('source') \
                 else rss.feed.title
-            print owner
 
             for image in match:
                 url = entry.media_content_attrs['url'] \
