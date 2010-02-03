@@ -1,4 +1,5 @@
 import os
+import getpass
 from os.path import join, abspath, dirname
 
 VERSION = '0.6-b2'
@@ -10,7 +11,7 @@ if not os.access(join(SHARED_DATA_DIR, 'gphotoframe.glade'), os.R_OK):
 
 GLADE_FILE = join(SHARED_DATA_DIR, 'gphotoframe.glade')
 
-user = os.environ.get('USER')
+user = getpass.getuser()
 CACHE_DIR = "/tmp/gphotoframe-%s" % user
 if not os.access(CACHE_DIR, os.W_OK):
     os.makedirs(CACHE_DIR)
