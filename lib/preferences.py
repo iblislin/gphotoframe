@@ -18,20 +18,14 @@ class Preferences(object):
         self.conf = GConf()
 
     def start(self, widget):
-        gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.gui = gui = gtk.glade.XML(constants.GLADE_FILE)
         self.prefs = gui.get_widget('preferences')
         self.notebook = gui.get_widget('notebook1')
 
-        spinbutton1 = gui.get_widget('spinbutton1')
-        val = self.conf.get_int('interval', 30)
-        spinbutton1.set_value(val)
-
-        spinbutton2 = gui.get_widget('spinbutton2')
-        val = self.conf.get_int('interval_fullscreen', 10)
-        spinbutton2.set_value(val)
-
-        self._set_spinbutton_value(gui, 'spinbutton_w', 'max_width', 400)
-        self._set_spinbutton_value(gui, 'spinbutton_h', 'max_height', 300)
+        self._set_spinbutton_value('spinbutton1', 'interval', 30)
+        self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
+        self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
+        self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
 
         checkbutton1 = gui.get_widget('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
@@ -96,8 +90,8 @@ class Preferences(object):
         self.photolist.save_gconf()
         self.prefs.destroy()
 
-    def _set_spinbutton_value(self, gui, widget, key, default_value):
-        spinbutton = gui.get_widget(widget)
+    def _set_spinbutton_value(self, widget, key, default_value):
+        spinbutton = self.gui.get_widget(widget)
         value = self.conf.get_int(key, default_value)
         spinbutton.set_value(value)
 
