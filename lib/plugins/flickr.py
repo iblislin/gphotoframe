@@ -17,8 +17,31 @@ class FlickrPhotoList(PhotoList):
         if not self.target in api_list:
             print "flickr: %s is invalid target." % self.target
             return
-        api = api_list[self.target]
-        url = api().get_url(self.target, self.argument) 
+
+        self.api = api_list[self.target]()
+
+        if self.api.nsid_conversion:
+            nsid_url = self.api.get_nsid_url(self.argument)
+            # print self.target, self.argument
+
+            if nsid_url is None: 
+                print "flickr: invalis nsid API url."
+                return
+            self._get_url_with_twisted(nsid_url, self._nsid_cb)
+        else:
+            self._get_url_for(self.argument)
+
+    def _nsid_cb(self, data):
+        d = json.loads(data)
+        argument = self.api.parse_nsid(d)
+        if argument is None:
+            print "flickr: can not find, ", self.argument
+            return
+
+        self._get_url_for(argument)
+
+    def _get_url_for(self, argument):
+        url = self.api.get_url(argument) 
         if not url: return
 
         self._get_url_with_twisted(url)
@@ -104,7 +127,6 @@ class FlickrFactoryAPI(object):
             'Favorites'       : FlickrFavoritesAPI,
             'Group Pool'      : FlickrGroupAPI,
             'Interestingness' : FlickrInterestingnessAPI,
-            'NSID'            : FlickrNSIDAPI, 
             'People Photos'   : FlickrPeopleAPI, 
             'Photo Search'    : FlickrSearchAPI, 
             }
@@ -113,17 +135,17 @@ class FlickrFactoryAPI(object):
 class FlickrAPI(object):
 
     def __init__(self):
-        self.conf = GConf()
+        # self.conf = GConf()
+        self.nsid_conversion = True
         self._set_method()
 
     def _set_method(self):
         pass
 
-    def get_url(self, target, argument):
+    def get_url(self, argument):
         url = 'http://api.flickr.com/services/rest/?'
+        api_key = '343677ff5aa31f37042513d533293062'
 
-        api_key = self.conf.get_string('plugins/flickr/api_key') \
-            or '343677ff5aa31f37042513d533293062'
         self.values = { 'api_key' : api_key,
                         'count'   : 50,
                         'method'  : self.method,
@@ -132,19 +154,34 @@ class FlickrAPI(object):
                         'nojsoncallback' : '1' }
 
         arg = self._url_argument(argument)
-        url = url + urllib.urlencode(self.values) \
-            if arg or target == 'Interestingness' else None
+        url = self._cat_url(url, arg)
+        return url
+
+    def _cat_url(self, url, arg):
+        if not arg:
+            print "Flickr: oops! ", url
+
+        url = url + urllib.urlencode(self.values) if arg else None
         return url
 
     def _url_argument(self, argument):
-        user_id = self.conf.get_string('plugins/flickr/user_id')
-        self.values['user_id'] = argument or user_id
+        self.values['user_id'] = argument
         return self.values['user_id']
 
     def set_entry_label(self):
         sensitive = False
         label = _('_User ID:')
         return sensitive, label
+
+    def get_nsid_url(self, arg):
+        api = FlickrNSIDAPI()
+        user = arg or GConf().get_string('plugins/flickr/user_id')
+        url = api.get_url('http://www.flickr.com/photos/%s/' % user) if user else None
+        return url
+
+    def parse_nsid(self, d):
+        argument = d['user']['id'] if d.get('user') else None
+        return argument
 
 class FlickrContactsAPI(FlickrAPI):
 
@@ -154,7 +191,6 @@ class FlickrContactsAPI(FlickrAPI):
 class FlickrFavoritesAPI(FlickrAPI):
 
     def _set_method(self):
-        self.conf = GConf()
         self.method = 'flickr.favorites.getPublicList'
 
 class FlickrGroupAPI(FlickrAPI):
@@ -171,19 +207,24 @@ class FlickrGroupAPI(FlickrAPI):
         label = _('_Group ID:')
         return sensitive, label
 
+    def get_nsid_url(self, group):
+        api = FlickrGroupNSIDAPI()
+        url = api.get_url('http://www.flickr.com/groups/%s/' % group) if group else None
+        return url
+
+    def parse_nsid(self, d):
+        argument = d['group']['id'] if d.get('group') else None
+        return argument
+
 class FlickrInterestingnessAPI(FlickrAPI):
 
     def _set_method(self):
         self.method = 'flickr.interestingness.getList'
+        self.nsid_conversion = False
 
-class FlickrNSIDAPI(FlickrAPI):
-
-    def _set_method(self):
-        self.method = 'flickr.urls.lookupUser'
-
-    def _url_argument(self, argument):
-        self.values['url'] = argument
-        return argument
+    def _cat_url(self, url, arg):
+        url = url + urllib.urlencode(self.values)
+        return url
 
 class FlickrPeopleAPI(FlickrAPI):
 
@@ -203,6 +244,7 @@ class FlickrSearchAPI(FlickrAPI):
 
     def _set_method(self):
         self.method = 'flickr.photos.search'
+        self.nsid_conversion = False
 
     def _url_argument(self, argument):
         self.values['tags'] = argument
@@ -213,3 +255,17 @@ class FlickrSearchAPI(FlickrAPI):
         sensitive = True
         label = _('_Tags:')
         return sensitive, label
+
+class FlickrNSIDAPI(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.urls.lookupUser'
+
+    def _url_argument(self, argument):
+        self.values['url'] = argument
+        return argument
+
+class FlickrGroupNSIDAPI(FlickrNSIDAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.urls.lookupGroup'
