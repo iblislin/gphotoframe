@@ -46,10 +46,11 @@ class PhotoList(object):
     def get_tooltip(self):
         pass
 
-    def _get_url_with_twisted(self, url):
+    def _get_url_with_twisted(self, url, cb_arg=None):
         urlget = UrlGetWithProxy()
         d = urlget.getPage(url)
-        d.addCallback(self._prepare_cb)
+        cb = cb_arg or self._prepare_cb
+        d.addCallback(cb)
 
     def _start_timer(self, interval=3600):
         self._timer = gobject.timeout_add(interval * 1000, self.prepare)
