@@ -17,7 +17,7 @@ class FlickrPhotoList(PhotoList):
         if not self.target in api_list:
             print "flickr: %s is invalid target." % self.target
             return
-        api = api_list[self.target][1]
+        api = api_list[self.target]
         url = api().get_url(self.target, self.argument) 
         if not url: return
 
@@ -64,7 +64,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        api = FlickrFactoryAPI().api_list()[target][1]
+        api = FlickrFactoryAPI().api_list()[target]
         state, label = api().set_entry_label()
 
         self._set_argument_sensitive(label, state)
@@ -100,18 +100,6 @@ class FlickrFactoryAPI(object):
 
     def api_list(self):
         api = { 
-            'Contacts Photos' : ['flickr.photos.getContactsPublicPhotos', FlickrContactsAPI], 
-            'Favorites'       : ['flickr.favorites.getPublicList', FlickrFavoritesAPI],
-            'Group Pool'      : ['flickr.groups.pools.getPhotos', FlickrGroupAPI],
-            'Interestingness' : ['flickr.interestingness.getList', FlickrInterestingnessAPI],
-            'NSID'            : ['flickr.urls.lookupUser', FlickrNSIDAPI], 
-            'People Photos'   : ['flickr.people.getPublicPhotos', FlickrPeopleAPI], 
-            'Photo Search'    : ['flickr.photos.search', FlickrSearchAPI], 
-            }
-        return api
-
-    def api_list_new(self):
-        api = { 
             'Contacts Photos' : FlickrContactsAPI, 
             'Favorites'       : FlickrFavoritesAPI,
             'Group Pool'      : FlickrGroupAPI,
@@ -126,6 +114,10 @@ class FlickrAPI(object):
 
     def __init__(self):
         self.conf = GConf()
+        self._set_method()
+
+    def _set_method(self):
+        pass
 
     def get_url(self, target, argument):
         url = 'http://api.flickr.com/services/rest/?'
@@ -134,7 +126,7 @@ class FlickrAPI(object):
             or '343677ff5aa31f37042513d533293062'
         self.values = { 'api_key' : api_key,
                         'count'   : 50,
-                        'method'  : FlickrFactoryAPI().api_list()[target][0],
+                        'method'  : self.method,
                         'format'  : 'json',
                         'extras'  : 'owner_name,original_format,media',
                         'nojsoncallback' : '1' }
@@ -154,14 +146,21 @@ class FlickrAPI(object):
         label = _('_User ID:')
         return sensitive, label
 
-
 class FlickrContactsAPI(FlickrAPI):
-    pass
+
+    def _set_method(self):
+        self.method = 'flickr.photos.getContactsPublicPhotos'
 
 class FlickrFavoritesAPI(FlickrAPI):
-    pass
+
+    def _set_method(self):
+        self.conf = GConf()
+        self.method = 'flickr.favorites.getPublicList'
 
 class FlickrGroupAPI(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.groups.pools.getPhotos'
 
     def _url_argument(self, argument):
         self.values['group_id'] = argument
@@ -173,18 +172,23 @@ class FlickrGroupAPI(FlickrAPI):
         return sensitive, label
 
 class FlickrInterestingnessAPI(FlickrAPI):
-    pass
+
+    def _set_method(self):
+        self.method = 'flickr.interestingness.getList'
 
 class FlickrNSIDAPI(FlickrAPI):
-    pass
+
+    def _set_method(self):
+        self.method = 'flickr.urls.lookupUser'
+
+    def _url_argument(self, argument):
+        self.values['url'] = argument
+        return argument
 
 class FlickrPeopleAPI(FlickrAPI):
-    pass
 
-class FlickrSearchAPI(FlickrAPI):
-    pass
-
-class FlickrPeopleAPI(FlickrAPI):
+    def _set_method(self):
+        self.method = 'flickr.people.getPublicPhotos'
 
     def _url_argument(self, argument):
         self.values['user_id'] = argument
@@ -196,6 +200,9 @@ class FlickrPeopleAPI(FlickrAPI):
         return sensitive, label
 
 class FlickrSearchAPI(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.photos.search'
 
     def _url_argument(self, argument):
         self.values['tags'] = argument
