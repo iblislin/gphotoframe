@@ -6,8 +6,9 @@ import os
 import sys
 import md5
 import urllib
-import urllib2
-import xml.etree.ElementTree as etree
+
+#import xml.etree.ElementTree
+from lxml import etree
 
 from urlget import UrlGetWithProxy
 
@@ -73,13 +74,9 @@ class FlickrAuth(object):
         url_base = 'http://api.flickr.com/services/rest/?'
         url = url_base + urllib.urlencode(values)
 
-        # client = UrlGetWithProxy()
-        # d = client.getPage(url)
-        # d.addCallback(cb)
-
-        r = urllib2.urlopen(url)
-        body = r.read()
-        cb(body)
+        client = UrlGetWithProxy()
+        d = client.getPage(url)
+        d.addCallback(cb)
 
     def _confirm_dialog(self, *args):
         print "Once you're done, hit RETURN key."

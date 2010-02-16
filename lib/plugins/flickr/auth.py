@@ -3,6 +3,7 @@ import gtk
 from ..base import PluginDialog
 from ...utils.flickrauth import FlickrAuth
 from ...utils.urlget import UrlGetWithProxy
+from ...utils.config import GConf
 
 class PluginFlickrDialog(PluginDialog):
 
@@ -15,7 +16,7 @@ class PluginFlickrDialog(PluginDialog):
         self.p_id = self.n_id = None
 
         api_key = '343677ff5aa31f37042513d533293062'
-	secret = ''
+        secret = GConf().get_string('plugins/flickr/secret')
         perms = 'write'
 
         self.auth_obj = FlickrAuth(api_key, secret, perms)
@@ -40,10 +41,6 @@ class PluginFlickrDialog(PluginDialog):
 
     def _set_complete_dialog(self, widget):
         self.auth_obj._get_frob() # getfrob -> open browser
-
-        #d = client.getPage('http://www.yahoo.co.jp')
-
-
 
         text = "Press Complete button"
         p_label = gtk.STOCK_CANCEL
@@ -81,15 +78,15 @@ class PluginFlickrDialog(PluginDialog):
         else:
             self._set_authorize_dialog()
 
-        self.dialog.show()
-#        response_id = self.dialog.run()
-#
-#        if response_id == gtk.RESPONSE_OK: 
-#            print "ok"
-#            #self._write_conf()
-#
-#        return response_id, {}
-#
+        # self.dialog.show()
+        response_id = self.dialog.run()
+
+        if response_id == gtk.RESPONSE_OK: 
+            print "ok"
+            # self._write_conf()
+
+        return response_id, {}
+
     def _read_conf(self):
         self.user_id = self.conf.get_string('plugins/flickr/user_id') # nsid
         self.user_name = self.conf.get_string('plugins/flickr/user_name')
