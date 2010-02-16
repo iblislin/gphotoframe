@@ -1,5 +1,4 @@
 import simplejson as json
-from gettext import gettext as _
 
 from ..base import PhotoList, PhotoSourceUI, PluginDialog, SourceWebIcon, Photo
 from api import *

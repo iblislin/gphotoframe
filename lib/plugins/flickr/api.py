@@ -1,4 +1,6 @@
 import urllib
+from gettext import gettext as _
+
 from ...utils.config import GConf
 
 class FlickrFactoryAPI(object):
