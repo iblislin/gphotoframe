@@ -1,7 +1,7 @@
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr.py, base.py: Added support for user name and group name
-	  in url.
+	  in url.  Added tooltips for argument entries.
 
 2010-01-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
