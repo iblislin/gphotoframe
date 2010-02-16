@@ -1,3 +1,4 @@
+import gtk
 import simplejson as json
 
 from ..base import PhotoList, PhotoSourceUI, PluginDialog, SourceWebIcon, Photo
@@ -101,18 +102,71 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
 class PluginFlickrDialog(PluginDialog):
 
-    def _read_conf(self):
-        user_id = self.conf.get_string('plugins/flickr/user_id')
-        self.entry = self.gui.get_widget('entry3')
-        if user_id != None:
-            self.entry.set_text(user_id)
+    def _set_ui(self):
+        self.dialog = self.gui.get_widget('plugin_netauth_dialog')
+        self.label  = self.gui.get_widget('label_netauth')
+        self.button_p = self.gui.get_widget('button_netauth_p')
+        self.button_n = self.gui.get_widget('button_netauth_n')
 
-        self.gui.get_widget('label2').set_sensitive(False)
-        self.gui.get_widget('entry4').set_sensitive(False)
+        self.p_id = self.n_id = None
+
+    def _set_confirm_dialog(self, *args):
+        text = "You are connected to Flickr.com as USER"
+        p_label = '_Switch User'
+        n_label = gtk.STOCK_OK
+        p_cb = self._set_authorize_dialog
+        n_cb = self._end
+
+        self._set_dialog(text, p_label, n_label, p_cb, n_cb)
+
+    def _set_authorize_dialog(self, widget):
+        text = "Press Authorized button"
+        p_label = gtk.STOCK_CANCEL
+        n_label = '_Authorized'
+        p_cb = self._end
+        n_cb = self._set_complete_dialog
+
+        self._set_dialog(text, p_label, n_label, p_cb, n_cb)
+
+    def _set_complete_dialog(self, widget):
+        text = "Press Complete button"
+        p_label = gtk.STOCK_CANCEL
+        n_label = '_Complete'
+        p_cb = self._end
+        n_cb = self._set_confirm_dialog
+
+        self._set_dialog(text, p_label, n_label, p_cb, n_cb)
+
+    def _set_dialog(self, text, p_label, n_label, p_cb, n_cb):
+        self.label.set_text(text)
+        self.button_p.set_label(p_label)
+        self.button_n.set_label(n_label)
+
+        if self.p_id:
+            self.button_p.disconnect(self.p_id)
+            self.button_n.disconnect(self.n_id)
+
+        self.p_id = self.button_p.connect('clicked', p_cb)
+        self.n_id = self.button_n.connect('clicked', n_cb)
+
+    def _end(self, *args):
+        self.dialog.destroy()
+
+    def run(self):
+        self._set_confirm_dialog()
+
+        response_id = self.dialog.run()
+
+        if response_id == gtk.RESPONSE_OK: 
+            print "ok"
+
+        return response_id, {}
+
+    def _read_conf(self):
+        pass
 
     def _write_conf(self):
-        flickr_user_id = self.entry.get_text()
-        self.conf.set_string( 'plugins/flickr/user_id', flickr_user_id )
+        pass
 
 class FlickrIcon(SourceWebIcon):
 
