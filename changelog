@@ -1,5 +1,7 @@
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/__init__.py, plugins/flickr/__init__.py: Added support
+	  for loading plugins from directories.
 	* flickr.py, base.py: Added support for user name and group name
 	  in url.
 

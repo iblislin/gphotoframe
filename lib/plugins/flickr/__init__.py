@@ -2,7 +2,9 @@ import urllib
 
 import simplejson as json
 
-from base import *
+from ..base import PhotoList, PhotoSourceUI, PluginDialog, SourceWebIcon, Photo
+from ...utils.config import GConf
+
 from gettext import gettext as _
 
 def info():
@@ -25,7 +27,7 @@ class FlickrPhotoList(PhotoList):
             # print self.target, self.argument
 
             if nsid_url is None: 
-                print "flickr: invalis nsid API url."
+                print "flickr: invalid nsid API url."
                 return
             self._get_url_with_twisted(nsid_url, self._nsid_cb)
         else:

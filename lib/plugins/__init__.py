@@ -5,10 +5,13 @@ from os.path import join, abspath,  dirname
 from base import *
 
 token_base = []
+plugin_dir = abspath(join(dirname(__file__)))
 
-for item in os.listdir( abspath(join(dirname(__file__))) ):
-    if item.endswith('.py') and item != '__init__.py' and item != 'base.py':
-        module_name = inspect.getmodulename(item)
+for item in os.listdir(plugin_dir):
+    if ( item.endswith('.py') and item != '__init__.py' 
+         and item != 'base.py' ) or os.path.isdir(join(plugin_dir, item)):
+        module_name = inspect.getmodulename(item) \
+            if item.endswith('.py') else item 
         try:
             module = __import__(module_name, globals(), locals(), [])
         except ImportError, value:
