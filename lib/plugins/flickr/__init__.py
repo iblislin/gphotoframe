@@ -85,10 +85,13 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        api = FlickrFactoryAPI().api_list()[target]
-        state, label = api().set_entry_label()
+        api = FlickrFactoryAPI().api_list()[target]()
+        state, label = api.set_entry_label()
 
         self._set_argument_sensitive(label, state)
+        tip = api.tooltip() if state else ""
+        self._set_argument_tooltip(tip)
+
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _label(self):

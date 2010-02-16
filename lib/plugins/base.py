@@ -120,6 +120,9 @@ class PhotoSourceUI(object):
         self.gui.get_widget('label12').set_sensitive(state)
         self.gui.get_widget('entry1').set_sensitive(state)
 
+    def _set_argument_tooltip(self, text=None):
+        self.gui.get_widget('entry1').set_tooltip_text(text)
+
     def _set_target_default(self):
         if self.data:
             fr_num = self._label().index(self.data[1])
