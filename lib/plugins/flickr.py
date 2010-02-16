@@ -87,10 +87,13 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        api = FlickrFactoryAPI().api_list()[target]
-        state, label = api().set_entry_label()
+        api = FlickrFactoryAPI().api_list()[target]()
+        state, label = api.set_entry_label()
 
         self._set_argument_sensitive(label, state)
+        tip = api.tooltip() if state else ""
+        self._set_argument_tooltip(tip)
+
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _label(self):
@@ -170,7 +173,7 @@ class FlickrAPI(object):
 
     def set_entry_label(self):
         sensitive = False
-        label = _('_User ID:')
+        label = _('_User:')
         return sensitive, label
 
     def get_nsid_url(self, arg):
@@ -182,6 +185,9 @@ class FlickrAPI(object):
     def parse_nsid(self, d):
         argument = d['user']['id'] if d.get('user') else None
         return argument
+
+    def tooltip(self):
+        return _('Enter NSID or User Name in the URL')
 
 class FlickrContactsAPI(FlickrAPI):
 
@@ -204,7 +210,7 @@ class FlickrGroupAPI(FlickrAPI):
 
     def set_entry_label(self):
         sensitive = True
-        label = _('_Group ID:')
+        label = _('_Group:')
         return sensitive, label
 
     def get_nsid_url(self, group):
@@ -216,6 +222,9 @@ class FlickrGroupAPI(FlickrAPI):
         argument = d['group']['id'] if d.get('group') else None
         return argument
 
+    def tooltip(self):
+        return _('Enter NSID or Group Name in the URL')
+
 class FlickrInterestingnessAPI(FlickrAPI):
 
     def _set_method(self):
@@ -225,6 +234,9 @@ class FlickrInterestingnessAPI(FlickrAPI):
     def _cat_url(self, url, arg):
         url = url + urllib.urlencode(self.values)
         return url
+
+    def tooltip(self):
+        return ""
 
 class FlickrPeopleAPI(FlickrAPI):
 
@@ -237,7 +249,7 @@ class FlickrPeopleAPI(FlickrAPI):
 
     def set_entry_label(self):
         sensitive = True
-        label = _('_User ID:')
+        label = _('_User:')
         return sensitive, label
 
 class FlickrSearchAPI(FlickrAPI):
@@ -255,6 +267,9 @@ class FlickrSearchAPI(FlickrAPI):
         sensitive = True
         label = _('_Tags:')
         return sensitive, label
+
+    def tooltip(self):
+        return ""
 
 class FlickrNSIDAPI(FlickrAPI):
 

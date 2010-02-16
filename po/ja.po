@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-28 11:38+0900\n"
-"PO-Revision-Date: 2010-01-28 11:38+0900\n"
+"POT-Creation-Date: 2010-02-16 13:50+0900\n"
+"PO-Revision-Date: 2010-02-16 13:54+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr "評価の重み(_W):"
 msgid "Wi_dth:"
 msgstr "幅(_D):"
 
-#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:116
+#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:118
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -164,11 +164,11 @@ msgstr "期間(_P):"
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:36 ../lib/plugins/base.py:111
+#: ../share/gphotoframe.glade.h:36 ../lib/plugins/base.py:113
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.glade.h:37 ../lib/plugins/flickr.py:117
+#: ../share/gphotoframe.glade.h:37
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
@@ -260,31 +260,43 @@ msgstr "最後に選択された写真ソース"
 msgid "(No Title)"
 msgstr "(無題)"
 
-#: ../lib/preferences.py:139
+#: ../lib/preferences.py:133
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:140
+#: ../lib/preferences.py:134
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:141
+#: ../lib/preferences.py:135
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:142
+#: ../lib/preferences.py:136
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/base.py:143
+#: ../lib/plugins/base.py:148
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/flickr.py:128
-msgid "_Group ID:"
-msgstr "グループ ID(_G):"
+#: ../lib/plugins/flickr.py:176 ../lib/plugins/flickr.py:252
+msgid "_User:"
+msgstr "ユーザ(_U):"
 
-#: ../lib/plugins/flickr.py:140
+#: ../lib/plugins/flickr.py:190
+msgid "Enter NSID or User Name in the URL"
+msgstr "URL に含まれるユーザ名か NSID を入力します"
+
+#: ../lib/plugins/flickr.py:213
+msgid "_Group:"
+msgstr "グループ(_G):"
+
+#: ../lib/plugins/flickr.py:226
+msgid "Enter NSID or Group Name in the URL"
+msgstr "URL に含まれるグループ名か NSID を入力します"
+
+#: ../lib/plugins/flickr.py:268
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
@@ -309,12 +321,12 @@ msgstr "期間"
 msgid "_User Name:"
 msgstr "ユーザ名(_U):"
 
-#: ../lib/plugins/rss.py:54
+#: ../lib/plugins/rss.py:62
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:57
+#: ../lib/plugins/rss.py:65
 msgid "_URL:"
 msgstr "URL(_U)"
 
