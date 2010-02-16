@@ -8,18 +8,19 @@ import md5
 import urllib
 import xml.etree.ElementTree as etree
 
-from twisted.web import client
+from urlget import UrlGetWithProxy
 
 class FlickrAuth(object):
 
-    def __init__(self, api_key, secret, cb=None):
+    def __init__(self, api_key, secret, perms, cb=None):
         self.api_key = api_key
         self.secret = secret
+        self.perms = perms
         self.confirm_cb = cb or self._confirm_dialog
 
-        self.get_frob()
+        self._get_frob()
 
-    def get_frob(self):
+    def _get_frob(self):
         """Get frob with flickr.auth.getFrob"""
 
         method= 'flickr.auth.getFrob'
@@ -28,22 +29,21 @@ class FlickrAuth(object):
                    'api_key' : self.api_key, 
                    'api_sig' : md5.new(api_sig).hexdigest(), }
 
-        self._get_url(values, self.open_browser)
+        self._get_url(values, self._get_token)
 
-    def get_token(self, data):
+    def _get_token(self, data):
         """Open browser and get token with flickr.auth.getToken"""
 
         # open browwser
         element = etree.fromstring(data)
         self.frob = element.find('frob').text
 
-        perms = 'read'
         api_sig = "%sapi_key%sfrob%sperms%s" % (
-            self.secret, self.api_key, self.frob, perms)
+            self.secret, self.api_key, self.frob, self.perms)
 
         base_url = 'http://flickr.com/services/auth/?'
         url = base_url + 'api_key=%s&perms=%s&frob=%s&api_sig=%s' % (
-            self.api_key, perms, self.frob, md5.new(api_sig).hexdigest())
+            self.api_key, self.perms, self.frob, md5.new(api_sig).hexdigest())
         os.system("gnome-open '%s'" % url)
 
         # wait authorization
@@ -77,6 +77,7 @@ class FlickrAuth(object):
         url_base = 'http://api.flickr.com/services/rest/?'
         url = url_base + urllib.urlencode(values)
 
+        client = UrlGetWithProxy()
         d = client.getPage(url)
         d.addCallback(cb)
 
@@ -93,5 +94,5 @@ if __name__ == "__main__":
 
     api_key = ''
     secret = ''
-    auth = FlickrAuth(api_key, secret, confirm_other_cb)
+    auth = FlickrAuth(api_key, secret, 'write', confirm_other_cb)
     reactor.run()
