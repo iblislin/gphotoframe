@@ -1,7 +1,7 @@
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* flickr/__init__.py, gphotoframe.glade: Implemented Flickr Auth
-	  dialog.
+	* flickr/__init__.py, gphotoframe.glade, flickr/auth.py: 
+	  Implemented Flickr Auth functions.
 	* flickr/api.py: Divided flickr/__init__.py.
 	* plugins/__init__.py, plugins/flickr/__init__.py: Added support
 	  for loading plugins from directories.

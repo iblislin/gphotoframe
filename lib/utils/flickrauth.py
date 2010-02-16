@@ -6,19 +6,17 @@ import os
 import sys
 import md5
 import urllib
+import urllib2
 import xml.etree.ElementTree as etree
 
 from urlget import UrlGetWithProxy
 
 class FlickrAuth(object):
 
-    def __init__(self, api_key, secret, perms, cb=None):
+    def __init__(self, api_key, secret, perms):
         self.api_key = api_key
         self.secret = secret
         self.perms = perms
-        self.confirm_cb = cb or self._confirm_dialog
-
-        self._get_frob()
 
     def _get_frob(self):
         """Get frob with flickr.auth.getFrob"""
@@ -32,9 +30,8 @@ class FlickrAuth(object):
         self._get_url(values, self._get_token)
 
     def _get_token(self, data):
-        """Open browser and get token with flickr.auth.getToken"""
+        """Open browser for authorization"""
 
-        # open browwser
         element = etree.fromstring(data)
         self.frob = element.find('frob').text
 
@@ -46,10 +43,9 @@ class FlickrAuth(object):
             self.api_key, self.perms, self.frob, md5.new(api_sig).hexdigest())
         os.system("gnome-open '%s'" % url)
 
-        # wait authorization
-        self.confirm_cb(self)
+    def get_auth_token(self):
+        """Get token with flickr.auth.getToken"""
 
-        # get token
         method = 'flickr.auth.getToken'
         api_sig = "%sapi_key%sfrob%smethod%s" % (
             self.secret, self.api_key, self.frob, method)
@@ -77,9 +73,13 @@ class FlickrAuth(object):
         url_base = 'http://api.flickr.com/services/rest/?'
         url = url_base + urllib.urlencode(values)
 
-        client = UrlGetWithProxy()
-        d = client.getPage(url)
-        d.addCallback(cb)
+        # client = UrlGetWithProxy()
+        # d = client.getPage(url)
+        # d.addCallback(cb)
+
+        r = urllib2.urlopen(url)
+        body = r.read()
+        cb(body)
 
     def _confirm_dialog(self, *args):
         print "Once you're done, hit RETURN key."
