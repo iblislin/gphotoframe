@@ -1,6 +1,9 @@
 import urllib
 
-import simplejson as json
+try:
+    import simplejson as json
+except:
+    import json
 
 from base import *
 from gettext import gettext as _
