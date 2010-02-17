@@ -1,3 +1,8 @@
+2010-02-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, preferences.py, gphotoframe.schemas.in:
+	  Fixed default values of max_width & max_height.
+
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr.py, base.py: Added support for user name and group name
