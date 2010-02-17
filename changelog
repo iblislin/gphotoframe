@@ -5,6 +5,11 @@
 
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/__init__.py, gphotoframe.glade, flickr/auth.py: 
+	  Implemented Flickr Auth functions.
+	* flickr/api.py: Divided flickr/__init__.py.
+	* plugins/__init__.py, plugins/flickr/__init__.py: Added support
+	  for loading plugins from directories.
 	* flickr.py, base.py: Added support for user name and group name
 	  in url.  Added tooltips for argument entries.
 
