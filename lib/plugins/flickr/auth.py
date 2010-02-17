@@ -6,8 +6,9 @@ import os
 import sys
 import hashlib
 import urllib
+import urllib2
 
-#import xml.etree.ElementTree
+#import xml.etree.ElementTree as etree
 from lxml import etree
 
 from ...utils.urlget import UrlGetWithProxy
@@ -18,6 +19,8 @@ class FlickrAuth(object):
         self.api_key = api_key
         self.secret = secret
         self.perms = perms
+
+        self.twisted = True
 
     def _get_frob(self):
         """Get frob with flickr.auth.getFrob"""
@@ -55,8 +58,11 @@ class FlickrAuth(object):
                    'api_sig' : hashlib.md5(api_sig).hexdigest(),
                    'frob' : self.frob, }
 
-        d = self._get_url(values, self.parse_token)
-        d.addCallback(cb)
+        if self.twisted:
+            d = self._get_url(values, self.parse_token)
+            d.addCallback(cb)
+        else:
+            d = self._get_url(values, self.parse_token, cb)
 
     def parse_token(self, data):
         """Parse token XML strings. """
@@ -76,15 +82,22 @@ class FlickrAuth(object):
                  'user_name': username, 
                  'full_name': fullname}
 
-    def _get_url(self, values, cb):
+    def _get_url(self, values, cb, cb_plus=None):
         url_base = 'http://api.flickr.com/services/rest/?'
         url = url_base + urllib.urlencode(values)
 
-        client = UrlGetWithProxy()
-        d = client.getPage(url)
-        d.addCallback(cb)
-
-        return d
+        if self.twisted:
+            client = UrlGetWithProxy()
+            d = client.getPage(url)
+            d.addCallback(cb)
+            return d
+        else:
+            print "aaa"
+            data = urllib.urlopen(url).read()
+            result = cb(data)
+        
+            if cb_plus:
+                cb_plus(result)
 
 if __name__ == "__main__":
     from twisted.internet import defer, reactor
