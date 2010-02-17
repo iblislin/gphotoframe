@@ -2,7 +2,7 @@ import simplejson as json
 
 from ..base import PhotoList, PhotoSourceUI, SourceWebIcon, Photo
 from api import *
-from auth import *
+from authdialog import *
 
 def info():
     return ['Flickr', FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]

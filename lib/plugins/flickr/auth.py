@@ -1,96 +1,95 @@
-import gtk
+#!/usr/bin/python
 
-from ..base import PluginDialog
-from ...utils.flickrauth import FlickrAuth
+# http://www.flickr.com/services/api/auth.howto.desktop.html
+
+import os
+import sys
+import md5
+import urllib
+
+#import xml.etree.ElementTree
+from lxml import etree
+
 from ...utils.urlget import UrlGetWithProxy
-from ...utils.config import GConf
 
-class PluginFlickrDialog(PluginDialog):
+class FlickrAuth(object):
 
-    def _set_ui(self):
-        self.dialog = self.gui.get_widget('plugin_netauth_dialog')
-        self.label  = self.gui.get_widget('label_netauth')
-        self.button_p = self.gui.get_widget('button_netauth_p')
-        self.button_n = self.gui.get_widget('button_netauth_n')
+    def __init__(self, api_key, secret, perms):
+        self.api_key = api_key
+        self.secret = secret
+        self.perms = perms
 
-        self.p_id = self.n_id = None
+    def _get_frob(self):
+        """Get frob with flickr.auth.getFrob"""
 
-        api_key = '343677ff5aa31f37042513d533293062'
-        secret = GConf().get_string('plugins/flickr/secret')
-        perms = 'write'
+        method= 'flickr.auth.getFrob'
+        api_sig = "%sapi_key%smethod%s" % (self.secret, self.api_key, method)
+        values = { 'method' : method, 
+                   'api_key' : self.api_key, 
+                   'api_sig' : md5.new(api_sig).hexdigest(), }
 
-        self.auth_obj = FlickrAuth(api_key, secret, perms)
+        self._get_url(values, self._get_token)
 
-    def _set_confirm_dialog(self, *args):
-        text = "You are connected to Flickr.com as %s" % self.user_id
-        p_label = '_Switch User'
-        n_label = gtk.STOCK_OK
-        p_cb = self._set_authorize_dialog
-        n_cb = self._cancel_cb
+    def _get_token(self, data):
+        """Open browser for authorization"""
 
-        self._set_dialog(text, p_label, n_label, p_cb, n_cb)
+        element = etree.fromstring(data)
+        self.frob = element.find('frob').text
 
-    def _set_authorize_dialog(self, *args):
-        text = "Press Authorized button"
-        p_label = gtk.STOCK_CANCEL
-        n_label = '_Authorized'
-        p_cb = self._cancel_cb
-        n_cb = self._set_complete_dialog
+        api_sig = "%sapi_key%sfrob%sperms%s" % (
+            self.secret, self.api_key, self.frob, self.perms)
 
-        self._set_dialog(text, p_label, n_label, p_cb, n_cb)
+        base_url = 'http://flickr.com/services/auth/?'
+        url = base_url + 'api_key=%s&perms=%s&frob=%s&api_sig=%s' % (
+            self.api_key, self.perms, self.frob, md5.new(api_sig).hexdigest())
+        os.system("gnome-open '%s'" % url)
 
-    def _set_complete_dialog(self, widget):
-        self.auth_obj._get_frob() # getfrob -> open browser
+    def get_auth_token(self, cb):
+        """Get token with flickr.auth.getToken"""
 
-        text = "Press Complete button"
-        p_label = gtk.STOCK_CANCEL
-        n_label = '_Complete'
-        p_cb = self._cancel_cb
-        n_cb = self.comp
+        method = 'flickr.auth.getToken'
+        api_sig = "%sapi_key%sfrob%smethod%s" % (
+            self.secret, self.api_key, self.frob, method)
+        values = { 'method' : method, 
+                   'api_key' : self.api_key, 
+                   'api_sig' : md5.new(api_sig).hexdigest(),
+                   'frob' : self.frob, }
 
-        self._set_dialog(text, p_label, n_label, p_cb, n_cb)
+        d = self._get_url(values, self.parse_token)
+        d.addCallback(cb)
 
-    def comp(self, *args):
-        self.auth_obj.get_auth_token()
-        self._set_confirm_dialog()
+    def parse_token(self, data):
+        """Parse token XML strings. """
 
-    def _set_dialog(self, text, p_label, n_label, p_cb, n_cb):
+        element = etree.fromstring(data)
+        user_element = element.find('auth/user')
 
-        self.label.set_text(text)
-        self.button_p.set_label(p_label)
-        self.button_n.set_label(n_label)
+        token = element.find('auth/token').text
+        nsid = user_element.get('nsid')
+        username =  user_element.get('username')
+        fullname = user_element.get('fullname')
 
-        if self.p_id:
-            self.button_p.disconnect(self.p_id)
-            self.button_n.disconnect(self.n_id)
+        print token, fullname
 
-        self.p_id = self.button_p.connect('clicked', p_cb)
-        self.n_id = self.button_n.connect('clicked', n_cb)
+        return { 'auth_token': token, 
+                 'nsid': nsid, 
+                 'user_name': username, 
+                 'full_name': fullname}
 
-    def _cancel_cb(self, *args):
-        self.dialog.destroy()
+    def _get_url(self, values, cb):
+        url_base = 'http://api.flickr.com/services/rest/?'
+        url = url_base + urllib.urlencode(values)
 
-    def run(self):
-        self._read_conf()
+        client = UrlGetWithProxy()
+        d = client.getPage(url)
+        d.addCallback(cb)
 
-        if not self.auth_token:
-            self._set_confirm_dialog()
-        else:
-            self._set_authorize_dialog()
+        return d
 
-        # self.dialog.show()
-        response_id = self.dialog.run()
+if __name__ == "__main__":
+    from twisted.internet import defer, reactor
 
-        if response_id == gtk.RESPONSE_OK: 
-            print "ok"
-            # self._write_conf()
-
-        return response_id, {}
-
-    def _read_conf(self):
-        self.user_id = self.conf.get_string('plugins/flickr/user_id') # nsid
-        self.user_name = self.conf.get_string('plugins/flickr/user_name')
-        self.auth_token = self.conf.get_string('plugins/flickr/auth_token')
-
-    def _write_conf(self):
-        pass
+    api_key = ''
+    secret = ''
+    auth = FlickrAuth(api_key, secret, 'write')
+    reactor.run()
