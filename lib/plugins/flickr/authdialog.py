@@ -23,7 +23,7 @@ class PluginFlickrDialog(PluginDialog):
         self.auth_obj = FlickrAuth(api_key, secret, perms)
 
     def _set_confirm_dialog(self, *args):
-        text = _("You are connected to Flickr.com as %s") % self.user_name
+        text = _("You are connected to Flickr.com as %s.") % self.user_name
         p_label = _('_Switch User')
         n_label = gtk.STOCK_OK
         p_cb = self._set_authorize_dialog
@@ -32,9 +32,12 @@ class PluginFlickrDialog(PluginDialog):
         self._set_dialog(text, p_label, n_label, p_cb, n_cb)
 
     def _set_authorize_dialog(self, *args):
-        text = _("Press Authorized button")
+        text = _("Gnome Photo Frame needs your authorization in order to view \
+private photos or to add photos to favorites list on your Flickr.com account. \
+Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame \
+the authorization. ")
         p_label = gtk.STOCK_CANCEL
-        n_label = _('_Authorized')
+        n_label = _('_Authorize')
         p_cb = self._cancel_cb
         n_cb = self._set_complete_dialog
 
@@ -42,10 +45,10 @@ class PluginFlickrDialog(PluginDialog):
 
     def _set_complete_dialog(self, widget):
         self.auth_obj._get_frob() # getfrob -> open browser
-
-        text = _("Press Complete button")
+        text = _("Return to this dialog after you have finished the authorization \
+process on Flickr.com and click the \"Complete Authorization\" button below")
         p_label = gtk.STOCK_CANCEL
-        n_label = _('_Complete')
+        n_label = _('_Complete Authorization')
         p_cb = self._cancel_cb
         n_cb = self.comp
 
