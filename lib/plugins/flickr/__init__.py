@@ -1,4 +1,7 @@
-import simplejson as json
+try:
+    import simplejson as json
+except:
+    import json
 
 from ..base import PhotoList, PhotoSourceUI, SourceWebIcon, Photo
 from api import *
