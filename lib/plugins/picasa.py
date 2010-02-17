@@ -1,6 +1,10 @@
 from twisted.web import client
 import urllib
-import simplejson as json
+
+try:
+    import simplejson as json
+except:
+    import json
 # import pprint
 
 from base import *
