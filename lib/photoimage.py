@@ -55,8 +55,8 @@ class PhotoImage(object):
         return pixbuf
 
     def _get_max_display_size(self):
-        width = self.conf.get_int('max_width', 400)
-        height = self.conf.get_int('max_height', 400)
+        width = self.conf.get_int('max_width') or 400
+        height = self.conf.get_int('max_height') or 300
         return width, height
 
     def _set_tips(self, photo):

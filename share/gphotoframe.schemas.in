@@ -102,7 +102,7 @@
       <applyto>/apps/gphotoframe/max_height</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>0</default>
+      <default>300</default>
       <locale name="C">
         <short>Photo image max height</short>
         <long>Photo image max height</long>
@@ -114,7 +114,7 @@
       <applyto>/apps/gphotoframe/max_width</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>0</default>
+      <default>400</default>
       <locale name="C">
         <short>Photo image max width</short>
         <long>Photo image max width</long>

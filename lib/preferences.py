@@ -92,7 +92,7 @@ class Preferences(object):
 
     def _set_spinbutton_value(self, widget, key, default_value):
         spinbutton = self.gui.get_widget(widget)
-        value = self.conf.get_int(key, default_value)
+        value = self.conf.get_int(key) or default_value
         spinbutton.set_value(value)
 
 class PreferencesTreeView(object):
