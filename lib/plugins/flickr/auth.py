@@ -4,7 +4,7 @@
 
 import os
 import sys
-import md5
+import hashlib
 import urllib
 
 #import xml.etree.ElementTree
@@ -26,7 +26,7 @@ class FlickrAuth(object):
         api_sig = "%sapi_key%smethod%s" % (self.secret, self.api_key, method)
         values = { 'method' : method, 
                    'api_key' : self.api_key, 
-                   'api_sig' : md5.new(api_sig).hexdigest(), }
+                   'api_sig' : hashlib.md5(api_sig).hexdigest(), }
 
         self._get_url(values, self._get_token)
 
@@ -41,7 +41,7 @@ class FlickrAuth(object):
 
         base_url = 'http://flickr.com/services/auth/?'
         url = base_url + 'api_key=%s&perms=%s&frob=%s&api_sig=%s' % (
-            self.api_key, self.perms, self.frob, md5.new(api_sig).hexdigest())
+            self.api_key, self.perms, self.frob, hashlib.md5(api_sig).hexdigest())
         os.system("gnome-open '%s'" % url)
 
     def get_auth_token(self, cb):
@@ -52,7 +52,7 @@ class FlickrAuth(object):
             self.secret, self.api_key, self.frob, method)
         values = { 'method' : method, 
                    'api_key' : self.api_key, 
-                   'api_sig' : md5.new(api_sig).hexdigest(),
+                   'api_sig' : hashlib.md5(api_sig).hexdigest(),
                    'frob' : self.frob, }
 
         d = self._get_url(values, self.parse_token)
