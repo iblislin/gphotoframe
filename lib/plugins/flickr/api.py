@@ -20,7 +20,6 @@ class FlickrFactoryAPI(object):
 class FlickrAPI(object):
 
     def __init__(self):
-        # self.conf = GConf()
         self.nsid_conversion = True
         self._set_method()
 
@@ -31,27 +30,26 @@ class FlickrAPI(object):
         url = 'http://api.flickr.com/services/rest/?'
         api_key = '343677ff5aa31f37042513d533293062'
 
-        self.values = { 'api_key' : api_key,
-                        'count'   : 50,
-                        'method'  : self.method,
-                        'format'  : 'json',
-                        'extras'  : 'owner_name,original_format,media',
-                        'nojsoncallback' : '1' }
+        values = { 'api_key' : api_key,
+                   'count'   : 50,
+                   'method'  : self.method,
+                   'format'  : 'json',
+                   'extras'  : 'owner_name,original_format,media',
+                   'nojsoncallback' : '1' }
 
-        arg = self._url_argument(argument)
-        url = self._cat_url(url, arg)
+        values.update(self._url_argument(argument, values))
+        url = self._cat_url(url, values, arg=1)
         return url
 
-    def _cat_url(self, url, arg):
+    def _cat_url(self, url, values, arg):
         if not arg:
             print "Flickr: oops! ", url
 
-        url = url + urllib.urlencode(self.values) if arg else None
+        url = url + urllib.urlencode(values) if arg else None
         return url
 
-    def _url_argument(self, argument):
-        self.values['user_id'] = argument
-        return self.values['user_id']
+    def _url_argument(self, argument, values):
+        return {'user_id': argument}
 
     def set_entry_label(self):
         sensitive = False
@@ -71,29 +69,22 @@ class FlickrAPI(object):
     def tooltip(self):
         return _('Enter NSID or User Name in the URL')
 
-    def _auth_argument(self, method):
+    def _auth_argument(self, values):
         conf = GConf()
 
         secret = conf.get_string('plugins/flickr/secret')
         api_key = '343677ff5aa31f37042513d533293062'
         auth_token = conf.get_string('plugins/flickr/auth_token')
 
-        self.values['auth_token'] = auth_token
+        values['auth_token'] = auth_token
 
         args = ""
-        keys = self.values.keys()
-        keys.sort()
-
-        for i in keys:
-            # print i, self.values[i]
-            args += i + str(self.values[i])
-
+        for key in sorted(values.keys()):
+            args += key + str(values[key])
         api_sig_raw = "%s%s" % ( secret, args)
         api_sig = hashlib.md5(api_sig_raw).hexdigest()
 
-        values = { 'auth_token' : auth_token,
-                   'api_sig' : api_sig,
-                   }
+        values.update({ 'auth_token' : auth_token, 'api_sig' : api_sig, })
 
         #print api_sig, method
         return values
@@ -105,14 +96,11 @@ class FlickrContactsAPI(FlickrAPI):
         self.method = 'flickr.photos.getContacts'
         self.method += 'Photos' if self.auth else 'PublicPhotos'
 
-    def _url_argument(self, argument):
+    def _url_argument(self, argument, values):
         if self.auth:
-            auth = self._auth_argument(self.method)
-            self.values.update(auth)
+            return self._auth_argument(values)
         else:
-            self.values['user_id'] = argument
-
-        return 1
+            return {'user_id': argument}
 
 class FlickrFavoritesAPI(FlickrAPI):
 
@@ -124,9 +112,8 @@ class FlickrGroupAPI(FlickrAPI):
     def _set_method(self):
         self.method = 'flickr.groups.pools.getPhotos'
 
-    def _url_argument(self, argument):
-        self.values['group_id'] = argument
-        return argument
+    def _url_argument(self, argument, values):
+        return {'group_id': argument}
 
     def set_entry_label(self):
         sensitive = True
@@ -151,8 +138,8 @@ class FlickrInterestingnessAPI(FlickrAPI):
         self.method = 'flickr.interestingness.getList'
         self.nsid_conversion = False
 
-    def _cat_url(self, url, arg):
-        url = url + urllib.urlencode(self.values)
+    def _cat_url(self, url, values, arg):
+        url = url + urllib.urlencode(values)
         return url
 
     def tooltip(self):
@@ -163,9 +150,9 @@ class FlickrPeopleAPI(FlickrAPI):
     def _set_method(self):
         self.method = 'flickr.people.getPublicPhotos'
 
-    def _url_argument(self, argument):
-        self.values['user_id'] = argument
-        return argument
+    def _url_argument(self, argument, values):
+        return {'user_id': argument}
+
 
     def set_entry_label(self):
         sensitive = True
@@ -178,10 +165,9 @@ class FlickrSearchAPI(FlickrAPI):
         self.method = 'flickr.photos.search'
         self.nsid_conversion = False
 
-    def _url_argument(self, argument):
-        self.values['tags'] = argument
-        self.values['tag_mode'] = 'all'
-        return argument
+    def _url_argument(self, argument, values):
+        return {'tags': argument, 'tag_mode': 'all'}
+
 
     def set_entry_label(self):
         sensitive = True
@@ -196,9 +182,8 @@ class FlickrNSIDAPI(FlickrAPI):
     def _set_method(self):
         self.method = 'flickr.urls.lookupUser'
 
-    def _url_argument(self, argument):
-        self.values['url'] = argument
-        return argument
+    def _url_argument(self, argument, values):
+        return {'url': argument}
 
 class FlickrGroupNSIDAPI(FlickrNSIDAPI):
 
