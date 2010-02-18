@@ -1,4 +1,5 @@
 import urllib
+import hashlib
 from gettext import gettext as _
 
 from ...utils.config import GConf
@@ -70,10 +71,48 @@ class FlickrAPI(object):
     def tooltip(self):
         return _('Enter NSID or User Name in the URL')
 
+    def _auth_argument(self, method):
+        conf = GConf()
+
+        secret = conf.get_string('plugins/flickr/secret')
+        api_key = '343677ff5aa31f37042513d533293062'
+        auth_token = conf.get_string('plugins/flickr/auth_token')
+
+        self.values['auth_token'] = auth_token
+
+        args = ""
+        keys = self.values.keys()
+        keys.sort()
+
+        for i in keys:
+            # print i, self.values[i]
+            args += i + str(self.values[i])
+
+        api_sig_raw = "%s%s" % ( secret, args)
+        api_sig = hashlib.md5(api_sig_raw).hexdigest()
+
+        values = { 'auth_token' : auth_token,
+                   'api_sig' : api_sig,
+                   }
+
+        #print api_sig, method
+        return values
+
 class FlickrContactsAPI(FlickrAPI):
 
     def _set_method(self):
-        self.method = 'flickr.photos.getContactsPublicPhotos'
+        self.auth = 1
+        self.method = 'flickr.photos.getContacts'
+        self.method += 'Photos' if self.auth else 'PublicPhotos'
+
+    def _url_argument(self, argument):
+        if self.auth:
+            auth = self._auth_argument(self.method)
+            self.values.update(auth)
+        else:
+            self.values['user_id'] = argument
+
+        return 1
 
 class FlickrFavoritesAPI(FlickrAPI):
 

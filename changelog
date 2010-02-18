@@ -1,3 +1,7 @@
+2010-02-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/api.py: Added support for authorized API access.
+
 2010-02-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimage.py, preferences.py, gphotoframe.schemas.in:
