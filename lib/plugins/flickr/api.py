@@ -3,6 +3,7 @@ import hashlib
 from gettext import gettext as _
 
 from ...utils.config import GConf
+from auth import add_api_sig
 
 class FlickrFactoryAPI(object):
 
@@ -38,14 +39,8 @@ class FlickrAPI(object):
                    'nojsoncallback' : '1' }
 
         values.update(self._url_argument(argument, values))
-        url = self._cat_url(url, values, arg=1)
-        return url
+        url = url + urllib.urlencode(values)
 
-    def _cat_url(self, url, values, arg):
-        if not arg:
-            print "Flickr: oops! ", url
-
-        url = url + urllib.urlencode(values) if arg else None
         return url
 
     def _url_argument(self, argument, values):
@@ -62,7 +57,8 @@ class FlickrAPI(object):
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
         user = arg or GConf().get_string('plugins/flickr/user_id')
-        url = api.get_url('http://www.flickr.com/photos/%s/' % user) if user else None
+        url = api.get_url('http://www.flickr.com/photos/%s/' % user) \
+            if user else None
         return url
 
     def parse_nsid(self, d):
@@ -76,13 +72,7 @@ class FlickrAPI(object):
         auth_token = conf.get_string('plugins/flickr/auth_token')
         values['auth_token'] = auth_token
 
-        args = ""
-        for key in sorted(values.keys()):
-            args += key + str(values[key])
-        api_sig_raw = "%s%s" % (secret, args)
-        api_sig = hashlib.md5(api_sig_raw).hexdigest()
-        values['api_sig'] = api_sig
-
+        values = add_api_sig(values, secret)
         return values
 
 class FlickrContactsAPI(FlickrAPI):
@@ -116,27 +106,24 @@ class FlickrGroupAPI(FlickrAPI):
         label = _('_Group:')
         return sensitive, label
 
+    def tooltip(self):
+        return _('Enter NSID or Group Name in the URL')
+
     def get_url_for_nsid_lookup(self, group):
         api = FlickrGroupNSIDAPI()
-        url = api.get_url('http://www.flickr.com/groups/%s/' % group) if group else None
+        url = api.get_url('http://www.flickr.com/groups/%s/' % group) \
+            if group else None
         return url
 
     def parse_nsid(self, d):
         argument = d['group']['id'] if d.get('group') else None
         return argument
 
-    def tooltip(self):
-        return _('Enter NSID or Group Name in the URL')
-
 class FlickrInterestingnessAPI(FlickrAPI):
 
     def _set_method(self):
         self.method = 'flickr.interestingness.getList'
         self.nsid_conversion = False
-
-    def _cat_url(self, url, values, arg):
-        url = url + urllib.urlencode(values)
-        return url
 
     def tooltip(self):
         return ""
