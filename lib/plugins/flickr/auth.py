@@ -96,6 +96,21 @@ class FlickrAuth(object):
                  'user_name': username, 
                  'full_name': fullname}
 
+    def check_token(self, auth_token):
+
+        def _check_cb(data):
+            print data
+
+        base_url = 'http://api.flickr.com/services/rest/?'
+        values = { 'method' : 'flickr.auth.checkToken',
+                   'api_key' : self.api_key,
+                   'auth_token' : auth_token, }
+
+        values = add_api_sig(values, self.secret)
+        url = base_url + urllib.urlencode(values)
+
+        self._get_url(url, _check_cb)
+
     def _get_url(self, url, cb, cb_plus=None):
 
         if self.twisted:
