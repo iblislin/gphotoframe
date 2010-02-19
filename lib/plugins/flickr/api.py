@@ -7,8 +7,8 @@ from auth import add_api_sig
 
 class FlickrFactoryAPI(object):
 
-    def api_list(self):
-        api = { 
+    def __init__(self):
+        self.api = { 
             'Contacts Photos' : FlickrContactsAPI, 
             'Favorites'       : FlickrFavoritesAPI,
             'Group Pool'      : FlickrGroupAPI,
@@ -16,7 +16,9 @@ class FlickrFactoryAPI(object):
             'People Photos'   : FlickrPeopleAPI, 
             'Photo Search'    : FlickrSearchAPI, 
             }
-        return api
+
+    def create(self, api):
+        return self.api[api]()
 
 class FlickrAPI(object):
 

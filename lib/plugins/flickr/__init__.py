@@ -15,12 +15,17 @@ class FlickrPhotoList(PhotoList):
     def prepare(self):
         self.photos = []
 
-        api_list = FlickrFactoryAPI().api_list()
+        factory = FlickrFactoryAPI()
+        api_list = factory.api
         if not self.target in api_list:
             print "flickr: %s is invalid target." % self.target
             return
 
-        self.api = api_list[self.target]()
+        print factory.api
+
+        #self.api = api_list[self.target]()
+        self.api = factory.create(self.target)
+        print self.api
 
         if self.api.nsid_conversion:
             nsid_url = self.api.get_url_for_nsid_lookup(self.argument)
@@ -89,7 +94,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        api = FlickrFactoryAPI().api_list()[target]()
+        api = FlickrFactoryAPI().create(target)
         state, label = api.set_entry_label()
 
         self._set_argument_sensitive(label, state)
@@ -99,7 +104,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _label(self):
-        keys = FlickrFactoryAPI().api_list().keys()
+        keys = FlickrFactoryAPI().api.keys()
         keys.sort()
         return [ api for api in keys ]
 
