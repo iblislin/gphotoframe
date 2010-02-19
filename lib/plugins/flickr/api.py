@@ -8,17 +8,17 @@ from auth import add_api_sig
 class FlickrFactoryAPI(object):
 
     def __init__(self):
-        self.api = { 
+        self.api = {
             'Contacts Photos' : FlickrFactoryContactsAPI,
             'Favorites'       : FlickrFactoryFavoritesAPI,
             'Group Pool'      : FlickrGroupAPI,
             'Interestingness' : FlickrInterestingnessAPI,
             'People Photos'   : FlickrFactoryPeopleAPI,
-            'Photo Search'    : FlickrSearchAPI, 
+            'Photo Search'    : FlickrSearchAPI,
             }
 
     def create(self, api):
-        obj = self.api[api]()
+        obj = self.api[api]().create()
         return obj
 
 class FlickrAPI(object):
@@ -29,6 +29,9 @@ class FlickrAPI(object):
 
     def _set_method(self):
         pass
+
+    def create(self):
+        return self
 
     def get_url(self, argument):
         url = 'http://api.flickr.com/services/rest/?'
@@ -43,7 +46,7 @@ class FlickrAPI(object):
 
         values.update(self._url_argument(argument, values))
         url = url + urllib.urlencode(values)
-        
+
         # print url
         return url
 
@@ -79,16 +82,26 @@ class FlickrAPI(object):
         values = add_api_sig(values, secret)
         return values
 
-class FlickrFactoryContactsAPI(object):
+class FlickrAuthFactory(object):
 
-    def __new__(self):
+    def __init__(self):
         conf = GConf()
-        auth_token = conf.get_string('plugins/flickr/auth_token')
+        self.auth_token = conf.get_string('plugins/flickr/auth_token')
+        self._set_method()
 
-        if auth_token:
-            return FlickrContactsAuthAPI()
+    def create(self):
+        if not self.auth_token:
+            api = self.auth_api()
         else:
-            return FlickrContactsAPI()
+            api = self.api()
+
+        return api.create()
+
+class FlickrFactoryContactsAPI(FlickrAuthFactory):
+
+    def _set_method(self):
+        self.api = FlickrContactsAPI
+        self.auth_api = FlickrContactsAuthAPI
 
 class FlickrContactsAPI(FlickrAPI):
 
@@ -103,16 +116,11 @@ class FlickrContactsAuthAPI(FlickrAPI):
     def _url_argument(self, argument, values):
         return self._add_auth_argument(values)
 
-class FlickrFactoryFavoritesAPI(object):
+class FlickrFactoryFavoritesAPI(FlickrAuthFactory):
 
-    def __new__(self):
-        conf = GConf()
-        auth_token = conf.get_string('plugins/flickr/auth_token')
-
-        if auth_token:
-            return FlickrFavoritesAuthAPI()
-        else:
-            return FlickrFavoritesAPI()
+    def _set_method(self):
+        self.api = FlickrFavoritesAPI
+        self.auth_api = FlickrFavoritesAuthAPI
 
 class FlickrFavoritesAPI(FlickrAPI):
 
@@ -163,16 +171,11 @@ class FlickrInterestingnessAPI(FlickrAPI):
     def tooltip(self):
         return ""
 
-class FlickrFactoryPeopleAPI(object):
+class FlickrFactoryPeopleAPI(FlickrAuthFactory):
 
-    def __new__(self):
-        conf = GConf()
-        auth_token = conf.get_string('plugins/flickr/auth_token')
-
-        if auth_token:
-            return FlickrPeopleAuthAPI()
-        else:
-            return FlickrPeopleAPI()
+    def _set_method(self):
+        self.api = FlickrPeopleAPI
+        self.auth_api = FlickrPeopleAuthAPI
 
 class FlickrPeopleAPI(FlickrAPI):
 
