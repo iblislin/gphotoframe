@@ -21,9 +21,6 @@ class FlickrPhotoList(PhotoList):
             print "flickr: %s is invalid target." % self.target
             return
 
-        print factory.api
-
-        #self.api = api_list[self.target]()
         self.api = factory.create(self.target)
         print self.api
 
@@ -56,6 +53,10 @@ class FlickrPhotoList(PhotoList):
 
     def _prepare_cb(self, data):
         d = json.loads(data)
+
+        if d.get('stat') == 'fail':
+            print "Flickr API Error (%s): %s" % (d['code'], d['message'])
+            return
 
         self.total = len(d['photos']['photo'])
         for s in d['photos']['photo']:
