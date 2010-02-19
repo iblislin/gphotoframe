@@ -56,7 +56,10 @@ class FlickrAPI(object):
         label = _('_User:')
         return sensitive, label
 
-    def get_nsid_url(self, arg):
+    def tooltip(self):
+        return _('Enter NSID or User Name in the URL')
+
+    def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
         user = arg or GConf().get_string('plugins/flickr/user_id')
         url = api.get_url('http://www.flickr.com/photos/%s/' % user) if user else None
@@ -66,27 +69,20 @@ class FlickrAPI(object):
         argument = d['user']['id'] if d.get('user') else None
         return argument
 
-    def tooltip(self):
-        return _('Enter NSID or User Name in the URL')
-
     def _auth_argument(self, values):
         conf = GConf()
 
         secret = conf.get_string('plugins/flickr/secret')
-        api_key = '343677ff5aa31f37042513d533293062'
         auth_token = conf.get_string('plugins/flickr/auth_token')
-
         values['auth_token'] = auth_token
 
         args = ""
         for key in sorted(values.keys()):
             args += key + str(values[key])
-        api_sig_raw = "%s%s" % ( secret, args)
+        api_sig_raw = "%s%s" % (secret, args)
         api_sig = hashlib.md5(api_sig_raw).hexdigest()
+        values['api_sig'] = api_sig
 
-        values.update({ 'auth_token' : auth_token, 'api_sig' : api_sig, })
-
-        #print api_sig, method
         return values
 
 class FlickrContactsAPI(FlickrAPI):
@@ -120,7 +116,7 @@ class FlickrGroupAPI(FlickrAPI):
         label = _('_Group:')
         return sensitive, label
 
-    def get_nsid_url(self, group):
+    def get_url_for_nsid_lookup(self, group):
         api = FlickrGroupNSIDAPI()
         url = api.get_url('http://www.flickr.com/groups/%s/' % group) if group else None
         return url
@@ -153,7 +149,6 @@ class FlickrPeopleAPI(FlickrAPI):
     def _url_argument(self, argument, values):
         return {'user_id': argument}
 
-
     def set_entry_label(self):
         sensitive = True
         label = _('_User:')
@@ -167,7 +162,6 @@ class FlickrSearchAPI(FlickrAPI):
 
     def _url_argument(self, argument, values):
         return {'tags': argument, 'tag_mode': 'all'}
-
 
     def set_entry_label(self):
         sensitive = True

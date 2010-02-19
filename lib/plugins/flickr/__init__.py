@@ -23,7 +23,7 @@ class FlickrPhotoList(PhotoList):
         self.api = api_list[self.target]()
 
         if self.api.nsid_conversion:
-            nsid_url = self.api.get_nsid_url(self.argument)
+            nsid_url = self.api.get_url_for_nsid_lookup(self.argument)
             # print self.target, self.argument
 
             if nsid_url is None: 
