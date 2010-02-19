@@ -9,7 +9,7 @@ class FlickrFactoryAPI(object):
 
     def __init__(self):
         self.api = { 
-            'Contacts Photos' : FlickrContactsAPI, 
+            'Contacts Photos' : FlickrFactoryContactsAPI,
             'Favorites'       : FlickrFavoritesAPI,
             'Group Pool'      : FlickrGroupAPI,
             'Interestingness' : FlickrInterestingnessAPI,
@@ -18,7 +18,8 @@ class FlickrFactoryAPI(object):
             }
 
     def create(self, api):
-        return self.api[api]()
+        obj = self.api[api]()
+        return obj
 
 class FlickrAPI(object):
 
@@ -42,7 +43,8 @@ class FlickrAPI(object):
 
         values.update(self._url_argument(argument, values))
         url = url + urllib.urlencode(values)
-
+        
+        # print url
         return url
 
     def _url_argument(self, argument, values):
@@ -77,18 +79,32 @@ class FlickrAPI(object):
         values = add_api_sig(values, secret)
         return values
 
+class FlickrFactoryContactsAPI(object):
+
+    def __new__(self):
+        conf = GConf()
+        auth_token = conf.get_string('plugins/flickr/auth_token')
+
+        if auth_token:
+            return FlickrContactsAPI()
+        else:
+            return FlickrContactsPublicAPI()
+
 class FlickrContactsAPI(FlickrAPI):
 
     def _set_method(self):
-        self.auth = 1
-        self.method = 'flickr.photos.getContacts'
-        self.method += 'Photos' if self.auth else 'PublicPhotos'
+        self.method = 'flickr.photos.getContactsPhotos'
 
     def _url_argument(self, argument, values):
-        if self.auth:
-            return self._auth_argument(values)
-        else:
-            return {'user_id': argument}
+        return self._auth_argument(values)
+
+class FlickrContactsPublicAPI(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.photos.getContactsPublicPhotos'
+
+    def _url_argument(self, argument, values):
+        return {'user_id': argument}
 
 class FlickrFavoritesAPI(FlickrAPI):
 
