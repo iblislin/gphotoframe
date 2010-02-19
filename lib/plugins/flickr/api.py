@@ -90,7 +90,7 @@ class FlickrAuthFactory(object):
         self._set_method()
 
     def create(self):
-        if not self.auth_token:
+        if self.auth_token:
             api = self.auth_api()
         else:
             api = self.api()
@@ -135,6 +135,20 @@ class FlickrFavoritesAuthAPI(FlickrAPI):
     def _url_argument(self, argument, values):
         values.update({'user_id': argument})
         return self._add_auth_argument(values)
+
+class FlickrFavoritesAddAPI(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.favorites.add'
+
+    def _url_argument(self, argument, values):
+        values.update({'photo_id': argument})
+        return self._add_auth_argument(values)
+
+class FlickrFavoritesRemoveAPI(FlickrFavoritesAddAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.favorites.remove'
 
 class FlickrGroupAPI(FlickrAPI):
 
