@@ -13,6 +13,17 @@ from lxml import etree
 
 from ...utils.urlget import UrlGetWithProxy
 
+def add_api_sig(values, secret):
+    args = ""
+    for key in sorted(values.keys()):
+        args += key + str(values[key])
+
+    api_sig_raw = "%s%s" % (secret, args)
+    api_sig = hashlib.md5(api_sig_raw).hexdigest()
+    values['api_sig'] = api_sig
+
+    return values
+
 class FlickrAuth(object):
 
     def __init__(self, api_key, secret, perms):
@@ -25,13 +36,14 @@ class FlickrAuth(object):
     def _get_frob(self):
         """Get frob with flickr.auth.getFrob"""
 
-        method= 'flickr.auth.getFrob'
-        api_sig = "%sapi_key%smethod%s" % (self.secret, self.api_key, method)
-        values = { 'method' : method, 
-                   'api_key' : self.api_key, 
-                   'api_sig' : hashlib.md5(api_sig).hexdigest(), }
+        base_url = 'http://api.flickr.com/services/rest/?'
+        values = { 'method' : 'flickr.auth.getFrob', 
+                   'api_key' : self.api_key, }
 
-        self._get_url(values, self._get_token)
+        values = add_api_sig(values, self.secret)
+        url = base_url + urllib.urlencode(values)
+
+        self._get_url(url, self._get_token)
 
     def _get_token(self, data):
         """Open browser for authorization"""
@@ -39,30 +51,32 @@ class FlickrAuth(object):
         element = etree.fromstring(data)
         self.frob = element.find('frob').text
 
-        api_sig = "%sapi_key%sfrob%sperms%s" % (
-            self.secret, self.api_key, self.frob, self.perms)
-
         base_url = 'http://flickr.com/services/auth/?'
-        url = base_url + 'api_key=%s&perms=%s&frob=%s&api_sig=%s' % (
-            self.api_key, self.perms, self.frob, hashlib.md5(api_sig).hexdigest())
+        values = { 'api_key' : self.api_key,
+                   'perms'   : self.perms,
+                   'frob'    : self.frob, }
+
+        values = add_api_sig(values, self.secret)
+        url = base_url + urllib.urlencode(values)
+
         os.system("gnome-open '%s'" % url)
 
     def get_auth_token(self, cb):
         """Get token with flickr.auth.getToken"""
 
-        method = 'flickr.auth.getToken'
-        api_sig = "%sapi_key%sfrob%smethod%s" % (
-            self.secret, self.api_key, self.frob, method)
-        values = { 'method' : method, 
+        base_url = 'http://api.flickr.com/services/rest/?'
+        values = { 'method'  : 'flickr.auth.getToken', 
                    'api_key' : self.api_key, 
-                   'api_sig' : hashlib.md5(api_sig).hexdigest(),
-                   'frob' : self.frob, }
+                   'frob'    : self.frob, }
+
+        values = add_api_sig(values, self.secret)
+        url = base_url + urllib.urlencode(values)
 
         if self.twisted:
-            d = self._get_url(values, self.parse_token)
+            d = self._get_url(url, self.parse_token)
             d.addCallback(cb)
         else:
-            d = self._get_url(values, self.parse_token, cb)
+            d = self._get_url(url, self.parse_token, cb)
 
     def parse_token(self, data):
         """Parse token XML strings. """
@@ -82,9 +96,7 @@ class FlickrAuth(object):
                  'user_name': username, 
                  'full_name': fullname}
 
-    def _get_url(self, values, cb, cb_plus=None):
-        url_base = 'http://api.flickr.com/services/rest/?'
-        url = url_base + urllib.urlencode(values)
+    def _get_url(self, url, cb, cb_plus=None):
 
         if self.twisted:
             client = UrlGetWithProxy()
