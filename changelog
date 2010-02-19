@@ -1,5 +1,6 @@
 2010-02-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/api.py: Added FlickrFavoritesAddAPI & FlickrFavoritesRemoveAPI.
 	* flickr/__init__.py, flickr/api.py: Added support for authorized
 	  API access.
 
