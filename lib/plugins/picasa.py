@@ -115,10 +115,14 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _widget_cb(self, widget):
         target = widget.get_active_text()
 
-        state = False if target == 'Featured' else True
+        state = self._check_argument_sensitive_for(target)
 
         self._set_argument_sensitive(state=state)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
+
+    def _check_argument_sensitive_for(self, target):
+        state = False if target == 'Featured' else True
+        return state
 
     def _label(self):
         return ['User', 'Community Search', 'Featured']
