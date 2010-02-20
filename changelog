@@ -1,3 +1,7 @@
+2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr.py: Changed API format from JSON to XML.
+
 2010-02-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimage.py, preferences.py, gphotoframe.schemas.in:

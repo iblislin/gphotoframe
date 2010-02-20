@@ -1,10 +1,5 @@
 import urllib
-import re
-
-try:
-    import simplejson as json
-except:
-    import json
+from xml.etree import ElementTree as etree
 
 from base import *
 from gettext import gettext as _
@@ -21,26 +16,33 @@ class TumblrPhotoList(PhotoList):
         if not user_id:
             return
 
-        url = 'http://%s.tumblr.com/api/read/json?' % user_id
+        url = 'http://%s.tumblr.com/api/read/?' % user_id
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
         self._get_url_with_twisted(url + urllib.urlencode(values))
         self._start_timer()
 
     def _prepare_cb(self, data):
-        j = re.match("^.*?({.*}).*$", data, re.DOTALL | re.MULTILINE | re.UNICODE)
-        d = json.loads(j.group(1))
+        tree = etree.fromstring(data)
 
-        owner = d['tumblelog']['name']
-        title = d['tumblelog']['title']
-        description = d['tumblelog']['description']
+        meta = tree.find('tumblelog')
+        owner = meta.attrib['name']
+        title = meta.attrib['title']
+        description = meta.text
 
-        for s in d['posts']:
-            data = {'url'        : s['photo-url-500'],
-                    'id'         : s['id'],
+        for post in tree.findall('posts/post'):
+            photo ={}
+
+            for child in post.getchildren():
+                key = 'photo-url-%s' % child.attrib['max-width'] \
+                    if child.tag == 'photo-url' else child.tag
+                photo[key] = child.text
+
+            data = {'url'        : photo['photo-url-500'],
+                    'id'         : post.attrib['id'],
                     'owner_name' : owner,
-                    'title'      : s['photo-caption'],
-                    'page_url'   : s['url'],
+                    'title'      : photo['photo-caption'],
+                    'page_url'   : post.attrib['url'],
                     'icon'       : TumblrIcon}
 
             photo = Photo()
