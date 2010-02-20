@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-21 00:53+0900\n"
+"POT-Creation-Date: 2010-02-21 03:06+0900\n"
 "PO-Revision-Date: 2010-02-21 00:54+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -164,23 +164,27 @@ msgstr "期間(_P):"
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:36 ../lib/plugins/base.py:113
+#: ../share/gphotoframe.glade.h:36
+msgid "_Specified other people's ID"
+msgstr "他のユーザの ID を指定する(_S)"
+
+#: ../share/gphotoframe.glade.h:37 ../lib/plugins/base.py:113
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.glade.h:37
+#: ../share/gphotoframe.glade.h:38
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../share/gphotoframe.glade.h:38
+#: ../share/gphotoframe.glade.h:39
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../share/gphotoframe.glade.h:39
+#: ../share/gphotoframe.glade.h:40
 msgid "pixels"
 msgstr "ピクセル"
 
-#: ../share/gphotoframe.glade.h:40
+#: ../share/gphotoframe.glade.h:41
 msgid "seconds"
 msgstr "秒"
 
@@ -280,26 +284,63 @@ msgstr "重み"
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/flickr.py:179 ../lib/plugins/flickr.py:255
+#: ../lib/plugins/flickr/api.py:61 ../lib/plugins/flickr/api.py:221
 #: ../lib/plugins/picasa.py:126 ../lib/plugins/tumblr.py:86
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
-#: ../lib/plugins/flickr.py:193
+#: ../lib/plugins/flickr/api.py:65
 msgid "Enter NSID or User Name in the URL"
 msgstr "URL に含まれるユーザ名か NSID を入力します"
 
-#: ../lib/plugins/flickr.py:216
+#: ../lib/plugins/flickr/api.py:180
 msgid "_Group:"
 msgstr "グループ(_G):"
 
-#: ../lib/plugins/flickr.py:229
+#: ../lib/plugins/flickr/api.py:184
 msgid "Enter NSID or Group Name in the URL"
 msgstr "URL に含まれるグループ名か NSID を入力します"
 
-#: ../lib/plugins/flickr.py:271
+#: ../lib/plugins/flickr/api.py:244
 msgid "_Tags:"
 msgstr "タグ(_T):"
+
+#: ../lib/plugins/flickr/authdialog.py:26
+#, python-format
+msgid "You are connected to Flickr.com as %s."
+msgstr "Flickr.com にアカウント %s でログインしています"
+
+#: ../lib/plugins/flickr/authdialog.py:27
+msgid "_Switch User"
+msgstr "アカウントの変更"
+
+#: ../lib/plugins/flickr/authdialog.py:35
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+"Gnome 写真フレームで Flickr.com 上のプライベート写真を閲覧したり、お気に入り"
+"への登録を行うためにはあなたの認証が必要です。\"認証\" ボタンをクリックして"
+"ウェブブラウザを開き、そちらで Gnome 写真フレームを認証して下さい。"
+
+#: ../lib/plugins/flickr/authdialog.py:40
+msgid "_Authorize"
+msgstr "認証(_A)"
+
+#. getfrob -> open browser
+#: ../lib/plugins/flickr/authdialog.py:48
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"Flickr.com での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完"
+"了する\" ボタンをクリックして下さい。"
+
+#: ../lib/plugins/flickr/authdialog.py:51
+msgid "_Complete Authorization"
+msgstr "認証を完了する(_C)"
 
 #: ../lib/plugins/fspot.py:67
 #, python-format
