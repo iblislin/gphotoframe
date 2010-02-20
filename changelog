@@ -1,3 +1,8 @@
+2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, flickr/api.py: Added new option "Specify
+	  other people's ID".
+
 2010-02-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py: Added check_token.

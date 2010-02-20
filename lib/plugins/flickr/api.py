@@ -17,8 +17,8 @@ class FlickrFactoryAPI(object):
             'Photo Search'    : FlickrSearchAPI,
             }
 
-    def create(self, api):
-        obj = self.api[api]().create()
+    def create(self, api, argument=None):
+        obj = self.api[api]().create(argument)
         return obj
 
 class FlickrAPI(object):
@@ -30,8 +30,11 @@ class FlickrAPI(object):
     def _set_method(self):
         pass
 
-    def create(self):
+    def create(self, argument=None):
         return self
+
+    def is_use_own_id(self): # for Contacts Photo & Favorites
+        return False
 
     def get_url(self, argument):
         url = 'http://api.flickr.com/services/rest/?'
@@ -89,7 +92,7 @@ class FlickrAuthFactory(object):
         self.auth_token = conf.get_string('plugins/flickr/auth_token')
         self._set_method()
 
-    def create(self):
+    def create(self, argument):
         if self.auth_token:
             api = self.auth_api()
         else:
@@ -103,12 +106,23 @@ class FlickrFactoryContactsAPI(FlickrAuthFactory):
         self.api = FlickrContactsAPI
         self.auth_api = FlickrContactsAuthAPI
 
+    def create(self, argument):
+        if self.auth_token and not argument:
+            api = self.auth_api()
+        else:
+            api = self.api()
+
+        return api.create()
+
 class FlickrContactsAPI(FlickrAPI):
 
     def _set_method(self):
         self.method = 'flickr.photos.getContactsPublicPhotos'
 
-class FlickrContactsAuthAPI(FlickrAPI):
+    def is_use_own_id(self):
+        return True
+
+class FlickrContactsAuthAPI(FlickrContactsAPI):
 
     def _set_method(self):
         self.method = 'flickr.photos.getContactsPhotos'
@@ -127,7 +141,10 @@ class FlickrFavoritesAPI(FlickrAPI):
     def _set_method(self):
         self.method = 'flickr.favorites.getPublicList'
 
-class FlickrFavoritesAuthAPI(FlickrAPI):
+    def is_use_own_id(self):
+        return True
+
+class FlickrFavoritesAuthAPI(FlickrFavoritesAPI):
 
     def _set_method(self):
         self.method = 'flickr.favorites.getList'

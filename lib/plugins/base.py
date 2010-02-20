@@ -75,13 +75,13 @@ class PhotoSourceUI(object):
             self.table.remove(PhotoSourceUI.old_target_widget)
 
     def make(self, data=None):
+        self._delete_options_ui()
+        self._make_options_ui()
+
         self._set_argument_sensitive()
         self._build_target_widget()
         self._attach_target_widget()
         self._set_target_default()
-
-        self._delete_options_ui()
-        self._make_options_ui()
 
     def get(self):
         return self.target_widget.get_active_text()
