@@ -11,12 +11,25 @@ class TumblrPhotoList(PhotoList):
 
     def prepare(self):
         self.photos = []
+        self.target = 'Likes'
 
-        user_id = self.target
-        if not user_id:
+        self.username = self.conf.get_string('plugins/tumblr/user_id')
+        if self.username:
+            key = Keyring('Tumblr', protocol='http')
+            key.get_passwd_async(self.username, self._auth_cb)
+            self._start_timer()
+        else:
+            self._auth_cb(None)
+
+    def _auth_cb(self, identity):
+
+        if identity:
+            email = identity[0]
+            password = identity[1]
+        elif (self.target != 'User'):
+            print "Certification Error"
             return
 
-        self.target = 'User'
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
         if self.target == 'User':
@@ -25,7 +38,7 @@ class TumblrPhotoList(PhotoList):
             url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
             values.update( {'email': email, 'password': password} )
 
-        print url
+        # print url
         self._get_url_with_twisted(url + urllib.urlencode(values))
         self._start_timer()
 
