@@ -1,8 +1,8 @@
 2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* base.py, tumblr.py, picasa.py: Added PluginAuthDialog.
-	* tumblr.py: Changed API format from JSON to XML.
-	  Added support dashboard & likes API.
+	* tumblr.py: Changed API format from JSON to XML.  Added support
+	  dashboard & likes API.  Added Gnome Keyring support.
 
 2010-02-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
