@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-17 18:12+0900\n"
-"PO-Revision-Date: 2010-02-17 18:11+0900\n"
+"POT-Creation-Date: 2010-02-20 15:29+0900\n"
+"PO-Revision-Date: 2010-02-20 15:31+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -164,23 +164,27 @@ msgstr "期間(_P):"
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.glade.h:36 ../lib/plugins/base.py:113
+#: ../share/gphotoframe.glade.h:36
+msgid "_Specified other people's ID"
+msgstr "他のユーザの ID を指定する(_S)"
+
+#: ../share/gphotoframe.glade.h:37 ../lib/plugins/base.py:113
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.glade.h:37
+#: ../share/gphotoframe.glade.h:38
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../share/gphotoframe.glade.h:38
+#: ../share/gphotoframe.glade.h:39
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../share/gphotoframe.glade.h:39
+#: ../share/gphotoframe.glade.h:40
 msgid "pixels"
 msgstr "ピクセル"
 
-#: ../share/gphotoframe.glade.h:40
+#: ../share/gphotoframe.glade.h:41
 msgid "seconds"
 msgstr "秒"
 
@@ -280,23 +284,23 @@ msgstr "重み"
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/flickr/api.py:57 ../lib/plugins/flickr/api.py:133
+#: ../lib/plugins/flickr/api.py:61 ../lib/plugins/flickr/api.py:221
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
-#: ../lib/plugins/flickr/api.py:71
+#: ../lib/plugins/flickr/api.py:65
 msgid "Enter NSID or User Name in the URL"
 msgstr "URL に含まれるユーザ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:94
+#: ../lib/plugins/flickr/api.py:180
 msgid "_Group:"
 msgstr "グループ(_G):"
 
-#: ../lib/plugins/flickr/api.py:107
+#: ../lib/plugins/flickr/api.py:184
 msgid "Enter NSID or Group Name in the URL"
 msgstr "URL に含まれるグループ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:149
+#: ../lib/plugins/flickr/api.py:244
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
