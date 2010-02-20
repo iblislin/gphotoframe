@@ -115,7 +115,9 @@ class PhotoSourceUI(object):
         self.gui.get_widget('label15').set_sensitive(state)
         self.target_widget.set_sensitive(state)
 
-    def _set_argument_sensitive(self, label=_('_Argument:'), state=False):
+    def _set_argument_sensitive(self, label=None, state=False):
+        if label is None: label=_('_Argument:')
+
         self.gui.get_widget('label12').set_text_with_mnemonic(label)
         self.gui.get_widget('label12').set_sensitive(state)
         self.gui.get_widget('entry1').set_sensitive(state)
@@ -125,7 +127,11 @@ class PhotoSourceUI(object):
 
     def _set_target_default(self):
         if self.data:
-            fr_num = self._label().index(self.data[1])
+            try:
+                fr_num = self._label().index(self.data[1])
+            except ValueError:
+                fr_num = 0
+            
             self.target_widget.set_active(fr_num)
 
     def _label(self):

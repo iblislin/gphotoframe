@@ -35,9 +35,12 @@ class TumblrPhotoList(PhotoList):
 
         if self.target == 'User':
             url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
-        else:
+        elif self.target == 'Dashboard' or self.target == 'Likes':
             url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
             values.update( {'email': email, 'password': password} )
+        else:
+            print "Tumblr Error: Invalid Target, %s" % self.target
+            return
 
         # print url
         self._get_url_with_twisted(url + urllib.urlencode(values))
@@ -80,8 +83,10 @@ class TumblrPhotoList(PhotoList):
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
     def _check_argument_sensitive_for(self, target):
+        all_label = {'User': _('_User:')}
+        label = all_label.get(target)
         state = True if target == 'User' else False
-        return state
+        return label, state
 
     def _label(self):
         return ['Dashboard', 'Likes', 'User']
