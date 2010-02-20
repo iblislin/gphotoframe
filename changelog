@@ -3,6 +3,15 @@
 	* base.py, tumblr.py, picasa.py: Added PluginAuthDialog.
 	* tumblr.py: Changed API format from JSON to XML.  Added support
 	  dashboard & likes API.  Added Gnome Keyring support.
+	* flickr/__init__.py, flickr/api.py: Added new option "Specify
+	  other people's ID".
+
+2010-02-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py: Added check_token.
+	* flickr/api.py: Added FlickrFavoritesAddAPI & FlickrFavoritesRemoveAPI.
+	* flickr/__init__.py, flickr/api.py: Added support for authorized
+	  API access.
 
 2010-02-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -11,6 +20,11 @@
 
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/__init__.py, gphotoframe.glade, flickr/auth.py: 
+	  Implemented Flickr Auth functions.
+	* flickr/api.py: Divided flickr/__init__.py.
+	* plugins/__init__.py, plugins/flickr/__init__.py: Added support
+	  for loading plugins from directories.
 	* flickr.py, base.py: Added support for user name and group name
 	  in url.  Added tooltips for argument entries.
 
