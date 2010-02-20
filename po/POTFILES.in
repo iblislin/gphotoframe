@@ -7,5 +7,6 @@ lib/preferences.py
 lib/plugins/base.py
 lib/plugins/flickr.py
 lib/plugins/fspot.py
+lib/plugins/picasa.py
 lib/plugins/tumblr.py
 lib/plugins/rss.py
