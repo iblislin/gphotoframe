@@ -1,4 +1,5 @@
 from twisted.web import client
+from gettext import gettext as _
 import urllib
 
 try:
@@ -116,14 +117,16 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _widget_cb(self, widget):
         target = widget.get_active_text()
 
-        state = self._check_argument_sensitive_for(target)
+        label, state = self._check_argument_sensitive_for(target)
 
-        self._set_argument_sensitive(state=state)
+        self._set_argument_sensitive(label=label, state=state)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
 
     def _check_argument_sensitive_for(self, target):
+        all_label = {'User': _('_User:'), 'Community Search': _('_Keyword:')}
+        label = all_label.get(target)
         state = False if target == 'Featured' else True
-        return state
+        return label, state
 
     def _label(self):
         return ['User', 'Community Search', 'Featured']
