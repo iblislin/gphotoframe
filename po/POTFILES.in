@@ -8,5 +8,6 @@ lib/plugins/base.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py
 lib/plugins/fspot.py
+lib/plugins/picasa.py
 lib/plugins/tumblr.py
 lib/plugins/rss.py
