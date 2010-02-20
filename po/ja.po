@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-20 15:29+0900\n"
-"PO-Revision-Date: 2010-02-20 15:31+0900\n"
+"POT-Creation-Date: 2010-02-21 03:06+0900\n"
+"PO-Revision-Date: 2010-02-21 00:54+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr "評価の重み(_W):"
 msgid "Wi_dth:"
 msgstr "幅(_D):"
 
-#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:118
+#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:119
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -280,11 +280,12 @@ msgstr "引数"
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/plugins/base.py:148
+#: ../lib/plugins/base.py:154
 msgid "Options"
 msgstr "オプション"
 
 #: ../lib/plugins/flickr/api.py:61 ../lib/plugins/flickr/api.py:221
+#: ../lib/plugins/picasa.py:126 ../lib/plugins/tumblr.py:86
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -358,9 +359,13 @@ msgstr "評価"
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/tumblr.py:56
-msgid "_User Name:"
-msgstr "ユーザ名(_U):"
+#: ../lib/plugins/picasa.py:126
+msgid "_Keyword:"
+msgstr "キーワード(_K):"
+
+#: ../lib/plugins/tumblr.py:104
+msgid "_E-mail:"
+msgstr "E-mail(_E):"
 
 #: ../lib/plugins/rss.py:62
 msgid "_Title:"
@@ -370,6 +375,9 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:65
 msgid "_URL:"
 msgstr "URL(_U)"
+
+#~ msgid "_User Name:"
+#~ msgstr "ユーザ名(_U):"
 
 #~ msgid "<b>Size</b>"
 #~ msgstr "<b>サイズ</b>"
