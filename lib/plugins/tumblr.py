@@ -3,7 +3,8 @@ from xml.etree import ElementTree as etree
 
 from base import *
 from gettext import gettext as _
-from picasa import PhotoSourcePicasaUI
+from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
+from ..utils.keyring import Keyring
 
 def info():
     return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -85,7 +86,7 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
     def _label(self):
         return ['Dashboard', 'Likes', 'User']
 
-class PluginTumblrDialog(PluginAuthDialog):
+class PluginTumblrDialog(PluginPicasaDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginTumblrDialog, self).__init__(parent, model_iter)
