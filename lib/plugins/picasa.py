@@ -9,6 +9,7 @@ except:
 
 from base import *
 from ..constants import APP_NAME, VERSION
+from ..utils.keyring import Keyring
 
 def info():
     return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
@@ -127,12 +128,50 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
-class PluginPicasaDialog(PluginAuthDialog):
+class PluginPicasaDialog(PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)
         self.api = 'picasa'
         self.key_server = 'Google Account'
+
+    def run(self):
+        user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
+        self.passwd = None
+        self.entry3 = self.gui.get_widget('entry3')
+        self.entry4 = self.gui.get_widget('entry4')
+
+        self.key = Keyring(self.key_server, protocol='http') ##
+
+        if user_id != None:
+            self.entry3.set_text(user_id)
+            self.key.get_passwd_async(user_id, self._run_cb)
+        else:
+            self._run_cb(None);
+
+    def _run_cb(self, identity):
+        if identity:
+            self.passwd = identity[1]
+            self.entry4.set_text(self.passwd)
+
+        response_id = self.dialog.run()
+        if response_id == gtk.RESPONSE_OK: 
+            self._write_conf()
+        else:
+            self.dialog.destroy()
+
+    def _write_conf(self):
+        user_id = self.entry3.get_text()
+        self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
+
+        new_passwd = self.entry4.get_text()
+        if self.passwd is None or self.passwd != new_passwd:
+            self.key.set_passwd_async(user_id, new_passwd, self._destroy_cb)
+        else:
+            self._destroy_cb()
+
+    def _destroy_cb(self, *args):
+        self.dialog.destroy()
 
 class PicasaIcon(SourceWebIcon):
 
