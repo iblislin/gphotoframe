@@ -3,6 +3,7 @@ from xml.etree import ElementTree as etree
 
 from base import *
 from gettext import gettext as _
+from picasa import PhotoSourcePicasaUI
 
 def info():
     return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -11,7 +12,6 @@ class TumblrPhotoList(PhotoList):
 
     def prepare(self):
         self.photos = []
-        self.target = 'Likes'
 
         self.username = self.conf.get_string('plugins/tumblr/user_id')
         if self.username:
@@ -33,7 +33,7 @@ class TumblrPhotoList(PhotoList):
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
         if self.target == 'User':
-            url = 'http://%s.tumblr.com/api/read/?' % user_id
+            url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
         else:
             url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
             values.update( {'email': email, 'password': password} )
@@ -76,18 +76,14 @@ class TumblrPhotoList(PhotoList):
             photo.update(data)
             self.photos.append(photo)
 
-class PhotoSourceTumblrUI(PhotoSourceUI):
-    def get(self):
-        return self.target_widget.get_text();
+class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
-    def _build_target_widget(self):
-        self.target_widget = gtk.Entry()
-        self._set_target_sensitive(_('_User Name:'), True)
-        self._set_sensitive_ok_button(self.target_widget, False)
+    def _check_argument_sensitive_for(self, target):
+        state = True if target == 'User' else False
+        return state
 
-    def _set_target_default(self):
-        if self.data:
-            self.target_widget.set_text(self.data[1])
+    def _label(self):
+        return ['Dashboard', 'Likes', 'User']
 
 class PluginTumblrDialog(PluginAuthDialog):
 
