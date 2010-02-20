@@ -16,32 +16,46 @@ class TumblrPhotoList(PhotoList):
         if not user_id:
             return
 
-        url = 'http://%s.tumblr.com/api/read/?' % user_id
+        self.target = 'User'
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
+        if self.target == 'User':
+            url = 'http://%s.tumblr.com/api/read/?' % user_id
+        else:
+            url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
+            values.update( {'email': email, 'password': password} )
+
+        print url
         self._get_url_with_twisted(url + urllib.urlencode(values))
         self._start_timer()
 
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
 
-        meta = tree.find('tumblelog')
-        owner = meta.attrib['name']
-        title = meta.attrib['title']
-        description = meta.text
+        if self.target == 'User':
+            meta = tree.find('tumblelog')
+            owner = meta.attrib['name']
+            title = meta.attrib['title']
+            description = meta.text
 
         for post in tree.findall('posts/post'):
             photo ={}
+
+            if post.attrib['type'] != 'photo':
+                continue
 
             for child in post.getchildren():
                 key = 'photo-url-%s' % child.attrib['max-width'] \
                     if child.tag == 'photo-url' else child.tag
                 photo[key] = child.text
 
+            if self.target != 'User':
+                owner = post.attrib['tumblelog']
+
             data = {'url'        : photo['photo-url-500'],
                     'id'         : post.attrib['id'],
                     'owner_name' : owner,
-                    'title'      : photo['photo-caption'],
+                    'title'      : photo.get('photo-caption'),
                     'page_url'   : post.attrib['url'],
                     'icon'       : TumblrIcon}
 
