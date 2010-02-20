@@ -3,13 +3,9 @@
 # http://www.flickr.com/services/api/auth.howto.desktop.html
 
 import os
-import sys
 import hashlib
 import urllib
-import urllib2
-
-#import xml.etree.ElementTree as etree
-from lxml import etree
+import xml.etree.ElementTree as etree
 
 from ...utils.urlget import UrlGetWithProxy
 
@@ -89,7 +85,7 @@ class FlickrAuth(object):
         username =  user_element.get('username')
         fullname = user_element.get('fullname')
 
-        print token, fullname
+        # print token, fullname
 
         return { 'auth_token': token, 
                  'nsid': nsid, 
@@ -119,7 +115,6 @@ class FlickrAuth(object):
             d.addCallback(cb)
             return d
         else:
-            print "aaa"
             data = urllib.urlopen(url).read()
             result = cb(data)
         

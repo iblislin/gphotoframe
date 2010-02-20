@@ -5,6 +5,7 @@ from ..base import PluginDialog
 from ...utils.urlget import UrlGetWithProxy
 from ...utils.config import GConf
 from auth import FlickrAuth
+from api import API_KEY, SECRET
 
 class PluginFlickrDialog(PluginDialog):
 
@@ -15,12 +16,7 @@ class PluginFlickrDialog(PluginDialog):
         self.button_n = self.gui.get_widget('button_netauth_n')
 
         self.p_id = self.n_id = None
-
-        api_key = '343677ff5aa31f37042513d533293062'
-        secret = GConf().get_string('plugins/flickr/secret')
-        perms = 'write'
-
-        self.auth_obj = FlickrAuth(api_key, secret, perms)
+        self.auth_obj = FlickrAuth(API_KEY, SECRET, 'write')
 
     def _set_confirm_dialog(self, *args):
         text = _("You are connected to Flickr.com as %s.") % self.user_name
