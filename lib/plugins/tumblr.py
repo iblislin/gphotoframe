@@ -98,6 +98,11 @@ class PluginTumblrDialog(PluginPicasaDialog):
         self.api = 'tumblr'
         self.key_server = 'Tumblr'
 
+    def _set_ui(self):
+        super(PluginTumblrDialog, self)._set_ui()
+        user_label = self.gui.get_widget('label_auth1')
+        user_label.set_text_with_mnemonic(_('_E-mail:'))
+
 class TumblrIcon(SourceWebIcon):
 
     def __init__(self):
