@@ -1,4 +1,5 @@
 from twisted.web import client
+from gettext import gettext as _
 import urllib
 
 try:
@@ -8,8 +9,8 @@ except:
 # import pprint
 
 from base import *
-from ..utils.keyring import Keyring
 from ..constants import APP_NAME, VERSION
+from ..utils.keyring import Keyring
 
 def info():
     return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
@@ -116,23 +117,34 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _widget_cb(self, widget):
         target = widget.get_active_text()
 
-        state = False if target == 'Featured' else True
+        label, state = self._check_argument_sensitive_for(target)
 
-        self._set_argument_sensitive(state=state)
+        self._set_argument_sensitive(label=label, state=state)
         self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
+
+    def _check_argument_sensitive_for(self, target):
+        all_label = {'User': _('_User:'), 'Community Search': _('_Keyword:')}
+        label = all_label.get(target)
+        state = False if target == 'Featured' else True
+        return label, state
 
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
 class PluginPicasaDialog(PluginDialog):
 
+    def __init__(self, parent, model_iter=None):
+        super(PluginPicasaDialog, self).__init__(parent, model_iter)
+        self.api = 'picasa'
+        self.key_server = 'Google Account'
+
     def run(self):
-        user_id = self.conf.get_string('plugins/picasa/user_id')
+        user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
         self.passwd = None
         self.entry3 = self.gui.get_widget('entry3')
         self.entry4 = self.gui.get_widget('entry4')
 
-        self.key = Keyring('Google Account', protocol='http')
+        self.key = Keyring(self.key_server, protocol='http') ##
 
         if user_id != None:
             self.entry3.set_text(user_id)
@@ -153,7 +165,7 @@ class PluginPicasaDialog(PluginDialog):
 
     def _write_conf(self):
         user_id = self.entry3.get_text()
-        self.conf.set_string( 'plugins/picasa/user_id', user_id )
+        self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
 
         new_passwd = self.entry4.get_text()
         if self.passwd is None or self.passwd != new_passwd:
