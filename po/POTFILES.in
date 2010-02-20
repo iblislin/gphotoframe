@@ -1,0 +1,11 @@
+share/gphotoframe.desktop.in
+share/gphotoframe-screensaver.desktop.in
+share/gphotoframe.glade
+share/gphotoframe.schemas.in
+lib/menu.py
+lib/preferences.py
+lib/plugins/base.py
+lib/plugins/flickr.py
+lib/plugins/fspot.py
+lib/plugins/tumblr.py
+lib/plugins/rss.py
