@@ -23,11 +23,10 @@ class FlickrPhotoList(PhotoList):
             return
 
         self.api = factory.create(self.target, self.argument)
-        print self.api
+        # print self.api
 
         if self.api.nsid_conversion:
             nsid_url = self.api.get_url_for_nsid_lookup(self.argument)
-            # print self.target, self.argument
 
             if nsid_url is None: 
                 print "flickr: invalid nsid API url."

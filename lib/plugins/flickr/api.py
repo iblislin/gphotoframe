@@ -5,6 +5,9 @@ from gettext import gettext as _
 from ...utils.config import GConf
 from auth import add_api_sig
 
+API_KEY = '343677ff5aa31f37042513d533293062'
+SECRET = '74fcfc5cd13dab2d'
+
 class FlickrFactoryAPI(object):
 
     def __init__(self):
@@ -40,7 +43,7 @@ class FlickrAPI(object):
         url = 'http://api.flickr.com/services/rest/?'
         api_key = '343677ff5aa31f37042513d533293062'
 
-        values = { 'api_key' : api_key,
+        values = { 'api_key' : API_KEY,
                    'count'   : 50,
                    'method'  : self.method,
                    'format'  : 'json',
@@ -78,11 +81,10 @@ class FlickrAPI(object):
     def _add_auth_argument(self, values):
         conf = GConf()
 
-        secret = conf.get_string('plugins/flickr/secret')
         auth_token = conf.get_string('plugins/flickr/auth_token')
         values['auth_token'] = auth_token
 
-        values = add_api_sig(values, secret)
+        values = add_api_sig(values, SECRET)
         return values
 
 class FlickrAuthFactory(object):
