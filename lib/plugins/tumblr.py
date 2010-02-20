@@ -5,7 +5,7 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI]
+    return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
 class TumblrPhotoList(PhotoList):
 
@@ -75,6 +75,13 @@ class PhotoSourceTumblrUI(PhotoSourceUI):
     def _set_target_default(self):
         if self.data:
             self.target_widget.set_text(self.data[1])
+
+class PluginTumblrDialog(PluginAuthDialog):
+
+    def __init__(self, parent, model_iter=None):
+        super(PluginTumblrDialog, self).__init__(parent, model_iter)
+        self.api = 'tumblr'
+        self.key_server = 'Tumblr'
 
 class TumblrIcon(SourceWebIcon):
 
