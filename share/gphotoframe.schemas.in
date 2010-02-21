@@ -1,0 +1,197 @@
+<gconfschemafile>
+  <schemalist>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/aspect_max</key>
+      <applyto>/apps/gphotoframe/aspect_max</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Max aspect ratio for Photo</short>
+        <long>Max aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/aspect_min</key>
+      <applyto>/apps/gphotoframe/aspect_min</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Minimum aspect ratio for Photo</short>
+        <long>Minimum aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/border_color</key>
+      <applyto>/apps/gphotoframe/border_color</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Photo frame border color</short>
+        <long>Photo frame border color</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/border_width</key>
+      <applyto>/apps/gphotoframe/border_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>10</default>
+      <locale name="C">
+        <short>Photo frame border width</short>
+        <long>Photo frame border width</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/default_weight</key>
+      <applyto>/apps/gphotoframe/default_weight</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>3</default>
+      <locale name="C">
+        <short>Photo source default weight</short>
+        <long>Photo source default weight</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/fullscreen</key>
+      <applyto>/apps/gphotoframe/fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Photo frame full screen mode</short>
+        <long>Photo frame full screen mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/interval</key>
+      <applyto>/apps/gphotoframe/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>Interval seconds in window mode</short>
+        <long>Interval seconds in window mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/interval_fullscreen</key>
+      <applyto>/apps/gphotoframe/interval_fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>10</default>
+      <locale name="C">
+        <short>Interval seconds in full screen mode</short>
+        <long>Interval seconds in full screen mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/max_height</key>
+      <applyto>/apps/gphotoframe/max_height</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>300</default>
+      <locale name="C">
+        <short>Photo image max height</short>
+        <long>Photo image max height</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/max_width</key>
+      <applyto>/apps/gphotoframe/max_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>400</default>
+      <locale name="C">
+        <short>Photo image max width</short>
+        <long>Photo image max width</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/root_x</key>
+      <applyto>/apps/gphotoframe/root_x</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Photo frame X position</short>
+        <long>Photo frame X position</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/root_y</key>
+      <applyto>/apps/gphotoframe/root_y</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Photo frame Y position</short>
+        <long>Photo frame Y position</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/window_fix</key>
+      <applyto>/apps/gphotoframe/window_fix</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Photo frame fix mode</short>
+        <long>Fix the photo frame on the root window</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/window_sticky</key>
+      <applyto>/apps/gphotoframe/window_sticky</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Photo frame sticky mode</short>
+        <long>Always on Visible Workspace</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/preferences</key>
+      <applyto>/apps/gphotoframe/recents/preferences</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Recent opend preferences page number</short>
+        <long>Recent opend preferences page number</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/source</key>
+      <applyto>/apps/gphotoframe/recents/source</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Recent selected photo source</short>
+        <long>Recent selected photo source</long>
+      </locale>
+    </schema>
+
+  </schemalist>
+</gconfschemafile>

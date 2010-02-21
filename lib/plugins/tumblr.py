@@ -1,56 +1,110 @@
 import urllib
-import re
-import simplejson as json
+from xml.etree import ElementTree as etree
 
 from base import *
 from gettext import gettext as _
+from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
+from ..utils.keyring import Keyring
 
 def info():
-    return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI]
+    return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
 class TumblrPhotoList(PhotoList):
 
     def prepare(self):
         self.photos = []
 
-        user_id = self.target
-        if not user_id:
+        self.username = self.conf.get_string('plugins/tumblr/user_id')
+        if self.username:
+            key = Keyring('Tumblr', protocol='http')
+            key.get_passwd_async(self.username, self._auth_cb)
+            self._start_timer()
+        else:
+            self._auth_cb(None)
+
+    def _auth_cb(self, identity):
+
+        if identity:
+            email = identity[0]
+            password = identity[1]
+        elif (self.target != 'User'):
+            print "Certification Error"
             return
 
-        url = 'http://%s.tumblr.com/api/read/json?' % user_id
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
+        if self.target == 'User':
+            url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
+        elif self.target == 'Dashboard' or self.target == 'Likes':
+            url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
+            values.update( {'email': email, 'password': password} )
+        else:
+            print "Tumblr Error: Invalid Target, %s" % self.target
+            return
+
+        # print url
         self._get_url_with_twisted(url + urllib.urlencode(values))
         self._start_timer()
 
     def _prepare_cb(self, data):
-        j = re.match("^.*?({.*}).*$", data, re.DOTALL | re.MULTILINE | re.UNICODE)
-        d = json.loads(j.group(1))
+        tree = etree.fromstring(data)
 
-        owner = d['tumblelog']['name']
-        title = d['tumblelog']['title']
-        description = d['tumblelog']['description']
+        if self.target == 'User':
+            meta = tree.find('tumblelog')
+            owner = meta.attrib['name']
+            title = meta.attrib['title']
+            description = meta.text
 
-        for s in d['posts']:
-            data = {'url'        : s['photo-url-500'],
-                    'id'         : s['id'],
+        for post in tree.findall('posts/post'):
+            photo ={}
+
+            if post.attrib['type'] != 'photo':
+                continue
+
+            for child in post.getchildren():
+                key = 'photo-url-%s' % child.attrib['max-width'] \
+                    if child.tag == 'photo-url' else child.tag
+                photo[key] = child.text
+
+            if self.target != 'User':
+                owner = post.attrib['tumblelog']
+
+            data = {'url'        : photo['photo-url-500'],
+                    'id'         : post.attrib['id'],
                     'owner_name' : owner,
-                    'title'      : s['photo-caption'],
-                    'page_url'   : s['url'] }
+                    'title'      : photo.get('photo-caption'),
+                    'page_url'   : post.attrib['url'],
+                    'icon'       : TumblrIcon}
 
             photo = Photo()
             photo.update(data)
             self.photos.append(photo)
 
-class PhotoSourceTumblrUI(PhotoSourceUI):
-    def get(self):
-        return self.target_widget.get_text();
+class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
-    def _build_target_widget(self):
-        self.target_widget = gtk.Entry()
-        self._set_target_sensitive(_('_User Name:'), True)
-        self._set_sensitive_ok_button(self.target_widget, False)
+    def _check_argument_sensitive_for(self, target):
+        all_label = {'User': _('_User:')}
+        label = all_label.get(target)
+        state = True if target == 'User' else False
+        return label, state
 
-    def _set_target_default(self):
-        if self.data:
-            self.target_widget.set_text(self.data[1])
+    def _label(self):
+        return ['Dashboard', 'Likes', 'User']
+
+class PluginTumblrDialog(PluginPicasaDialog):
+
+    def __init__(self, parent, model_iter=None):
+        super(PluginTumblrDialog, self).__init__(parent, model_iter)
+        self.api = 'tumblr'
+        self.key_server = 'Tumblr'
+
+    def _set_ui(self):
+        super(PluginTumblrDialog, self)._set_ui()
+        user_label = self.gui.get_widget('label_auth1')
+        user_label.set_text_with_mnemonic(_('_E-mail:'))
+
+class TumblrIcon(SourceWebIcon):
+
+    def __init__(self):
+        self.icon_name = 'tumblr.gif'
+        self.icon_url = 'http://assets.tumblr.com/images/favicon.gif'

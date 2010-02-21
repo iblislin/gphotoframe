@@ -15,11 +15,21 @@ Overall, Gnome Photo Frame is licensed the following terms:
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-The lib/extras/build_i18n.py file (a modified version of
-DistUtilsExtra.command.build_i18n) is licensed the following terms:
+The following files are licensed under the following term:
 
-  Copyright (c) 2009 Yoshizumi Endo.
-  Copyright (c) 2007, 2008 Sebastian Heinlein.
+  The share/rss*.png files from Evolution RSS Readers:
+
+  Copyright (c) 2007-2008  Lucian Langa
+
+  The share/*/apps/gphotoframe.* icon files (a modified version of
+  gnome-icon-theme and postr):
+
+  Copyright (c) 20010 Yoshizumi Endo.
+  Copyright (C) 2006-2007 Ross Burton
+  Copyright (c) 2002-2008 Ulisse Perusin, Riccardo Buzzotta, Josef
+    Vybíral, Hylke Bons, Ricardo González, Lapo Calamandrei, Rodney
+    Dawes, Luca Ferretti, Tuomas Kuosmanen, Andreas Nilsson, Jakub
+    Steiner
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

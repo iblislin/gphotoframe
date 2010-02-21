@@ -6,7 +6,7 @@ import gtk
 import gtk.glade
 
 import constants
-from photoimage import PhotoImage, PhotoImageFullScreen
+from photoimage import PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
@@ -36,6 +36,7 @@ class PhotoFrame(object):
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
         self.conf.set_notify_add('window_fix', self._change_window_fix_cb)
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
+        self.conf.set_notify_add('border_color', self._set_border_color)
 
         self.window = gui.get_widget('window')
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
@@ -44,9 +45,7 @@ class PhotoFrame(object):
         self._set_window_state()
         self._set_window_position()
 
-        max_w, max_h = self.set_photo_max_size()
-        self._set_photoimage(max_w, max_h)
-
+        self._set_photoimage()
         self._set_event_box()
         self._set_popupmenu(self.photolist, self)
         self._set_accelerator()
@@ -74,11 +73,6 @@ class PhotoFrame(object):
             self.photoimage.photo['filename'] == filename else False
         self.set_photo(None, change)
 
-    def set_photo_max_size(self):
-        max_w = self.conf.get_int('max_width', 400)
-        max_h = self.conf.get_int('max_height', 300)
-        return max_w, max_h
-
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x'), 
                          self.conf.get_int('root_y'))
@@ -87,14 +81,20 @@ class PhotoFrame(object):
         self.window.get_position()
 
     def _set_event_box(self):
-        ebox = gtk.EventBox()
-        ebox.add(self.photoimage.image)
-        ebox.show()
-        self.window.add(ebox)
-        return ebox
+        self.ebox = gtk.EventBox()
+        self.ebox.add(self.photoimage.image)
+        self.ebox.show()
+        self.window.add(self.ebox)
 
-    def _set_photoimage(self, max_w, max_h):
-        self.photoimage = PhotoImage(self, max_w, max_h)
+        self._set_border_color()
+
+    def _set_border_color(self, *args):
+        color = self.conf.get_string('border_color')
+        if color:
+            self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
+
+    def _set_photoimage(self):
+        self.photoimage = PhotoImage(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenu(self.photolist, self)
@@ -121,6 +121,7 @@ class PhotoFrame(object):
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
+            "on_window_query_tooltip"      : self._query_tooltip_cb,
             # "on_window_destroy" : reactor.stop,
             }
         gui.signal_autoconnect(dic)
@@ -184,24 +185,21 @@ class PhotoFrame(object):
         else:
             self.window.unstick()
 
+    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+        pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
+        tooltip.set_icon(pixbuf)
+
 class PhotoFrameFullScreen(PhotoFrame):
-    def set_photo_max_size(self):
-        screen = gtk.gdk.screen_get_default()
-        display_num = screen.get_monitor_at_window(self.window.window)
-        geometry = screen.get_monitor_geometry(display_num)
-        max_w, max_h = geometry.width, geometry.height
-        return max_w, max_h
 
     def _set_window_state(self):
         self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
         self.window.fullscreen()
 
-    def _set_event_box(self):
-        ebox = super(PhotoFrameFullScreen, self)._set_event_box()
-        ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+    def _set_border_color(self):
+        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
 
-    def _set_photoimage(self, max_w, max_h):
-        self.photoimage = PhotoImageFullScreen(self, max_w, max_h)
+    def _set_photoimage(self):
+        self.photoimage = PhotoImageFullScreen(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
@@ -239,15 +237,11 @@ class PhotoFrameScreenSaver(object):
         self.window = GsThemeWindow()
         self.window.show()
 
-        max_w, max_h = self.set_photo_max_size()
-        self.photoimage = PhotoImageFullScreen(self, max_w, max_h)
+        self.photoimage = PhotoImageScreenSaver(self)
         self.window.add(self.photoimage.image)
  
     def set_photo(self, photo, change=True):
-        self.photoimage.set_photo(photo)
-
-    def set_photo_max_size(self):
-        return self.window.w, self.window.h
+        return self.photoimage.set_photo(photo)
 
 class Cursor(object):
     def __init__(self):

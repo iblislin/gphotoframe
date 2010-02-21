@@ -4,6 +4,9 @@ import gtk
 import random
 import gobject
 from gettext import gettext as _
+from xdg.BaseDirectory import xdg_cache_home
+from xdg.IconTheme import getIconPath
+from urlparse import urlparse
 
 from .. import constants
 from ..utils.config import GConf
@@ -32,17 +35,22 @@ class PhotoList(object):
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
         url = self.photo['url']
-        self.photo['filename'] = constants.CACHE_DIR + url[url.rfind('/') + 1:]
+        self.photo['filename'] = os.path.join(constants.CACHE_DIR,
+                                              url[url.rfind('/') + 1:])
 
         urlget = UrlGetWithProxy()
         d = urlget.downloadPage(str(url), self.photo['filename'])
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
 
-    def _get_url_with_twisted(self, url):
+    def get_tooltip(self):
+        pass
+
+    def _get_url_with_twisted(self, url, cb_arg=None):
         urlget = UrlGetWithProxy()
         d = urlget.getPage(url)
-        d.addCallback(self._prepare_cb)
+        cb = cb_arg or self._prepare_cb
+        d.addCallback(cb)
 
     def _start_timer(self, interval=3600):
         self._timer = gobject.timeout_add(interval * 1000, self.prepare)
@@ -67,13 +75,13 @@ class PhotoSourceUI(object):
             self.table.remove(PhotoSourceUI.old_target_widget)
 
     def make(self, data=None):
+        self._delete_options_ui()
+        self._make_options_ui()
+
         self._set_argument_sensitive()
         self._build_target_widget()
         self._attach_target_widget()
         self._set_target_default()
-
-        self._delete_options_ui()
-        self._make_options_ui()
 
     def get(self):
         return self.target_widget.get_active_text()
@@ -107,14 +115,23 @@ class PhotoSourceUI(object):
         self.gui.get_widget('label15').set_sensitive(state)
         self.target_widget.set_sensitive(state)
 
-    def _set_argument_sensitive(self, label=_('_Argument:'), state=False):
+    def _set_argument_sensitive(self, label=None, state=False):
+        if label is None: label=_('_Argument:')
+
         self.gui.get_widget('label12').set_text_with_mnemonic(label)
         self.gui.get_widget('label12').set_sensitive(state)
         self.gui.get_widget('entry1').set_sensitive(state)
 
+    def _set_argument_tooltip(self, text=None):
+        self.gui.get_widget('entry1').set_tooltip_text(text)
+
     def _set_target_default(self):
         if self.data:
-            fr_num = self._label().index(self.data[1])
+            try:
+                fr_num = self._label().index(self.data[1])
+            except ValueError:
+                fr_num = 0
+            
             self.target_widget.set_active(fr_num)
 
     def _label(self):
@@ -179,3 +196,55 @@ class PluginDialog(object):
 
         self.dialog.destroy()
         return response_id, {}
+
+class SourceIcon(object):
+
+    def __init__(self):
+        self.icon_name = 'image-x-generic'
+
+    def get_image(self, size=16):
+        self.size = size
+        file = self._get_icon_file()
+
+        image = gtk.Image()
+        image.set_from_file(file)
+        return image
+
+    def get_pixbuf(self, size=16):
+        self.size = size
+        file = self._get_icon_file()
+
+        pixbuf = gtk.gdk.pixbuf_new_from_file(file)
+        return pixbuf
+
+    def _get_icon_file(self):
+        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
+        return icon_path
+
+class SourceLocalIcon(SourceIcon):
+
+    def _get_icon_file(self):
+        icon_path = os.path.join(constants.SHARED_DATA_DIR, self.icon_name)
+        return icon_path
+
+class SourceWebIcon(SourceIcon):
+
+    def _get_icon_file(self):
+        cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
+        file = os.path.join(cache_dir, self.icon_name)
+
+        if not os.access(file, os.R_OK):
+            self._download_icon(self.icon_url, cache_dir, self.icon_name)
+
+            super(SourceWebIcon, self).__init__()
+            file = super(SourceWebIcon, self)._get_icon_file()
+
+        return file
+
+    def _download_icon(self, icon_url, cache_dir, icon_name):
+        if not os.access(cache_dir, os.W_OK):
+            os.makedirs(cache_dir)
+
+        icon_file = os.path.join(cache_dir, icon_name)
+        urlget = UrlGetWithProxy()
+        d = urlget.downloadPage(icon_url, icon_file)

@@ -18,13 +18,14 @@ class Preferences(object):
         self.conf = GConf()
 
     def start(self, widget):
-        gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.gui = gui = gtk.glade.XML(constants.GLADE_FILE)
         self.prefs = gui.get_widget('preferences')
         self.notebook = gui.get_widget('notebook1')
 
-        spinbutton1 = gui.get_widget('spinbutton1')
-        val = self.conf.get_int('interval', 30)
-        spinbutton1.set_value(val)
+        self._set_spinbutton_value('spinbutton1', 'interval', 30)
+        self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
+        self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
+        self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
 
         checkbutton1 = gui.get_widget('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
@@ -50,6 +51,9 @@ class Preferences(object):
         dic = { 
             "on_close_button"              : self._close_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
+            "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
+            "on_spinbutton_w_value_changed" : self._width_changed_cb,
+            "on_spinbutton_h_value_changed" : self._height_changed_cb,
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
@@ -58,6 +62,18 @@ class Preferences(object):
     def _interval_changed_cb(self, widget):
         val = widget.get_value_as_int()
         self.conf.set_int('interval', val)
+
+    def _interval_fullscreen_changed_cb(self, widget):
+        val = widget.get_value_as_int()
+        self.conf.set_int('interval_fullscreen', val)
+
+    def _width_changed_cb(self, widget):
+        val = widget.get_value_as_int()
+        self.conf.set_int('max_width', val)
+
+    def _height_changed_cb(self, widget):
+        val = widget.get_value_as_int()
+        self.conf.set_int('max_height', val)
 
     def _sticky_toggled_cb(self, widget):
         sticky = widget.get_active()
@@ -73,6 +89,11 @@ class Preferences(object):
 
         self.photolist.save_gconf()
         self.prefs.destroy()
+
+    def _set_spinbutton_value(self, widget, key, default_value):
+        spinbutton = self.gui.get_widget(widget)
+        value = self.conf.get_int(key) or default_value
+        spinbutton.set_value(value)
 
 class PreferencesTreeView(object):
     """Preferences Tree View"""
@@ -110,17 +131,33 @@ class PhotoSourceTreeView(PreferencesTreeView):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
 
         self._add_text_column(_("Source"), 0)
-        self._add_text_column(_("Target"), 1)
-        self._add_text_column(_("Argument"), 2, 100, True)
+        self._add_text_column(_("Target"), 1, 150)
+        self._add_text_column(_("Argument"), 2, 100)
         self._add_text_column(_("Weight"), 3)
 
         dic = { 
             "on_button3_clicked" : self._new_button_cb,
             "on_button4_clicked" : self._prefs_button_cb,
             "on_button5_clicked" : self._delete_button_cb,
-            "on_treeview1_cursor_changed" : self._cursor_changed_cb
+            "on_treeview1_cursor_changed" : self._cursor_changed_cb,
+            "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
             }
         gui.signal_autoconnect(dic)
+
+    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+        nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
+        path_tuple = treeview.get_path_at_pos(nx, ny)
+
+        if path_tuple is not None:
+            row, col, cx, cy = path_tuple
+            tip = self.liststore[row][5].get_tooltip()
+
+            if tip is not None:
+                treeview.set_tooltip_row(tooltip, row)
+                tooltip.set_text(tip)
+                return True
+
+        return False
 
     def _set_button_sensitive(self, state):
         self.gui.get_widget('button4').set_sensitive(state)
@@ -241,7 +278,8 @@ class PhotoSourceDialog(object):
             argument_widget.set_text(self.data[2])
 
         # weight
-        weight = self.data[3] if self.data else 1
+        weight = self.data[3] if self.data \
+            else self.conf.get_int('default_weight', 3)
         weight_widget = self.gui.get_widget('spinbutton3')
         weight_widget.set_value(weight)
 

@@ -10,21 +10,21 @@ from xml.sax.saxutils import escape
 from utils.config import GConf
 
 class PhotoImage(object):
-    def __init__(self, photoframe, w, h):
+    def __init__(self, photoframe):
         self.image = gtk.Image()
         self.image.show()
+
         self.window = photoframe.window
-
         self.photoframe = photoframe
-
-        self.max_w = w
-        self.max_h = h
+        self.conf = GConf()
 
     def set_photo(self, photo=False):
         if photo is not False:
             self.photo = photo
 
-        pixbuf = PhotoImagePixbuf(self.window, self.max_w, self.max_h)
+        width, height = self._get_max_display_size()
+        pixbuf = PhotoImagePixbuf(self.window, width, height)
+
         if pixbuf.set(self.photo) is False:
             return False
 
@@ -48,6 +48,16 @@ class PhotoImage(object):
             return False
         else:
             return True
+
+    def get_photo_source_icon_pixbuf(self):
+        icon = self.photo.get('icon')
+        pixbuf = icon().get_pixbuf()
+        return pixbuf
+
+    def _get_max_display_size(self):
+        width = self.conf.get_int('max_width') or 400
+        height = self.conf.get_int('max_height') or 300
+        return width, height
 
     def _set_tips(self, photo):
         if photo:
@@ -161,5 +171,17 @@ class PhotoImagePixbuf(object):
 
 class PhotoImageFullScreen(PhotoImage):
 
+    def _get_max_display_size(self):
+        screen = gtk.gdk.screen_get_default()
+        display_num = screen.get_monitor_at_window(self.window.window)
+        geometry = screen.get_monitor_geometry(display_num)
+        max_w, max_h = geometry.width, geometry.height
+        return max_w, max_h
+
     def _set_tips(self, photo):
         pass
+
+class PhotoImageScreenSaver(PhotoImageFullScreen):
+
+    def _get_max_display_size(self):
+        return self.window.w, self.window.h
