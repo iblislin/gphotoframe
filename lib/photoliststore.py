@@ -1,3 +1,5 @@
+import os
+
 import gtk
 import gobject
 
@@ -39,7 +41,7 @@ class PhotoListStore(gtk.ListStore):
         self.get_value(iter, 5).exit() # photolist object
         super(PhotoListStore, self).remove(iter)
 
-    def next_photo(self):
+    def next_photo(self, *args):
         gobject.source_remove(self._timer)
         self._start_timer()
 
@@ -49,7 +51,14 @@ class PhotoListStore(gtk.ListStore):
 
     def _start_timer(self):
         state = self._change_photo()
-        interval = self.conf.get_int('interval', 30) if state else 5
+
+        if state is False:
+            interval = 5
+        elif self.conf.get_bool('fullscreen'):
+            interval = self.conf.get_int('interval_fullscreen', 10)
+        else:
+            interval = self.conf.get_int('interval', 30)
+        
         self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
         return False
 
@@ -96,7 +105,6 @@ class PhotoListStore(gtk.ListStore):
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')
-        self.conf.recursive_unset('flickr') # for ver. 0.1 
         data_list = ['source', 'target', 'argument', 'weight']
 
         for i, row in enumerate(self):
@@ -126,3 +134,10 @@ class RecentQueue(list):
         for i, queue_photo in enumerate(self):
             if queue_photo['filename'] == filename:
                 self.pop(i)
+
+    def pop(self, num):
+        pop_photo = super(RecentQueue, self).pop(num)
+        filename = pop_photo['filename']
+        if filename.startswith('/tmp/gphotoframe-') \
+                and os.access(filename, os.R_OK):
+            os.remove(filename)

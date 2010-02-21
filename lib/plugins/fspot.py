@@ -4,6 +4,7 @@ import time
 import datetime
 
 from xdg.BaseDirectory import xdg_config_home
+from gettext import gettext as _
 
 from base import *
 from ..utils.wrandom import WeightedRandom
@@ -19,21 +20,21 @@ class FSpotPhotoList(PhotoList):
     def prepare(self):
         self.db = FSpotDB()
         if self.db:
-            self.photos = self.count()
+            self.photos = self._count()
             self.rnd = WeightedRandom(self.photos)
 
-    def count(self):
+    def _count(self):
         rate_list = []
-        sql = self.sql_statement('COUNT(*)')
+        sql = self._sql_statement('COUNT(*)')
         self.total = self.db.fetchone(sql) if self.db.is_accessible else 0
         if self.total == 0: return rate_list
 
         rate_min = self.options.get('rate_min', 0)
-        rate_max = self.options.get('rate_max', 5) + 1
+        rate_max = self.options.get('rate_max', 5)
         weight = self.options.get('rate_weight', 2)
 
-        for rate in xrange(rate_min, rate_max):
-            sql = self.sql_statement('COUNT(*)', rate)
+        for rate in xrange(rate_min, rate_max+1):
+            sql = self._sql_statement('COUNT(*)', rate)
             total_in_this = self.db.fetchone(sql)
             if total_in_this:
                 rate_info = Rate(rate, total_in_this, self.total, weight)
@@ -44,7 +45,7 @@ class FSpotPhotoList(PhotoList):
     def get_photo(self, cb):
         rate = self.rnd()
         columns = 'base_uri, filename' if self.db.is_new else 'uri'
-        sql = self.sql_statement(columns, rate.name)
+        sql = self._sql_statement(columns, rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
 
         url = ''.join(self.db.fetchall(sql)[0])
@@ -52,12 +53,25 @@ class FSpotPhotoList(PhotoList):
         title = url[ url.rfind('/') + 1: ]
 
         data = { 'url' : url, 'rate' : rate.name, 
-                 'filename' : file, 'title' : title }
+                 'filename' : file, 'title' : title,
+                 'icon' : FSpotIcon }
         self.photo = Photo()
         self.photo.update(data)
         cb(self.photo)
 
-    def sql_statement(self, select, rate_name=None):
+    def get_tooltip(self):
+        rate_min = self.options.get('rate_min', 0)
+        rate_max = self.options.get('rate_max', 5)
+
+        period_days = self._get_period_days()
+        period = _('Last %s days') % period_days if period_days else _("All")
+
+        tip = "%s: %s-%s\n%s: %s" % ( 
+            _('Rate'), rate_min, rate_max, 
+            _('Period'), period)
+        return tip
+
+    def _sql_statement(self, select, rate_name=None):
         sql = 'SELECT %s FROM photos P ' % select
 
         if self.target:
@@ -73,9 +87,7 @@ class FSpotPhotoList(PhotoList):
             sql += '%s rating=%s ' % ( c, str(rate_name) )
 
         if self.options.get('period'):
-            period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
-            period_days = period_dic[self.options.get('period')]
-
+            period_days = self._get_period_days()
             d = datetime.datetime.now() - \
                 datetime.timedelta(days=period_days)
             epoch = int(time.mktime(d.timetuple()))
@@ -84,6 +96,11 @@ class FSpotPhotoList(PhotoList):
             sql += '%s time>%s ' % ( c, epoch )
 
         return sql
+
+    def _get_period_days(self):
+        period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
+        period_days = period_dic[self.options.get('period')]
+        return period_days 
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 
@@ -156,7 +173,7 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
 class FSpotDB(object):
 
     def __init__(self):
-        db_file, self.is_new = self.get_db_file()
+        db_file, self.is_new = self._get_db_file()
         self.is_accessible = True if db_file else False
         if db_file:
             self.db = sqlite3.connect(db_file) 
@@ -172,7 +189,7 @@ class FSpotDB(object):
     def close(self):
         self.db.close()
 
-    def get_db_file(self):
+    def _get_db_file(self):
         db_file_base = 'f-spot/photos.db'
         db_file_new = os.path.join(xdg_config_home, db_file_base)
         db_file_old = os.path.join(os.environ['HOME'], '.gnome2', db_file_base)
@@ -226,3 +243,8 @@ class Rate(object):
         self.name = rate
         self.total = float(total_in_this)
         self.weight = total_in_this / float(total_all) * (rate * weight + 1)
+
+class FSpotIcon(SourceIcon):
+
+    def __init__(self):
+        self.icon_name = 'f-spot'
