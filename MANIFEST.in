@@ -3,5 +3,4 @@ include COPYING
 include GPL
 include gphotoframe-screensaver
 recursive-include share/ *.glade *.in *.png *.svg
-recursive-include lib/extras *.py
 recursive-include po/ *.in *.po
