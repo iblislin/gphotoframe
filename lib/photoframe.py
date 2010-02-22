@@ -56,8 +56,7 @@ class PhotoFrame(object):
 
         if change:
             if not self.photoimage.set_photo(photo): return False
-            # border = self.conf.get_int('border_width', 10)
-            border = 0 # FIXME
+            border = self.photoimage.window_border
             self.window.resize(self.photoimage.w + border, 
                                self.photoimage.h + border)
 
@@ -170,7 +169,7 @@ class PhotoFrame(object):
         time.sleep(0.5)
 
         if not self.photoimage.set_photo(): return
-        border = self.conf.get_int('border_width', 10)
+        border = self.photoimage.window_border
         self.window.resize(self.photoimage.w + border, 
                            self.photoimage.h + border)
 

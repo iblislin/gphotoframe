@@ -33,6 +33,7 @@ class PhotoImageGtk(object):
 
         self._set_tips(self.photo)
         self._set_photo_image(pixbuf.data)
+        self.window_border = self.conf.get_int('border_width', 10)
 
         return True
 
@@ -109,6 +110,7 @@ class PhotoImage(PhotoImageGtk):
 
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
+        self.window_border = 0
         self.embed.set_size_request(self.w + border, self.h + border)
 
     def clear(self):
