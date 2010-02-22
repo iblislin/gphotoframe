@@ -1,22 +1,25 @@
 from __future__ import division
+
 import os
 import sys
-
-import gobject
-import gtk
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
+import cluttergtk
+import clutter
+import gobject
+import gtk
+
 from utils.config import GConf
 
-class PhotoImage(object):
+class PhotoImageGtk(object):
     def __init__(self, photoframe):
-        self.image = gtk.Image()
-        self.image.show()
-
         self.window = photoframe.window
         self.photoframe = photoframe
         self.conf = GConf()
+
+        self.image = gtk.Image()
+        self.image.show()
 
     def set_photo(self, photo=False):
         if photo is not False:
@@ -29,12 +32,14 @@ class PhotoImage(object):
             return False
 
         self._set_tips(self.photo)
-
-        self.image.set_from_pixbuf(pixbuf.data)
-        self.w = pixbuf.data.get_width()
-        self.h = pixbuf.data.get_height()
+        self._set_photo_image(pixbuf.data)
 
         return True
+
+    def _set_photo_image(self, pixbuf):
+        self.image.set_from_pixbuf(pixbuf)
+        self.w = pixbuf.data.get_width()
+        self.h = pixbuf.data.get_height()
 
     def clear(self):
         self.image.clear()
@@ -75,6 +80,50 @@ class PhotoImage(object):
             self.window.set_tooltip_markup(tip)
         except:
             pass
+
+class PhotoImage(PhotoImageGtk):
+
+    def __init__(self, photoframe):
+        self.window = photoframe.window
+        self.photoframe = photoframe
+        self.conf = GConf()
+
+        self.texture = cluttergtk.Texture()
+
+        self.embed = cluttergtk.Embed()
+        self.embed.realize()
+
+        self.stage = self.embed.get_stage()
+        self.stage.set_color(clutter.Color(220, 220, 220, 0))
+        self.stage.add(self.texture)
+
+        self.embed.show()
+        self.image = self.embed
+
+    def _set_photo_image(self, pixbuf):
+        self._set_texture_from_pixbuf(self.texture, pixbuf)
+
+        border = self.conf.get_int('border_width', 10)
+        position = int(border / 2)
+        self.texture.set_position(position, position)
+
+        self.w = pixbuf.get_width()
+        self.h = pixbuf.get_height()
+        self.embed.set_size_request(self.w + border, self.h + border)
+
+    def clear(self):
+        pass
+
+    def _set_texture_from_pixbuf(self, texture, pixbuf):
+        bpp = 4 if pixbuf.props.has_alpha else 3
+
+        texture.set_from_rgb_data(
+            pixbuf.get_pixels(),
+            pixbuf.props.has_alpha,
+            pixbuf.props.width,
+            pixbuf.props.height,
+            pixbuf.props.rowstride,
+            bpp, 0)
 
 class PhotoImagePixbuf(object):
 
