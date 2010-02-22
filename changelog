@@ -1,3 +1,7 @@
+2010-02-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, photoframe.py: Added clutter support.
+
 2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* base.py, tumblr.py, picasa.py: Added PluginAuthDialog.
