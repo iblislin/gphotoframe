@@ -132,8 +132,9 @@ class PhotoFrame(object):
 
     def _check_button_cb(self, widget, event):
         if event.button == 1:
-            widget.begin_move_drag(
-                event.button, int(event.x_root), int(event.y_root), event.time)
+            if not self.photoimage.check_actor(widget, event):
+                widget.begin_move_drag(
+                    event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
             pass
         elif event.button == 3:
