@@ -6,7 +6,7 @@ import gtk
 import gtk.glade
 
 import constants
-from photoimage import PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
+from photoimage import *# PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
@@ -94,7 +94,7 @@ class PhotoFrame(object):
             self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
 
     def _set_photoimage(self):
-        self.photoimage = PhotoImage(self)
+        self.photoimage = PhotoImageFactory().create(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenu(self.photolist, self)
