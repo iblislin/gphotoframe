@@ -6,16 +6,13 @@ try:
 except:
     cluttergtk = False
 
-from ..utils.config import GConf
 from ..plugins import SourceIcon
 from photoimagegtk import *
 
-class PhotoImageClutter(PhotoImageGtk):
+class PhotoImageClutter(PhotoImage):
 
     def __init__(self, photoframe):
-        self.window = photoframe.window
-        self.photoframe = photoframe
-        self.conf = GConf()
+        super(PhotoImageClutter, self).__init__(photoframe)
 
         self.embed = cluttergtk.Embed()
         self.embed.realize()

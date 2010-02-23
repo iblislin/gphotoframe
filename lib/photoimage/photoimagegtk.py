@@ -10,14 +10,12 @@ import gtk
 
 from ..utils.config import GConf
 
-class PhotoImageGtk(object):
+class PhotoImage(object):
+
     def __init__(self, photoframe):
         self.window = photoframe.window
         self.photoframe = photoframe
         self.conf = GConf()
-
-        self.image = gtk.Image()
-        self.image.show()
 
     def set_photo(self, photo=False):
         if photo is not False:
@@ -34,14 +32,6 @@ class PhotoImageGtk(object):
         self.window_border = self.conf.get_int('border_width', 10)
 
         return True
-
-    def _set_photo_image(self, pixbuf):
-        self.image.set_from_pixbuf(pixbuf)
-        self.w = pixbuf.get_width()
-        self.h = pixbuf.get_height()
-
-    def clear(self):
-        self.image.clear()
 
     def is_accessible_local_file(self):
         if self.photo is None:
@@ -79,6 +69,21 @@ class PhotoImageGtk(object):
             self.window.set_tooltip_markup(tip)
         except:
             pass
+
+class PhotoImageGtk(PhotoImage):
+    def __init__(self, photoframe):
+        super(PhotoImageGtk, self).__init__(photoframe)
+
+        self.image = gtk.Image()
+        self.image.show()
+
+    def _set_photo_image(self, pixbuf):
+        self.image.set_from_pixbuf(pixbuf)
+        self.w = pixbuf.get_width()
+        self.h = pixbuf.get_height()
+
+    def clear(self):
+        self.image.clear()
 
 class PhotoImagePixbuf(object):
 
