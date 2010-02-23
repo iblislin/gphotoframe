@@ -104,39 +104,55 @@ class PhotoImageClutter(PhotoImageGtk):
         self.photoframe = photoframe
         self.conf = GConf()
 
-        self.texture = cluttergtk.Texture()
-        self.texture_source_icon = cluttergtk.Texture()
-
         self.embed = cluttergtk.Embed()
         self.embed.realize()
 
         self.stage = self.embed.get_stage()
         self.stage.set_color(clutter.Color(220, 220, 220, 0))
-        self.stage.add(self.texture)
-        self.stage.add(self.texture_source_icon)
+
+        self.photo_image = ActorPhotoImage(self.stage)
+        self.source_icon = ActorSourceIcon(self.stage)
 
         self.embed.show()
         self.image = self.embed
 
-    def _set_photo_image(self, pixbuf):
-        self._set_texture_from_pixbuf(self.texture, pixbuf)
+    def check_actor(self, stage, event):
+        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, 
+                                            int(event.x), int(event.y))
+        result = (actor != self.photo_image.texture)
+        return result
 
+    def _set_photo_image(self, pixbuf):
         border = self.conf.get_int('border_width', 10)
         position = int(border / 2)
-        self.texture.set_position(position, position)
 
+        self.window_border = 0
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
-        self.window_border = 0
         self.embed.set_size_request(self.w + border, self.h + border)
 
-        icon = self.photo.get('icon')()# or SourceIcon
-        icon_pixbuf = icon.get_pixbuf()
-        self._set_texture_from_pixbuf(self.texture_source_icon, icon_pixbuf)
-        self.texture_source_icon.set_position(self.w - position - 20, 20)
+        self.photo_image.show(pixbuf, position, position)
+        self.source_icon.show_icon(self.photo, self.w - position - 20, 20)
 
     def clear(self):
         pass
+
+class ActorPhotoImage(object):
+
+    def __init__(self, stage):
+        self.texture = cluttergtk.Texture()
+        stage.add(self.texture)
+        self.texture.set_reactive(True)
+
+        self.texture.connect('button-press-event', self._on_button_press_cb)
+
+    def show(self, pixbuf, x, y):
+        self._set_texture_from_pixbuf(self.texture, pixbuf)
+        self.texture.set_position(x, y)
+
+    def _on_button_press_cb(self, actor, event):
+        print "photo"
+        return False
 
     def _set_texture_from_pixbuf(self, texture, pixbuf):
         bpp = 4 if pixbuf.props.has_alpha else 3
@@ -149,6 +165,16 @@ class PhotoImageClutter(PhotoImageGtk):
             pixbuf.props.rowstride,
             bpp, 0)
 
+class ActorSourceIcon(ActorPhotoImage):
+
+    def show_icon(self, photo, x, y):
+        icon = photo.get('icon')()# or SourceIcon
+        icon_pixbuf = icon.get_pixbuf()
+        self.show(icon_pixbuf, x, y)
+
+    def _on_button_press_cb(self, actor, event):
+        print "icon"
+        
 class PhotoImagePixbuf(object):
 
     def __init__(self, window, max_w=400, max_h=300):
