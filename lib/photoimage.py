@@ -5,12 +5,27 @@ import sys
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
-import cluttergtk
-import clutter
+try:
+    import cluttergtk
+    import clutter
+except:
+    cluttergtk = False
+
 import gobject
 import gtk
 
 from utils.config import GConf
+
+class PhotoImageFactory(object):
+
+    def create(self, photoframe):
+
+        if cluttergtk:
+            cls = PhotoImageClutter
+        else:
+            cls = PhotoImageGtk
+
+        return cls(photoframe)
 
 class PhotoImageGtk(object):
     def __init__(self, photoframe):
@@ -39,8 +54,8 @@ class PhotoImageGtk(object):
 
     def _set_photo_image(self, pixbuf):
         self.image.set_from_pixbuf(pixbuf)
-        self.w = pixbuf.data.get_width()
-        self.h = pixbuf.data.get_height()
+        self.w = pixbuf.get_width()
+        self.h = pixbuf.get_height()
 
     def clear(self):
         self.image.clear()
@@ -82,7 +97,7 @@ class PhotoImageGtk(object):
         except:
             pass
 
-class PhotoImage(PhotoImageGtk):
+class PhotoImageClutter(PhotoImageGtk):
 
     def __init__(self, photoframe):
         self.window = photoframe.window
@@ -227,7 +242,7 @@ class PhotoImagePixbuf(object):
 
         return pixbuf
 
-class PhotoImageFullScreen(PhotoImage):
+class PhotoImageFullScreen(PhotoImageGtk):
 
     def _get_max_display_size(self):
         screen = gtk.gdk.screen_get_default()
