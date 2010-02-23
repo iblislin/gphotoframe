@@ -199,8 +199,8 @@ class PluginDialog(object):
 
 class SourceIcon(object):
 
-    def __init__(self):
-        self.icon_name = 'image-x-generic'
+    def __init__(self, icon_name='image-x-generic'):
+        self.icon_name = icon_name
 
     def get_image(self, size=16):
         self.size = size

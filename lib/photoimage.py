@@ -15,6 +15,7 @@ import gobject
 import gtk
 
 from utils.config import GConf
+from plugins import SourceIcon
 
 class PhotoImageFactory(object):
 
@@ -112,6 +113,7 @@ class PhotoImageClutter(PhotoImageGtk):
 
         self.photo_image = ActorPhotoImage(self.stage)
         self.source_icon = ActorSourceIcon(self.stage)
+        self.geo_icon = ActorGeoIcon(self.stage)
 
         self.embed.show()
         self.image = self.embed
@@ -133,6 +135,8 @@ class PhotoImageClutter(PhotoImageGtk):
 
         self.photo_image.show(pixbuf, position, position)
         self.source_icon.show_icon(self.photo, self.w - position - 20, 20)
+        self.geo_icon.show_icon(self.photo, self.w - position - 20, 
+                                self.h - position - 20)
 
     def clear(self):
         pass
@@ -151,8 +155,7 @@ class ActorPhotoImage(object):
         self.texture.set_position(x, y)
 
     def _on_button_press_cb(self, actor, event):
-        print "photo"
-        return False
+        pass
 
     def _set_texture_from_pixbuf(self, texture, pixbuf):
         bpp = 4 if pixbuf.props.has_alpha else 3
@@ -168,12 +171,24 @@ class ActorPhotoImage(object):
 class ActorSourceIcon(ActorPhotoImage):
 
     def show_icon(self, photo, x, y):
-        icon = photo.get('icon')()# or SourceIcon
+        self.photo = photo
+        icon = self.photo.get('icon')()# or SourceIcon
         icon_pixbuf = icon.get_pixbuf()
         self.show(icon_pixbuf, x, y)
 
     def _on_button_press_cb(self, actor, event):
-        print "icon"
+        self.photo.open()
+        
+class ActorGeoIcon(ActorPhotoImage):
+
+    def show_icon(self, photo, x, y):
+        self.photo = photo
+        icon = SourceIcon('gnome-globe')
+        icon_pixbuf = icon.get_pixbuf()
+        self.show(icon_pixbuf, x, y)
+
+    def _on_button_press_cb(self, actor, event):
+        pass
         
 class PhotoImagePixbuf(object):
 
