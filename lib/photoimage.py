@@ -90,6 +90,7 @@ class PhotoImage(PhotoImageGtk):
         self.conf = GConf()
 
         self.texture = cluttergtk.Texture()
+        self.texture_source_icon = cluttergtk.Texture()
 
         self.embed = cluttergtk.Embed()
         self.embed.realize()
@@ -97,6 +98,7 @@ class PhotoImage(PhotoImageGtk):
         self.stage = self.embed.get_stage()
         self.stage.set_color(clutter.Color(220, 220, 220, 0))
         self.stage.add(self.texture)
+        self.stage.add(self.texture_source_icon)
 
         self.embed.show()
         self.image = self.embed
@@ -112,6 +114,11 @@ class PhotoImage(PhotoImageGtk):
         self.h = pixbuf.get_height()
         self.window_border = 0
         self.embed.set_size_request(self.w + border, self.h + border)
+
+        icon = self.photo.get('icon')()# or SourceIcon
+        icon_pixbuf = icon.get_pixbuf()
+        self._set_texture_from_pixbuf(self.texture_source_icon, icon_pixbuf)
+        self.texture_source_icon.set_position(self.w - position - 20, 20)
 
     def clear(self):
         pass
