@@ -96,6 +96,8 @@ class ActorSourceIcon(ActorPhotoImage):
 
     def show_icon(self, photo, x, y):
         self.photo = photo
+        if self.photo == None: return
+
         icon = self.photo.get('icon')()# or SourceIcon
         icon_pixbuf = icon.get_pixbuf()
         self.change(icon_pixbuf, x, y)
@@ -106,6 +108,8 @@ class ActorSourceIcon(ActorPhotoImage):
 class ActorGeoIcon(ActorPhotoImage):
 
     def show(self):
+        if self.photo == None: return
+
         if (self.photo.get('geo') and 
             self.photo['geo']['lat'] != 0 and
             self.photo['geo']['lat'] != 0):
