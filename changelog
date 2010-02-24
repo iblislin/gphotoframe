@@ -1,5 +1,7 @@
 2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/__init__.py, flickr/api.py: Added support geo infomation
+	  of Flickr photos.
 	* photoimageclutter.py, photoimagegtk.py, photoframe.py:
 	  Added support for hide/show function for Icons.
 

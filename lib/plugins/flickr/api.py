@@ -47,7 +47,7 @@ class FlickrAPI(object):
                    'count'   : 50,
                    'method'  : self.method,
                    'format'  : 'json',
-                   'extras'  : 'owner_name,original_format,media',
+                   'extras'  : 'owner_name,original_format,media,geo',
                    'nojsoncallback' : '1' }
 
         values.update(self._url_argument(argument, values))

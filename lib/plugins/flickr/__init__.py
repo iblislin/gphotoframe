@@ -79,6 +79,8 @@ class FlickrPhotoList(PhotoList):
                     'id'         : s['id'],
                     'title'      : s['title'],
                     'page_url'   : page_url,
+                    'geo'        : {'lon' : s['longitude'], 
+                                    'lat' : s['latitude']},
                     'icon'       : FlickrIcon}
 
             photo = Photo()

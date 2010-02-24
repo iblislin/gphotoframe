@@ -1,4 +1,5 @@
 from __future__ import division
+import os
 
 try:
     import cluttergtk
@@ -104,6 +105,12 @@ class ActorSourceIcon(ActorPhotoImage):
         
 class ActorGeoIcon(ActorPhotoImage):
 
+    def show(self):
+        if (self.photo.get('geo') and 
+            self.photo['geo']['lat'] != 0 and
+            self.photo['geo']['lat'] != 0):
+            self.texture.show()
+
     def show_icon(self, photo, x, y):
         self.photo = photo
         icon = SourceIcon('gnome-globe')
@@ -111,4 +118,9 @@ class ActorGeoIcon(ActorPhotoImage):
         self.change(icon_pixbuf, x, y)
 
     def _on_button_press_cb(self, actor, event):
-        pass
+        lat = self.photo['geo']['lat']
+        lon = self.photo['geo']['lon']
+        
+        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
+            lat, lon, self.photo['title'] or '(no title)')
+        os.system("gnome-open '%s'" % url)
