@@ -1,3 +1,5 @@
+from __future__ import division
+
 import os
 import time
 
@@ -6,7 +8,7 @@ import gtk
 import gtk.glade
 
 import constants
-from photoimage import *# PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
+from photoimage import *
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
@@ -165,16 +167,26 @@ class PhotoFrame(object):
 
         self.window.hide()
         self.window.set_type_hint(hint)
-        self.photoimage.clear()
 
-        self._set_window_position()
-        self.window.set_keep_below(True)
-        time.sleep(0.5)
+        # new
+        self.window.show()
+        if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
+            border = self.photoimage.window_border / 2
+            x = self.conf.get_int('root_x') - self.photoimage.w / 2
+            y = self.conf.get_int('root_y') - self.photoimage.h / 2
+            self.window.move(int(x - border), int(y - border))
 
-        if not self.photoimage.set_photo(): return
-        border = self.photoimage.window_border
-        self.window.resize(self.photoimage.w + border, 
-                           self.photoimage.h + border)
+         # old
+#        self.photoimage.clear()
+#
+#        self._set_window_position()
+#        self.window.set_keep_below(True)
+#        time.sleep(0.5)
+#
+#        if not self.photoimage.set_photo(): return
+#        border = self.photoimage.window_border
+#        self.window.resize(self.photoimage.w + border, 
+#                           self.photoimage.h + border)
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():
