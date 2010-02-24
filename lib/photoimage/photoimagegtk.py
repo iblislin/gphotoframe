@@ -33,6 +33,12 @@ class PhotoImage(object):
 
         return True
 
+    def on_enter_cb(self, widget, event):
+        pass
+
+    def on_leave_cb(self, widget, event):
+        pass
+
     def is_accessible_local_file(self):
         if self.photo is None:
             return False

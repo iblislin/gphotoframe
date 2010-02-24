@@ -119,6 +119,7 @@ class PhotoFrame(object):
     def _set_signal_cb(self, gui):
         dic = { 
             "on_window_button_press_event" : self._check_button_cb,
+            "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
             "on_window_query_tooltip"      : self._query_tooltip_cb,
@@ -150,6 +151,7 @@ class PhotoFrame(object):
     def _save_geometry_cb(self, widget, event):
 #        if event.mode != 2:
 #            return True
+        self.photoimage.on_leave_cb(widget, event)
 
         x, y = widget.get_position()
         w, h = widget.get_size()
