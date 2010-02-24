@@ -72,6 +72,11 @@ class PicasaPhotoList(PhotoList):
                 if entry.get('author') else self.argument
             #pp.pprint(entry)
 
+            lat = lon = 0
+            if entry.get('georss$where'):
+                geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
+                lat, lon = geo_raw.split()
+
             data = {'url'        : entry['content']['src'],
                     'owner_name' : owner_name,
                     'owner'      : owner_name,
@@ -79,6 +84,7 @@ class PicasaPhotoList(PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
+                    'geo'        : {'lon': lon, 'lat': lat},
                     'icon'       : PicasaIcon}
 
             photo = Photo()
