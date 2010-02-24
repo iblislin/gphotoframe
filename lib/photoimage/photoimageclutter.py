@@ -147,4 +147,4 @@ class ActorFavIcon(ActorPhotoImage):
         self.change(icon_pixbuf, x, y)
 
     def _on_button_press_cb(self, actor, event):
-        pass
+        self.photo.fav()

@@ -53,7 +53,6 @@ class FlickrAPI(object):
         values.update(self._url_argument(argument, values))
         url = url + urllib.urlencode(values)
 
-        # print url
         return url
 
     def _url_argument(self, argument, values):
