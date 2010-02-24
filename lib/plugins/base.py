@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 
 import gtk
@@ -11,6 +12,7 @@ from urlparse import urlparse
 from .. import constants
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
+from ..utils.EXIF import process_file as exif_process_file
 
 class PhotoList(object):
     """Photo Factory"""
@@ -172,6 +174,29 @@ class Photo(dict):
         url = self['page_url'] if 'page_url' in self else self['url']
         url = url.replace("'", "%27")
         os.system("gnome-open '%s'" % url)
+
+    def get_exif(self):
+        file = open(self['filename'], 'rb')
+        tags = exif_process_file(file)
+
+        #for i in tags: print i
+        #print str(tags['Image Model'])
+
+        lat_array = tags.get('GPS GPSLatitude')
+        lon_array = tags.get('GPS GPSLongitude')
+        if lat_array:
+            lon = lon_array.values
+            lat = lat_array.values
+
+            x = lon[0].num + lon[1].num/60.0 + lon[2].num/3600.0/lon[2].den
+            y = lat[0].num + lat[1].num/60.0 + lat[2].num/3600.0/lat[2].den
+
+            lon_ref = -1 if str(tags.get('GPS GPSLongitudeRef')) == 'W' else 1
+            lat_ref = -1 if str(tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
+
+            self['geo']= {}
+            self['geo']['lon'] = x * lon_ref
+            self['geo']['lat'] = y * lat_ref
 
 class PluginDialog(object):
     """Photo Source Dialog"""
