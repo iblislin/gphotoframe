@@ -1,5 +1,6 @@
 2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* picasa.py: : Added support geo infomation of Picasa Web photos.
 	* plugins/base.py, utils/EXIF.py: Added support for EXIF geo
 	  information.
 	* flickr/__init__.py, flickr/api.py: Added support geo infomation

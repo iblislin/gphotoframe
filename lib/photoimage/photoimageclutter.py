@@ -112,7 +112,7 @@ class ActorGeoIcon(ActorPhotoImage):
 
         if (self.photo.get('geo') and 
             self.photo['geo']['lat'] != 0 and
-            self.photo['geo']['lat'] != 0):
+            self.photo['geo']['lon'] != 0):
             self.texture.show()
 
     def show_icon(self, photo, x, y):
