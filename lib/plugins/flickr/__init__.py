@@ -81,7 +81,7 @@ class FlickrPhotoList(PhotoList):
                     'page_url'   : page_url,
                     'geo'        : {'lon' : s['longitude'], 
                                     'lat' : s['latitude']},
-                    'fav'        : FlickrFav(),
+                    'fav'        : FlickrFav(False, {'id': s['id']}),
                     'icon'       : FlickrIcon}
 
             photo = Photo()
@@ -160,32 +160,20 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
 
 class FlickrFav(object):
 
-    def __init__(self, state=False):
+    def __init__(self, state=False, arg={}):
         self.fav = state
+        self.arg = arg
         self.urlget = UrlGetWithProxy()
 
-    def change_fav(self, photo_id):
-        if self.fav:
-            self.remove(photo_id)
-        else:
-            self.add(photo_id)
-
-    def add(self, photo_id):
-        add = FlickrFavoritesAddAPI()
-        url = add.get_url(photo_id)
+    def change_fav(self):
+        url = self._get_url()
         d = self.urlget.getPage(url)
+        self.fav = not self.fav
 
-        self.fav = True
-        print "add"
-
-    def remove(self, photo_id):
-        remove = FlickrFavoritesRemoveAPI()
-        url = remove.get_url(photo_id)
-        urlget = UrlGetWithProxy()
-        d = urlget.getPage(url)
-
-        self.fav = False
-        print "remove"
+    def _get_url(self):
+        api = FlickrFavoritesRemoveAPI if self.fav else FlickrFavoritesAddAPI
+        url = api().get_url(self.arg['id'])
+        return url
 
 class FlickrIcon(SourceWebIcon):
 
