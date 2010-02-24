@@ -26,6 +26,7 @@ class PhotoImageClutter(PhotoImage):
         self.source_icon = ActorSourceIcon(self.stage)
         self.source_icon.show()
         self.geo_icon = ActorGeoIcon(self.stage)
+        self.fav_icon = ActorFavIcon(self.stage)
 
         self.embed.show()
         self.image = self.embed
@@ -43,15 +44,19 @@ class PhotoImageClutter(PhotoImage):
         self.source_icon.show_icon(self.photo, self.w - position - 20, 20)
         self.geo_icon.show_icon(self.photo, self.w - position - 20, 
                                 self.h - position - 20)
+        self.fav_icon.show_icon(self.photo, self.w - position - 40, 
+                                self.h - position - 20)
 
     def clear(self):
         pass
 
     def on_enter_cb(self, w, e):
         self.geo_icon.show()
+        self.fav_icon.show()
 
     def on_leave_cb(self, w, e):
         self.geo_icon.hide()
+        self.fav_icon.hide()
 
     def check_actor(self, stage, event):
         actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, 
@@ -128,3 +133,18 @@ class ActorGeoIcon(ActorPhotoImage):
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
             lat, lon, self.photo['title'] or '(no title)')
         os.system("gnome-open '%s'" % url)
+
+class ActorFavIcon(ActorPhotoImage):
+
+    def show(self):
+        if self.photo == None: return
+        self.texture.show()
+
+    def show_icon(self, photo, x, y):
+        self.photo = photo
+        icon = SourceIcon('emblem-favorite')
+        icon_pixbuf = icon.get_pixbuf()
+        self.change(icon_pixbuf, x, y)
+
+    def _on_button_press_cb(self, actor, event):
+        pass
