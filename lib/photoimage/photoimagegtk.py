@@ -39,6 +39,9 @@ class PhotoImage(object):
     def on_leave_cb(self, widget, event):
         pass
 
+    def check_actor(self, stage, event):
+        return False
+
     def is_accessible_local_file(self):
         if self.photo is None:
             return False
