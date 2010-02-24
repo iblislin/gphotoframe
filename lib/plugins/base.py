@@ -178,7 +178,7 @@ class Photo(dict):
     def fav(self):
         if self.get('fav'):
             fav_obj = self['fav']
-            fav_obj.change_fav(self['id'])
+            fav_obj.change_fav()
 
     def get_exif(self):
         file = open(self['filename'], 'rb')

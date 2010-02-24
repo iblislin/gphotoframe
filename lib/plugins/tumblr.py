@@ -4,6 +4,7 @@ from xml.etree import ElementTree as etree
 from base import *
 from gettext import gettext as _
 from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
+from flickr import FlickrFav
 from ..utils.keyring import Keyring
 
 def info():
@@ -109,21 +110,12 @@ class PluginTumblrDialog(PluginPicasaDialog):
         user_label = self.gui.get_widget('label_auth1')
         user_label.set_text_with_mnemonic(_('_E-mail:'))
 
-class TumblrFav(object):
-
-    def __init__(self, state=False, arg={}):
-        self.fav = state
-        self.arg = arg
-        self.urlget = UrlGetWithProxy()
-
-    def change_fav(self, FIXME):
-        api = 'unlike' if self.fav else 'like'
-        url = "http://www.tumblr.com/api/%s?" % api
-        d = self.urlget.getPage(url + urllib.urlencode(self.arg))
-        self.fav = not self.fav
+class TumblrFav(FlickrFav):
 
     def _get_url(self):
-        pass
+        api = 'unlike' if self.fav else 'like'
+        url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
+        return url
 
 class TumblrIcon(SourceWebIcon):
 
