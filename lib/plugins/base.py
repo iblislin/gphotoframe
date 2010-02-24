@@ -175,6 +175,11 @@ class Photo(dict):
         url = url.replace("'", "%27")
         os.system("gnome-open '%s'" % url)
 
+    def fav(self):
+        if self.get('fav'):
+            fav_obj = self['fav']
+            fav_obj.change_fav(self['id'])
+
     def get_exif(self):
         file = open(self['filename'], 'rb')
         tags = exif_process_file(file)
