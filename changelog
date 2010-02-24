@@ -1,3 +1,8 @@
+2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, photoimagegtk.py, photoframe.py:
+	  Added support for hide/show function for Icons.
+
 2010-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimage.py: Added Photo Source Icons on the clutter stage.
