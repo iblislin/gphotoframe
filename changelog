@@ -1,6 +1,28 @@
 2010-02-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoliststore.py: Fixed a cache file removing bug.
+	* fspot.py: Added support for rating on F-Spot.
+
+2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr.py: Added support for liking on Tumblr.
+	* plugins/flickr/, base.py: Added support for Favoring on Flickr.
+	* photoframe.py: Reimplemented frame fix mode for clutter.
+	* picasa.py: : Added support geo infomation of Picasa Web photos.
+	* plugins/base.py, utils/EXIF.py: Added support for EXIF geo
+	  information.
+	* flickr/__init__.py, flickr/api.py: Added support geo infomation
+	  of Flickr photos.
+	* photoimageclutter.py, photoimagegtk.py, photoframe.py:
+	  Added support for hide/show function for Icons.
+
+2010-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py: Added Photo Source Icons on the clutter stage.
+
+2010-02-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, photoframe.py: Added clutter support.
 
 2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
