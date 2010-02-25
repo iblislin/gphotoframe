@@ -11,6 +11,7 @@ except:
 from base import *
 from ..constants import APP_NAME, VERSION
 from ..utils.keyring import Keyring
+from ..utils.iconimage import WebIconImage
 
 def info():
     return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
