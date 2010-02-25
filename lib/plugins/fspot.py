@@ -8,6 +8,7 @@ from gettext import gettext as _
 
 from base import *
 from ..utils.wrandom import WeightedRandom
+from ..utils.iconimage import IconImage
 
 def info():
     return ['F-Spot', FSpotPhotoList, PhotoSourceFspotUI]

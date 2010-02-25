@@ -8,6 +8,7 @@ import glib
 
 from base import *
 from ..utils.inotify import Inotify
+from ..utils.iconimage import IconImage
 
 def info():
     return ['Folder', DirPhotoList, PhotoSourceDirUI]

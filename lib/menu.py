@@ -9,7 +9,7 @@ from gettext import gettext as _
 import constants
 from utils.config import GConf
 from preferences import Preferences
-from plugins import IconImage
+from utils.iconimage import IconImage
 
 class PopUpMenu(object):
 

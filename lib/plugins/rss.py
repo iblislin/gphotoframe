@@ -3,9 +3,10 @@ import copy
 # import pprint
 
 import feedparser
+from gettext import gettext as _
 
 from base import *
-from gettext import gettext as _
+from ..utils.iconimage import LocalIconImage
 
 def info():
     return ['RSS', RSSPhotoList, PhotoSourceRSSUI]

@@ -3,8 +3,8 @@ try:
 except:
     import json
 
-from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    WebIconImage, Photo
+from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, Photo
+from ...utils.iconimage import WebIconImage
 from api import *
 from authdialog import *
 

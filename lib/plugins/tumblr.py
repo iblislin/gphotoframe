@@ -1,11 +1,13 @@
 import urllib
 from xml.etree import ElementTree as etree
 
-from base import *
 from gettext import gettext as _
+
+from base import *
 from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
 from flickr import FlickrFav
 from ..utils.keyring import Keyring
+from ..utils.iconimage import WebIconImage
 
 def info():
     return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
