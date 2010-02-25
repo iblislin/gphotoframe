@@ -13,8 +13,13 @@ from ..constants import APP_NAME, VERSION
 from ..utils.keyring import Keyring
 
 def info():
-    return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
+    return [PicasaPlugin, PicasaPhotoList, PhotoSourcePicasaUI,
             PluginPicasaDialog]
+
+class PicasaPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Picasa Web'
 
 class PicasaPhotoList(PhotoList):
 

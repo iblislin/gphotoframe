@@ -12,6 +12,9 @@ from .. import constants
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 
+class PluginBase(object):
+    pass
+
 class PhotoList(object):
     """Photo Factory"""
 
