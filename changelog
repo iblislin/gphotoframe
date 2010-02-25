@@ -1,3 +1,7 @@
+2010-02-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Added support for rating on F-Spot.
+
 2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* tumblr.py: Added support for liking on Tumblr.
