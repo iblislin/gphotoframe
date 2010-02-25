@@ -3,8 +3,8 @@ try:
 except:
     import json
 
-from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    SourceWebIcon, Photo
+from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, Photo
+from ...utils.iconimage import WebIconImage
 from api import *
 from authdialog import *
 
@@ -79,6 +79,10 @@ class FlickrPhotoList(PhotoList):
                     'id'         : s['id'],
                     'title'      : s['title'],
                     'page_url'   : page_url,
+                    'geo'        : {'lon' : s['longitude'], 
+                                    'lat' : s['latitude']},
+                    'fav'        : FlickrFav(self.target == 'Favorites', 
+                                             {'id': s['id']}),
                     'icon'       : FlickrIcon}
 
             photo = Photo()
@@ -155,7 +159,24 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         state = api.is_use_own_id()
         self.checkbutton_flickr_id.set_sensitive(state)
 
-class FlickrIcon(SourceWebIcon):
+class FlickrFav(object):
+
+    def __init__(self, state=False, arg={}):
+        self.fav = state
+        self.arg = arg
+        self.urlget = UrlGetWithProxy()
+
+    def change_fav(self):
+        url = self._get_url()
+        d = self.urlget.getPage(url)
+        self.fav = not self.fav
+
+    def _get_url(self):
+        api = FlickrFavoritesRemoveAPI if self.fav else FlickrFavoritesAddAPI
+        url = api().get_url(self.arg['id'])
+        return url
+
+class FlickrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'flickr.ico'
