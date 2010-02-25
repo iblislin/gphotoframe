@@ -4,7 +4,7 @@ except:
     import json
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    SourceWebIcon, Photo
+    WebIconImage, Photo
 from api import *
 from authdialog import *
 
@@ -175,7 +175,7 @@ class FlickrFav(object):
         url = api().get_url(self.arg['id'])
         return url
 
-class FlickrIcon(SourceWebIcon):
+class FlickrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'flickr.ico'

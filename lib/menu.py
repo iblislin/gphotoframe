@@ -9,7 +9,7 @@ from gettext import gettext as _
 import constants
 from utils.config import GConf
 from preferences import Preferences
-from plugins import SourceIcon
+from plugins import IconImage
 
 class PopUpMenu(object):
 
@@ -96,7 +96,7 @@ class RecentMenuItem(gtk.ImageMenuItem):
         label.set_max_width_chars(20)
         label.set_property('ellipsize', pango.ELLIPSIZE_END)
 
-        icon = photo.get('icon') or SourceIcon
+        icon = photo.get('icon') or IconImage
         icon_img = icon().get_image()
         self.set_image(icon_img)
 
