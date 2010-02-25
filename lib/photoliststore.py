@@ -133,7 +133,7 @@ class RecentQueue(list):
     def remove(self, filename):
         for i, queue_photo in enumerate(self):
             if queue_photo['filename'] == filename:
-                self.pop(i)
+                super(RecentQueue, self).pop(i)
 
     def pop(self, num):
         pop_photo = super(RecentQueue, self).pop(num)
