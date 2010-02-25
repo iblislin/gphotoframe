@@ -272,7 +272,7 @@ class FSpotFav(object):
         db.commit()
         db.close()
 
-class FSpotIcon(SourceIcon):
+class FSpotIcon(IconImage):
 
     def __init__(self):
         self.icon_name = 'f-spot'

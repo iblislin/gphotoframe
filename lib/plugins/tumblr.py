@@ -117,7 +117,7 @@ class TumblrFav(FlickrFav):
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
 
-class TumblrIcon(SourceWebIcon):
+class TumblrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'tumblr.gif'

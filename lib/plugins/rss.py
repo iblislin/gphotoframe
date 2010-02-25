@@ -72,7 +72,7 @@ class PhotoSourceRSSUI(PhotoSourceUI):
             feed_title = self.data[1] or self.data[4].get('feed_title') or ""
             self.target_widget.set_text(feed_title)
 
-class RSSIcon(SourceLocalIcon):
+class RSSIcon(LocalIconImage):
 
     def __init__(self):
         self.icon_name = 'rss-16.png'

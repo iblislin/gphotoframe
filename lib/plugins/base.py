@@ -227,7 +227,7 @@ class PluginDialog(object):
         self.dialog.destroy()
         return response_id, {}
 
-class SourceIcon(object):
+class IconImage(object):
 
     def __init__(self, icon_name='image-x-generic'):
         self.icon_name = icon_name
@@ -251,13 +251,13 @@ class SourceIcon(object):
         icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
         return icon_path
 
-class SourceLocalIcon(SourceIcon):
+class LocalIconImage(IconImage):
 
     def _get_icon_file(self):
         icon_path = os.path.join(constants.SHARED_DATA_DIR, self.icon_name)
         return icon_path
 
-class SourceWebIcon(SourceIcon):
+class WebIconImage(IconImage):
 
     def _get_icon_file(self):
         cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
@@ -266,8 +266,8 @@ class SourceWebIcon(SourceIcon):
         if not os.access(file, os.R_OK):
             self._download_icon(self.icon_url, cache_dir, self.icon_name)
 
-            super(SourceWebIcon, self).__init__()
-            file = super(SourceWebIcon, self)._get_icon_file()
+            super(WebIconImage, self).__init__()
+            file = super(WebIconImage, self)._get_icon_file()
 
         return file
 

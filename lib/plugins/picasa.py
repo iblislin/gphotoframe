@@ -182,7 +182,7 @@ class PluginPicasaDialog(PluginDialog):
     def _destroy_cb(self, *args):
         self.dialog.destroy()
 
-class PicasaIcon(SourceWebIcon):
+class PicasaIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'picasa.ico'

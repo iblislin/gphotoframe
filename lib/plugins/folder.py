@@ -128,7 +128,7 @@ class PhotoSourceOptionsDirUI(PhotoSourceOptionsUI):
         state = self.options.get('subfolders', True)
         self.gui.get_widget('checkbutton_dir').set_active(state)
 
-class FolderIcon(SourceIcon):
+class FolderIcon(IconImage):
 
     def __init__(self):
         self.icon_name = 'folder'

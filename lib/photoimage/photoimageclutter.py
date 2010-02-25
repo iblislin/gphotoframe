@@ -7,7 +7,7 @@ try:
 except:
     cluttergtk = False
 
-from ..plugins import SourceIcon
+from ..plugins import IconImage
 from photoimagegtk import *
 
 class PhotoImageClutter(PhotoImage):
@@ -103,7 +103,7 @@ class ActorSourceIcon(ActorPhotoImage):
         self.photo = photo
         if self.photo == None: return
 
-        icon = self.photo.get('icon')()# or SourceIcon
+        icon = self.photo.get('icon')()# or IconImage
         icon_pixbuf = icon.get_pixbuf()
         self.change(icon_pixbuf, x, y)
 
@@ -122,7 +122,7 @@ class ActorGeoIcon(ActorPhotoImage):
 
     def show_icon(self, photo, x, y):
         self.photo = photo
-        icon = SourceIcon('gnome-globe')
+        icon = IconImage('gnome-globe')
         icon_pixbuf = icon.get_pixbuf()
         self.change(icon_pixbuf, x, y)
 
@@ -142,7 +142,7 @@ class ActorFavIcon(ActorPhotoImage):
 
     def show_icon(self, photo, x, y):
         self.photo = photo
-        icon = SourceIcon('emblem-favorite')
+        icon = IconImage('emblem-favorite')
         icon_pixbuf = icon.get_pixbuf()
         self.change(icon_pixbuf, x, y)
 
