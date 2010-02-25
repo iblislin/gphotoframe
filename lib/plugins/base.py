@@ -13,7 +13,9 @@ from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 
 class PluginBase(object):
-    pass
+
+    def is_available(self):
+        return True
 
 class PhotoList(object):
     """Photo Factory"""

@@ -17,6 +17,14 @@ class FSpotPlugin(PluginBase):
     def __init__(self):
         self.name = 'F-Spot'
 
+    def is_available(self):
+        db = FSpotDB()
+        if db.is_accessible:
+            db.close()
+            return True
+        else:
+            return False
+
 class FSpotPhotoList(PhotoList):
 
     def __del__(self):
