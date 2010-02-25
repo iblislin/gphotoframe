@@ -240,16 +240,24 @@ class IconImage(object):
         image.set_from_file(file)
         return image
 
-    def get_pixbuf(self, size=16):
+    def get_pixbuf(self, grayscale=False, size=16):
         self.size = size
         file = self._get_icon_file()
 
         pixbuf = gtk.gdk.pixbuf_new_from_file(file)
+        if grayscale:
+            pixbuf = self._set_grayscale(pixbuf)
+
         return pixbuf
 
     def _get_icon_file(self):
         icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
         return icon_path
+
+    def _set_grayscale(self, pixbuf):
+        pixbuf_gray = pixbuf.copy()
+        pixbuf.saturate_and_pixelate(pixbuf_gray, 0.0, False)
+        return pixbuf_gray
 
 class LocalIconImage(IconImage):
 

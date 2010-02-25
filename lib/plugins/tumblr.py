@@ -80,7 +80,7 @@ class TumblrPhotoList(PhotoList):
                     'owner_name' : owner,
                     'title'      : photo.get('photo-caption'),
                     'page_url'   : post.attrib['url'],
-                    'fav'        : TumblrFav(False, like_arg),
+                    'fav'        : TumblrFav(self.target == 'Likes', like_arg),
                     'icon'       : TumblrIcon}
 
             photo = Photo()

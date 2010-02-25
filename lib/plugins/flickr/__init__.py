@@ -81,7 +81,8 @@ class FlickrPhotoList(PhotoList):
                     'page_url'   : page_url,
                     'geo'        : {'lon' : s['longitude'], 
                                     'lat' : s['latitude']},
-                    'fav'        : FlickrFav(False, {'id': s['id']}),
+                    'fav'        : FlickrFav(self.target == 'Favorites', 
+                                             {'id': s['id']}),
                     'icon'       : FlickrIcon}
 
             photo = Photo()

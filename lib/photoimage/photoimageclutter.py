@@ -142,9 +142,19 @@ class ActorFavIcon(ActorPhotoImage):
 
     def show_icon(self, photo, x, y):
         self.photo = photo
-        icon = IconImage('emblem-favorite')
-        icon_pixbuf = icon.get_pixbuf()
-        self.change(icon_pixbuf, x, y)
+        if photo == None: return
+
+        self.x, self.y = x, y
+        self.icon = IconImage('emblem-favorite')
+
+        self._set_icon()
 
     def _on_button_press_cb(self, actor, event):
         self.photo.fav()
+        self._set_icon()
+
+    def _set_icon(self):
+        state = self.photo['fav'].fav
+        print self.photo['fav'].fav
+        icon_pixbuf = self.icon.get_pixbuf(not state)
+        self.change(icon_pixbuf, self.x, self.y)
