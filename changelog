@@ -1,5 +1,6 @@
 2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* fspot.py, picasa.py: Implemented plgin check functions.
 	* plugins/*, preferences.py: Changed SOURCE_LIST elements from str
 	  to class ('F-Spot' -> FSpotPlugin).
 
