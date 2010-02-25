@@ -29,17 +29,19 @@ PHOTO_TARGET_TOKEN={}
 DIALOG_TOKEN={}
 
 for k in sorted(token_base):
+    plugin_name = k[0]().name
+
     SOURCE_LIST.append(k[0])
-    MAKE_PHOTO_TOKEN[k[0]] = k[1]
-    PHOTO_TARGET_TOKEN[k[0]] = k[2]
+    MAKE_PHOTO_TOKEN[plugin_name] = k[1]
+    PHOTO_TARGET_TOKEN[plugin_name] = k[2]
     if len(k) > 3:
-        DIALOG_TOKEN[k[0]] = k[3]
+        DIALOG_TOKEN[plugin_name] = k[3]
 
 class PluginListStore(gtk.ListStore):
 
     def __init__(self):
         super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str)
 
-        for i in SOURCE_LIST:
-            list = [ True, None, i ]
+        for plugin in SOURCE_LIST:
+            list = [ True, None, plugin().name ]
             self.append(list)

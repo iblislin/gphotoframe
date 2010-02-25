@@ -8,7 +8,12 @@ from base import *
 from gettext import gettext as _
 
 def info():
-    return ['RSS', RSSPhotoList, PhotoSourceRSSUI]
+    return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
+
+class RSSPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'RSS'
 
 class RSSPhotoList(PhotoList):
 

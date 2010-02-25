@@ -7,7 +7,12 @@ from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
 from ..utils.keyring import Keyring
 
 def info():
-    return ['Tumblr', TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
+    return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
+
+class TumblrPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Tumblr'
 
 class TumblrPhotoList(PhotoList):
 

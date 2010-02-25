@@ -256,7 +256,7 @@ class PhotoSourceDialog(object):
     def run(self):
         dialog = self.gui.get_widget('photo_source')
         dialog.set_transient_for(self.parent)
-        source_list = plugins.SOURCE_LIST
+        source_list = sorted([ x().name for x in plugins.SOURCE_LIST ])
 
         # source
         source_widget = self.gui.get_widget('combobox4')
