@@ -1,3 +1,7 @@
+2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* menu.py: Always show the image of menu items.
+
 2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py, picasa.py: Implemented plugin check functions.

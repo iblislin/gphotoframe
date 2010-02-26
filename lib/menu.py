@@ -100,6 +100,8 @@ class RecentMenuItem(gtk.ImageMenuItem):
         icon_img = icon().get_image()
         self.set_image(icon_img)
 
+        if gtk.gtk_version >= (2, 16, 0):
+            self.set_always_show_image(True)
         self.connect('activate', photo.open)
         self.show()
 
