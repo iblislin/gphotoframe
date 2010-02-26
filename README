@@ -22,9 +22,9 @@ It shows pictures from:
 
 ** Recommends
 
-- simplejson: for Flickr and Tumblr plugins
+- simplejson: for Flickr, Picasa Web and Tumblr plugins (for python 2.5)
 - feedparser: for RSS plugin
-- gnome-python-desktop (gnomekeyring): for Picasa Web plugin
+- gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 
 ** Installation
 
