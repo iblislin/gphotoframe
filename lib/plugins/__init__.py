@@ -42,6 +42,7 @@ class PluginListStore(gtk.ListStore):
     def __init__(self):
         super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str)
 
-        for plugin in SOURCE_LIST:
-            list = [ True, None, plugin.name ]
+        for name, obj in sorted([ (plugin.name, plugin) 
+                                  for plugin in SOURCE_LIST]):
+            list = [ obj.is_available(), None, name ]
             self.append(list)
