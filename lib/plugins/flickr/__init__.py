@@ -4,12 +4,17 @@ except:
     import json
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    SourceWebIcon, Photo
+    SourceWebIcon, Photo, PluginBase
 from api import *
 from authdialog import *
 
 def info():
-    return ['Flickr', FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
+    return [FlickrPlugin, FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
+
+class FlickrPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Flickr'
 
 class FlickrPhotoList(PhotoList):
 

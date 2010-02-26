@@ -10,7 +10,12 @@ from base import *
 from ..utils.inotify import Inotify
 
 def info():
-    return ['Folder', DirPhotoList, PhotoSourceDirUI]
+    return [DirPlugin, DirPhotoList, PhotoSourceDirUI]
+
+class DirPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Folder'
 
 class DirPhotoList(PhotoList):
 
