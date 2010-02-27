@@ -14,6 +14,7 @@ class RSSPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'RSS'
+        self.icon = RSSIcon
 
 class RSSPhotoList(PhotoList):
 

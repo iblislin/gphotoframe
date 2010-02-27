@@ -16,6 +16,7 @@ class DirPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Folder'
+        self.icon = FolderIcon
 
 class DirPhotoList(PhotoList):
 
