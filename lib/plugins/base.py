@@ -11,6 +11,7 @@ from urlparse import urlparse
 from .. import constants
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
+from ..utils.proxypac import ParseProxyPac
 
 class PluginBase(object):
 
@@ -39,12 +40,13 @@ class PhotoList(object):
 
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
-        url = self.photo['url']
+        url = str(self.photo['url'])
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
-
-        urlget = UrlGetWithProxy()
-        d = urlget.downloadPage(str(url), self.photo['filename'])
+        
+        proxy = ParseProxyPac().get_proxy(url)
+        urlget = UrlGetWithProxy(proxy)
+        d = urlget.downloadPage(url, self.photo['filename'])
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
 
@@ -52,7 +54,8 @@ class PhotoList(object):
         pass
 
     def _get_url_with_twisted(self, url, cb_arg=None):
-        urlget = UrlGetWithProxy()
+        proxy = ParseProxyPac().get_proxy(url)
+        urlget = UrlGetWithProxy(proxy)
         d = urlget.getPage(url)
         cb = cb_arg or self._prepare_cb
         d.addCallback(cb)
@@ -251,5 +254,6 @@ class SourceWebIcon(SourceIcon):
             os.makedirs(cache_dir)
 
         icon_file = os.path.join(cache_dir, icon_name)
-        urlget = UrlGetWithProxy()
+        proxy = ParseProxyPac().get_proxy(url)
+        urlget = UrlGetWithProxy(proxy)
         d = urlget.downloadPage(icon_url, icon_file)
