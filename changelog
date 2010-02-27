@@ -1,5 +1,6 @@
 2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* proxypac.py: Added support for proxy pac.
 	* menu.py: Always show the image of menu items.
 
 2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

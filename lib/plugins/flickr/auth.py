@@ -8,6 +8,7 @@ import urllib
 import xml.etree.ElementTree as etree
 
 from ...utils.urlget import UrlGetWithProxy
+from ...utils.proxypac import ParseProxyPac
 
 def add_api_sig(values, secret):
     args = ""
@@ -110,7 +111,8 @@ class FlickrAuth(object):
     def _get_url(self, url, cb, cb_plus=None):
 
         if self.twisted:
-            client = UrlGetWithProxy()
+            proxy = ParseProxyPac().get_proxy(url)
+            client = UrlGetWithProxy(proxy)
             d = client.getPage(url)
             d.addCallback(cb)
             return d
