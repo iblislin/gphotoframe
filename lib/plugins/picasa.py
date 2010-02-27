@@ -21,6 +21,7 @@ class PicasaPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Picasa Web'
+        self.icon = PicasaIcon
 
     def is_available(self):
         username = GConf().get_string('plugins/picasa/user_id')

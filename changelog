@@ -1,3 +1,7 @@
+2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/*: Added Icons to Plugins Treeview.
+
 2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py, picasa.py: Implemented plugin check functions.

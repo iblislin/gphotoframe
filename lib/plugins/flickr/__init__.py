@@ -15,6 +15,7 @@ class FlickrPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Flickr'
+        self.icon = FlickrIcon
 
 class FlickrPhotoList(PhotoList):
 

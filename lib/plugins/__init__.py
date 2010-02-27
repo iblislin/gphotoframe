@@ -44,5 +44,5 @@ class PluginListStore(gtk.ListStore):
 
         for name, obj in sorted([ (plugin.name, plugin) 
                                   for plugin in SOURCE_LIST]):
-            list = [ obj.is_available(), None, name ]
+            list = [ obj.is_available(), obj.get_icon_pixbuf(), name ]
             self.append(list)
