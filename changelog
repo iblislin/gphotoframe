@@ -1,5 +1,6 @@
 2010-03-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 0.6.1 release.
 	* photoframe.py: Fixed a gconf default value error (issue #44).
 
 2010-03-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
