@@ -15,6 +15,7 @@
     <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
     <signal name="query_tooltip" handler="on_window_query_tooltip"/>
     <signal name="key_press_event" handler="on_window_key_press_event"/>
+    <signal name="enter_notify_event" handler="on_window_enter_notify_event"/>
     <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
     <child>
       <placeholder/>

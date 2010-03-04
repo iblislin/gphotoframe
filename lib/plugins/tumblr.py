@@ -1,10 +1,13 @@
 import urllib
 from xml.etree import ElementTree as etree
 
-from base import *
 from gettext import gettext as _
+
+from base import *
 from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
+from flickr import FlickrFav
 from ..utils.keyring import Keyring
+from ..utils.iconimage import WebIconImage
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -30,8 +33,8 @@ class TumblrPhotoList(PhotoList):
     def _auth_cb(self, identity):
 
         if identity:
-            email = identity[0]
-            password = identity[1]
+            self.email = identity[0]
+            self.password = identity[1]
         elif (self.target != 'User'):
             print "Certification Error"
             return
@@ -42,7 +45,7 @@ class TumblrPhotoList(PhotoList):
             url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
         elif self.target == 'Dashboard' or self.target == 'Likes':
             url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
-            values.update( {'email': email, 'password': password} )
+            values.update( {'email': self.email, 'password': self.password} )
         else:
             print "Tumblr Error: Invalid Target, %s" % self.target
             return
@@ -74,11 +77,17 @@ class TumblrPhotoList(PhotoList):
             if self.target != 'User':
                 owner = post.attrib['tumblelog']
 
+            like_arg = {'email'    : self.email,
+                        'password'  : self.password,
+                        'post-id'   : post.attrib['id'],
+                        'reblog-key': post.attrib['reblog-key']}
+
             data = {'url'        : photo['photo-url-500'],
                     'id'         : post.attrib['id'],
                     'owner_name' : owner,
                     'title'      : photo.get('photo-caption'),
                     'page_url'   : post.attrib['url'],
+                    'fav'        : TumblrFav(self.target == 'Likes', like_arg),
                     'icon'       : TumblrIcon}
 
             photo = Photo()
@@ -108,7 +117,14 @@ class PluginTumblrDialog(PluginPicasaDialog):
         user_label = self.gui.get_widget('label_auth1')
         user_label.set_text_with_mnemonic(_('_E-mail:'))
 
-class TumblrIcon(SourceWebIcon):
+class TumblrFav(FlickrFav):
+
+    def _get_url(self):
+        api = 'unlike' if self.fav else 'like'
+        url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
+        return url
+
+class TumblrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'tumblr.gif'

@@ -1,19 +1,18 @@
 from __future__ import division
+
 import os
 import sys
-
-import gobject
-import gtk
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
-from utils.config import GConf
+import gobject
+import gtk
+
+from ..utils.config import GConf
 
 class PhotoImage(object):
-    def __init__(self, photoframe):
-        self.image = gtk.Image()
-        self.image.show()
 
+    def __init__(self, photoframe):
         self.window = photoframe.window
         self.photoframe = photoframe
         self.conf = GConf()
@@ -29,15 +28,19 @@ class PhotoImage(object):
             return False
 
         self._set_tips(self.photo)
-
-        self.image.set_from_pixbuf(pixbuf.data)
-        self.w = pixbuf.data.get_width()
-        self.h = pixbuf.data.get_height()
+        self._set_photo_image(pixbuf.data)
+        self.window_border = self.conf.get_int('border_width', 10)
 
         return True
 
-    def clear(self):
-        self.image.clear()
+    def on_enter_cb(self, widget, event):
+        pass
+
+    def on_leave_cb(self, widget, event):
+        pass
+
+    def check_actor(self, stage, event):
+        return False
 
     def is_accessible_local_file(self):
         if self.photo is None:
@@ -75,6 +78,21 @@ class PhotoImage(object):
             self.window.set_tooltip_markup(tip)
         except:
             pass
+
+class PhotoImageGtk(PhotoImage):
+    def __init__(self, photoframe):
+        super(PhotoImageGtk, self).__init__(photoframe)
+
+        self.image = gtk.Image()
+        self.image.show()
+
+    def _set_photo_image(self, pixbuf):
+        self.image.set_from_pixbuf(pixbuf)
+        self.w = pixbuf.get_width()
+        self.h = pixbuf.get_height()
+
+    def clear(self):
+        self.image.clear()
 
 class PhotoImagePixbuf(object):
 
@@ -169,7 +187,7 @@ class PhotoImagePixbuf(object):
 
         return pixbuf
 
-class PhotoImageFullScreen(PhotoImage):
+class PhotoImageFullScreen(PhotoImageGtk):
 
     def _get_max_display_size(self):
         screen = gtk.gdk.screen_get_default()

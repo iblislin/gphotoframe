@@ -1,3 +1,5 @@
+from __future__ import division
+
 import os
 import time
 
@@ -6,7 +8,7 @@ import gtk
 import gtk.glade
 
 import constants
-from photoimage import PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
+from photoimage import *
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
@@ -56,7 +58,7 @@ class PhotoFrame(object):
 
         if change:
             if not self.photoimage.set_photo(photo): return False
-            border = self.conf.get_int('border_width', 10)
+            border = self.photoimage.window_border
             self.window.resize(self.photoimage.w + border, 
                                self.photoimage.h + border)
 
@@ -94,7 +96,7 @@ class PhotoFrame(object):
             self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
 
     def _set_photoimage(self):
-        self.photoimage = PhotoImage(self)
+        self.photoimage = PhotoImageFactory().create(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenu(self.photolist, self)
@@ -119,6 +121,7 @@ class PhotoFrame(object):
     def _set_signal_cb(self, gui):
         dic = { 
             "on_window_button_press_event" : self._check_button_cb,
+            "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
             "on_window_query_tooltip"      : self._query_tooltip_cb,
@@ -132,8 +135,9 @@ class PhotoFrame(object):
 
     def _check_button_cb(self, widget, event):
         if event.button == 1:
-            widget.begin_move_drag(
-                event.button, int(event.x_root), int(event.y_root), event.time)
+            if not self.photoimage.check_actor(widget, event):
+                widget.begin_move_drag(
+                    event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
             pass
         elif event.button == 3:
@@ -149,6 +153,7 @@ class PhotoFrame(object):
     def _save_geometry_cb(self, widget, event):
 #        if event.mode != 2:
 #            return True
+        self.photoimage.on_leave_cb(widget, event)
 
         x, y = widget.get_position()
         w, h = widget.get_size()
@@ -162,16 +167,26 @@ class PhotoFrame(object):
 
         self.window.hide()
         self.window.set_type_hint(hint)
-        self.photoimage.clear()
 
-        self._set_window_position()
-        self.window.set_keep_below(True)
-        time.sleep(0.5)
+        # new
+        self.window.show()
+        if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
+            border = self.photoimage.window_border / 2
+            x = self.conf.get_int('root_x') - self.photoimage.w / 2
+            y = self.conf.get_int('root_y') - self.photoimage.h / 2
+            self.window.move(int(x - border), int(y - border))
 
-        if not self.photoimage.set_photo(): return
-        border = self.conf.get_int('border_width', 10)
-        self.window.resize(self.photoimage.w + border, 
-                           self.photoimage.h + border)
+         # old
+#        self.photoimage.clear()
+#
+#        self._set_window_position()
+#        self.window.set_keep_below(True)
+#        time.sleep(0.5)
+#
+#        if not self.photoimage.set_photo(): return
+#        border = self.photoimage.window_border
+#        self.window.resize(self.photoimage.w + border, 
+#                           self.photoimage.h + border)
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():

@@ -8,6 +8,7 @@ from gettext import gettext as _
 
 from base import *
 from ..utils.wrandom import WeightedRandom
+from ..utils.iconimage import IconImage
 
 def info():
     return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
@@ -57,17 +58,25 @@ class FSpotPhotoList(PhotoList):
 
     def get_photo(self, cb):
         rate = self.rnd()
-        columns = 'base_uri, filename' if self.db.is_new else 'uri'
+        columns = 'base_uri, filename, id' if self.db.is_new else 'uri'
         sql = self._sql_statement(columns, rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
 
-        url = ''.join(self.db.fetchall(sql)[0])
-        file = url.replace('file://', '')
-        title = url[ url.rfind('/') + 1: ]
+        if self.db.is_new:
+            base_url, filename, id = self.db.fetchall(sql)[0]
+            url = base_url + filename
+        else: # for ver.0.5
+            url = ''.join(self.db.fetchall(sql)[0])
+            filename = url[ url.rfind('/') + 1: ]
 
-        data = { 'url' : url, 'rate' : rate.name, 
-                 'filename' : file, 'title' : title,
+        data = { 'url' : url, 
+                 'rate' : rate.name, 
+                 'filename' : url.replace('file://', ''),
+                 'title' : filename, # without path
+                 'id' : id,
+                 'fav' : FSpotFav(rate.name, id),
                  'icon' : FSpotIcon }
+
         self.photo = Photo()
         self.photo.update(data)
         cb(self.photo)
@@ -199,6 +208,13 @@ class FSpotDB(object):
         data = self.db.execute(sql).fetchone()[0]
         return data
 
+    def execute(self, sql):
+        data = self.db.execute(sql)
+        return data
+
+    def commit(self):
+        self.db.commit()
+
     def close(self):
         self.db.close()
 
@@ -257,7 +273,20 @@ class Rate(object):
         self.total = float(total_in_this)
         self.weight = total_in_this / float(total_all) * (rate * weight + 1)
 
-class FSpotIcon(SourceIcon):
+class FSpotFav(object):
+
+    def __init__(self, rate, id):
+        self.rate = rate
+        self.id = id
+
+    def change_fav(self, new_rate=5):
+        sql = "UPDATE photos SET rating=%s WHERE id=%s" % (new_rate, self.id)
+        db = FSpotDB()
+        db.execute(sql)
+        db.commit()
+        db.close()
+
+class FSpotIcon(IconImage):
 
     def __init__(self):
         self.icon_name = 'f-spot'
