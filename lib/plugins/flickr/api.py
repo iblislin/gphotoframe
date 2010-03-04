@@ -69,7 +69,7 @@ class FlickrAPI(object):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
-        user = arg or GConf().get_string('plugins/flickr/user_id')
+        user = arg or GConf().get_string('plugins/flickr/nsid')
         url = api.get_url('http://www.flickr.com/photos/%s/' % user) \
             if user else None
         return url
