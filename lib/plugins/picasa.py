@@ -12,10 +12,20 @@ from base import *
 from ..constants import APP_NAME, VERSION
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
+from ..utils.config import GConf
 
 def info():
-    return ['Picasa Web', PicasaPhotoList, PhotoSourcePicasaUI,
+    return [PicasaPlugin, PicasaPhotoList, PhotoSourcePicasaUI,
             PluginPicasaDialog]
+
+class PicasaPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Picasa Web'
+
+    def is_available(self):
+        username = GConf().get_string('plugins/picasa/user_id')
+        return True if username else False
 
 class PicasaPhotoList(PhotoList):
 

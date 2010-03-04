@@ -9,7 +9,12 @@ from base import *
 from ..utils.iconimage import LocalIconImage
 
 def info():
-    return ['RSS', RSSPhotoList, PhotoSourceRSSUI]
+    return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
+
+class RSSPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'RSS'
 
 class RSSPhotoList(PhotoList):
 

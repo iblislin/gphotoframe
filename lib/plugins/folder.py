@@ -11,7 +11,12 @@ from ..utils.inotify import Inotify
 from ..utils.iconimage import IconImage
 
 def info():
-    return ['Folder', DirPhotoList, PhotoSourceDirUI]
+    return [DirPlugin, DirPhotoList, PhotoSourceDirUI]
+
+class DirPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Folder'
 
 class DirPhotoList(PhotoList):
 

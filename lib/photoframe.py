@@ -76,8 +76,8 @@ class PhotoFrame(object):
         self.set_photo(None, change)
 
     def _set_window_position(self):
-        self.window.move(self.conf.get_int('root_x'), 
-                         self.conf.get_int('root_y'))
+        self.window.move(self.conf.get_int('root_x', 0),
+                         self.conf.get_int('root_y', 0))
         self.window.resize(1, 1)
         self.window.show_all()
         self.window.get_position()

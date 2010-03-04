@@ -12,6 +12,11 @@ from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 from ..utils.EXIF import process_file as exif_process_file
 
+class PluginBase(object):
+
+    def is_available(self):
+        return True
+
 class PhotoList(object):
     """Photo Factory"""
 

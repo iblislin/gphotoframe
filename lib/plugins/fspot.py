@@ -11,7 +11,20 @@ from ..utils.wrandom import WeightedRandom
 from ..utils.iconimage import IconImage
 
 def info():
-    return ['F-Spot', FSpotPhotoList, PhotoSourceFspotUI]
+    return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
+
+class FSpotPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'F-Spot'
+
+    def is_available(self):
+        db = FSpotDB()
+        if db.is_accessible:
+            db.close()
+            return True
+        else:
+            return False
 
 class FSpotPhotoList(PhotoList):
 

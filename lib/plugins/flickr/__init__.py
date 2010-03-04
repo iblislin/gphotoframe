@@ -3,13 +3,19 @@ try:
 except:
     import json
 
-from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, Photo
+from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
+    Photo, PluginBase
 from ...utils.iconimage import WebIconImage
 from api import *
 from authdialog import *
 
 def info():
-    return ['Flickr', FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
+    return [FlickrPlugin, FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
+
+class FlickrPlugin(PluginBase):
+    
+    def __init__(self):
+        self.name = 'Flickr'
 
 class FlickrPhotoList(PhotoList):
 

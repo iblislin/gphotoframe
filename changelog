@@ -1,3 +1,27 @@
+2010-03-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6.2 release.
+	* flickr/api.py: Fixed invalid Flickr NSID API URL (issue #47).
+
+2010-03-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6.1 release.
+	* photoframe.py: Fixed a gconf default value error (issue #44).
+
+2010-03-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6 release.
+
+2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* menu.py: Always show the image of menu items.
+
+2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py, picasa.py: Implemented plugin check functions.
+	* plugins/*, preferences.py: Changed SOURCE_LIST elements from str
+	  to class ('F-Spot' -> FSpotPlugin).
+
 2010-02-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoliststore.py: Fixed a cache file removing bug.
