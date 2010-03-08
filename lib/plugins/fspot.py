@@ -276,7 +276,7 @@ class Rate(object):
 class FSpotFav(object):
 
     def __init__(self, rate, id):
-        self.rate = rate
+        self.fav = rate
         self.id = id
 
     def change_fav(self, new_rate=5):
