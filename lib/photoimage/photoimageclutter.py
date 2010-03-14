@@ -16,7 +16,7 @@ class PhotoImageClutter(PhotoImage):
         super(PhotoImageClutter, self).__init__(photoframe)
 
         self.embed = cluttergtk.Embed()
-        self.embed.realize()
+        #self.embed.realize()
 
         self.stage = self.embed.get_stage()
         self.stage.set_color(clutter.Color(220, 220, 220, 0))
@@ -27,6 +27,7 @@ class PhotoImageClutter(PhotoImage):
         self.source_icon.show()
         self.geo_icon = ActorGeoIcon(self.stage)
         self.fav_icon = ActorFavIcon(self.stage)
+        self.fav_num = ActorFavIconNum(self.stage)
 
         self.embed.show()
         self.image = self.embed
@@ -46,6 +47,7 @@ class PhotoImageClutter(PhotoImage):
                                 self.h - position - 20)
         self.fav_icon.show_icon(self.photo, self.w - position - 40, 
                                 self.h - position - 20)
+        self.fav_num.show_icon(self.photo, 20, 20)
 
     def clear(self):
         pass
@@ -53,10 +55,12 @@ class PhotoImageClutter(PhotoImage):
     def on_enter_cb(self, w, e):
         self.geo_icon.show()
         self.fav_icon.show()
+        self.fav_num.show()
 
     def on_leave_cb(self, w, e):
         self.geo_icon.hide()
         self.fav_icon.hide()
+        self.fav_num.hide()
 
     def check_actor(self, stage, event):
         actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, 
@@ -157,3 +161,39 @@ class ActorFavIcon(ActorPhotoImage):
         state = self.photo['fav'].fav
         icon_pixbuf = self.icon.get_pixbuf(not state)
         self.change(icon_pixbuf, self.x, self.y)
+
+class ActorPhotoImageNew(ActorPhotoImage):
+
+    def __init__(self, stage, num, cb):
+        super(ActorPhotoImageNew, self).__init__(stage)
+        self.number = num
+        self.cb = cb
+
+    def _on_button_press_cb(self, actor, event):
+        self.cb(self.number)
+
+class ActorFavIconNum(object):
+
+    def __init__(self, stage, num=5):
+        self.icon = [ ActorPhotoImageNew(stage, i, self.cb) for i in xrange(num)]
+
+    def show(self):
+        num = 5 if self.photo.has_key('rate') else 1
+        for i in xrange(num):
+            self.icon[i].show()
+
+    def hide(self):
+        for icon in self.icon:
+            icon.hide()
+
+    def show_icon(self, photo, x, y):
+        self.photo = photo
+        #print self.photo['fav'].fav
+        image = IconImage('emblem-favorite')
+
+        for i, icon in enumerate(self.icon):
+            state = self.photo['fav'].fav <= i
+            icon.change(image.get_pixbuf(state), x + i * 20, y)
+
+    def cb(self, num):
+        print num
