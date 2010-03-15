@@ -27,7 +27,6 @@ class PhotoImageClutter(PhotoImage):
         self.source_icon.show()
         self.geo_icon = ActorGeoIcon(self.stage)
         self.fav_icon = ActorFavIcon(self.stage)
-        self.fav_num = ActorFavIconNum(self.stage)
 
         self.embed.show()
         self.image = self.embed
@@ -45,9 +44,7 @@ class PhotoImageClutter(PhotoImage):
         self.source_icon.show_icon(self.photo, self.w - position - 20, 20)
         self.geo_icon.show_icon(self.photo, self.w - position - 20, 
                                 self.h - position - 20)
-        self.fav_icon.show_icon(self.photo, self.w - position - 40, 
-                                self.h - position - 20)
-        self.fav_num.show_icon(self.photo, 20, 20)
+        self.fav_icon.show_icon(self.photo, 20, 20)
 
     def clear(self):
         pass
@@ -55,12 +52,10 @@ class PhotoImageClutter(PhotoImage):
     def on_enter_cb(self, w, e):
         self.geo_icon.show()
         self.fav_icon.show()
-        self.fav_num.show()
 
     def on_leave_cb(self, w, e):
         self.geo_icon.hide()
         self.fav_icon.hide()
-        self.fav_num.hide()
 
     def check_actor(self, stage, event):
         actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, 
@@ -138,45 +133,21 @@ class ActorGeoIcon(ActorPhotoImage):
             lat, lon, self.photo['title'] or '(no title)')
         os.system("gnome-open '%s'" % url)
 
-class ActorFavIcon(ActorPhotoImage):
-
-    def show(self):
-        if self.photo == None or 'fav' not in self.photo: return
-        self.texture.show()
-
-    def show_icon(self, photo, x, y):
-        self.photo = photo
-        if photo == None or 'fav' not in photo: return
-
-        self.x, self.y = x, y
-        self.icon = IconImage('emblem-favorite')
-
-        self._set_icon()
-
-    def _on_button_press_cb(self, actor, event):
-        self.photo.fav()
-        self._set_icon()
-
-    def _set_icon(self):
-        state = self.photo['fav'].fav
-        icon_pixbuf = self.icon.get_pixbuf(not state)
-        self.change(icon_pixbuf, self.x, self.y)
-
-class ActorPhotoImageNew(ActorPhotoImage):
+class ActorFavIconOne(ActorPhotoImage):
 
     def __init__(self, stage, num, cb):
-        super(ActorPhotoImageNew, self).__init__(stage)
+        super(ActorFavIconOne, self).__init__(stage)
         self.number = num
         self.cb = cb
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
 
-class ActorFavIconNum(object):
+class ActorFavIcon(object):
 
     def __init__(self, stage, num=5):
-        self.icon = [ ActorPhotoImageNew(stage, i, self.cb) for i in xrange(num)]
-
+        self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
+                      
     def show(self):
         if (not hasattr(self, 'photo') or 
             self.photo == None or 'fav' not in self.photo): 
