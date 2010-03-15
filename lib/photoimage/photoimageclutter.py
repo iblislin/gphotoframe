@@ -27,7 +27,6 @@ class PhotoImageClutter(PhotoImage):
         self.fav_icon = ActorFavIcon(self.stage)
 
         self.photo_image.show()
-        self.source_icon.show()
         self.embed.show()
 
     def _set_photo_image(self, pixbuf):
@@ -48,10 +47,12 @@ class PhotoImageClutter(PhotoImage):
         pass
 
     def on_enter_cb(self, w, e):
-        self.geo_icon.show()
-        self.fav_icon.show()
+        self.source_icon.show(True)
+        self.geo_icon.show(True)
+        self.fav_icon.show(True)
 
     def on_leave_cb(self, w, e):
+        self.source_icon.hide()
         self.geo_icon.hide()
         self.fav_icon.hide()
 
@@ -73,6 +74,7 @@ class ActorPhotoImage(object):
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self.texture, pixbuf)
         self.texture.set_position(x, y)
+        self.show()
 
     def show(self):
         self.texture.show()
@@ -101,10 +103,22 @@ class ActorSourceIcon(ActorPhotoImage):
         if self.photo == None: return
 
         icon = self._get_icon()
+        self.icon_is_show = self._icon_is_show()
         x, y = self.calc_position(photoimage, icon, position)
         if photoimage.w > 80 and photoimage.h > 80: # for small photo image
             icon_pixbuf = icon.get_pixbuf()
             self.change(icon_pixbuf, x, y)
+
+    def _icon_is_show(self):
+        return True
+
+    def show(self, force=False):
+        if self.icon_is_show is True or force is True:
+            self.texture.show()
+
+    def hide(self, force=False):
+        if self.icon_is_show is not True:
+            self.texture.hide()
 
     def _get_icon(self):
         return self.photo.get('icon')()
@@ -131,16 +145,19 @@ class ActorSourceIcon(ActorPhotoImage):
 
 class ActorGeoIcon(ActorSourceIcon):
 
-    def show(self):
-        if self.photo == None: return
+    def show(self, force=False):
+        if not hasattr(self, 'photo') or self.photo == None: return
 
         if (self.photo.get('geo') and 
             self.photo['geo']['lat'] != 0 and
             self.photo['geo']['lon'] != 0):
-            self.texture.show()
+            super(ActorGeoIcon, self).show(force)
 
     def _get_icon(self):
         return IconImage('gnome-globe')
+
+    def _icon_is_show(self):
+        return False
 
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
@@ -154,8 +171,9 @@ class ActorFavIcon(ActorSourceIcon):
 
     def __init__(self, stage, num=5):
         self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
-                      
-    def show(self):
+        self.icon_is_show = False
+
+    def show(self, force=False):
         if (not hasattr(self, 'photo') or 
             self.photo == None or 'fav' not in self.photo): 
             return
@@ -169,9 +187,10 @@ class ActorFavIcon(ActorSourceIcon):
             num = 1
 
         for i in xrange(num):
-            self.icon[i].show()
+            self.icon[i].show(force)
 
     def hide(self):
+        if self.icon_is_show is True: return
         for icon in self.icon:
             icon.hide()
 
@@ -205,6 +224,11 @@ class ActorFavIconOne(ActorPhotoImage):
         super(ActorFavIconOne, self).__init__(stage)
         self.number = num
         self.cb = cb
+        self.icon_is_show = False
+
+    def show(self, force=False):
+        if self.icon_is_show is True or force is True:
+            super(ActorFavIconOne, self).show()
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
