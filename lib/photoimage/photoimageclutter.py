@@ -15,7 +15,7 @@ class PhotoImageClutter(PhotoImage):
     def __init__(self, photoframe):
         super(PhotoImageClutter, self).__init__(photoframe)
 
-        self.embed = cluttergtk.Embed()
+        self.image = self.embed = cluttergtk.Embed()
         #self.embed.realize()
 
         self.stage = self.embed.get_stage()
@@ -29,7 +29,6 @@ class PhotoImageClutter(PhotoImage):
         self.photo_image.show()
         self.source_icon.show()
         self.embed.show()
-        self.image = self.embed
 
     def _set_photo_image(self, pixbuf):
         self.border = border = self.conf.get_int('border_width', 5)
@@ -102,9 +101,10 @@ class ActorSourceIcon(ActorPhotoImage):
         if self.photo == None: return
 
         icon = self._get_icon()
-        icon_pixbuf = icon.get_pixbuf()
         x, y = self.calc_position(photoimage, icon, position)
-        self.change(icon_pixbuf, x, y)
+        if photoimage.w > 80 and photoimage.h > 80: # for small photo image
+            icon_pixbuf = icon.get_pixbuf()
+            self.change(icon_pixbuf, x, y)
 
     def _get_icon(self):
         return self.photo.get('icon')()
@@ -114,9 +114,7 @@ class ActorSourceIcon(ActorPhotoImage):
 
     def calc_position(self, photoimage, icon, position):
         icon_pixbuf = icon.get_pixbuf()
-        icon_w = icon_pixbuf.get_width()
-        icon_h = icon_pixbuf.get_height()
-
+        icon_w, icon_h = icon_pixbuf.get_width(), icon_pixbuf.get_height()
         offset = 10
 
         if position == 0 or position == 3:
@@ -162,7 +160,14 @@ class ActorFavIcon(ActorSourceIcon):
             self.photo == None or 'fav' not in self.photo): 
             return
 
-        num = 5 if self.photo.has_key('rate') else 1
+        if self.photo.has_key('rate'):
+            # for narrow photo image width
+            space = self.image.get_pixbuf().get_width() * 1.3
+            num = int ((self.photoimage.w - 60) / space) \
+                if self.photoimage.w - 60 < 5 * space else 5
+        else:
+            num = 1
+
         for i in xrange(num):
             self.icon[i].show()
 
@@ -173,6 +178,8 @@ class ActorFavIcon(ActorSourceIcon):
     def set_icon(self, photoimage, position):
         self.photo = photoimage.photo
         self.position = position
+        self.photoimage = photoimage
+
         if self.photo == None or 'fav' not in self.photo: return
 
         self.image = IconImage('emblem-favorite')
@@ -181,6 +188,7 @@ class ActorFavIcon(ActorSourceIcon):
 
     def _change_icon(self):
         direction = -1 if 0 < self.position < 3 else 1
+
         for i, icon in enumerate(self.icon):
             state = self.photo['fav'].fav <= i
             pixbuf = self.image.get_pixbuf(state)
