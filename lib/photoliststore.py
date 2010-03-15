@@ -78,7 +78,6 @@ class PhotoListStore(gtk.ListStore):
         # print photo.get('page_url') or photo.get('url')
         if self.photoframe.set_photo(photo):
             self.queue.append(photo)
-            photo.get_exif()
         else:
             self._change_photo()
 

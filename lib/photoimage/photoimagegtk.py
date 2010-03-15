@@ -113,6 +113,7 @@ class PhotoImagePixbuf(object):
                 pixbuf = self._rotate(pixbuf)
                 pixbuf = self._scale(pixbuf)
                 if not self._aspect_ratio_is_ok(pixbuf): return False
+                photo.get_exif()
         else:
             pixbuf = self._no_image()
 
