@@ -32,15 +32,14 @@ class PhotoImageClutter(PhotoImage):
         self.image = self.embed
 
     def _set_photo_image(self, pixbuf):
-        self.border = border = self.conf.get_int('border_width', 10)
-        half_border = int(border / 2)
+        self.border = border = self.conf.get_int('border_width', 5)
 
         self.window_border = 0
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
-        self.embed.set_size_request(self.w + border, self.h + border)
+        self.embed.set_size_request(self.w + border * 2, self.h + border * 2)
 
-        self.photo_image.change(pixbuf, half_border, half_border)
+        self.photo_image.change(pixbuf, border, border)
 
         self.source_icon.set_icon(self, 1)
         self.geo_icon.set_icon(self, 2)
@@ -118,18 +117,17 @@ class ActorSourceIcon(ActorPhotoImage):
         icon_w = icon_pixbuf.get_width()
         icon_h = icon_pixbuf.get_height()
 
-        border = int(photoimage.border / 2)
         offset = 10
 
         if position == 0 or position == 3:
-            x = border + offset
+            x = photoimage.border + offset
         else:
-            x = border + photoimage.w - icon_w - offset 
+            x = photoimage.border + photoimage.w - icon_w - offset 
 
         if position == 0 or position == 1:
-            y = border + offset
+            y = photoimage.border + offset
         else:
-            y = border + photoimage.h - icon_h - offset 
+            y = photoimage.border + photoimage.h - icon_h - offset 
 
         return x, y
 

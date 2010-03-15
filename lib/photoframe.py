@@ -58,9 +58,9 @@ class PhotoFrame(object):
 
         if change:
             if not self.photoimage.set_photo(photo): return False
-            border = self.photoimage.window_border
-            self.window.resize(self.photoimage.w + border, 
-                               self.photoimage.h + border)
+            borders = self.photoimage.window_border * 2
+            self.window.resize(self.photoimage.w + borders, 
+                               self.photoimage.h + borders)
 
         self.popup_menu.set_open_menu_sensitive(state)
         self.popup_menu.set_recent_menu()
@@ -171,7 +171,7 @@ class PhotoFrame(object):
         # new
         self.window.show()
         if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
-            border = self.photoimage.window_border / 2
+            border = self.photoimage.window_border
             x = self.conf.get_int('root_x') - self.photoimage.w / 2
             y = self.conf.get_int('root_y') - self.photoimage.h / 2
             self.window.move(int(x - border), int(y - border))
