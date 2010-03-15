@@ -172,7 +172,7 @@ class FlickrFav(object):
         self.arg = arg
         self.urlget = UrlGetWithProxy()
 
-    def change_fav(self):
+    def change_fav(self, rate_dummy):
         url = self._get_url()
         d = self.urlget.getPage(url)
         self.fav = not self.fav

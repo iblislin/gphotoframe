@@ -178,6 +178,10 @@ class ActorFavIconNum(object):
         self.icon = [ ActorPhotoImageNew(stage, i, self.cb) for i in xrange(num)]
 
     def show(self):
+        if (not hasattr(self, 'photo') or 
+            self.photo == None or 'fav' not in self.photo): 
+            return
+
         num = 5 if self.photo.has_key('rate') else 1
         for i in xrange(num):
             self.icon[i].show()
@@ -188,12 +192,19 @@ class ActorFavIconNum(object):
 
     def show_icon(self, photo, x, y):
         self.photo = photo
-        #print self.photo['fav'].fav
-        image = IconImage('emblem-favorite')
+        if photo == None or 'fav' not in photo: return
 
+        self.x, self.y = x, y
+        self.image = IconImage('emblem-favorite')
+
+        self._set_icon()
+
+    def _set_icon(self):
+        print self.photo['fav'].fav
         for i, icon in enumerate(self.icon):
             state = self.photo['fav'].fav <= i
-            icon.change(image.get_pixbuf(state), x + i * 20, y)
+            icon.change(self.image.get_pixbuf(state), self.x + i * 20, self.y)
 
     def cb(self, num):
-        print num
+        self.photo.fav(num + 1)
+        self._set_icon()

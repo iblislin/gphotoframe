@@ -1,3 +1,7 @@
+2010-03-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py, photoimageclutter.py: Added support for F-Spot Rating.
+
 2010-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimageclutter.py: Added ActorFavIconNum.

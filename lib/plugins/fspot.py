@@ -279,8 +279,10 @@ class FSpotFav(object):
         self.fav = rate
         self.id = id
 
-    def change_fav(self, new_rate=5):
-        sql = "UPDATE photos SET rating=%s WHERE id=%s" % (new_rate, self.id)
+    def change_fav(self, new_rate):
+        self.fav = 0 if self.fav == new_rate else new_rate 
+
+        sql = "UPDATE photos SET rating=%s WHERE id=%s" % (self.fav, self.id)
         db = FSpotDB()
         db.execute(sql)
         db.commit()
