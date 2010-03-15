@@ -42,7 +42,7 @@
       <applyto>/apps/gphotoframe/border_width</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>10</default>
+      <default>5</default>
       <locale name="C">
         <short>Photo frame border width</short>
         <long>Photo frame border width</long>

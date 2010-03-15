@@ -29,7 +29,7 @@ class PhotoImage(object):
 
         self._set_tips(self.photo)
         self._set_photo_image(pixbuf.data)
-        self.window_border = self.conf.get_int('border_width', 10)
+        self.window_border = self.conf.get_int('border_width', 5)
 
         return True
 
