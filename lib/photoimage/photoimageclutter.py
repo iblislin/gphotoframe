@@ -22,29 +22,29 @@ class PhotoImageClutter(PhotoImage):
         self.stage.set_color(clutter.Color(220, 220, 220, 0))
 
         self.photo_image = ActorPhotoImage(self.stage)
-        self.photo_image.show()
         self.source_icon = ActorSourceIcon(self.stage)
-        self.source_icon.show()
         self.geo_icon = ActorGeoIcon(self.stage)
         self.fav_icon = ActorFavIcon(self.stage)
 
+        self.photo_image.show()
+        self.source_icon.show()
         self.embed.show()
         self.image = self.embed
 
     def _set_photo_image(self, pixbuf):
-        border = self.conf.get_int('border_width', 10)
-        position = int(border / 2)
+        self.border = border = self.conf.get_int('border_width', 10)
+        half_border = int(border / 2)
 
         self.window_border = 0
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
         self.embed.set_size_request(self.w + border, self.h + border)
 
-        self.photo_image.change(pixbuf, position, position)
-        self.source_icon.show_icon(self.photo, self.w - position - 20, 20)
-        self.geo_icon.show_icon(self.photo, self.w - position - 20, 
-                                self.h - position - 20)
-        self.fav_icon.show_icon(self.photo, 20, 20)
+        self.photo_image.change(pixbuf, half_border, half_border)
+
+        self.source_icon.set_icon(self, 1)
+        self.geo_icon.set_icon(self, 2)
+        self.fav_icon.set_icon(self, 0)
 
     def clear(self):
         pass
@@ -58,8 +58,8 @@ class PhotoImageClutter(PhotoImage):
         self.fav_icon.hide()
 
     def check_actor(self, stage, event):
-        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, 
-                                            int(event.x), int(event.y))
+        x, y = int(event.x), int(event.y)
+        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, x, y)
         result = (actor != self.photo_image.texture)
         return result
 
@@ -98,18 +98,42 @@ class ActorPhotoImage(object):
 
 class ActorSourceIcon(ActorPhotoImage):
 
-    def show_icon(self, photo, x, y):
-        self.photo = photo
+    def set_icon(self, photoimage, position):
+        self.photo = photoimage.photo
         if self.photo == None: return
 
-        icon = self.photo.get('icon')()# or IconImage
+        icon = self._get_icon()
         icon_pixbuf = icon.get_pixbuf()
+        x, y = self.calc_position(photoimage, icon, position)
         self.change(icon_pixbuf, x, y)
+
+    def _get_icon(self):
+        return self.photo.get('icon')()
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
-        
-class ActorGeoIcon(ActorPhotoImage):
+
+    def calc_position(self, photoimage, icon, position):
+        icon_pixbuf = icon.get_pixbuf()
+        icon_w = icon_pixbuf.get_width()
+        icon_h = icon_pixbuf.get_height()
+
+        border = int(photoimage.border / 2)
+        offset = 10
+
+        if position == 0 or position == 3:
+            x = border + offset
+        else:
+            x = border + photoimage.w - icon_w - offset 
+
+        if position == 0 or position == 1:
+            y = border + offset
+        else:
+            y = border + photoimage.h - icon_h - offset 
+
+        return x, y
+
+class ActorGeoIcon(ActorSourceIcon):
 
     def show(self):
         if self.photo == None: return
@@ -119,11 +143,8 @@ class ActorGeoIcon(ActorPhotoImage):
             self.photo['geo']['lon'] != 0):
             self.texture.show()
 
-    def show_icon(self, photo, x, y):
-        self.photo = photo
-        icon = IconImage('gnome-globe')
-        icon_pixbuf = icon.get_pixbuf()
-        self.change(icon_pixbuf, x, y)
+    def _get_icon(self):
+        return IconImage('gnome-globe')
 
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
@@ -133,17 +154,7 @@ class ActorGeoIcon(ActorPhotoImage):
             lat, lon, self.photo['title'] or '(no title)')
         os.system("gnome-open '%s'" % url)
 
-class ActorFavIconOne(ActorPhotoImage):
-
-    def __init__(self, stage, num, cb):
-        super(ActorFavIconOne, self).__init__(stage)
-        self.number = num
-        self.cb = cb
-
-    def _on_button_press_cb(self, actor, event):
-        self.cb(self.number)
-
-class ActorFavIcon(object):
+class ActorFavIcon(ActorSourceIcon):
 
     def __init__(self, stage, num=5):
         self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
@@ -161,21 +172,33 @@ class ActorFavIcon(object):
         for icon in self.icon:
             icon.hide()
 
-    def show_icon(self, photo, x, y):
-        self.photo = photo
-        if photo == None or 'fav' not in photo: return
+    def set_icon(self, photoimage, position):
+        self.photo = photoimage.photo
+        self.position = position
+        if self.photo == None or 'fav' not in self.photo: return
 
-        self.x, self.y = x, y
         self.image = IconImage('emblem-favorite')
+        self.x, self.y = self.calc_position(photoimage, self.image, position)
+        self._change_icon()
 
-        self._set_icon()
-
-    def _set_icon(self):
-        print self.photo['fav'].fav
+    def _change_icon(self):
+        direction = -1 if 0 < self.position < 3 else 1
         for i, icon in enumerate(self.icon):
             state = self.photo['fav'].fav <= i
-            icon.change(self.image.get_pixbuf(state), self.x + i * 20, self.y)
+            pixbuf = self.image.get_pixbuf(state)
+            space = int(pixbuf.get_width() * 1.3)
+            icon.change(pixbuf, self.x + i * direction * space, self.y)
 
-    def cb(self, num):
-        self.photo.fav(num + 1)
-        self._set_icon()
+    def cb(self, rate):
+        self.photo.fav(rate + 1)
+        self._change_icon()
+
+class ActorFavIconOne(ActorPhotoImage):
+
+    def __init__(self, stage, num, cb):
+        super(ActorFavIconOne, self).__init__(stage)
+        self.number = num
+        self.cb = cb
+
+    def _on_button_press_cb(self, actor, event):
+        self.cb(self.number)
