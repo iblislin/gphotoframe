@@ -62,25 +62,20 @@ class PhotoImageClutter(PhotoImage):
         result = (actor != self.photo_image.texture)
         return result
 
-class ActorPhotoImage(object):
+class ActorPhotoImage(cluttergtk.Texture):
 
     def __init__(self, stage):
-        self.texture = cluttergtk.Texture()
-        self.texture.set_reactive(True)
-        self.texture.hide()
-        self.texture.connect('button-press-event', self._on_button_press_cb)
-        stage.add(self.texture)
+        super(ActorPhotoImage, self).__init__()
+        super(ActorPhotoImage, self).hide()
+
+        self.set_reactive(True)
+        self.connect('button-press-event', self._on_button_press_cb)
+        stage.add(self)
 
     def change(self, pixbuf, x, y):
-        self._set_texture_from_pixbuf(self.texture, pixbuf)
-        self.texture.set_position(x, y)
+        self._set_texture_from_pixbuf(self, pixbuf)
+        self.set_position(x, y)
         self.show()
-
-    def show(self):
-        self.texture.show()
-
-    def hide(self):
-        self.texture.hide()
 
     def _on_button_press_cb(self, actor, event):
         pass
@@ -114,11 +109,11 @@ class ActorSourceIcon(ActorPhotoImage):
 
     def show(self, force=False):
         if self.icon_is_show is True or force is True:
-            self.texture.show()
+            super(ActorSourceIcon, self).show()
 
     def hide(self, force=False):
         if self.icon_is_show is not True:
-            self.texture.hide()
+            super(ActorSourceIcon, self).hide()
 
     def _get_icon(self):
         return self.photo.get('icon')()
