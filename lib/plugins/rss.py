@@ -72,7 +72,7 @@ class PhotoSourceRSSUI(PhotoSourceUI):
         self._set_argument_sensitive(_("_URL:"), True)
 
         # button
-        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), False)
+        self._set_sensitive_ok_button(self.gui.get_object('entry1'), False)
 
     def _set_target_default(self):
         if self.data:

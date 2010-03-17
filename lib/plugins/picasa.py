@@ -159,8 +159,8 @@ class PluginPicasaDialog(PluginDialog):
     def run(self):
         user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
         self.passwd = None
-        self.entry3 = self.gui.get_widget('entry3')
-        self.entry4 = self.gui.get_widget('entry4')
+        self.entry3 = self.gui.get_object('entry3')
+        self.entry4 = self.gui.get_object('entry4')
 
         self.key = Keyring(self.key_server, protocol='http') ##
 
