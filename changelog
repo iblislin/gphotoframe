@@ -1,3 +1,7 @@
+2010-03-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Fixed icon show/hide behaviors.
+
 2010-03-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoliststore.py, preferences.py, gphotoframe.glade:
