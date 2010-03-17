@@ -26,9 +26,9 @@ class PhotoImageClutter(PhotoImage):
         self.stage.set_color(clutter.color_from_string(color))
 
         self.photo_image = ActorPhotoImage(self.stage)
-        self.source_icon = ActorSourceIcon(self.stage)
-        self.geo_icon = ActorGeoIcon(self.stage)
-        self.fav_icon = ActorFavIcon(self.stage)
+        self.actors = [ ActorSourceIcon(self.stage), 
+                        ActorGeoIcon(self.stage),
+                        ActorFavIcon(self.stage), ]
 
         self.photo_image.show()
         self.embed.show()
@@ -40,25 +40,21 @@ class PhotoImageClutter(PhotoImage):
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
         self.embed.set_size_request(self.w + border * 2, self.h + border * 2)
-
         self.photo_image.change(pixbuf, border, border)
 
-        self.source_icon.set_icon(self)
-        self.geo_icon.set_icon(self)
-        self.fav_icon.set_icon(self)
+        for actor in self.actors:
+            actor.set_icon(self)
 
     def clear(self):
         pass
 
     def on_enter_cb(self, w, e):
-        self.source_icon.show(True)
-        self.geo_icon.show(True)
-        self.fav_icon.show(True)
+        for actor in self.actors:
+            actor.show(True)
 
     def on_leave_cb(self, w, e):
-        self.source_icon.hide()
-        self.geo_icon.hide()
-        self.fav_icon.hide()
+        for actor in self.actors:
+            actor.hide()
 
     def check_actor(self, stage, event):
         x, y = int(event.x), int(event.y)
@@ -117,6 +113,8 @@ class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
         self.texture = ActorPhotoImage(stage)
+        self.texture.connect('button-press-event', self._on_button_press_cb)
+
         self.conf = GConf()
         self._get_ui_data()
 
@@ -195,7 +193,7 @@ class ActorFavIcon(ActorIcon):
             num = 1
 
         for i in xrange(num):
-            self.icon[i].show(force)
+            self.icon[i].show()
 
     def hide(self):
         if self.show_always is True: return
@@ -221,6 +219,9 @@ class ActorFavIcon(ActorIcon):
             space = int(pixbuf.get_width() * 1.3)
             icon.change(pixbuf, self.x + i * direction * space, self.y)
 
+            if self.show_always:
+                icon.show()
+
     def cb(self, rate):
         self.photo.fav(rate + 1)
         self._change_icon()
@@ -231,11 +232,6 @@ class ActorFavIconOne(ActorPhotoImage):
         super(ActorFavIconOne, self).__init__(stage)
         self.number = num
         self.cb = cb
-        self.show_always = GConf().get_bool('ui/geo/show', False)
-
-    def show(self, force=False):
-        if self.show_always is True or force is True:
-            super(ActorFavIconOne, self).show()
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
