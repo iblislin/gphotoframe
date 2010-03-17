@@ -19,11 +19,13 @@ class Preferences(object):
     def start(self, widget):
         gui = gtk.Builder()
         gui.add_objects_from_file(constants.GLADE_FILE, ["preferences"])
+        self.prefs = gui.get_object('preferences')
+        self.notebook = gui.get_object('notebook1')
 
-        self._set_spinbutton_value('spinbutton1', 'interval', 30)
-        self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
-        self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
-        self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
+        self._set_spinbutton_value(gui, 'spinbutton1', 'interval', 30)
+        self._set_spinbutton_value(gui, 'spinbutton2', 'interval_fullscreen', 10)
+        self._set_spinbutton_value(gui, 'spinbutton_w', 'max_width', 400)
+        self._set_spinbutton_value(gui, 'spinbutton_h', 'max_height', 300)
 
         checkbutton1 = gui.get_object('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')

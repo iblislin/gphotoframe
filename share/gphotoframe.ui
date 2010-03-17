@@ -15,6 +15,7 @@
     <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
     <signal name="query_tooltip" handler="on_window_query_tooltip"/>
     <signal name="key_press_event" handler="on_window_key_press_event"/>
+    <signal name="enter_notify_event" handler="on_window_enter_notify_event"/>
     <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
     <child>
       <placeholder/>
@@ -143,7 +144,7 @@
   </object>
   <object class="GtkListStore" id="liststore1">
     <columns>
-      <!-- column-name item -->
+      <!-- column-name item text -->
       <column type="gchararray"/>
     </columns>
     <data>
@@ -169,7 +170,7 @@
   </object>
   <object class="GtkListStore" id="liststore2">
     <columns>
-      <!-- column-name item -->
+      <!-- column-name item text -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -288,7 +289,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label2">
+                                  <object class="GtkLabel" id="label02">
                                     <property name="visible">True</property>
                                     <property name="label" translatable="yes">seconds</property>
                                   </object>
@@ -790,7 +791,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_close_button" after="yes"/>
+                <signal name="clicked" handler="on_close_button"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1022,7 +1023,7 @@
             <property name="column_spacing">6</property>
             <property name="row_spacing">6</property>
             <child>
-              <object class="GtkLabel" id="label31">
+              <object class="GtkLabel" id="label_auth1">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">_User ID:</property>
@@ -1036,7 +1037,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label02">
+              <object class="GtkLabel" id="label_auth2">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">_Password:</property>
@@ -1087,7 +1088,7 @@
             <property name="visible">True</property>
             <property name="layout_style">edge</property>
             <child>
-              <object class="GtkButton" id="button02">
+              <object class="GtkButton" id="button2">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1101,7 +1102,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button01">
+              <object class="GtkButton" id="button1">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1124,8 +1125,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button02</action-widget>
-      <action-widget response="0">button01</action-widget>
+      <action-widget response="0">button2</action-widget>
+      <action-widget response="-5">button1</action-widget>
     </action-widgets>
   </object>
   <object class="GtkTable" id="fspot_table">
@@ -1180,7 +1181,7 @@
         <property name="visible">True</property>
         <property name="model">liststore1</property>
         <child>
-          <object class="GtkCellRendererText" id="cellrenderertext01"/>
+          <object class="GtkCellRendererText" id="cellrenderertext1"/>
           <attributes>
             <attribute name="text">0</attribute>
           </attributes>
@@ -1274,6 +1275,99 @@
       </packing>
     </child>
   </object>
+  <object class="GtkDialog" id="plugin_netauth_dialog">
+    <property name="border_width">5</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="icon_name">gphotoframe</property>
+    <property name="type_hint">dialog</property>
+    <property name="has_separator">False</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox5">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child>
+          <object class="GtkLabel" id="label_netauth">
+            <property name="visible">True</property>
+            <property name="xpad">20</property>
+            <property name="ypad">20</property>
+            <property name="label">label</property>
+            <property name="wrap">True</property>
+            <property name="wrap_mode">word-char</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area75">
+            <property name="visible">True</property>
+            <property name="layout_style">edge</property>
+            <child>
+              <object class="GtkButton" id="button_netauth_p">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_netauth_n">
+                <property name="label">gtk-ok</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">button_netauth_p</action-widget>
+      <action-widget response="-5">button_netauth_n</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkVBox" id="flickr_vbox">
+    <property name="visible">True</property>
+    <property name="border_width">12</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkCheckButton" id="checkbutton_flickr_id">
+        <property name="label" translatable="yes">_Specified other people's ID</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="use_underline">True</property>
+        <property name="active">True</property>
+        <property name="draw_indicator">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="stock">gtk-go-forward</property>
@@ -1295,8 +1389,6 @@
     <property name="step_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="adjustment4">
-    <property name="value">1</property>
-    <property name="lower">1</property>
     <property name="upper">100</property>
     <property name="step_increment">1</property>
   </object>
