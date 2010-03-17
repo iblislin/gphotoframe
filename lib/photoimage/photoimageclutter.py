@@ -59,7 +59,7 @@ class PhotoImageClutter(PhotoImage):
     def check_actor(self, stage, event):
         x, y = int(event.x), int(event.y)
         actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, x, y)
-        result = (actor != self.photo_image.texture)
+        result = (actor != self.photo_image)
         return result
 
 class ActorPhotoImage(cluttergtk.Texture):
@@ -75,7 +75,6 @@ class ActorPhotoImage(cluttergtk.Texture):
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
         self.set_position(x, y)
-        self.show()
 
     def _on_button_press_cb(self, actor, event):
         pass
@@ -91,35 +90,7 @@ class ActorPhotoImage(cluttergtk.Texture):
             pixbuf.props.rowstride,
             bpp, 0)
 
-class ActorSourceIcon(ActorPhotoImage):
-
-    def set_icon(self, photoimage, position):
-        self.photo = photoimage.photo
-        if self.photo == None: return
-
-        icon = self._get_icon()
-        self.icon_is_show = self._icon_is_show()
-        x, y = self.calc_position(photoimage, icon, position)
-        if photoimage.w > 80 and photoimage.h > 80: # for small photo image
-            icon_pixbuf = icon.get_pixbuf()
-            self.change(icon_pixbuf, x, y)
-
-    def _icon_is_show(self):
-        return True
-
-    def show(self, force=False):
-        if self.icon_is_show is True or force is True:
-            super(ActorSourceIcon, self).show()
-
-    def hide(self, force=False):
-        if self.icon_is_show is not True:
-            super(ActorSourceIcon, self).hide()
-
-    def _get_icon(self):
-        return self.photo.get('icon')()
-
-    def _on_button_press_cb(self, actor, event):
-        self.photo.open()
+class ActorIcon(object):
 
     def calc_position(self, photoimage, icon, position):
         icon_pixbuf = icon.get_pixbuf()
@@ -138,7 +109,42 @@ class ActorSourceIcon(ActorPhotoImage):
 
         return x, y
 
+class ActorSourceIcon(ActorIcon):
+
+    def __init__(self, stage):
+        self.texture = ActorPhotoImage(stage)
+        self.icon_is_show = True
+
+    def set_icon(self, photoimage, position):
+        self.photo = photoimage.photo
+        if self.photo == None: return
+
+        icon = self._get_icon()
+        x, y = self.calc_position(photoimage, icon, position)
+        if photoimage.w > 80 and photoimage.h > 80: # for small photo image
+            icon_pixbuf = icon.get_pixbuf()
+            self.texture.change(icon_pixbuf, x, y)
+            self.show()
+
+    def show(self, force=False):
+        if self.icon_is_show or force:
+            self.texture.show()
+
+    def hide(self, force=False):
+        if self.icon_is_show is not True:
+            self.texture.hide()
+
+    def _get_icon(self):
+        return self.photo.get('icon')()
+
+    def _on_button_press_cb(self, actor, event):
+        self.photo.open()
+
 class ActorGeoIcon(ActorSourceIcon):
+
+    def __init__(self, stage):
+        self.texture = ActorPhotoImage(stage)
+        self.icon_is_show = False
 
     def show(self, force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
@@ -151,9 +157,6 @@ class ActorGeoIcon(ActorSourceIcon):
     def _get_icon(self):
         return IconImage('gnome-globe')
 
-    def _icon_is_show(self):
-        return False
-
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
@@ -162,7 +165,7 @@ class ActorGeoIcon(ActorSourceIcon):
             lat, lon, self.photo['title'] or '(no title)')
         os.system("gnome-open '%s'" % url)
 
-class ActorFavIcon(ActorSourceIcon):
+class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, num=5):
         self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
