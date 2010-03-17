@@ -283,6 +283,8 @@ class PhotoSourceDialog(object):
             else self.conf.get_int('default_weight', 3)
         weight_widget = self.gui.get_widget('spinbutton3')
         weight_widget.set_value(weight)
+        weight_widget.set_tooltip_markup(
+            _("The photo source should be ignored if the weight is 0."))
 
         # run
         dic = { "on_combobox4_changed" : self._change_combobox }

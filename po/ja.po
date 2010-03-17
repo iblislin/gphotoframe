@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-17 15:54+0900\n"
-"PO-Revision-Date: 2010-03-17 15:58+0900\n"
+"POT-Creation-Date: 2010-03-17 16:40+0900\n"
+"PO-Revision-Date: 2010-03-17 16:42+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -311,6 +311,10 @@ msgstr "引数"
 #: ../lib/preferences.py:136
 msgid "Weight"
 msgstr "重み"
+
+#: ../lib/preferences.py:287
+msgid "The photo source should be ignored if the weight is 0."
+msgstr "0 を指定するとこの写真ソースは無視されます"
 
 #: ../lib/plugins/base.py:166
 msgid "Options"
