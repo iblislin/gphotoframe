@@ -16,6 +16,7 @@ class TumblrPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Tumblr'
+        self.icon = TumblrIcon
 
 class TumblrPhotoList(PhotoList):
 

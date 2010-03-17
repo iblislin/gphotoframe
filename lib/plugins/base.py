@@ -14,8 +14,15 @@ from ..utils.EXIF import process_file as exif_process_file
 
 class PluginBase(object):
 
+    def __init__(self):
+        self.icon = SourceIcon
+
     def is_available(self):
         return True
+
+    def get_icon_pixbuf(self):
+        pixbuf = self.icon().get_pixbuf()
+        return pixbuf
 
 class PhotoList(object):
     """Photo Factory"""
