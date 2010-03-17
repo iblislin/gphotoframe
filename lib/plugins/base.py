@@ -202,9 +202,7 @@ class Photo(dict):
             lon_ref = -1 if str(tags.get('GPS GPSLongitudeRef')) == 'W' else 1
             lat_ref = -1 if str(tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
 
-            self['geo']= {}
-            self['geo']['lon'] = x * lon_ref
-            self['geo']['lat'] = y * lat_ref
+            self['geo']= {'lon': x * lon_ref, 'lat': y * lat_ref}
 
 class PluginDialog(object):
     """Photo Source Dialog"""
