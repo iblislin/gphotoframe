@@ -193,5 +193,77 @@
       </locale>
     </schema>
 
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/source/show</key>
+      <applyto>/apps/gphotoframe/ui/source/show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>True</default>
+      <locale name="C">
+        <short>Show always source icon</short>
+        <long>Show always source icon</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/source/position</key>
+      <applyto>/apps/gphotoframe/ui/source/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Source icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/geo/show</key>
+      <applyto>/apps/gphotoframe/ui/geo/show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Show always geo icon</short>
+        <long>Show always geo icon</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/geo/position</key>
+      <applyto>/apps/gphotoframe/ui/geo/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Geo icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/fav/show</key>
+      <applyto>/apps/gphotoframe/ui/fav/show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Show always fav icon</short>
+        <long>Show always fav icon</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/fav/position</key>
+      <applyto>/apps/gphotoframe/ui/fav/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Fav icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
   </schemalist>
 </gconfschemafile>

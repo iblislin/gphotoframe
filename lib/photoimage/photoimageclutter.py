@@ -10,6 +10,7 @@ except:
     cluttergtk.Texture = Null()
 
 from ..utils.iconimage import IconImage
+from ..utils.config import GConf
 from photoimagegtk import *
 
 class PhotoImageClutter(PhotoImage):
@@ -42,9 +43,9 @@ class PhotoImageClutter(PhotoImage):
 
         self.photo_image.change(pixbuf, border, border)
 
-        self.source_icon.set_icon(self, 1)
-        self.geo_icon.set_icon(self, 2)
-        self.fav_icon.set_icon(self, 0)
+        self.source_icon.set_icon(self)
+        self.geo_icon.set_icon(self)
+        self.fav_icon.set_icon(self)
 
     def clear(self):
         pass
@@ -116,38 +117,39 @@ class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
         self.texture = ActorPhotoImage(stage)
-        self.icon_is_show = True
+        self.conf = GConf()
+        self._get_ui_data()
 
-    def set_icon(self, photoimage, position):
+    def set_icon(self, photoimage):
         self.photo = photoimage.photo
         if self.photo == None: return
 
         icon = self._get_icon()
-        x, y = self.calc_position(photoimage, icon, position)
+        x, y = self.calc_position(photoimage, icon, self.position)
         if photoimage.w > 80 and photoimage.h > 80: # for small photo image
             icon_pixbuf = icon.get_pixbuf()
             self.texture.change(icon_pixbuf, x, y)
             self.show()
 
     def show(self, force=False):
-        if self.icon_is_show or force:
+        if self.show_always or force:
             self.texture.show()
 
     def hide(self, force=False):
-        if self.icon_is_show is not True:
+        if self.show_always is not True:
             self.texture.hide()
 
     def _get_icon(self):
         return self.photo.get('icon')()
 
+    def _get_ui_data(self):
+        self.show_always = self.conf.get_bool('ui/source/show', True)
+        self.position = self.conf.get_int('ui/source/position', 1)
+
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
 
 class ActorGeoIcon(ActorSourceIcon):
-
-    def __init__(self, stage):
-        self.texture = ActorPhotoImage(stage)
-        self.icon_is_show = False
 
     def show(self, force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
@@ -159,6 +161,10 @@ class ActorGeoIcon(ActorSourceIcon):
 
     def _get_icon(self):
         return IconImage('gnome-globe')
+
+    def _get_ui_data(self):
+        self.show_always = GConf().get_bool('ui/geo/show', False)
+        self.position = GConf().get_int('ui/geo/position', 2)
 
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
@@ -172,7 +178,8 @@ class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, num=5):
         self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
-        self.icon_is_show = False
+        self.show_always = GConf().get_bool('ui/fav/show', False)
+        self.position = GConf().get_int('ui/fav/position', 0)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or 
@@ -191,19 +198,18 @@ class ActorFavIcon(ActorIcon):
             self.icon[i].show(force)
 
     def hide(self):
-        if self.icon_is_show is True: return
+        if self.show_always is True: return
         for icon in self.icon:
             icon.hide()
 
-    def set_icon(self, photoimage, position):
+    def set_icon(self, photoimage):
         self.photo = photoimage.photo
-        self.position = position
         self.photoimage = photoimage
 
         if self.photo == None or 'fav' not in self.photo: return
 
         self.image = IconImage('emblem-favorite')
-        self.x, self.y = self.calc_position(photoimage, self.image, position)
+        self.x, self.y = self.calc_position(photoimage, self.image, self.position)
         self._change_icon()
 
     def _change_icon(self):
@@ -225,10 +231,10 @@ class ActorFavIconOne(ActorPhotoImage):
         super(ActorFavIconOne, self).__init__(stage)
         self.number = num
         self.cb = cb
-        self.icon_is_show = False
+        self.show_always = GConf().get_bool('ui/geo/show', False)
 
     def show(self, force=False):
-        if self.icon_is_show is True or force is True:
+        if self.show_always is True or force is True:
             super(ActorFavIconOne, self).show()
 
     def _on_button_press_cb(self, actor, event):
