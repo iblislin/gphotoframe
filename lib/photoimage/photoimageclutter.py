@@ -5,7 +5,9 @@ try:
     import cluttergtk
     import clutter
 except:
-    cluttergtk = False
+    from ..utils.nullobject import Null
+    cluttergtk = Null()
+    cluttergtk.Texture = Null()
 
 from ..utils.iconimage import IconImage
 from photoimagegtk import *
@@ -18,8 +20,9 @@ class PhotoImageClutter(PhotoImage):
         self.image = self.embed = cluttergtk.Embed()
         #self.embed.realize()
 
+        color = self.conf.get_string('border_color') or '#edeceb'
         self.stage = self.embed.get_stage()
-        self.stage.set_color(clutter.Color(220, 220, 220, 0))
+        self.stage.set_color(clutter.color_from_string(color))
 
         self.photo_image = ActorPhotoImage(self.stage)
         self.source_icon = ActorSourceIcon(self.stage)
