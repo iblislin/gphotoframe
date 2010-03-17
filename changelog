@@ -1,5 +1,7 @@
 2010-03-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoliststore.py, preferences.py, gphotoframe.glade:
+	  If the weight is 0 on photo source, the source should be ignored.
 	* photoimageclutter.py: Code refactoring.
 	* utils/nullobject.py: Initial import.
 
