@@ -58,7 +58,6 @@
         <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
-        <property name="accel_group">accelgroup1</property>
         <signal name="activate" handler="on_menuitem5_activate"/>
       </object>
     </child>
@@ -74,7 +73,6 @@
         <property name="label" translatable="yes">_Next Photo</property>
         <property name="visible">True</property>
         <property name="use_underline">True</property>
-        <property name="image">image1</property>
         <property name="use_stock">False</property>
         <signal name="activate" handler="on_next_photo"/>
       </object>
@@ -144,7 +142,7 @@
   </object>
   <object class="GtkListStore" id="liststore1">
     <columns>
-      <!-- column-name item text -->
+      <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
     <data>
@@ -170,7 +168,7 @@
   </object>
   <object class="GtkListStore" id="liststore2">
     <columns>
-      <!-- column-name item text -->
+      <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -884,7 +882,7 @@
                     <signal name="changed" handler="on_combobox4_changed"/>
                     <signal name="move_active" handler="on_combobox4_move_active"/>
                     <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
                       <attributes>
                         <attribute name="text">0</attribute>
                       </attributes>
@@ -1088,7 +1086,7 @@
             <property name="visible">True</property>
             <property name="layout_style">edge</property>
             <child>
-              <object class="GtkButton" id="button2">
+              <object class="GtkButton" id="button12">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1102,7 +1100,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button1">
+              <object class="GtkButton" id="button11">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>

@@ -130,12 +130,12 @@ class PhotoSourceUI(object):
     def _set_argument_sensitive(self, label=None, state=False):
         if label is None: label=_('_Argument:')
 
-        self.gui.get_widget('label12').set_text_with_mnemonic(label)
-        self.gui.get_widget('label12').set_sensitive(state)
-        self.gui.get_widget('entry1').set_sensitive(state)
+        self.gui.get_object('label12').set_text_with_mnemonic(label)
+        self.gui.get_object('label12').set_sensitive(state)
+        self.gui.get_object('entry1').set_sensitive(state)
 
     def _set_argument_tooltip(self, text=None):
-        self.gui.get_widget('entry1').set_tooltip_text(text)
+        self.gui.get_object('entry1').set_tooltip_text(text)
 
     def _set_target_default(self):
         if self.data:
