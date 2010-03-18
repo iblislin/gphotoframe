@@ -926,7 +926,7 @@
               </widget>
             </child>
             <child>
-              <widget class="GtkLabel" id="label3">
+              <widget class="GtkLabel" id="label_general">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">General</property>
               </widget>
