@@ -10,10 +10,10 @@ from api import API_KEY, SECRET
 class PluginFlickrDialog(PluginDialog):
 
     def _set_ui(self):
-        self.dialog = self.gui.get_widget('plugin_netauth_dialog')
-        self.label  = self.gui.get_widget('label_netauth')
-        self.button_p = self.gui.get_widget('button_netauth_p')
-        self.button_n = self.gui.get_widget('button_netauth_n')
+        self.dialog = self.gui.get_object('plugin_netauth_dialog')
+        self.label  = self.gui.get_object('label_netauth')
+        self.button_p = self.gui.get_object('button_netauth_p')
+        self.button_n = self.gui.get_object('button_netauth_n')
 
         self.p_id = self.n_id = None
         self.auth_obj = FlickrAuth(API_KEY, SECRET, 'write')
