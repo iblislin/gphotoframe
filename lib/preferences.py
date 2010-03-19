@@ -17,15 +17,15 @@ class Preferences(object):
         self.conf = GConf()
 
     def start(self, widget):
-        gui = gtk.Builder()
+        self.gui = gui = gtk.Builder()
         gui.add_objects_from_file(constants.GLADE_FILE, ["preferences"])
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
-        self._set_spinbutton_value(gui, 'spinbutton1', 'interval', 30)
-        self._set_spinbutton_value(gui, 'spinbutton2', 'interval_fullscreen', 10)
-        self._set_spinbutton_value(gui, 'spinbutton_w', 'max_width', 400)
-        self._set_spinbutton_value(gui, 'spinbutton_h', 'max_height', 300)
+        self._set_spinbutton_value('spinbutton1', 'interval', 30)
+        self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
+        self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
+        self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
 
         checkbutton1 = gui.get_object('checkbutton1')
         sticky = self.conf.get_bool('window_sticky')
@@ -90,8 +90,8 @@ class Preferences(object):
         self.photolist.save_gconf()
         self.prefs.destroy()
 
-    def _set_spinbutton_value(self, gui, widget, key, default_value):
-        spinbutton = gui.get_object(widget)
+    def _set_spinbutton_value(self, widget, key, default_value):
+        spinbutton = self.gui.get_object(widget)
         value = self.conf.get_int(key, default_value)
         spinbutton.set_value(value)
 
@@ -129,6 +129,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
 
     def __init__(self, gui, widget, liststore, parent):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
+
         self._add_text_column(_("Source"), 0)
         self._add_text_column(_("Target"), 1, 150)
         self._add_text_column(_("Argument"), 2, 100)
