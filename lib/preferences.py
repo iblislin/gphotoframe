@@ -57,6 +57,9 @@ class Preferences(object):
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
+
+        dic.update(self.preference_list.get_signal_dic())
+        dic.update(self.plugins_list.get_signal_dic())
         gui.connect_signals(dic)
 
     def _interval_changed_cb(self, widget):
@@ -135,6 +138,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self._add_text_column(_("Argument"), 2, 100)
         self._add_text_column(_("Weight"), 3)
 
+    def get_signal_dic(self):
         dic = { 
             "on_button3_clicked" : self._new_button_cb,
             "on_button4_clicked" : self._prefs_button_cb,
@@ -142,7 +146,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
             "on_treeview1_cursor_changed" : self._cursor_changed_cb,
             "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
             }
-        gui.connect_signals(dic)
+        return dic
 
     def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
         nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
@@ -216,11 +220,12 @@ class PluginTreeView(PreferencesTreeView):
         # plugin name
         self._add_text_column("Description", 2)
 
+    def get_signal_dic(self):
         dic = { 
             "on_button6_clicked" : self._prefs_button_cb,
             "on_treeview2_cursor_changed" : self._cursor_changed_cb
             }
-        gui.connect_signals(dic)
+        return dic
 
     def _set_button_sensitive(self, state):
         self.gui.get_object('button6').set_sensitive(state)
@@ -289,8 +294,12 @@ class PhotoSourceDialog(object):
             _("The photo source should be ignored if the weight is 0."))
 
         # run
-        dic = { "on_combobox4_changed" : self._change_combobox }
-        self.gui.connect_signals(dic)
+        target_widget = self.gui.get_object('combobox4')
+        target_widget.connect('changed', self._change_combobox)
+
+        # dic = { "on_combobox4_changed" : self._change_combobox }
+        # self.gui.connect_signals(dic)
+
         response_id = dialog.run()
 
         argument = argument_widget.get_text() \
