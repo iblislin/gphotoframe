@@ -1,3 +1,7 @@
+2010-03-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* lib/plugins/: Added new conf for API reload interval.
+
 2010-03-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimageclutter.py: Fixed icon show/hide behaviors.
