@@ -167,26 +167,14 @@ class PhotoFrame(object):
 
         self.window.hide()
         self.window.set_type_hint(hint)
-
-        # new
         self.window.show()
+        self.window.set_keep_below(True)
+
         if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
             border = self.photoimage.window_border
             x = self.conf.get_int('root_x') - self.photoimage.w / 2
             y = self.conf.get_int('root_y') - self.photoimage.h / 2
             self.window.move(int(x - border), int(y - border))
-
-         # old
-#        self.photoimage.clear()
-#
-#        self._set_window_position()
-#        self.window.set_keep_below(True)
-#        time.sleep(0.5)
-#
-#        if not self.photoimage.set_photo(): return
-#        border = self.photoimage.window_border
-#        self.window.resize(self.photoimage.w + border, 
-#                           self.photoimage.h + border)
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():
