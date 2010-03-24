@@ -1,7 +1,7 @@
 2010-03-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py, api.py: Added support for page argument on
-	  Flickr API.
+	  Flickr API.  Added support original image url.
 
 2010-03-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
