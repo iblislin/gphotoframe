@@ -47,7 +47,7 @@ class FlickrAPI(object):
                    'count'   : 50,
                    'method'  : self.method,
                    'format'  : 'json',
-                   'extras'  : 'owner_name,original_format,media,geo',
+                   'extras'  : 'owner_name,original_format,media,geo,url_o',
                    'page'    : page,
                    'nojsoncallback' : '1' }
 

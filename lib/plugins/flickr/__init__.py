@@ -92,6 +92,7 @@ class FlickrPhotoList(PhotoList):
                 s['owner'], s['id'])
 
             data = {'url'        : url,
+                    'url_o'      : s.get('url_o'),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
