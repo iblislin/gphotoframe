@@ -24,7 +24,8 @@
 
 2010-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* photoimageclutter.py: Added ActorFavIconNum.
+	* photoimageclutter.py: Added clutter UI support.
+	  Added ActorFavIconNum for favoring on Flickr and Tumblr.
 
 2010-03-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

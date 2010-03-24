@@ -203,6 +203,7 @@ class Photo(dict):
 
         lat_array = tags.get('GPS GPSLatitude')
         lon_array = tags.get('GPS GPSLongitude')
+
         if lat_array:
             lon = lon_array.values
             lat = lat_array.values
