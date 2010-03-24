@@ -1,3 +1,5 @@
+import random
+
 try:
     import simplejson as json
 except:
@@ -19,6 +21,11 @@ class FlickrPlugin(PluginBase):
         self.icon = FlickrIcon
 
 class FlickrPhotoList(PhotoList):
+
+    def __init__(self, target, argument, weight, options, photolist):
+        super(FlickrPhotoList, self).__init__(
+            target, argument, weight, options, photolist)
+        self.page_list = FlickrAPIPages()
 
     def prepare(self):
         self.photos = []
@@ -52,7 +59,8 @@ class FlickrPhotoList(PhotoList):
         self._get_url_for(argument)
 
     def _get_url_for(self, argument):
-        url = self.api.get_url(argument) 
+        page = self.page_list.get_page()
+        url = self.api.get_url(argument, page) 
         if not url: return
 
         self._get_url_with_twisted(url)
@@ -67,6 +75,8 @@ class FlickrPhotoList(PhotoList):
             return
 
         self.total = len(d['photos']['photo'])
+        self.page_list.update(d['photos'])
+
         for s in d['photos']['photo']:
             if s['media'] == 'video': continue
 
@@ -183,6 +193,26 @@ class FlickrFav(object):
         api = FlickrFavoritesRemoveAPI if self.fav else FlickrFavoritesAddAPI
         url = api().get_url(self.arg['id'])
         return url
+
+class FlickrAPIPages(object):
+
+    def __init__(self):
+        self.page_list = []
+
+    def get_page(self):
+        page = random.sample(self.page_list, 1)[0] if self.page_list else 1
+        return page
+
+    def update(self, feed):
+        self.page = feed['page']
+        self.pages = feed['pages']
+        self.perpage = feed['perpage']
+
+        if not self.page_list:
+            self.page_list = range(1, self.pages+1)
+
+        if self.page in self.page_list:
+            self.page_list.remove(self.page)
 
 class FlickrIcon(WebIconImage):
 
