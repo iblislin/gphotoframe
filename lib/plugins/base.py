@@ -65,7 +65,10 @@ class PhotoList(object):
         d.addCallback(cb)
 
     def _start_timer(self, min=60):
-        min = 10 if min < 10 else min # minimum interval is 10 minutes.
+        if min < 10:
+            print "Interval for API access should be greater than 10 minutes."
+            min = 10
+
         self._timer = gobject.timeout_add(min * 60 * 1000, self.prepare)
         return False
 
