@@ -165,6 +165,8 @@ class PhotoFrame(object):
         hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK \
             if entry.value.get_bool() else gtk.gdk.WINDOW_TYPE_HINT_NORMAL
 
+        if hint == self.window.get_type_hint(): return
+
         self.window.hide()
         self.window.set_type_hint(hint)
         self.window.show()
@@ -188,7 +190,9 @@ class PhotoFrame(object):
         else:
             self.window.unstick()
 
-    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+    def _query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
+        if not self.photoimage.photo: return
+        
         pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
         tooltip.set_icon(pixbuf)
 
