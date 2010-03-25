@@ -46,7 +46,7 @@ class PhotoList(object):
 
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
-        url = self.photo['url']
+        url = self.photo.get_url()
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
 
@@ -183,6 +183,9 @@ class Photo(dict):
 #    def show(self, photoframe, *args):
 #        print self.get('page_url') or self.get('url')
 #        photoframe.set_photo(self)
+
+    def get_url(self):
+        return self['url']
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']

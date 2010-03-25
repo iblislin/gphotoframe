@@ -8,6 +8,8 @@ except:
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase
 from ...utils.iconimage import WebIconImage
+from ...utils.config import GConf
+from ...utils.gnomescreensaver import GsThemeWindow
 from api import *
 from authdialog import *
 
@@ -80,18 +82,16 @@ class FlickrPhotoList(PhotoList):
         for s in d['photos']['photo']:
             if s['media'] == 'video': continue
 
-            url = "http://farm%s.static.flickr.com/%s/%s_" % (
+            url_base = "http://farm%s.static.flickr.com/%s/%s_" % (
                 s['farm'], s['server'], s['id'])
-
-            if s.has_key('originalsecret') and False:
-                url += "%s_o.%s" % (s['originalsecret'], s['originalformat'])
-            else:
-                url += "%s.jpg" % s['secret']
+            url = "%s%s.jpg" % (url_base, s['secret'])
+            url_b = "%s%s_b.jpg" % (url_base, s['secret'])
 
             page_url = "http://www.flickr.com/photos/%s/%s" % (
                 s['owner'], s['id'])
 
             data = {'url'        : url,
+                    'url_b'      : url_b,
                     'url_o'      : s.get('url_o'),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
@@ -104,7 +104,7 @@ class FlickrPhotoList(PhotoList):
                                              {'id': s['id']}),
                     'icon'       : FlickrIcon}
 
-            photo = Photo()
+            photo = FlickrPhoto()
             photo.update(data)
             self.photos.append(photo)
 
@@ -178,6 +178,17 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         state = api.is_use_own_id()
         self.checkbutton_flickr_id.set_sensitive(state)
 
+class FlickrPhoto(Photo):
+
+    def get_url(self):
+
+        screensaver = GsThemeWindow().get_anid() 
+        fullscreen = GConf().get_bool('fullscreen', False)
+        no_window = screensaver or fullscreen
+
+        url = self['url_o'] or self['url_b'] if no_window else self['url']
+        return url
+
 class FlickrFav(object):
 
     def __init__(self, state=False, arg={}):
@@ -205,11 +216,11 @@ class FlickrAPIPages(object):
         return page
 
     def update(self, feed):
-        self.page = feed['page']
-        self.pages = feed['pages']
-        self.perpage = feed['perpage']
+        self.page = feed.get('page')
+        self.pages = feed.get('pages')
+        self.perpage = feed.get('perpage')
 
-        if not self.page_list:
+        if not self.page_list and self.pages:
             self.page_list = range(1, self.pages+1)
 
         if self.page in self.page_list:

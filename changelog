@@ -1,3 +1,8 @@
+2010-03-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, flickr/__init__.py: Added support for large or original
+	  Flickr photos in fullscreen mode.
+
 2010-03-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py, api.py: Added support for page argument on
