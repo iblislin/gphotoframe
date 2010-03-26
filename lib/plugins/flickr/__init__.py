@@ -92,7 +92,6 @@ class FlickrPhotoList(PhotoList):
 
             data = {'url'        : url,
                     'url_b'      : url_b,
-                    'url_o'      : s.get('url_o'),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
@@ -103,6 +102,11 @@ class FlickrPhotoList(PhotoList):
                     'fav'        : FlickrFav(self.target == 'Favorites', 
                                              {'id': s['id']}),
                     'icon'       : FlickrIcon}
+
+            if s.get('url_o'):
+                url = s.get('url_o')
+                w, h = int(s.get('width_o')), int(s.get('height_o'))
+                data.update({'url_o': url, 'size_o': [w, h]})
 
             photo = FlickrPhoto()
             photo.update(data)
@@ -181,13 +185,20 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
 class FlickrPhoto(Photo):
 
     def get_url(self):
-
+        self.conf = GConf()
         screensaver = GsThemeWindow().get_anid() 
-        fullscreen = GConf().get_bool('fullscreen', False)
-        no_window = screensaver or fullscreen
+        fullscreen = self.conf.get_bool('fullscreen', False)
+        high_resolution = self.conf.get_bool('high_resolution', True)
 
-        url = self['url_o'] or self['url_b'] if no_window else self['url']
-        return url
+        if high_resolution and (screensaver or fullscreen):
+            w, h = self.get('size_o') or [None, None]
+            cond = w and h and (w <= 1280 or h <= 1024)
+            url = 'url_o' if cond else 'url_b'
+        else:
+            url = 'url'
+
+        #print url, w or None, h or None
+        return self[url]
 
 class FlickrFav(object):
 
