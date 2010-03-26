@@ -105,8 +105,15 @@ class PhotoImagePixbuf(object):
     def set(self, photo):
         if photo:
             try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(photo['filename'])
-            except gobject.GError:
+                filename = photo['filename']
+
+                # ad-hoc for avoiding flickr no image.
+                flickr = photo['url'].rfind('static.flickr.com') > 0
+                if flickr and os.path.getsize(filename) <= 3000:
+                    return False
+
+                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+            except (gobject.GError, OSError):
                 print sys.exc_info()[1]
                 return False
             else:
