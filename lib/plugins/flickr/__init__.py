@@ -90,7 +90,8 @@ class FlickrPhotoList(PhotoList):
             page_url = "http://www.flickr.com/photos/%s/%s" % (
                 s['owner'], s['id'])
 
-            data = {'url'        : url,
+            data = {'type'       : 'flickr',
+                    'url'        : url,
                     'url_b'      : url_b,
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
