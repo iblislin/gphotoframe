@@ -46,7 +46,7 @@ class PhotoList(object):
 
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
-        url = self.photo['url']
+        url = self.photo.get_url()
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
 
@@ -64,8 +64,12 @@ class PhotoList(object):
         cb = cb_arg or self._prepare_cb
         d.addCallback(cb)
 
-    def _start_timer(self, interval=3600):
-        self._timer = gobject.timeout_add(interval * 1000, self.prepare)
+    def _start_timer(self, min=60):
+        if min < 10:
+            print "Interval for API access should be greater than 10 minutes."
+            min = 10
+
+        self._timer = gobject.timeout_add(min * 60 * 1000, self.prepare)
         return False
 
     def _get_photo_cb(self, data, cb):
@@ -180,6 +184,9 @@ class Photo(dict):
 #        print self.get('page_url') or self.get('url')
 #        photoframe.set_photo(self)
 
+    def get_url(self):
+        return self['url']
+
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']
         url = url.replace("'", "%27")
@@ -199,6 +206,7 @@ class Photo(dict):
 
         lat_array = tags.get('GPS GPSLatitude')
         lon_array = tags.get('GPS GPSLongitude')
+
         if lat_array:
             lon = lon_array.values
             lat = lat_array.values

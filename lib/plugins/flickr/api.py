@@ -39,7 +39,7 @@ class FlickrAPI(object):
     def is_use_own_id(self): # for Contacts Photo & Favorites
         return False
 
-    def get_url(self, argument):
+    def get_url(self, argument, page=1):
         url = 'http://api.flickr.com/services/rest/?'
         api_key = '343677ff5aa31f37042513d533293062'
 
@@ -47,7 +47,8 @@ class FlickrAPI(object):
                    'count'   : 50,
                    'method'  : self.method,
                    'format'  : 'json',
-                   'extras'  : 'owner_name,original_format,media,geo',
+                   'extras'  : 'owner_name,original_format,media,geo,url_o',
+                   'page'    : page,
                    'nojsoncallback' : '1' }
 
         values.update(self._url_argument(argument, values))

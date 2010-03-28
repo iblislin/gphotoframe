@@ -21,10 +21,12 @@ class RSSPhotoList(PhotoList):
 
     def prepare(self):
         self.photos = []
-        url = self.argument
 
+        url = self.argument
         self._get_url_with_twisted(url)
-        self._start_timer()
+
+        interval_min = self.conf.get_int('plugins/rss/interval', 60)
+        self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
         rss = feedparser.parse(data)
