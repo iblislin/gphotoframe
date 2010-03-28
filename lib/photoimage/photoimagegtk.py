@@ -103,19 +103,28 @@ class PhotoImagePixbuf(object):
         self.conf = GConf()
 
     def set(self, photo):
-        if photo:
-            try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(photo['filename'])
-            except gobject.GError:
-                print sys.exc_info()[1]
-                return False
-            else:
-                pixbuf = self._rotate(pixbuf)
-                pixbuf = self._scale(pixbuf)
-                if not self._aspect_ratio_is_ok(pixbuf): return False
-                photo.get_exif()
-        else:
+        if not photo:
             pixbuf = self._no_image()
+            self.data = pixbuf
+            return True
+
+        try:
+            filename = photo['filename']
+
+            # ad-hoc for avoiding flickr no image.
+            flickr = photo.get('type') == 'flickr'
+            if flickr and os.path.getsize(filename) <= 3000:
+                return False
+
+            pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+        except (gobject.GError, OSError):
+            print sys.exc_info()[1]
+            return False
+
+        pixbuf = self._rotate(pixbuf)
+        pixbuf = self._scale(pixbuf)
+        if not self._aspect_ratio_is_ok(pixbuf): return False
+        photo.get_exif()
 
         self.data = pixbuf
         return True

@@ -27,7 +27,6 @@ class TumblrPhotoList(PhotoList):
         if self.username:
             key = Keyring('Tumblr', protocol='http')
             key.get_passwd_async(self.username, self._auth_cb)
-            self._start_timer()
         else:
             self._auth_cb(None)
 
@@ -53,7 +52,8 @@ class TumblrPhotoList(PhotoList):
 
         # print url
         self._get_url_with_twisted(url + urllib.urlencode(values))
-        self._start_timer()
+        interval_min = self.conf.get_int('plugins/tumblr/interval', 30)
+        self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
