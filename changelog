@@ -1,5 +1,30 @@
+2010-03-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, photoimagegtk.py: Improved the support for
+	  large or original Flickr photos in fullscreen mode.
+
+2010-03-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, flickr/__init__.py: Added support for large or original
+	  Flickr photos in fullscreen mode.
+
+2010-03-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, api.py: Added support for page argument on
+	  Flickr API.  Added support original image url.
+
+2010-03-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/: Added new conf for API reload interval.
+
+2010-03-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Fixed icon show/hide behaviors.
+
 2010-03-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoliststore.py, preferences.py, gphotoframe.glade:
+	  If the weight is 0 on photo source, the source should be ignored.
 	* photoimageclutter.py: Code refactoring.
 	* utils/nullobject.py: Initial import.
 
@@ -9,7 +34,8 @@
 
 2010-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* photoimageclutter.py: Added ActorFavIconNum.
+	* photoimageclutter.py: Added clutter UI support.
+	  Added ActorFavIconNum for favoring on Flickr and Tumblr.
 
 2010-03-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -28,6 +54,7 @@
 2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* menu.py: Always show the image of menu items.
+	* plugins/*: Added Icons to Plugins Treeview.
 
 2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
