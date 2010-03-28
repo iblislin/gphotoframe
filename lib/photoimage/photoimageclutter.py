@@ -160,7 +160,7 @@ class ActorSourceIcon(ActorIcon):
         return self.photo.get('icon')()
 
     def _get_ui_data(self):
-        self.show_always = self.conf.get_bool('ui/source/show', True)
+        self.show_always = self.conf.get_bool('ui/source/always_show', True)
         self.position = self.conf.get_int('ui/source/position', 1)
 
     def _on_button_press_cb(self, actor, event):
@@ -180,7 +180,7 @@ class ActorGeoIcon(ActorSourceIcon):
         return IconImage('gnome-globe')
 
     def _get_ui_data(self):
-        self.show_always = GConf().get_bool('ui/geo/show', False)
+        self.show_always = GConf().get_bool('ui/geo/always_show', False)
         self.position = GConf().get_int('ui/geo/position', 2)
 
     def _on_button_press_cb(self, actor, event):
@@ -196,7 +196,7 @@ class ActorFavIcon(ActorIcon):
     def __init__(self, stage, num=5):
         self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
         self.conf = GConf()
-        self.show_always = self.conf.get_bool('ui/fav/show', False)
+        self.show_always = self.conf.get_bool('ui/fav/always_show', False)
         self.position = self.conf.get_int('ui/fav/position', 0)
 
     def show(self, force=False):
