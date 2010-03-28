@@ -22,6 +22,7 @@ class PicasaPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Picasa Web'
+        self.icon = PicasaIcon
 
     def is_available(self):
         username = GConf().get_string('plugins/picasa/user_id')
@@ -36,7 +37,9 @@ class PicasaPhotoList(PhotoList):
         if self.username:
             key = Keyring('Google Account', protocol='http')
             key.get_passwd_async(self.username, self._google_auth_cb)
-            self._start_timer()
+
+            interval_min = self.conf.get_int('plugins/picasa/interval', 60)
+            self._start_timer(interval_min)
 
     def _google_auth_cb(self, identity):
         "Get Google Auth Token (ClientLogin)."

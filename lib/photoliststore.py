@@ -63,7 +63,7 @@ class PhotoListStore(gtk.ListStore):
         return False
 
     def _change_photo(self):
-        target_list = [ x[5] for x in self if x[5].photos ]
+        target_list = [ x[5] for x in self if x[5].photos and x[5].weight > 0 ]
         if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self._show_photo_cb)

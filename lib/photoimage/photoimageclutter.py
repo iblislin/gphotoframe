@@ -39,7 +39,7 @@ class PhotoImageClutter(PhotoImage):
         self.window_border = 0
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
-        self.embed.set_size_request(self.w + border * 2, self.h + border * 2)
+        #self.embed.set_size_request(self.w + border * 2, self.h + border * 2)
         self.photo_image.change(pixbuf, border, border)
 
         for actor in self.actors:
@@ -109,6 +109,22 @@ class ActorIcon(object):
 
         return x, y
 
+    def check_mouse_on_window(self, photoimage):
+        rootwin = photoimage.embed.window.get_screen().get_root_window()
+        x, y, mods = rootwin.get_pointer()
+
+        w, h = photoimage.w, photoimage.h
+
+        cx = self.conf.get_int('root_x', 0)
+        cy = self.conf.get_int('root_y', 0)
+
+        diff_w = w - abs(cx - x) * 2
+        diff_h = h - abs(cy - y) * 2
+
+        result = diff_w >= 0 and diff_h >= 0
+        # print "in" if result else "out"
+        return result
+
 class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
@@ -120,6 +136,8 @@ class ActorSourceIcon(ActorIcon):
 
     def set_icon(self, photoimage):
         self.photo = photoimage.photo
+        self.photoimage = photoimage
+        self.hide(True)
         if self.photo == None: return
 
         icon = self._get_icon()
@@ -130,18 +148,19 @@ class ActorSourceIcon(ActorIcon):
             self.show()
 
     def show(self, force=False):
-        if self.show_always or force:
+        mouse_on = self.check_mouse_on_window(self.photoimage)
+        if (self.show_always or force or mouse_on) and self.photo:
             self.texture.show()
 
     def hide(self, force=False):
-        if self.show_always is not True:
+        if not self.show_always or force:
             self.texture.hide()
 
     def _get_icon(self):
         return self.photo.get('icon')()
 
     def _get_ui_data(self):
-        self.show_always = self.conf.get_bool('ui/source/show', True)
+        self.show_always = self.conf.get_bool('ui/source/always_show', True)
         self.position = self.conf.get_int('ui/source/position', 1)
 
     def _on_button_press_cb(self, actor, event):
@@ -161,7 +180,7 @@ class ActorGeoIcon(ActorSourceIcon):
         return IconImage('gnome-globe')
 
     def _get_ui_data(self):
-        self.show_always = GConf().get_bool('ui/geo/show', False)
+        self.show_always = GConf().get_bool('ui/geo/always_show', False)
         self.position = GConf().get_int('ui/geo/position', 2)
 
     def _on_button_press_cb(self, actor, event):
@@ -176,8 +195,9 @@ class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, num=5):
         self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
-        self.show_always = GConf().get_bool('ui/fav/show', False)
-        self.position = GConf().get_int('ui/fav/position', 0)
+        self.conf = GConf()
+        self.show_always = self.conf.get_bool('ui/fav/always_show', False)
+        self.position = self.conf.get_int('ui/fav/position', 0)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or 
@@ -195,14 +215,15 @@ class ActorFavIcon(ActorIcon):
         for i in xrange(num):
             self.icon[i].show()
 
-    def hide(self):
-        if self.show_always is True: return
+    def hide(self, force=False):
+        if self.show_always and not force: return
         for icon in self.icon:
             icon.hide()
 
     def set_icon(self, photoimage):
         self.photo = photoimage.photo
         self.photoimage = photoimage
+        self.hide(True)
 
         if self.photo == None or 'fav' not in self.photo: return
 
@@ -219,8 +240,12 @@ class ActorFavIcon(ActorIcon):
             space = int(pixbuf.get_width() * 1.3)
             icon.change(pixbuf, self.x + i * direction * space, self.y)
 
-            if self.show_always:
+            mouse_on = self.check_mouse_on_window(self.photoimage)
+            if self.show_always or mouse_on:
                 icon.show()
+
+            if type(self.photo['fav'].fav) is bool:
+                break
 
     def cb(self, rate):
         self.photo.fav(rate + 1)

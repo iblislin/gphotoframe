@@ -17,6 +17,7 @@ class FSpotPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'F-Spot'
+        self.icon = FSpotIcon
 
     def is_available(self):
         db = FSpotDB()
