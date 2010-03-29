@@ -214,15 +214,30 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _set_signal_cb(self, gui):
         super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
-        cursor = Cursor()
+        self.cursor = Cursor()
         dic = { 
             "on_window_key_press_event" : self._keypress_cb,
-            "on_window_button_press_event" : cursor.show_cb,
-            "on_window_motion_notify_event" : cursor.show_cb,
-            "on_window_realize" : cursor.hide_cb,
-            "on_window_destroy" : cursor.stop_timer_cb,
+            "on_window_button_press_event"  : self._ui_show_cb,
+            "on_window_motion_notify_event" : self._ui_show_cb,
+            "on_window_realize" : self._ui_hide_cb,
+            "on_window_destroy" : self._stop_timer_cb,
             }
         gui.signal_autoconnect(dic)
+
+    def _ui_show_cb(self, widget, event):
+        self.cursor.show_cb(widget, event)
+        self.photoimage.on_enter_cb(widget, event)
+
+        self._stop_timer_cb()
+        self._timer = gobject.timeout_add(5 * 1000, self._ui_hide_cb, widget, event)
+
+    def _ui_hide_cb(self, widget, event):
+        self.cursor.hide_cb(widget, event)
+        self.photoimage.on_leave_cb(widget, event)
+
+    def _stop_timer_cb(self, *args):
+        if hasattr(self, "_timer"):
+            gobject.source_remove(self._timer)
 
     def _save_geometry_cb(self, widget, event):
         self.photoimage.on_leave_cb(widget, event)
@@ -259,10 +274,7 @@ class Cursor(object):
             self._is_show = True
             widget.window.set_cursor(None)
 
-        self.stop_timer_cb()
-        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget)
-
-    def hide_cb(self, widget):
+    def hide_cb(self, widget, event):
         if self._is_show:
             widget.set_tooltip_markup(None)
 
@@ -272,7 +284,3 @@ class Cursor(object):
             cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
             widget.window.set_cursor(cursor)
             return False
-
-    def stop_timer_cb(self, *args):
-        if hasattr(self, "_timer"):
-            gobject.source_remove(self._timer)
