@@ -270,7 +270,7 @@ class ActorFavIconOne(ActorPhotoImage):
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
 
-class PhotoImageClutterFullScreen(PhotoImageClutter):
+class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def _get_image_position(self):
         root_w, root_h = self._get_max_display_size()
@@ -281,13 +281,3 @@ class PhotoImageClutterFullScreen(PhotoImageClutter):
 
     def _get_border_color(self):
         return 'black'
-
-    def _get_max_display_size(self):
-        screen = gtk.gdk.screen_get_default()
-        display_num = screen.get_monitor_at_window(self.window.window)
-        geometry = screen.get_monitor_geometry(display_num)
-        max_w, max_h = geometry.width, geometry.height
-        return max_w, max_h
-
-    def _set_tips(self, photo):
-        pass
