@@ -225,7 +225,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         gui.signal_autoconnect(dic)
 
     def _save_geometry_cb(self, widget, event):
-        pass
+        self.photoimage.on_leave_cb(widget, event)
 
     def _change_window_fix_cb(self, client, id, entry, data):
         pass
