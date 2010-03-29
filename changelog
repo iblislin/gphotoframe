@@ -1,3 +1,8 @@
+2010-03-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  fullscreen mode.
+
 2010-03-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py, photoimagegtk.py: Improved the support for
