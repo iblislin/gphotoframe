@@ -12,3 +12,10 @@ class PhotoImageFullScreenFactory(object):
         cls = PhotoImageClutterFullScreen if cluttergtk \
             else PhotoImageFullScreen
         return cls(photoframe)
+
+class PhotoImageScreenSaverFactory(object):
+
+    def create(self, photoframe):
+        cls = PhotoImageClutterScreenSaver if cluttergtk \
+            else PhotoImageScreenSaver
+        return cls(photoframe)

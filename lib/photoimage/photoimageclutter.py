@@ -284,3 +284,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def _get_border_color(self):
         return 'black'
+
+class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
+                                   PhotoImageFullScreen):
+    pass
