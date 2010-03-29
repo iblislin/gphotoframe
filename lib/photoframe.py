@@ -290,4 +290,3 @@ class Cursor(object):
             cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
             widget.window.set_cursor(cursor)
             return False
-o
