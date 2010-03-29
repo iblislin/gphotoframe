@@ -206,7 +206,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
 
     def _set_photoimage(self):
-        self.photoimage = PhotoImageFullScreen(self)
+        self.photoimage = PhotoImageFullScreenFactory().create(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)

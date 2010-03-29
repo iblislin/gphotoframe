@@ -21,8 +21,8 @@ class PhotoImageClutter(PhotoImage):
         self.image = self.embed = cluttergtk.Embed()
         #self.embed.realize()
 
-        color = self.conf.get_string('border_color') or '#edeceb'
         self.stage = self.embed.get_stage()
+        color = self._get_border_color()
         self.stage.set_color(clutter.color_from_string(color))
 
         self.photo_image = ActorPhotoImage(self.stage)
@@ -33,17 +33,24 @@ class PhotoImageClutter(PhotoImage):
         self.photo_image.show()
         self.embed.show()
 
+    def _get_border_color(self):
+        return self.conf.get_string('border_color') or '#edeceb'
+
     def _set_photo_image(self, pixbuf):
         self.border = border = self.conf.get_int('border_width', 5)
 
         self.window_border = 0
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
-        #self.embed.set_size_request(self.w + border * 2, self.h + border * 2)
-        self.photo_image.change(pixbuf, border, border)
+
+        x, y = self._get_image_position()
+        self.photo_image.change(pixbuf, x, y)
 
         for actor in self.actors:
-            actor.set_icon(self)
+            actor.set_icon(self, x, y)
+
+    def _get_image_position(self):
+        return self.border, self.border
 
     def clear(self):
         pass
@@ -92,20 +99,20 @@ class ActorPhotoImage(cluttergtk.Texture):
 
 class ActorIcon(object):
 
-    def calc_position(self, photoimage, icon, position):
+    def calc_position(self, photoimage, icon, position, x_offset, y_offset):
         icon_pixbuf = icon.get_pixbuf()
         icon_w, icon_h = icon_pixbuf.get_width(), icon_pixbuf.get_height()
         offset = 10
 
         if position == 0 or position == 3:
-            x = photoimage.border + offset
+            x = x_offset + offset
         else:
-            x = photoimage.border + photoimage.w - icon_w - offset 
+            x = x_offset + photoimage.w - icon_w - offset 
 
         if position == 0 or position == 1:
-            y = photoimage.border + offset
+            y = y_offset + offset
         else:
-            y = photoimage.border + photoimage.h - icon_h - offset 
+            y = y_offset + photoimage.h - icon_h - offset 
 
         return x, y
 
@@ -134,14 +141,15 @@ class ActorSourceIcon(ActorIcon):
         self.conf = GConf()
         self._get_ui_data()
 
-    def set_icon(self, photoimage):
+    def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
         self.photoimage = photoimage
         self.hide(True)
         if self.photo == None: return
 
         icon = self._get_icon()
-        x, y = self.calc_position(photoimage, icon, self.position)
+        x, y = self.calc_position(photoimage, icon, self.position, 
+                                  x_offset, y_offset)
         if photoimage.w > 80 and photoimage.h > 80: # for small photo image
             icon_pixbuf = icon.get_pixbuf()
             self.texture.change(icon_pixbuf, x, y)
@@ -220,7 +228,7 @@ class ActorFavIcon(ActorIcon):
         for icon in self.icon:
             icon.hide()
 
-    def set_icon(self, photoimage):
+    def set_icon(self, photoimage, x_o, y_o):
         self.photo = photoimage.photo
         self.photoimage = photoimage
         self.hide(True)
@@ -228,7 +236,8 @@ class ActorFavIcon(ActorIcon):
         if self.photo == None or 'fav' not in self.photo: return
 
         self.image = IconImage('emblem-favorite')
-        self.x, self.y = self.calc_position(photoimage, self.image, self.position)
+        self.x, self.y = self.calc_position(photoimage, self.image, self.position,
+                                            x_o, y_o)
         self._change_icon()
 
     def _change_icon(self):
@@ -260,3 +269,25 @@ class ActorFavIconOne(ActorPhotoImage):
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
+
+class PhotoImageClutterFullScreen(PhotoImageClutter):
+
+    def _get_image_position(self):
+        root_w, root_h = self._get_max_display_size()
+        x = (root_w - self.w) / 2
+        y = (root_h - self.h) / 2
+        self.border = 0
+        return x, y
+
+    def _get_border_color(self):
+        return 'black'
+
+    def _get_max_display_size(self):
+        screen = gtk.gdk.screen_get_default()
+        display_num = screen.get_monitor_at_window(self.window.window)
+        geometry = screen.get_monitor_geometry(display_num)
+        max_w, max_h = geometry.width, geometry.height
+        return max_w, max_h
+
+    def _set_tips(self, photo):
+        pass
