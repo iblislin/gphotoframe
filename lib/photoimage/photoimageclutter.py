@@ -99,21 +99,24 @@ class ActorPhotoImage(cluttergtk.Texture):
 
 class ActorIcon(object):
 
-    def calc_position(self, photoimage, icon, position, x_offset, y_offset):
+    def calc_position(self, photoimage, icon, position, image_x, image_y):
         icon_pixbuf = icon.get_pixbuf()
-        icon_w, icon_h = icon_pixbuf.get_width(), icon_pixbuf.get_height()
-        offset = 10
+
+        side = photoimage.w if photoimage.w > photoimage.h else photoimage.h 
+        offset = int(side / 60)
+        offset = 10 if offset < 10 else offset
 
         if position == 0 or position == 3:
-            x = x_offset + offset
+            x = image_x + offset
         else:
-            x = x_offset + photoimage.w - icon_w - offset 
+            x = image_x + photoimage.w - icon_pixbuf.get_width() - offset 
 
         if position == 0 or position == 1:
-            y = y_offset + offset
+            y = image_y + offset
         else:
-            y = y_offset + photoimage.h - icon_h - offset 
+            y = image_y + photoimage.h - icon_pixbuf.get_height() - offset 
 
+        # print x, y, offset
         return x, y
 
     def check_mouse_on_window(self, photoimage):
