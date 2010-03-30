@@ -1,5 +1,7 @@
 2010-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoliststore.py, photoframe.py: Fixed interval time in screen
+	  saver mode.
 	* photoimageclutter.py, photoframe.py: Added clutter support on
 	  screen saver mode.
 
