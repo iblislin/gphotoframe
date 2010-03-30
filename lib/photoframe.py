@@ -242,6 +242,7 @@ class PhotoFrameScreenSaver(object):
 
     def __init__(self):
         self.window = GsThemeWindow()
+        self.screensaver = True
         self.window.show()
 
         self.photoimage = PhotoImageScreenSaverFactory().create(self)
