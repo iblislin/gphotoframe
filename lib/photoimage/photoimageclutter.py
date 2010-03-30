@@ -286,5 +286,5 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         return 'black'
 
 class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
-                                   PhotoImageFullScreen):
+                                   PhotoImageScreenSaver):
     pass
