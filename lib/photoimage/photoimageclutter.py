@@ -118,9 +118,20 @@ class ActorPhotoImage(cluttergtk.Texture):
         self.connect('button-press-event', self._on_button_press_cb)
         stage.add(self)
 
+        self.timeline_fade_in = FadeAnimationTimeline(self)
+        self.timeline_fade_out = FadeAnimationTimeline(self, 255, 0)
+
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
         self.set_position(x, y)
+
+    def show(self):
+        super(ActorPhotoImage, self).show()
+        self.timeline_fade_in.start()
+
+    def hide(self):
+        #super(ActorPhotoImage, self).hide()
+        self.timeline_fade_out.start()
 
     def _on_button_press_cb(self, actor, event):
         pass
@@ -295,3 +306,15 @@ class ActorFavIconOne(ActorPhotoImage):
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
+
+class FadeAnimationTimeline():
+
+    def __init__(self, actor, start=0, end=255, time=300):
+        self.timeline = clutter.Timeline(time)
+        self.alpha = clutter.Alpha(self.timeline, clutter.EASE_OUT_SINE)
+        self.behaviour = clutter.BehaviourOpacity(
+            alpha=self.alpha, opacity_start=start, opacity_end=end)
+        self.behaviour.apply(actor)
+
+    def start(self):
+        self.timeline.start()
