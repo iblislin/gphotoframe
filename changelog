@@ -1,3 +1,20 @@
+2010-03-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, photoframe.py: Fixed clutter icons
+	  show/hide behavior.
+
+2010-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, photoframe.py: Fixed interval time in screen
+	  saver mode.
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  screen saver mode.
+
+2010-03-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  fullscreen mode.
+
 2010-03-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py, photoimagegtk.py: Improved the support for

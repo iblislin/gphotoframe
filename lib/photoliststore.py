@@ -51,10 +51,12 @@ class PhotoListStore(gtk.ListStore):
 
     def _start_timer(self):
         state = self._change_photo()
+        fullscreen = self.conf.get_bool('fullscreen')
+        screensaver = hasattr(self.photoframe, 'screensaver')
 
         if state is False:
             interval = 5
-        elif self.conf.get_bool('fullscreen'):
+        elif fullscreen or screensaver:
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
             interval = self.conf.get_int('interval', 30)
