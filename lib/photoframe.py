@@ -256,6 +256,7 @@ class UI(object):
     def __init__(self, photoimage):
         self.photoimage = photoimage
         self.cursor = Cursor()
+        self.is_show = True
 
     def show_cb(self, widget, event):
         self.photoimage.on_enter_cb(widget, event)
@@ -263,10 +264,12 @@ class UI(object):
 
         self.stop_timer_cb()
         self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
+        self.is_show = True
 
     def hide_cb(self, widget, event):
         self.photoimage.on_leave_cb(widget, event)
         self.cursor.hide(widget)
+        self.is_show = False
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
