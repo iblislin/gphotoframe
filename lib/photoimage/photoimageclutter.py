@@ -85,6 +85,29 @@ class PhotoImageClutter(PhotoImage):
 
         return result
 
+class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
+
+    def _get_image_position(self):
+        root_w, root_h = self._get_max_display_size()
+        x = (root_w - self.w) / 2
+        y = (root_h - self.h) / 2
+        self.border = 0
+        return x, y
+
+    def _get_border_color(self):
+        return 'black'
+
+    def check_mouse_on_window(self):
+        state = super(PhotoImageClutterFullScreen, self).check_mouse_on_window()
+        result = state if self.photoframe.ui.is_show else False
+        return result
+
+class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
+                                   PhotoImageScreenSaver):
+
+    def check_mouse_on_window(self):
+        return False
+
 class ActorPhotoImage(cluttergtk.Texture):
 
     def __init__(self, stage):
@@ -231,7 +254,7 @@ class ActorFavIcon(ActorIcon):
         for icon in self.icon:
             icon.hide()
 
-    def set_icon(self, photoimage, x_o, y_o):
+    def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
         self.photoimage = photoimage
         self.hide(True)
@@ -240,7 +263,7 @@ class ActorFavIcon(ActorIcon):
 
         self.image = IconImage('emblem-favorite')
         self.x, self.y = self.calc_position(photoimage, self.image, self.position,
-                                            x_o, y_o)
+                                            x_offset, y_offset)
         self._change_icon()
 
     def _change_icon(self):
@@ -272,26 +295,3 @@ class ActorFavIconOne(ActorPhotoImage):
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
-
-class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
-
-    def _get_image_position(self):
-        root_w, root_h = self._get_max_display_size()
-        x = (root_w - self.w) / 2
-        y = (root_h - self.h) / 2
-        self.border = 0
-        return x, y
-
-    def _get_border_color(self):
-        return 'black'
-
-    def check_mouse_on_window(self):
-        state = super(PhotoImageClutterFullScreen, self).check_mouse_on_window()
-        result = state if self.photoframe.ui.is_show else False
-        return result
-
-class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
-                                   PhotoImageScreenSaver):
-
-    def check_mouse_on_window(self):
-        return False

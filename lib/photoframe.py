@@ -214,7 +214,7 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _set_signal_cb(self, gui):
         super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
-        self.ui = UI(self.photoimage)
+        self.ui = FullScreenUI(self.photoimage)
         dic = { 
             "on_window_key_press_event" : self._keypress_cb,
             "on_window_button_press_event"  : self.ui.show_cb,
@@ -251,7 +251,7 @@ class PhotoFrameScreenSaver(object):
     def set_photo(self, photo, change=True):
         return self.photoimage.set_photo(photo)
 
-class UI(object):
+class FullScreenUI(object):
 
     def __init__(self, photoimage):
         self.photoimage = photoimage
