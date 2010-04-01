@@ -134,11 +134,11 @@ class IconTexture(Texture):
 
     def __init__(self, stage):
         super(IconTexture, self).__init__(stage)
-        self.animation = True
+        self.conf = GConf()
+        self.animation = self.conf.get_bool('ui/icon_animations', False)
 
     def show(self):
         super(IconTexture, self).show()
-
         if not self.is_show and self.animation:
             self.timeline_fade_in.start()
         self.is_show = True
