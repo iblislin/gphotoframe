@@ -1,3 +1,5 @@
+from __future__ import division
+
 import os
 import time
 
@@ -6,7 +8,7 @@ import gtk
 import gtk.glade
 
 import constants
-from photoimage import PhotoImage, PhotoImageFullScreen, PhotoImageScreenSaver
+from photoimage import *
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow
@@ -56,9 +58,9 @@ class PhotoFrame(object):
 
         if change:
             if not self.photoimage.set_photo(photo): return False
-            border = self.conf.get_int('border_width', 10)
-            self.window.resize(self.photoimage.w + border, 
-                               self.photoimage.h + border)
+            borders = self.photoimage.window_border * 2
+            self.window.resize(self.photoimage.w + borders, 
+                               self.photoimage.h + borders)
 
         self.popup_menu.set_open_menu_sensitive(state)
         self.popup_menu.set_recent_menu()
@@ -74,8 +76,8 @@ class PhotoFrame(object):
         self.set_photo(None, change)
 
     def _set_window_position(self):
-        self.window.move(self.conf.get_int('root_x'), 
-                         self.conf.get_int('root_y'))
+        self.window.move(self.conf.get_int('root_x', 0),
+                         self.conf.get_int('root_y', 0))
         self.window.resize(1, 1)
         self.window.show_all()
         self.window.get_position()
@@ -94,7 +96,7 @@ class PhotoFrame(object):
             self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
 
     def _set_photoimage(self):
-        self.photoimage = PhotoImage(self)
+        self.photoimage = PhotoImageFactory().create(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenu(self.photolist, self)
@@ -119,6 +121,7 @@ class PhotoFrame(object):
     def _set_signal_cb(self, gui):
         dic = { 
             "on_window_button_press_event" : self._check_button_cb,
+            "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
             "on_window_query_tooltip"      : self._query_tooltip_cb,
@@ -132,8 +135,9 @@ class PhotoFrame(object):
 
     def _check_button_cb(self, widget, event):
         if event.button == 1:
-            widget.begin_move_drag(
-                event.button, int(event.x_root), int(event.y_root), event.time)
+            if not self.photoimage.check_actor(widget, event):
+                widget.begin_move_drag(
+                    event.button, int(event.x_root), int(event.y_root), event.time)
         elif event.button == 2:
             pass
         elif event.button == 3:
@@ -149,6 +153,7 @@ class PhotoFrame(object):
     def _save_geometry_cb(self, widget, event):
 #        if event.mode != 2:
 #            return True
+        self.photoimage.on_leave_cb(widget, event)
 
         x, y = widget.get_position()
         w, h = widget.get_size()
@@ -160,18 +165,18 @@ class PhotoFrame(object):
         hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK \
             if entry.value.get_bool() else gtk.gdk.WINDOW_TYPE_HINT_NORMAL
 
+        if hint == self.window.get_type_hint(): return
+
         self.window.hide()
         self.window.set_type_hint(hint)
-        self.photoimage.clear()
-
-        self._set_window_position()
+        self.window.show()
         self.window.set_keep_below(True)
-        time.sleep(0.5)
 
-        if not self.photoimage.set_photo(): return
-        border = self.conf.get_int('border_width', 10)
-        self.window.resize(self.photoimage.w + border, 
-                           self.photoimage.h + border)
+        if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
+            border = self.photoimage.window_border
+            x = self.conf.get_int('root_x') - self.photoimage.w / 2
+            y = self.conf.get_int('root_y') - self.photoimage.h / 2
+            self.window.move(int(x - border), int(y - border))
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():
@@ -185,7 +190,9 @@ class PhotoFrame(object):
         else:
             self.window.unstick()
 
-    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+    def _query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
+        if not self.photoimage.photo: return
+        
         pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
         tooltip.set_icon(pixbuf)
 
@@ -199,7 +206,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
 
     def _set_photoimage(self):
-        self.photoimage = PhotoImageFullScreen(self)
+        self.photoimage = PhotoImageFullScreenFactory().create(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
@@ -207,18 +214,18 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _set_signal_cb(self, gui):
         super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
-        cursor = Cursor()
+        self.ui = FullScreenUI(self.photoimage, self.window)
         dic = { 
             "on_window_key_press_event" : self._keypress_cb,
-            "on_window_button_press_event" : cursor.show_cb,
-            "on_window_motion_notify_event" : cursor.show_cb,
-            "on_window_realize" : cursor.hide_cb,
-            "on_window_destroy" : cursor.stop_timer_cb,
+            "on_window_button_press_event"  : self.ui.show_cb,
+            "on_window_motion_notify_event" : self.ui.show_cb,
+            "on_window_realize" : self.ui.hide_cb,
+            "on_window_destroy" : self.ui.stop_timer_cb,
             }
         gui.signal_autoconnect(dic)
 
     def _save_geometry_cb(self, widget, event):
-        pass
+        self.photoimage.on_leave_cb(widget, event)
 
     def _change_window_fix_cb(self, client, id, entry, data):
         pass
@@ -235,27 +242,54 @@ class PhotoFrameScreenSaver(object):
 
     def __init__(self):
         self.window = GsThemeWindow()
+        self.screensaver = True
         self.window.show()
 
-        self.photoimage = PhotoImageScreenSaver(self)
+        self.photoimage = PhotoImageScreenSaverFactory().create(self)
         self.window.add(self.photoimage.image)
  
     def set_photo(self, photo, change=True):
         return self.photoimage.set_photo(photo)
 
+class FullScreenUI(object):
+
+    def __init__(self, photoimage, window):
+        self.photoimage = photoimage
+        self.cursor = Cursor()
+        self.is_show = True
+
+        self.start_timer_cb(window, None)
+
+    def show_cb(self, widget, event):
+        self.is_show = True
+        self.photoimage.on_enter_cb(widget, event)
+        self.cursor.show(widget)
+
+        self.stop_timer_cb()
+        self.start_timer_cb(widget, event)
+
+    def hide_cb(self, widget, event):
+        self.is_show = False
+        self.photoimage.on_leave_cb(widget, event)
+        self.cursor.hide(widget)
+
+    def start_timer_cb(self, widget, event):
+        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
+
+    def stop_timer_cb(self, *args):
+        if hasattr(self, "_timer"):
+            gobject.source_remove(self._timer)
+
 class Cursor(object):
     def __init__(self):
         self._is_show = True
 
-    def show_cb(self, widget, evevt):
+    def show(self, widget):
         if not self._is_show:
             self._is_show = True
             widget.window.set_cursor(None)
 
-        self.stop_timer_cb()
-        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget)
-
-    def hide_cb(self, widget):
+    def hide(self, widget):
         if self._is_show:
             widget.set_tooltip_markup(None)
 
@@ -265,7 +299,3 @@ class Cursor(object):
             cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
             widget.window.set_cursor(cursor)
             return False
-
-    def stop_timer_cb(self, *args):
-        if hasattr(self, "_timer"):
-            gobject.source_remove(self._timer)

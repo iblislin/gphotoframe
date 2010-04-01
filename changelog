@@ -1,7 +1,84 @@
+2010-04-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added GConf notify for UI.  Fixed bugs.
+	  Code refactoring.
+
+2010-03-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added support for clutter icon animations.
+	* photoimageclutter.py, photoframe.py: Fixed clutter icons
+	  show/hide behavior.
+
+2010-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, photoframe.py: Fixed interval time in screen
+	  saver mode.
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  screen saver mode.
+
+2010-03-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  fullscreen mode.
+
+2010-03-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, photoimagegtk.py: Improved the support for
+	  large or original Flickr photos in fullscreen mode.
+
+2010-03-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, flickr/__init__.py: Added support for large or original
+	  Flickr photos in fullscreen mode.
+
+2010-03-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, api.py: Added support for page argument on
+	  Flickr API.  Added support original image url.
+
+2010-03-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/: Added new conf for API reload interval.
+
+2010-03-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Fixed icon show/hide behaviors.
+
+2010-03-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, preferences.py, gphotoframe.glade:
+	  If the weight is 0 on photo source, the source should be ignored.
+	* photoimageclutter.py: Code refactoring.
+	* utils/nullobject.py: Initial import.
+
+2010-03-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py, photoimageclutter.py: Added support for F-Spot Rating.
+
+2010-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added clutter UI support.
+	  Added ActorFavIconNum for favoring on Flickr and Tumblr.
+
+2010-03-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6.2 release.
+	* flickr/api.py: Fixed invalid Flickr NSID API URL (issue #47).
+
+2010-03-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6.1 release.
+	* photoframe.py: Fixed a gconf default value error (issue #44).
+
+2010-03-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6 release.
+
 2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* proxypac.py: Added support for proxy pac.
 	* menu.py: Always show the image of menu items.
+	* plugins/*: Added Icons to Plugins Treeview.
 
 2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -12,6 +89,28 @@
 2010-02-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoliststore.py: Fixed a cache file removing bug.
+	* fspot.py: Added support for rating on F-Spot.
+
+2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr.py: Added support for liking on Tumblr.
+	* plugins/flickr/, base.py: Added support for Favoring on Flickr.
+	* photoframe.py: Reimplemented frame fix mode for clutter.
+	* picasa.py: : Added support geo infomation of Picasa Web photos.
+	* plugins/base.py, utils/EXIF.py: Added support for EXIF geo
+	  information.
+	* flickr/__init__.py, flickr/api.py: Added support geo infomation
+	  of Flickr photos.
+	* photoimageclutter.py, photoimagegtk.py, photoframe.py:
+	  Added support for hide/show function for Icons.
+
+2010-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py: Added Photo Source Icons on the clutter stage.
+
+2010-02-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, photoframe.py: Added clutter support.
 
 2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

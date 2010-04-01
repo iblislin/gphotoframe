@@ -1,19 +1,18 @@
 from __future__ import division
+
 import os
 import sys
-
-import gobject
-import gtk
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
-from utils.config import GConf
+import gobject
+import gtk
+
+from ..utils.config import GConf
 
 class PhotoImage(object):
-    def __init__(self, photoframe):
-        self.image = gtk.Image()
-        self.image.show()
 
+    def __init__(self, photoframe):
         self.window = photoframe.window
         self.photoframe = photoframe
         self.conf = GConf()
@@ -29,15 +28,19 @@ class PhotoImage(object):
             return False
 
         self._set_tips(self.photo)
-
-        self.image.set_from_pixbuf(pixbuf.data)
-        self.w = pixbuf.data.get_width()
-        self.h = pixbuf.data.get_height()
+        self._set_photo_image(pixbuf.data)
+        self.window_border = self.conf.get_int('border_width', 5)
 
         return True
 
-    def clear(self):
-        self.image.clear()
+    def on_enter_cb(self, widget, event):
+        pass
+
+    def on_leave_cb(self, widget, event):
+        pass
+
+    def check_actor(self, stage, event):
+        return False
 
     def is_accessible_local_file(self):
         if self.photo is None:
@@ -76,6 +79,21 @@ class PhotoImage(object):
         except:
             pass
 
+class PhotoImageGtk(PhotoImage):
+    def __init__(self, photoframe):
+        super(PhotoImageGtk, self).__init__(photoframe)
+
+        self.image = gtk.Image()
+        self.image.show()
+
+    def _set_photo_image(self, pixbuf):
+        self.image.set_from_pixbuf(pixbuf)
+        self.w = pixbuf.get_width()
+        self.h = pixbuf.get_height()
+
+    def clear(self):
+        self.image.clear()
+
 class PhotoImagePixbuf(object):
 
     def __init__(self, window, max_w=400, max_h=300):
@@ -85,18 +103,28 @@ class PhotoImagePixbuf(object):
         self.conf = GConf()
 
     def set(self, photo):
-        if photo:
-            try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(photo['filename'])
-            except gobject.GError:
-                print sys.exc_info()[1]
-                return False
-            else:
-                pixbuf = self._rotate(pixbuf)
-                pixbuf = self._scale(pixbuf)
-                if not self._aspect_ratio_is_ok(pixbuf): return False
-        else:
+        if not photo:
             pixbuf = self._no_image()
+            self.data = pixbuf
+            return True
+
+        try:
+            filename = photo['filename']
+
+            # ad-hoc for avoiding flickr no image.
+            flickr = photo.get('type') == 'flickr'
+            if flickr and os.path.getsize(filename) <= 3000:
+                return False
+
+            pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+        except (gobject.GError, OSError):
+            print sys.exc_info()[1]
+            return False
+
+        pixbuf = self._rotate(pixbuf)
+        pixbuf = self._scale(pixbuf)
+        if not self._aspect_ratio_is_ok(pixbuf): return False
+        photo.get_exif()
 
         self.data = pixbuf
         return True
@@ -169,7 +197,7 @@ class PhotoImagePixbuf(object):
 
         return pixbuf
 
-class PhotoImageFullScreen(PhotoImage):
+class PhotoImageFullScreen(PhotoImageGtk):
 
     def _get_max_display_size(self):
         screen = gtk.gdk.screen_get_default()

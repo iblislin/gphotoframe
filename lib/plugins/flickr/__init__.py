@@ -1,10 +1,17 @@
+import random
+
 try:
     import simplejson as json
 except:
     import json
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    SourceWebIcon, Photo, PluginBase
+    Photo, PluginBase
+from ...utils.iconimage import WebIconImage
+from ...utils.config import GConf
+from ...utils.gnomescreensaver import GsThemeWindow
+from ...utils.urlget import UrlGetWithProxy
+from ...utils.proxypac import ParseProxyPac
 from api import *
 from authdialog import *
 
@@ -15,8 +22,14 @@ class FlickrPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Flickr'
+        self.icon = FlickrIcon
 
 class FlickrPhotoList(PhotoList):
+
+    def __init__(self, target, argument, weight, options, photolist):
+        super(FlickrPhotoList, self).__init__(
+            target, argument, weight, options, photolist)
+        self.page_list = FlickrAPIPages()
 
     def prepare(self):
         self.photos = []
@@ -50,11 +63,13 @@ class FlickrPhotoList(PhotoList):
         self._get_url_for(argument)
 
     def _get_url_for(self, argument):
-        url = self.api.get_url(argument) 
+        page = self.page_list.get_page()
+        url = self.api.get_url(argument, page) 
         if not url: return
 
         self._get_url_with_twisted(url)
-        self._start_timer()
+        interval_min = self.conf.get_int('plugins/flickr/interval', 60)
+        self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
         d = json.loads(data)
@@ -64,29 +79,39 @@ class FlickrPhotoList(PhotoList):
             return
 
         self.total = len(d['photos']['photo'])
+        self.page_list.update(d['photos'])
+
         for s in d['photos']['photo']:
             if s['media'] == 'video': continue
 
-            url = "http://farm%s.static.flickr.com/%s/%s_" % (
+            url_base = "http://farm%s.static.flickr.com/%s/%s_" % (
                 s['farm'], s['server'], s['id'])
-
-            if s.has_key('originalsecret') and False:
-                url += "%s_o.%s" % (s['originalsecret'], s['originalformat'])
-            else:
-                url += "%s.jpg" % s['secret']
+            url = "%s%s.jpg" % (url_base, s['secret'])
+            url_b = "%s%s_b.jpg" % (url_base, s['secret'])
 
             page_url = "http://www.flickr.com/photos/%s/%s" % (
                 s['owner'], s['id'])
 
-            data = {'url'        : url,
+            data = {'type'       : 'flickr',
+                    'url'        : url,
+                    'url_b'      : url_b,
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
                     'title'      : s['title'],
                     'page_url'   : page_url,
+                    'geo'        : {'lon' : s['longitude'], 
+                                    'lat' : s['latitude']},
+                    'fav'        : FlickrFav(self.target == 'Favorites', 
+                                             {'id': s['id']}),
                     'icon'       : FlickrIcon}
 
-            photo = Photo()
+            if s.get('url_o'):
+                url = s.get('url_o')
+                w, h = int(s.get('width_o')), int(s.get('height_o'))
+                data.update({'url_o': url, 'size_o': [w, h]})
+
+            photo = FlickrPhoto()
             photo.update(data)
             self.photos.append(photo)
 
@@ -160,7 +185,63 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         state = api.is_use_own_id()
         self.checkbutton_flickr_id.set_sensitive(state)
 
-class FlickrIcon(SourceWebIcon):
+class FlickrPhoto(Photo):
+
+    def get_url(self):
+        self.conf = GConf()
+        screensaver = GsThemeWindow().get_anid() 
+        fullscreen = self.conf.get_bool('fullscreen', False)
+        high_resolution = self.conf.get_bool('high_resolution', True)
+
+        if high_resolution and (screensaver or fullscreen):
+            w, h = self.get('size_o') or [None, None]
+            cond = w and h and (w <= 1280 or h <= 1024)
+            url = 'url_o' if cond else 'url_b'
+        else:
+            url = 'url'
+
+        #print url, w or None, h or None
+        return self[url]
+
+class FlickrFav(object):
+
+    def __init__(self, state=False, arg={}):
+        self.fav = state
+        self.arg = arg
+
+    def change_fav(self, rate_dummy):
+        url = self._get_url()
+        proxy = ParseProxyPac().get_proxy(url)
+        self.urlget = UrlGetWithProxy(proxy)
+        d = self.urlget.getPage(url)
+        self.fav = not self.fav
+
+    def _get_url(self):
+        api = FlickrFavoritesRemoveAPI if self.fav else FlickrFavoritesAddAPI
+        url = api().get_url(self.arg['id'])
+        return url
+
+class FlickrAPIPages(object):
+
+    def __init__(self):
+        self.page_list = []
+
+    def get_page(self):
+        page = random.sample(self.page_list, 1)[0] if self.page_list else 1
+        return page
+
+    def update(self, feed):
+        self.page = feed.get('page')
+        self.pages = feed.get('pages')
+        self.perpage = feed.get('perpage')
+
+        if not self.page_list and self.pages:
+            self.page_list = range(1, self.pages+1)
+
+        if self.page in self.page_list:
+            self.page_list.remove(self.page)
+
+class FlickrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'flickr.ico'
