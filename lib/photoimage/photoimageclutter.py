@@ -101,7 +101,7 @@ class Texture(cluttergtk.Texture):
 
     def __init__(self, stage):
         super(Texture, self).__init__()
-        # super(Texture, self).hide() # FIXME?
+        super(Texture, self).hide() # FIXME?
 
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
@@ -132,16 +132,21 @@ class Texture(cluttergtk.Texture):
 
 class IconTexture(Texture):
 
+    def __init__(self, stage):
+        super(IconTexture, self).__init__(stage)
+        self.animation = True
+
     def show(self):
         super(IconTexture, self).show()
 
-        if not self.is_show:
+        if not self.is_show and self.animation:
             self.timeline_fade_in.start()
         self.is_show = True
 
     def hide(self):
-        #super(IconTexture, self).hide()
-        if self.is_show:
+        if not self.animation:
+            super(IconTexture, self).hide()
+        elif self.is_show:
             self.timeline_fade_out.start()
         self.is_show = False
 
@@ -204,7 +209,7 @@ class ActorSourceIcon(ActorIcon):
 
     def hide(self, force=False):
         mouse_on = self.photoimage.check_mouse_on_window()
-        if (not self.show_always or force) and not mouse_on:
+        if (not self.show_always and not mouse_on) or force:
             self.texture.hide()
 
     def _get_icon(self):
@@ -226,6 +231,8 @@ class ActorGeoIcon(ActorSourceIcon):
             self.photo['geo']['lat'] != 0 and
             self.photo['geo']['lon'] != 0):
             super(ActorGeoIcon, self).show(force)
+        else:
+            super(ActorGeoIcon, self).hide(True)
 
     def _get_icon(self):
         return IconImage('gnome-globe')
@@ -268,7 +275,7 @@ class ActorFavIcon(ActorIcon):
 
     def hide(self, force=False):
         mouse_on = self.photoimage.check_mouse_on_window()
-        if (self.show_always and not force) or mouse_on: return
+        if (self.show_always or mouse_on) and not force : return
         for icon in self.icon:
             icon.hide()
 
