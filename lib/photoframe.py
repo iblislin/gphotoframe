@@ -253,30 +253,30 @@ class PhotoFrameScreenSaver(object):
 
 class FullScreenUI(object):
 
-    def __init__(self, photoimage, widndow):
+    def __init__(self, photoimage, window):
         self.photoimage = photoimage
         self.cursor = Cursor()
         self.is_show = True
 
-        self.start_timer(window, None)
+        self.start_timer_cb(window, None)
 
     def show_cb(self, widget, event):
         self.is_show = True
         self.photoimage.on_enter_cb(widget, event)
         self.cursor.show(widget)
 
-        self.stop_timer()
-        self.start_timer(widget, event)
+        self.stop_timer_cb()
+        self.start_timer_cb(widget, event)
 
     def hide_cb(self, widget, event):
         self.is_show = False
         self.photoimage.on_leave_cb(widget, event)
         self.cursor.hide(widget)
 
-    def start_timer(self, widget, event):
+    def start_timer_cb(self, widget, event):
         self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
 
-    def stop_time(self, *args):
+    def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
             gobject.source_remove(self._timer)
 
