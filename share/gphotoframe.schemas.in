@@ -42,7 +42,7 @@
       <applyto>/apps/gphotoframe/border_width</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>10</default>
+      <default>5</default>
       <locale name="C">
         <short>Photo frame border width</short>
         <long>Photo frame border width</long>
@@ -170,6 +170,126 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/interval</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>API reload interval minutes</short>
+        <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/auth_token</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/auth_token</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Auth token</short>
+        <long>Auth token</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/full_name</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/full_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User full name</short>
+        <long>User full name</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/nsid</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/nsid</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>NSID</short>
+        <long>Flickr user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/user_name</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/user_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User name</short>
+        <long>User name</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/picasa/interval</key>
+      <applyto>/apps/gphotoframe/plugins/picasa/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>API reload interval minutes</short>
+        <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/picasa/user_id</key>
+      <applyto>/apps/gphotoframe/plugins/picasa/user_id</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User ID</short>
+        <long>Google account user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/interval</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>API reload interval minutes</short>
+        <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/user_id</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/user_id</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User ID</short>
+        <long>E-mail adress as user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/rss/interval</key>
+      <applyto>/apps/gphotoframe/plugins/rss/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>RSS reload interval minutes</short>
+        <long>RSS reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/recents/preferences</key>
       <applyto>/apps/gphotoframe/recents/preferences</applyto>
       <owner>gphotoframe</owner>
@@ -190,6 +310,102 @@
       <locale name="C">
         <short>Recent selected photo source</short>
         <long>Recent selected photo source</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/icon_animations</key>
+      <applyto>/apps/gphotoframe/ui/icon_animations</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable icon animations</short>
+        <long>If true, hiding and un-hiding of icons will be animated.  The program needs to be restarted to take effect the change of the setting.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/icons_on_screensaver</key>
+      <applyto>/apps/gphotoframe/ui/icons_on_screensaver</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show icons on screensaver</short>
+        <long>If true, icons will be shown on screensaver.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/source/always_show</key>
+      <applyto>/apps/gphotoframe/ui/source/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>True</default>
+      <locale name="C">
+        <short>Always show the source icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/source/position</key>
+      <applyto>/apps/gphotoframe/ui/source/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Source icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/geo/always_show</key>
+      <applyto>/apps/gphotoframe/ui/geo/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the geo icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/geo/position</key>
+      <applyto>/apps/gphotoframe/ui/geo/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Geo icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/fav/always_show</key>
+      <applyto>/apps/gphotoframe/ui/fav/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the fav icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/fav/position</key>
+      <applyto>/apps/gphotoframe/ui/fav/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Fav icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
       </locale>
     </schema>
 

@@ -11,6 +11,7 @@ except:
 from base import *
 from ..constants import APP_NAME, VERSION
 from ..utils.keyring import Keyring
+from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
 
 def info():
@@ -21,6 +22,7 @@ class PicasaPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'Picasa Web'
+        self.icon = PicasaIcon
 
     def is_available(self):
         username = GConf().get_string('plugins/picasa/user_id')
@@ -35,7 +37,9 @@ class PicasaPhotoList(PhotoList):
         if self.username:
             key = Keyring('Google Account', protocol='http')
             key.get_passwd_async(self.username, self._google_auth_cb)
-            self._start_timer()
+
+            interval_min = self.conf.get_int('plugins/picasa/interval', 60)
+            self._start_timer(interval_min)
 
     def _google_auth_cb(self, identity):
         "Get Google Auth Token (ClientLogin)."
@@ -82,6 +86,11 @@ class PicasaPhotoList(PhotoList):
                 if entry.get('author') else self.argument
             #pp.pprint(entry)
 
+            lat = lon = 0
+            if entry.get('georss$where'):
+                geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
+                lat, lon = geo_raw.split()
+
             data = {'url'        : entry['content']['src'],
                     'owner_name' : owner_name,
                     'owner'      : owner_name,
@@ -89,6 +98,7 @@ class PicasaPhotoList(PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
+                    'geo'        : {'lon': lon, 'lat': lat},
                     'icon'       : PicasaIcon}
 
             photo = Photo()
@@ -186,7 +196,7 @@ class PluginPicasaDialog(PluginDialog):
     def _destroy_cb(self, *args):
         self.dialog.destroy()
 
-class PicasaIcon(SourceWebIcon):
+class PicasaIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'picasa.ico'

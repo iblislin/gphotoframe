@@ -15,6 +15,7 @@
     <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
     <signal name="query_tooltip" handler="on_window_query_tooltip"/>
     <signal name="key_press_event" handler="on_window_key_press_event"/>
+    <signal name="enter_notify_event" handler="on_window_enter_notify_event"/>
     <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
     <child>
       <placeholder/>
@@ -339,7 +340,7 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="label14">
+                              <widget class="GtkLabel" id="label_width">
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">Wi_dth:</property>
@@ -352,7 +353,7 @@
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="label15">
+                              <widget class="GtkLabel" id="label_height">
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">_Height:</property>
@@ -401,7 +402,7 @@
                       </widget>
                     </child>
                     <child>
-                      <widget class="GtkLabel" id="label12">
+                      <widget class="GtkLabel" id="label_max_size">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">&lt;b&gt;Maximum Display Size&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -757,7 +758,7 @@
           <widget class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <child>
-              <widget class="GtkButton" id="button2">
+              <widget class="GtkButton" id="button_help">
                 <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
@@ -772,7 +773,7 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkButton" id="button1">
+              <widget class="GtkButton" id="button_close">
                 <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -821,7 +822,7 @@
                 <property name="column_spacing">6</property>
                 <property name="row_spacing">6</property>
                 <child>
-                  <widget class="GtkLabel" id="label14">
+                  <widget class="GtkLabel" id="label_weight">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">_Weight:</property>
@@ -840,7 +841,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
-                    <property name="adjustment">1 1 100 1 0 0</property>
+                    <property name="adjustment">0 0 100 1 0 0</property>
                   </widget>
                   <packing>
                     <property name="left_attach">1</property>
@@ -878,7 +879,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label16">
+                  <widget class="GtkLabel" id="label_source">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">_Source:</property>
@@ -925,7 +926,7 @@
               </widget>
             </child>
             <child>
-              <widget class="GtkLabel" id="label3">
+              <widget class="GtkLabel" id="label_general">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">General</property>
               </widget>
@@ -994,7 +995,7 @@
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
-          <widget class="GtkTable" id="table1">
+          <widget class="GtkTable" id="table3">
             <property name="visible">True</property>
             <property name="border_width">12</property>
             <property name="n_rows">2</property>
@@ -1067,7 +1068,7 @@
             <property name="visible">True</property>
             <property name="layout_style">edge</property>
             <child>
-              <widget class="GtkButton" id="button2">
+              <widget class="GtkButton" id="button_cancel">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1081,7 +1082,7 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkButton" id="button1">
+              <widget class="GtkButton" id="button_ok">
                 <property name="label">gtk-ok</property>
                 <property name="response_id">-5</property>
                 <property name="visible">True</property>

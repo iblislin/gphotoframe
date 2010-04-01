@@ -3,9 +3,10 @@ import copy
 # import pprint
 
 import feedparser
+from gettext import gettext as _
 
 from base import *
-from gettext import gettext as _
+from ..utils.iconimage import LocalIconImage
 
 def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
@@ -14,15 +15,18 @@ class RSSPlugin(PluginBase):
     
     def __init__(self):
         self.name = 'RSS'
+        self.icon = RSSIcon
 
 class RSSPhotoList(PhotoList):
 
     def prepare(self):
         self.photos = []
-        url = self.argument
 
+        url = self.argument
         self._get_url_with_twisted(url)
-        self._start_timer()
+
+        interval_min = self.conf.get_int('plugins/rss/interval', 60)
+        self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
         rss = feedparser.parse(data)
@@ -77,7 +81,7 @@ class PhotoSourceRSSUI(PhotoSourceUI):
             feed_title = self.data[1] or self.data[4].get('feed_title') or ""
             self.target_widget.set_text(feed_title)
 
-class RSSIcon(SourceLocalIcon):
+class RSSIcon(LocalIconImage):
 
     def __init__(self):
         self.icon_name = 'rss-16.png'

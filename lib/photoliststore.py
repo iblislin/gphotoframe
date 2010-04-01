@@ -51,10 +51,12 @@ class PhotoListStore(gtk.ListStore):
 
     def _start_timer(self):
         state = self._change_photo()
+        fullscreen = self.conf.get_bool('fullscreen')
+        screensaver = hasattr(self.photoframe, 'screensaver')
 
         if state is False:
             interval = 5
-        elif self.conf.get_bool('fullscreen'):
+        elif fullscreen or screensaver:
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
             interval = self.conf.get_int('interval', 30)
@@ -63,7 +65,7 @@ class PhotoListStore(gtk.ListStore):
         return False
 
     def _change_photo(self):
-        target_list = [ x[5] for x in self if x[5].photos ]
+        target_list = [ x[5] for x in self if x[5].photos and x[5].weight > 0 ]
         if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self._show_photo_cb)

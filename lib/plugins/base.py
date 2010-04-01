@@ -1,22 +1,29 @@
+from __future__ import division
 import os
 
 import gtk
 import random
 import gobject
 from gettext import gettext as _
-from xdg.BaseDirectory import xdg_cache_home
-from xdg.IconTheme import getIconPath
 from urlparse import urlparse
 
 from .. import constants
 from ..utils.config import GConf
 from ..utils.urlget import UrlGetWithProxy
 from ..utils.proxypac import ParseProxyPac
+from ..utils.EXIF import process_file as exif_process_file
 
 class PluginBase(object):
 
+    def __init__(self):
+        self.icon = SourceIcon
+
     def is_available(self):
         return True
+
+    def get_icon_pixbuf(self):
+        pixbuf = self.icon().get_pixbuf()
+        return pixbuf
 
 class PhotoList(object):
     """Photo Factory"""
@@ -40,7 +47,7 @@ class PhotoList(object):
 
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
-        url = str(self.photo['url'])
+        url = self.photo.get_url()
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
         
@@ -60,8 +67,12 @@ class PhotoList(object):
         cb = cb_arg or self._prepare_cb
         d.addCallback(cb)
 
-    def _start_timer(self, interval=3600):
-        self._timer = gobject.timeout_add(interval * 1000, self.prepare)
+    def _start_timer(self, min=60):
+        if min < 10:
+            print "Interval for API access should be greater than 10 minutes."
+            min = 10
+
+        self._timer = gobject.timeout_add(min * 60 * 1000, self.prepare)
         return False
 
     def _get_photo_cb(self, data, cb):
@@ -176,10 +187,40 @@ class Photo(dict):
 #        print self.get('page_url') or self.get('url')
 #        photoframe.set_photo(self)
 
+    def get_url(self):
+        return self['url']
+
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']
         url = url.replace("'", "%27")
         os.system("gnome-open '%s'" % url)
+
+    def fav(self, new_rate):
+        if self.get('fav'):
+            fav_obj = self['fav']
+            fav_obj.change_fav(new_rate)
+
+    def get_exif(self):
+        file = open(self['filename'], 'rb')
+        tags = exif_process_file(file)
+
+        #for i in tags: print i
+        #print str(tags['Image Model'])
+
+        lat_array = tags.get('GPS GPSLatitude')
+        lon_array = tags.get('GPS GPSLongitude')
+
+        if lat_array:
+            lon = lon_array.values
+            lat = lat_array.values
+
+            x = lon[0].num + lon[1].num/60.0 + lon[2].num/3600.0/lon[2].den
+            y = lat[0].num + lat[1].num/60.0 + lat[2].num/3600.0/lat[2].den
+
+            lon_ref = -1 if str(tags.get('GPS GPSLongitudeRef')) == 'W' else 1
+            lat_ref = -1 if str(tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
+
+            self['geo']= {'lon': x * lon_ref, 'lat': y * lat_ref}
 
 class PluginDialog(object):
     """Photo Source Dialog"""
@@ -204,56 +245,3 @@ class PluginDialog(object):
 
         self.dialog.destroy()
         return response_id, {}
-
-class SourceIcon(object):
-
-    def __init__(self):
-        self.icon_name = 'image-x-generic'
-
-    def get_image(self, size=16):
-        self.size = size
-        file = self._get_icon_file()
-
-        image = gtk.Image()
-        image.set_from_file(file)
-        return image
-
-    def get_pixbuf(self, size=16):
-        self.size = size
-        file = self._get_icon_file()
-
-        pixbuf = gtk.gdk.pixbuf_new_from_file(file)
-        return pixbuf
-
-    def _get_icon_file(self):
-        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
-        return icon_path
-
-class SourceLocalIcon(SourceIcon):
-
-    def _get_icon_file(self):
-        icon_path = os.path.join(constants.SHARED_DATA_DIR, self.icon_name)
-        return icon_path
-
-class SourceWebIcon(SourceIcon):
-
-    def _get_icon_file(self):
-        cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
-        file = os.path.join(cache_dir, self.icon_name)
-
-        if not os.access(file, os.R_OK):
-            self._download_icon(self.icon_url, cache_dir, self.icon_name)
-
-            super(SourceWebIcon, self).__init__()
-            file = super(SourceWebIcon, self)._get_icon_file()
-
-        return file
-
-    def _download_icon(self, icon_url, cache_dir, icon_name):
-        if not os.access(cache_dir, os.W_OK):
-            os.makedirs(cache_dir)
-
-        icon_file = os.path.join(cache_dir, icon_name)
-        proxy = ParseProxyPac().get_proxy(url)
-        urlget = UrlGetWithProxy(proxy)
-        d = urlget.downloadPage(icon_url, icon_file)

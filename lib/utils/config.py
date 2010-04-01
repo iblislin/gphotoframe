@@ -43,8 +43,10 @@ class GConf(object):
     def set_bool(self, key, val):
         return self.gconf.set_bool(self.dir + key, val)
 
-    def get_bool(self, key):
-        val = self.gconf.get_bool(self.dir + key)
+    def get_bool(self, key, default=None):
+        path = self.dir + key
+        val = default if self.gconf.get(path) is None \
+            else self.gconf.get_bool(path)
         return val
 
     def recursive_unset(self, key):
