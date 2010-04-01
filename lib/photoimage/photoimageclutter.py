@@ -94,6 +94,11 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
                                    PhotoImageScreenSaver):
 
+    def __init__(self, photoframe):
+        super(PhotoImageClutterScreenSaver, self).__init__(photoframe)
+        if not self.conf.get_bool('ui/icons_on_screensaver', False):
+            self.actors = []
+
     def check_mouse_on_window(self):
         return False
 
