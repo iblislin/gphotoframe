@@ -70,19 +70,8 @@ class PhotoImageClutter(PhotoImage):
         return result
 
     def check_mouse_on_window(self):
-        rootwin = self.embed.window.get_screen().get_root_window()
-        x, y, mods = rootwin.get_pointer()
-        w, h = self.w, self.h
-
-        cx = self.conf.get_int('root_x', 0)
-        cy = self.conf.get_int('root_y', 0)
-        diff_w = w - abs(cx - x) * 2
-        diff_h = h - abs(cy - y) * 2
-        result = diff_w >= 0 and diff_h >= 0
-
-        # cx, cy = self.photoframe.window.get_position()
-        # result = x - cx < w and y - cy < h
-
+        window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
+        result = window is self.embed.window
         return result
 
 class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
