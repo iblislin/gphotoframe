@@ -26,12 +26,17 @@ class PhotoImageClutter(PhotoImage):
         self.stage.set_color(clutter.color_from_string(color))
 
         self.photo_image = Texture(self.stage)
+        self.photo_image2 = Texture(self.stage)
+
         self.actors = [ ActorSourceIcon(self.stage), 
                         ActorGeoIcon(self.stage),
                         ActorFavIcon(self.stage), ]
 
         self.photo_image.show()
+        self.photo_image2.show()
         self.embed.show()
+
+        self.first = True
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
@@ -44,10 +49,13 @@ class PhotoImageClutter(PhotoImage):
         self.h = pixbuf.get_height()
 
         x, y = self._get_image_position()
-        self.photo_image.change(pixbuf, x, y)
+        self._change_texture(pixbuf, x, y)
 
         for actor in self.actors:
             actor.set_icon(self, x, y)
+
+    def _change_texture(self, pixbuf, x, y):
+        self.photo_image.change(pixbuf, x, y)
 
     def _get_image_position(self):
         return self.border, self.border
@@ -75,6 +83,24 @@ class PhotoImageClutter(PhotoImage):
         return result
 
 class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
+
+    def _change_texture(self, pixbuf, x, y):
+        animation = self.conf.get_bool('ui/screensaver_animation', False)
+
+        if not animation:
+            self.photo_image.change(pixbuf, x, y)
+            return
+
+        if self.first:
+            self.photo_image.change(pixbuf, x, y)
+            self.photo_image.timeline_fade_in.start()
+            self.photo_image2.timeline_fade_out.start()
+        else:
+            self.photo_image2.change(pixbuf, x, y)
+            self.photo_image.timeline_fade_out.start()
+            self.photo_image2.timeline_fade_in.start()
+
+        self.first = not self.first
 
     def _get_image_position(self):
         root_w, root_h = self._get_max_display_size()
