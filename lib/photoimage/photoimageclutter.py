@@ -101,7 +101,7 @@ class Texture(cluttergtk.Texture):
 
     def __init__(self, stage):
         super(Texture, self).__init__()
-        super(Texture, self).hide()
+        # super(Texture, self).hide() # FIXME?
 
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
@@ -127,7 +127,16 @@ class Texture(cluttergtk.Texture):
 
 class ActorIcon(object):
 
-    def calc_position(self, photoimage, icon, position, image_x, image_y):
+    def set_icon(self, photoimage, x_offset, y_offset):
+        self.photo = photoimage.photo
+        self.photoimage = photoimage
+
+        if self.photo: 
+            self.icon_image = self._get_icon()
+            self.x, self.y = self._calc_position(
+                photoimage, self.icon_image, self.position, x_offset, y_offset)
+
+    def _calc_position(self, photoimage, icon, position, image_x, image_y):
         icon_pixbuf = icon.get_pixbuf()
 
         side = photoimage.w if photoimage.w > photoimage.h else photoimage.h 
@@ -157,16 +166,15 @@ class ActorSourceIcon(ActorIcon):
         self._get_ui_data()
 
     def set_icon(self, photoimage, x_offset, y_offset):
-        self.photo = photoimage.photo
-        self.photoimage = photoimage
-        if self.photo == None: return
+        super(ActorSourceIcon, self).set_icon(photoimage, x_offset, y_offset)
 
-        icon = self._get_icon()
-        x, y = self.calc_position(photoimage, icon, self.position, 
-                                  x_offset, y_offset)
+        if self.photo == None:
+            self.hide(True)
+            return
+
         if photoimage.w > 80 and photoimage.h > 80: # for small photo image
-            icon_pixbuf = icon.get_pixbuf()
-            self.texture.change(icon_pixbuf, x, y)
+            icon_pixbuf = self.icon_image.get_pixbuf()
+            self.texture.change(icon_pixbuf, self.x, self.y)
             self.show()
 
     def show(self, force=False):
@@ -228,7 +236,7 @@ class ActorFavIcon(ActorIcon):
 
         if self.photo.has_key('rate'):
             # for narrow photo image width
-            space = self.image.get_pixbuf().get_width() * 1.3
+            space = self.icon_image.get_pixbuf().get_width() * 1.3
             num = int ((self.photoimage.w - 60) / space) \
                 if self.photoimage.w - 60 < 5 * space else 5
         else:
@@ -243,22 +251,23 @@ class ActorFavIcon(ActorIcon):
             icon.hide()
 
     def set_icon(self, photoimage, x_offset, y_offset):
-        self.photo = photoimage.photo
-        self.photoimage = photoimage
+        super(ActorFavIcon, self).set_icon(photoimage, x_offset, y_offset)
 
-        if self.photo == None or 'fav' not in self.photo: return
+        if self.photo == None or 'fav' not in self.photo: 
+            self.hide(True)
+            return
 
-        self.image = IconImage('emblem-favorite')
-        self.x, self.y = self.calc_position(photoimage, self.image, self.position,
-                                            x_offset, y_offset)
         self._change_icon()
+
+    def _get_icon(self):
+        return IconImage('emblem-favorite')
 
     def _change_icon(self):
         direction = -1 if 0 < self.position < 3 else 1
 
         for i, icon in enumerate(self.icon):
             state = self.photo['fav'].fav <= i
-            pixbuf = self.image.get_pixbuf(state)
+            pixbuf = self.icon_image.get_pixbuf(state)
             space = int(pixbuf.get_width() * 1.3)
             icon.change(pixbuf, self.x + i * direction * space, self.y)
 
