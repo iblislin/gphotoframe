@@ -1,5 +1,6 @@
 2010-03-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoimageclutter.py: Added support for clutter icon animations.
 	* photoimageclutter.py, photoframe.py: Fixed clutter icons
 	  show/hide behavior.
 
