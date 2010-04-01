@@ -321,7 +321,7 @@
       <default>false</default>
       <locale name="C">
         <short>Enable icon animations</short>
-        <long>If true, hiding and un-hiding of icons will be animated.</long>
+        <long>If true, hiding and un-hiding of icons will be animated.  The program needs to be restarted to take effect the change of the setting.</long>
       </locale>
     </schema>
 
