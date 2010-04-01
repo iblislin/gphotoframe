@@ -152,6 +152,10 @@ class IconTexture(Texture):
 
 class ActorIcon(object):
 
+    def __init__(self):
+        self.conf = GConf()
+        self._get_ui_data()
+
     def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
         self.photoimage = photoimage
@@ -201,11 +205,10 @@ class ActorIcon(object):
 class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
+        super(ActorSourceIcon, self).__init__()
+
         self.texture = IconTexture(stage)
         self.texture.connect('button-press-event', self._on_button_press_cb)
-
-        self.conf = GConf()
-        self._get_ui_data()
 
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorSourceIcon, self).set_icon(photoimage, x_offset, y_offset)
@@ -256,9 +259,6 @@ class ActorGeoIcon(ActorSourceIcon):
     def _get_ui_data(self):
         self._set_ui_options('geo', False, 2)
 
-        #self.show_always = GConf().get_bool('ui/geo/always_show', False)
-        #self.position = GConf().get_int('ui/geo/position', 2)
-
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
@@ -270,9 +270,8 @@ class ActorGeoIcon(ActorSourceIcon):
 class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, num=5):
+        super(ActorFavIcon, self).__init__()
         self.icon = [ FavIconTexture(stage, i, self.cb) for i in xrange(num)]
-        self.conf = GConf()
-        self._set_ui_options('fav', False, 0)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or 
@@ -327,6 +326,9 @@ class ActorFavIcon(ActorIcon):
     def cb(self, rate):
         self.photo.fav(rate + 1)
         self._change_icon()
+
+    def _get_ui_data(self):
+        self._set_ui_options('fav', False, 0)
 
 class FavIconTexture(IconTexture):
 
