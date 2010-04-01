@@ -159,7 +159,6 @@ class ActorSourceIcon(ActorIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
         self.photoimage = photoimage
-        self.hide(True)
         if self.photo == None: return
 
         icon = self._get_icon()
@@ -246,7 +245,6 @@ class ActorFavIcon(ActorIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
         self.photoimage = photoimage
-        self.hide(True)
 
         if self.photo == None or 'fav' not in self.photo: return
 
