@@ -25,7 +25,7 @@ class PhotoImageClutter(PhotoImage):
         color = self._get_border_color()
         self.stage.set_color(clutter.color_from_string(color))
 
-        self.photo_image = ActorPhotoImage(self.stage)
+        self.photo_image = Texture(self.stage)
         self.actors = [ ActorSourceIcon(self.stage), 
                         ActorGeoIcon(self.stage),
                         ActorFavIcon(self.stage), ]
@@ -108,11 +108,11 @@ class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen,
     def check_mouse_on_window(self):
         return False
 
-class ActorPhotoImage(cluttergtk.Texture):
+class Texture(cluttergtk.Texture):
 
     def __init__(self, stage):
-        super(ActorPhotoImage, self).__init__()
-        super(ActorPhotoImage, self).hide()
+        super(Texture, self).__init__()
+        super(Texture, self).hide()
 
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
@@ -161,7 +161,7 @@ class ActorIcon(object):
 class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
-        self.texture = ActorPhotoImage(stage)
+        self.texture = Texture(stage)
         self.texture.connect('button-press-event', self._on_button_press_cb)
 
         self.conf = GConf()
@@ -228,7 +228,7 @@ class ActorGeoIcon(ActorSourceIcon):
 class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, num=5):
-        self.icon = [ ActorFavIconOne(stage, i, self.cb) for i in xrange(num)]
+        self.icon = [ FavIconTexture(stage, i, self.cb) for i in xrange(num)]
         self.conf = GConf()
         self.show_always = self.conf.get_bool('ui/fav/always_show', False)
         self.position = self.conf.get_int('ui/fav/position', 0)
@@ -286,10 +286,10 @@ class ActorFavIcon(ActorIcon):
         self.photo.fav(rate + 1)
         self._change_icon()
 
-class ActorFavIconOne(ActorPhotoImage):
+class FavIconTexture(Texture):
 
     def __init__(self, stage, num, cb):
-        super(ActorFavIconOne, self).__init__(stage)
+        super(FavIconTexture, self).__init__(stage)
         self.number = num
         self.cb = cb
 
