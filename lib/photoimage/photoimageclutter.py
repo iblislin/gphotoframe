@@ -181,6 +181,23 @@ class ActorIcon(object):
         # print x, y, offset
         return x, y
 
+    def _set_ui_options(self, ui, state=False, position=0):
+        always_key = 'ui/%s/always_show' % ui
+        position_key = 'ui/%s/position' % ui
+
+        self.show_always = self.conf.get_bool(always_key, state)
+        self.position = self.conf.get_int(position_key, position)
+
+        self.conf.set_notify_add(always_key, self._change_ui_always_show_cb)
+        self.conf.set_notify_add(position_key, self._change_ui_position_cb)
+
+    def _change_ui_always_show_cb(self, client, id, entry, data):
+        self.show_always = entry.value.get_bool()
+        self.show() if self.show_always else self.hide()
+
+    def _change_ui_position_cb(self, client, id, entry, data):
+        self.position = entry.value.get_int()
+
 class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
@@ -216,8 +233,7 @@ class ActorSourceIcon(ActorIcon):
         return self.photo.get('icon')()
 
     def _get_ui_data(self):
-        self.show_always = self.conf.get_bool('ui/source/always_show', True)
-        self.position = self.conf.get_int('ui/source/position', 1)
+        self._set_ui_options('source', True, 1)
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
@@ -238,8 +254,10 @@ class ActorGeoIcon(ActorSourceIcon):
         return IconImage('gnome-globe')
 
     def _get_ui_data(self):
-        self.show_always = GConf().get_bool('ui/geo/always_show', False)
-        self.position = GConf().get_int('ui/geo/position', 2)
+        self._set_ui_options('geo', False, 2)
+
+        #self.show_always = GConf().get_bool('ui/geo/always_show', False)
+        #self.position = GConf().get_int('ui/geo/position', 2)
 
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
@@ -254,8 +272,7 @@ class ActorFavIcon(ActorIcon):
     def __init__(self, stage, num=5):
         self.icon = [ FavIconTexture(stage, i, self.cb) for i in xrange(num)]
         self.conf = GConf()
-        self.show_always = self.conf.get_bool('ui/fav/always_show', False)
-        self.position = self.conf.get_int('ui/fav/position', 0)
+        self._set_ui_options('fav', False, 0)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or 
