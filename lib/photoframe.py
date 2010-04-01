@@ -215,7 +215,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
 
     def _set_photoimage(self):
-        self.photoimage = PhotoImageFullScreen(self)
+        self.photoimage = PhotoImageFullScreenFactory().create(self)
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
@@ -223,7 +223,7 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _set_signal_cb(self, gui):
         # super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
-        cursor = Cursor()
+        self.ui = FullScreenUI(self.photoimage, self.window)
         dic = { 
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
@@ -231,15 +231,15 @@ class PhotoFrameFullScreen(PhotoFrame):
             "on_window_query_tooltip"      : self._query_tooltip_cb,
 
             "on_window_key_press_event" : self._keypress_cb,
-            "on_window_button_press_event" : cursor.show_cb,
-            "on_window_motion_notify_event" : cursor.show_cb,
-            "on_window_realize" : cursor.hide_cb,
-            "on_window_destroy" : cursor.stop_timer_cb,
+            "on_window_button_press_event"  : self.ui.show_cb,
+            "on_window_motion_notify_event" : self.ui.show_cb,
+            "on_window_realize" : self.ui.hide_cb,
+            "on_window_destroy" : self.ui.stop_timer_cb,
             }
         gui.connect_signals(dic)
 
     def _save_geometry_cb(self, widget, event):
-        pass
+        self.photoimage.on_leave_cb(widget, event)
 
     def _change_window_fix_cb(self, client, id, entry, data):
         pass
@@ -256,27 +256,54 @@ class PhotoFrameScreenSaver(object):
 
     def __init__(self):
         self.window = GsThemeWindow()
+        self.screensaver = True
         self.window.show()
 
-        self.photoimage = PhotoImageScreenSaver(self)
+        self.photoimage = PhotoImageScreenSaverFactory().create(self)
         self.window.add(self.photoimage.image)
  
     def set_photo(self, photo, change=True):
         return self.photoimage.set_photo(photo)
 
+class FullScreenUI(object):
+
+    def __init__(self, photoimage, window):
+        self.photoimage = photoimage
+        self.cursor = Cursor()
+        self.is_show = True
+
+        self.start_timer_cb(window, None)
+
+    def show_cb(self, widget, event):
+        self.is_show = True
+        self.photoimage.on_enter_cb(widget, event)
+        self.cursor.show(widget)
+
+        self.stop_timer_cb()
+        self.start_timer_cb(widget, event)
+
+    def hide_cb(self, widget, event):
+        self.is_show = False
+        self.photoimage.on_leave_cb(widget, event)
+        self.cursor.hide(widget)
+
+    def start_timer_cb(self, widget, event):
+        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
+
+    def stop_timer_cb(self, *args):
+        if hasattr(self, "_timer"):
+            gobject.source_remove(self._timer)
+
 class Cursor(object):
     def __init__(self):
         self._is_show = True
 
-    def show_cb(self, widget, evevt):
+    def show(self, widget):
         if not self._is_show:
             self._is_show = True
             widget.window.set_cursor(None)
 
-        self.stop_timer_cb()
-        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget)
-
-    def hide_cb(self, widget):
+    def hide(self, widget):
         if self._is_show:
             widget.set_tooltip_markup(None)
 
@@ -286,7 +313,3 @@ class Cursor(object):
             cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
             widget.window.set_cursor(cursor)
             return False
-
-    def stop_timer_cb(self, *args):
-        if hasattr(self, "_timer"):
-            gobject.source_remove(self._timer)
