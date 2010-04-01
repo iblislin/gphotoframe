@@ -121,7 +121,7 @@ class Texture(cluttergtk.Texture):
         self.timeline_fade_in = FadeAnimationTimeline(self)
         self.timeline_fade_out = FadeAnimationTimeline(self, 255, 0)
 
-        self.is_show = False
+        self.is_show = True
 
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
