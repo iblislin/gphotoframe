@@ -107,6 +107,11 @@ class Texture(cluttergtk.Texture):
         self.connect('button-press-event', self._on_button_press_cb)
         stage.add(self)
 
+        self.timeline_fade_in = FadeAnimationTimeline(self)
+        self.timeline_fade_out = FadeAnimationTimeline(self, 255, 0)
+
+        self.is_show = True
+
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
         self.set_position(x, y)
@@ -124,6 +129,21 @@ class Texture(cluttergtk.Texture):
             pixbuf.props.height,
             pixbuf.props.rowstride,
             bpp, 0)
+
+class IconTexture(Texture):
+
+    def show(self):
+        super(IconTexture, self).show()
+
+        if not self.is_show:
+            self.timeline_fade_in.start()
+        self.is_show = True
+
+    def hide(self):
+        #super(IconTexture, self).hide()
+        if self.is_show:
+            self.timeline_fade_out.start()
+        self.is_show = False
 
 class ActorIcon(object):
 
@@ -159,7 +179,7 @@ class ActorIcon(object):
 class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
-        self.texture = Texture(stage)
+        self.texture = IconTexture(stage)
         self.texture.connect('button-press-event', self._on_button_press_cb)
 
         self.conf = GConf()
@@ -183,7 +203,8 @@ class ActorSourceIcon(ActorIcon):
             self.texture.show()
 
     def hide(self, force=False):
-        if not self.show_always or force:
+        mouse_on = self.photoimage.check_mouse_on_window()
+        if (not self.show_always or force) and not mouse_on:
             self.texture.hide()
 
     def _get_icon(self):
@@ -246,7 +267,8 @@ class ActorFavIcon(ActorIcon):
             self.icon[i].show()
 
     def hide(self, force=False):
-        if self.show_always and not force: return
+        mouse_on = self.photoimage.check_mouse_on_window()
+        if (self.show_always and not force) or mouse_on: return
         for icon in self.icon:
             icon.hide()
 
@@ -282,7 +304,7 @@ class ActorFavIcon(ActorIcon):
         self.photo.fav(rate + 1)
         self._change_icon()
 
-class FavIconTexture(Texture):
+class FavIconTexture(IconTexture):
 
     def __init__(self, stage, num, cb):
         super(FavIconTexture, self).__init__(stage)
@@ -291,3 +313,15 @@ class FavIconTexture(Texture):
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
+
+class FadeAnimationTimeline():
+
+    def __init__(self, actor, start=0, end=255, time=300):
+        self.timeline = clutter.Timeline(time)
+        self.alpha = clutter.Alpha(self.timeline, clutter.EASE_OUT_SINE)
+        self.behaviour = clutter.BehaviourOpacity(
+            alpha=self.alpha, opacity_start=start, opacity_end=end)
+        self.behaviour.apply(actor)
+
+    def start(self):
+        self.timeline.start()
