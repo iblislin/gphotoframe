@@ -94,6 +94,11 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
                                    PhotoImageScreenSaver):
 
+    def __init__(self, photoframe):
+        super(PhotoImageClutterScreenSaver, self).__init__(photoframe)
+        if not self.conf.get_bool('ui/icons_on_screensaver', False):
+            self.actors = []
+
     def check_mouse_on_window(self):
         return False
 
@@ -101,11 +106,16 @@ class Texture(cluttergtk.Texture):
 
     def __init__(self, stage):
         super(Texture, self).__init__()
-        # super(Texture, self).hide() # FIXME?
+        super(Texture, self).hide() # FIXME?
 
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
         stage.add(self)
+
+        self.timeline_fade_in = FadeAnimationTimeline(self)
+        self.timeline_fade_out = FadeAnimationTimeline(self, 255, 0)
+
+        self.is_show = True
 
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
@@ -125,7 +135,31 @@ class Texture(cluttergtk.Texture):
             pixbuf.props.rowstride,
             bpp, 0)
 
+class IconTexture(Texture):
+
+    def __init__(self, stage):
+        super(IconTexture, self).__init__(stage)
+        self.conf = GConf()
+        self.animation = self.conf.get_bool('ui/icon_animations', False)
+
+    def show(self):
+        super(IconTexture, self).show()
+        if not self.is_show and self.animation:
+            self.timeline_fade_in.start()
+        self.is_show = True
+
+    def hide(self):
+        if not self.animation:
+            super(IconTexture, self).hide()
+        elif self.is_show:
+            self.timeline_fade_out.start()
+        self.is_show = False
+
 class ActorIcon(object):
+
+    def __init__(self):
+        self.conf = GConf()
+        self._get_ui_data()
 
     def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
@@ -156,14 +190,30 @@ class ActorIcon(object):
         # print x, y, offset
         return x, y
 
+    def _set_ui_options(self, ui, state=False, position=0):
+        always_key = 'ui/%s/always_show' % ui
+        position_key = 'ui/%s/position' % ui
+
+        self.show_always = self.conf.get_bool(always_key, state)
+        self.position = self.conf.get_int(position_key, position)
+
+        self.conf.set_notify_add(always_key, self._change_ui_always_show_cb)
+        self.conf.set_notify_add(position_key, self._change_ui_position_cb)
+
+    def _change_ui_always_show_cb(self, client, id, entry, data):
+        self.show_always = entry.value.get_bool()
+        self.show() if self.show_always else self.hide()
+
+    def _change_ui_position_cb(self, client, id, entry, data):
+        self.position = entry.value.get_int()
+
 class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage):
-        self.texture = Texture(stage)
-        self.texture.connect('button-press-event', self._on_button_press_cb)
+        super(ActorSourceIcon, self).__init__()
 
-        self.conf = GConf()
-        self._get_ui_data()
+        self.texture = IconTexture(stage)
+        self.texture.connect('button-press-event', self._on_button_press_cb)
 
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorSourceIcon, self).set_icon(photoimage, x_offset, y_offset)
@@ -183,15 +233,15 @@ class ActorSourceIcon(ActorIcon):
             self.texture.show()
 
     def hide(self, force=False):
-        if not self.show_always or force:
+        mouse_on = self.photoimage.check_mouse_on_window()
+        if (not self.show_always and not mouse_on) or force:
             self.texture.hide()
 
     def _get_icon(self):
         return self.photo.get('icon')()
 
     def _get_ui_data(self):
-        self.show_always = self.conf.get_bool('ui/source/always_show', True)
-        self.position = self.conf.get_int('ui/source/position', 1)
+        self._set_ui_options('source', True, 1)
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
@@ -205,13 +255,14 @@ class ActorGeoIcon(ActorSourceIcon):
             self.photo['geo']['lat'] != 0 and
             self.photo['geo']['lon'] != 0):
             super(ActorGeoIcon, self).show(force)
+        else:
+            super(ActorGeoIcon, self).hide(True)
 
     def _get_icon(self):
         return IconImage('gnome-globe')
 
     def _get_ui_data(self):
-        self.show_always = GConf().get_bool('ui/geo/always_show', False)
-        self.position = GConf().get_int('ui/geo/position', 2)
+        self._set_ui_options('geo', False, 2)
 
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
@@ -224,10 +275,8 @@ class ActorGeoIcon(ActorSourceIcon):
 class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, num=5):
+        super(ActorFavIcon, self).__init__()
         self.icon = [ FavIconTexture(stage, i, self.cb) for i in xrange(num)]
-        self.conf = GConf()
-        self.show_always = self.conf.get_bool('ui/fav/always_show', False)
-        self.position = self.conf.get_int('ui/fav/position', 0)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or 
@@ -246,7 +295,8 @@ class ActorFavIcon(ActorIcon):
             self.icon[i].show()
 
     def hide(self, force=False):
-        if self.show_always and not force: return
+        mouse_on = self.photoimage.check_mouse_on_window()
+        if (self.show_always or mouse_on) and not force : return
         for icon in self.icon:
             icon.hide()
 
@@ -282,7 +332,10 @@ class ActorFavIcon(ActorIcon):
         self.photo.fav(rate + 1)
         self._change_icon()
 
-class FavIconTexture(Texture):
+    def _get_ui_data(self):
+        self._set_ui_options('fav', False, 0)
+
+class FavIconTexture(IconTexture):
 
     def __init__(self, stage, num, cb):
         super(FavIconTexture, self).__init__(stage)
@@ -291,3 +344,15 @@ class FavIconTexture(Texture):
 
     def _on_button_press_cb(self, actor, event):
         self.cb(self.number)
+
+class FadeAnimationTimeline():
+
+    def __init__(self, actor, start=0, end=255, time=300):
+        self.timeline = clutter.Timeline(time)
+        self.alpha = clutter.Alpha(self.timeline, clutter.EASE_OUT_SINE)
+        self.behaviour = clutter.BehaviourOpacity(
+            alpha=self.alpha, opacity_start=start, opacity_end=end)
+        self.behaviour.apply(actor)
+
+    def start(self):
+        self.timeline.start()
