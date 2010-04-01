@@ -214,7 +214,7 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _set_signal_cb(self, gui):
         super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
 
-        self.ui = FullScreenUI(self.photoimage)
+        self.ui = FullScreenUI(self.photoimage, self.window)
         dic = { 
             "on_window_key_press_event" : self._keypress_cb,
             "on_window_button_press_event"  : self.ui.show_cb,
@@ -253,23 +253,28 @@ class PhotoFrameScreenSaver(object):
 
 class FullScreenUI(object):
 
-    def __init__(self, photoimage):
+    def __init__(self, photoimage, window):
         self.photoimage = photoimage
         self.cursor = Cursor()
         self.is_show = True
 
+        self.start_timer_cb(window, None)
+
     def show_cb(self, widget, event):
+        self.is_show = True
         self.photoimage.on_enter_cb(widget, event)
         self.cursor.show(widget)
 
         self.stop_timer_cb()
-        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
-        self.is_show = True
+        self.start_timer_cb(widget, event)
 
     def hide_cb(self, widget, event):
+        self.is_show = False
         self.photoimage.on_leave_cb(widget, event)
         self.cursor.hide(widget)
-        self.is_show = False
+
+    def start_timer_cb(self, widget, event):
+        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
