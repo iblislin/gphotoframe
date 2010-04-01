@@ -258,18 +258,20 @@ class FullScreenUI(object):
         self.cursor = Cursor()
         self.is_show = True
 
+        self.show_cb()
+
     def show_cb(self, widget, event):
+        self.is_show = True
         self.photoimage.on_enter_cb(widget, event)
         self.cursor.show(widget)
 
         self.stop_timer_cb()
         self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
-        self.is_show = True
 
     def hide_cb(self, widget, event):
+        self.is_show = False
         self.photoimage.on_leave_cb(widget, event)
         self.cursor.hide(widget)
-        self.is_show = False
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
