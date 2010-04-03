@@ -3,12 +3,12 @@ from __future__ import division
 try:
     import cluttergtk
     import clutter
-except:
+except ImportError:
     from ..utils.nullobject import Null
     cluttergtk = Null()
 
-from actors import *
 from ..utils.config import GConf
+from actors import *
 from photoimagegtk import *
 
 class PhotoImageClutter(PhotoImage):

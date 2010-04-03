@@ -4,7 +4,7 @@ import os
 try:
     import cluttergtk
     import clutter
-except:
+except ImportError:
     from ..utils.nullobject import Null
     cluttergtk = Null()
     cluttergtk.Texture = Null()
