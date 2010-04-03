@@ -1,5 +1,8 @@
-import cluttergtk
-import clutter
+try:
+    import cluttergtk
+    import clutter
+except ImportError:
+    pass
 
 class FadeAnimationTimeline():
 
