@@ -1,3 +1,13 @@
+2010-04-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, actors.py, animation.py: Improved icon
+	  animation on fullscreen.
+
+2010-04-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added support fade-in/out animation in
+	  fullscreen mode.
+
 2010-04-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimageclutter.py: Added GConf notify for UI.  Fixed bugs.
