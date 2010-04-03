@@ -237,11 +237,10 @@ class ActorFavIcon(ActorIcon):
             icon.change(pixbuf, self.x + i * direction * space, self.y)
 
             mouse_on = self.photoimage.check_mouse_on_window()
-            if self.show_always or mouse_on:
+            if type(self.photo['fav'].fav) is bool and i > 0:
+                icon.hide()
+            elif self.show_always or mouse_on:
                 icon.show()
-
-            if type(self.photo['fav'].fav) is bool:
-                break
 
     def cb(self, rate):
         self.photo.fav(rate + 1)
