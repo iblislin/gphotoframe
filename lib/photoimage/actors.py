@@ -4,12 +4,12 @@ import os
 try:
     import cluttergtk
     import clutter
-    from animation import FadeAnimationTimeline
 except:
     from ..utils.nullobject import Null
     cluttergtk = Null()
     cluttergtk.Texture = Null()
 
+from animation import FadeAnimationTimeline
 from ..utils.iconimage import IconImage
 from ..utils.config import GConf
 
@@ -23,12 +23,15 @@ class Texture(cluttergtk.Texture):
         self.connect('button-press-event', self._on_button_press_cb)
         stage.add(self)
 
-        self.timeline = FadeAnimationTimeline(self)
+        self._set_animation_timeline()
         self.is_show = False
 
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
         self.set_position(x, y)
+
+    def _set_animation_timeline(self):
+        self.timeline = FadeAnimationTimeline(self)
 
     def _on_button_press_cb(self, actor, event):
         pass
@@ -67,6 +70,9 @@ class IconTexture(Texture):
         elif self.is_show:
             self.timeline.fade_out()
         self.is_show = False
+
+    def _set_animation_timeline(self):
+        self.timeline = FadeAnimationTimeline(self, 300)
 
 class ActorIcon(object):
 
