@@ -3,7 +3,7 @@ import clutter
 
 class FadeAnimationTimeline():
 
-    def __init__(self, actor, time=300, start=0, end=255):
+    def __init__(self, actor, time=1000, start=0, end=255):
 
         self.timeline_fade_in  = FadeAnimation(actor, time, start, end)
         self.timeline_fade_out = FadeAnimation(actor, time, end, start)

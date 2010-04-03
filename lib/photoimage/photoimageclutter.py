@@ -3,11 +3,11 @@ from __future__ import division
 try:
     import cluttergtk
     import clutter
-    from actors import *
 except:
     from ..utils.nullobject import Null
     cluttergtk = Null()
 
+from actors import *
 from ..utils.config import GConf
 from photoimagegtk import *
 
