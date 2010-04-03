@@ -87,11 +87,15 @@ class PhotoImageClutter(PhotoImage):
 
 class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
-    def _change_texture(self, pixbuf, x, y):
-        animation = self.conf.get_bool('ui/screensaver_animation', False)
+    def __init__(self, photoframe):
+        super(PhotoImageClutterFullScreen, self).__init__(photoframe)
+        self.animation = self.conf.get_bool('ui/screensaver_animation', False)
+        if self.animation:
+            self.photo_image.set_opacity(0)
 
-        if not animation:
-            self.photo_image.change(pixbuf, x, y)
+    def _change_texture(self, pixbuf, x, y):
+        if not self.animation:
+            super(PhotoImageClutterFullScreen, self)._change_texture(pixbuf, x, y)
             return
 
         image1, image2 = self.photo_image, self.photo_image2
@@ -127,13 +131,13 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         return result
 
     def on_enter_cb(self, w, e):
-        act = self.actors2 if self.first else self.actors
+        act = self.actors2 if self.first and self.animation else self.actors
 
         for actor in act:
             actor.show(True)
 
     def on_leave_cb(self, w, e):
-        act = self.actors2 if self.first else self.actors
+        act = self.actors2 if self.first and self.animation else self.actors
 
         for actor in act:
             actor.hide()
@@ -397,7 +401,7 @@ class FavIconTexture(IconTexture):
 
 class FadeAnimationTimeline():
 
-    def __init__(self, actor, start=0, end=255, time=3000):
+    def __init__(self, actor, start=0, end=255, time=300):
         self.timeline = clutter.Timeline(time)
         self.alpha = clutter.Alpha(self.timeline, clutter.EASE_OUT_SINE)
         self.behaviour = clutter.BehaviourOpacity(
