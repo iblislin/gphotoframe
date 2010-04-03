@@ -19,27 +19,16 @@ class PhotoImageClutter(PhotoImage):
         super(PhotoImageClutter, self).__init__(photoframe)
 
         self.image = self.embed = cluttergtk.Embed()
-        #self.embed.realize()
-
         self.stage = self.embed.get_stage()
         color = self._get_border_color()
         self.stage.set_color(clutter.color_from_string(color))
+        self.embed.show()
 
         self.photo_image = Texture(self.stage)
-        self.photo_image2 = Texture(self.stage)
-
+        self.photo_image.show()
         self.actors = [ ActorSourceIcon(self.stage), 
                         ActorGeoIcon(self.stage),
                         ActorFavIcon(self.stage), ]
-        self.actors2 = [ ActorSourceIcon(self.stage), 
-                        ActorGeoIcon(self.stage),
-                        ActorFavIcon(self.stage), ]
-
-        self.photo_image.show()
-        self.photo_image2.show()
-        self.embed.show()
-
-        self.first = True
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
@@ -89,7 +78,15 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def __init__(self, photoframe):
         super(PhotoImageClutterFullScreen, self).__init__(photoframe)
-        self.animation = self.conf.get_bool('ui/screensaver_animation', False)
+
+        self.photo_image2 = Texture(self.stage)
+        self.photo_image2.show()
+        self.actors2 = [ ActorSourceIcon(self.stage), 
+                        ActorGeoIcon(self.stage),
+                        ActorFavIcon(self.stage), ]
+        self.first = True # image1 or image2
+
+        self.animation = self.conf.get_bool('ui/animate_fullscreen', False)
         if self.animation:
             self.photo_image.set_opacity(0)
 
@@ -132,13 +129,11 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def on_enter_cb(self, w, e):
         act = self.actors2 if self.first and self.animation else self.actors
-
         for actor in act:
             actor.show(True)
 
     def on_leave_cb(self, w, e):
         act = self.actors2 if self.first and self.animation else self.actors
-
         for actor in act:
             actor.hide()
 
@@ -191,7 +186,7 @@ class IconTexture(Texture):
     def __init__(self, stage):
         super(IconTexture, self).__init__(stage)
         self.conf = GConf()
-        self.animation = self.conf.get_bool('ui/icon_animations', False)
+        self.animation = self.conf.get_bool('ui/animate_icons', True)
 
     def show(self):
         super(IconTexture, self).show()
