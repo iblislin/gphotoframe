@@ -31,6 +31,9 @@ class PhotoImageClutter(PhotoImage):
         self.actors = [ ActorSourceIcon(self.stage), 
                         ActorGeoIcon(self.stage),
                         ActorFavIcon(self.stage), ]
+        self.actors2 = [ ActorSourceIcon(self.stage), 
+                        ActorGeoIcon(self.stage),
+                        ActorFavIcon(self.stage), ]
 
         self.photo_image.show()
         self.photo_image2.show()
@@ -51,11 +54,11 @@ class PhotoImageClutter(PhotoImage):
         x, y = self._get_image_position()
         self._change_texture(pixbuf, x, y)
 
-        for actor in self.actors:
-            actor.set_icon(self, x, y)
-
     def _change_texture(self, pixbuf, x, y):
         self.photo_image.change(pixbuf, x, y)
+
+        for actor in self.actors:
+            actor.set_icon(self, x, y)
 
     def _get_image_position(self):
         return self.border, self.border
@@ -91,14 +94,20 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
             self.photo_image.change(pixbuf, x, y)
             return
 
-        if self.first:
-            self.photo_image.change(pixbuf, x, y)
-            self.photo_image.timeline_fade_in.start()
-            self.photo_image2.timeline_fade_out.start()
-        else:
-            self.photo_image2.change(pixbuf, x, y)
-            self.photo_image.timeline_fade_out.start()
-            self.photo_image2.timeline_fade_in.start()
+        image1, image2 = self.photo_image, self.photo_image2
+        actors1, actors2 = self.actors, self.actors2
+
+        if not self.first:
+            image1, image2 = image2, image1
+            actors1, actors2 = actors2, actors1
+
+        image1.change(pixbuf, x, y)
+        image1.timeline_fade_in.start()
+        image2.timeline_fade_out.start()
+
+        for a1, a2 in zip(actors1, actors2):
+            a1.set_icon(self, x, y)
+            a2.hide(True)
 
         self.first = not self.first
 
@@ -116,6 +125,18 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         state = super(PhotoImageClutterFullScreen, self).check_mouse_on_window()
         result = state if self.photoframe.ui.is_show else False
         return result
+
+    def on_enter_cb(self, w, e):
+        act = self.actors2 if self.first else self.actors
+
+        for actor in act:
+            actor.show(True)
+
+    def on_leave_cb(self, w, e):
+        act = self.actors2 if self.first else self.actors
+
+        for actor in act:
+            actor.hide()
 
 class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
                                    PhotoImageScreenSaver):
@@ -170,6 +191,7 @@ class IconTexture(Texture):
 
     def show(self):
         super(IconTexture, self).show()
+
         if not self.is_show and self.animation:
             self.timeline_fade_in.start()
         self.is_show = True
@@ -259,7 +281,8 @@ class ActorSourceIcon(ActorIcon):
             self.texture.show()
 
     def hide(self, force=False):
-        mouse_on = self.photoimage.check_mouse_on_window()
+        mouse_on = self.photoimage.check_mouse_on_window() \
+            if hasattr(self, 'photoimage') else False
         if (not self.show_always and not mouse_on) or force:
             self.texture.hide()
 
@@ -321,7 +344,8 @@ class ActorFavIcon(ActorIcon):
             self.icon[i].show()
 
     def hide(self, force=False):
-        mouse_on = self.photoimage.check_mouse_on_window()
+        mouse_on = self.photoimage.check_mouse_on_window() \
+            if hasattr(self, 'photoimage') else False
         if (self.show_always or mouse_on) and not force : return
         for icon in self.icon:
             icon.hide()
@@ -373,7 +397,7 @@ class FavIconTexture(IconTexture):
 
 class FadeAnimationTimeline():
 
-    def __init__(self, actor, start=0, end=255, time=300):
+    def __init__(self, actor, start=0, end=255, time=3000):
         self.timeline = clutter.Timeline(time)
         self.alpha = clutter.Alpha(self.timeline, clutter.EASE_OUT_SINE)
         self.behaviour = clutter.BehaviourOpacity(
