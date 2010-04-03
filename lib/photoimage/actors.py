@@ -24,7 +24,7 @@ class Texture(cluttergtk.Texture):
         stage.add(self)
 
         self.timeline = FadeAnimationTimeline(self)
-        self.is_show = True
+        self.is_show = False
 
     def change(self, pixbuf, x, y):
         self._set_texture_from_pixbuf(self, pixbuf)
@@ -50,6 +50,9 @@ class IconTexture(Texture):
         super(IconTexture, self).__init__(stage)
         self.conf = GConf()
         self.animation = self.conf.get_bool('ui/animate_icons', True)
+
+        if self.animation:
+            self.set_opacity(0)
 
     def show(self):
         super(IconTexture, self).show()
