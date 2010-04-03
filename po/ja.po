@@ -499,9 +499,3 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:74
 msgid "_URL:"
 msgstr "URL(_U)"
-
-#~ msgid "<b>Size</b>"
-#~ msgstr "<b>サイズ</b>"
-
-#~ msgid "_Interval:"
-#~ msgstr "表示間隔(_I):"
