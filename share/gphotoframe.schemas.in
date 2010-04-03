@@ -314,14 +314,26 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/ui/icon_animations</key>
-      <applyto>/apps/gphotoframe/ui/icon_animations</applyto>
+      <key>/schemas/apps/gphotoframe/ui/animate_icons</key>
+      <applyto>/apps/gphotoframe/ui/animate_icons</applyto>
       <owner>gphotoframe</owner>
       <type>bool</type>
-      <default>false</default>
+      <default>true</default>
       <locale name="C">
         <short>Enable icon animations</short>
         <long>If true, hiding and un-hiding of icons will be animated.  The program needs to be restarted to take effect the change of the setting.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/animate_fullscreen</key>
+      <applyto>/apps/gphotoframe/ui/animate_fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Enable fullscreen mode animations</short>
+        <long>If true, changing of photo image in fullscreen mode will be animated.  The program needs to be restarted to take effect the change of the setting.</long>
       </locale>
     </schema>
 
