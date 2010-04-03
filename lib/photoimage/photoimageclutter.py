@@ -103,8 +103,8 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
             actors1, actors2 = actors2, actors1
 
         image1.change(pixbuf, x, y)
-        image1.timeline_fade_in.start()
-        image2.timeline_fade_out.start()
+        image1.timeline.fade_in()
+        image2.timeline.fade_out()
 
         for a1, a2 in zip(actors1, actors2):
             a1.set_icon(self, x, y)
@@ -158,9 +158,7 @@ class Texture(cluttergtk.Texture):
         self.connect('button-press-event', self._on_button_press_cb)
         stage.add(self)
 
-        self.timeline_fade_in = FadeAnimationTimeline(self)
-        self.timeline_fade_out = FadeAnimationTimeline(self, 255, 0)
-
+        self.timeline = FadeAnimationTimeline(self)
         self.is_show = True
 
     def change(self, pixbuf, x, y):
@@ -192,14 +190,14 @@ class IconTexture(Texture):
         super(IconTexture, self).show()
 
         if not self.is_show and self.animation:
-            self.timeline_fade_in.start()
+            self.timeline.fade_in()
         self.is_show = True
 
     def hide(self):
         if not self.animation:
             super(IconTexture, self).hide()
         elif self.is_show:
-            self.timeline_fade_out.start()
+            self.timeline.fade_out()
         self.is_show = False
 
 class ActorIcon(object):
@@ -396,7 +394,20 @@ class FavIconTexture(IconTexture):
 
 class FadeAnimationTimeline():
 
-    def __init__(self, actor, start=0, end=255, time=300):
+    def __init__(self, actor, time=300, start=0, end=255):
+
+        self.timeline_fade_in  = FadeAnimation(actor, time, start, end)
+        self.timeline_fade_out = FadeAnimation(actor, time, end, start)
+
+    def fade_in(self):
+        self.timeline_fade_in.start()
+
+    def fade_out(self):
+        self.timeline_fade_out.start()
+
+class FadeAnimation():
+
+    def __init__(self, actor, time=300, start=0, end=255):
         self.timeline = clutter.Timeline(time)
         self.alpha = clutter.Alpha(self.timeline, clutter.EASE_OUT_SINE)
         self.behaviour = clutter.BehaviourOpacity(
