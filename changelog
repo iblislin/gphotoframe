@@ -2,6 +2,7 @@
 
 	* share/*.ui, menu.py, preferences.py: Divided gphotoframe.ui.
 	  Completed transition from libGlade to GtkBuilder.
+	* gphotoframe.glade: Removed from the repository.
 
 2010-04-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
