@@ -18,7 +18,7 @@ class Preferences(object):
 
     def start(self, widget):
         self.gui = gui = gtk.Builder()
-        gui.add_objects_from_file(constants.GLADE_FILE, ["preferences"])
+        gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'preferences.ui'))
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
