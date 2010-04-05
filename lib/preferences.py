@@ -254,7 +254,7 @@ class PhotoSourceDialog(object):
 
     def __init__(self, parent, data=None):
         self.gui = gtk.Builder()
-        self.gui.add_from_file(constants.GLADE_FILE)
+        self.gui.add_from_file(constants.UI_FILE)
 
         self.conf = GConf()
         self.parent = parent

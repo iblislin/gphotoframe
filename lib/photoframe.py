@@ -33,7 +33,7 @@ class PhotoFrame(object):
         self.photolist = photolist
 
         gui = gtk.Builder()
-        gui.add_objects_from_file(constants.GLADE_FILE, ["window"])
+        gui.add_objects_from_file(constants.UI_FILE, ["window"])
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)

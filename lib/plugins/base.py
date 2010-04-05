@@ -224,7 +224,7 @@ class PluginDialog(object):
 
     def __init__(self, parent, model_iter=None):
         self.gui = gtk.Builder()
-        self.gui.add_from_file(constants.GLADE_FILE)
+        self.gui.add_from_file(constants.UI_FILE)
         self.conf = GConf()
 
         self._set_ui()
