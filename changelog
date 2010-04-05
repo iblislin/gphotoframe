@@ -1,5 +1,7 @@
 2010-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* menu.py, actors.py, plugins/base.py, plugins/flickr/auth.py:
+	  gnome-open -> gtk.show_uri.
 	* share/*.ui, menu.py, preferences.py: Divided gphotoframe.ui.
 	  Completed transition from libGlade to GtkBuilder.
 	* gphotoframe.glade: Removed from the repository.

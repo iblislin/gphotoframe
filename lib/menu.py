@@ -119,4 +119,4 @@ class AboutDialog(object):
         about.destroy()
 
     def _open_url(self, about, url):
-        os.system("gnome-open '%s'" % url)
+        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
