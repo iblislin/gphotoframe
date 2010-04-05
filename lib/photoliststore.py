@@ -49,8 +49,13 @@ class PhotoListStore(gtk.ListStore):
         self.queue.remove(filename)
         self.photoframe.remove_photo(filename)
 
-    def _start_timer(self):
-        state = self._change_photo()
+    def reset_timer(self, *args):
+        gobject.source_remove(self._timer)
+        self._start_timer(True)
+
+    def _start_timer(self, change=True):
+        state = self._change_photo() if change else True
+
         fullscreen = self.conf.get_bool('fullscreen')
         screensaver = hasattr(self.photoframe, 'screensaver')
 
