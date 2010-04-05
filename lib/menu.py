@@ -111,7 +111,7 @@ class AboutDialog(object):
 
     def start(self, *args):
         gui = gtk.Builder()
-        gui.add_from_file(constants.GLADE_FILE)
+        gui.add_from_file(constants.UI_FILE)
         about = gui.get_object('aboutdialog')
         about.set_property('version', constants.VERSION)
         gtk.about_dialog_set_url_hook(self._open_url)
