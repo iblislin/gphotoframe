@@ -128,7 +128,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         target = widget.get_active_text()
         api = FlickrFactoryAPI().create(target)
         
-        checkbutton = self.gui.get_widget('checkbutton_flickr_id')
+        checkbutton = self.gui.get_object('checkbutton_flickr_id')
         self._change_sensitive_cb(checkbutton, api)
 
         self.options_ui.checkbutton_flickr_id_sensitive(api)
@@ -153,7 +153,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         self._set_argument_tooltip(tip)
 
         # ok button sensitive
-        arg_entry = self.gui.get_widget('entry1')
+        arg_entry = self.gui.get_object('entry1')
         state = True if arg_entry.get_text() else not check
         self._set_sensitive_ok_button(arg_entry, state)
 
@@ -172,8 +172,8 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         return {'other_id' : state}
 
     def _set_ui(self):
-        self.child = self.gui.get_widget('flickr_vbox')
-        self.checkbutton_flickr_id = self.gui.get_widget('checkbutton_flickr_id')
+        self.child = self.gui.get_object('flickr_vbox')
+        self.checkbutton_flickr_id = self.gui.get_object('checkbutton_flickr_id')
 
     def _set_default(self):
         state = self.options.get('other_id', False)
