@@ -1,9 +1,9 @@
 import gettext
-import gtk.glade
+import locale
 from constants import APP_NAME
 
 LOCALE_DIR = '/usr/share/locale'
 
-for module in (gettext, gtk.glade):
+for module in (gettext, locale):
     module.bindtextdomain(APP_NAME, LOCALE_DIR)
     module.textdomain(APP_NAME)
