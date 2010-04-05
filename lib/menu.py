@@ -15,7 +15,7 @@ class PopUpMenu(object):
     def __init__(self, photolist, photoframe):
 
         self.gui = gtk.Builder()
-        self.gui.add_objects_from_file(constants.GLADE_FILE, ["menu"])
+        self.gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'menu.ui'))
 
         self.photoimage = photoframe.photoimage
         self.photolist = photolist

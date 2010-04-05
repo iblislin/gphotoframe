@@ -1,3 +1,8 @@
+2010-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* share/*.ui, menu.py, preferences.py: Divided gphotoframe.ui.
+	  Completed transition from libGlade to GtkBuilder.
+
 2010-04-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimageclutter.py, actors.py, animation.py: Improved icon
