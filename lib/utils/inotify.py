@@ -1,6 +1,4 @@
 import os
-
-import gtk
 import gio
 
 class Inotify(object):
@@ -72,18 +70,19 @@ class Inotify(object):
             print "Error: Invalid Callback."
 
     def _cb_add_file(self, file_name):
-        print file_name,"add file"
+        print file_name, "add file"
 
     def _cb_del_file(self, file_name):
-        print file_name,"del file"
+        print file_name, "del file"
 
     def _cb_add_dir(self, file_name):
-        print file_name,"add dir"
+        print file_name, "add dir"
 
     def _cb_del_dir(self, file_name):
-        print file_name,"del dir"
+        print file_name, "del dir"
 
 if __name__ == "__main__":
+    import gtk
     i = Inotify()
     i.add_dir('/tmp/')
     gtk.main()
