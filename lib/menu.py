@@ -1,7 +1,6 @@
 import os
 
 import gtk
-import gtk.glade
 import pango
 from twisted.internet import reactor
 from gettext import gettext as _
@@ -14,7 +13,10 @@ from utils.iconimage import IconImage
 class PopUpMenu(object):
 
     def __init__(self, photolist, photoframe):
-        self.gui = gtk.glade.XML(constants.GLADE_FILE)
+
+        self.gui = gtk.Builder()
+        self.gui.add_objects_from_file(constants.GLADE_FILE, ["menu"])
+
         self.photoimage = photoframe.photoimage
         self.photolist = photolist
         self.conf = GConf()
@@ -31,21 +33,21 @@ class PopUpMenu(object):
             "on_about" : about.start,
             "on_quit"  : self.quit,
             }
-        self.gui.signal_autoconnect(dic)
+        self.gui.connect_signals(dic)
 
     def start(self, widget, event):
         self.set_recent_menu()
 
         if self.conf.get_bool('window_fix'):
-            self.gui.get_widget('menuitem6').set_active(True)
+            self.gui.get_object('menuitem6').set_active(True)
 
         accessible = self.photoimage.is_accessible_local_file()
         self.set_open_menu_sensitive(accessible)
 
         fullscreen = self.conf.get_bool('fullscreen')
-        self.gui.get_widget('menuitem8').set_active(fullscreen)
+        self.gui.get_object('menuitem8').set_active(fullscreen)
 
-        menu = self.gui.get_widget('menu')
+        menu = self.gui.get_object('menu')
         menu.popup(None, None, None, event.button, event.time)
 
     def quit(self, *args):
@@ -55,7 +57,7 @@ class PopUpMenu(object):
         self.photoimage.photo.open()
 
     def set_recent_menu(self):
-        recent = self.gui.get_widget('menuitem10')
+        recent = self.gui.get_object('menuitem10')
         if recent.get_submenu(): recent.get_submenu().popdown()
         recent.remove_submenu()
 
@@ -69,7 +71,7 @@ class PopUpMenu(object):
         recent.set_sensitive(sensitive)
 
     def set_open_menu_sensitive(self, state):
-        self.gui.get_widget('menuitem5').set_sensitive(state)
+        self.gui.get_object('menuitem5').set_sensitive(state)
 
     def _fix_window_cb(self, widget):
         self.conf.set_bool('window_fix', widget.get_active())
@@ -81,7 +83,7 @@ class PopUpMenuFullScreen(PopUpMenu):
 
     def __init__(self, photolist, photoframe):
         super(PopUpMenuFullScreen, self).__init__(photolist, photoframe)
-        self.gui.get_widget('menuitem6').set_sensitive(False)
+        self.gui.get_object('menuitem6').set_sensitive(False)
 
 class RecentMenuItem(gtk.ImageMenuItem):
 
@@ -108,8 +110,9 @@ class RecentMenuItem(gtk.ImageMenuItem):
 class AboutDialog(object):
 
     def start(self, *args):
-        gui = gtk.glade.XML(constants.GLADE_FILE)
-        about = gui.get_widget('aboutdialog')
+        gui = gtk.Builder()
+        gui.add_from_file(constants.GLADE_FILE)
+        about = gui.get_object('aboutdialog')
         about.set_property('version', constants.VERSION)
         gtk.about_dialog_set_url_hook(self._open_url)
         about.run()
