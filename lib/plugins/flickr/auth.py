@@ -10,6 +10,8 @@ import xml.etree.ElementTree as etree
 from ...utils.urlget import UrlGetWithProxy
 
 def add_api_sig(values, secret):
+    """Add api_sig to given arguments dictionary"""
+
     args = ""
     for key in sorted(values.keys()):
         args += key + str(values[key])
@@ -26,8 +28,6 @@ class FlickrAuth(object):
         self.api_key = api_key
         self.secret = secret
         self.perms = perms
-
-        self.twisted = True
 
     def _get_frob(self):
         """Get frob with flickr.auth.getFrob"""
@@ -68,14 +68,11 @@ class FlickrAuth(object):
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
 
-        if self.twisted:
-            d = self._get_url(url, self.parse_token)
-            d.addCallback(cb)
-        else:
-            d = self._get_url(url, self.parse_token, cb)
+        d = self._get_url(url, self.parse_token)
+        d.addCallback(cb)
 
     def parse_token(self, data):
-        """Parse token XML strings. """
+        """Parse token from XML strings"""
 
         element = etree.fromstring(data)
         user_element = element.find('auth/user')
@@ -108,18 +105,12 @@ class FlickrAuth(object):
         self._get_url(url, _check_cb)
 
     def _get_url(self, url, cb, cb_plus=None):
+        """Get URL with twisted"""
 
-        if self.twisted:
-            client = UrlGetWithProxy()
-            d = client.getPage(url)
-            d.addCallback(cb)
-            return d
-        else:
-            data = urllib.urlopen(url).read()
-            result = cb(data)
-        
-            if cb_plus:
-                cb_plus(result)
+        client = UrlGetWithProxy()
+        d = client.getPage(url)
+        d.addCallback(cb)
+        return d
 
 if __name__ == "__main__":
     from twisted.internet import defer, reactor
