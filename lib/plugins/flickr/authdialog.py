@@ -49,7 +49,7 @@ the authorization. ")
 process on Flickr.com and click the \"Complete Authorization\" button below")
         p_label = gtk.STOCK_CANCEL
         n_label = _('_Complete Authorization')
-        p_cb = self._cancel_cb
+        p_cb = self._clear_conf_cb
         n_cb = self.comp
 
         self._set_dialog(text, p_label, n_label, p_cb, n_cb)
@@ -57,15 +57,14 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
     def comp(self, *args):
         self.auth_obj.get_auth_token(self.last)
 
-    def last(self, data):
-        self.nsid = data['nsid']
-        self.user_name = data['user_name']
-        self.auth_token = data['auth_token']
+    def last(self, dic):
+        if not dic:
+            return
 
-        self.conf.set_string('plugins/flickr/nsid', data['nsid'])
-        self.conf.set_string('plugins/flickr/user_name', data['user_name'])
-        self.conf.set_string('plugins/flickr/full_name', data['full_name'])
-        self.conf.set_string('plugins/flickr/auth_token', data['auth_token'])
+        self.nsid = dic['nsid']
+        self.user_name = dic['user_name']
+        self.auth_token = dic['auth_token']
+        self._write_conf(dic)
 
         self._set_confirm_dialog()
 
@@ -85,6 +84,11 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
     def _cancel_cb(self, *args):
         self.dialog.destroy()
 
+    def _clear_conf_cb(self, *args):
+        dic = {'auth_token': '', 'nsid': '', 'user_name': '', 'full_name': ''}
+        self._write_conf(dic)
+        self.dialog.destroy()
+
     def run(self):
         self._read_conf()
 
@@ -101,5 +105,6 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         self.user_name = self.conf.get_string('plugins/flickr/user_name')
         self.auth_token = self.conf.get_string('plugins/flickr/auth_token')
 
-    def _write_conf(self):
-        pass
+    def _write_conf(self, dic):
+        for key, value in dic.iteritems():
+            self.conf.set_string('plugins/flickr/%s' % key, value)

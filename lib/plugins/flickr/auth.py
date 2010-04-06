@@ -71,23 +71,20 @@ class FlickrAuth(object):
         d = self._get_url(url, self.parse_token)
         d.addCallback(cb)
 
-    def parse_token(self, data):
+    def parse_token(self, xml):
         """Parse token from XML strings"""
 
-        element = etree.fromstring(data)
+        element = etree.fromstring(xml)
+        
+        if element.find('auth/token') is None:
+            return None
+
         user_element = element.find('auth/user')
-
-        token = element.find('auth/token').text
-        nsid = user_element.get('nsid')
-        username =  user_element.get('username')
-        fullname = user_element.get('fullname')
-
-        # print token, fullname
-
-        return { 'auth_token': token, 
-                 'nsid': nsid, 
-                 'user_name': username, 
-                 'full_name': fullname}
+        dic = {'auth_token': element.find('auth/token').text, 
+               'nsid'      : user_element.get('nsid'), 
+               'user_name' : user_element.get('username'), 
+               'full_name' : user_element.get('fullname')}
+        return dic
 
     def check_token(self, auth_token):
 
