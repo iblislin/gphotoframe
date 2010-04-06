@@ -136,17 +136,9 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
             'toggled', self._change_sensitive_cb, api)
 
     def _change_sensitive_cb(self, checkbutton, api):
-
-        # argument sensitive (label & entry)
-        #check, label = api.set_entry_label()
-        #if api.is_use_own_id():
-        #    check = checkbutton.get_active()
-        #self._set_argument_sensitive(label, check)
-
         default, label = api.set_entry_label()
         check = checkbutton.get_active() if api.is_use_own_id() else default
         self._set_argument_sensitive(label, check)
-
 
         # tooltip 
         tip = api.tooltip() if check else ""
