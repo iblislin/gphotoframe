@@ -9,6 +9,10 @@ from api import API_KEY, SECRET
 
 class PluginFlickrDialog(PluginDialog):
 
+    def __del__(self):
+        """A black magic for avoiding unintended GC for sub instances."""
+        pass
+
     def _set_ui(self):
         self.dialog = self.gui.get_widget('plugin_netauth_dialog')
         self.label  = self.gui.get_widget('label_netauth')
@@ -89,14 +93,8 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         else:
             self._set_authorize_dialog()
 
-        # self.dialog.show()
-        response_id = self.dialog.run()
-
-        if response_id == gtk.RESPONSE_OK: 
-            print "ok"
-            # self._write_conf()
-
-        return response_id, {}
+        self.dialog.show()
+        return
 
     def _read_conf(self):
         self.nsid = self.conf.get_string('plugins/flickr/nsid') # nsid
