@@ -1,5 +1,6 @@
 2010-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/api.py: Improved codes for certification.
 	* flickr/authdialog.py (PluginFlickrDialog): Added a black magic
 	  for avoiding unintended GC for sub instances.
 
