@@ -2,11 +2,11 @@
 
 # http://www.flickr.com/services/api/auth.howto.desktop.html
 
-import os
 import hashlib
 import urllib
 import xml.etree.ElementTree as etree
 
+import gtk
 from ...utils.urlget import UrlGetWithProxy
 
 def add_api_sig(values, secret):
@@ -55,7 +55,7 @@ class FlickrAuth(object):
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
 
-        os.system("gnome-open '%s'" % url)
+        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def get_auth_token(self, cb):
         """Get token with flickr.auth.getToken"""

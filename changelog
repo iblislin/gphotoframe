@@ -4,6 +4,14 @@
 	* flickr/authdialog.py (PluginFlickrDialog): Added a black magic
 	  for avoiding unintended GC for sub instances.
 
+2010-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* menu.py, actors.py, plugins/base.py, plugins/flickr/auth.py:
+	  gnome-open -> gtk.show_uri.
+	* share/*.ui, menu.py, preferences.py: Divided gphotoframe.ui.
+	  Completed transition from libGlade to GtkBuilder.
+	* gphotoframe.glade: Removed from the repository.
+
 2010-04-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimageclutter.py, actors.py, animation.py: Improved icon
