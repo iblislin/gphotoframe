@@ -28,6 +28,7 @@ class FlickrAPI(object):
 
     def __init__(self):
         self.nsid_conversion = True
+        self.conf = GConf()
         self._set_method()
 
     def _set_method(self):
@@ -69,7 +70,7 @@ class FlickrAPI(object):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
-        user = arg or GConf().get_string('plugins/flickr/nsid')
+        user = arg or self.conf.get_string('plugins/flickr/nsid')
         url = api.get_url('http://www.flickr.com/photos/%s/' % user) \
             if user else None
         return url
@@ -79,9 +80,7 @@ class FlickrAPI(object):
         return argument
 
     def _add_auth_argument(self, values):
-        conf = GConf()
-
-        auth_token = conf.get_string('plugins/flickr/auth_token')
+        auth_token = self.conf.get_string('plugins/flickr/auth_token')
         values['auth_token'] = auth_token
 
         values = add_api_sig(values, SECRET)
