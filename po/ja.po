@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-03 20:20+0900\n"
-"PO-Revision-Date: 2010-04-03 20:20+0900\n"
+"POT-Creation-Date: 2010-04-05 17:56+0900\n"
+"PO-Revision-Date: 2010-04-05 17:48+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,162 +31,6 @@ msgstr "デスクトップに写真を表示します"
 #: ../share/gphotoframe-screensaver.desktop.in.h:1
 msgid "Display a slideshow from your Photo Frame"
 msgstr "写真フレームの画像をスライドショー形式で表示します"
-
-#: ../share/gphotoframe.glade.h:1
-msgid "<b>Desktop</b>"
-msgstr "<b>デスクトップ</b>"
-
-#: ../share/gphotoframe.glade.h:2
-msgid "<b>Interval</b>"
-msgstr "<b>表示間隔</b>"
-
-#: ../share/gphotoframe.glade.h:3
-msgid "<b>Maximum Display Size</b>"
-msgstr "<b>最大表示サイズ</b>"
-
-#: ../share/gphotoframe.glade.h:4
-msgid "<b>Photo Sources</b>"
-msgstr "<b>写真のソース</b>"
-
-#: ../share/gphotoframe.glade.h:5
-msgid "<b>Plugins</b>"
-msgstr "<b>プラグイン</b>"
-
-#: ../share/gphotoframe.glade.h:6
-msgid ""
-"All\n"
-"Last 7 days\n"
-"Last 30 days\n"
-"Last 90 days\n"
-"Last 180 days\n"
-"Last 360 days"
-msgstr ""
-"すべて\n"
-"過去 7 日間\n"
-"過去 30 日間\n"
-"過去 90 日間\n"
-"過去 180 日間\n"
-"過去 360 日間"
-
-#: ../share/gphotoframe.glade.h:12
-msgid "Always on _Visible Workspace"
-msgstr "全てのワークスペースに配置する(_V)"
-
-#: ../share/gphotoframe.glade.h:13
-msgid "Fi_x Photo Frame"
-msgstr "写真フレームの固定(_X)"
-
-#: ../share/gphotoframe.glade.h:14
-msgid "General"
-msgstr "全般"
-
-#: ../share/gphotoframe.glade.h:15
-msgid "In _Full Screen Mode:"
-msgstr "フルスクリーン表示時(_F):"
-
-#: ../share/gphotoframe.glade.h:16
-msgid "In _Window Mode:"
-msgstr "ウィンドウ表示時(_W)"
-
-#: ../share/gphotoframe.glade.h:17
-msgid "Ma_x Rate:"
-msgstr "最大の評価(_X):"
-
-#: ../share/gphotoframe.glade.h:18
-msgid "Mi_n Rate:"
-msgstr "最小の評価(_N):"
-
-#: ../share/gphotoframe.glade.h:19
-msgid "Open _Recent"
-msgstr "最近表示した写真(_R)"
-
-#: ../share/gphotoframe.glade.h:20
-msgid "Photo Frame Preferences"
-msgstr "写真フレームの設定"
-
-#: ../share/gphotoframe.glade.h:21
-msgid "Photo Frame for GNOME Desktop"
-msgstr "GNOME デスクトップ向けの写真フレームです。"
-
-#: ../share/gphotoframe.glade.h:22
-msgid "Photo Source"
-msgstr "写真のソース"
-
-#: ../share/gphotoframe.glade.h:23
-msgid "Photos"
-msgstr "写真"
-
-#: ../share/gphotoframe.glade.h:24
-msgid "Plugins"
-msgstr "プラグイン"
-
-#: ../share/gphotoframe.glade.h:25
-msgid "Rate _Weight:"
-msgstr "評価の重み(_W):"
-
-#: ../share/gphotoframe.glade.h:26
-msgid "Wi_dth:"
-msgstr "幅(_D):"
-
-#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:135
-msgid "_Argument:"
-msgstr "引数(_A):"
-
-#: ../share/gphotoframe.glade.h:28
-msgid "_Auto Start"
-msgstr "ログイン時に自動起動する(_A)"
-
-#: ../share/gphotoframe.glade.h:29
-msgid "_Full Screen"
-msgstr "フルスクリーン表示(_F)"
-
-#: ../share/gphotoframe.glade.h:30
-msgid "_Height:"
-msgstr "高さ(_H):"
-
-#: ../share/gphotoframe.glade.h:31
-msgid "_Include subfolders"
-msgstr "サブフォルダを含める(_I)"
-
-#: ../share/gphotoframe.glade.h:32
-msgid "_Next Photo"
-msgstr "次の写真(_N)"
-
-#: ../share/gphotoframe.glade.h:33
-msgid "_Password:"
-msgstr "パスワード(_P):"
-
-#: ../share/gphotoframe.glade.h:34
-msgid "_Period:"
-msgstr "期間(_P):"
-
-#: ../share/gphotoframe.glade.h:35
-msgid "_Source:"
-msgstr "ソース(_S):"
-
-#: ../share/gphotoframe.glade.h:36
-msgid "_Specified other people's ID"
-msgstr "他のユーザの ID を指定する(_S)"
-
-#: ../share/gphotoframe.glade.h:37 ../lib/plugins/base.py:129
-msgid "_Target:"
-msgstr "ターゲット(_T):"
-
-#: ../share/gphotoframe.glade.h:38
-msgid "_User ID:"
-msgstr "ユーザ ID(_U):"
-
-#: ../share/gphotoframe.glade.h:39
-msgid "_Weight:"
-msgstr "重み(_W):"
-
-#: ../share/gphotoframe.glade.h:40
-msgid "pixels"
-msgstr "ピクセル"
-
-#: ../share/gphotoframe.glade.h:41
-msgid "seconds"
-msgstr "秒"
 
 #: ../share/gphotoframe.schemas.in.h:1
 msgid "API reload interval minutes"
@@ -380,27 +224,191 @@ msgstr "ユーザのフルネーム"
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../lib/menu.py:89
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot.py:90
+msgid "All"
+msgstr "すべて"
+
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:7
+msgid "General"
+msgstr "全般"
+
+#: ../share/gphotoframe.ui.h:3
+msgid "Last 180 days"
+msgstr "過去 180 日間"
+
+#: ../share/gphotoframe.ui.h:4
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+#: ../share/gphotoframe.ui.h:5
+msgid "Last 360 days"
+msgstr "過去 360 日間"
+
+#: ../share/gphotoframe.ui.h:6
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+#: ../share/gphotoframe.ui.h:7
+msgid "Last 90 days"
+msgstr "過去 90 日間"
+
+#: ../share/gphotoframe.ui.h:8
+msgid "Ma_x Rate:"
+msgstr "最大の評価(_X):"
+
+#: ../share/gphotoframe.ui.h:9
+msgid "Mi_n Rate:"
+msgstr "最小の評価(_N):"
+
+#: ../share/gphotoframe.ui.h:10
+msgid "Photo Frame for GNOME Desktop"
+msgstr "GNOME デスクトップ向けの写真フレームです。"
+
+#: ../share/gphotoframe.ui.h:11
+msgid "Photo Source"
+msgstr "写真のソース"
+
+#: ../share/gphotoframe.ui.h:12
+msgid "Rate _Weight:"
+msgstr "評価の重み(_W):"
+
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:135
+msgid "_Argument:"
+msgstr "引数(_A):"
+
+#: ../share/gphotoframe.ui.h:14
+msgid "_Include subfolders"
+msgstr "サブフォルダを含める(_I)"
+
+#: ../share/gphotoframe.ui.h:15
+msgid "_Password:"
+msgstr "パスワード(_P):"
+
+#: ../share/gphotoframe.ui.h:16
+msgid "_Period:"
+msgstr "期間(_P):"
+
+#: ../share/gphotoframe.ui.h:17
+msgid "_Source:"
+msgstr "ソース(_S):"
+
+#: ../share/gphotoframe.ui.h:18
+msgid "_Specified other people's ID"
+msgstr "他のユーザの ID を指定する(_S)"
+
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:129
+msgid "_Target:"
+msgstr "ターゲット(_T):"
+
+#: ../share/gphotoframe.ui.h:20
+msgid "_User ID:"
+msgstr "ユーザ ID(_U):"
+
+#: ../share/gphotoframe.ui.h:21
+msgid "_Weight:"
+msgstr "重み(_W):"
+
+#: ../share/preferences.ui.h:1
+msgid "<b>Desktop</b>"
+msgstr "<b>デスクトップ</b>"
+
+#: ../share/preferences.ui.h:2
+msgid "<b>Interval</b>"
+msgstr "<b>表示間隔</b>"
+
+#: ../share/preferences.ui.h:3
+msgid "<b>Maximum Display Size</b>"
+msgstr "<b>最大表示サイズ</b>"
+
+#: ../share/preferences.ui.h:4
+msgid "<b>Photo Sources</b>"
+msgstr "<b>写真のソース</b>"
+
+#: ../share/preferences.ui.h:5
+msgid "<b>Plugins</b>"
+msgstr "<b>プラグイン</b>"
+
+#: ../share/preferences.ui.h:6
+msgid "Always on _Visible Workspace"
+msgstr "全てのワークスペースに配置する(_V)"
+
+#: ../share/preferences.ui.h:8
+msgid "In _Full Screen Mode:"
+msgstr "フルスクリーン表示時(_F):"
+
+#: ../share/preferences.ui.h:9
+msgid "In _Window Mode:"
+msgstr "ウィンドウ表示時(_W)"
+
+#: ../share/preferences.ui.h:10
+msgid "Photo Frame Preferences"
+msgstr "写真フレームの設定"
+
+#: ../share/preferences.ui.h:11
+msgid "Photos"
+msgstr "写真"
+
+#: ../share/preferences.ui.h:12
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: ../share/preferences.ui.h:13
+msgid "Wi_dth:"
+msgstr "幅(_D):"
+
+#: ../share/preferences.ui.h:14
+msgid "_Auto Start"
+msgstr "ログイン時に自動起動する(_A)"
+
+#: ../share/preferences.ui.h:15
+msgid "_Height:"
+msgstr "高さ(_H):"
+
+#: ../share/preferences.ui.h:16
+msgid "pixels"
+msgstr "ピクセル"
+
+#: ../share/preferences.ui.h:17
+msgid "seconds"
+msgstr "秒"
+
+#: ../share/menu.ui.h:1
+msgid "Fi_x Photo Frame"
+msgstr "写真フレームの固定(_X)"
+
+#: ../share/menu.ui.h:2
+msgid "Open _Recent"
+msgstr "最近表示した写真(_R)"
+
+#: ../share/menu.ui.h:3
+msgid "_Full Screen"
+msgstr "フルスクリーン表示(_F)"
+
+#: ../share/menu.ui.h:4
+msgid "_Next Photo"
+msgstr "次の写真(_N)"
+
+#: ../lib/menu.py:91
 msgid "(No Title)"
 msgstr "(無題)"
 
-#: ../lib/preferences.py:133
+#: ../lib/preferences.py:136
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:134
+#: ../lib/preferences.py:137
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:135
+#: ../lib/preferences.py:138
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:136
+#: ../lib/preferences.py:139
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/preferences.py:287
+#: ../lib/preferences.py:294
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
@@ -471,10 +479,6 @@ msgstr "認証を完了する(_C)"
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot.py:90
-msgid "All"
-msgstr "すべて"
-
 #: ../lib/plugins/fspot.py:93
 msgid "Rate"
 msgstr "評価"
@@ -499,3 +503,18 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:74
 msgid "_URL:"
 msgstr "URL(_U)"
+
+#~ msgid ""
+#~ "All\n"
+#~ "Last 7 days\n"
+#~ "Last 30 days\n"
+#~ "Last 90 days\n"
+#~ "Last 180 days\n"
+#~ "Last 360 days"
+#~ msgstr ""
+#~ "すべて\n"
+#~ "過去 7 日間\n"
+#~ "過去 30 日間\n"
+#~ "過去 90 日間\n"
+#~ "過去 180 日間\n"
+#~ "過去 360 日間"
