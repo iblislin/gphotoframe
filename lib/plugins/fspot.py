@@ -59,7 +59,7 @@ class FSpotPhotoList(PhotoList):
 
     def get_photo(self, cb):
         rate = self.rnd()
-        columns = 'base_uri, filename, id' if self.db.is_new else 'uri'
+        columns = 'base_uri, filename, P.id' if self.db.is_new else 'uri'
         sql = self._sql_statement(columns, rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
 
