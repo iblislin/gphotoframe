@@ -1,5 +1,6 @@
 2010-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* fspot.py: Fixed a ambiguous column name bug (id -> P.id).
 	* actors.py (Texture): Fixed a bug of texture show/hide behaviour.
 
 2010-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
