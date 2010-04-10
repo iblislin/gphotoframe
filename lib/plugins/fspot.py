@@ -2,6 +2,7 @@ import os
 import sqlite3
 import time
 import datetime
+import urllib
 
 from xdg.BaseDirectory import xdg_config_home
 from gettext import gettext as _
@@ -59,13 +60,22 @@ class FSpotPhotoList(PhotoList):
 
     def get_photo(self, cb):
         rate = self.rnd()
-        columns = 'base_uri, filename, P.id' if self.db.is_new else 'uri'
+        columns = 'base_uri, filename, P.id, default_version_id' if self.db.is_new else 'uri'
         sql = self._sql_statement(columns, rate.name)
         sql += 'ORDER BY random() LIMIT 1;'
 
         if self.db.is_new:
-            base_url, filename, id = self.db.fetchall(sql)[0]
+            photo = self.db.fetchall(sql)
+            if not photo: return False
+            base_url, filename, id, version = photo[0]
+
+            if version != 1:
+                sql = "SELECT filename FROM photo_versions WHERE photo_id=%s AND version_id=(SELECT default_version_id FROM photos WHERE id=%s)" % (id, id)
+                filename = self.db.fetchone(sql)
+
+            filename = urllib.unquote(filename).encode('raw_unicode_escape').decode('utf8')
             url = base_url + filename
+
         else: # for ver.0.5
             url = ''.join(self.db.fetchall(sql)[0])
             filename = url[ url.rfind('/') + 1: ]
