@@ -34,34 +34,41 @@ class FSpotPhotoList(PhotoList):
         self.db.close()
 
     def prepare(self):
+        self.rate_min = self.options.get('rate_min', 0)
+        self.rate_max = self.options.get('rate_max', 5)
+        self.period = self.options.get('period')
         self.db = FSpotDB()
+
         if self.db:
+            self.sql = FSpotPhotoSQL(self.target, self.period)
             self.photos = self._count()
             self.rnd = WeightedRandom(self.photos)
 
     def _count(self):
         rate_list = []
-        sql = self._sql_statement('COUNT(*)')
+        weight = self.options.get('rate_weight', 2)
+
+        sql = self.sql.get_statement(
+            'COUNT(*)', None, self.rate_min, self.rate_max)
         self.total = self.db.fetchone(sql) if self.db.is_accessible else 0
         if self.total == 0: return rate_list
 
-        rate_min = self.options.get('rate_min', 0)
-        rate_max = self.options.get('rate_max', 5)
-        weight = self.options.get('rate_weight', 2)
+        sql = self.sql.get_statement(
+            'rating, COUNT(*)', None, 
+            self.rate_min, self.rate_max) + ' GROUP BY rating'
 
-        sql = self._sql_statement('rating, COUNT(*)') + ' GROUP BY rating'
         for rate, total_in_this in self.db.fetchall(sql):
-            if rate_min <= rate <= rate_max:
-                rate_info = Rate(rate, total_in_this, self.total, weight)
-                rate_list.append(rate_info)
+            rate_info = Rate(rate, total_in_this, self.total, weight)
+            rate_list.append(rate_info)
 
         return rate_list
 
     def get_photo(self, cb):
         rate = self.rnd()
-        columns = 'base_uri, filename, P.id, default_version_id' if self.db.is_new else 'uri'
-        sql = self._sql_statement(columns, rate.name)
-        sql += 'ORDER BY random() LIMIT 1;'
+        columns = 'base_uri, filename, P.id, default_version_id' \
+            if self.db.is_new else 'uri'
+        sql = self.sql.get_statement(columns, rate.name)
+        sql += ' ORDER BY random() LIMIT 1;'
 
         if self.db.is_new:
             photo = self.db.fetchall(sql)
@@ -69,10 +76,13 @@ class FSpotPhotoList(PhotoList):
             base_url, filename, id, version = photo[0]
 
             if version != 1:
-                sql = "SELECT filename FROM photo_versions WHERE photo_id=%s AND version_id=(SELECT default_version_id FROM photos WHERE id=%s)" % (id, id)
+                sql = ("SELECT filename FROM photo_versions WHERE photo_id=%s "
+                       "AND version_id=(SELECT default_version_id "
+                       "FROM photos WHERE id=%s)") % (id, id)
                 filename = self.db.fetchone(sql)
 
-            filename = urllib.unquote(filename).encode('raw_unicode_escape').decode('utf8')
+            filename = urllib.unquote(filename).encode(
+                'raw_unicode_escape').decode('utf8')
             url = base_url + filename
 
         else: # for ver.0.5
@@ -92,46 +102,78 @@ class FSpotPhotoList(PhotoList):
         cb(self.photo)
 
     def get_tooltip(self):
-        rate_min = self.options.get('rate_min', 0)
-        rate_max = self.options.get('rate_max', 5)
-
-        period_days = self._get_period_days()
+        period_days = self.sql.get_period_days(self.period)
         period = _('Last %s days') % period_days if period_days else _("All")
 
         tip = "%s: %s-%s\n%s: %s" % ( 
-            _('Rate'), rate_min, rate_max, 
+            _('Rate'), self.rate_min, self.rate_max, 
             _('Period'), period)
         return tip
 
-    def _sql_statement(self, select, rate_name=None):
-        sql = 'SELECT %s FROM photos P ' % select
+class FSpotPhotoSQL(object):
 
-        if self.target:
-            sql += ('INNER JOIN tags T ON PT.tag_id=T.id ' 
-                    'INNER JOIN photo_tags PT ON PT.photo_id=P.id '
-                    'WHERE T.id IN ( SELECT id FROM tags WHERE name="%s" ' 
-                    'UNION SELECT id FROM tags WHERE category_id ' 
-                    'IN (SELECT id FROM tags WHERE name="%s")) ' ) % \
-                    ( str(self.target), str(self.target) )
+    def __init__(self, target=None, period=None):
+        self.target = target
+        self.period = period
 
-        if rate_name is not None:
-            c = 'AND' if self.target else 'WHERE'
-            sql += '%s rating=%s ' % ( c, str(rate_name) )
+    def get_statement(self, select, rate_name=None, min=0, max=5):
+        sql = ['SELECT %s FROM photos P' % select]
 
-        if self.options.get('period'):
-            period_days = self._get_period_days()
-            d = datetime.datetime.now() - \
-                datetime.timedelta(days=period_days)
-            epoch = int(time.mktime(d.timetuple()))
+        sql.append(self._inner_join(self.target))
+        sql.append(self._tag(self.target))
 
-            c = 'AND' if self.target or rate_name is not None else 'WHERE'
-            sql += '%s time>%s ' % ( c, epoch )
+        sql.append(self._rate(rate_name, min, max))
+        sql.append(self._period(self.period))
 
+        search = False
+        for num, statement in enumerate(sql):
+            if not statement: continue
+            if search:
+                sql[num] = sql[num].replace("WHERE", "AND")
+            if statement.startswith("WHERE"):
+                search = True
+
+        return " ".join(sql)
+
+    def _inner_join(self, target):
+        if not target: return ""
+
+        sql = ('INNER JOIN tags T ON PT.tag_id=T.id ' 
+               'INNER JOIN photo_tags PT ON PT.photo_id=P.id')
         return sql
 
-    def _get_period_days(self):
+    def _tag(self, target):
+        if not target: return ""
+
+        sql = ('WHERE T.id IN (SELECT id FROM tags WHERE name="%s" '
+               'UNION SELECT id FROM tags WHERE category_id ' 
+               'IN (SELECT id FROM tags WHERE name="%s"))' ) \
+               % (str(target), str(target))
+        return sql
+
+    def _rate(self, rate_name=None, min=0, max=5):
+        if rate_name is not None: 
+            sql = 'WHERE rating=%s' % str(rate_name)
+        elif not (min == 0 and max == 5):
+            sql = 'WHERE (rating BETWEEN %s AND %s)' % (min, max)
+        else:
+            sql = ""
+        return sql
+
+    def _period(self, period):
+        if not period: return ""
+
+        period_days = self.get_period_days(period)
+        d = datetime.datetime.now() - \
+            datetime.timedelta(days=period_days)
+        epoch = int(time.mktime(d.timetuple()))
+
+        sql = 'WHERE time>%s' % epoch
+        return sql
+
+    def get_period_days(self, period):
         period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
-        period_days = period_dic[self.options.get('period')]
+        period_days = period_dic[period]
         return period_days 
 
 class PhotoSourceFspotUI(PhotoSourceUI):
