@@ -49,10 +49,9 @@ class FSpotPhotoList(PhotoList):
         rate_max = self.options.get('rate_max', 5)
         weight = self.options.get('rate_weight', 2)
 
-        for rate in xrange(rate_min, rate_max+1):
-            sql = self._sql_statement('COUNT(*)', rate)
-            total_in_this = self.db.fetchone(sql)
-            if total_in_this:
+        sql = self._sql_statement('rating, COUNT(*)') + ' GROUP BY rating'
+        for rate, total_in_this in self.db.fetchall(sql):
+            if rate_min <= rate <= rate_max:
                 rate_info = Rate(rate, total_in_this, self.total, weight)
                 rate_list.append(rate_info)
 
