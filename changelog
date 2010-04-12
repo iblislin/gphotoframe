@@ -1,3 +1,7 @@
+2010-04-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py (FSpotPhotoList): Code refactoring.
+
 2010-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py: Fixed a ambiguous column name bug (id -> P.id).
