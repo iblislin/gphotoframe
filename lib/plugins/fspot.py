@@ -118,10 +118,7 @@ class FSpotPhotoSQL(object):
 
     def get_statement(self, select, rate_name=None, min=0, max=5):
         sql = ['SELECT %s FROM photos P' % select]
-
-        sql.append(self._inner_join(self.target))
-        sql.append(self._tag(self.target))
-
+        sql += self._tag(self.target)
         sql.append(self._rate(rate_name, min, max))
         sql.append(self._period(self.period))
 
@@ -135,21 +132,18 @@ class FSpotPhotoSQL(object):
 
         return " ".join(sql)
 
-    def _inner_join(self, target):
-        if not target: return ""
-
-        sql = ('INNER JOIN tags T ON PT.tag_id=T.id ' 
-               'INNER JOIN photo_tags PT ON PT.photo_id=P.id')
-        return sql
-
     def _tag(self, target):
         if not target: return ""
 
-        sql = ('WHERE T.id IN (SELECT id FROM tags WHERE name="%s" '
+        join = ('INNER JOIN tags T ON PT.tag_id=T.id ' 
+               'INNER JOIN photo_tags PT ON PT.photo_id=P.id')
+
+        tag = ('WHERE T.id IN (SELECT id FROM tags WHERE name="%s" '
                'UNION SELECT id FROM tags WHERE category_id ' 
-               'IN (SELECT id FROM tags WHERE name="%s"))' ) \
+               'IN (SELECT id FROM tags WHERE name="%s"))') \
                % (str(target), str(target))
-        return sql
+
+        return join, tag
 
     def _rate(self, rate_name=None, min=0, max=5):
         if rate_name is not None: 
