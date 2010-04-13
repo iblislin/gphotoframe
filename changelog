@@ -1,3 +1,7 @@
+2010-04-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Added support for recursive tag search.
+
 2010-04-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py: Fixed total photo numbers with rating filter.
