@@ -113,12 +113,14 @@ class FSpotPhotoList(PhotoList):
 class FSpotPhotoSQL(object):
 
     def __init__(self, target=None, period=None):
-        self.target = target
         self.period = period
+
+        tag_list= FSpotTagList()
+        self.tag_list = tag_list.get(target)
 
     def get_statement(self, select, rate_name=None, min=0, max=5):
         sql = ['SELECT %s FROM photos P' % select]
-        sql += self._tag(self.target)
+        sql += self._tag()
         sql.append(self._rate(rate_name, min, max))
         sql.append(self._period(self.period))
 
@@ -132,16 +134,11 @@ class FSpotPhotoSQL(object):
 
         return " ".join(sql)
 
-    def _tag(self, target):
-        if not target: return ""
+    def _tag(self):
+        if not self.tag_list: return ""
 
-        join = ('INNER JOIN tags T ON PT.tag_id=T.id ' 
-               'INNER JOIN photo_tags PT ON PT.photo_id=P.id')
-
-        tag = ('WHERE T.id IN (SELECT id FROM tags WHERE name="%s" '
-               'UNION SELECT id FROM tags WHERE category_id ' 
-               'IN (SELECT id FROM tags WHERE name="%s"))') \
-               % (str(target), str(target))
+        join = 'INNER JOIN photo_tags PT ON PT.photo_id=P.id'
+        tag = "WHERE tag_id IN (%s)" % ", ".join(map(str, self.tag_list))
 
         return join, tag
 
@@ -158,8 +155,7 @@ class FSpotPhotoSQL(object):
         if not period: return ""
 
         period_days = self.get_period_days(period)
-        d = datetime.datetime.now() - \
-            datetime.timedelta(days=period_days)
+        d = datetime.datetime.now() - datetime.timedelta(days=period_days)
         epoch = int(time.mktime(d.timetuple()))
 
         sql = 'WHERE time>%s' % epoch
@@ -169,6 +165,30 @@ class FSpotPhotoSQL(object):
         period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
         period_days = period_dic[period]
         return period_days 
+
+class FSpotTagList(object):
+
+    def __init__(self):
+        self.db = FSpotDB()
+        self.tag_list = []
+
+    def get(self, target):
+        if not target: return []
+
+        sql = 'SELECT id FROM tags WHERE name="%s"' % str(target)
+        id = self.db.fetchone(sql)
+        self._get_with_category_id(id)
+
+        self.db.close()
+        return self.tag_list
+        
+    def _get_with_category_id(self, id):
+        self.tag_list.append(id)
+        sql = 'SELECT id FROM tags WHERE category_id=%s' % id
+        list = self.db.fetchall(sql)
+        if list:
+            for i in list:
+                self._get_with_category_id(i[0])
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 
