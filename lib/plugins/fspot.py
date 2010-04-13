@@ -45,19 +45,20 @@ class FSpotPhotoList(PhotoList):
             self.rnd = WeightedRandom(self.photos)
 
     def _count(self):
-        rate_list = []
-        weight = self.options.get('rate_weight', 2)
-
-        sql = self.sql.get_statement(
-            'COUNT(*)', None, self.rate_min, self.rate_max)
-        self.total = self.db.fetchone(sql) if self.db.is_accessible else 0
-        if self.total == 0: return rate_list
+        if not self.db.is_accessible:
+            self.total = 0
+            return []
 
         sql = self.sql.get_statement(
             'rating, COUNT(*)', None, 
             self.rate_min, self.rate_max) + ' GROUP BY rating'
+        count_list = self.db.fetchall(sql)
+        self.total = sum(x[1] for x in count_list)
 
-        for rate, total_in_this in self.db.fetchall(sql):
+        rate_list = []
+        weight = self.options.get('rate_weight', 2)
+
+        for rate, total_in_this in count_list:
             rate_info = Rate(rate, total_in_this, self.total, weight)
             rate_list.append(rate_info)
 
