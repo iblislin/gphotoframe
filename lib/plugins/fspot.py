@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 import sqlite3
 import time
@@ -49,16 +50,17 @@ class FSpotPhotoList(PhotoList):
             self.total = 0
             return []
 
-        sql = self.sql.get_statement(
-            'rating, COUNT(*)', None, 
-            self.rate_min, self.rate_max) + ' GROUP BY rating'
+        sql = self.sql.get_statement('rating, COUNT(*)') + ' GROUP BY rating'
         count_list = self.db.fetchall(sql)
-        self.total = sum(x[1] for x in count_list)
+        self.total = sum(x[1] for x in count_list 
+                         if self.rate_min <= x[0] <= self.rate_max)
 
         rate_list = []
         weight = self.options.get('rate_weight', 2)
 
         for rate, total_in_this in count_list:
+            if not self.rate_min <= rate <= self.rate_max:
+                total_in_this = 0
             rate_info = Rate(rate, total_in_this, self.total, weight)
             rate_list.append(rate_info)
 
@@ -95,7 +97,7 @@ class FSpotPhotoList(PhotoList):
                  'filename' : url.replace('file://', ''),
                  'title' : filename, # without path
                  'id' : id,
-                 'fav' : FSpotFav(rate.name, id),
+                 'fav' : FSpotFav(rate.name, id, self.photos),
                  'icon' : FSpotIcon }
 
         self.photo = Photo()
@@ -335,25 +337,37 @@ class FSpotPhotoTags(object):
 
 class Rate(object):
 
-    def __init__(self, rate, total_in_this, total_all, weight=2):
+    def __init__(self, rate, total_in_this, total_all, weight_mag=2):
         self.name = rate
-        self.total = float(total_in_this)
-        self.weight = total_in_this / float(total_all) * (rate * weight + 1)
+        self.total = total_in_this
+        self.total_all = total_all
+        self.weight_mag = weight_mag
+
+    def _get_weight(self):
+        weight = self.total / self.total_all * (self.name * self.weight_mag + 1)
+        return weight
+
+    weight = property(_get_weight, None)
 
 class FSpotFav(object):
 
-    def __init__(self, rate, id):
+    def __init__(self, rate, id, rate_list):
         self.fav = rate
         self.id = id
+        self.rate_list = rate_list
 
     def change_fav(self, new_rate):
-        self.fav = 0 if self.fav == new_rate else new_rate 
+        old_rate = self.fav 
+        new_rate = 0 if old_rate == new_rate else new_rate 
+        self.fav = new_rate
 
-        sql = "UPDATE photos SET rating=%s WHERE id=%s" % (self.fav, self.id)
+        sql = "UPDATE photos SET rating=%s WHERE id=%s" % (new_rate, self.id)
         db = FSpotDB()
         db.execute(sql)
         db.commit()
         db.close()
+
+        # self.rate_list.update_rate(old_rate, new_rate)
 
 class FSpotIcon(IconImage):
 
