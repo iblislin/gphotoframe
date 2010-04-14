@@ -42,7 +42,8 @@ class FSpotPhotoList(PhotoList):
 
         if self.db:
             self.sql = FSpotPhotoSQL(self.target, self.period)
-            self.rate_list = RateList(self.sql, self.options, self)
+            self.photos = self.rate_list = RateList(
+                self.sql, self.options, self)
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
@@ -321,6 +322,7 @@ class RateList(list):
         self.db  = FSpotDB()
         self.sql = sql
         self.photolist = photolist
+        self.raw_list = []
 
         if not self.db.is_accessible:
             self.total = 0
@@ -342,24 +344,27 @@ class RateList(list):
 
         for rate, total_in_this in count_dic.items():
             rate_info = Rate(rate, total_in_this, self.total, weight)
-            self.append(rate_info)
+            self.raw_list.append(rate_info)
 
         self.set_random_weight()
-        return
 
     def update_rate(self, old, new):
-        for rate in self:
+        for rate in self.raw_list:
             rate.total += 1 if rate.name == new \
                 else -1 if rate.name == old else 0
         self.set_random_weight()
 
     def set_random_weight(self):
-        self.photolist.photos = [x for x in self if x.total > 0 and 
-                       self.rate_min <= x.name <= self.rate_max]
-        self.rnd = WeightedRandom(self.photolist.photos)
+        del self[0:]
+
+        for rate in self.raw_list:
+            if rate.total > 0 and self.rate_min <= rate.name <= self.rate_max:
+                self.append(rate)
+
+        self.random = WeightedRandom(self)
 
     def get_random_weight(self):
-        rate = self.rnd()
+        rate = self.random()
         return rate
 
 class Rate(object):
