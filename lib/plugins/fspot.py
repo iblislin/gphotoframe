@@ -46,18 +46,18 @@ class FSpotPhotoList(PhotoList):
             self.rnd = WeightedRandom(self.photos)
 
     def _count(self):
+        rate_list = RateList()
+
         if not self.db.is_accessible:
             self.total = 0
-            return []
+            return rate_list
 
         sql = self.sql.get_statement('rating, COUNT(*)') + ' GROUP BY rating'
         count_list = self.db.fetchall(sql)
         self.total = sum(x[1] for x in count_list 
                          if self.rate_min <= x[0] <= self.rate_max)
 
-        rate_list = []
         weight = self.options.get('rate_weight', 2)
-
         for rate, total_in_this in count_list:
             if not self.rate_min <= rate <= self.rate_max:
                 total_in_this = 0
@@ -335,6 +335,16 @@ class FSpotPhotoTags(object):
         if unadded_tags:
             self._sort_tags(unadded_tags, ex_tags)
 
+class RateList(list):
+
+    def update_rate(self, old, new):
+        for rate in self:
+            #print rate.name, rate.weight, rate.total
+            diff = 1 if rate.name == new else -1 if rate.name == old else 0
+            rate.total += diff
+            #print rate.name, rate.weight, rate.total
+            #print
+
 class Rate(object):
 
     def __init__(self, rate, total_in_this, total_all, weight_mag=2):
@@ -367,7 +377,7 @@ class FSpotFav(object):
         db.commit()
         db.close()
 
-        # self.rate_list.update_rate(old_rate, new_rate)
+        self.rate_list.update_rate(old_rate, new_rate)
 
 class FSpotIcon(IconImage):
 
