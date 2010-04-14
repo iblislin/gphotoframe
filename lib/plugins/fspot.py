@@ -42,32 +42,10 @@ class FSpotPhotoList(PhotoList):
 
         if self.db:
             self.sql = FSpotPhotoSQL(self.target, self.period)
-            self.photos = self._count()
-            self.rnd = WeightedRandom(self.photos)
-
-    def _count(self):
-        rate_list = RateList()
-
-        if not self.db.is_accessible:
-            self.total = 0
-            return rate_list
-
-        sql = self.sql.get_statement('rating, COUNT(*)') + ' GROUP BY rating'
-        count_list = self.db.fetchall(sql)
-        self.total = sum(x[1] for x in count_list 
-                         if self.rate_min <= x[0] <= self.rate_max)
-
-        weight = self.options.get('rate_weight', 2)
-        for rate, total_in_this in count_list:
-            if not self.rate_min <= rate <= self.rate_max:
-                total_in_this = 0
-            rate_info = Rate(rate, total_in_this, self.total, weight)
-            rate_list.append(rate_info)
-
-        return rate_list
+            self.rate_list = RateList(self.sql, self.options, self)
 
     def get_photo(self, cb):
-        rate = self.rnd()
+        rate = self.rate_list.get_random_weight()
         columns = 'base_uri, filename, P.id, default_version_id' \
             if self.db.is_new else 'uri'
         sql = self.sql.get_statement(columns, rate.name)
@@ -97,7 +75,7 @@ class FSpotPhotoList(PhotoList):
                  'filename' : url.replace('file://', ''),
                  'title' : filename, # without path
                  'id' : id,
-                 'fav' : FSpotFav(rate.name, id, self.photos),
+                 'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'icon' : FSpotIcon }
 
         self.photo = Photo()
@@ -337,13 +315,53 @@ class FSpotPhotoTags(object):
 
 class RateList(list):
 
+    def __init__(self, sql, options, photolist):
+        super(RateList, self).__init__()
+
+        self.photolist = photolist
+
+        self.db  = FSpotDB()
+        self.sql = sql
+
+        if not self.db.is_accessible:
+            self.total = 0
+            return
+
+        self.rate_min = rate_min = options.get('rate_min', 0)
+        self.rate_max = rate_max = options.get('rate_max', 5)
+        weight   = options.get('rate_weight', 2)
+
+        sql = self.sql.get_statement('rating, COUNT(*)') + ' GROUP BY rating'
+        count_list = self.db.fetchall(sql)
+        self.total = sum(x[1] for x in count_list if rate_min <= x[0] <= rate_max)
+
+        # initialize all rate couter as 0
+        count_dic = dict([(x, 0) for x in xrange(6)])
+        count_dic.update(dict(count_list))
+
+        for rate, total_in_this in count_dic.items():
+            if not rate_min <= rate <= rate_max:
+                total_in_this = 0
+            rate_info = Rate(rate, total_in_this, self.total, weight)
+            self.append(rate_info)
+
+        self.set_random_weight()
+        return
+
     def update_rate(self, old, new):
         for rate in self:
-            #print rate.name, rate.weight, rate.total
-            diff = 1 if rate.name == new else -1 if rate.name == old else 0
-            rate.total += diff
-            #print rate.name, rate.weight, rate.total
-            #print
+            rate.total += 1 if rate.name == new \
+                else -1 if rate.name == old else 0
+        self.set_random_weight()
+
+    def set_random_weight(self):
+        self.photolist.photos = [x for x in self if x.total > 0 and 
+                       self.rate_min <= x.name <= self.rate_max]
+        self.rnd = WeightedRandom(self.photolist.photos)
+
+    def get_random_weight(self):
+        rate = self.rnd()
+        return rate
 
 class Rate(object):
 
