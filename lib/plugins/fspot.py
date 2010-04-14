@@ -35,10 +35,8 @@ class FSpotPhotoList(PhotoList):
         self.db.close()
 
     def prepare(self):
-        self.rate_min = self.options.get('rate_min', 0)
-        self.rate_max = self.options.get('rate_max', 5)
-        self.period = self.options.get('period')
         self.db = FSpotDB()
+        self.period = self.options.get('period')
 
         if self.db:
             self.sql = FSpotPhotoSQL(self.target, self.period)
@@ -87,9 +85,11 @@ class FSpotPhotoList(PhotoList):
         period_days = self.sql.get_period_days(self.period)
         period = _('Last %s days') % period_days if period_days else _("All")
 
-        tip = "%s: %s-%s\n%s: %s" % ( 
-            _('Rate'), self.rate_min, self.rate_max, 
-            _('Period'), period)
+        rate_min = self.options.get('rate_min', 0)
+        rate_max = self.options.get('rate_max', 5)
+
+        tip = "%s: %s-%s\n%s: %s" % (
+            _('Rate'), rate_min, rate_max, _('Period'), period)
         return tip
 
 class FSpotPhotoSQL(object):
