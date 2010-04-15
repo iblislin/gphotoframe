@@ -1,3 +1,18 @@
+2010-04-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py, rating.py, sqldb.py: Divided fspot.py.
+	* fspot.py: Added support for random photos with support for rate
+	  changing.
+
+2010-04-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Added support for recursive tag search.
+
+2010-04-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Fixed total photo numbers with rating filter.
+	  Code refactoring.
+
 2010-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot.py: Fixed a ambiguous column name bug (id -> P.id).
