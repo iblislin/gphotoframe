@@ -5,26 +5,28 @@ from sqldb import FSpotDB
 
 class RateList(list):
 
-    def __init__(self, sql, options, photolist):
+    def __init__(self, photolist):
         super(RateList, self).__init__()
 
-        self.db  = FSpotDB()
-        self.sql = sql
-        self.photolist = photolist
         self.raw_list = []
+        self.photolist = photolist
+        self.sql = photolist.sql
+        options = photolist.options
+        db = FSpotDB()
 
-        if not self.db.is_accessible:
+        if not db.is_accessible:
             self.total = 0
             return
 
         self.rate_min = options.get('rate_min', 0)
         self.rate_max = options.get('rate_max', 5)
-        weight   = options.get('rate_weight', 2)
+        weight = options.get('rate_weight', 2)
 
         sql = self.sql.get_statement(
             'rating, COUNT(*)', None, 
             self.rate_min, self.rate_max) + ' GROUP BY rating'
-        count_list = self.db.fetchall(sql)
+        count_list = db.fetchall(sql)
+        db.close()
         self.total = sum(x[1] for x in count_list)
 
         # initialize all rate couter as 0
@@ -35,15 +37,15 @@ class RateList(list):
             rate_info = Rate(rate, total_in_this, self.total, weight)
             self.raw_list.append(rate_info)
 
-        self.set_random_weight()
+        self._set_random_weight()
 
     def update_rate(self, old, new):
         for rate in self.raw_list:
             rate.total += 1 if rate.name == new \
                 else -1 if rate.name == old else 0
-        self.set_random_weight()
+        self._set_random_weight()
 
-    def set_random_weight(self):
+    def _set_random_weight(self):
         del self[0:]
 
         for rate in self.raw_list:

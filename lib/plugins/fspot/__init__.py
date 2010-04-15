@@ -7,7 +7,7 @@ from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase
 from ...utils.wrandom import WeightedRandom
 from ...utils.iconimage import IconImage
-from sqldb import FSpotDB, FSpotPhotoSQL
+from sqldb import FSpotDB, FSpotPhotoSQL, FSpotPhotoTags
 from rating import RateList
 
 def info():
@@ -38,8 +38,7 @@ class FSpotPhotoList(PhotoList):
 
         if self.db:
             self.sql = FSpotPhotoSQL(self.target, self.period)
-            self.photos = self.rate_list = RateList(
-                self.sql, self.options, self)
+            self.photos = self.rate_list = RateList(self)
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
@@ -157,40 +156,6 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
 
         period = self.options.get('period', 0)
         self.gui.get_widget('combobox_fs1').set_active(period)
-
-class FSpotPhotoTags(object):
-    "Sorted F-Spot Photo Tags"
-
-    def __init__(self):
-        self.stags = []
-        list = [[0, '', 0]]
-        db = FSpotDB()
-
-        if not db.is_accessible:
-            return
-
-        sql = 'SELECT * FROM tags ORDER BY id'
-        for tag in db.fetchall(sql):
-            list.append(tag)
-        db.close()
-
-        self._sort_tags(list, [0])
-
-    def get(self):
-        return self.stags
-
-    def _sort_tags(self, all_tags, ex_tags):
-        unadded_tags = []
-
-        for tag in all_tags:
-            if tag[2] in ex_tags:
-                self.stags.append(tag)
-                ex_tags.append(tag[0])
-            else:
-                unadded_tags.append(tag)
-            
-        if unadded_tags:
-            self._sort_tags(unadded_tags, ex_tags)
 
 class FSpotFav(object):
 

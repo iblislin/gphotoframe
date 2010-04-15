@@ -50,7 +50,7 @@ class FSpotPhotoSQL(object):
     def __init__(self, target=None, period=None):
         self.period = period
 
-        tag_list= FSpotTagList()
+        tag_list = FSpotTagList()
         self.tag_list = tag_list.get(target)
 
     def get_statement(self, select, rate_name=None, min=0, max=5):
@@ -102,6 +102,7 @@ class FSpotPhotoSQL(object):
         return period_days 
 
 class FSpotTagList(object):
+    "F-Spot all photo Tags for getting photos with tag recursively."
 
     def __init__(self):
         self.db = FSpotDB()
@@ -125,3 +126,36 @@ class FSpotTagList(object):
             for i in list:
                 self._get_with_category_id(i[0])
 
+class FSpotPhotoTags(object):
+    "Sorted F-Spot photo tags for gtk.ComboBox"
+
+    def __init__(self):
+        self.stags = []
+        list = [[0, '', 0]]
+        db = FSpotDB()
+
+        if not db.is_accessible:
+            return
+
+        sql = 'SELECT * FROM tags ORDER BY id'
+        for tag in db.fetchall(sql):
+            list.append(tag)
+        db.close()
+
+        self._sort_tags(list, [0])
+
+    def get(self):
+        return self.stags
+
+    def _sort_tags(self, all_tags, ex_tags):
+        unadded_tags = []
+
+        for tag in all_tags:
+            if tag[2] in ex_tags:
+                self.stags.append(tag)
+                ex_tags.append(tag[0])
+            else:
+                unadded_tags.append(tag)
+            
+        if unadded_tags:
+            self._sort_tags(unadded_tags, ex_tags)
