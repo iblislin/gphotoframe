@@ -2,7 +2,6 @@ import gtk
 from gettext import gettext as _
 
 from ..base import PluginDialog
-from ...utils.urlget import UrlGetWithProxy
 from ...utils.config import GConf
 from auth import FlickrAuth
 from api import API_KEY, SECRET
