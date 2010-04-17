@@ -1,3 +1,7 @@
+2010-04-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* en_GB.po: Added new translation.  Thanks Robert Readman!
+
 2010-04-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot/__init__.py, rating.py, sqldb.py: Divided fspot.py.
