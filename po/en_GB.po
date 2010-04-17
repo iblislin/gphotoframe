@@ -1,5 +1,5 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# gphotoframe en_GB message catalogue
+# Copyright (C) 2010 Robert Readman <Robert_Readman@Hotmail.com>
 # This file is distributed under the same license as the PACKAGE package.
 # Robert Readman <Robert_Readman@Hotmail.com>, 2010.
 #
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-06 18:25+0000\n"
+"POT-Creation-Date: 2010-04-17 23:03+0900\n"
 "PO-Revision-Date: 2010-04-13 12:58-0000\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,8 +128,7 @@ msgstr "Rate _Weight:"
 msgid "Wi_dth:"
 msgstr "Wi_dth:"
 
-#: ../share/gphotoframe.glade.h:27
-#: ../lib/plugins/base.py:135
+#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:135
 msgid "_Argument:"
 msgstr "_Argument:"
 
@@ -169,8 +168,7 @@ msgstr "_Source:"
 msgid "_Specified other people's ID"
 msgstr "_Specified other people's ID"
 
-#: ../share/gphotoframe.glade.h:37
-#: ../lib/plugins/base.py:129
+#: ../share/gphotoframe.glade.h:37 ../lib/plugins/base.py:129
 msgid "_Target:"
 msgstr "_Target:"
 
@@ -219,8 +217,12 @@ msgid "Auth token"
 msgstr "Auth token"
 
 #: ../share/gphotoframe.schemas.in.h:8
-msgid "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom."
-msgstr "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom."
+msgid ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
+msgstr ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
 
 #: ../share/gphotoframe.schemas.in.h:9
 msgid "E-mail adress as user ID"
@@ -255,12 +257,20 @@ msgid "Google account user ID"
 msgstr "Google account user ID"
 
 #: ../share/gphotoframe.schemas.in.h:17
-msgid "If true, changing of photo image in fullscreen mode will be animated. The program needs to be restarted to take effect the change of the setting."
-msgstr "If true, changing of photo image in fullscreen mode will be animated. The program needs to be restarted to take effect the change of the setting."
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
 
 #: ../share/gphotoframe.schemas.in.h:18
-msgid "If true, hiding and un-hiding of icons will be animated. The program needs to be restarted to take effect the change of the setting."
-msgstr "If true, hiding and un-hiding of icons will be animated. The program needs to be restarted to take effect the change of the setting."
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
 
 #: ../share/gphotoframe.schemas.in.h:19
 msgid "If true, icons will be shown on screensaver."
@@ -343,8 +353,12 @@ msgid "Recent selected photo source"
 msgstr "Recent selected photo source"
 
 #: ../share/gphotoframe.schemas.in.h:39
-msgid "Set to \"true\" to always show the icon. Set to \"false\" to only show the icon when the mouse pointer is over the photo frame."
-msgstr "Set to \"true\" to always show the icon. Set to \"false\" to only show the icon when the mouse pointer is over the photo frame."
+msgid ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
+msgstr ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
 
 #: ../share/gphotoframe.schemas.in.h:40
 msgid "Show icons on screensaver"
@@ -394,10 +408,8 @@ msgstr "The photo source should be ignored if the weight is 0."
 msgid "Options"
 msgstr "Options"
 
-#: ../lib/plugins/flickr/api.py:65
-#: ../lib/plugins/flickr/api.py:222
-#: ../lib/plugins/picasa.py:146
-#: ../lib/plugins/tumblr.py:101
+#: ../lib/plugins/flickr/api.py:65 ../lib/plugins/flickr/api.py:222
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/tumblr.py:101
 msgid "_User:"
 msgstr "_User:"
 
@@ -427,8 +439,16 @@ msgid "_Switch User"
 msgstr "_Switch User"
 
 #: ../lib/plugins/flickr/authdialog.py:35
-msgid "Gnome Photo Frame needs your authorization in order to view private photos or to add photos to favorites list on your Flickr.com account. Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame the authorization. "
-msgstr "Gnome Photo Frame needs your authorisation in order to view private photos or to add photos to favorites list on your Flickr.com account. Press the \"Authorise\" button to open a web browser and give Gnome Photo Frame the authorisation. "
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+"Gnome Photo Frame needs your authorisation in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorise\" button to open a web browser and give Gnome Photo Frame the "
+"authorisation. "
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -436,27 +456,31 @@ msgstr "_Authorise"
 
 #. getfrob -> open browser
 #: ../lib/plugins/flickr/authdialog.py:48
-msgid "Return to this dialog after you have finished the authorization process on Flickr.com and click the \"Complete Authorization\" button below"
-msgstr "Return to this dialogue after you have finished the authorisation process on Flickr.com and click the \"Complete Authorisation\" button below"
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"Return to this dialogue after you have finished the authorisation process on "
+"Flickr.com and click the \"Complete Authorisation\" button below"
 
 #: ../lib/plugins/flickr/authdialog.py:51
 msgid "_Complete Authorization"
 msgstr "_Complete Authorisation"
 
-#: ../lib/plugins/fspot.py:90
+#: ../lib/plugins/fspot/__init__.py:83
 #, python-format
 msgid "Last %s days"
 msgstr "Last %s days"
 
-#: ../lib/plugins/fspot.py:90
+#: ../lib/plugins/fspot/__init__.py:83
 msgid "All"
 msgstr "All"
 
-#: ../lib/plugins/fspot.py:93
+#: ../lib/plugins/fspot/__init__.py:89
 msgid "Rate"
 msgstr "Rate"
 
-#: ../lib/plugins/fspot.py:94
+#: ../lib/plugins/fspot/__init__.py:89
 msgid "Period"
 msgstr "Period"
 
@@ -476,4 +500,3 @@ msgstr "_Title:"
 #: ../lib/plugins/rss.py:74
 msgid "_URL:"
 msgstr "_URL:"
-
