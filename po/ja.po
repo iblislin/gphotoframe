@@ -1,7 +1,7 @@
-# gphotoframe Japanese message catalogue
-# Copyright (C) 2009 Yoshizumi Endo
-# This file is distributed under the same license as the PACKAGE package.
-# Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2009.
+# Japanese translations for gphotoframe package.
+# Copyright (C) 2009-2010 Yoshizumi Endo
+# This file is distributed under the same license as the gphotoframe package.
+# Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2009-2010.
 #
 msgid ""
 msgstr ""

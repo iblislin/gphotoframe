@@ -1,6 +1,6 @@
-# gphotoframe en_GB message catalogue
-# Copyright (C) 2010 Robert Readman <Robert_Readman@Hotmail.com>
-# This file is distributed under the same license as the PACKAGE package.
+# English (United Kingdom) translations for gphotoframe package.
+# Copyright (C) 2010 Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# This file is distributed under the same license as the gphotoframe package.
 # Robert Readman <Robert_Readman@Hotmail.com>, 2010.
 #
 msgid ""
