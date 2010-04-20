@@ -35,6 +35,7 @@
     <property name="comments" translatable="yes">Photo Frame for GNOME Desktop</property>
     <property name="website">http://code.google.com/p/gphotoframe/</property>
     <property name="authors">Yoshizumi Endo &lt;y-endo@ceres.dti.ne.jp&gt;</property>
+    <property name="translator_credits" translatable="yes">translator-credits</property>
     <property name="logo_icon_name">gphotoframe</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">

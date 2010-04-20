@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-20 15:46+0900\n"
-"PO-Revision-Date: 2010-04-20 15:47+0900\n"
+"POT-Creation-Date: 2010-04-20 16:18+0900\n"
+"PO-Revision-Date: 2010-04-20 16:19+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -307,6 +307,10 @@ msgstr "ユーザ ID(_U):"
 #: ../share/gphotoframe.ui.h:21
 msgid "_Weight:"
 msgstr "重み(_W):"
+
+#: ../share/gphotoframe.ui.h:22
+msgid "translator-credits"
+msgstr "Yoshizumi Endo <y-endo@ceres.dti.ne.jp>"
 
 #: ../share/preferences.ui.h:1
 msgid "<b>Desktop</b>"
