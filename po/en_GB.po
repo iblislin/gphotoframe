@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-17 23:03+0900\n"
-"PO-Revision-Date: 2010-04-13 12:58-0000\n"
+"POT-Creation-Date: 2010-04-20 15:46+0900\n"
+"PO-Revision-Date: 2010-04-20 15:47+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -187,6 +187,10 @@ msgstr "pixels"
 #: ../share/gphotoframe.glade.h:41
 msgid "seconds"
 msgstr "seconds"
+
+#: ../share/gphotoframe.glade.h:42
+msgid "translator-credits"
+msgstr "Robert Readman <Robert_Readman@Hotmail.com>"
 
 #: ../share/gphotoframe.schemas.in.h:1
 msgid "API reload interval minutes"
@@ -409,7 +413,7 @@ msgid "Options"
 msgstr "Options"
 
 #: ../lib/plugins/flickr/api.py:65 ../lib/plugins/flickr/api.py:222
-#: ../lib/plugins/picasa.py:146 ../lib/plugins/tumblr.py:101
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/tumblr.py:105
 msgid "_User:"
 msgstr "_User:"
 
@@ -488,15 +492,15 @@ msgstr "Period"
 msgid "_Keyword:"
 msgstr "_Keyword:"
 
-#: ../lib/plugins/tumblr.py:119
+#: ../lib/plugins/tumblr.py:123
 msgid "_E-mail:"
 msgstr "_E-mail:"
 
-#: ../lib/plugins/rss.py:71
+#: ../lib/plugins/rss.py:78
 msgid "_Title:"
 msgstr "_Title:"
 
 #. argument widget
-#: ../lib/plugins/rss.py:74
+#: ../lib/plugins/rss.py:81
 msgid "_URL:"
 msgstr "_URL:"
