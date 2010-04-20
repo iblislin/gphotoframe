@@ -1,5 +1,5 @@
 from __future__ import division
-import os
+import gtk
 
 try:
     import cluttergtk
@@ -187,7 +187,7 @@ class ActorGeoIcon(ActorSourceIcon):
         
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
             lat, lon, self.photo['title'] or '(no title)')
-        os.system("gnome-open '%s'" % url)
+        gtk.show_uri(None, url, event.time)
 
 class ActorFavIcon(ActorIcon):
 
