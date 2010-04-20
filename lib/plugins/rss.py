@@ -33,6 +33,7 @@ class RSSPhotoList(PhotoList):
         re_rss = re.compile( "<img [^>]*src=\"?" + 
                              "([ A-Za-z0-9\'~+\-=_.,/%\?!;:@#\*&\(\)]+" +
                              "\.(jpe?g|png))", re.IGNORECASE)
+        re_del_tag = re.compile(r'<.*?>')
         self.options['feed_title'] = rss.feed.title
 
         for num, item in enumerate(rss.entries):
@@ -50,10 +51,12 @@ class RSSPhotoList(PhotoList):
             for image in match:
                 url = entry.media_content_attrs['url'] \
                     if hasattr(entry, 'media_content_attrs') else image[0]
+                title = re_del_tag.sub('', entry.title)
+
                 data = {'url'        : url,
                         'owner_name' : owner,
                         'owner'      : owner,
-                        'title'      : entry.title,
+                        'title'      : title,
                         'page_url'   : entry.link, 
                         'icon'       : RSSIcon}
 
