@@ -1,3 +1,7 @@
+2010-04-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py (RSSPhotoList): Remove redundant tags from entry title.
+
 2010-04-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* en_GB.po: Added new translation.  Thanks Robert Readman!
