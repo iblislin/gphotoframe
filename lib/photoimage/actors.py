@@ -1,4 +1,5 @@
 from __future__ import division
+from string import maketrans
 import os
 
 try:
@@ -185,8 +186,12 @@ class ActorGeoIcon(ActorSourceIcon):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
         
+        title = self.photo['title'] or 'No Title'
+        title = title.translate(
+            maketrans("()", "[]"), "<>").replace("'", "%27")
+
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
-            lat, lon, self.photo['title'] or '(no title)')
+            lat, lon, title)
         os.system("gnome-open '%s'" % url)
 
 class ActorFavIcon(ActorIcon):
