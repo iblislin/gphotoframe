@@ -1,3 +1,7 @@
+2010-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py (ActorGeoIcon): Normalize Google Map URI.
+
 2010-04-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.glade: Added translator credits.
