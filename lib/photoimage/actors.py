@@ -187,11 +187,15 @@ class ActorGeoIcon(ActorSourceIcon):
         lon = self.photo['geo']['lon']
         
         title = self.photo['title'] or 'No Title'
-        title = title.translate(
-            maketrans("()", "[]"), "<>").replace("'", "%27")
+        title = title.replace("'", "%27") \
+            .replace("(", "[").replace(")", "]") \
+            .replace("<", "").replace(">", "")
 
-        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
-            lat, lon, title)
+        zoom = 0
+        zoom = "&z=%s" % zoom if zoom else ""
+
+        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
+            lat, lon, title, zoom)
         os.system("gnome-open '%s'" % url)
 
 class ActorFavIcon(ActorIcon):
