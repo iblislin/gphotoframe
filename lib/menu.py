@@ -88,7 +88,7 @@ class PopUpMenuFullScreen(PopUpMenu):
 class RecentMenuItem(gtk.ImageMenuItem):
 
     def __init__(self, photo):
-        title = photo.get('title') or _('(No Title)')
+        title = photo.get('title') or "(%s)" % _('No Title')
         title = title.replace ( "\n", " " )
 
         super(RecentMenuItem, self).__init__(title)

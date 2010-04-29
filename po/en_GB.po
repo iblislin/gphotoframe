@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-20 16:18+0900\n"
-"PO-Revision-Date: 2010-04-20 16:21+0900\n"
+"POT-Creation-Date: 2010-04-29 18:01+0900\n"
+"PO-Revision-Date: 2010-04-29 18:02+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -393,8 +393,8 @@ msgid "_Next Photo"
 msgstr "_Next Photo"
 
 #: ../lib/menu.py:91
-msgid "(No Title)"
-msgstr "(No Title)"
+msgid "No Title"
+msgstr "No Title"
 
 #: ../lib/preferences.py:136
 msgid "Source"
