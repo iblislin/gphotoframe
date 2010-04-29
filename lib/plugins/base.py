@@ -3,7 +3,7 @@ import os
 
 import gtk
 import random
-import gobject
+import glib
 from gettext import gettext as _
 from urlparse import urlparse
 
@@ -69,7 +69,7 @@ class PhotoList(object):
             print "Interval for API access should be greater than 10 minutes."
             min = 10
 
-        self._timer = gobject.timeout_add(min * 60 * 1000, self.prepare)
+        self._timer = glib.timeout_add_seconds(min * 60, self.prepare)
         return False
 
     def _get_photo_cb(self, data, cb):

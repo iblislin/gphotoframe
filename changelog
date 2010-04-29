@@ -1,5 +1,7 @@
 2010-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* photoframe.py, photoimagegtk.py, photoliststore.py, base.py:
+	  Switched gobject -> glib.
 	* actors.py, menu.py: Updated translations.
 
 2010-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

@@ -3,7 +3,7 @@ from __future__ import division
 import os
 import time
 
-import gobject
+import glib
 import gtk
 
 import constants
@@ -288,11 +288,11 @@ class FullScreenUI(object):
         self.cursor.hide(widget)
 
     def start_timer_cb(self, widget, event):
-        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
+        self._timer = glib.timeout_add_seconds(5, self.hide_cb, widget, event)
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
-            gobject.source_remove(self._timer)
+            glib.source_remove(self._timer)
 
 class Cursor(object):
     def __init__(self):

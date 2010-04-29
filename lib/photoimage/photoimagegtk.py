@@ -1,11 +1,10 @@
 from __future__ import division
 
 import os
-import sys
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
-import gobject
+import glib
 import gtk
 
 from ..utils.config import GConf
@@ -117,8 +116,8 @@ class PhotoImagePixbuf(object):
                 return False
 
             pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-        except (gobject.GError, OSError):
-            print sys.exc_info()[1]
+        except (glib.GError, OSError), err_info:
+            print err_info
             return False
 
         pixbuf = self._rotate(pixbuf)

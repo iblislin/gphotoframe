@@ -1,7 +1,7 @@
 import os
 
 import gtk
-import gobject
+import glib
 
 import plugins
 from photoframe import PhotoFrameFactory
@@ -42,7 +42,7 @@ class PhotoListStore(gtk.ListStore):
         super(PhotoListStore, self).remove(iter)
 
     def next_photo(self, *args):
-        gobject.source_remove(self._timer)
+        glib.source_remove(self._timer)
         self._start_timer()
 
     def delete_photo(self, filename):
@@ -50,7 +50,7 @@ class PhotoListStore(gtk.ListStore):
         self.photoframe.remove_photo(filename)
 
     def reset_timer(self, *args):
-        gobject.source_remove(self._timer)
+        glib.source_remove(self._timer)
         self._start_timer(True)
 
     def _start_timer(self, change=True):
@@ -66,7 +66,7 @@ class PhotoListStore(gtk.ListStore):
         else:
             interval = self.conf.get_int('interval', 30)
         
-        self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
+        self._timer = glib.timeout_add_seconds(interval, self._start_timer)
         return False
 
     def _change_photo(self):
