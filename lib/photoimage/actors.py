@@ -1,6 +1,5 @@
 from __future__ import division
-from string import maketrans
-import os
+import gtk
 
 try:
     import cluttergtk
@@ -196,7 +195,7 @@ class ActorGeoIcon(ActorSourceIcon):
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
             lat, lon, title, zoom)
-        os.system("gnome-open '%s'" % url)
+        gtk.show_uri(None, url, event.time)
 
 class ActorFavIcon(ActorIcon):
 
