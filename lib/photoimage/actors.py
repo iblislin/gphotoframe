@@ -185,8 +185,16 @@ class ActorGeoIcon(ActorSourceIcon):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
         
-        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
-            lat, lon, self.photo['title'] or '(no title)')
+        title = self.photo['title'] or 'No Title'
+        title = title.replace("'", "%27") \
+            .replace("(", "[").replace(")", "]") \
+            .replace("<", "").replace(">", "")
+
+        zoom = 0
+        zoom = "&z=%s" % zoom if zoom else ""
+
+        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
+            lat, lon, title, zoom)
         gtk.show_uri(None, url, event.time)
 
 class ActorFavIcon(ActorIcon):
