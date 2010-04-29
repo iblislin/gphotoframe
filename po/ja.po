@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-20 16:18+0900\n"
-"PO-Revision-Date: 2010-04-20 16:19+0900\n"
+"POT-Creation-Date: 2010-04-29 18:01+0900\n"
+"PO-Revision-Date: 2010-04-29 18:01+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -393,8 +393,8 @@ msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
 #: ../lib/menu.py:91
-msgid "(No Title)"
-msgstr "(無題)"
+msgid "No Title"
+msgstr "無題"
 
 #: ../lib/preferences.py:136
 msgid "Source"

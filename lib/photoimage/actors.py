@@ -1,5 +1,6 @@
 from __future__ import division
 import gtk
+from gettext import gettext as _
 
 try:
     import cluttergtk
@@ -185,7 +186,7 @@ class ActorGeoIcon(ActorSourceIcon):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
         
-        title = self.photo['title'] or 'No Title'
+        title = self.photo['title'] or _('No Title')
         title = title.replace("'", "%27") \
             .replace("(", "[").replace(")", "]") \
             .replace("<", "").replace(">", "")
