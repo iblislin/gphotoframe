@@ -1,0 +1,498 @@
+# Telugu translations for gphotoframe package.
+# Copyright (C) 2010 Yoshizumi Endo.
+# This file is distributed under the same license as the PACKAGE package.
+# Veeven <veeven@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-29 18:01+0900\n"
+"PO-Revision-Date: 2010-05-04 19:26+0530\n"
+"Last-Translator: Veeven <veeven@gmail.com>\n"
+"Language-Team: e-Telugu Localization Team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: te\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.5.2\n"
+
+#: ../share/gphotoframe.desktop.in.h:1
+msgid "Image Viewer"
+msgstr ""
+
+#: ../share/gphotoframe.desktop.in.h:2
+#: ../share/gphotoframe-screensaver.desktop.in.h:2
+msgid "Photo Frame"
+msgstr ""
+
+#: ../share/gphotoframe.desktop.in.h:3
+msgid "Show photos on Desktop"
+msgstr ""
+
+#: ../share/gphotoframe-screensaver.desktop.in.h:1
+msgid "Display a slideshow from your Photo Frame"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:1
+msgid "API reload interval minutes"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:2
+msgid "API reload interval minutes. It should be greater than 10 minutes."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:3
+msgid "Always on Visible Workspace"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:4
+msgid "Always show the fav icon"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:5
+msgid "Always show the geo icon"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:6
+msgid "Always show the source icon"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:7
+msgid "Auth token"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:8
+msgid ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:9
+msgid "E-mail adress as user ID"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:10
+msgid "Enable fullscreen mode animations"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:11
+msgid "Enable icon animations"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:12
+msgid "Fav icon position"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:13
+msgid "Fix the photo frame on the root window"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:14
+msgid "Flickr user ID"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:15
+msgid "Geo icon position"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:16
+msgid "Google account user ID"
+msgstr "గూగుల్ ఖాతా వాడుకరి ID"
+
+#: ../share/gphotoframe.schemas.in.h:17
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:18
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:19
+msgid "If true, icons will be shown on screensaver."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:20
+msgid "Interval seconds in full screen mode"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:21
+msgid "Interval seconds in window mode"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:22
+msgid "Max aspect ratio for Photo"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:23
+msgid "Minimum aspect ratio for Photo"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:24
+msgid "NSID"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:25
+msgid "Photo frame X position"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:26
+msgid "Photo frame Y position"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:27
+msgid "Photo frame border color"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:28
+msgid "Photo frame border width"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:29
+msgid "Photo frame fix mode"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:30
+msgid "Photo frame full screen mode"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:31
+msgid "Photo frame sticky mode"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:32
+msgid "Photo image max height"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:33
+msgid "Photo image max width"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:34
+msgid "Photo source default weight"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:35
+msgid "RSS reload interval minutes"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:36
+msgid "RSS reload interval minutes. It should be greater than 10 minutes."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:37
+msgid "Recent opend preferences page number"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:38
+msgid "Recent selected photo source"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:39
+msgid ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:40
+msgid "Show icons on screensaver"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:41
+msgid "Source icon position"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:42
+msgid "User ID"
+msgstr "వాడుకరి ID"
+
+#: ../share/gphotoframe.schemas.in.h:43
+msgid "User full name"
+msgstr "వాడుకరి పూర్తి పేరు"
+
+#: ../share/gphotoframe.schemas.in.h:44
+msgid "User name"
+msgstr "వాడుకరి పేరు"
+
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
+msgid "All"
+msgstr "అన్నీ"
+
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:7
+msgid "General"
+msgstr "సాధారణ"
+
+#: ../share/gphotoframe.ui.h:3
+msgid "Last 180 days"
+msgstr "గత 180 రోజులు"
+
+#: ../share/gphotoframe.ui.h:4
+msgid "Last 30 days"
+msgstr "గత 30 రోజులు"
+
+#: ../share/gphotoframe.ui.h:5
+msgid "Last 360 days"
+msgstr "గత 360 రోజులు"
+
+#: ../share/gphotoframe.ui.h:6
+msgid "Last 7 days"
+msgstr "గత 7 రోజులు"
+
+#: ../share/gphotoframe.ui.h:7
+msgid "Last 90 days"
+msgstr "గత 90 రోజులు"
+
+#: ../share/gphotoframe.ui.h:8
+msgid "Ma_x Rate:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:9
+msgid "Mi_n Rate:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:10
+msgid "Photo Frame for GNOME Desktop"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:11
+msgid "Photo Source"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:12
+msgid "Rate _Weight:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:135
+msgid "_Argument:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:14
+msgid "_Include subfolders"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:15
+msgid "_Password:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:16
+msgid "_Period:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:17
+msgid "_Source:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:18
+msgid "_Specified other people's ID"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:129
+msgid "_Target:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:20
+msgid "_User ID:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:21
+msgid "_Weight:"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:22
+msgid "translator-credits"
+msgstr "Veeven"
+
+#: ../share/preferences.ui.h:1
+msgid "<b>Desktop</b>"
+msgstr ""
+
+#: ../share/preferences.ui.h:2
+msgid "<b>Interval</b>"
+msgstr ""
+
+#: ../share/preferences.ui.h:3
+msgid "<b>Maximum Display Size</b>"
+msgstr "<b>గరిష్ఠ ప్రదర్శన పరిమాణం</b>"
+
+#: ../share/preferences.ui.h:4
+msgid "<b>Photo Sources</b>"
+msgstr ""
+
+#: ../share/preferences.ui.h:5
+msgid "<b>Plugins</b>"
+msgstr ""
+
+#: ../share/preferences.ui.h:6
+msgid "Always on _Visible Workspace"
+msgstr ""
+
+#: ../share/preferences.ui.h:8
+msgid "In _Full Screen Mode:"
+msgstr ""
+
+#: ../share/preferences.ui.h:9
+msgid "In _Window Mode:"
+msgstr ""
+
+#: ../share/preferences.ui.h:10
+msgid "Photo Frame Preferences"
+msgstr ""
+
+#: ../share/preferences.ui.h:11
+msgid "Photos"
+msgstr "ఫొటోలు"
+
+#: ../share/preferences.ui.h:12
+msgid "Plugins"
+msgstr ""
+
+#: ../share/preferences.ui.h:13
+msgid "Wi_dth:"
+msgstr ""
+
+#: ../share/preferences.ui.h:14
+msgid "_Auto Start"
+msgstr ""
+
+#: ../share/preferences.ui.h:15
+msgid "_Height:"
+msgstr "ఎత్తు (_H):"
+
+#: ../share/preferences.ui.h:16
+msgid "pixels"
+msgstr "పిక్సెళ్ళు"
+
+#: ../share/preferences.ui.h:17
+msgid "seconds"
+msgstr "క్షణాలు"
+
+#: ../share/menu.ui.h:1
+msgid "Fi_x Photo Frame"
+msgstr ""
+
+#: ../share/menu.ui.h:2
+msgid "Open _Recent"
+msgstr ""
+
+#: ../share/menu.ui.h:3
+msgid "_Full Screen"
+msgstr "నిండు తెర (_F_"
+
+#: ../share/menu.ui.h:4
+msgid "_Next Photo"
+msgstr ""
+
+#: ../lib/menu.py:91
+msgid "No Title"
+msgstr "శీర్షిక లేదు"
+
+#: ../lib/preferences.py:136
+msgid "Source"
+msgstr ""
+
+#: ../lib/preferences.py:137
+msgid "Target"
+msgstr ""
+
+#: ../lib/preferences.py:138
+msgid "Argument"
+msgstr ""
+
+#: ../lib/preferences.py:139
+msgid "Weight"
+msgstr "బరువు"
+
+#: ../lib/preferences.py:294
+msgid "The photo source should be ignored if the weight is 0."
+msgstr ""
+
+#: ../lib/plugins/base.py:170
+msgid "Options"
+msgstr "ఎంపికలు"
+
+#: ../lib/plugins/flickr/api.py:65 ../lib/plugins/flickr/api.py:222
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/tumblr.py:105
+msgid "_User:"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:69
+msgid "Enter NSID or User Name in the URL"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:181
+msgid "_Group:"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:185
+msgid "Enter NSID or Group Name in the URL"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:245
+msgid "_Tags:"
+msgstr ""
+
+#: ../lib/plugins/flickr/authdialog.py:26
+#, python-format
+msgid "You are connected to Flickr.com as %s."
+msgstr ""
+
+#: ../lib/plugins/flickr/authdialog.py:27
+msgid "_Switch User"
+msgstr ""
+
+#: ../lib/plugins/flickr/authdialog.py:35
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+
+#: ../lib/plugins/flickr/authdialog.py:40
+msgid "_Authorize"
+msgstr ""
+
+#. getfrob -> open browser
+#: ../lib/plugins/flickr/authdialog.py:48
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+
+#: ../lib/plugins/flickr/authdialog.py:51
+msgid "_Complete Authorization"
+msgstr ""
+
+#: ../lib/plugins/fspot/__init__.py:83
+#, python-format
+msgid "Last %s days"
+msgstr "గత %s రోజులు"
+
+#: ../lib/plugins/fspot/__init__.py:89
+msgid "Rate"
+msgstr ""
+
+#: ../lib/plugins/fspot/__init__.py:89
+msgid "Period"
+msgstr ""
+
+#: ../lib/plugins/picasa.py:146
+msgid "_Keyword:"
+msgstr ""
+
+#: ../lib/plugins/tumblr.py:123
+msgid "_E-mail:"
+msgstr ""
+
+#: ../lib/plugins/rss.py:78
+msgid "_Title:"
+msgstr ""
+
+#. argument widget
+#: ../lib/plugins/rss.py:81
+msgid "_URL:"
+msgstr ""

@@ -1,3 +1,7 @@
+2010-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* te.po: Added new translation.  Thanks Veeven!
+
 2010-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, photoimagegtk.py, photoliststore.py, base.py:
