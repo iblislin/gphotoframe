@@ -28,7 +28,7 @@ class Preferences(object):
         self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
 
         checkbutton1 = gui.get_widget('checkbutton1')
-        sticky = self.conf.get_bool('window_sticky')
+        sticky = self.conf.get_bool('window_sticky', False)
         checkbutton1.set_active(sticky)
 
         checkbutton2 = gui.get_widget('checkbutton2')
