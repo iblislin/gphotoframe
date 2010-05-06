@@ -1,3 +1,8 @@
+2010-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py (Preferences.start): Set default value for
+	  the 'window_sticky' gconf key (issue #49).
+
 2010-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 0.7 release.

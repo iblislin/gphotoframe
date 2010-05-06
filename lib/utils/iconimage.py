@@ -24,6 +24,7 @@ class IconImage(object):
         self.size = size
         file = self._get_icon_file()
 
+        print self.icon_name
         pixbuf = gtk.gdk.pixbuf_new_from_file(file)
         if grayscale:
             pixbuf = self._set_grayscale(pixbuf)
