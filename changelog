@@ -2,7 +2,6 @@
 
 	* NEWS: 0.7.2 release.
 	* setup.py: Fixed the permission of share/rss-16.png.
-
 	* NEWS: 0.7.1 release.
 	* iconimage.py (IconImage): Fixed a F-Spot icon loading bug
 	  (issue #50).
