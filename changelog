@@ -1,6 +1,18 @@
+2010-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.7.1 release.
+	* iconimage.py (IconImage): Fixed a F-Spot icon loading bug
+	  (issue #50).
+
+2010-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py (Preferences.start): Set default value for
+	  the 'window_sticky' gconf key (issue #49).
+
 2010-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* te.po: Added new translation.  Thanks Veeven!
+	* NEWS: 0.7 release.
 
 2010-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
