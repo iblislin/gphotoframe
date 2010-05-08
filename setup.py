@@ -6,6 +6,7 @@ from DistUtilsExtra.command import *
 import lib.constants as constants
 
 os.chmod("share/gphotoframe.glade", 0644)
+os.chmod("share/rss-16.png", 0644)
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,
