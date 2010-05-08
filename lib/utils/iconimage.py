@@ -24,7 +24,6 @@ class IconImage(object):
         self.size = size
         file = self._get_icon_file()
 
-        print self.icon_name
         pixbuf = gtk.gdk.pixbuf_new_from_file(file)
         if grayscale:
             pixbuf = self._set_grayscale(pixbuf)
@@ -32,7 +31,8 @@ class IconImage(object):
         return pixbuf
 
     def _get_icon_file(self):
-        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
+        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome') \
+            or getIconPath('image-x-generic', size=self.size, theme='gnome')
         return icon_path
 
     def _set_grayscale(self, pixbuf):
