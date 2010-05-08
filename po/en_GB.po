@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-20 15:46+0900\n"
-"PO-Revision-Date: 2010-04-20 15:47+0900\n"
+"POT-Creation-Date: 2010-04-29 18:01+0900\n"
+"PO-Revision-Date: 2010-04-29 18:02+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,166 +31,6 @@ msgstr "Show photos on Desktop"
 #: ../share/gphotoframe-screensaver.desktop.in.h:1
 msgid "Display a slideshow from your Photo Frame"
 msgstr "Display a slideshow from your Photo Frame"
-
-#: ../share/gphotoframe.glade.h:1
-msgid "<b>Desktop</b>"
-msgstr "<b>Desktop</b>"
-
-#: ../share/gphotoframe.glade.h:2
-msgid "<b>Interval</b>"
-msgstr "<b>Interval</b>"
-
-#: ../share/gphotoframe.glade.h:3
-msgid "<b>Maximum Display Size</b>"
-msgstr "<b>Maximum Display Size</b>"
-
-#: ../share/gphotoframe.glade.h:4
-msgid "<b>Photo Sources</b>"
-msgstr "<b>Photo Sources</b>"
-
-#: ../share/gphotoframe.glade.h:5
-msgid "<b>Plugins</b>"
-msgstr "<b>Plug-ins</b>"
-
-#: ../share/gphotoframe.glade.h:6
-msgid ""
-"All\n"
-"Last 7 days\n"
-"Last 30 days\n"
-"Last 90 days\n"
-"Last 180 days\n"
-"Last 360 days"
-msgstr ""
-"All\n"
-"Last 7 days\n"
-"Last 30 days\n"
-"Last 90 days\n"
-"Last 180 days\n"
-"Last 360 days"
-
-#: ../share/gphotoframe.glade.h:12
-msgid "Always on _Visible Workspace"
-msgstr "Always on _Visible Workspace"
-
-#: ../share/gphotoframe.glade.h:13
-msgid "Fi_x Photo Frame"
-msgstr "Fi_x Photo Frame"
-
-#: ../share/gphotoframe.glade.h:14
-msgid "General"
-msgstr "General"
-
-#: ../share/gphotoframe.glade.h:15
-msgid "In _Full Screen Mode:"
-msgstr "In _Full Screen Mode:"
-
-#: ../share/gphotoframe.glade.h:16
-msgid "In _Window Mode:"
-msgstr "In _Window Mode:"
-
-#: ../share/gphotoframe.glade.h:17
-msgid "Ma_x Rate:"
-msgstr "Ma_x Rate:"
-
-#: ../share/gphotoframe.glade.h:18
-msgid "Mi_n Rate:"
-msgstr "Mi_n Rate:"
-
-#: ../share/gphotoframe.glade.h:19
-msgid "Open _Recent"
-msgstr "Open _Recent"
-
-#: ../share/gphotoframe.glade.h:20
-msgid "Photo Frame Preferences"
-msgstr "Photo Frame Preferences"
-
-#: ../share/gphotoframe.glade.h:21
-msgid "Photo Frame for GNOME Desktop"
-msgstr "Photo Frame for GNOME Desktop"
-
-#: ../share/gphotoframe.glade.h:22
-msgid "Photo Source"
-msgstr "Photo Source"
-
-#: ../share/gphotoframe.glade.h:23
-msgid "Photos"
-msgstr "Photos"
-
-#: ../share/gphotoframe.glade.h:24
-msgid "Plugins"
-msgstr "Plug-ins"
-
-#: ../share/gphotoframe.glade.h:25
-msgid "Rate _Weight:"
-msgstr "Rate _Weight:"
-
-#: ../share/gphotoframe.glade.h:26
-msgid "Wi_dth:"
-msgstr "Wi_dth:"
-
-#: ../share/gphotoframe.glade.h:27 ../lib/plugins/base.py:135
-msgid "_Argument:"
-msgstr "_Argument:"
-
-#: ../share/gphotoframe.glade.h:28
-msgid "_Auto Start"
-msgstr "_Auto Start"
-
-#: ../share/gphotoframe.glade.h:29
-msgid "_Full Screen"
-msgstr "_Full Screen"
-
-#: ../share/gphotoframe.glade.h:30
-msgid "_Height:"
-msgstr "_Height:"
-
-#: ../share/gphotoframe.glade.h:31
-msgid "_Include subfolders"
-msgstr "_Include subfolders"
-
-#: ../share/gphotoframe.glade.h:32
-msgid "_Next Photo"
-msgstr "_Next Photo"
-
-#: ../share/gphotoframe.glade.h:33
-msgid "_Password:"
-msgstr "_Password:"
-
-#: ../share/gphotoframe.glade.h:34
-msgid "_Period:"
-msgstr "_Period:"
-
-#: ../share/gphotoframe.glade.h:35
-msgid "_Source:"
-msgstr "_Source:"
-
-#: ../share/gphotoframe.glade.h:36
-msgid "_Specified other people's ID"
-msgstr "_Specified other people's ID"
-
-#: ../share/gphotoframe.glade.h:37 ../lib/plugins/base.py:129
-msgid "_Target:"
-msgstr "_Target:"
-
-#: ../share/gphotoframe.glade.h:38
-msgid "_User ID:"
-msgstr "_User ID:"
-
-#: ../share/gphotoframe.glade.h:39
-msgid "_Weight:"
-msgstr "_Weight:"
-
-#: ../share/gphotoframe.glade.h:40
-msgid "pixels"
-msgstr "pixels"
-
-#: ../share/gphotoframe.glade.h:41
-msgid "seconds"
-msgstr "seconds"
-
-#: ../share/gphotoframe.glade.h:42
-msgid "translator-credits"
-msgstr "Robert Readman <Robert_Readman@Hotmail.com>"
 
 #: ../share/gphotoframe.schemas.in.h:1
 msgid "API reload interval minutes"
@@ -384,27 +224,195 @@ msgstr "User full name"
 msgid "User name"
 msgstr "User name"
 
-#: ../lib/menu.py:89
-msgid "(No Title)"
-msgstr "(No Title)"
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
+msgid "All"
+msgstr "All"
 
-#: ../lib/preferences.py:133
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:7
+msgid "General"
+msgstr "General"
+
+#: ../share/gphotoframe.ui.h:3
+msgid "Last 180 days"
+msgstr "Last 180 days"
+
+#: ../share/gphotoframe.ui.h:4
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+#: ../share/gphotoframe.ui.h:5
+msgid "Last 360 days"
+msgstr "Last 360 days"
+
+#: ../share/gphotoframe.ui.h:6
+msgid "Last 7 days"
+msgstr "Last 7 days"
+
+#: ../share/gphotoframe.ui.h:7
+msgid "Last 90 days"
+msgstr "Last 90 days"
+
+#: ../share/gphotoframe.ui.h:8
+msgid "Ma_x Rate:"
+msgstr "Ma_x Rate:"
+
+#: ../share/gphotoframe.ui.h:9
+msgid "Mi_n Rate:"
+msgstr "Mi_n Rate:"
+
+#: ../share/gphotoframe.ui.h:10
+msgid "Photo Frame for GNOME Desktop"
+msgstr "Photo Frame for GNOME Desktop"
+
+#: ../share/gphotoframe.ui.h:11
+msgid "Photo Source"
+msgstr "Photo Source"
+
+#: ../share/gphotoframe.ui.h:12
+msgid "Rate _Weight:"
+msgstr "Rate _Weight:"
+
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:135
+msgid "_Argument:"
+msgstr "_Argument:"
+
+#: ../share/gphotoframe.ui.h:14
+msgid "_Include subfolders"
+msgstr "_Include subfolders"
+
+#: ../share/gphotoframe.ui.h:15
+msgid "_Password:"
+msgstr "_Password:"
+
+#: ../share/gphotoframe.ui.h:16
+msgid "_Period:"
+msgstr "_Period:"
+
+#: ../share/gphotoframe.ui.h:17
+msgid "_Source:"
+msgstr "_Source:"
+
+#: ../share/gphotoframe.ui.h:18
+msgid "_Specified other people's ID"
+msgstr "_Specified other people's ID"
+
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:129
+msgid "_Target:"
+msgstr "_Target:"
+
+#: ../share/gphotoframe.ui.h:20
+msgid "_User ID:"
+msgstr "_User ID:"
+
+#: ../share/gphotoframe.ui.h:21
+msgid "_Weight:"
+msgstr "_Weight:"
+
+#: ../share/gphotoframe.ui.h:22
+msgid "translator-credits"
+msgstr "Robert Readman <Robert_Readman@Hotmail.com>"
+
+#: ../share/preferences.ui.h:1
+msgid "<b>Desktop</b>"
+msgstr "<b>Desktop</b>"
+
+#: ../share/preferences.ui.h:2
+msgid "<b>Interval</b>"
+msgstr "<b>Interval</b>"
+
+#: ../share/preferences.ui.h:3
+msgid "<b>Maximum Display Size</b>"
+msgstr "<b>Maximum Display Size</b>"
+
+#: ../share/preferences.ui.h:4
+msgid "<b>Photo Sources</b>"
+msgstr "<b>Photo Sources</b>"
+
+#: ../share/preferences.ui.h:5
+msgid "<b>Plugins</b>"
+msgstr "<b>Plug-ins</b>"
+
+#: ../share/preferences.ui.h:6
+msgid "Always on _Visible Workspace"
+msgstr "Always on _Visible Workspace"
+
+#: ../share/preferences.ui.h:8
+msgid "In _Full Screen Mode:"
+msgstr "In _Full Screen Mode:"
+
+#: ../share/preferences.ui.h:9
+msgid "In _Window Mode:"
+msgstr "In _Window Mode:"
+
+#: ../share/preferences.ui.h:10
+msgid "Photo Frame Preferences"
+msgstr "Photo Frame Preferences"
+
+#: ../share/preferences.ui.h:11
+msgid "Photos"
+msgstr "Photos"
+
+#: ../share/preferences.ui.h:12
+msgid "Plugins"
+msgstr "Plug-ins"
+
+#: ../share/preferences.ui.h:13
+msgid "Wi_dth:"
+msgstr "Wi_dth:"
+
+#: ../share/preferences.ui.h:14
+msgid "_Auto Start"
+msgstr "_Auto Start"
+
+#: ../share/preferences.ui.h:15
+msgid "_Height:"
+msgstr "_Height:"
+
+#: ../share/preferences.ui.h:16
+msgid "pixels"
+msgstr "pixels"
+
+#: ../share/preferences.ui.h:17
+msgid "seconds"
+msgstr "seconds"
+
+#: ../share/menu.ui.h:1
+msgid "Fi_x Photo Frame"
+msgstr "Fi_x Photo Frame"
+
+#: ../share/menu.ui.h:2
+msgid "Open _Recent"
+msgstr "Open _Recent"
+
+#: ../share/menu.ui.h:3
+msgid "_Full Screen"
+msgstr "_Full Screen"
+
+#: ../share/menu.ui.h:4
+msgid "_Next Photo"
+msgstr "_Next Photo"
+
+#: ../lib/menu.py:91
+msgid "No Title"
+msgstr "No Title"
+
+#: ../lib/preferences.py:136
 msgid "Source"
 msgstr "Source"
 
-#: ../lib/preferences.py:134
+#: ../lib/preferences.py:137
 msgid "Target"
 msgstr "Target"
 
-#: ../lib/preferences.py:135
+#: ../lib/preferences.py:138
 msgid "Argument"
 msgstr "Argument"
 
-#: ../lib/preferences.py:136
+#: ../lib/preferences.py:139
 msgid "Weight"
 msgstr "Weight"
 
-#: ../lib/preferences.py:287
+#: ../lib/preferences.py:294
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "The photo source should be ignored if the weight is 0."
 
@@ -476,10 +484,6 @@ msgstr "_Complete Authorisation"
 msgid "Last %s days"
 msgstr "Last %s days"
 
-#: ../lib/plugins/fspot/__init__.py:83
-msgid "All"
-msgstr "All"
-
 #: ../lib/plugins/fspot/__init__.py:89
 msgid "Rate"
 msgstr "Rate"
@@ -504,3 +508,18 @@ msgstr "_Title:"
 #: ../lib/plugins/rss.py:81
 msgid "_URL:"
 msgstr "_URL:"
+
+#~ msgid ""
+#~ "All\n"
+#~ "Last 7 days\n"
+#~ "Last 30 days\n"
+#~ "Last 90 days\n"
+#~ "Last 180 days\n"
+#~ "Last 360 days"
+#~ msgstr ""
+#~ "All\n"
+#~ "Last 7 days\n"
+#~ "Last 30 days\n"
+#~ "Last 90 days\n"
+#~ "Last 180 days\n"
+#~ "Last 360 days"

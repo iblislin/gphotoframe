@@ -14,7 +14,14 @@
 
 2010-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* te.po: Added new translation.  Thanks Veeven!
 	* NEWS: 0.7 release.
+
+2010-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoimagegtk.py, photoliststore.py, base.py:
+	  Switched gobject -> glib.
+	* actors.py, menu.py: Updated translations.
 
 2010-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -54,6 +61,14 @@
 	* flickr/api.py: Improved code for certification.
 	* flickr/authdialog.py (PluginFlickrDialog): Added a black magic
 	  for avoiding unintended GC for sub instances.
+
+2010-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* menu.py, actors.py, plugins/base.py, plugins/flickr/auth.py:
+	  gnome-open -> gtk.show_uri.
+	* share/*.ui, menu.py, preferences.py: Divided gphotoframe.ui.
+	  Completed transition from libGlade to GtkBuilder.
+	* gphotoframe.glade: Removed from the repository.
 
 2010-04-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
