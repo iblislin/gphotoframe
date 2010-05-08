@@ -2,14 +2,14 @@ import os
 import getpass
 from os.path import join, abspath, dirname
 
-VERSION = '0.7.2'
+VERSION = '0.8-a14'
 APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(join(dirname(__file__), '../share'))
-if not os.access(join(SHARED_DATA_DIR, 'gphotoframe.glade'), os.R_OK):
+if not os.access(join(SHARED_DATA_DIR, 'gphotoframe.ui'), os.R_OK):
     SHARED_DATA_DIR = '/usr/share/gphotoframe'
 
-GLADE_FILE = join(SHARED_DATA_DIR, 'gphotoframe.glade')
+UI_FILE = join(SHARED_DATA_DIR, 'gphotoframe.ui')
 
 user = getpass.getuser()
 CACHE_DIR = "/tmp/gphotoframe-%s" % user
