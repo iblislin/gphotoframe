@@ -390,7 +390,7 @@
       <applyto>/apps/gphotoframe/ui/geo/position</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>1</default>
+      <default>2</default>
       <locale name="C">
         <short>Geo icon position</short>
         <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
