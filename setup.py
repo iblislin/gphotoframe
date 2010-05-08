@@ -6,9 +6,8 @@ from distutils.core import setup
 from DistUtilsExtra.command import *
 import lib.constants as constants
 
-for ui in glob.glob('share/*.ui'):
+for ui in glob.glob('share/*.*'):
     os.chmod(ui, 0644)
-os.chmod("share/rss-16.png", 0644)
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,
