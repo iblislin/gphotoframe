@@ -1,5 +1,6 @@
 2010-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 0.7.1 release.
 	* iconimage.py (IconImage): Fixed a F-Spot icon loading bug
 	  (issue #50).
 
