@@ -1,5 +1,7 @@
 2010-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/__init__.py, api.py: Added new gconf key 
+	  'plugins/flickr/interval_for_meta_group'.
 	* flickr/api.py: Added a random group pickup method among 'The Commons'.
 	
 2010-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

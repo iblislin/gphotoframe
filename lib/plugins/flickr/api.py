@@ -89,6 +89,9 @@ class FlickrAPI(object):
         values = add_api_sig(values, SECRET)
         return values
 
+    def get_interval(self):
+        return self.conf.get_int('plugins/flickr/interval', 60)
+        
 class FlickrAuthFactory(object):
 
     def __init__(self):
@@ -213,9 +216,11 @@ class FlickrYourGroupsAPI(FlickrGroupAPI):
     def parse_nsid(self, d):
         list = [[g['nsid'], g['name']] for g in d['groups']['group']]
         argument, name = random.choice(list)
-        print name
         return argument
 
+    def get_interval(self):
+        return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
+        
 class FlickrInterestingnessAPI(FlickrAPI):
 
     def _set_method(self):
@@ -269,9 +274,11 @@ class FlickrCommonsAPI(FlickrPeopleAPI):
         list = [[g['nsid'], g['name']['_content']] 
                 for g in d['institutions']['institution']]
         argument, name = random.choice(list)
-        print argument, name
         return argument
 
+    def get_interval(self):
+        return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
+        
 class FlickrSearchAPI(FlickrAPI):
 
     def _set_method(self):

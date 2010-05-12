@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-12 17:43+0900\n"
+"POT-Creation-Date: 2010-05-13 01:59+0900\n"
 "PO-Revision-Date: 2010-05-04 19:26+0530\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -39,212 +39,222 @@ msgid "API reload interval minutes"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:2
-msgid "API reload interval minutes. It should be greater than 10 minutes."
+msgid "API reload interval minutes for meta groups"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:3
-msgid "Always on Visible Workspace"
+msgid ""
+"API reload interval minutes for meta groups (Your Groups or The Commons). It "
+"should be greater than 10 minutes."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:4
-msgid "Always show the fav icon"
+msgid "API reload interval minutes. It should be greater than 10 minutes."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:5
-msgid "Always show the geo icon"
+msgid "Always on Visible Workspace"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:6
-msgid "Always show the source icon"
+msgid "Always show the fav icon"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:7
-msgid "Auth token"
+msgid "Always show the geo icon"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:8
+msgid "Always show the source icon"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:9
+msgid "Auth token"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:10
 msgid ""
 "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
 "left-bottom."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:9
+#: ../share/gphotoframe.schemas.in.h:11
 msgid "E-mail adress as user ID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:10
+#: ../share/gphotoframe.schemas.in.h:12
 msgid "Enable fullscreen mode animations"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:11
+#: ../share/gphotoframe.schemas.in.h:13
 msgid "Enable icon animations"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:12
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "Fav icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:13
+#: ../share/gphotoframe.schemas.in.h:15
 msgid "Fix the photo frame on the root window"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:14
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Flickr user ID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:15
+#: ../share/gphotoframe.schemas.in.h:17
 msgid "Geo icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:16
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Google account user ID"
 msgstr "గూగుల్ ఖాతా వాడుకరి ID"
 
-#: ../share/gphotoframe.schemas.in.h:17
+#: ../share/gphotoframe.schemas.in.h:19
 msgid ""
 "If true, changing of photo image in fullscreen mode will be animated. The "
 "program needs to be restarted to take effect the change of the setting."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:18
+#: ../share/gphotoframe.schemas.in.h:20
 msgid ""
 "If true, hiding and un-hiding of icons will be animated. The program needs "
 "to be restarted to take effect the change of the setting."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:19
+#: ../share/gphotoframe.schemas.in.h:21
 msgid "If true, icons will be shown on screensaver."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:20
+#: ../share/gphotoframe.schemas.in.h:22
 msgid "Interval seconds in full screen mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:21
+#: ../share/gphotoframe.schemas.in.h:23
 msgid "Interval seconds in window mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:22
+#: ../share/gphotoframe.schemas.in.h:24
 msgid "Max aspect ratio for Photo"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:23
+#: ../share/gphotoframe.schemas.in.h:25
 msgid "Minimum aspect ratio for Photo"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:24
+#: ../share/gphotoframe.schemas.in.h:26
 msgid "Minimum image file size in bytes"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:25
+#: ../share/gphotoframe.schemas.in.h:27
 msgid ""
 "Minimum image file size in bytes. When this value is less than 0, image file "
 "size filter is disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "Minimum image height"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:29
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:30
 msgid "Minimum image width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:31
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "NSID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:33
 msgid "Photo frame X position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "Photo frame Y position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:35
 msgid "Photo frame border color"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "Photo frame border width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "Photo frame fix mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:38
 msgid "Photo frame full screen mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Photo frame sticky mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Photo image max height"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Photo image max width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Photo source default weight"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "RSS reload interval minutes"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "Recent opend preferences page number"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Recent selected photo source"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:47
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "Show icons on screensaver"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Source icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "User ID"
 msgstr "వాడుకరి ID"
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "User full name"
 msgstr "వాడుకరి పూర్తి పేరు"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "User name"
 msgstr "వాడుకరి పేరు"
 
@@ -444,24 +454,25 @@ msgstr ""
 msgid "Options"
 msgstr "ఎంపికలు"
 
-#: ../lib/plugins/flickr/api.py:65 ../lib/plugins/flickr/api.py:222
+#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:207
+#: ../lib/plugins/flickr/api.py:249 ../lib/plugins/flickr/api.py:265
 #: ../lib/plugins/picasa.py:146 ../lib/plugins/tumblr.py:105
 msgid "_User:"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:69
+#: ../lib/plugins/flickr/api.py:72
 msgid "Enter NSID or User Name in the URL"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:181
+#: ../lib/plugins/flickr/api.py:187
 msgid "_Group:"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:185
+#: ../lib/plugins/flickr/api.py:191
 msgid "Enter NSID or Group Name in the URL"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:245
+#: ../lib/plugins/flickr/api.py:293
 msgid "_Tags:"
 msgstr ""
 
