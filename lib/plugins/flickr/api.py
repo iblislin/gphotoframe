@@ -91,6 +91,10 @@ class FlickrAPI(object):
 
     def get_interval(self):
         return self.conf.get_int('plugins/flickr/interval', 60)
+
+    def get_page_url(self, owner, id, group=None):
+        url = "http://www.flickr.com/photos/%s/%s" 
+        return url % (owner, id)
         
 class FlickrAuthFactory(object):
 
@@ -205,6 +209,10 @@ class FlickrGroupAPI(FlickrAPI):
         argument = d['group']['id'] if d.get('group') else None
         return argument
 
+    def get_page_url(self, owner, id, group):
+        url = "http://www.flickr.com/photos/%s/%s/in/pool-%s/" 
+        return url % (owner, id, group)
+        
 class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):
 
     def get_url_for_nsid_lookup(self, arg):

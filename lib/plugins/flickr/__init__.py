@@ -53,7 +53,7 @@ class FlickrPhotoList(PhotoList):
 
     def _nsid_cb(self, data):
         d = json.loads(data)
-        argument = self.api.parse_nsid(d)
+        argument = self.nsid_argument = self.api.parse_nsid(d)
         if argument is None:
             print "flickr: can not find, ", self.argument
             return
@@ -87,8 +87,8 @@ class FlickrPhotoList(PhotoList):
             url = "%s%s.jpg" % (url_base, s['secret'])
             url_b = "%s%s_b.jpg" % (url_base, s['secret'])
 
-            page_url = "http://www.flickr.com/photos/%s/%s" % (
-                s['owner'], s['id'])
+            page_url = self.api.get_page_url(
+                s['owner'], s['id'], self.nsid_argument)
 
             data = {'type'       : 'flickr',
                     'url'        : url,
