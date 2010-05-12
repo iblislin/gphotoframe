@@ -1,5 +1,6 @@
 import urllib
 import hashlib
+import random
 from gettext import gettext as _
 
 from ...utils.config import GConf
@@ -18,6 +19,7 @@ class FlickrFactoryAPI(object):
             'Interestingness' : FlickrInterestingnessAPI,
             'People Photos'   : FlickrFactoryPeopleAPI,
             'Photo Search'    : FlickrSearchAPI,
+            'Your Groups'     : FlickrYourGroupsAPI,
             }
 
     def create(self, api, argument=None):
@@ -194,6 +196,25 @@ class FlickrGroupAPI(FlickrAPI):
         argument = d['group']['id'] if d.get('group') else None
         return argument
 
+class FlickrYourGroupsAPI(FlickrGroupAPI):
+
+    def set_entry_label(self):
+        sensitive = False
+        label = _('_User:')
+        return sensitive, label
+
+    def get_url_for_nsid_lookup(self, arg):
+        api = FlickrGroupList()
+        user = self.conf.get_string('plugins/flickr/nsid')
+        url = api.get_url(user) if user else None
+        return url
+
+    def parse_nsid(self, d):
+        list = [[g['nsid'], g['name']] for g in d['groups']['group']]
+        argument, name = random.choice(list)
+        print name
+        return argument
+
 class FlickrInterestingnessAPI(FlickrAPI):
 
     def _set_method(self):
@@ -260,3 +281,8 @@ class FlickrGroupNSIDAPI(FlickrNSIDAPI):
 
     def _set_method(self):
         self.method = 'flickr.urls.lookupGroup'
+
+class FlickrGroupList(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.people.getPublicGroups'

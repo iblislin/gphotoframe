@@ -1,5 +1,6 @@
 2010-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/api.py: Added a random group pickup method among 'Your Groups'.
 	* photoimagegtk.py: Added image size filter.
 	  Changed gconf key names: aspect_* -> filter/aspect_*.
 	  Added image file size filter.
