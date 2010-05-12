@@ -121,8 +121,11 @@ class PhotoImagePixbuf(object):
             return False
 
         pixbuf = self._rotate(pixbuf)
-        pixbuf = self._scale(pixbuf)
+
         if not self._aspect_ratio_is_ok(pixbuf): return False
+        if not self._image_size_is_ok(pixbuf): return False
+
+        pixbuf = self._scale(pixbuf)
         photo.get_exif()
 
         self.data = pixbuf
@@ -176,6 +179,21 @@ class PhotoImagePixbuf(object):
 
         if (min > 0 and aspect < min ) or (max > 0 and max < aspect):
             print "Skip a tall or wide image (aspect ratio: %s)." % aspect
+            return False
+        else:
+            return True
+
+    def _image_size_is_ok(self, pixbuf):
+
+        min_width = self.conf.get_int('filter/min_width', 0)
+        min_heighaat = self.conf.get_int('filter/min_height', 0)
+        if min_width <= 0 or min_height <= 0: return True
+
+        w, h = pixbuf.get_width(), pixbuf.get_height()
+        # print w, h
+        
+        if w < min_width or h < min_height:
+            print "Skip a small size image (%sx%s)." % (w, h)
             return False
         else:
             return True
