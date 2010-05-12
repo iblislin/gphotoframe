@@ -109,12 +109,7 @@ class PhotoImagePixbuf(object):
 
         try:
             filename = photo['filename']
-
-            # ad-hoc for avoiding flickr no image.
-            flickr = photo.get('type') == 'flickr'
-            if flickr and os.path.getsize(filename) <= 3000:
-                return False
-
+            if not self._file_size_is_ok(filename, photo): return False
             pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
         except (glib.GError, OSError), err_info:
             print err_info
@@ -161,6 +156,20 @@ class PhotoImagePixbuf(object):
 
         pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
         return pixbuf
+
+    def _file_size_is_ok(self, filename, photo):
+        
+        min = self.conf.get_int('filter/min_file_size', 0)
+        size = os.path.getsize(filename)
+
+        if min > 0 and size < min:
+            print "Skip a small file size image (%s bytes)." % size
+            return False
+        elif photo.get('type') == 'flickr' and size < 3000:
+            # ad-hoc for avoiding flickr no image.
+            return False
+        else:
+            return True
 
     def _aspect_ratio_is_ok(self, pixbuf):
         aspect = pixbuf.get_width() / pixbuf.get_height()

@@ -2,6 +2,7 @@
 
 	* photoimagegtk.py: Added image size filter.
 	  Changed gconf key names: aspect_* -> filter/aspect_*.
+	  Added image file size filter.
 
 2010-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
