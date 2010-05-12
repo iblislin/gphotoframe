@@ -67,7 +67,7 @@ class FlickrAPI(object):
         sensitive = False
         label = _('_User:')
         return sensitive, label
-a
+
     def tooltip(self):
         return _('Enter NSID or User Name in the URL')
 
