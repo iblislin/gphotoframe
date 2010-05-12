@@ -218,6 +218,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/interval_for_meta_group</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/interval_for_meta_group</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>20</default>
+      <locale name="C">
+        <short>API reload interval minutes for meta groups</short>
+        <long>API reload interval minutes for meta groups (Your Groups or The Commons). It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/flickr/auth_token</key>
       <applyto>/apps/gphotoframe/plugins/flickr/auth_token</applyto>
       <owner>gphotoframe</owner>

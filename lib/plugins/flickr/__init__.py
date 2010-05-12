@@ -66,7 +66,7 @@ class FlickrPhotoList(PhotoList):
         if not url: return
 
         self._get_url_with_twisted(url)
-        interval_min = self.conf.get_int('plugins/flickr/interval', 60)
+        interval_min = self.api.get_interval()
         self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
