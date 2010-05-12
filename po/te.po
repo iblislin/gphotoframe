@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-12 17:11+0900\n"
+"POT-Creation-Date: 2010-05-12 17:43+0900\n"
 "PO-Revision-Date: 2010-05-04 19:26+0530\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -133,108 +133,118 @@ msgid "Minimum aspect ratio for Photo"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:24
-msgid "Minimum image height"
+msgid "Minimum image file size in bytes"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:25
+msgid ""
+"Minimum image file size in bytes. When this value is less than 0, image file "
+"size filter is disabled."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:26
+msgid "Minimum image height"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:27
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "Minimum image width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:29
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:30
 msgid "NSID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:31
 msgid "Photo frame X position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "Photo frame Y position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:33
 msgid "Photo frame border color"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "Photo frame border width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:35
 msgid "Photo frame fix mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "Photo frame full screen mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "Photo frame sticky mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:38
 msgid "Photo image max height"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Photo image max width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Photo source default weight"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "RSS reload interval minutes"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Recent opend preferences page number"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Recent selected photo source"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:45
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Show icons on screensaver"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Source icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "User ID"
 msgstr "వాడుకరి ID"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "User full name"
 msgstr "వాడుకరి పూర్తి పేరు"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "User name"
 msgstr "వాడుకరి పేరు"
 
