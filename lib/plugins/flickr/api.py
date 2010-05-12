@@ -178,7 +178,12 @@ class FlickrFavoritesRemoveAPI(FlickrFavoritesAddAPI):
     def _set_method(self):
         self.method = 'flickr.favorites.remove'
 
-class FlickrMetaGroupAPI(FlickrAPI):
+class FlickrMetaGroupAPI(object):
+
+    def set_entry_label(self):
+        sensitive = False
+        label = _('_User:')
+        return sensitive, label
 
     def get_interval(self):
         return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
