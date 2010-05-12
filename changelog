@@ -1,3 +1,7 @@
+2010-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimagegtk.py: Added image size filter.
+
 2010-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.schemas.in: Fixed the default value of 'ui/geo/position'.
