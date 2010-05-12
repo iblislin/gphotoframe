@@ -165,8 +165,8 @@ class PhotoImagePixbuf(object):
     def _aspect_ratio_is_ok(self, pixbuf):
         aspect = pixbuf.get_width() / pixbuf.get_height()
 
-        max = self.conf.get_float('aspect_max', 0)
-        min = self.conf.get_float('aspect_min', 0)
+        max = self.conf.get_float('filter/aspect_max', 0)
+        min = self.conf.get_float('filter/aspect_min', 0)
 
         # print aspect, max, min
 
@@ -186,7 +186,7 @@ class PhotoImagePixbuf(object):
     def _image_size_is_ok(self, pixbuf):
 
         min_width = self.conf.get_int('filter/min_width', 0)
-        min_heighaat = self.conf.get_int('filter/min_height', 0)
+        min_height = self.conf.get_int('filter/min_height', 0)
         if min_width <= 0 or min_height <= 0: return True
 
         w, h = pixbuf.get_width(), pixbuf.get_height()

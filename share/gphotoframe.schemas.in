@@ -2,30 +2,6 @@
   <schemalist>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/aspect_max</key>
-      <applyto>/apps/gphotoframe/aspect_max</applyto>
-      <owner>gphotoframe</owner>
-      <type>float</type>
-      <default>0.0</default>
-      <locale name="C">
-        <short>Max aspect ratio for Photo</short>
-        <long>Max aspect ratio for Photo</long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gphotoframe/aspect_min</key>
-      <applyto>/apps/gphotoframe/aspect_min</applyto>
-      <owner>gphotoframe</owner>
-      <type>float</type>
-      <default>0.0</default>
-      <locale name="C">
-        <short>Minimum aspect ratio for Photo</short>
-        <long>Minimum aspect ratio for Photo</long>
-      </locale>
-    </schema>
-
-    <schema>
       <key>/schemas/apps/gphotoframe/border_color</key>
       <applyto>/apps/gphotoframe/border_color</applyto>
       <owner>gphotoframe</owner>
@@ -166,6 +142,30 @@
       <locale name="C">
         <short>Photo frame sticky mode</short>
         <long>Always on Visible Workspace</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
+      <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Max aspect ratio for Photo</short>
+        <long>Max aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/aspect_min</key>
+      <applyto>/apps/gphotoframe/filter/aspect_min</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Minimum aspect ratio for Photo</short>
+        <long>Minimum aspect ratio for Photo</long>
       </locale>
     </schema>
 
