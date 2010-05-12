@@ -174,6 +174,11 @@ class FlickrFavoritesRemoveAPI(FlickrFavoritesAddAPI):
     def _set_method(self):
         self.method = 'flickr.favorites.remove'
 
+class FlickrMetaGroupAPI(FlickrAPI):
+
+    def get_interval(self):
+        return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
+        
 class FlickrGroupAPI(FlickrAPI):
 
     def _set_method(self):
@@ -200,12 +205,7 @@ class FlickrGroupAPI(FlickrAPI):
         argument = d['group']['id'] if d.get('group') else None
         return argument
 
-class FlickrYourGroupsAPI(FlickrGroupAPI):
-
-    def set_entry_label(self):
-        sensitive = False
-        label = _('_User:')
-        return sensitive, label
+class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrGroupList()
@@ -218,9 +218,6 @@ class FlickrYourGroupsAPI(FlickrGroupAPI):
         argument, name = random.choice(list)
         return argument
 
-    def get_interval(self):
-        return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
-        
 class FlickrInterestingnessAPI(FlickrAPI):
 
     def _set_method(self):
@@ -258,12 +255,7 @@ class FlickrPeopleAuthAPI(FlickrPeopleAPI):
         values.update({'user_id': argument})
         return self._add_auth_argument(values)
 
-class FlickrCommonsAPI(FlickrPeopleAPI):
-
-    def set_entry_label(self):
-        sensitive = False
-        label = _('_User:')
-        return sensitive, label
+class FlickrCommonsAPI(FlickrMetaGroupAPI, FlickrPeopleAPI):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrCommonsInstitutions()
@@ -276,9 +268,6 @@ class FlickrCommonsAPI(FlickrPeopleAPI):
         argument, name = random.choice(list)
         return argument
 
-    def get_interval(self):
-        return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
-        
 class FlickrSearchAPI(FlickrAPI):
 
     def _set_method(self):
