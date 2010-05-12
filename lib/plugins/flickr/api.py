@@ -19,6 +19,7 @@ class FlickrFactoryAPI(object):
             'Interestingness' : FlickrInterestingnessAPI,
             'People Photos'   : FlickrFactoryPeopleAPI,
             'Photo Search'    : FlickrSearchAPI,
+            'The Commons'     : FlickrCommonsAPI,
             'Your Groups'     : FlickrYourGroupsAPI,
             }
 
@@ -66,7 +67,7 @@ class FlickrAPI(object):
         sensitive = False
         label = _('_User:')
         return sensitive, label
-
+a
     def tooltip(self):
         return _('Enter NSID or User Name in the URL')
 
@@ -252,6 +253,25 @@ class FlickrPeopleAuthAPI(FlickrPeopleAPI):
         values.update({'user_id': argument})
         return self._add_auth_argument(values)
 
+class FlickrCommonsAPI(FlickrPeopleAPI):
+
+    def set_entry_label(self):
+        sensitive = False
+        label = _('_User:')
+        return sensitive, label
+
+    def get_url_for_nsid_lookup(self, arg):
+        api = FlickrCommonsInstitutions()
+        url = api.get_url(None)
+        return url
+
+    def parse_nsid(self, d):
+        list = [[g['nsid'], g['name']['_content']] 
+                for g in d['institutions']['institution']]
+        argument, name = random.choice(list)
+        print argument, name
+        return argument
+
 class FlickrSearchAPI(FlickrAPI):
 
     def _set_method(self):
@@ -286,3 +306,8 @@ class FlickrGroupList(FlickrAPI):
 
     def _set_method(self):
         self.method = 'flickr.people.getPublicGroups'
+
+class FlickrCommonsInstitutions(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.commons.getInstitutions'
