@@ -10,8 +10,7 @@ from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
 from ...utils.iconimage import WebIconImage
 from ...utils.config import GConf
 from ...utils.gnomescreensaver import GsThemeWindow
-from ...utils.urlget import UrlGetWithProxy
-from ...utils.proxypac import ParseProxyPac
+from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 from api import *
 from authdialog import *
 
@@ -203,8 +202,7 @@ class FlickrFav(object):
 
     def change_fav(self, rate_dummy):
         url = self._get_url()
-        proxy = ParseProxyPac().get_proxy(url)
-        self.urlget = UrlGetWithProxy(proxy)
+        self.urlget = UrlGetWithAutoProxy(url)
         d = self.urlget.getPage(url)
         self.fav = not self.fav
 
