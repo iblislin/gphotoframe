@@ -5,7 +5,7 @@ from xdg.BaseDirectory import xdg_cache_home
 from xdg.IconTheme import getIconPath
 
 from .. import constants
-from ..utils.urlget import UrlGetWithProxy
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 class IconImage(object):
 
@@ -65,5 +65,5 @@ class WebIconImage(IconImage):
             os.makedirs(cache_dir)
 
         icon_file = os.path.join(cache_dir, icon_name)
-        urlget = UrlGetWithProxy()
+        urlget = UrlGetWithAutoProxy(icon_url)
         d = urlget.downloadPage(icon_url, icon_file)

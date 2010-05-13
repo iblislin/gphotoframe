@@ -7,7 +7,7 @@ import urllib
 import xml.etree.ElementTree as etree
 
 import gtk
-from ...utils.urlget import UrlGetWithProxy
+from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 def add_api_sig(values, secret):
     """Add api_sig to given arguments dictionary"""
@@ -104,7 +104,7 @@ class FlickrAuth(object):
     def _get_url(self, url, cb, cb_plus=None):
         """Get URL with twisted"""
 
-        client = UrlGetWithProxy()
+        client = UrlGetWithAutoProxy(url)
         d = client.getPage(url)
         d.addCallback(cb)
         return d
