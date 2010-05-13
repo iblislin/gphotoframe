@@ -9,8 +9,7 @@ from urlparse import urlparse
 
 from .. import constants
 from ..utils.config import GConf
-from ..utils.urlget import UrlGetWithProxy
-from ..utils.proxypac import ParseProxyPac
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.EXIF import process_file as exif_process_file
 
 class PluginBase(object):
@@ -51,8 +50,7 @@ class PhotoList(object):
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
         
-        proxy = ParseProxyPac().get_proxy(url)
-        urlget = UrlGetWithProxy(proxy)
+        urlget = UrlGetWithAutoProxy(url)
         d = urlget.downloadPage(url, self.photo['filename'])
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
@@ -61,8 +59,7 @@ class PhotoList(object):
         pass
 
     def _get_url_with_twisted(self, url, cb_arg=None):
-        proxy = ParseProxyPac().get_proxy(url)
-        urlget = UrlGetWithProxy(proxy)
+        urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         cb = cb_arg or self._prepare_cb
         d.addCallback(cb)
