@@ -1,5 +1,6 @@
 2010-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* rss.py: Fixed class of URL (unicode -> str).
 	* utils/urlgetautoproxy.py: Added new class UrlgetWithAutoProxy.
 	  Code refactoring.  pacparser -> libproxy.
 	* flickr/__init__.py, api.py: Added new gconf key 
