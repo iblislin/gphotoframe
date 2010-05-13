@@ -33,8 +33,9 @@ from twisted.internet import reactor
 
 class UrlGetWithProxy(object):
 
-    def __init__(self, proxy=""):
-        proxy = proxy or os.environ.get('http_proxy') or ""
+    def __init__(self, proxy=None):
+        if proxy is None:
+            proxy = os.environ.get('http_proxy') or ""
         self.proxy_host, self.proxy_port = client._parse(proxy)[1:3]
         self.use_proxy = True if self.proxy_host and self.proxy_port else False
 
