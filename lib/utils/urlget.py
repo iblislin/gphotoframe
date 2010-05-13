@@ -1,5 +1,5 @@
 # Copyright (c) 2001-2008 Twisted Matrix Laboratories.
-# Copyright (c) 2009 Yoshizumi Endo.
+# Copyright (c) 2009-2010 Yoshizumi Endo.
 #
 # This urlget is a modified version of twisted.web.client module.
 #
@@ -33,8 +33,8 @@ from twisted.internet import reactor
 
 class UrlGetWithProxy(object):
 
-    def __init__(self):
-        proxy = os.environ.get('http_proxy') or ""
+    def __init__(self, proxy=""):
+        proxy = proxy or os.environ.get('http_proxy') or ""
         self.proxy_host, self.proxy_port = client._parse(proxy)[1:3]
         self.use_proxy = True if self.proxy_host and self.proxy_port else False
 
