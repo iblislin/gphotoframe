@@ -3,7 +3,7 @@
 	* rss.py: Fixed class of URL (unicode -> str).
 	* utils/urlgetautoproxy.py: Added new class UrlgetWithAutoProxy.
 	  Code refactoring.  pacparser -> libproxy.
-	* flickr/__init__.py, api.py: Added new gconf key 
+	* flickr/__init__.py, api.py: Added new gconf key
 	  'plugins/flickr/interval_for_meta_group'.
 	* flickr/api.py: Added a random group pickup method among 'The Commons'.
 	
@@ -232,7 +232,7 @@
 
 2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* flickr/__init__.py, gphotoframe.glade, flickr/auth.py: 
+	* flickr/__init__.py, gphotoframe.glade, flickr/auth.py:
 	  Implemented Flickr Auth functions.
 	* flickr/api.py: Divided flickr/__init__.py.
 	* plugins/__init__.py, plugins/flickr/__init__.py: Added support
@@ -296,7 +296,7 @@
 
 	* photoframe.py, photoimage.py, photoliststore.py: Added GConf
 	  options (aspect_max, aspect_min: aspect = width / height) to
-	  disable display of very tall or wide images. (issue #22) 
+	  disable display of very tall or wide images. (issue #22)
 	* config.py: Added set_float & get_float.
 	* photoimage.py: Code refactoring. Added new PhotoImagePixbuf class.
 	* menu.py, base.py, flickr.py, fspot.py, picasa.py: Added basic
@@ -523,7 +523,7 @@
 2009-05-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.glade, POTFILES.in, ja.po: Updated translation.
-	* flickr.py, preferences.py: Set the sensitiveness and the label 
+	* flickr.py, preferences.py: Set the sensitiveness and the label
 	  of the argument widget.
 	* config.py, urlget.py, wrandom.py: Moved to utils/.
 	* flickr.py: Added support user_id or group_id.
@@ -562,12 +562,12 @@
 	* ja.po: Updated translation.
 	* gphotoframe.desktop.in: Initial import.
 	* photoframe.py, gphotoframe.glade: Added the menu "Fix Photo
-	  Frame" (issue #1). Added new gconf key: window_fix. 
+	  Frame" (issue #1). Added new gconf key: window_fix.
 	  Removed redundant keys: window_keep_below and window_non_movable.
 
 2009-05-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* photoframe.py (PhotoFrame.set_accelerator): 
+	* photoframe.py (PhotoFrame.set_accelerator):
 	  Added support for accelerator keys.
 	* photoframe.py, preferences.py: Added new gconf keys:
 	  window_keep_below and window_non_movable (issue #1).

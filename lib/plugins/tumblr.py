@@ -14,7 +14,7 @@ def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
 class TumblrPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'Tumblr'
         self.icon = TumblrIcon

@@ -18,7 +18,7 @@ def info():
     return [FlickrPlugin, FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
 
 class FlickrPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'Flickr'
         self.icon = FlickrIcon
@@ -45,7 +45,7 @@ class FlickrPhotoList(PhotoList):
         if self.api.nsid_conversion:
             nsid_url = self.api.get_url_for_nsid_lookup(self.argument)
 
-            if nsid_url is None: 
+            if nsid_url is None:
                 print "flickr: invalid nsid API url."
                 return
             self._get_url_with_twisted(nsid_url, self._nsid_cb)
@@ -63,7 +63,7 @@ class FlickrPhotoList(PhotoList):
 
     def _get_url_for(self, argument):
         page = self.page_list.get_page()
-        url = self.api.get_url(argument, page) 
+        url = self.api.get_url(argument, page)
         if not url: return
 
         self._get_url_with_twisted(url)
@@ -99,9 +99,9 @@ class FlickrPhotoList(PhotoList):
                     'id'         : s['id'],
                     'title'      : s['title'],
                     'page_url'   : page_url,
-                    'geo'        : {'lon' : s['longitude'], 
+                    'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
-                    'fav'        : FlickrFav(self.target == 'Favorites', 
+                    'fav'        : FlickrFav(self.target == 'Favorites',
                                              {'id': s['id']}),
                     'icon'       : FlickrIcon}
 
@@ -121,14 +121,14 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _build_target_widget(self):
         super(PhotoSourceFlickrUI, self)._build_target_widget()
- 
+
         self._widget_cb(self.target_widget)
         self.target_widget.connect('changed', self._widget_cb)
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
         api = FlickrFactoryAPI().create(target)
-        
+
         checkbutton = self.gui.get_object('checkbutton_flickr_id')
         self._change_sensitive_cb(checkbutton, api)
 
@@ -141,7 +141,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         check = checkbutton.get_active() if api.is_use_own_id() else default
         self._set_argument_sensitive(label, check)
 
-        # tooltip 
+        # tooltip
         tip = api.tooltip() if check else ""
         self._set_argument_tooltip(tip)
 
@@ -180,7 +180,7 @@ class FlickrPhoto(Photo):
 
     def get_url(self):
         self.conf = GConf()
-        screensaver = GsThemeWindow().get_anid() 
+        screensaver = GsThemeWindow().get_anid()
         fullscreen = self.conf.get_bool('fullscreen', False)
         high_resolution = self.conf.get_bool('high_resolution', True)
 

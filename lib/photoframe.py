@@ -62,7 +62,7 @@ class PhotoFrame(object):
         if change:
             if not self.photoimage.set_photo(photo): return False
             borders = self.photoimage.window_border * 2
-            self.window.resize(self.photoimage.w + borders, 
+            self.window.resize(self.photoimage.w + borders,
                                self.photoimage.h + borders)
 
         self.popup_menu.set_open_menu_sensitive(state)
@@ -119,10 +119,10 @@ class PhotoFrame(object):
             gtk.accel_map_add_entry(ac[0], key, mod)
             accel_group.connect_by_path(ac[0], ac[2])
 
-        self.window.add_accel_group(accel_group) 
+        self.window.add_accel_group(accel_group)
 
     def _get_signal_dic(self):
-        dic = { 
+        dic = {
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
@@ -203,7 +203,7 @@ class PhotoFrame(object):
 
     def _query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
         if not self.photoimage.photo: return
-        
+
         pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
         tooltip.set_icon(pixbuf)
 
@@ -226,7 +226,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         self.ui = FullScreenUI(self.photoimage, self.window)
         dic = super(PhotoFrameFullScreen, self)._get_signal_dic()
 
-        dic.update({ 
+        dic.update({
             "on_window_key_press_event" : self._keypress_cb,
             "on_window_motion_notify_event" : self.ui.show_cb,
             "on_window_realize" : self.ui.hide_cb,
@@ -261,7 +261,7 @@ class PhotoFrameScreenSaver(object):
 
         self.photoimage = PhotoImageScreenSaverFactory().create(self)
         self.window.add(self.photoimage.image)
- 
+
     def set_photo(self, photo, change=True):
         return self.photoimage.set_photo(photo)
 

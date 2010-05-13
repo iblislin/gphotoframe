@@ -28,7 +28,7 @@ class Inotify(object):
         if self._check_own_monitor(monitor, file_name):
             return
 
-        if (event == gio.FILE_MONITOR_EVENT_CREATED and 
+        if (event == gio.FILE_MONITOR_EVENT_CREATED and
             os.path.exists(file_name)):
             file_type = file.query_info("standard::type").get_file_type()
             if file_type == gio.FILE_TYPE_DIRECTORY:

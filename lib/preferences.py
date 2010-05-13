@@ -44,11 +44,11 @@ class Preferences(object):
             self.prefs.stick()
 
         recent = self.conf.get_int('recents/preferences')
-        if recent: 
+        if recent:
             gui.get_object('notebook1').set_current_page(recent)
         self.prefs.show_all()
 
-        dic = { 
+        dic = {
             "on_close_button"              : self._close_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
             "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
@@ -139,7 +139,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self._add_text_column(_("Weight"), 3)
 
     def get_signal_dic(self):
-        dic = { 
+        dic = {
             "on_button3_clicked" : self._new_button_cb,
             "on_button4_clicked" : self._prefs_button_cb,
             "on_button5_clicked" : self._delete_button_cb,
@@ -221,7 +221,7 @@ class PluginTreeView(PreferencesTreeView):
         self._add_text_column("Description", 2)
 
     def get_signal_dic(self):
-        dic = { 
+        dic = {
             "on_button6_clicked" : self._prefs_button_cb,
             "on_treeview2_cursor_changed" : self._cursor_changed_cb
             }
@@ -263,7 +263,7 @@ class PhotoSourceDialog(object):
     def run(self):
         dialog = self.gui.get_object('photo_source')
         dialog.set_transient_for(self.parent)
-        source_list = sorted([ plugin.name for plugin in plugins.SOURCE_LIST 
+        source_list = sorted([ plugin.name for plugin in plugins.SOURCE_LIST
                                if plugin.is_available() ])
 
         # source
@@ -306,13 +306,13 @@ class PhotoSourceDialog(object):
             if argument_widget.get_property('sensitive') else ''
 
         v = { 'source'  : source_widget.get_active_text(),
-              'target'  : self.ui.get(), 
+              'target'  : self.ui.get(),
               'argument' : argument,
               'weight'  : weight_widget.get_value(),
               'options' : self.ui.get_options() }
 
         dialog.destroy()
-        if response_id == gtk.RESPONSE_OK: 
+        if response_id == gtk.RESPONSE_OK:
             self.conf.set_string('recents/source', v['source'])
         return response_id, v
 
