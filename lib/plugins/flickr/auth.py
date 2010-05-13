@@ -33,7 +33,7 @@ class FlickrAuth(object):
         """Get frob with flickr.auth.getFrob"""
 
         base_url = 'http://api.flickr.com/services/rest/?'
-        values = { 'method' : 'flickr.auth.getFrob', 
+        values = { 'method'  : 'flickr.auth.getFrob',
                    'api_key' : self.api_key, }
 
         values = add_api_sig(values, self.secret)
@@ -61,8 +61,8 @@ class FlickrAuth(object):
         """Get token with flickr.auth.getToken"""
 
         base_url = 'http://api.flickr.com/services/rest/?'
-        values = { 'method'  : 'flickr.auth.getToken', 
-                   'api_key' : self.api_key, 
+        values = { 'method'  : 'flickr.auth.getToken',
+                   'api_key' : self.api_key,
                    'frob'    : self.frob, }
 
         values = add_api_sig(values, self.secret)
@@ -75,14 +75,14 @@ class FlickrAuth(object):
         """Parse token from XML strings"""
 
         element = etree.fromstring(xml)
-        
+
         if element.find('auth/token') is None:
             return None
 
         user_element = element.find('auth/user')
-        dic = {'auth_token': element.find('auth/token').text, 
-               'nsid'      : user_element.get('nsid'), 
-               'user_name' : user_element.get('username'), 
+        dic = {'auth_token': element.find('auth/token').text,
+               'nsid'      : user_element.get('nsid'),
+               'user_name' : user_element.get('username'),
                'full_name' : user_element.get('fullname')}
         return dic
 

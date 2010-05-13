@@ -143,7 +143,7 @@ class PhotoImagePixbuf(object):
         max_w = self.max_w
         max_h = self.max_h
 
-        src_w = pixbuf.get_width() 
+        src_w = pixbuf.get_width()
         src_h = pixbuf.get_height()
 
         if src_w / max_w > src_h / max_h:
@@ -158,7 +158,7 @@ class PhotoImagePixbuf(object):
         return pixbuf
 
     def _file_size_is_ok(self, filename, photo):
-        
+
         min = self.conf.get_int('filter/min_file_size', 0)
         size = os.path.getsize(filename)
 
@@ -200,7 +200,7 @@ class PhotoImagePixbuf(object):
 
         w, h = pixbuf.get_width(), pixbuf.get_height()
         # print w, h
-        
+
         if w < min_width or h < min_height:
             print "Skip a small size image (%sx%s)." % (w, h)
             return False

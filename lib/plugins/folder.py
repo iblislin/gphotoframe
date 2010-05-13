@@ -14,7 +14,7 @@ def info():
     return [DirPlugin, DirPhotoList, PhotoSourceDirUI]
 
 class DirPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'Folder'
         self.icon = FolderIcon

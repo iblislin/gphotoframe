@@ -12,7 +12,7 @@ def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
 
 class RSSPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'RSS'
         self.icon = RSSIcon
@@ -32,7 +32,7 @@ class RSSPhotoList(PhotoList):
         rss = feedparser.parse(data)
         self.options['feed_title'] = rss.feed.title
 
-        re_img = re.compile( "<img [^>]*src=\"?" + 
+        re_img = re.compile( "<img [^>]*src=\"?" +
                              "([ A-Za-z0-9\'~+\-=_.,/%\?!;:@#\*&\(\)]+" +
                              "\.(jpe?g|png))", re.IGNORECASE)
         re_del_tag = re.compile(r'<.*?>')
@@ -60,7 +60,7 @@ class RSSPhotoList(PhotoList):
                         'owner_name' : owner,
                         'owner'      : owner,
                         'title'      : title,
-                        'page_url'   : str(entry.link), 
+                        'page_url'   : str(entry.link),
                         'icon'       : RSSIcon}
 
                 photo = Photo()
@@ -94,7 +94,7 @@ class RSSIcon(LocalIconImage):
         self.icon_name = 'rss-16.png'
 
 class FeedParserPlus(feedparser._StrictFeedParser):
-	 
+
     def _start_media_content(self, data):
         self.entries[-1]['media_content_attrs'] = copy.deepcopy(data)
 

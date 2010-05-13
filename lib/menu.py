@@ -24,7 +24,7 @@ class PopUpMenu(object):
         preferences = Preferences(photolist)
         about = AboutDialog()
 
-        dic = { 
+        dic = {
             "on_menuitem5_activate" : self.open_photo,
             "on_next_photo"         : self.photolist.next_photo,
             "on_menuitem6_toggled"  : self._fix_window_cb,

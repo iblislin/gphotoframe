@@ -147,7 +147,7 @@ class PhotoSourceUI(object):
                 fr_num = self._label().index(self.data[1])
             except ValueError:
                 fr_num = 0
-            
+
             self.target_widget.set_active(fr_num)
 
     def _label(self):
@@ -238,7 +238,7 @@ class PluginDialog(object):
         self._read_conf()
 
         response_id = self.dialog.run()
-        if response_id == gtk.RESPONSE_OK: 
+        if response_id == gtk.RESPONSE_OK:
             self._write_conf()
 
         self.dialog.destroy()

@@ -93,9 +93,9 @@ class FlickrAPI(object):
         return self.conf.get_int('plugins/flickr/interval', 60)
 
     def get_page_url(self, owner, id, group=None):
-        url = "http://www.flickr.com/photos/%s/%s" 
+        url = "http://www.flickr.com/photos/%s/%s"
         return url % (owner, id)
-        
+
 class FlickrAuthFactory(object):
 
     def __init__(self):
@@ -187,7 +187,7 @@ class FlickrMetaGroupAPI(object):
 
     def get_interval(self):
         return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
-        
+
 class FlickrGroupAPI(FlickrAPI):
 
     def _set_method(self):
@@ -215,9 +215,9 @@ class FlickrGroupAPI(FlickrAPI):
         return argument
 
     def get_page_url(self, owner, id, group):
-        url = "http://www.flickr.com/photos/%s/%s/in/pool-%s/" 
+        url = "http://www.flickr.com/photos/%s/%s/in/pool-%s/"
         return url % (owner, id, group)
-        
+
 class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):
 
     def get_url_for_nsid_lookup(self, arg):
@@ -276,7 +276,7 @@ class FlickrCommonsAPI(FlickrMetaGroupAPI, FlickrPeopleAPI):
         return url
 
     def parse_nsid(self, d):
-        list = [[g['nsid'], g['name']['_content']] 
+        list = [[g['nsid'], g['name']['_content']]
                 for g in d['institutions']['institution']]
         argument, name = random.choice(list)
         return argument
