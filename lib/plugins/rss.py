@@ -56,11 +56,11 @@ class RSSPhotoList(PhotoList):
                     if hasattr(entry, 'media_content_attrs') else image[0]
                 title = re_del_tag.sub('', entry.title)
 
-                data = {'url'        : url,
+                data = {'url'        : str(url),
                         'owner_name' : owner,
                         'owner'      : owner,
                         'title'      : title,
-                        'page_url'   : entry.link, 
+                        'page_url'   : str(entry.link), 
                         'icon'       : RSSIcon}
 
                 photo = Photo()
