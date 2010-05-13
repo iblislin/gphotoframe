@@ -5,7 +5,6 @@ from gettext import gettext as _
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase
-from ...utils.wrandom import WeightedRandom
 from ...utils.iconimage import IconImage
 from sqldb import FSpotDB, FSpotPhotoSQL, FSpotPhotoTags
 from rating import RateList
@@ -14,7 +13,7 @@ def info():
     return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
 
 class FSpotPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'F-Spot'
         self.icon = FSpotIcon
@@ -66,8 +65,8 @@ class FSpotPhotoList(PhotoList):
             url = ''.join(self.db.fetchall(sql)[0])
             filename = url[ url.rfind('/') + 1: ]
 
-        data = { 'url' : url, 
-                 'rate' : rate.name, 
+        data = { 'url' : url,
+                 'rate' : rate.name,
                  'filename' : url.replace('file://', ''),
                  'title' : filename, # without path
                  'id' : id,
@@ -93,7 +92,7 @@ class PhotoSourceFspotUI(PhotoSourceUI):
 
     def get(self):
         iter = self.target_widget.get_active_iter()
-        if iter: 
+        if iter:
             return self.treestore.get_value(iter, 0)
 
     def get_options(self):
@@ -165,8 +164,8 @@ class FSpotFav(object):
         self.rate_list = rate_list
 
     def change_fav(self, new_rate):
-        old_rate = self.fav 
-        new_rate = 0 if old_rate == new_rate else new_rate 
+        old_rate = self.fav
+        new_rate = 0 if old_rate == new_rate else new_rate
         self.fav = new_rate
 
         sql = "UPDATE photos SET rating=%s WHERE id=%s" % (new_rate, self.id)
