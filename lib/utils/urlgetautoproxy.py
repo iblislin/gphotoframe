@@ -21,7 +21,6 @@ class UrlGetWithAutoProxy(UrlGetWithProxy):
 
     def __init__(self, url):
         proxy_url = AutoProxy().get_proxy(url)
-        print proxy_url
         super(UrlGetWithAutoProxy, self).__init__(proxy_url)
 
 if __name__ == "__main__":
