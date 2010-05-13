@@ -8,6 +8,7 @@ import xml.etree.ElementTree as etree
 
 import gtk
 from ...utils.urlget import UrlGetWithProxy
+from ...utils.proxypac import ParseProxyPac
 
 def add_api_sig(values, secret):
     """Add api_sig to given arguments dictionary"""
