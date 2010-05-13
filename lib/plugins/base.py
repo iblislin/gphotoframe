@@ -49,7 +49,7 @@ class PhotoList(object):
         url = self.photo.get_url()
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
-        
+
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.downloadPage(url, self.photo['filename'])
         d.addCallback(self._get_photo_cb, cb)
