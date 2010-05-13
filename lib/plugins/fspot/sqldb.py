@@ -11,7 +11,7 @@ class FSpotDB(object):
         db_file, self.is_new = self._get_db_file()
         self.is_accessible = True if db_file else False
         if db_file:
-            self.db = sqlite3.connect(db_file) 
+            self.db = sqlite3.connect(db_file)
 
     def fetchall(self, sql):
         data = self.db.execute(sql).fetchall()
@@ -78,7 +78,7 @@ class FSpotPhotoSQL(object):
         return join, tag
 
     def _rate(self, rate_name=None, min=0, max=5):
-        if rate_name is not None: 
+        if rate_name is not None:
             sql = 'WHERE rating=%s' % str(rate_name)
         elif not (min == 0 and max == 5):
             sql = 'WHERE (rating BETWEEN %s AND %s)' % (min, max)
@@ -99,7 +99,7 @@ class FSpotPhotoSQL(object):
     def get_period_days(self, period):
         period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
         period_days = period_dic[period]
-        return period_days 
+        return period_days
 
 class FSpotTagList(object):
     "F-Spot all photo Tags for getting photos with tag recursively."
@@ -117,7 +117,7 @@ class FSpotTagList(object):
 
         self.db.close()
         return self.tag_list
-        
+
     def _get_with_category_id(self, id):
         self.tag_list.append(id)
         sql = 'SELECT id FROM tags WHERE category_id=%s' % id
@@ -156,6 +156,6 @@ class FSpotPhotoTags(object):
                 ex_tags.append(tag[0])
             else:
                 unadded_tags.append(tag)
-            
+
         if unadded_tags:
             self._sort_tags(unadded_tags, ex_tags)
