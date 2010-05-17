@@ -8,11 +8,11 @@ token_base = []
 plugin_dir = abspath(join(dirname(__file__)))
 
 for item in os.listdir(plugin_dir):
-    if not (item.endswith('.py') and item != '__init__.py' and 
+    if not (item.endswith('.py') and item != '__init__.py' and
             item != 'base.py') and not isdir(join(plugin_dir, item)):
         continue
 
-    module_name = inspect.getmodulename(item) if item.endswith('.py') else item 
+    module_name = inspect.getmodulename(item) if item.endswith('.py') else item
 
     try:
         module = __import__(module_name, globals(), locals(), [])
@@ -42,7 +42,7 @@ class PluginListStore(gtk.ListStore):
     def __init__(self):
         super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str)
 
-        for name, obj in sorted([ (plugin.name, plugin) 
+        for name, obj in sorted([ (plugin.name, plugin)
                                   for plugin in SOURCE_LIST]):
             list = [ obj.is_available(), obj.get_icon_pixbuf(), name ]
             self.append(list)

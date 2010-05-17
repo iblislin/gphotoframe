@@ -23,7 +23,7 @@ class RateList(list):
         weight = options.get('rate_weight', 2)
 
         sql = self.sql.get_statement(
-            'rating, COUNT(*)', None, 
+            'rating, COUNT(*)', None,
             self.rate_min, self.rate_max) + ' GROUP BY rating'
         count_list = db.fetchall(sql)
         db.close()

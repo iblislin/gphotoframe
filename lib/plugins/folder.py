@@ -14,7 +14,7 @@ def info():
     return [DirPlugin, DirPhotoList, PhotoSourceDirUI]
 
 class DirPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'Folder'
         self.icon = FolderIcon
@@ -125,15 +125,15 @@ class PhotoSourceDirUI(PhotoSourceUI):
 class PhotoSourceOptionsDirUI(PhotoSourceOptionsUI):
 
     def get_value(self):
-        state = self.gui.get_widget('checkbutton_dir').get_active()
+        state = self.gui.get_object('checkbutton_dir').get_active()
         return {'subfolders' : state}
 
     def _set_ui(self):
-        self.child = self.gui.get_widget('folder_vbox')
+        self.child = self.gui.get_object('folder_vbox')
 
     def _set_default(self):
         state = self.options.get('subfolders', True)
-        self.gui.get_widget('checkbutton_dir').set_active(state)
+        self.gui.get_object('checkbutton_dir').set_active(state)
 
 class FolderIcon(IconImage):
 

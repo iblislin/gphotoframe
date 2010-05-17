@@ -3,9 +3,8 @@ from __future__ import division
 import os
 import time
 
-import gobject
+import glib
 import gtk
-import gtk.glade
 
 import constants
 from photoimage import *
@@ -32,7 +31,9 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.photolist = photolist
-        gui = gtk.glade.XML(constants.GLADE_FILE)
+
+        gui = gtk.Builder()
+        gui.add_objects_from_file(constants.UI_FILE, ["window"])
 
         self.conf = GConf()
         self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
@@ -40,7 +41,7 @@ class PhotoFrame(object):
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
         self.conf.set_notify_add('border_color', self._set_border_color)
 
-        self.window = gui.get_widget('window')
+        self.window = gui.get_object('window')
         self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
@@ -51,7 +52,9 @@ class PhotoFrame(object):
         self._set_event_box()
         self._set_popupmenu(self.photolist, self)
         self._set_accelerator()
-        self._set_signal_cb(gui)
+
+        dic = self._get_signal_dic()
+        gui.connect_signals(dic)
 
     def set_photo(self, photo, change=True):
         state = True if photo else False
@@ -59,7 +62,7 @@ class PhotoFrame(object):
         if change:
             if not self.photoimage.set_photo(photo): return False
             borders = self.photoimage.window_border * 2
-            self.window.resize(self.photoimage.w + borders, 
+            self.window.resize(self.photoimage.w + borders,
                                self.photoimage.h + borders)
 
         self.popup_menu.set_open_menu_sensitive(state)
@@ -116,18 +119,26 @@ class PhotoFrame(object):
             gtk.accel_map_add_entry(ac[0], key, mod)
             accel_group.connect_by_path(ac[0], ac[2])
 
-        self.window.add_accel_group(accel_group) 
+        self.window.add_accel_group(accel_group)
 
-    def _set_signal_cb(self, gui):
-        dic = { 
+    def _get_signal_dic(self):
+        dic = {
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
             "on_window_query_tooltip"      : self._query_tooltip_cb,
             # "on_window_destroy" : reactor.stop,
+
+            "on_window_key_press_event" : self._none,
+            "on_window_motion_notify_event" : self._none,
+            "on_window_realize" : self._none,
+            "on_window_destroy" : self._none,
             }
-        gui.signal_autoconnect(dic)
+        return dic
+
+    def _none(self, *args):
+        pass
 
     def _toggle_fullscreen(self, *args):
         state = not self.conf.get_bool('fullscreen')
@@ -192,7 +203,7 @@ class PhotoFrame(object):
 
     def _query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
         if not self.photoimage.photo: return
-        
+
         pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
         tooltip.set_icon(pixbuf)
 
@@ -211,18 +222,21 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
 
-    def _set_signal_cb(self, gui):
-        super(PhotoFrameFullScreen, self)._set_signal_cb(gui)
-
+    def _get_signal_dic(self):
         self.ui = FullScreenUI(self.photoimage, self.window)
-        dic = { 
+        dic = super(PhotoFrameFullScreen, self)._get_signal_dic()
+
+        dic.update({
             "on_window_key_press_event" : self._keypress_cb,
-            "on_window_button_press_event"  : self.ui.show_cb,
             "on_window_motion_notify_event" : self.ui.show_cb,
             "on_window_realize" : self.ui.hide_cb,
             "on_window_destroy" : self.ui.stop_timer_cb,
-            }
-        gui.signal_autoconnect(dic)
+            })
+        return dic
+
+    def _check_button_cb(self, widget, event):
+        self.ui.show_cb(widget, event)
+        super(PhotoFrameFullScreen, self)._check_button_cb(widget, event)
 
     def _save_geometry_cb(self, widget, event):
         self.photoimage.on_leave_cb(widget, event)
@@ -247,7 +261,7 @@ class PhotoFrameScreenSaver(object):
 
         self.photoimage = PhotoImageScreenSaverFactory().create(self)
         self.window.add(self.photoimage.image)
- 
+
     def set_photo(self, photo, change=True):
         return self.photoimage.set_photo(photo)
 
@@ -274,11 +288,11 @@ class FullScreenUI(object):
         self.cursor.hide(widget)
 
     def start_timer_cb(self, widget, event):
-        self._timer = gobject.timeout_add(5 * 1000, self.hide_cb, widget, event)
+        self._timer = glib.timeout_add_seconds(5, self.hide_cb, widget, event)
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
-            gobject.source_remove(self._timer)
+            glib.source_remove(self._timer)
 
 class Cursor(object):
     def __init__(self):

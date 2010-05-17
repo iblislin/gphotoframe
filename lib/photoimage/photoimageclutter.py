@@ -24,7 +24,7 @@ class PhotoImageClutter(PhotoImage):
 
         self.photo_image = Texture(self.stage)
         self.photo_image.show()
-        self.actors = [ ActorSourceIcon(self.stage), 
+        self.actors = [ ActorSourceIcon(self.stage),
                         ActorGeoIcon(self.stage),
                         ActorFavIcon(self.stage), ]
 
@@ -79,7 +79,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
         self.photo_image2 = Texture(self.stage)
         self.photo_image2.show()
-        self.actors2 = [ ActorSourceIcon(self.stage), 
+        self.actors2 = [ ActorSourceIcon(self.stage),
                         ActorGeoIcon(self.stage),
                         ActorFavIcon(self.stage), ]
         self.first = True # image1 or image2
@@ -135,7 +135,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         for actor in act:
             actor.hide()
 
-class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen, 
+class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen,
                                    PhotoImageScreenSaver):
 
     def __init__(self, photoframe):

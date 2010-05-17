@@ -5,7 +5,6 @@ from gettext import gettext as _
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase
-from ...utils.wrandom import WeightedRandom
 from ...utils.iconimage import IconImage
 from sqldb import FSpotDB, FSpotPhotoSQL, FSpotPhotoTags
 from rating import RateList
@@ -14,7 +13,7 @@ def info():
     return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
 
 class FSpotPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'F-Spot'
         self.icon = FSpotIcon
@@ -66,8 +65,8 @@ class FSpotPhotoList(PhotoList):
             url = ''.join(self.db.fetchall(sql)[0])
             filename = url[ url.rfind('/') + 1: ]
 
-        data = { 'url' : url, 
-                 'rate' : rate.name, 
+        data = { 'url' : url,
+                 'rate' : rate.name,
                  'filename' : url.replace('file://', ''),
                  'title' : filename, # without path
                  'id' : id,
@@ -93,7 +92,7 @@ class PhotoSourceFspotUI(PhotoSourceUI):
 
     def get(self):
         iter = self.target_widget.get_active_iter()
-        if iter: 
+        if iter:
             return self.treestore.get_value(iter, 0)
 
     def get_options(self):
@@ -134,28 +133,28 @@ class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
 
     def get_value(self):
         value = {
-            'rate_min' : int(self.gui.get_widget('hscale1').get_value()),
-            'rate_max' : int(self.gui.get_widget('hscale2').get_value()),
+            'rate_min' : int(self.gui.get_object('hscale1').get_value()),
+            'rate_max' : int(self.gui.get_object('hscale2').get_value()),
             'rate_weight' : int(self.rate_weight_widget.get_value()),
-            'period' : self.gui.get_widget('combobox_fs1').get_active(),
+            'period' : self.gui.get_object('combobox_fs1').get_active(),
             }
         return value
 
     def _set_ui(self):
-        self.rate_weight_widget = self.gui.get_widget('spinbutton_fs1')
-        self.child = self.gui.get_widget('fspot_table')
+        self.rate_weight_widget = self.gui.get_object('spinbutton_fs1')
+        self.child = self.gui.get_object('fspot_table')
 
     def _set_default(self):
         rate_min = self.options.get('rate_min', 0)
-        self.gui.get_widget('hscale1').set_value(rate_min)
+        self.gui.get_object('hscale1').set_value(rate_min)
 
         rate_max = self.options.get('rate_max', 5)
-        self.gui.get_widget('hscale2').set_value(rate_max)
+        self.gui.get_object('hscale2').set_value(rate_max)
 
         self.rate_weight_widget.set_value(self.options.get('rate_weight', 2))
 
         period = self.options.get('period', 0)
-        self.gui.get_widget('combobox_fs1').set_active(period)
+        self.gui.get_object('combobox_fs1').set_active(period)
 
 class FSpotFav(object):
 
@@ -165,8 +164,8 @@ class FSpotFav(object):
         self.rate_list = rate_list
 
     def change_fav(self, new_rate):
-        old_rate = self.fav 
-        new_rate = 0 if old_rate == new_rate else new_rate 
+        old_rate = self.fav
+        new_rate = 0 if old_rate == new_rate else new_rate
         self.fav = new_rate
 
         sql = "UPDATE photos SET rating=%s WHERE id=%s" % (new_rate, self.id)
