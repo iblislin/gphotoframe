@@ -1,5 +1,6 @@
 from __future__ import division
-import os
+import gtk
+from gettext import gettext as _
 
 try:
     import cluttergtk
@@ -81,7 +82,7 @@ class ActorIcon(object):
         self.photo = photoimage.photo
         self.photoimage = photoimage
 
-        if self.photo: 
+        if self.photo:
             self.icon_image = self._get_icon()
             self.x, self.y = self._calc_position(
                 photoimage, self.icon_image, self.position, x_offset, y_offset)
@@ -89,19 +90,19 @@ class ActorIcon(object):
     def _calc_position(self, photoimage, icon, position, image_x, image_y):
         icon_pixbuf = icon.get_pixbuf()
 
-        side = photoimage.w if photoimage.w > photoimage.h else photoimage.h 
+        side = photoimage.w if photoimage.w > photoimage.h else photoimage.h
         offset = int(side / 60)
         offset = 10 if offset < 10 else offset
 
         if position == 0 or position == 3:
             x = image_x + offset
         else:
-            x = image_x + photoimage.w - icon_pixbuf.get_width() - offset 
+            x = image_x + photoimage.w - icon_pixbuf.get_width() - offset
 
         if position == 0 or position == 1:
             y = image_y + offset
         else:
-            y = image_y + photoimage.h - icon_pixbuf.get_height() - offset 
+            y = image_y + photoimage.h - icon_pixbuf.get_height() - offset
 
         # print x, y, offset
         return x, y
@@ -168,7 +169,7 @@ class ActorGeoIcon(ActorSourceIcon):
     def show(self, force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
 
-        if (self.photo.get('geo') and 
+        if (self.photo.get('geo') and
             self.photo['geo']['lat'] != 0 and
             self.photo['geo']['lon'] != 0):
             super(ActorGeoIcon, self).show(force)
@@ -184,10 +185,18 @@ class ActorGeoIcon(ActorSourceIcon):
     def _on_button_press_cb(self, actor, event):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
-        
-        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29" % (
-            lat, lon, self.photo['title'] or '(no title)')
-        os.system("gnome-open '%s'" % url)
+
+        title = self.photo['title'] or _('No Title')
+        title = title.replace("'", "%27") \
+            .replace("(", "[").replace(")", "]") \
+            .replace("<", "").replace(">", "")
+
+        zoom = 0
+        zoom = "&z=%s" % zoom if zoom else ""
+
+        url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
+            lat, lon, title, zoom)
+        gtk.show_uri(None, url, event.time)
 
 class ActorFavIcon(ActorIcon):
 
@@ -196,8 +205,8 @@ class ActorFavIcon(ActorIcon):
         self.icon = [ FavIconTexture(stage, i, self.cb) for i in xrange(num)]
 
     def show(self, force=False):
-        if (not hasattr(self, 'photo') or 
-            self.photo == None or 'fav' not in self.photo): 
+        if (not hasattr(self, 'photo') or
+            self.photo == None or 'fav' not in self.photo):
             return
 
         if self.photo.has_key('rate'):
@@ -221,7 +230,7 @@ class ActorFavIcon(ActorIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorFavIcon, self).set_icon(photoimage, x_offset, y_offset)
 
-        if self.photo == None or 'fav' not in self.photo: 
+        if self.photo == None or 'fav' not in self.photo:
             self.hide(True)
             return
 

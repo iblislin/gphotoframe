@@ -1,3 +1,4 @@
+import re
 import urllib
 from xml.etree import ElementTree as etree
 
@@ -13,7 +14,7 @@ def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
 class TumblrPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'Tumblr'
         self.icon = TumblrIcon
@@ -57,6 +58,7 @@ class TumblrPhotoList(PhotoList):
 
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
+        re_nl = re.compile('\n+')
 
         if self.target == 'User':
             meta = tree.find('tumblelog')
@@ -78,6 +80,8 @@ class TumblrPhotoList(PhotoList):
             if self.target != 'User':
                 owner = post.attrib['tumblelog']
 
+            entry_title = re_nl.sub('\n', photo.get('photo-caption'))
+
             like_arg = {'email'    : self.email,
                         'password'  : self.password,
                         'post-id'   : post.attrib['id'],
@@ -86,7 +90,7 @@ class TumblrPhotoList(PhotoList):
             data = {'url'        : photo['photo-url-500'],
                     'id'         : post.attrib['id'],
                     'owner_name' : owner,
-                    'title'      : photo.get('photo-caption'),
+                    'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
                     'fav'        : TumblrFav(self.target == 'Likes', like_arg),
                     'icon'       : TumblrIcon}
@@ -115,7 +119,7 @@ class PluginTumblrDialog(PluginPicasaDialog):
 
     def _set_ui(self):
         super(PluginTumblrDialog, self)._set_ui()
-        user_label = self.gui.get_widget('label_auth1')
+        user_label = self.gui.get_object('label_auth1')
         user_label.set_text_with_mnemonic(_('_E-mail:'))
 
 class TumblrFav(FlickrFav):

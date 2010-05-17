@@ -2,30 +2,6 @@
   <schemalist>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/aspect_max</key>
-      <applyto>/apps/gphotoframe/aspect_max</applyto>
-      <owner>gphotoframe</owner>
-      <type>float</type>
-      <default>0.0</default>
-      <locale name="C">
-        <short>Max aspect ratio for Photo</short>
-        <long>Max aspect ratio for Photo</long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gphotoframe/aspect_min</key>
-      <applyto>/apps/gphotoframe/aspect_min</applyto>
-      <owner>gphotoframe</owner>
-      <type>float</type>
-      <default>0.0</default>
-      <locale name="C">
-        <short>Minimum aspect ratio for Photo</short>
-        <long>Minimum aspect ratio for Photo</long>
-      </locale>
-    </schema>
-
-    <schema>
       <key>/schemas/apps/gphotoframe/border_color</key>
       <applyto>/apps/gphotoframe/border_color</applyto>
       <owner>gphotoframe</owner>
@@ -170,6 +146,66 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
+      <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Max aspect ratio for Photo</short>
+        <long>Max aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/aspect_min</key>
+      <applyto>/apps/gphotoframe/filter/aspect_min</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Minimum aspect ratio for Photo</short>
+        <long>Minimum aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/min_width</key>
+      <applyto>/apps/gphotoframe/filter/min_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Minimum image width</short>
+        <long>Minimum image width.  When this value is less than 0, image size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/min_height</key>
+      <applyto>/apps/gphotoframe/filter/min_height</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Minimum image height</short>
+        <long>Minimum image height.  When this value is less than 0, image size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/min_file_size</key>
+      <applyto>/apps/gphotoframe/filter/min_file_size</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Minimum image file size in bytes</short>
+        <long>Minimum image file size in bytes.  When this value is less than 0, image file size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/flickr/interval</key>
       <applyto>/apps/gphotoframe/plugins/flickr/interval</applyto>
       <owner>gphotoframe</owner>
@@ -178,6 +214,18 @@
       <locale name="C">
         <short>API reload interval minutes</short>
         <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/interval_for_meta_group</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/interval_for_meta_group</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>20</default>
+      <locale name="C">
+        <short>API reload interval minutes for meta groups</short>
+        <long>API reload interval minutes for meta groups (Your Groups or The Commons). It should be greater than 10 minutes.</long>
       </locale>
     </schema>
 
@@ -390,7 +438,7 @@
       <applyto>/apps/gphotoframe/ui/geo/position</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>1</default>
+      <default>2</default>
       <locale name="C">
         <short>Geo icon position</short>
         <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>

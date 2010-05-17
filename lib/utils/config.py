@@ -46,7 +46,7 @@ class GConf(object):
         return val
 
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key, 
+        self.gconf.recursive_unset(self.dir + key,
                                    gconf.UNSET_INCLUDING_SCHEMA_NAMES)
 
     def all_entries(self, key):

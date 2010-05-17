@@ -19,7 +19,7 @@ def info():
             PluginPicasaDialog]
 
 class PicasaPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'Picasa Web'
         self.icon = PicasaIcon
@@ -44,21 +44,21 @@ class PicasaPhotoList(PhotoList):
     def _google_auth_cb(self, identity):
         "Get Google Auth Token (ClientLogin)."
 
-        if identity is None: 
+        if identity is None:
             print "Certification Error"
             return
 
         url = 'https://www.google.com/accounts/ClientLogin'
         source = '%s-%s-%s' % ('yendo', APP_NAME, VERSION.replace('-', '_'))
 
-        arg = {'accountType': 'GOOGLE', 
+        arg = {'accountType': 'GOOGLE',
                'Email' : self.username + '@gmail.com',
-               'Passwd' : identity[1], 
-               'service': 'lh2', 
+               'Passwd' : identity[1],
+               'service': 'lh2',
                'source' : source}
         content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-        d = client.getPage(url, method='POST', 
+        d = client.getPage(url, method='POST',
                            postdata = urllib.urlencode(arg),
                            headers = content_type)
         d.addCallback(self._get_feed_cb)
@@ -66,12 +66,12 @@ class PicasaPhotoList(PhotoList):
     def _get_feed_cb(self, raw_token):
         "Get a Photo Feed from Google with Auth Token."
 
-        auth_token = raw_token.splitlines()[2].replace("Auth=","") 
+        auth_token = raw_token.splitlines()[2].replace("Auth=","")
         auth_header = {'Authorization' : 'GoogleLogin auth=%s' %  auth_token}
 
         url = self._get_feed_url(self.target, self.argument)
         # print url
- 
+
         d = client.getPage(url, headers = auth_header)
         d.addCallback(self._set_photo_cb)
 
@@ -112,11 +112,11 @@ class PicasaPhotoList(PhotoList):
         api = {
             'Album' : '/user/%s/albumid/%s?kind=photo' % ( argument, option),
             'Community Search' : '/all?kind=photo&q=%s' % argument,
-            'Featured' : '/featured?', 
+            'Featured' : '/featured?',
             'User' : '/user/%s/?kind=%s' % ( argument, 'photo'),
             # 'contacts' : '/user/%s/contacts?kind=%s' % ( argumrnt, 'user'),
             # 'photo' : "/user/%s/albumid/%s/photoid/%s?kind=kinds",
-            } 
+            }
         url = url_base + api[target] + '&alt=json'
 
         max_result = 100000 if target == 'User' else 0
@@ -140,7 +140,7 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
         label, state = self._check_argument_sensitive_for(target)
 
         self._set_argument_sensitive(label=label, state=state)
-        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), not state)
+        self._set_sensitive_ok_button(self.gui.get_object('entry1'), not state)
 
     def _check_argument_sensitive_for(self, target):
         all_label = {'User': _('_User:'), 'Community Search': _('_Keyword:')}
@@ -161,8 +161,8 @@ class PluginPicasaDialog(PluginDialog):
     def run(self):
         user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
         self.passwd = None
-        self.entry3 = self.gui.get_widget('entry3')
-        self.entry4 = self.gui.get_widget('entry4')
+        self.entry3 = self.gui.get_object('entry3')
+        self.entry4 = self.gui.get_object('entry4')
 
         self.key = Keyring(self.key_server, protocol='http') ##
 
@@ -178,7 +178,7 @@ class PluginPicasaDialog(PluginDialog):
             self.entry4.set_text(self.passwd)
 
         response_id = self.dialog.run()
-        if response_id == gtk.RESPONSE_OK: 
+        if response_id == gtk.RESPONSE_OK:
             self._write_conf()
         else:
             self.dialog.destroy()

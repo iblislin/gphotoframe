@@ -12,7 +12,7 @@ def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
 
 class RSSPlugin(PluginBase):
-    
+
     def __init__(self):
         self.name = 'RSS'
         self.icon = RSSIcon
@@ -30,31 +30,37 @@ class RSSPhotoList(PhotoList):
 
     def _prepare_cb(self, data):
         rss = feedparser.parse(data)
-        re_rss = re.compile( "<img [^>]*src=\"?" + 
-                             "([ A-Za-z0-9\'~+\-=_.,/%\?!;:@#\*&\(\)]+" +
-                             "\.(jpe?g|png))", re.IGNORECASE)
         self.options['feed_title'] = rss.feed.title
 
+        re_img = re.compile( "<img [^>]*src=\"?" +
+                             "([ A-Za-z0-9\'~+\-=_.,/%\?!;:@#\*&\(\)]+" +
+                             "\.(jpe?g|png))", re.IGNORECASE)
+        re_del_tag = re.compile(r'<.*?>')
+
         for num, item in enumerate(rss.entries):
-            match = re_rss.findall(item.description)
+
+            match = re_img.findall(item.description)
             if not match and hasattr(item, 'content'):
-                match = re_rss.findall(item.content[0]['value'])
+                match = re_img.findall(item.content[0]['value'])
+
             entry = rss.entries[num]
+            owner = entry.source.title if entry.get('source') \
+                else rss.feed.title
 
             #pp = pprint.PrettyPrinter(indent=4)
             #pp.pprint(entry)
 
-            owner = entry.source.title if entry.get('source') \
-                else rss.feed.title
-
             for image in match:
+
                 url = entry.media_content_attrs['url'] \
                     if hasattr(entry, 'media_content_attrs') else image[0]
-                data = {'url'        : url,
+                title = re_del_tag.sub('', entry.title)
+
+                data = {'url'        : str(url),
                         'owner_name' : owner,
                         'owner'      : owner,
-                        'title'      : entry.title,
-                        'page_url'   : entry.link, 
+                        'title'      : title,
+                        'page_url'   : str(entry.link),
                         'icon'       : RSSIcon}
 
                 photo = Photo()
@@ -62,6 +68,7 @@ class RSSPhotoList(PhotoList):
                 self.photos.append(photo)
 
 class PhotoSourceRSSUI(PhotoSourceUI):
+
     def get(self):
         return self.target_widget.get_text();
 
@@ -74,7 +81,7 @@ class PhotoSourceRSSUI(PhotoSourceUI):
         self._set_argument_sensitive(_("_URL:"), True)
 
         # button
-        self._set_sensitive_ok_button(self.gui.get_widget('entry1'), False)
+        self._set_sensitive_ok_button(self.gui.get_object('entry1'), False)
 
     def _set_target_default(self):
         if self.data:
@@ -87,7 +94,7 @@ class RSSIcon(LocalIconImage):
         self.icon_name = 'rss-16.png'
 
 class FeedParserPlus(feedparser._StrictFeedParser):
-	 
+
     def _start_media_content(self, data):
         self.entries[-1]['media_content_attrs'] = copy.deepcopy(data)
 

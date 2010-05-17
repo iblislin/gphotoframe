@@ -2,12 +2,12 @@
 
 # http://www.flickr.com/services/api/auth.howto.desktop.html
 
-import os
 import hashlib
 import urllib
 import xml.etree.ElementTree as etree
 
-from ...utils.urlget import UrlGetWithProxy
+import gtk
+from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 def add_api_sig(values, secret):
     """Add api_sig to given arguments dictionary"""
@@ -33,7 +33,7 @@ class FlickrAuth(object):
         """Get frob with flickr.auth.getFrob"""
 
         base_url = 'http://api.flickr.com/services/rest/?'
-        values = { 'method' : 'flickr.auth.getFrob', 
+        values = { 'method'  : 'flickr.auth.getFrob',
                    'api_key' : self.api_key, }
 
         values = add_api_sig(values, self.secret)
@@ -55,14 +55,14 @@ class FlickrAuth(object):
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
 
-        os.system("gnome-open '%s'" % url)
+        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def get_auth_token(self, cb):
         """Get token with flickr.auth.getToken"""
 
         base_url = 'http://api.flickr.com/services/rest/?'
-        values = { 'method'  : 'flickr.auth.getToken', 
-                   'api_key' : self.api_key, 
+        values = { 'method'  : 'flickr.auth.getToken',
+                   'api_key' : self.api_key,
                    'frob'    : self.frob, }
 
         values = add_api_sig(values, self.secret)
@@ -75,14 +75,14 @@ class FlickrAuth(object):
         """Parse token from XML strings"""
 
         element = etree.fromstring(xml)
-        
+
         if element.find('auth/token') is None:
             return None
 
         user_element = element.find('auth/user')
-        dic = {'auth_token': element.find('auth/token').text, 
-               'nsid'      : user_element.get('nsid'), 
-               'user_name' : user_element.get('username'), 
+        dic = {'auth_token': element.find('auth/token').text,
+               'nsid'      : user_element.get('nsid'),
+               'user_name' : user_element.get('username'),
                'full_name' : user_element.get('fullname')}
         return dic
 
@@ -104,7 +104,7 @@ class FlickrAuth(object):
     def _get_url(self, url, cb, cb_plus=None):
         """Get URL with twisted"""
 
-        client = UrlGetWithProxy()
+        client = UrlGetWithAutoProxy(url)
         d = client.getPage(url)
         d.addCallback(cb)
         return d
