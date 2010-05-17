@@ -16,9 +16,9 @@ It shows pictures from:
 ** Depends
 
 - PyGTK
-- Twisted (twisted.internet, twisted.web)
-- PyXDG (except v.0.16 which has a bug)
-- Python-Distutils-Extra (for installation)
+- Twisted: twisted.internet & twisted.web
+- PyXDG: except v.0.16 which has a bug
+- Python-Distutils-Extra: for installation
 
 ** Recommends
 
@@ -26,6 +26,7 @@ It shows pictures from:
 - feedparser: for RSS plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 - python-clutter-gtk
+- python-libproxy: for Gnome Proxy Settings
 
 ** Installation
 
