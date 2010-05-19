@@ -207,7 +207,7 @@ class PluginTreeView(PreferencesTreeView):
         # bool
         cell_enabled = gtk.CellRendererToggle()
         cell_enabled.set_property("activatable", True)
-        cell_enabled.connect('toggled', self._toggle_plugin_enabled_cb)
+        cell_enabled.connect('toggled', self.liststore.toggle)
         self.column_enabled = gtk.TreeViewColumn("Enabled", cell_enabled, active=0)
         self.column_enabled.set_sort_column_id(0)
         self.treeview.append_column(self.column_enabled)
@@ -232,10 +232,6 @@ class PluginTreeView(PreferencesTreeView):
 
     def _set_button_sensitive(self, state):
         self.gui.get_object('button6').set_sensitive(state)
-
-    def _toggle_plugin_enabled_cb(self, cell, row):
-        self.liststore[row][0] = not self.liststore[row][0]
-        print self.liststore[row][2]
 
     def _cursor_changed_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
