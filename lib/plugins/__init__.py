@@ -3,6 +3,7 @@ import inspect
 from os.path import join, abspath, dirname, isdir
 
 from base import *
+from ..utils.config import GConf
 
 token_base = []
 plugin_dir = abspath(join(dirname(__file__)))
@@ -42,11 +43,23 @@ class PluginListStore(gtk.ListStore):
     def __init__(self):
         super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str)
 
-        for name, obj in sorted([ (plugin.name, plugin)
-                                  for plugin in SOURCE_LIST]):
-            list = [ obj.is_available(), obj.get_icon_pixbuf(), name ]
+        self.conf = GConf()
+        disabled_list = self.load_gconf()
+        all_plugin_list = [ (plugin.name, plugin) for plugin in SOURCE_LIST]
+
+        for name, obj in sorted(all_plugin_list):
+            available = name not in disabled_list
+            list = [ available, obj.get_icon_pixbuf(), name ]
             self.append(list)
 
     def available_list(self):
         list = sorted([plugin[2] for plugin in self if plugin[0]])
         return list
+
+    def load_gconf(self):
+        list = self.conf.get_list('plugins/disabled')
+        return list
+
+    def save_gconf(self):
+        list = sorted([plugin[2] for plugin in self if not plugin[0]])
+        self.conf.set_list('plugins/disabled', list)

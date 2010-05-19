@@ -36,11 +36,11 @@ class Preferences(object):
         checkbutton2.set_sensitive(self.auto_start.check_enable())
         checkbutton2.set_active(self.auto_start.get())
 
-        plugin_liststore = plugins.PluginListStore()
+        self.plugin_liststore = plugins.PluginListStore()
         self.preference_list = PhotoSourceTreeView(
-            gui, "treeview1", self.photolist, self.prefs, plugin_liststore)
+            gui, "treeview1", self.photolist, self.prefs, self.plugin_liststore)
         self.plugins_list = PluginTreeView(
-            gui, "treeview2", plugin_liststore, self.prefs)
+            gui, "treeview2", self.plugin_liststore, self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
 
@@ -92,6 +92,7 @@ class Preferences(object):
         self.conf.set_int('recents/preferences', page)
 
         self.photolist.save_gconf()
+        self.plugin_liststore.save_gconf()
         self.prefs.destroy()
 
     def _set_spinbutton_value(self, widget, key, default_value):
