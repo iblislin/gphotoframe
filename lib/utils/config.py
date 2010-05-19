@@ -45,6 +45,13 @@ class GConf(object):
             else self.gconf.get_bool(path)
         return val
 
+    def set_list(self, key, val, type=gconf.VALUE_STRING):
+        return self.gconf.set_list(self.dir + key, type, val)
+
+    def get_list(self, key, type=gconf.VALUE_STRING):
+        val = self.gconf.get_list(self.dir + key, type)
+        return val
+
     def recursive_unset(self, key):
         self.gconf.recursive_unset(self.dir + key,
                                    gconf.UNSET_INCLUDING_SCHEMA_NAMES)
