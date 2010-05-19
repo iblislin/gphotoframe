@@ -1,5 +1,6 @@
 2010-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* config.py: Added get_list & set_list.
 	* preferences.py, plugins/__init__.py: Added plugin on/off function.
 
 2010-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
