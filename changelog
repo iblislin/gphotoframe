@@ -1,3 +1,7 @@
+2010-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, plugins/__init__.py: Added plugin on/off function.
+
 2010-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* rss.py: Fixed class of URL (unicode -> str).

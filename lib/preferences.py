@@ -36,10 +36,11 @@ class Preferences(object):
         checkbutton2.set_sensitive(self.auto_start.check_enable())
         checkbutton2.set_active(self.auto_start.get())
 
+        plugin_liststore = plugins.PluginListStore()
         self.preference_list = PhotoSourceTreeView(
-            gui, "treeview1", self.photolist, self.prefs)
+            gui, "treeview1", self.photolist, self.prefs, plugin_liststore)
         self.plugins_list = PluginTreeView(
-            gui, "treeview2", plugins.PluginListStore(), self.prefs)
+            gui, "treeview2", plugin_liststore, self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
 
@@ -130,8 +131,9 @@ class PreferencesTreeView(object):
 class PhotoSourceTreeView(PreferencesTreeView):
     """Photo Source TreeView"""
 
-    def __init__(self, gui, widget, liststore, parent):
+    def __init__(self, gui, widget, liststore, parent, plugin_liststore):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
+        self.plugin_liststore = plugin_liststore
 
         self._add_text_column(_("Source"), 0)
         self._add_text_column(_("Target"), 1, 150)
@@ -169,7 +171,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
 
     def _new_button_cb(self, widget):
         photodialog = PhotoSourceDialog(self.parent)
-        (response_id, v) = photodialog.run()
+        (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == gtk.RESPONSE_OK:
             self.liststore.append(v)
@@ -179,7 +181,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         (model, iter) = treeselection.get_selected()
 
         photodialog = PhotoSourceDialog(self.parent, model[iter])
-        (response_id, v) = photodialog.run()
+        (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == gtk.RESPONSE_OK:
             self.liststore.append(v, iter)
@@ -231,7 +233,7 @@ class PluginTreeView(PreferencesTreeView):
         self.gui.get_object('button6').set_sensitive(state)
 
     def _toggle_plugin_enabled_cb(self, cell, row):
-        # self.liststore[row][0] = not self.liststore[row][0]
+        self.liststore[row][0] = not self.liststore[row][0]
         print self.liststore[row][2]
 
     def _cursor_changed_cb(self, widget):
@@ -260,11 +262,10 @@ class PhotoSourceDialog(object):
         self.parent = parent
         self.data = data
 
-    def run(self):
+    def run(self, plugin_liststore):
         dialog = self.gui.get_object('photo_source')
         dialog.set_transient_for(self.parent)
-        source_list = sorted([ plugin.name for plugin in plugins.SOURCE_LIST
-                               if plugin.is_available() ])
+        source_list = plugin_liststore.available_list()
 
         # source
         source_widget = self.gui.get_object('combobox4')
