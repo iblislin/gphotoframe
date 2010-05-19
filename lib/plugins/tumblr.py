@@ -9,6 +9,7 @@ from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
 from flickr import FlickrFav
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
+from ..utils.config import GConf
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -82,18 +83,19 @@ class TumblrPhotoList(PhotoList):
 
             entry_title = re_nl.sub('\n', photo.get('photo-caption'))
 
-            like_arg = {'email'    : self.email,
-                        'password'  : self.password,
-                        'post-id'   : post.attrib['id'],
-                        'reblog-key': post.attrib['reblog-key']}
-
             data = {'url'        : photo['photo-url-500'],
                     'id'         : post.attrib['id'],
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
-                    'fav'        : TumblrFav(self.target == 'Likes', like_arg),
                     'icon'       : TumblrIcon}
+
+            if hasattr(self, 'email'):
+                like_arg = {'email'     : self.email,
+                            'password'  : self.password,
+                            'post-id'   : post.attrib['id'],
+                            'reblog-key': post.attrib['reblog-key']}
+                data['fav'] = TumblrFav(self.target == 'Likes', like_arg)
 
             photo = Photo()
             photo.update(data)
@@ -108,7 +110,12 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
         return label, state
 
     def _label(self):
-        return ['Dashboard', 'Likes', 'User']
+        if GConf().get_string('plugins/tumblr/user_id'):
+            label = ['Dashboard', 'Likes', 'User']
+        else:
+            label = ['User']
+
+        return label
 
 class PluginTumblrDialog(PluginPicasaDialog):
 
