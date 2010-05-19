@@ -44,7 +44,7 @@ class PluginListStore(gtk.ListStore):
         super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str)
 
         self.conf = GConf()
-        disabled_list = self.load_gconf()
+        disabled_list = self._load_gconf()
         all_plugin_list = [ (plugin.name, plugin) for plugin in SOURCE_LIST]
 
         for name, obj in sorted(all_plugin_list):
@@ -56,7 +56,10 @@ class PluginListStore(gtk.ListStore):
         list = sorted([plugin[2] for plugin in self if plugin[0]])
         return list
 
-    def load_gconf(self):
+    def toggle(self, cell, row):
+        self[row][0] = not self[row][0]
+
+    def _load_gconf(self):
         list = self.conf.get_list('plugins/disabled')
         return list
 
