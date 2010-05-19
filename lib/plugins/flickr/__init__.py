@@ -88,8 +88,8 @@ class FlickrPhotoList(PhotoList):
             url = "%s%s.jpg" % (url_base, s['secret'])
             url_b = "%s%s_b.jpg" % (url_base, s['secret'])
 
-            page_url = self.api.get_page_url(
-                s['owner'], s['id'], self.nsid_argument)
+            nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
+            page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
 
             data = {'type'       : 'flickr',
                     'url'        : url,
@@ -101,9 +101,11 @@ class FlickrPhotoList(PhotoList):
                     'page_url'   : page_url,
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
-                    'fav'        : FlickrFav(self.target == 'Favorites',
-                                             {'id': s['id']}),
                     'icon'       : FlickrIcon}
+
+            if self.api.get_auth_token():
+                data['fav'] = FlickrFav(self.target == 'Favorites',
+                                        {'id': s['id']})
 
             if s.get('url_o'):
                 url = s.get('url_o')
@@ -153,7 +155,12 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
     def _label(self):
         keys = FlickrFactoryAPI().api.keys()
         keys.sort()
-        return [ api for api in keys ]
+        label = [api for api in keys]
+
+        if not GConf().get_string('plugins/flickr/nsid'):
+            label.remove('Your Groups')
+
+        return label
 
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFlickrUI(self.gui, self.data)
@@ -169,12 +176,16 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         self.checkbutton_flickr_id = self.gui.get_object('checkbutton_flickr_id')
 
     def _set_default(self):
-        state = self.options.get('other_id', False)
+        state = True if not self._check_authorized() \
+            else self.options.get('other_id', False)
         self.checkbutton_flickr_id.set_active(state)
 
     def checkbutton_flickr_id_sensitive(self, api):
-        state = api.is_use_own_id()
+        state = False if not self._check_authorized() else api.is_use_own_id()
         self.checkbutton_flickr_id.set_sensitive(state)
+
+    def _check_authorized(self):
+        return GConf().get_string('plugins/flickr/nsid')
 
 class FlickrPhoto(Photo):
 

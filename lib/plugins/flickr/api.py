@@ -83,11 +83,12 @@ class FlickrAPI(object):
         return argument
 
     def _add_auth_argument(self, values):
-        auth_token = self.conf.get_string('plugins/flickr/auth_token')
-        values['auth_token'] = auth_token
-
+        values['auth_token'] = self.get_auth_token()
         values = add_api_sig(values, SECRET)
         return values
+
+    def get_auth_token(self):
+        return self.conf.get_string('plugins/flickr/auth_token')
 
     def get_interval(self):
         return self.conf.get_int('plugins/flickr/interval', 60)
