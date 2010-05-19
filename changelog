@@ -1,6 +1,7 @@
 2010-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* tumblr.py: Added checking ceritification.
+	* flickr/__init__.py, api.py: Added checking authorization.
+	* tumblr.py: Added checking authorization.
 	* config.py: Added get_list & set_list.
 	* preferences.py, plugins/__init__.py: Added plugin on/off function.
 
