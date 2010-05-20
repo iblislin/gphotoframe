@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-13 01:59+0900\n"
+"POT-Creation-Date: 2010-05-20 21:39+0900\n"
 "PO-Revision-Date: 2010-05-04 19:26+0530\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -73,192 +73,202 @@ msgid "Auth token"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:10
+msgid "Date format"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:11
 msgid ""
 "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
 "left-bottom."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:11
+#: ../share/gphotoframe.schemas.in.h:12
 msgid "E-mail adress as user ID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:12
+#: ../share/gphotoframe.schemas.in.h:13
 msgid "Enable fullscreen mode animations"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:13
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "Enable icon animations"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:14
+#: ../share/gphotoframe.schemas.in.h:15
 msgid "Fav icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:15
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Fix the photo frame on the root window"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:16
+#: ../share/gphotoframe.schemas.in.h:17
 msgid "Flickr user ID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:17
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Geo icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:18
+#: ../share/gphotoframe.schemas.in.h:19
 msgid "Google account user ID"
 msgstr "గూగుల్ ఖాతా వాడుకరి ID"
 
-#: ../share/gphotoframe.schemas.in.h:19
+#: ../share/gphotoframe.schemas.in.h:20
 msgid ""
 "If true, changing of photo image in fullscreen mode will be animated. The "
 "program needs to be restarted to take effect the change of the setting."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:20
+#: ../share/gphotoframe.schemas.in.h:21
 msgid ""
 "If true, hiding and un-hiding of icons will be animated. The program needs "
 "to be restarted to take effect the change of the setting."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:21
+#: ../share/gphotoframe.schemas.in.h:22
 msgid "If true, icons will be shown on screensaver."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:22
+#: ../share/gphotoframe.schemas.in.h:23
 msgid "Interval seconds in full screen mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:23
+#: ../share/gphotoframe.schemas.in.h:24
 msgid "Interval seconds in window mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:24
+#: ../share/gphotoframe.schemas.in.h:25
 msgid "Max aspect ratio for Photo"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:25
+#: ../share/gphotoframe.schemas.in.h:26
 msgid "Minimum aspect ratio for Photo"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:27
 msgid "Minimum image file size in bytes"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:28
 msgid ""
 "Minimum image file size in bytes. When this value is less than 0, image file "
 "size filter is disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:29
 msgid "Minimum image height"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:30
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:31
 msgid "Minimum image width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:32
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:33
 msgid "NSID"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "Photo frame X position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:35
 msgid "Photo frame Y position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "Photo frame border color"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "Photo frame border width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:38
 msgid "Photo frame fix mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Photo frame full screen mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Photo frame sticky mode"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Photo image max height"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Photo image max width"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Photo source default weight"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "RSS reload interval minutes"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Recent opend preferences page number"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Recent selected photo source"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:48
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Show icons on screensaver"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "Source icon position"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "User ID"
 msgstr "వాడుకరి ID"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "User full name"
 msgstr "వాడుకరి పూర్తి పేరు"
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "User name"
 msgstr "వాడుకరి పేరు"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
+#: ../share/gphotoframe.schemas.in.h:54
+msgid ""
+"You can use conversion specifiers understood by strftime() to obtain a "
+"specific format. See the strftime() manual for more information."
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:84
 msgid "All"
 msgstr "అన్నీ"
 
@@ -430,23 +440,23 @@ msgstr ""
 msgid "No Title"
 msgstr "శీర్షిక లేదు"
 
-#: ../lib/preferences.py:136
+#: ../lib/preferences.py:139
 msgid "Source"
 msgstr ""
 
-#: ../lib/preferences.py:137
+#: ../lib/preferences.py:140
 msgid "Target"
 msgstr ""
 
-#: ../lib/preferences.py:138
+#: ../lib/preferences.py:141
 msgid "Argument"
 msgstr ""
 
-#: ../lib/preferences.py:139
+#: ../lib/preferences.py:142
 msgid "Weight"
 msgstr "బరువు"
 
-#: ../lib/preferences.py:294
+#: ../lib/preferences.py:292
 msgid "The photo source should be ignored if the weight is 0."
 msgstr ""
 
@@ -454,9 +464,9 @@ msgstr ""
 msgid "Options"
 msgstr "ఎంపికలు"
 
-#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:207
-#: ../lib/plugins/flickr/api.py:249 ../lib/plugins/flickr/api.py:265
-#: ../lib/plugins/picasa.py:146 ../lib/plugins/tumblr.py:105
+#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
+#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:152
+#: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr ""
 
@@ -464,28 +474,28 @@ msgstr ""
 msgid "Enter NSID or User Name in the URL"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:187
+#: ../lib/plugins/flickr/api.py:202
 msgid "_Group:"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:191
+#: ../lib/plugins/flickr/api.py:206
 msgid "Enter NSID or Group Name in the URL"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:293
+#: ../lib/plugins/flickr/api.py:296
 msgid "_Tags:"
 msgstr ""
 
-#: ../lib/plugins/flickr/authdialog.py:26
+#: ../lib/plugins/flickr/authdialog.py:25
 #, python-format
 msgid "You are connected to Flickr.com as %s."
 msgstr ""
 
-#: ../lib/plugins/flickr/authdialog.py:27
+#: ../lib/plugins/flickr/authdialog.py:26
 msgid "_Switch User"
 msgstr ""
 
-#: ../lib/plugins/flickr/authdialog.py:35
+#: ../lib/plugins/flickr/authdialog.py:34
 msgid ""
 "Gnome Photo Frame needs your authorization in order to view private photos "
 "or to add photos to favorites list on your Flickr.com account. Press the "
@@ -493,39 +503,39 @@ msgid ""
 "authorization. "
 msgstr ""
 
-#: ../lib/plugins/flickr/authdialog.py:40
+#: ../lib/plugins/flickr/authdialog.py:39
 msgid "_Authorize"
 msgstr ""
 
 #. getfrob -> open browser
-#: ../lib/plugins/flickr/authdialog.py:48
+#: ../lib/plugins/flickr/authdialog.py:47
 msgid ""
 "Return to this dialog after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
 msgstr ""
 
-#: ../lib/plugins/flickr/authdialog.py:51
+#: ../lib/plugins/flickr/authdialog.py:50
 msgid "_Complete Authorization"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:83
+#: ../lib/plugins/fspot/__init__.py:84
 #, python-format
 msgid "Last %s days"
 msgstr "గత %s రోజులు"
 
-#: ../lib/plugins/fspot/__init__.py:89
+#: ../lib/plugins/fspot/__init__.py:90
 msgid "Rate"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:89
+#: ../lib/plugins/fspot/__init__.py:90
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:146
+#: ../lib/plugins/picasa.py:152
 msgid "_Keyword:"
 msgstr ""
 
-#: ../lib/plugins/tumblr.py:123
+#: ../lib/plugins/tumblr.py:130
 msgid "_E-mail:"
 msgstr ""
 

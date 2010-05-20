@@ -77,7 +77,7 @@ class PhotoImage(object):
             if owner:
                 tip += "by %s\n" % escape(owner)
             if date:
-                format = "%c"
+                format = self.conf.get_string('date_format') or "%x"
                 tip += "%s\n" % time.strftime(format, time.gmtime(date))
             if location:
                 tip += "%s\n" % escape(location)
