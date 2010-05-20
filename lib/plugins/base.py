@@ -35,7 +35,7 @@ class PhotoList(object):
         self.photolist = photolist
 
         self.conf = GConf()
-        self.total  = 0
+        self.total = 0
         self.photos = []
 
     def prepare(self):
@@ -151,7 +151,7 @@ class PhotoSourceUI(object):
             self.target_widget.set_active(fr_num)
 
     def _label(self):
-        return  [ '', ]
+        return [ '', ]
 
     def _set_sensitive_ok_button(self, entry_widget, button_state):
         self.gui.get_object('button8').set_sensitive(button_state)
@@ -179,10 +179,6 @@ class PhotoSourceOptionsUI(object):
         pass
 
 class Photo(dict):
-
-#    def show(self, photoframe, *args):
-#        print self.get('page_url') or self.get('url')
-#        photoframe.set_photo(self)
 
     def get_url(self):
         return self['url']
@@ -217,7 +213,7 @@ class Photo(dict):
             lon_ref = -1 if str(tags.get('GPS GPSLongitudeRef')) == 'W' else 1
             lat_ref = -1 if str(tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
 
-            self['geo']= {'lon': x * lon_ref, 'lat': y * lat_ref}
+            self['geo'] = {'lon': x * lon_ref, 'lat': y * lat_ref}
 
 class PluginDialog(object):
     """Photo Source Dialog"""

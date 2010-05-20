@@ -67,7 +67,7 @@ class PicasaPhotoList(PhotoList):
         "Get a Photo Feed from Google with Auth Token."
 
         auth_token = raw_token.splitlines()[2].replace("Auth=","")
-        auth_header = {'Authorization' : 'GoogleLogin auth=%s' %  auth_token}
+        auth_header = {'Authorization' : 'GoogleLogin auth=%s' % auth_token}
 
         url = self._get_feed_url(self.target, self.argument)
         # print url
