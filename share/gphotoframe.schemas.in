@@ -146,6 +146,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/date_format</key>
+      <applyto>/apps/gphotoframe/date_format</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default>%x</default>
+      <locale name="C">
+        <short>Date format</short>
+        <long>You can use conversion specifiers understood by strftime() to obtain a specific format. See the strftime() manual for more information.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
       <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
       <owner>gphotoframe</owner>
