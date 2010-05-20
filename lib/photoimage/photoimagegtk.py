@@ -1,6 +1,8 @@
 from __future__ import division
 
 import os
+import sys
+import time
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
@@ -62,31 +64,33 @@ class PhotoImage(object):
         return width, height
 
     def _set_tips(self, photo):
+        tip = ""
+
         if photo:
             title = photo.get('title')
             owner = photo.get('owner_name')
             date = photo.get('date_taken')
+            location = photo.get('location')
 
-            title = "<big>%s</big>" % escape(title) if title else ""
-            owner = "by " + escape(owner) if owner else ""
-
-            if title and owner:
-                title += "\n"
-            tip = title + owner
-
+            if title:
+                tip += "<big>%s</big>\n" % escape(title)
+            if owner:
+                tip += "by %s\n" % escape(owner)
             if date:
-                import time
-                date = time.strftime("%c", time.gmtime(date))
-                tip += "\n" + date
-        else:
-            tip = None
+                format = "%c"
+                tip += "%s\n" % time.strftime(format, time.gmtime(date))
+            if location:
+                tip += "%s\n" % escape(location)
+
+            tip = tip.rstrip()
 
         try:
             self.window.set_tooltip_markup(tip)
         except:
-            pass
+            print "%s: %s" % (sys.exc_info()[1], tip)
 
 class PhotoImageGtk(PhotoImage):
+
     def __init__(self, photoframe):
         super(PhotoImageGtk, self).__init__(photoframe)
 
