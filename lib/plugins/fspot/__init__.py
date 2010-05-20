@@ -108,7 +108,7 @@ class PhotoSourceFspotUI(PhotoSourceUI):
 
         for item in self._label():
             iter = iter_db[ item[2] ] if item[2] != 0 else None
-            iter_db[item[0]] =  self.treestore.append(iter, [ item[1] ])
+            iter_db[item[0]] = self.treestore.append(iter, [ item[1] ])
             self.tree_list[str(item[1])] = iter_db[item[0]]
 
         self.target_widget = gtk.ComboBox(model=self.treestore)
