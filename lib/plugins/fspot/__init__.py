@@ -71,7 +71,7 @@ class FSpotPhotoList(PhotoList):
                  'filename' : url.replace('file://', ''),
                  'title' : filename, # without path
                  'id' : id,
-                 'date_taken' : epoch - time.timezone,
+                 'date_taken' : epoch - time.timezone * 2,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'icon' : FSpotIcon }
 
