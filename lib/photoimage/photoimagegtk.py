@@ -65,11 +65,19 @@ class PhotoImage(object):
         if photo:
             title = photo.get('title')
             owner = photo.get('owner_name')
+            date = photo.get('date_taken')
+
             title = "<big>%s</big>" % escape(title) if title else ""
             owner = "by " + escape(owner) if owner else ""
+
             if title and owner:
                 title += "\n"
             tip = title + owner
+
+            if date:
+                import time
+                date = time.strftime("%c", time.gmtime(date))
+                tip += "\n" + date
         else:
             tip = None
 

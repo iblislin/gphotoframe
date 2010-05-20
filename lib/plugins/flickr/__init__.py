@@ -1,4 +1,5 @@
 import random
+import time
 
 try:
     import simplejson as json
@@ -90,6 +91,7 @@ class FlickrPhotoList(PhotoList):
 
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
+            date = time.mktime(time.strptime(s['datetaken'], '%Y-%m-%d %H:%M:%S'))
 
             data = {'type'       : 'flickr',
                     'url'        : url,
@@ -99,6 +101,8 @@ class FlickrPhotoList(PhotoList):
                     'id'         : s['id'],
                     'title'      : s['title'],
                     'page_url'   : page_url,
+                    'date_taken' : date,
+                    # 'description' : s['description']['_content'],
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
                     'icon'       : FlickrIcon}

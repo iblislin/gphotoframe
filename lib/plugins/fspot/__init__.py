@@ -1,4 +1,5 @@
 import urllib
+import time
 
 import gtk
 from gettext import gettext as _
@@ -41,7 +42,7 @@ class FSpotPhotoList(PhotoList):
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
-        columns = 'base_uri, filename, P.id, default_version_id' \
+        columns = 'base_uri, filename, P.id, default_version_id, time' \
             if self.db.is_new else 'uri'
         sql = self.sql.get_statement(columns, rate.name)
         sql += ' ORDER BY random() LIMIT 1;'
@@ -49,7 +50,7 @@ class FSpotPhotoList(PhotoList):
         if self.db.is_new:
             photo = self.db.fetchall(sql)
             if not photo: return False
-            base_url, filename, id, version = photo[0]
+            base_url, filename, id, version, epoch = photo[0]
 
             if version != 1:
                 sql = ("SELECT filename FROM photo_versions WHERE photo_id=%s "
@@ -70,6 +71,7 @@ class FSpotPhotoList(PhotoList):
                  'filename' : url.replace('file://', ''),
                  'title' : filename, # without path
                  'id' : id,
+                 'date_taken' : epoch - time.timezone,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'icon' : FSpotIcon }
 

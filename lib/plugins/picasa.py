@@ -1,3 +1,5 @@
+import time 
+
 from twisted.web import client
 from gettext import gettext as _
 import urllib
@@ -99,7 +101,11 @@ class PicasaPhotoList(PhotoList):
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
                     'geo'        : {'lon': lon, 'lat': lat},
+                    'date_taken' : int(entry['gphoto$timestamp']['$t']) / 1000,
                     'icon'       : PicasaIcon}
+
+            if entry['gphoto$location']['$t']:
+                data['location'] = entry['gphoto$location']['$t']
 
             photo = Photo()
             photo.update(data)
