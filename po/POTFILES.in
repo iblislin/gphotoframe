@@ -6,6 +6,7 @@ share/gphotoframe.schemas.in
 [type: gettext/glade]share/menu.ui
 lib/menu.py
 lib/preferences.py
+lib/photoimage/actors.py
 lib/plugins/base.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py

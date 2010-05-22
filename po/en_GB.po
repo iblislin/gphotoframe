@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-20 21:39+0900\n"
+"POT-Creation-Date: 2010-05-23 05:20+0900\n"
 "PO-Revision-Date: 2010-04-29 18:02+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -447,7 +447,7 @@ msgstr "_Full Screen"
 msgid "_Next Photo"
 msgstr "_Next Photo"
 
-#: ../lib/menu.py:91
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:201
 msgid "No Title"
 msgstr "No Title"
 
@@ -470,6 +470,26 @@ msgstr "Weight"
 #: ../lib/preferences.py:292
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "The photo source should be ignored if the weight is 0."
+
+#: ../lib/photoimage/actors.py:176
+msgid "Open the photo"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:214
+msgid "Open the map"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:229
+msgid "Add to faves"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:230
+msgid "Remove from faves"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:230
+msgid "Rate the photo"
+msgstr ""
 
 #: ../lib/plugins/base.py:170
 msgid "Options"

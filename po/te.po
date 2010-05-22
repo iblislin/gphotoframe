@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-20 21:39+0900\n"
+"POT-Creation-Date: 2010-05-23 05:20+0900\n"
 "PO-Revision-Date: 2010-05-04 19:26+0530\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -436,7 +436,7 @@ msgstr "నిండు తెర (_F_"
 msgid "_Next Photo"
 msgstr ""
 
-#: ../lib/menu.py:91
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:201
 msgid "No Title"
 msgstr "శీర్షిక లేదు"
 
@@ -458,6 +458,26 @@ msgstr "బరువు"
 
 #: ../lib/preferences.py:292
 msgid "The photo source should be ignored if the weight is 0."
+msgstr ""
+
+#: ../lib/photoimage/actors.py:176
+msgid "Open the photo"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:214
+msgid "Open the map"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:229
+msgid "Add to faves"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:230
+msgid "Remove from faves"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:230
+msgid "Rate the photo"
 msgstr ""
 
 #: ../lib/plugins/base.py:170
