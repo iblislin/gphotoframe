@@ -24,9 +24,9 @@ class PhotoImageClutter(PhotoImage):
 
         self.photo_image = Texture(self.stage)
         self.photo_image.show()
-        self.actors = [ ActorSourceIcon(self.stage, photoframe),
-                        ActorGeoIcon(self.stage, photoframe),
-                        ActorFavIcon(self.stage), ]
+        self.actors = [ ActorSourceIcon(self.stage, self.tooltip),
+                        ActorGeoIcon(self.stage, self.tooltip),
+                        ActorFavIcon(self.stage, self.tooltip), ]
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
@@ -79,9 +79,9 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
         self.photo_image2 = Texture(self.stage)
         self.photo_image2.show()
-        self.actors2 = [ ActorSourceIcon(self.stage),
-                        ActorGeoIcon(self.stage),
-                        ActorFavIcon(self.stage), ]
+        self.actors2 = [ ActorSourceIcon(self.stage, self.tooltip),
+                        ActorGeoIcon(self.stage, self.tooltip),
+                        ActorFavIcon(self.stage, self.tooltip), ]
         self.first = True # image1 or image2
 
         self.animation = self.conf.get_bool('ui/animate_fullscreen', False)
