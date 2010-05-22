@@ -1,3 +1,7 @@
+2010-05-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py: Added tooltip on clutter actors.
+
 2010-05-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoimagegtk.py, gphotoframe.schemas.in: Added new gconf key

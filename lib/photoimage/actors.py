@@ -126,11 +126,25 @@ class ActorIcon(object):
 
 class ActorSourceIcon(ActorIcon):
 
-    def __init__(self, stage):
+    def __init__(self, stage, photoframe):
         super(ActorSourceIcon, self).__init__()
 
         self.texture = IconTexture(stage)
         self.texture.connect('button-press-event', self._on_button_press_cb)
+
+        self.texture.connect('enter-event' , self._enter_cb)
+        self.texture.connect('leave-event' , self._leave_cb)
+        self.win = photoframe.window
+
+    def _enter_cb(self, w, e):
+        self.win.set_tooltip_markup("")
+        self.win.trigger_tooltip_query()
+        self.win.set_tooltip_markup("a")
+
+    def _leave_cb(self, w, e):
+        self.win.set_tooltip_markup("")
+        self.win.trigger_tooltip_query()
+        self.photoimage._set_tips(self.photo)
 
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorSourceIcon, self).set_icon(photoimage, x_offset, y_offset)
