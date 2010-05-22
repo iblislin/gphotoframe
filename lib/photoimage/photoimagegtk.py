@@ -2,10 +2,11 @@ from __future__ import division
 
 import os
 import sys
+import time
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
-import gobject
+import glib
 import gtk
 
 from ..utils.config import GConf
@@ -63,23 +64,33 @@ class PhotoImage(object):
         return width, height
 
     def _set_tips(self, photo):
+        tip = ""
+
         if photo:
             title = photo.get('title')
             owner = photo.get('owner_name')
-            title = "<big>%s</big>" % escape(title) if title else ""
-            owner = "by " + escape(owner) if owner else ""
-            if title and owner:
-                title += "\n"
-            tip = title + owner
-        else:
-            tip = None
+            date = photo.get('date_taken')
+            location = photo.get('location')
+
+            if title:
+                tip += "<big>%s</big>\n" % escape(title)
+            if owner:
+                tip += "by %s\n" % escape(owner)
+            if date:
+                format = self.conf.get_string('date_format') or "%x"
+                tip += "%s\n" % time.strftime(format, time.gmtime(date))
+            if location:
+                tip += "%s\n" % escape(location)
+
+            tip = tip.rstrip()
 
         try:
             self.window.set_tooltip_markup(tip)
         except:
-            pass
+            print "%s: %s" % (sys.exc_info()[1], tip)
 
 class PhotoImageGtk(PhotoImage):
+
     def __init__(self, photoframe):
         super(PhotoImageGtk, self).__init__(photoframe)
 
@@ -110,20 +121,18 @@ class PhotoImagePixbuf(object):
 
         try:
             filename = photo['filename']
-
-            # ad-hoc for avoiding flickr no image.
-            flickr = photo.get('type') == 'flickr'
-            if flickr and os.path.getsize(filename) <= 3000:
-                return False
-
+            if not self._file_size_is_ok(filename, photo): return False
             pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-        except (gobject.GError, OSError):
-            print sys.exc_info()[1]
+        except (glib.GError, OSError), err_info:
+            print err_info
             return False
 
         pixbuf = self._rotate(pixbuf)
-        pixbuf = self._scale(pixbuf)
+
         if not self._aspect_ratio_is_ok(pixbuf): return False
+        if not self._image_size_is_ok(pixbuf): return False
+
+        pixbuf = self._scale(pixbuf)
         photo.get_exif()
 
         self.data = pixbuf
@@ -146,7 +155,7 @@ class PhotoImagePixbuf(object):
         max_w = self.max_w
         max_h = self.max_h
 
-        src_w = pixbuf.get_width() 
+        src_w = pixbuf.get_width()
         src_h = pixbuf.get_height()
 
         if src_w / max_w > src_h / max_h:
@@ -160,11 +169,25 @@ class PhotoImagePixbuf(object):
         pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
         return pixbuf
 
+    def _file_size_is_ok(self, filename, photo):
+
+        min = self.conf.get_int('filter/min_file_size', 0)
+        size = os.path.getsize(filename)
+
+        if min > 0 and size < min:
+            print "Skip a small file size image (%s bytes)." % size
+            return False
+        elif photo.get('type') == 'flickr' and size < 3000:
+            # ad-hoc for avoiding flickr no image.
+            return False
+        else:
+            return True
+
     def _aspect_ratio_is_ok(self, pixbuf):
         aspect = pixbuf.get_width() / pixbuf.get_height()
 
-        max = self.conf.get_float('aspect_max', 0)
-        min = self.conf.get_float('aspect_min', 0)
+        max = self.conf.get_float('filter/aspect_max', 0)
+        min = self.conf.get_float('filter/aspect_min', 0)
 
         # print aspect, max, min
 
@@ -177,6 +200,21 @@ class PhotoImagePixbuf(object):
 
         if (min > 0 and aspect < min ) or (max > 0 and max < aspect):
             print "Skip a tall or wide image (aspect ratio: %s)." % aspect
+            return False
+        else:
+            return True
+
+    def _image_size_is_ok(self, pixbuf):
+
+        min_width = self.conf.get_int('filter/min_width', 0)
+        min_height = self.conf.get_int('filter/min_height', 0)
+        if min_width <= 0 or min_height <= 0: return True
+
+        w, h = pixbuf.get_width(), pixbuf.get_height()
+        # print w, h
+
+        if w < min_width or h < min_height:
+            print "Skip a small size image (%sx%s)." % (w, h)
             return False
         else:
             return True

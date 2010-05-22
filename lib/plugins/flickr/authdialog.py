@@ -2,18 +2,21 @@ import gtk
 from gettext import gettext as _
 
 from ..base import PluginDialog
-from ...utils.urlget import UrlGetWithProxy
 from ...utils.config import GConf
 from auth import FlickrAuth
 from api import API_KEY, SECRET
 
 class PluginFlickrDialog(PluginDialog):
 
+    def __del__(self):
+        """A black magic for avoiding unintended GC for sub instances."""
+        pass
+
     def _set_ui(self):
-        self.dialog = self.gui.get_widget('plugin_netauth_dialog')
-        self.label  = self.gui.get_widget('label_netauth')
-        self.button_p = self.gui.get_widget('button_netauth_p')
-        self.button_n = self.gui.get_widget('button_netauth_n')
+        self.dialog = self.gui.get_object('plugin_netauth_dialog')
+        self.label  = self.gui.get_object('label_netauth')
+        self.button_p = self.gui.get_object('button_netauth_p')
+        self.button_n = self.gui.get_object('button_netauth_n')
 
         self.p_id = self.n_id = None
         self.auth_obj = FlickrAuth(API_KEY, SECRET, 'write')
@@ -45,7 +48,7 @@ the authorization. ")
 process on Flickr.com and click the \"Complete Authorization\" button below")
         p_label = gtk.STOCK_CANCEL
         n_label = _('_Complete Authorization')
-        p_cb = self._cancel_cb
+        p_cb = self._clear_conf_cb
         n_cb = self.comp
 
         self._set_dialog(text, p_label, n_label, p_cb, n_cb)
@@ -53,15 +56,14 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
     def comp(self, *args):
         self.auth_obj.get_auth_token(self.last)
 
-    def last(self, data):
-        self.nsid = data['nsid']
-        self.user_name = data['user_name']
-        self.auth_token = data['auth_token']
+    def last(self, dic):
+        if not dic:
+            return
 
-        self.conf.set_string('plugins/flickr/nsid', data['nsid'])
-        self.conf.set_string('plugins/flickr/user_name', data['user_name'])
-        self.conf.set_string('plugins/flickr/full_name', data['full_name'])
-        self.conf.set_string('plugins/flickr/auth_token', data['auth_token'])
+        self.nsid = dic['nsid']
+        self.user_name = dic['user_name']
+        self.auth_token = dic['auth_token']
+        self._write_conf(dic)
 
         self._set_confirm_dialog()
 
@@ -81,6 +83,11 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
     def _cancel_cb(self, *args):
         self.dialog.destroy()
 
+    def _clear_conf_cb(self, *args):
+        dic = {'auth_token': '', 'nsid': '', 'user_name': '', 'full_name': ''}
+        self._write_conf(dic)
+        self.dialog.destroy()
+
     def run(self):
         self._read_conf()
 
@@ -89,19 +96,14 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         else:
             self._set_authorize_dialog()
 
-        # self.dialog.show()
-        response_id = self.dialog.run()
-
-        if response_id == gtk.RESPONSE_OK: 
-            print "ok"
-            # self._write_conf()
-
-        return response_id, {}
+        self.dialog.show()
+        return
 
     def _read_conf(self):
         self.nsid = self.conf.get_string('plugins/flickr/nsid') # nsid
         self.user_name = self.conf.get_string('plugins/flickr/user_name')
         self.auth_token = self.conf.get_string('plugins/flickr/auth_token')
 
-    def _write_conf(self):
-        pass
+    def _write_conf(self, dic):
+        for key, value in dic.iteritems():
+            self.conf.set_string('plugins/flickr/%s' % key, value)

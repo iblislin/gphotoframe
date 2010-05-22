@@ -1,11 +1,13 @@
 #!/usr/bin/python
 
 import os
+import glob
 from distutils.core import setup
 from DistUtilsExtra.command import *
 import lib.constants as constants
 
-os.chmod("share/gphotoframe.glade", 0644)
+for ui in glob.glob('share/*.*'):
+    os.chmod(ui, 0644)
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,
@@ -17,11 +19,14 @@ setup(name = 'gphotoframe',
       license = 'GPL3',
       package_dir = {'gphotoframe' : 'lib'},
       packages = ['gphotoframe', 'gphotoframe.utils', 'gphotoframe.photoimage',
-                  'gphotoframe.plugins', 'gphotoframe.plugins.flickr'],
+                  'gphotoframe.plugins', 'gphotoframe.plugins.flickr',
+                  'gphotoframe.plugins.fspot'],
       scripts = ['gphotoframe'],
-      data_files = [('share/gphotoframe', 
-                     ['share/gphotoframe.glade', 'share/rss-16.png']),
-                    ('lib/gnome-screensaver/gnome-screensaver', 
+      data_files = [('share/gphotoframe', ['share/gphotoframe.ui',
+                                           'share/preferences.ui',
+                                           'share/menu.ui',
+                                           'share/rss-16.png']),
+                    ('lib/gnome-screensaver/gnome-screensaver',
                      ['gphotoframe-screensaver'])],
       cmdclass = {"build" : build_extra.build_extra,
                   "build_i18n" : build_i18n.build_i18n,

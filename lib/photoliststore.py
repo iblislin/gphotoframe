@@ -1,7 +1,7 @@
 import os
 
 import gtk
-import gobject
+import glib
 
 import plugins
 from photoframe import PhotoFrameFactory
@@ -29,7 +29,7 @@ class PhotoListStore(gtk.ListStore):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
             return
 
-        obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ]( 
+        obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
         list = [ d['source'], d['target'], d['argument'], d['weight'],
                  d['options'], obj ]
@@ -42,15 +42,20 @@ class PhotoListStore(gtk.ListStore):
         super(PhotoListStore, self).remove(iter)
 
     def next_photo(self, *args):
-        gobject.source_remove(self._timer)
+        glib.source_remove(self._timer)
         self._start_timer()
 
     def delete_photo(self, filename):
         self.queue.remove(filename)
         self.photoframe.remove_photo(filename)
 
-    def _start_timer(self):
-        state = self._change_photo()
+    def reset_timer(self, *args):
+        glib.source_remove(self._timer)
+        self._start_timer(True)
+
+    def _start_timer(self, change=True):
+        state = self._change_photo() if change else True
+
         fullscreen = self.conf.get_bool('fullscreen')
         screensaver = hasattr(self.photoframe, 'screensaver')
 
@@ -60,8 +65,8 @@ class PhotoListStore(gtk.ListStore):
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
             interval = self.conf.get_int('interval', 30)
-        
-        self._timer = gobject.timeout_add(interval * 1000, self._start_timer)
+
+        self._timer = glib.timeout_add_seconds(interval, self._start_timer)
         return False
 
     def _change_photo(self):
@@ -85,7 +90,7 @@ class PhotoListStore(gtk.ListStore):
 
     def _load_gconf(self):
         for dir in self.conf.all_dirs('sources'):
-            data = { 'target' : '', 'argument' : '', 
+            data = { 'target' : '', 'argument' : '',
                      'weight' : 1, 'options' : {} }
             options = {}
 
@@ -102,7 +107,7 @@ class PhotoListStore(gtk.ListStore):
                         options[key] = value
 
             if 'source' in data:
-                data['options'] = options 
+                data['options'] = options
                 self.append(data)
 
     def save_gconf(self):

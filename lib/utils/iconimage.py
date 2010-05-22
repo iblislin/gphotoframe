@@ -5,7 +5,7 @@ from xdg.BaseDirectory import xdg_cache_home
 from xdg.IconTheme import getIconPath
 
 from .. import constants
-from ..utils.urlget import UrlGetWithProxy
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 class IconImage(object):
 
@@ -31,7 +31,8 @@ class IconImage(object):
         return pixbuf
 
     def _get_icon_file(self):
-        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome')
+        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome') \
+            or getIconPath('image-x-generic', size=self.size, theme='gnome')
         return icon_path
 
     def _set_grayscale(self, pixbuf):
@@ -64,5 +65,5 @@ class WebIconImage(IconImage):
             os.makedirs(cache_dir)
 
         icon_file = os.path.join(cache_dir, icon_name)
-        urlget = UrlGetWithProxy()
+        urlget = UrlGetWithAutoProxy(icon_url)
         d = urlget.downloadPage(icon_url, icon_file)

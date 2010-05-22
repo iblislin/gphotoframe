@@ -1,5 +1,6 @@
 import urllib
 import hashlib
+import random
 from gettext import gettext as _
 
 from ...utils.config import GConf
@@ -18,6 +19,8 @@ class FlickrFactoryAPI(object):
             'Interestingness' : FlickrInterestingnessAPI,
             'People Photos'   : FlickrFactoryPeopleAPI,
             'Photo Search'    : FlickrSearchAPI,
+            'The Commons'     : FlickrCommonsAPI,
+            'Your Groups'     : FlickrYourGroupsAPI,
             }
 
     def create(self, api, argument=None):
@@ -28,6 +31,7 @@ class FlickrAPI(object):
 
     def __init__(self):
         self.nsid_conversion = True
+        self.conf = GConf()
         self._set_method()
 
     def _set_method(self):
@@ -47,7 +51,7 @@ class FlickrAPI(object):
                    'count'   : 50,
                    'method'  : self.method,
                    'format'  : 'json',
-                   'extras'  : 'owner_name,original_format,media,geo,url_o',
+                   'extras'  : 'description,date_taken,owner_name,original_format,media,geo,url_o',
                    'page'    : page,
                    'nojsoncallback' : '1' }
 
@@ -69,7 +73,7 @@ class FlickrAPI(object):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
-        user = arg or GConf().get_string('plugins/flickr/nsid')
+        user = arg or self.conf.get_string('plugins/flickr/nsid')
         url = api.get_url('http://www.flickr.com/photos/%s/' % user) \
             if user else None
         return url
@@ -79,13 +83,19 @@ class FlickrAPI(object):
         return argument
 
     def _add_auth_argument(self, values):
-        conf = GConf()
-
-        auth_token = conf.get_string('plugins/flickr/auth_token')
-        values['auth_token'] = auth_token
-
+        values['auth_token'] = self.get_auth_token()
         values = add_api_sig(values, SECRET)
         return values
+
+    def get_auth_token(self):
+        return self.conf.get_string('plugins/flickr/auth_token')
+
+    def get_interval(self):
+        return self.conf.get_int('plugins/flickr/interval', 60)
+
+    def get_page_url(self, owner, id, group=None):
+        url = "http://www.flickr.com/photos/%s/%s"
+        return url % (owner, id)
 
 class FlickrAuthFactory(object):
 
@@ -169,6 +179,16 @@ class FlickrFavoritesRemoveAPI(FlickrFavoritesAddAPI):
     def _set_method(self):
         self.method = 'flickr.favorites.remove'
 
+class FlickrMetaGroupAPI(object):
+
+    def set_entry_label(self):
+        sensitive = False
+        label = _('_User:')
+        return sensitive, label
+
+    def get_interval(self):
+        return self.conf.get_int('plugins/flickr/interval_for_meta_group', 20)
+
 class FlickrGroupAPI(FlickrAPI):
 
     def _set_method(self):
@@ -193,6 +213,23 @@ class FlickrGroupAPI(FlickrAPI):
 
     def parse_nsid(self, d):
         argument = d['group']['id'] if d.get('group') else None
+        return argument
+
+    def get_page_url(self, owner, id, group):
+        url = "http://www.flickr.com/photos/%s/%s/in/pool-%s/"
+        return url % (owner, id, group)
+
+class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):
+
+    def get_url_for_nsid_lookup(self, arg):
+        api = FlickrGroupList()
+        user = self.conf.get_string('plugins/flickr/nsid')
+        url = api.get_url(user) if user else None
+        return url
+
+    def parse_nsid(self, d):
+        list = [[g['nsid'], g['name']] for g in d['groups']['group']]
+        argument, name = random.choice(list)
         return argument
 
 class FlickrInterestingnessAPI(FlickrAPI):
@@ -232,6 +269,19 @@ class FlickrPeopleAuthAPI(FlickrPeopleAPI):
         values.update({'user_id': argument})
         return self._add_auth_argument(values)
 
+class FlickrCommonsAPI(FlickrMetaGroupAPI, FlickrPeopleAPI):
+
+    def get_url_for_nsid_lookup(self, arg):
+        api = FlickrCommonsInstitutions()
+        url = api.get_url(None)
+        return url
+
+    def parse_nsid(self, d):
+        list = [[g['nsid'], g['name']['_content']]
+                for g in d['institutions']['institution']]
+        argument, name = random.choice(list)
+        return argument
+
 class FlickrSearchAPI(FlickrAPI):
 
     def _set_method(self):
@@ -261,3 +311,13 @@ class FlickrGroupNSIDAPI(FlickrNSIDAPI):
 
     def _set_method(self):
         self.method = 'flickr.urls.lookupGroup'
+
+class FlickrGroupList(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.people.getPublicGroups'
+
+class FlickrCommonsInstitutions(FlickrAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.commons.getInstitutions'

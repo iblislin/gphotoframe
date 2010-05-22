@@ -1,4 +1,4 @@
-GNOME Photo Frame - A Photo Frame Gadget for the GNOME Desktop. 
+GNOME Photo Frame - A Photo Frame Gadget for the GNOME Desktop.
 
 * About
 
@@ -16,15 +16,17 @@ It shows pictures from:
 ** Depends
 
 - PyGTK
-- Twisted (twisted.internet, twisted.web)
-- PyXDG (except v.0.16 which has a bug)
-- Python-Distutils-Extra (for installation) 
+- Twisted: twisted.internet & twisted.web
+- PyXDG: except v.0.16 which has a bug
+- Python-Distutils-Extra: for installation
 
 ** Recommends
 
 - simplejson: for Flickr, Picasa Web and Tumblr plugins (for python 2.5)
 - feedparser: for RSS plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
+- python-clutter-gtk
+- python-libproxy: for Gnome Proxy Settings
 
 ** Installation
 
@@ -35,7 +37,7 @@ You can install with the setup script.
 
 Or, you can launch without installation. (Some functions are restricted.)
 
-  ./gphotoframe 
+  ./gphotoframe
 
 * Contact
 

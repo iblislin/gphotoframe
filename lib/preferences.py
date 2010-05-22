@@ -1,7 +1,6 @@
 import os
 
 import gtk
-import gtk.glade
 import pango
 from gettext import gettext as _
 
@@ -18,37 +17,39 @@ class Preferences(object):
         self.conf = GConf()
 
     def start(self, widget):
-        self.gui = gui = gtk.glade.XML(constants.GLADE_FILE)
-        self.prefs = gui.get_widget('preferences')
-        self.notebook = gui.get_widget('notebook1')
+        self.gui = gui = gtk.Builder()
+        gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'preferences.ui'))
+        self.prefs = gui.get_object('preferences')
+        self.notebook = gui.get_object('notebook1')
 
         self._set_spinbutton_value('spinbutton1', 'interval', 30)
         self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
         self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
         self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
 
-        checkbutton1 = gui.get_widget('checkbutton1')
-        sticky = self.conf.get_bool('window_sticky')
+        checkbutton1 = gui.get_object('checkbutton1')
+        sticky = self.conf.get_bool('window_sticky', False)
         checkbutton1.set_active(sticky)
 
-        checkbutton2 = gui.get_widget('checkbutton2')
+        checkbutton2 = gui.get_object('checkbutton2')
         self.auto_start = AutoStart('gphotoframe')
         checkbutton2.set_sensitive(self.auto_start.check_enable())
         checkbutton2.set_active(self.auto_start.get())
 
+        self.plugin_liststore = plugins.PluginListStore()
         self.preference_list = PhotoSourceTreeView(
-            gui, "treeview1", self.photolist, self.prefs)
+            gui, "treeview1", self.photolist, self.prefs, self.plugin_liststore)
         self.plugins_list = PluginTreeView(
-            gui, "treeview2", plugins.PluginListStore(), self.prefs)
+            gui, "treeview2", self.plugin_liststore, self.prefs)
         if self.conf.get_bool('window_sticky'):
             self.prefs.stick()
 
         recent = self.conf.get_int('recents/preferences')
-        if recent: 
-            gui.get_widget('notebook1').set_current_page(recent)
+        if recent:
+            gui.get_object('notebook1').set_current_page(recent)
         self.prefs.show_all()
 
-        dic = { 
+        dic = {
             "on_close_button"              : self._close_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
             "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
@@ -57,7 +58,10 @@ class Preferences(object):
             "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
             "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
             }
-        gui.signal_autoconnect(dic)
+
+        dic.update(self.preference_list.get_signal_dic())
+        dic.update(self.plugins_list.get_signal_dic())
+        gui.connect_signals(dic)
 
     def _interval_changed_cb(self, widget):
         val = widget.get_value_as_int()
@@ -88,11 +92,12 @@ class Preferences(object):
         self.conf.set_int('recents/preferences', page)
 
         self.photolist.save_gconf()
+        self.plugin_liststore.save_gconf()
         self.prefs.destroy()
 
     def _set_spinbutton_value(self, widget, key, default_value):
-        spinbutton = self.gui.get_widget(widget)
-        value = self.conf.get_int(key) or default_value
+        spinbutton = self.gui.get_object(widget)
+        value = self.conf.get_int(key, default_value)
         spinbutton.set_value(value)
 
 class PreferencesTreeView(object):
@@ -104,7 +109,7 @@ class PreferencesTreeView(object):
         self.parent = parent
         self.liststore = liststore
 
-        self.treeview = gui.get_widget(widget)
+        self.treeview = gui.get_object(widget)
         self.treeview.set_model(self.liststore)
         self._set_button_sensitive(False)
 
@@ -127,22 +132,24 @@ class PreferencesTreeView(object):
 class PhotoSourceTreeView(PreferencesTreeView):
     """Photo Source TreeView"""
 
-    def __init__(self, gui, widget, liststore, parent):
+    def __init__(self, gui, widget, liststore, parent, plugin_liststore):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
+        self.plugin_liststore = plugin_liststore
 
         self._add_text_column(_("Source"), 0)
         self._add_text_column(_("Target"), 1, 150)
         self._add_text_column(_("Argument"), 2, 100)
         self._add_text_column(_("Weight"), 3)
 
-        dic = { 
+    def get_signal_dic(self):
+        dic = {
             "on_button3_clicked" : self._new_button_cb,
             "on_button4_clicked" : self._prefs_button_cb,
             "on_button5_clicked" : self._delete_button_cb,
             "on_treeview1_cursor_changed" : self._cursor_changed_cb,
             "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
             }
-        gui.signal_autoconnect(dic)
+        return dic
 
     def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
         nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
@@ -160,12 +167,12 @@ class PhotoSourceTreeView(PreferencesTreeView):
         return False
 
     def _set_button_sensitive(self, state):
-        self.gui.get_widget('button4').set_sensitive(state)
-        self.gui.get_widget('button5').set_sensitive(state)
+        self.gui.get_object('button4').set_sensitive(state)
+        self.gui.get_object('button5').set_sensitive(state)
 
     def _new_button_cb(self, widget):
         photodialog = PhotoSourceDialog(self.parent)
-        (response_id, v) = photodialog.run()
+        (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == gtk.RESPONSE_OK:
             self.liststore.append(v)
@@ -175,7 +182,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         (model, iter) = treeselection.get_selected()
 
         photodialog = PhotoSourceDialog(self.parent, model[iter])
-        (response_id, v) = photodialog.run()
+        (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == gtk.RESPONSE_OK:
             self.liststore.append(v, iter)
@@ -200,7 +207,7 @@ class PluginTreeView(PreferencesTreeView):
         # bool
         cell_enabled = gtk.CellRendererToggle()
         cell_enabled.set_property("activatable", True)
-        cell_enabled.connect('toggled', self._toggle_plugin_enabled_cb)
+        cell_enabled.connect('toggled', self.liststore.toggle)
         self.column_enabled = gtk.TreeViewColumn("Enabled", cell_enabled, active=0)
         self.column_enabled.set_sort_column_id(0)
         self.treeview.append_column(self.column_enabled)
@@ -216,18 +223,15 @@ class PluginTreeView(PreferencesTreeView):
         # plugin name
         self._add_text_column("Description", 2)
 
-        dic = { 
+    def get_signal_dic(self):
+        dic = {
             "on_button6_clicked" : self._prefs_button_cb,
             "on_treeview2_cursor_changed" : self._cursor_changed_cb
             }
-        gui.signal_autoconnect(dic)
+        return dic
 
     def _set_button_sensitive(self, state):
-        self.gui.get_widget('button6').set_sensitive(state)
-
-    def _toggle_plugin_enabled_cb(self, cell, row):
-        # self.liststore[row][0] = not self.liststore[row][0]
-        print self.liststore[row][2]
+        self.gui.get_object('button6').set_sensitive(state)
 
     def _cursor_changed_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
@@ -248,19 +252,20 @@ class PhotoSourceDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, parent, data=None):
-        self.gui = gtk.glade.XML(constants.GLADE_FILE)
+        self.gui = gtk.Builder()
+        self.gui.add_from_file(constants.UI_FILE)
+
         self.conf = GConf()
         self.parent = parent
         self.data = data
 
-    def run(self):
-        dialog = self.gui.get_widget('photo_source')
+    def run(self, plugin_liststore):
+        dialog = self.gui.get_object('photo_source')
         dialog.set_transient_for(self.parent)
-        source_list = sorted([ plugin.name for plugin in plugins.SOURCE_LIST 
-                               if plugin.is_available() ])
+        source_list = plugin_liststore.available_list()
 
         # source
-        source_widget = self.gui.get_widget('combobox4')
+        source_widget = self.gui.get_object('combobox4')
         for str in source_list:
             source_widget.append_text(str)
 
@@ -274,39 +279,43 @@ class PhotoSourceDialog(object):
         self._change_combobox(source_widget, self.data)
 
         # argument
-        argument_widget = self.gui.get_widget('entry1')
+        argument_widget = self.gui.get_object('entry1')
         if self.data:
             argument_widget.set_text(self.data[2])
 
         # weight
         weight = self.data[3] if self.data \
             else self.conf.get_int('default_weight', 3)
-        weight_widget = self.gui.get_widget('spinbutton3')
+        weight_widget = self.gui.get_object('spinbutton3')
         weight_widget.set_value(weight)
         weight_widget.set_tooltip_markup(
             _("The photo source should be ignored if the weight is 0."))
 
         # run
-        dic = { "on_combobox4_changed" : self._change_combobox }
-        self.gui.signal_autoconnect(dic)
+        target_widget = self.gui.get_object('combobox4')
+        target_widget.connect('changed', self._change_combobox)
+
+        # dic = { "on_combobox4_changed" : self._change_combobox }
+        # self.gui.connect_signals(dic)
+
         response_id = dialog.run()
 
         argument = argument_widget.get_text() \
             if argument_widget.get_property('sensitive') else ''
 
         v = { 'source'  : source_widget.get_active_text(),
-              'target'  : self.ui.get(), 
+              'target'  : self.ui.get(),
               'argument' : argument,
               'weight'  : weight_widget.get_value(),
               'options' : self.ui.get_options() }
 
         dialog.destroy()
-        if response_id == gtk.RESPONSE_OK: 
+        if response_id == gtk.RESPONSE_OK:
             self.conf.set_string('recents/source', v['source'])
         return response_id, v
 
     def _change_combobox(self, combobox, data=None):
-        self.gui.get_widget('button8').set_sensitive(True)
+        self.gui.get_object('button8').set_sensitive(True)
 
         text = combobox.get_active_text()
         token = plugins.PHOTO_TARGET_TOKEN

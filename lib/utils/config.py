@@ -3,35 +3,31 @@ import gconf
 class GConf(object):
     """Gconf Wrapper"""
 
-    def __new__(cls, *args, **kwargs):
-        if '_inst' not in vars(cls):
-            cls._inst = super(GConf, cls).__new__(cls, *args, **kwargs)
-        return cls._inst
-
     def __init__(self):
         self.dir = "/apps/gphotoframe/"
         self.gconf = gconf.client_get_default()
         self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
 
     def set_notify_add(self, key, cb):
-        self.gconf.notify_add (self.dir + key, cb)
+        self.gconf.notify_add(self.dir + key, cb)
 
     def set_int(self, key, val):
         return self.gconf.set_int(self.dir + key, int(val))
 
     def get_int(self, key, default=None):
-        if self.gconf.get(self.dir + key) is None:
-            val = default
-        else:
-            val = self.gconf.get_int(self.dir + key)
+        path = self.dir + key
+        val = default if self.gconf.get(path) is None \
+            else self.gconf.get_int(path)
         return val
 
     def set_float(self, key, val):
         return self.gconf.set_float(self.dir + key, float(val))
 
-    def get_float(self, key, default=0.0):
-        val = self.gconf.get_float(self.dir + key)
-        return val if val != 0.0 else default
+    def get_float(self, key, default=None):
+        path = self.dir + key
+        val = default if self.gconf.get(path) is None \
+            else self.gconf.get_float(path)
+        return val
 
     def set_string(self, key, val):
         return self.gconf.set_string(self.dir + key, val)
@@ -49,8 +45,15 @@ class GConf(object):
             else self.gconf.get_bool(path)
         return val
 
+    def set_list(self, key, val, type=gconf.VALUE_STRING):
+        return self.gconf.set_list(self.dir + key, type, val)
+
+    def get_list(self, key, type=gconf.VALUE_STRING):
+        val = self.gconf.get_list(self.dir + key, type)
+        return val
+
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key, 
+        self.gconf.recursive_unset(self.dir + key,
                                    gconf.UNSET_INCLUDING_SCHEMA_NAMES)
 
     def all_entries(self, key):
@@ -68,13 +71,38 @@ class GConf(object):
             self.set_string(key, value)
 
     def get_value(self, entry):
-        if entry.get_value() is None:
-            value = None
-        elif entry.get_value().type == gconf.VALUE_INT:
-            value = entry.get_value().get_int()
-        elif entry.get_value().type == gconf.VALUE_BOOL:
-            value = entry.get_value().get_bool()
-        else:
-            value = entry.get_value().get_string()
+        value = entry.get_value()
 
-        return value
+        result = None if value is None \
+            else value.get_int() if value.type is gconf.VALUE_INT \
+            else value.get_bool() if value.type is gconf.VALUE_BOOL \
+            else value.get_float() if value.type is gconf.VALUE_FLOAT \
+            else value.get_string()
+
+        return result
+
+if __name__ == "__main__":
+    import unittest
+
+    class TestGConf(unittest.TestCase):
+
+        def setUp(self):
+            self.conf = GConf()
+
+        def test_get1(self):
+            result = self.conf.get_float('aspect_max2')
+            self.assertEqual(result, None)
+
+        def test_get2(self):
+            result = self.conf.get_float('aspect_max2', 1.1)
+            self.assertEqual(result, 1.1)
+
+        def test_get3(self):
+            result = self.conf.get_bool('test_bool', True)
+            self.assertEqual(result, True)
+
+        def test_get_int1(self):
+            result1 = self.conf.get_int('test_int')
+            self.assertEqual(result1, None)
+
+    unittest.main()
