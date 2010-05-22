@@ -127,7 +127,7 @@ class PhotoFrame(object):
             "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
             "on_window_leave_notify_event" : self._save_geometry_cb,
             "on_window_window_state_event" : self._window_state_cb,
-            "on_window_query_tooltip"      : self._query_tooltip_cb,
+            "on_window_query_tooltip" : self.photoimage.tooltip.query_tooltip_cb,
             # "on_window_destroy" : reactor.stop,
 
             "on_window_key_press_event" : self._none,
@@ -200,12 +200,6 @@ class PhotoFrame(object):
             self.window.stick()
         else:
             self.window.unstick()
-
-    def _query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
-        if not self.photoimage.photo: return
-
-        pixbuf = self.photoimage.get_photo_source_icon_pixbuf()
-        tooltip.set_icon(pixbuf)
 
 class PhotoFrameFullScreen(PhotoFrame):
 

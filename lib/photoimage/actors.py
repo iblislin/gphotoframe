@@ -124,27 +124,21 @@ class ActorIcon(object):
     def _change_ui_position_cb(self, client, id, entry, data):
         self.position = entry.value.get_int()
 
+    def _enter_cb(self, w, e, tooltip):
+        pass
+
+    def _leave_cb(self, w, e, tooltip):
+        tooltip.update_photo(self.photo)
+
 class ActorSourceIcon(ActorIcon):
 
-    def __init__(self, stage, photoframe):
+    def __init__(self, stage, tooltip):
         super(ActorSourceIcon, self).__init__()
 
         self.texture = IconTexture(stage)
         self.texture.connect('button-press-event', self._on_button_press_cb)
-
-        self.texture.connect('enter-event' , self._enter_cb)
-        self.texture.connect('leave-event' , self._leave_cb)
-        self.win = photoframe.window
-
-    def _enter_cb(self, w, e):
-        self.win.set_tooltip_markup("")
-        self.win.trigger_tooltip_query()
-        self.win.set_tooltip_markup("a")
-
-    def _leave_cb(self, w, e):
-        self.win.set_tooltip_markup("")
-        self.win.trigger_tooltip_query()
-        self.photoimage._set_tips(self.photo)
+        self.texture.connect('enter-event', self._enter_cb, tooltip)
+        self.texture.connect('leave-event', self._leave_cb, tooltip)
 
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorSourceIcon, self).set_icon(photoimage, x_offset, y_offset)
@@ -177,6 +171,10 @@ class ActorSourceIcon(ActorIcon):
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
+
+    def _enter_cb(self, w, e, tooltip):
+        tip = _("Open the photo")
+        tooltip.update_text(tip)
 
 class ActorGeoIcon(ActorSourceIcon):
 
@@ -212,11 +210,25 @@ class ActorGeoIcon(ActorSourceIcon):
             lat, lon, title, zoom)
         gtk.show_uri(None, url, event.time)
 
+    def _enter_cb(self, w, e, tooltip):
+        tip = _("Open the map")
+        tooltip.update_text(tip)
+
 class ActorFavIcon(ActorIcon):
 
-    def __init__(self, stage, num=5):
+    def __init__(self, stage, tooltip, num=5):
         super(ActorFavIcon, self).__init__()
         self.icon = [ FavIconTexture(stage, i, self.cb) for i in xrange(num)]
+
+        for i in self.icon:
+            i.connect('enter-event', self._enter_cb, tooltip)
+            i.connect('leave-event', self._leave_cb, tooltip)
+
+    def _enter_cb(self, w, e, tooltip):
+        status = self.photo['fav'].fav 
+        tip = _("Add to faves") if status is False else \
+            _("Remove from faves") if status is True else _("Rate the photo")
+        tooltip.update_text(tip)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or
