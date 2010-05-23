@@ -1,5 +1,6 @@
 2010-05-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actors.py: Added ActorInfoIcon.
 	* preferences.py: Added tooltips on the photo source
 	  treeview (issue #57).
 

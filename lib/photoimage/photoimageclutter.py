@@ -26,6 +26,7 @@ class PhotoImageClutter(PhotoImage):
         self.photo_image.show()
         self.actors = [ ActorSourceIcon(self.stage, self.tooltip),
                         ActorGeoIcon(self.stage, self.tooltip),
+                        ActorInfoIcon(self.stage, self.tooltip),
                         ActorFavIcon(self.stage, self.tooltip), ]
 
     def _get_border_color(self):
