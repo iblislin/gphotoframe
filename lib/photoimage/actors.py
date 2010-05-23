@@ -77,6 +77,7 @@ class ActorIcon(object):
     def __init__(self):
         self.conf = GConf()
         self._get_ui_data()
+        self.icon_offset = 0
 
     def set_icon(self, photoimage, x_offset, y_offset):
         self.photo = photoimage.photo
@@ -85,7 +86,8 @@ class ActorIcon(object):
         if self.photo:
             self.icon_image = self._get_icon()
             self.x, self.y = self._calc_position(
-                photoimage, self.icon_image, self.position, x_offset, y_offset)
+                photoimage, self.icon_image, self.position, 
+                x_offset - self.icon_offset, y_offset)
 
     def _calc_position(self, photoimage, icon, position, image_x, image_y):
         icon_pixbuf = icon.get_pixbuf()
@@ -212,6 +214,35 @@ class ActorGeoIcon(ActorSourceIcon):
 
     def _enter_cb(self, w, e, tooltip):
         tip = _("Open the map")
+        tooltip.update_text(tip)
+
+class ActorInfoIcon(ActorSourceIcon):
+
+    def set_icon(self, photoimage, x_offset, y_offset):
+
+        self.photo = photoimage.photo
+
+        if (self.photo and
+            self.photo.get('geo') and
+            self.photo['geo']['lat'] != 0 and
+            self.photo['geo']['lon'] != 0):
+            self.icon_offset = 20
+        else:
+            self.icon_offset = 0
+
+        super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
+
+    def _get_icon(self):
+        return IconImage('info')
+
+    def _get_ui_data(self):
+        self._set_ui_options('geo', False, 2)
+
+    def _on_button_press_cb(self, actor, event):
+        pass
+
+    def _enter_cb(self, w, e, tooltip):
+        tip = _("Show info")
         tooltip.update_text(tip)
 
 class ActorFavIcon(ActorIcon):
