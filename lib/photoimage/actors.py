@@ -218,30 +218,13 @@ class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, tooltip, num=5):
         super(ActorFavIcon, self).__init__()
-        self.icon = [ FavIconTexture(stage, i) for i in xrange(num)]
+        self.icon = [ IconTexture(stage) for i in xrange(num)]
 
-        for i in self.icon:
-            i.connect('enter-event', self._enter_cb, tooltip)
-            i.connect('leave-event', self._leave_cb, tooltip)
-            i.connect('button-press-event', self._button_press_event_cb)
-
-    def _button_press_event_cb(self, w, e):
-        self.photo.fav(w.number + 1)
-        self._change_icon()
-
-    def _enter_cb(self, w, e, tooltip):
-        status = self.photo['fav'].fav
-        if w.number > 0 and isinstance(status, bool): return
-
-        tip = _("Add to faves") if status is False else \
-            _("Remove from faves") if status is True else _("Rate the photo")
-        tooltip.update_text(tip)
-
-    def _leave_cb(self, w, e, tooltip):
-        status = self.photo['fav'].fav
-        if w.number > 0 and isinstance(status, bool): return
-
-        tooltip.update_photo(self.photo)
+        for num, icon in enumerate(self.icon):
+            icon.number = num
+            icon.connect('enter-event', self._enter_cb, tooltip)
+            icon.connect('leave-event', self._leave_cb, tooltip)
+            icon.connect('button-press-event', self._button_press_event_cb)
 
     def show(self, force=False):
         if (not hasattr(self, 'photo') or
@@ -293,15 +276,23 @@ class ActorFavIcon(ActorIcon):
             elif self.show_always or mouse_on:
                 icon.show()
 
-    def cb(self, rate):
-        self.photo.fav(rate + 1)
-        self._change_icon()
-
     def _get_ui_data(self):
         self._set_ui_options('fav', False, 0)
 
-class FavIconTexture(IconTexture):
+    def _button_press_event_cb(self, w, e):
+        self.photo.fav(w.number + 1)
+        self._change_icon()
 
-    def __init__(self, stage, num):
-        super(FavIconTexture, self).__init__(stage)
-        self.number = num
+    def _enter_cb(self, w, e, tooltip):
+        status = self.photo['fav'].fav
+        if w.number > 0 and isinstance(status, bool): return
+
+        tip = _("Add to faves") if status is False else \
+            _("Remove from faves") if status is True else _("Rate the photo")
+        tooltip.update_text(tip)
+
+    def _leave_cb(self, w, e, tooltip):
+        status = self.photo['fav'].fav
+        if w.number > 0 and isinstance(status, bool): return
+
+        tooltip.update_photo(self.photo)
