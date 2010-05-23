@@ -193,6 +193,10 @@ class Photo(dict):
             fav_obj = self['fav']
             fav_obj.change_fav(new_rate)
 
+    def geo_is_ok(self):
+        return (self.get('geo') and
+                self['geo']['lat'] != 0 and self['geo']['lon'] != 0)
+
     def get_exif(self):
         file = open(self['filename'], 'rb')
         tags = exif_process_file(file)

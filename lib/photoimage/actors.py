@@ -183,9 +183,7 @@ class ActorGeoIcon(ActorSourceIcon):
     def show(self, force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
 
-        if (self.photo.get('geo') and
-            self.photo['geo']['lat'] != 0 and
-            self.photo['geo']['lon'] != 0):
+        if self.photo.geo_is_ok():
             super(ActorGeoIcon, self).show(force)
         else:
             super(ActorGeoIcon, self).hide(True)
@@ -219,17 +217,8 @@ class ActorGeoIcon(ActorSourceIcon):
 class ActorInfoIcon(ActorSourceIcon):
 
     def set_icon(self, photoimage, x_offset, y_offset):
-
-        self.photo = photoimage.photo
-
-        if (self.photo and
-            self.photo.get('geo') and
-            self.photo['geo']['lat'] != 0 and
-            self.photo['geo']['lon'] != 0):
-            self.icon_offset = 20
-        else:
-            self.icon_offset = 0
-
+        photo = photoimage.photo
+        self.icon_offset = 20 if photo and photo.geo_is_ok() else 0
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _get_icon(self):
