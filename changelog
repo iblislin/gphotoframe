@@ -1,3 +1,8 @@
+2010-05-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py: Added tooltips on the photo source
+	  treeview (issue #57).
+
 2010-05-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photoframe.py, photoimage/: Added tooltip on clutter actors.

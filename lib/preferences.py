@@ -156,11 +156,15 @@ class PhotoSourceTreeView(PreferencesTreeView):
         path_tuple = treeview.get_path_at_pos(nx, ny)
 
         if path_tuple is not None:
-            row, col, cx, cy = path_tuple
-            tip = self.liststore[row][5].get_tooltip()
+            row_id, col = path_tuple[:2]
+            col_id = col.get_sort_column_id()
+            row = self.liststore[row_id]
 
-            if tip is not None:
-                treeview.set_tooltip_row(tooltip, row)
+            plugin_tip = row[5].get_tooltip()
+            tip = plugin_tip if plugin_tip and col_id == 2 else row[col_id]
+
+            if tip and isinstance(tip, str) and col_id > 0:
+                treeview.set_tooltip_row(tooltip, row_id)
                 tooltip.set_text(tip)
                 return True
 
