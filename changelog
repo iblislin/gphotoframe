@@ -1,3 +1,7 @@
+2010-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py, base.py, picasa.py: Added support for EXIF tooltips.
+
 2010-05-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actors.py: Added ActorInfoIcon.

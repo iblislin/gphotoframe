@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-23 05:20+0900\n"
-"PO-Revision-Date: 2010-05-23 05:22+0900\n"
+"POT-Creation-Date: 2010-05-24 17:46+0900\n"
+"PO-Revision-Date: 2010-05-24 17:47+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -472,11 +472,11 @@ msgstr "引数"
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/preferences.py:292
+#: ../lib/preferences.py:296
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
-#: ../lib/photoimage/actors.py:176
+#: ../lib/photoimage/actors.py:178
 msgid "Open the photo"
 msgstr "写真を開く"
 
@@ -484,15 +484,36 @@ msgstr "写真を開く"
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/photoimage/actors.py:229
+#. ['make', _('Maker')],
+#: ../lib/photoimage/actors.py:247
+msgid "Camera"
+msgstr "カメラ"
+
+#: ../lib/photoimage/actors.py:248
+msgid "Focal Length"
+msgstr "焦点距離"
+
+#: ../lib/photoimage/actors.py:249
+msgid "Exposure"
+msgstr "露出"
+
+#: ../lib/photoimage/actors.py:250
+msgid "Aperture"
+msgstr "絞り"
+
+#: ../lib/photoimage/actors.py:251
+msgid "ISO"
+msgstr "ISO"
+
+#: ../lib/photoimage/actors.py:335
 msgid "Add to faves"
 msgstr "お気に入りに追加"
 
-#: ../lib/photoimage/actors.py:230
+#: ../lib/photoimage/actors.py:336
 msgid "Remove from faves"
 msgstr "お気に入りから削除"
 
-#: ../lib/photoimage/actors.py:230
+#: ../lib/photoimage/actors.py:336
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
 
@@ -501,7 +522,7 @@ msgid "Options"
 msgstr "オプション"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:152
+#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:160
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr "ユーザ(_U):"
@@ -572,7 +593,7 @@ msgstr "評価"
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/picasa.py:152
+#: ../lib/plugins/picasa.py:160
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 

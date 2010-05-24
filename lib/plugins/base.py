@@ -201,8 +201,22 @@ class Photo(dict):
         file = open(self['filename'], 'rb')
         tags = exif_process_file(file)
 
-        #for i in tags: print i
-        #print str(tags['Image Model'])
+        if 'exif' not in self:
+            tag = {'make': 'Image Make',
+                   'model': 'Image Model',
+                   'fstop': 'EXIF FNumber',
+                   'focallength': 'EXIF FocalLength',
+                   'iso': 'EXIF ISOSpeedRatings',
+                   'exposure': 'EXIF ExposureTime',}
+            exif = {}
+
+            for key, tag in tag.iteritems():
+                value = tags.get(tag)
+                if value:
+                    exif[key] = str(value)
+
+            if exif and 'exif' not in self:
+                self['exif'] = exif
 
         lat_array = tags.get('GPS GPSLatitude')
         lon_array = tags.get('GPS GPSLongitude')
