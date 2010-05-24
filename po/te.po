@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-23 05:20+0900\n"
+"POT-Creation-Date: 2010-05-24 17:46+0900\n"
 "PO-Revision-Date: 2010-05-04 19:26+0530\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -456,11 +456,11 @@ msgstr ""
 msgid "Weight"
 msgstr "బరువు"
 
-#: ../lib/preferences.py:292
+#: ../lib/preferences.py:296
 msgid "The photo source should be ignored if the weight is 0."
 msgstr ""
 
-#: ../lib/photoimage/actors.py:176
+#: ../lib/photoimage/actors.py:178
 msgid "Open the photo"
 msgstr ""
 
@@ -468,15 +468,36 @@ msgstr ""
 msgid "Open the map"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:229
+#. ['make', _('Maker')],
+#: ../lib/photoimage/actors.py:247
+msgid "Camera"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:248
+msgid "Focal Length"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:249
+msgid "Exposure"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:250
+msgid "Aperture"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:251
+msgid "ISO"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:335
 msgid "Add to faves"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:230
+#: ../lib/photoimage/actors.py:336
 msgid "Remove from faves"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:230
+#: ../lib/photoimage/actors.py:336
 msgid "Rate the photo"
 msgstr ""
 
@@ -485,7 +506,7 @@ msgid "Options"
 msgstr "ఎంపికలు"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:152
+#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:160
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr ""
@@ -551,7 +572,7 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:152
+#: ../lib/plugins/picasa.py:160
 msgid "_Keyword:"
 msgstr ""
 

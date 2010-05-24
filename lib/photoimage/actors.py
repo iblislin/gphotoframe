@@ -183,10 +183,13 @@ class ActorGeoIcon(ActorSourceIcon):
     def show(self, force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
 
-        if self.photo.geo_is_ok():
+        if self._check_photo():
             super(ActorGeoIcon, self).show(force)
         else:
             super(ActorGeoIcon, self).hide(True)
+
+    def _check_photo(self):
+        return self.photo.geo_is_ok()
 
     def _get_icon(self):
         return IconImage('gnome-globe')
@@ -214,25 +217,40 @@ class ActorGeoIcon(ActorSourceIcon):
         tip = _("Open the map")
         tooltip.update_text(tip)
 
-class ActorInfoIcon(ActorSourceIcon):
+class ActorInfoIcon(ActorGeoIcon):
 
     def set_icon(self, photoimage, x_offset, y_offset):
         photo = photoimage.photo
         self.icon_offset = 20 if photo and photo.geo_is_ok() else 0
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
+    def _check_photo(self):
+        return self.photo.get('exif')
+
     def _get_icon(self):
         return IconImage('info')
-
-    def _get_ui_data(self):
-        self._set_ui_options('geo', False, 2)
 
     def _on_button_press_cb(self, actor, event):
         pass
 
     def _enter_cb(self, w, e, tooltip):
-        tip = _("Show info")
-        tooltip.update_text(tip)
+        exif = self.photo.get('exif')
+        if not exif: return
+
+        tag = [#['make', _('Maker'), ''],
+               ['model', _('Camera'), ''],
+               ['focallength', _('Focal Length'), 'mm'],
+               ['exposure', _('Exposure'), 'sec'],
+               ['fstop', _('Aperture'), ''],
+               ['iso', _('ISO'), ''],]
+
+        tip = ''
+        for key, name, unit in tag:
+            value = exif.get(key)
+            if value:
+                tip += "%s: %s%s\n" % (name, value, " " + unit)
+
+        tooltip.update_text(tip.rstrip())
 
 class ActorFavIcon(ActorIcon):
 
