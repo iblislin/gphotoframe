@@ -228,7 +228,7 @@ class ActorInfoIcon(ActorGeoIcon):
         return self.photo.get('exif')
 
     def _get_icon(self):
-        return IconImage('info')
+        return IconImage('camera')
 
     def _on_button_press_cb(self, actor, event):
         pass
@@ -239,17 +239,26 @@ class ActorInfoIcon(ActorGeoIcon):
 
         tag = [#['make', _('Maker'), ''],
                ['model', _('Camera'), ''],
-               ['focallength', _('Focal Length'), 'mm'],
-               ['exposure', _('Exposure'), 'sec'],
+               ['date', _('Date'), ''],
+               ['focallength', _('Focal Length'), _('mm')],
+               ['exposure', _('Exposure'), _('sec')],
                ['fstop', _('Aperture'), ''],
                ['iso', _('ISO'), ''],]
 
         tip = ''
-        for key, name, unit in tag:
-            value = exif.get(key)
-            if value:
-                tip += "%s: %s%s\n" % (name, value, " " + unit)
 
+        for key, name, unit in tag:
+            if key == "date":
+                import time
+                date = self.photo.get('date_taken')
+                if date:
+                    tip += "%s: %s\n" % (_('Date'), 
+                                         time.strftime('%F %R', time.gmtime(date)))
+            else:
+                value = exif.get(key)
+                if value:
+                    tip += "%s: %s%s\n" % (name, value, " " + unit)
+        
         tooltip.update_text(tip.rstrip())
 
 class ActorFavIcon(ActorIcon):

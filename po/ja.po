@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 17:46+0900\n"
-"PO-Revision-Date: 2010-05-24 17:47+0900\n"
+"POT-Creation-Date: 2010-05-24 23:00+0900\n"
+"PO-Revision-Date: 2010-05-24 23:01+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -452,7 +452,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:91 ../lib/photoimage/actors.py:201
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:204
 msgid "No Title"
 msgstr "無題"
 
@@ -480,40 +480,55 @@ msgstr "0 を指定するとこの写真ソースは無視されます"
 msgid "Open the photo"
 msgstr "写真を開く"
 
-#: ../lib/photoimage/actors.py:214
+#: ../lib/photoimage/actors.py:217
 msgid "Open the map"
 msgstr "地図を開く"
 
-#. ['make', _('Maker')],
-#: ../lib/photoimage/actors.py:247
+#: ../lib/photoimage/actors.py:240
+msgid "Maker"
+msgstr "メーカー"
+
+#: ../lib/photoimage/actors.py:241
 msgid "Camera"
 msgstr "カメラ"
 
-#: ../lib/photoimage/actors.py:248
+#: ../lib/photoimage/actors.py:242 ../lib/photoimage/actors.py:254
+msgid "Date"
+msgstr "日時"
+
+#: ../lib/photoimage/actors.py:243
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/photoimage/actors.py:249
+#: ../lib/photoimage/actors.py:243
+msgid "mm"
+msgstr "mm"
+
+#: ../lib/photoimage/actors.py:244
 msgid "Exposure"
 msgstr "露出"
 
-#: ../lib/photoimage/actors.py:250
+#: ../lib/photoimage/actors.py:244
+msgid "sec"
+msgstr "秒"
+
+#: ../lib/photoimage/actors.py:245
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/photoimage/actors.py:251
+#: ../lib/photoimage/actors.py:246
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/photoimage/actors.py:335
+#: ../lib/photoimage/actors.py:336
 msgid "Add to faves"
 msgstr "お気に入りに追加"
 
-#: ../lib/photoimage/actors.py:336
+#: ../lib/photoimage/actors.py:337
 msgid "Remove from faves"
 msgstr "お気に入りから削除"
 
-#: ../lib/photoimage/actors.py:336
+#: ../lib/photoimage/actors.py:337
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
 
