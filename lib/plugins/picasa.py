@@ -100,7 +100,11 @@ class PicasaPhotoList(PhotoList):
             for key in ['make', 'model', 'focallength', 'exposure', 'fstop', 'iso']:
                 value = entry['exif$tags'].get('exif$%s' % key)
                 if value:
-                    exif[key] = value['$t']
+                    value = value['$t']
+                    if key == 'exposure' and float(value) < 1:
+                        value = "1/%s" % int(1 / float(value) + 0.5)
+
+                    exif[key] = value
 
             if exif:
                 data['exif'] = exif

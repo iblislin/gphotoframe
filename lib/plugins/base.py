@@ -213,7 +213,12 @@ class Photo(dict):
             for key, tag in tag.iteritems():
                 value = tags.get(tag)
                 if value:
-                    exif[key] = str(value)
+                    value = str(value)
+                    if (key == 'fstop' or key == 'focallength') \
+                            and value.find('/') > -1:
+                        a, b = value.split('/')
+                        value = int(a) / int(b)
+                    exif[key] = value
 
             if exif and 'exif' not in self:
                 self['exif'] = exif
