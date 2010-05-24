@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 17:46+0900\n"
+"POT-Creation-Date: 2010-05-24 23:00+0900\n"
 "PO-Revision-Date: 2010-04-29 18:02+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -447,7 +447,7 @@ msgstr "_Full Screen"
 msgid "_Next Photo"
 msgstr "_Next Photo"
 
-#: ../lib/menu.py:91 ../lib/photoimage/actors.py:201
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:204
 msgid "No Title"
 msgstr "No Title"
 
@@ -475,40 +475,57 @@ msgstr "The photo source should be ignored if the weight is 0."
 msgid "Open the photo"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:214
+#: ../lib/photoimage/actors.py:217
 msgid "Open the map"
 msgstr ""
 
-#. ['make', _('Maker')],
-#: ../lib/photoimage/actors.py:247
+#: ../lib/photoimage/actors.py:240
+msgid "Maker"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:241
 msgid "Camera"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:248
+#: ../lib/photoimage/actors.py:242 ../lib/photoimage/actors.py:254
+#, fuzzy
+msgid "Date"
+msgstr "Rate"
+
+#: ../lib/photoimage/actors.py:243
 msgid "Focal Length"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:249
+#: ../lib/photoimage/actors.py:243
+msgid "mm"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:244
 msgid "Exposure"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:250
+#: ../lib/photoimage/actors.py:244
+#, fuzzy
+msgid "sec"
+msgstr "seconds"
+
+#: ../lib/photoimage/actors.py:245
 msgid "Aperture"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:251
+#: ../lib/photoimage/actors.py:246
 msgid "ISO"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:335
+#: ../lib/photoimage/actors.py:336
 msgid "Add to faves"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:336
+#: ../lib/photoimage/actors.py:337
 msgid "Remove from faves"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:336
+#: ../lib/photoimage/actors.py:337
 msgid "Rate the photo"
 msgstr ""
 
