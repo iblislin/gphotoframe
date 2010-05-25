@@ -19,3 +19,16 @@ class WeightedRandom(object):
         n = random.uniform(0, 1)
         item = bisect.bisect(self.weight_list, n)
         return self.list[item]
+
+class Rate(object):
+
+    def __init__(self, name, total_in_this, total_all=None, option=None):
+        self.name = name
+        self.total = total_in_this
+        self.total_all = total_all
+        self.option = option
+
+    def _get_weight(self):
+        return self.total
+
+    weight = property(_get_weight, None)
