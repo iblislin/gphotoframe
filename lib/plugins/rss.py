@@ -7,6 +7,7 @@ from gettext import gettext as _
 
 from base import *
 from ..utils.iconimage import LocalIconImage
+from ..utils.wrandom import WeightedRandom
 
 def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
@@ -20,13 +21,17 @@ class RSSPlugin(PluginBase):
 class RSSPhotoList(PhotoList):
 
     def prepare(self):
-        self.photos = []
+        self.photos = {}
 
         url = self.argument
         self._get_url_with_twisted(url)
 
         interval_min = self.conf.get_int('plugins/rss/interval', 60)
         self._start_timer(interval_min)
+
+    def _random_choice(self):
+        rate = self.random()
+        return random.choice(self.photos[rate.name])
 
     def _prepare_cb(self, data):
         rss = feedparser.parse(data)
@@ -65,7 +70,33 @@ class RSSPhotoList(PhotoList):
 
                 photo = Photo()
                 photo.update(data)
-                self.photos.append(photo)
+
+                if owner not in self.photos:
+                    self.photos[owner] = []
+
+                self.photos[owner].append(photo)
+
+        self.raw_list = []
+        for title in self.photos:
+            total_in_this = len(self.photos[title])
+            rate_info = Rate(title, total_in_this, total)
+            self.raw_list.append(rate_info)
+            print title, total_in_this
+
+        self.random = WeightedRandom(self.raw_list)
+
+class Rate(object):
+
+    def __init__(self, name, total_in_this, total_all, option=None):
+        self.name = name
+        self.total = total_in_this
+        self.total_all = total_all
+        self.option = option
+
+    def _get_weight(self):
+        return self.total if self.total < 10 else 10
+
+    weight = property(_get_weight, None)
 
 class PhotoSourceRSSUI(PhotoSourceUI):
 
