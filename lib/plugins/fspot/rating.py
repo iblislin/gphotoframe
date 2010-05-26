@@ -1,6 +1,6 @@
 from __future__ import division
 
-from ...utils.wrandom import WeightedRandom, Rate
+from ...utils.wrandom import WeightedRandom
 from sqldb import FSpotDB
 
 class RateList(list):
@@ -34,7 +34,7 @@ class RateList(list):
         count_dic.update(dict(count_list))
 
         for rate, total_in_this in count_dic.items():
-            rate_info = FSpotRate(rate, total_in_this, self.total, weight)
+            rate_info = FSpotRate(rate, total_in_this, weight)
             self.raw_list.append(rate_info)
 
         self._set_random_weight()
@@ -58,7 +58,12 @@ class RateList(list):
         rate = self.random()
         return rate
 
-class FSpotRate(Rate):
+class FSpotRate(object):
+
+    def __init__(self, name, total, option=None):
+        self.name = name
+        self.total = total
+        self.option = option
 
     def _get_weight(self):
         weight_mag = self.option or 2
