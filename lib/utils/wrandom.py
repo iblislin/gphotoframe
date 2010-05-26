@@ -8,11 +8,9 @@ class WeightedRandom(object):
         self.list = list
         self.weight_list = []
         total_weight = sum(item.weight for item in list)
-        # total_weight = sum(item.weight * item.total for item in list)
         accum_weight = 0.0
         for item in list:
             accum_weight += item.weight
-            # accum_weight += item.weight * item.total
             self.weight_list.append( accum_weight / total_weight )
 
     def __call__(self):

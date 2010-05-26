@@ -45,7 +45,7 @@ class PhotoList(object):
         pass
 
     def get_photo(self, cb):
-        self.photo = random.choice(self.photos)
+        self.photo = self._random_choice()
         url = self.photo.get_url()
         self.photo['filename'] = os.path.join(constants.CACHE_DIR,
                                               url[url.rfind('/') + 1:])
@@ -54,6 +54,9 @@ class PhotoList(object):
         d = urlget.downloadPage(url, self.photo['filename'])
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
+
+    def _random_choise(self):
+        return random.choice(self.photos)
 
     def get_tooltip(self):
         pass
