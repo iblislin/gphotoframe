@@ -2,7 +2,6 @@ import os
 
 import gtk
 from xdg.BaseDirectory import xdg_cache_home
-from xdg.IconTheme import getIconPath
 
 from .. import constants
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
@@ -24,16 +23,18 @@ class IconImage(object):
         self.size = size
         file = self._get_icon_file()
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file(file)
+        pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(file, size, size) \
+            if file.endswith('.svg') else gtk.gdk.pixbuf_new_from_file(file)
         if grayscale:
             pixbuf = self._set_grayscale(pixbuf)
 
         return pixbuf
 
     def _get_icon_file(self):
-        icon_path = getIconPath(self.icon_name, size=self.size, theme='gnome') \
-            or getIconPath('image-x-generic', size=self.size, theme='gnome')
-        return icon_path
+        theme = gtk.icon_theme_get_default()
+        info = theme.lookup_icon(self.icon_name, self.size, 0) or \
+            theme.lookup_icon('image-x-generic', self.size, 0)
+        return info.get_filename()
 
     def _set_grayscale(self, pixbuf):
         pixbuf_gray = pixbuf.copy()
