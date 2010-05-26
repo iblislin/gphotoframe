@@ -55,7 +55,7 @@ class PhotoList(object):
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
 
-    def _random_choise(self):
+    def _random_choice(self):
         return random.choice(self.photos)
 
     def get_tooltip(self):
