@@ -1,5 +1,6 @@
 2010-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* iconimage.py: Added support for custom icon theme.
 	* tumblr.py: Added checking entries without title.
 
 2010-05-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
