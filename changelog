@@ -1,3 +1,7 @@
+2010-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr.py: Added checking entries without title.
+
 2010-05-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* rss.py: Added support weighted random with standard scores.
