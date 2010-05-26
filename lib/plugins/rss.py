@@ -8,7 +8,7 @@ from gettext import gettext as _
 
 from base import *
 from ..utils.iconimage import LocalIconImage
-from ..utils.wrandom import WeightedRandom, Rate
+from ..utils.wrandom import WeightedRandom
 
 def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
@@ -86,21 +86,17 @@ class RSSPhotoList(PhotoList):
         for title in self.photos:
             total_in_this = len(self.photos[title])
             # print title, total_in_this
-            rate_info = RSSRate(title, total_in_this, None, [mean, std])
+            rate_info = RSSRate(title, total_in_this, mean, std)
             self.raw_list.append(rate_info)
 
         self.random = WeightedRandom(self.raw_list)
 
-class RSSRate(Rate):
+class RSSRate(object):
 
-    def _get_weight(self):
-        mean, std = self.option
-        std_score = 20 * (self.total - mean) / std + 50
-        std_score = std_score if std_score >= 1 else 1
-        #print self.name, self.total, weight
-        return std_score
-
-    weight = property(_get_weight, None)
+    def __init__(self, name, total, mean, std):
+        self.name = name
+        std_score = 20 * (total - mean) / std + 50
+        self.weight = std_score if std_score >= 1 else 1
 
 class PhotoSourceRSSUI(PhotoSourceUI):
 
