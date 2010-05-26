@@ -1,3 +1,7 @@
+2010-05-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Added support weighted random with standard scores.
+
 2010-05-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* rss.py: Added support weighted random for each rss feed in mixed

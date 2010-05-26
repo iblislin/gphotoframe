@@ -2,6 +2,7 @@ import re
 import copy
 # import pprint
 
+import numpy
 import feedparser
 from gettext import gettext as _
 
@@ -77,10 +78,15 @@ class RSSPhotoList(PhotoList):
                 self.photos[owner].append(photo)
 
         self.raw_list = []
+
+        num_list = [len(self.photos[i]) for i in self.photos]
+        mean = numpy.mean(num_list)
+        std = numpy.std(num_list)
+
         for title in self.photos:
             total_in_this = len(self.photos[title])
             # print title, total_in_this
-            rate_info = RSSRate(title, total_in_this)
+            rate_info = RSSRate(title, total_in_this, None, [mean, std])
             self.raw_list.append(rate_info)
 
         self.random = WeightedRandom(self.raw_list)
@@ -88,9 +94,11 @@ class RSSPhotoList(PhotoList):
 class RSSRate(Rate):
 
     def _get_weight(self):
-        weight = self.total if self.total < 10 else 10
-        # print self.name, self.total, weight
-        return weight
+        mean, std = self.option
+        std_score = 20 * (self.total - mean) / std + 50
+        std_score = std_score if std_score >= 1 else 1
+        #print self.name, self.total, weight
+        return std_score
 
     weight = property(_get_weight, None)
 
