@@ -62,8 +62,7 @@ class DirPhotoList(PhotoList):
                  'filename' : fullpath,
                  'title'    : filename,
                  'icon'     : FolderIcon}
-        photo = Photo()
-        photo.update(data)
+        photo = Photo(data)
         self.photos.append(photo)
 
     def _inotify(self):
