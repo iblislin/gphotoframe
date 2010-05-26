@@ -107,8 +107,7 @@ class PicasaPhotoList(PhotoList):
             if entry['gphoto$location']['$t']:
                 data['location'] = entry['gphoto$location']['$t']
 
-            photo = Photo()
-            photo.update(data)
+            photo = Photo(data)
             self.photos.append(photo)
 
     def _get_feed_url(self, target, argument, option=None):

@@ -97,8 +97,7 @@ class TumblrPhotoList(PhotoList):
                             'reblog-key': post.attrib['reblog-key']}
                 data['fav'] = TumblrFav(self.target == 'Likes', like_arg)
 
-            photo = Photo()
-            photo.update(data)
+            photo = Photo(data)
             self.photos.append(photo)
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
