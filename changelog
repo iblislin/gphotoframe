@@ -1,5 +1,6 @@
 2010-05-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actors.py: Improved Code (Added support for EXIF make tag).
 	* rss.py: Added support weighted random with standard scores.
 
 2010-05-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

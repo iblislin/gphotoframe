@@ -1,4 +1,6 @@
 from __future__ import division
+import time
+
 import gtk
 from gettext import gettext as _
 
@@ -237,28 +239,32 @@ class ActorInfoIcon(ActorGeoIcon):
         exif = self.photo.get('exif')
         if not exif: return
 
-        tag = [#['make', _('Maker'), ''],
+        date = self.photo.get('date_taken')
+        if date:
+            exif['date'] = time.strftime('%F %R', time.gmtime(date))
+
+        make = exif.get('make')
+        model = exif.get('model')
+        if make and model:
+            for w in make.split():
+                if model.find(w) >= 0:
+                    del exif['make']
+                    break
+
+        tag = [['make',  _('Maker'), ''],
                ['model', _('Camera'), ''],
-               ['date', _('Date'), ''],
-               ['focallength', _('Focal Length'), _('mm')],
-               ['exposure', _('Exposure'), _('sec')],
+               ['date',  _('Date'), ''],
+               ['focallength', _('Focal Length'), " " + _('mm')],
+               ['exposure',    _('Exposure'),     " " + _('sec')],
                ['fstop', _('Aperture'), ''],
-               ['iso', _('ISO'), ''],]
+               ['iso',   _('ISO'), ''],]
 
         tip = ''
-
         for key, name, unit in tag:
-            if key == "date":
-                import time
-                date = self.photo.get('date_taken')
-                if date:
-                    tip += "%s: %s\n" % (_('Date'), 
-                                         time.strftime('%F %R', time.gmtime(date)))
-            else:
-                value = exif.get(key)
-                if value:
-                    tip += "%s: %s%s\n" % (name, value, " " + unit)
-        
+            value = exif.get(key)
+            if value:
+                tip += "%s: %s%s\n" % (name, value, unit)
+
         tooltip.update_text(tip.rstrip())
 
 class ActorFavIcon(ActorIcon):
