@@ -55,7 +55,7 @@ class PhotoList(object):
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
 
-    def _random_choise(self):
+    def _random_choice(self):
         return random.choice(self.photos)
 
     def get_tooltip(self):
@@ -203,6 +203,7 @@ class Photo(dict):
     def get_exif(self):
         file = open(self['filename'], 'rb')
         tags = exif_process_file(file)
+        file.close()
 
         if 'exif' not in self:
             tag = {'make': 'Image Make',
@@ -217,10 +218,8 @@ class Photo(dict):
                 value = tags.get(tag)
                 if value:
                     value = str(value)
-                    if (key == 'fstop' or key == 'focallength') \
-                            and value.find('/') > -1:
-                        a, b = value.split('/')
-                        value = int(a) / int(b)
+                    if key == 'fstop' or key == 'focallength':
+                        value = self._convert_from_fraction(value)
                     exif[key] = value
 
             if exif and 'exif' not in self:
@@ -240,6 +239,12 @@ class Photo(dict):
             lat_ref = -1 if str(tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
 
             self['geo'] = {'lon': x * lon_ref, 'lat': y * lat_ref}
+
+    def _convert_from_fraction(self, value):
+        if value.find('/') > 0:
+            a, b = value.split('/')
+            value = int(a) / int(b)
+        return value
 
 class PluginDialog(object):
     """Photo Source Dialog"""
