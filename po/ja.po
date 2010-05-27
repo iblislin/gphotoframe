@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 23:00+0900\n"
+"POT-Creation-Date: 2010-05-27 19:38+0900\n"
 "PO-Revision-Date: 2010-05-24 23:01+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -284,7 +284,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:84
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
 msgid "All"
 msgstr "すべて"
 
@@ -332,7 +332,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:135
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:138
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -356,7 +356,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:129
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:132
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -452,7 +452,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:91 ../lib/photoimage/actors.py:204
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:206
 msgid "No Title"
 msgstr "無題"
 
@@ -476,68 +476,68 @@ msgstr "重み"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
-#: ../lib/photoimage/actors.py:178
+#: ../lib/photoimage/actors.py:180
 msgid "Open the photo"
 msgstr "写真を開く"
 
-#: ../lib/photoimage/actors.py:217
+#: ../lib/photoimage/actors.py:219
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/photoimage/actors.py:240
+#: ../lib/photoimage/actors.py:254
 msgid "Maker"
 msgstr "メーカー"
 
-#: ../lib/photoimage/actors.py:241
+#: ../lib/photoimage/actors.py:255
 msgid "Camera"
 msgstr "カメラ"
 
-#: ../lib/photoimage/actors.py:242 ../lib/photoimage/actors.py:254
+#: ../lib/photoimage/actors.py:256
 msgid "Date"
 msgstr "日時"
 
-#: ../lib/photoimage/actors.py:243
+#: ../lib/photoimage/actors.py:257
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/photoimage/actors.py:243
+#: ../lib/photoimage/actors.py:257
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/photoimage/actors.py:244
+#: ../lib/photoimage/actors.py:258
 msgid "Exposure"
 msgstr "露出"
 
-#: ../lib/photoimage/actors.py:244
+#: ../lib/photoimage/actors.py:258
 msgid "sec"
 msgstr "秒"
 
-#: ../lib/photoimage/actors.py:245
+#: ../lib/photoimage/actors.py:259
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/photoimage/actors.py:246
+#: ../lib/photoimage/actors.py:260
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/photoimage/actors.py:336
+#: ../lib/photoimage/actors.py:343
 msgid "Add to faves"
 msgstr "お気に入りに追加"
 
-#: ../lib/photoimage/actors.py:337
+#: ../lib/photoimage/actors.py:344
 msgid "Remove from faves"
 msgstr "お気に入りから削除"
 
-#: ../lib/photoimage/actors.py:337
+#: ../lib/photoimage/actors.py:344
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
 
-#: ../lib/plugins/base.py:170
+#: ../lib/plugins/base.py:173
 msgid "Options"
 msgstr "オプション"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:160
+#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:163
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr "ユーザ(_U):"
@@ -595,20 +595,20 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/fspot/__init__.py:84
+#: ../lib/plugins/fspot/__init__.py:83
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:90
+#: ../lib/plugins/fspot/__init__.py:89
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:90
+#: ../lib/plugins/fspot/__init__.py:89
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/picasa.py:160
+#: ../lib/plugins/picasa.py:163
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -616,12 +616,12 @@ msgstr "キーワード(_K):"
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
-#: ../lib/plugins/rss.py:78
+#: ../lib/plugins/rss.py:108
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:81
+#: ../lib/plugins/rss.py:111
 msgid "_URL:"
 msgstr "URL(_U)"
 
