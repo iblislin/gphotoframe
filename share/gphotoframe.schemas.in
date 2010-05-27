@@ -350,6 +350,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/rss/standard_deviation</key>
+      <applyto>/apps/gphotoframe/plugins/rss/standard_deviation</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Standard deviation of RSS feed random weights</short>
+        <long>If the RSS feed includes multiple RSS feeds, this value is used as the standard deviation for random weight of each RSS feed.  When this value is less than 0, the each weight is the number of total image included in each RSS feed.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/recents/preferences</key>
       <applyto>/apps/gphotoframe/recents/preferences</applyto>
       <owner>gphotoframe</owner>
