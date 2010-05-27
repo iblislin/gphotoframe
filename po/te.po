@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-24 23:00+0900\n"
+"POT-Creation-Date: 2010-05-27 19:38+0900\n"
 "PO-Revision-Date: 2010-05-04 19:26+0530\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -268,7 +268,7 @@ msgid ""
 "specific format. See the strftime() manual for more information."
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:84
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
 msgid "All"
 msgstr "అన్నీ"
 
@@ -316,7 +316,7 @@ msgstr ""
 msgid "Rate _Weight:"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:135
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:138
 msgid "_Argument:"
 msgstr ""
 
@@ -340,7 +340,7 @@ msgstr ""
 msgid "_Specified other people's ID"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:129
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:132
 msgid "_Target:"
 msgstr ""
 
@@ -436,7 +436,7 @@ msgstr "నిండు తెర (_F_"
 msgid "_Next Photo"
 msgstr ""
 
-#: ../lib/menu.py:91 ../lib/photoimage/actors.py:204
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:206
 msgid "No Title"
 msgstr "శీర్షిక లేదు"
 
@@ -460,69 +460,69 @@ msgstr "బరువు"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr ""
 
-#: ../lib/photoimage/actors.py:178
+#: ../lib/photoimage/actors.py:180
 msgid "Open the photo"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:217
+#: ../lib/photoimage/actors.py:219
 msgid "Open the map"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:240
+#: ../lib/photoimage/actors.py:254
 msgid "Maker"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:241
+#: ../lib/photoimage/actors.py:255
 msgid "Camera"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:242 ../lib/photoimage/actors.py:254
+#: ../lib/photoimage/actors.py:256
 msgid "Date"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:243
+#: ../lib/photoimage/actors.py:257
 msgid "Focal Length"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:243
+#: ../lib/photoimage/actors.py:257
 msgid "mm"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:244
+#: ../lib/photoimage/actors.py:258
 msgid "Exposure"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:244
+#: ../lib/photoimage/actors.py:258
 #, fuzzy
 msgid "sec"
 msgstr "క్షణాలు"
 
-#: ../lib/photoimage/actors.py:245
+#: ../lib/photoimage/actors.py:259
 msgid "Aperture"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:246
+#: ../lib/photoimage/actors.py:260
 msgid "ISO"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:336
+#: ../lib/photoimage/actors.py:343
 msgid "Add to faves"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:337
+#: ../lib/photoimage/actors.py:344
 msgid "Remove from faves"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:337
+#: ../lib/photoimage/actors.py:344
 msgid "Rate the photo"
 msgstr ""
 
-#: ../lib/plugins/base.py:170
+#: ../lib/plugins/base.py:173
 msgid "Options"
 msgstr "ఎంపికలు"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:160
+#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:163
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr ""
@@ -575,20 +575,20 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:84
+#: ../lib/plugins/fspot/__init__.py:83
 #, python-format
 msgid "Last %s days"
 msgstr "గత %s రోజులు"
 
-#: ../lib/plugins/fspot/__init__.py:90
+#: ../lib/plugins/fspot/__init__.py:89
 msgid "Rate"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:90
+#: ../lib/plugins/fspot/__init__.py:89
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:160
+#: ../lib/plugins/picasa.py:163
 msgid "_Keyword:"
 msgstr ""
 
@@ -596,11 +596,11 @@ msgstr ""
 msgid "_E-mail:"
 msgstr ""
 
-#: ../lib/plugins/rss.py:78
+#: ../lib/plugins/rss.py:108
 msgid "_Title:"
 msgstr ""
 
 #. argument widget
-#: ../lib/plugins/rss.py:81
+#: ../lib/plugins/rss.py:111
 msgid "_URL:"
 msgstr ""
