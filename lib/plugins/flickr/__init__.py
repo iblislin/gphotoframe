@@ -116,8 +116,7 @@ class FlickrPhotoList(PhotoList):
                 w, h = int(s.get('width_o')), int(s.get('height_o'))
                 data.update({'url_o': url, 'size_o': [w, h]})
 
-            photo = FlickrPhoto()
-            photo.update(data)
+            photo = FlickrPhoto(data)
             self.photos.append(photo)
 
 class PhotoSourceFlickrUI(PhotoSourceUI):

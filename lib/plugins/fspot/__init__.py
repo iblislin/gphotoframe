@@ -75,8 +75,7 @@ class FSpotPhotoList(PhotoList):
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'icon' : FSpotIcon }
 
-        self.photo = Photo()
-        self.photo.update(data)
+        self.photo = Photo(data)
         cb(self.photo)
 
     def get_tooltip(self):
