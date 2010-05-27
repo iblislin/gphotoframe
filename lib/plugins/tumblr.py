@@ -81,7 +81,8 @@ class TumblrPhotoList(PhotoList):
             if self.target != 'User':
                 owner = post.attrib['tumblelog']
 
-            entry_title = re_nl.sub('\n', photo.get('photo-caption'))
+            caption = photo.get('photo-caption')
+            entry_title = re_nl.sub('\n', caption) if caption else None
 
             data = {'url'        : photo['photo-url-500'],
                     'id'         : post.attrib['id'],
@@ -97,8 +98,7 @@ class TumblrPhotoList(PhotoList):
                             'reblog-key': post.attrib['reblog-key']}
                 data['fav'] = TumblrFav(self.target == 'Likes', like_arg)
 
-            photo = Photo()
-            photo.update(data)
+            photo = Photo(data)
             self.photos.append(photo)
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):

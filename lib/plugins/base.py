@@ -183,6 +183,9 @@ class PhotoSourceOptionsUI(object):
 
 class Photo(dict):
 
+    def __init__(self, init_dic={}):
+        self.update(init_dic)
+
     def get_url(self):
         return self['url']
 

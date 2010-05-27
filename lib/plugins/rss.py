@@ -69,8 +69,7 @@ class RSSPhotoList(PhotoList):
                         'page_url'   : str(entry.link),
                         'icon'       : RSSIcon}
 
-                photo = Photo()
-                photo.update(data)
+                photo = Photo(data)
 
                 if owner not in self.photos:
                     self.photos[owner] = []
