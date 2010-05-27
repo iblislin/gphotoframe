@@ -321,3 +321,8 @@ class FlickrCommonsInstitutions(FlickrAPI):
 
     def _set_method(self):
         self.method = 'flickr.commons.getInstitutions'
+
+class FlickrExifAPI(FlickrFavoritesAddAPI):
+
+    def _set_method(self):
+        self.method = 'flickr.photos.getExif'
