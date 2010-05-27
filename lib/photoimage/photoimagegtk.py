@@ -17,6 +17,7 @@ class PhotoImage(object):
         self.window = photoframe.window
         self.photoframe = photoframe
         self.conf = GConf()
+        self.tooltip = ToolTip(self.window)
 
     def set_photo(self, photo=False):
         if photo is not False:
@@ -53,17 +54,46 @@ class PhotoImage(object):
         else:
             return True
 
-    def get_photo_source_icon_pixbuf(self):
-        icon = self.photo.get('icon')
-        pixbuf = icon().get_pixbuf()
-        return pixbuf
-
     def _get_max_display_size(self):
         width = self.conf.get_int('max_width') or 400
         height = self.conf.get_int('max_height') or 300
         return width, height
 
     def _set_tips(self, photo):
+        self.tooltip.set(photo)
+
+class ToolTip(object):
+
+    def __init__(self, widget):
+        self.conf = GConf()
+        self.widget = widget
+        self.icon = False
+        self.photo = None
+
+    def query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
+        if not self.photo or not self.icon: return
+
+        icon = self.photo.get('icon')
+        pixbuf = icon().get_pixbuf()
+
+        tooltip.set_icon(pixbuf)
+
+    def update(self):
+        self.icon = False
+        self.widget.set_tooltip_markup("")
+        self.widget.trigger_tooltip_query()
+
+    def update_text(self, text=None):
+        self.update()
+        self.widget.set_tooltip_markup(text)
+
+    def update_photo(self, photo):
+        self.update()
+        self.set(photo)
+
+    def set(self, photo=None):
+        self.icon = True
+        self.photo = photo
         tip = ""
 
         if photo:
@@ -85,7 +115,7 @@ class PhotoImage(object):
             tip = tip.rstrip()
 
         try:
-            self.window.set_tooltip_markup(tip)
+            self.widget.set_tooltip_markup(tip)
         except:
             print "%s: %s" % (sys.exc_info()[1], tip)
 

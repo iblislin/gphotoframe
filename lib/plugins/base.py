@@ -199,15 +199,50 @@ class Photo(dict):
             fav_obj = self['fav']
             fav_obj.change_fav(new_rate)
 
+    def geo_is_ok(self):
+        return (self.get('geo') and
+                self['geo']['lat'] != 0 and self['geo']['lon'] != 0)
+
     def get_exif(self):
-        file = open(self['filename'], 'rb')
-        tags = exif_process_file(file)
+        tags = ParseEXIF(self['filename'])
 
-        #for i in tags: print i
-        #print str(tags['Image Model'])
+        if 'exif' not in self:
+            exif = tags.get_exif()
+            if exif: self['exif'] = exif
 
-        lat_array = tags.get('GPS GPSLatitude')
-        lon_array = tags.get('GPS GPSLongitude')
+        geo = tags.get_geo()
+        if geo: self['geo'] = geo
+
+class ParseEXIF(object):
+
+    def __init__(self, filename):
+        file = open(filename, 'rb')
+        self.tags = exif_process_file(file)
+        file.close()
+
+    def get_exif(self):
+        tag = {'make': 'Image Make',
+               'model': 'Image Model',
+               'fstop': 'EXIF FNumber',
+               'focallength': 'EXIF FocalLength',
+               'iso': 'EXIF ISOSpeedRatings',
+               'exposure': 'EXIF ExposureTime',}
+        exif = {}
+
+        for key, tag in tag.iteritems():
+            value = self.tags.get(tag)
+            if value:
+                value = str(value)
+                if key == 'fstop' or key == 'focallength':
+                    value = self._convert_from_fraction(value)
+                exif[key] = value
+
+        return exif
+
+    def get_geo(self):
+        lat_array = self.tags.get('GPS GPSLatitude')
+        lon_array = self.tags.get('GPS GPSLongitude')
+        geo = {}
 
         if lat_array:
             lon = lon_array.values
@@ -216,10 +251,18 @@ class Photo(dict):
             x = lon[0].num + lon[1].num/60.0 + lon[2].num/3600.0/lon[2].den
             y = lat[0].num + lat[1].num/60.0 + lat[2].num/3600.0/lat[2].den
 
-            lon_ref = -1 if str(tags.get('GPS GPSLongitudeRef')) == 'W' else 1
-            lat_ref = -1 if str(tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
+            lon_ref = -1 if str(self.tags.get('GPS GPSLongitudeRef')) == 'W' else 1
+            lat_ref = -1 if str(self.tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
 
-            self['geo'] = {'lon': x * lon_ref, 'lat': y * lat_ref}
+            geo = {'lon': x * lon_ref, 'lat': y * lat_ref}
+
+        return geo
+
+    def _convert_from_fraction(self, value):
+        if value.find('/') > 0:
+            a, b = value.split('/')
+            value = int(a) / int(b)
+        return value
 
 class PluginDialog(object):
     """Photo Source Dialog"""
