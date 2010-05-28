@@ -227,7 +227,11 @@ class ActorInfoIcon(ActorGeoIcon):
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _check_photo(self):
-        return self.photo.get('exif')
+        return self.photo.get('exif') or self._get_exif_class()
+
+    def _get_exif_class(self):
+        info = self.photo.get('info')
+        return info().exif if info and hasattr(info(), 'exif') else None
 
     def _get_icon(self):
         return IconImage('camera')
@@ -237,7 +241,14 @@ class ActorInfoIcon(ActorGeoIcon):
 
     def _enter_cb(self, w, e, tooltip):
         exif = self.photo.get('exif')
-        if not exif: return
+
+        if not exif: 
+            exif = self._get_exif_class()
+            if exif:
+                d = exif().get(self.photo)
+                d.addCallback(self._enter_cb, None, tooltip)
+                tooltip.update_text(_("Loading..."))
+            return
 
         date = self.photo.get('date_taken')
         if date:
