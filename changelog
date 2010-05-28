@@ -1,5 +1,7 @@
 2010-05-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actors.py, flickr/__init__.py: Added support for EXIF info. of
+	  Flickr photos.
 	* flickr/api.py: Added FlickrExifAPI.
 
 2010-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
