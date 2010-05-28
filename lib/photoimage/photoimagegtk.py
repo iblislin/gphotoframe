@@ -5,6 +5,7 @@ import sys
 import time
 from urlparse import urlparse
 from xml.sax.saxutils import escape
+from gettext import gettext as _
 
 import glib
 import gtk
@@ -118,6 +119,34 @@ class ToolTip(object):
             self.widget.set_tooltip_markup(tip)
         except:
             print "%s: %s" % (sys.exc_info()[1], tip)
+
+    def set_exif(self, photo=None):
+        exif = photo.get('exif')
+        date = photo.get('date_taken')
+
+        if date:
+            exif['date'] = time.strftime('%F %R', time.gmtime(date))
+
+        make = exif.get('make')
+        model = exif.get('model')
+        if make and model and [w for w in make.split() if model.find(w) >= 0]:
+            del exif['make']
+
+        tag = [['make',  _('Maker'), ''],
+               ['model', _('Camera'), ''],
+               ['date',  _('Date'), ''],
+               ['focallength', _('Focal Length'), " " + _('mm')],
+               ['exposure',    _('Exposure'),     " " + _('sec')],
+               ['fstop', _('Aperture'), ''],
+               ['iso',   _('ISO'), ''],]
+
+        tip = ''
+        for key, name, unit in tag:
+            value = exif.get(key)
+            if value:
+                tip += "%s: %s%s\n" % (name, value, unit)
+
+        self.update_text(tip.rstrip())
 
 class PhotoImageGtk(PhotoImage):
 

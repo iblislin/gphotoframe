@@ -1,5 +1,4 @@
 from __future__ import division
-import time
 
 import gtk
 from gettext import gettext as _
@@ -240,43 +239,14 @@ class ActorInfoIcon(ActorGeoIcon):
         pass
 
     def _enter_cb(self, w, e, tooltip):
-        exif = self.photo.get('exif')
-
-        if not exif: 
+        if self.photo.get('exif'): 
+            tooltip.set_exif(self.photo)
+        else:
             exif = self._get_exif_class()
             if exif:
                 d = exif().get(self.photo)
                 d.addCallback(self._enter_cb, None, tooltip)
                 tooltip.update_text(_("Loading..."))
-            return
-
-        date = self.photo.get('date_taken')
-        if date:
-            exif['date'] = time.strftime('%F %R', time.gmtime(date))
-
-        make = exif.get('make')
-        model = exif.get('model')
-        if make and model:
-            for w in make.split():
-                if model.find(w) >= 0:
-                    del exif['make']
-                    break
-
-        tag = [['make',  _('Maker'), ''],
-               ['model', _('Camera'), ''],
-               ['date',  _('Date'), ''],
-               ['focallength', _('Focal Length'), " " + _('mm')],
-               ['exposure',    _('Exposure'),     " " + _('sec')],
-               ['fstop', _('Aperture'), ''],
-               ['iso',   _('ISO'), ''],]
-
-        tip = ''
-        for key, name, unit in tag:
-            value = exif.get(key)
-            if value:
-                tip += "%s: %s%s\n" % (name, value, unit)
-
-        tooltip.update_text(tip.rstrip())
 
 class ActorFavIcon(ActorIcon):
 
