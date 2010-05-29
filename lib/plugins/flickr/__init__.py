@@ -92,7 +92,12 @@ class FlickrPhotoList(PhotoList):
 
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
-            date = time.mktime(time.strptime(s['datetaken'], '%Y-%m-%d %H:%M:%S'))
+
+            try:
+                date = time.mktime(time.strptime(s['datetaken'], 
+                                                 '%Y-%m-%d %H:%M:%S'))
+            except ValueError, info:
+                date = s['datetaken']
 
             data = {'type'       : 'flickr',
                     'info'       : FlickrPlugin,
