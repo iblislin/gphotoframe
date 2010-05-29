@@ -109,7 +109,8 @@ class ToolTip(object):
                 tip += "by %s\n" % escape(owner)
             if date:
                 format = self.conf.get_string('date_format') or "%x"
-                tip += "%s\n" % time.strftime(format, time.gmtime(date))
+                tip += "%s\n" %  date if isinstance(date, str) else \
+                    time.strftime(format, time.gmtime(date))
             if location:
                 tip += "%s\n" % escape(location)
 
@@ -125,7 +126,9 @@ class ToolTip(object):
         date = photo.get('date_taken')
 
         if date:
-            exif['date'] = time.strftime('%F %R', time.gmtime(date))
+            format = self.conf.get_string('date_format') or "%x"
+            exif['date'] = date if isinstance(date, str) else \
+                    time.strftime(format, time.gmtime(date))
 
         make = exif.get('make')
         model = exif.get('model')
