@@ -37,6 +37,7 @@ class PhotoList(object):
         self.conf = GConf()
         self.total = 0
         self.photos = []
+        self.headers = None
 
     def prepare(self):
         pass
@@ -51,7 +52,7 @@ class PhotoList(object):
                                               url[url.rfind('/') + 1:])
 
         urlget = UrlGetWithAutoProxy(url)
-        d = urlget.downloadPage(url, self.photo['filename'])
+        d = urlget.downloadPage(url, self.photo['filename'], headers=self.headers)
         d.addCallback(self._get_photo_cb, cb)
         d.addErrback(self._catch_error)
 
