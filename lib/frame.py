@@ -7,7 +7,7 @@ import glib
 import gtk
 
 import constants
-from photoimage import *
+from image import *
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow

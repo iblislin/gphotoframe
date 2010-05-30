@@ -9,7 +9,7 @@ except ImportError:
 
 from ..utils.config import GConf
 from actors import *
-from photoimagegtk import *
+from imagegtk import *
 
 class PhotoImageClutter(PhotoImage):
 
