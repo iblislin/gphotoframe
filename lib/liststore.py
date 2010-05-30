@@ -1,9 +1,11 @@
 import os
+import glob
 
 import gtk
 import glib
 
 import plugins
+from constants import CACHE_DIR
 from frame import PhotoFrameFactory
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
@@ -131,10 +133,15 @@ class PhotoListStore(gtk.ListStore):
 
 class RecentQueue(list):
 
+    def __init__(self):
+        super(RecentQueue, self).__init__()
+        self.conf = GConf()
+
     def append(self, photo):
         self.remove(photo['filename'])
         super(RecentQueue, self).append(photo)
-        if len(self) > 5:
+        num = self.conf.get_int('queue_num', 30)
+        if len(self) > num:
             self.pop(0)
 
     def remove(self, filename):
@@ -145,6 +152,15 @@ class RecentQueue(list):
     def pop(self, num):
         pop_photo = super(RecentQueue, self).pop(num)
         filename = pop_photo['filename']
-        if filename.startswith('/tmp/gphotoframe-') \
-                and os.access(filename, os.R_OK):
+        if filename.startswith(CACHE_DIR) and os.access(filename, os.R_OK):
             os.remove(filename)
+
+    def menu_item(self):
+        num = self.conf.get_int('queue_menu_num', 6) * -1
+        return self[num:]
+
+    def clear_cache(self):
+        recents = [i['filename'] for i in self.menu_item()]
+        for filename in glob.iglob(os.path.join(CACHE_DIR, '*')):
+            if filename not in recents:
+                os.remove(filename)
