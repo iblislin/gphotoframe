@@ -1,4 +1,4 @@
-from photoimageclutter import *
+from imageclutter import *
 
 class PhotoImageFactory(object):
 
