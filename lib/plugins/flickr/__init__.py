@@ -23,6 +23,7 @@ class FlickrPlugin(PluginBase):
     def __init__(self):
         self.name = 'Flickr'
         self.icon = FlickrIcon
+        self.exif = FlickrEXIF
 
 class FlickrPhotoList(PhotoList):
 
@@ -91,9 +92,15 @@ class FlickrPhotoList(PhotoList):
 
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
-            date = time.mktime(time.strptime(s['datetaken'], '%Y-%m-%d %H:%M:%S'))
+
+            try:
+                date = time.mktime(time.strptime(s['datetaken'], 
+                                                 '%Y-%m-%d %H:%M:%S'))
+            except ValueError, info:
+                date = s['datetaken']
 
             data = {'type'       : 'flickr',
+                    'info'       : FlickrPlugin,
                     'url'        : url,
                     'url_b'      : url_b,
                     'owner_name' : s['ownername'],
@@ -244,6 +251,40 @@ class FlickrAPIPages(object):
 
         if self.page in self.page_list:
             self.page_list.remove(self.page)
+
+class FlickrEXIF(object):
+
+    def get(self, photo):
+        self.photo = photo
+        api = FlickrExifAPI()
+        url = api.get_url(photo['id'])
+
+        urlget = UrlGetWithAutoProxy(url)
+        d = urlget.getPage(url)
+        d.addCallback(self._parse_flickr_exif)
+
+        return d
+
+    def _parse_flickr_exif(self, data):
+        d = json.loads(data)
+        self.photo['exif'] = {'checkd': True}
+
+        if d['stat'] != 'ok':
+            print d
+            return
+
+        target = {'Make': 'make', 'Model': 'model', 'FNumber': 'fstop', 
+                  'ISO': 'iso', 'ExposureTime': 'exposure', 
+                  'FocalLength': 'focallength', 'Lens Model': 'lense',}
+
+        for i in [x for x in d['photo']['exif'] if x['tag'] in target.keys()]:
+            tag = i['tag']
+            raw = i['raw']['_content']
+            if tag == 'FocalLength':
+                raw = raw.rstrip('m ')
+
+            #print i['label'], raw, tag
+            self.photo['exif'][ target[tag] ] = raw
 
 class FlickrIcon(WebIconImage):
 
