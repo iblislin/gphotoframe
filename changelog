@@ -1,3 +1,9 @@
+2010-05-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Improved cache file management.
+	  Added gcon keys 'queue_menu_num' & 'queue_menu_num'.
+	* photo*: Removed 'photo' from module names.
+
 2010-05-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actors.py, flickr/__init__.py: Added support for EXIF info. of

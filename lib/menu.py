@@ -51,6 +51,7 @@ class PopUpMenu(object):
         menu.popup(None, None, None, event.button, event.time)
 
     def quit(self, *args):
+        self.photolist.queue.clear_cache()
         reactor.stop()
 
     def open_photo(self, *args):
@@ -62,11 +63,12 @@ class PopUpMenu(object):
         recent.remove_submenu()
 
         menu = gtk.Menu()
-        for photo in self.photolist.queue:
+        recents = self.photolist.queue.menu_item()
+        for photo in recents:
             item = RecentMenuItem(photo)
             menu.prepend(item)
 
-        sensitive = True if len(self.photolist.queue) else False
+        sensitive = True if len(recents) else False
         recent.set_submenu(menu)
         recent.set_sensitive(sensitive)
 
