@@ -4,7 +4,7 @@ import gtk
 import glib
 
 import plugins
-from photoframe import PhotoFrameFactory
+from frame import PhotoFrameFactory
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
 
