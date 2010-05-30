@@ -15,7 +15,7 @@ It shows pictures from:
 
 ** Depends
 
-- PyGTK
+- PyGTK: 2.16 or later
 - Twisted: twisted.internet & twisted.web
 - PyXDG: except v.0.16 which has a bug
 - Python-Distutils-Extra: for installation

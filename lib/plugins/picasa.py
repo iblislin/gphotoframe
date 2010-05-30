@@ -8,7 +8,6 @@ try:
     import simplejson as json
 except:
     import json
-# import pprint
 
 from base import *
 from ..constants import APP_NAME, VERSION
@@ -81,17 +80,10 @@ class PicasaPhotoList(PhotoList):
         "Set Photo Entries from JSON Data."
 
         d = json.loads(photos)
-        #pp = pprint.PrettyPrinter(indent=4)
 
         for entry in d['feed']['entry']:
             owner_name = entry['author'][0]['name']['$t'] \
                 if entry.get('author') else self.argument
-            #pp.pprint(entry)
-
-            lat = lon = 0
-            if entry.get('georss$where'):
-                geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
-                lat, lon = geo_raw.split()
 
             data = {'url'        : entry['content']['src'],
                     'owner_name' : owner_name,
@@ -100,10 +92,30 @@ class PicasaPhotoList(PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
-                    'geo'        : {'lon': lon, 'lat': lat},
                     'date_taken' : int(entry['gphoto$timestamp']['$t']) / 1000,
                     'icon'       : PicasaIcon}
 
+            # exif
+            exif = {}
+            for key in ['make', 'model', 'focallength', 'exposure', 'fstop', 'iso']:
+                value = entry['exif$tags'].get('exif$%s' % key)
+                if value:
+                    value = value['$t']
+                    if key == 'exposure' and float(value) < 1:
+                        value = "1/%s" % int(1 / float(value) + 0.5)
+
+                    exif[key] = value
+
+            if exif:
+                data['exif'] = exif
+
+            # geo
+            if entry.get('georss$where'):
+                geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
+                lat, lon = geo_raw.split()
+                data['geo'] = {'lon': lon, 'lat': lat}
+
+            # location
             if entry['gphoto$location']['$t']:
                 data['location'] = entry['gphoto$location']['$t']
 

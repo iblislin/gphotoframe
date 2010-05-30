@@ -1,8 +1,6 @@
 from __future__ import division
 
 import os
-import sys
-import time
 from urlparse import urlparse
 from xml.sax.saxutils import escape
 
@@ -10,6 +8,7 @@ import glib
 import gtk
 
 from ..utils.config import GConf
+from tooltip import ToolTip
 
 class PhotoImage(object):
 
@@ -17,6 +16,7 @@ class PhotoImage(object):
         self.window = photoframe.window
         self.photoframe = photoframe
         self.conf = GConf()
+        self.tooltip = ToolTip(self.window)
 
     def set_photo(self, photo=False):
         if photo is not False:
@@ -53,41 +53,13 @@ class PhotoImage(object):
         else:
             return True
 
-    def get_photo_source_icon_pixbuf(self):
-        icon = self.photo.get('icon')
-        pixbuf = icon().get_pixbuf()
-        return pixbuf
-
     def _get_max_display_size(self):
         width = self.conf.get_int('max_width') or 400
         height = self.conf.get_int('max_height') or 300
         return width, height
 
     def _set_tips(self, photo):
-        tip = ""
-
-        if photo:
-            title = photo.get('title')
-            owner = photo.get('owner_name')
-            date = photo.get('date_taken')
-            location = photo.get('location')
-
-            if title:
-                tip += "<big>%s</big>\n" % escape(title)
-            if owner:
-                tip += "by %s\n" % escape(owner)
-            if date:
-                format = self.conf.get_string('date_format') or "%x"
-                tip += "%s\n" % time.strftime(format, time.gmtime(date))
-            if location:
-                tip += "%s\n" % escape(location)
-
-            tip = tip.rstrip()
-
-        try:
-            self.window.set_tooltip_markup(tip)
-        except:
-            print "%s: %s" % (sys.exc_info()[1], tip)
+        self.tooltip.set(photo)
 
 class PhotoImageGtk(PhotoImage):
 

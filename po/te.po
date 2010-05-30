@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 19:10+0900\n"
-"PO-Revision-Date: 2010-05-04 19:26+0530\n"
+"POT-Creation-Date: 2010-05-27 19:44+0900\n"
+"PO-Revision-Date: 2010-05-27 19:45+0900\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
 "MIME-Version: 1.0\n"
@@ -448,7 +448,7 @@ msgstr "నిండు తెర (_F_"
 msgid "_Next Photo"
 msgstr ""
 
-#: ../lib/menu.py:91
+#: ../lib/menu.py:91 ../lib/photoimage/actors.py:206
 msgid "No Title"
 msgstr "శీర్షిక లేదు"
 
@@ -472,12 +472,69 @@ msgstr "బరువు"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr ""
 
+#: ../lib/photoimage/actors.py:180
+msgid "Open the photo"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:219
+msgid "Open the map"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:254
+msgid "Maker"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:255
+msgid "Camera"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:256
+msgid "Date"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:257
+msgid "Focal Length"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:257
+msgid "mm"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:258
+msgid "Exposure"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:258
+#, fuzzy
+msgid "sec"
+msgstr "క్షణాలు"
+
+#: ../lib/photoimage/actors.py:259
+msgid "Aperture"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:260
+msgid "ISO"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:343
+msgid "Add to faves"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:344
+msgid "Remove from faves"
+msgstr ""
+
+#: ../lib/photoimage/actors.py:344
+msgid "Rate the photo"
+msgstr ""
+
 #: ../lib/plugins/base.py:173
 msgid "Options"
 msgstr "ఎంపికలు"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:151
+#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:163
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr ""
@@ -543,7 +600,7 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:151
+#: ../lib/plugins/picasa.py:163
 msgid "_Keyword:"
 msgstr ""
 
@@ -551,11 +608,11 @@ msgstr ""
 msgid "_E-mail:"
 msgstr ""
 
-#: ../lib/plugins/rss.py:116
+#: ../lib/plugins/rss.py:115
 msgid "_Title:"
 msgstr ""
 
 #. argument widget
-#: ../lib/plugins/rss.py:119
+#: ../lib/plugins/rss.py:118
 msgid "_URL:"
 msgstr ""
