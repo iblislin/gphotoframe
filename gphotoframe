@@ -13,8 +13,8 @@ gtk2reactor.install()
 from twisted.internet import reactor
 
 if os.access(
-    abspath(join(dirname(__file__), 'lib/photoliststore.py')), os.R_OK):
-    from lib.photoliststore import PhotoListStore
+    abspath(join(dirname(__file__), 'lib/liststore.py')), os.R_OK):
+    from lib.liststore import PhotoListStore
 else:
     from gphotoframe.photoliststore import PhotoListStore
 
