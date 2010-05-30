@@ -48,8 +48,12 @@ class PhotoList(object):
     def get_photo(self, cb):
         self.photo = self._random_choice()
         url = self.photo.get_url()
-        self.photo['filename'] = os.path.join(constants.CACHE_DIR,
-                                              url[url.rfind('/') + 1:])
+        path = url.replace('/', '_')
+        self.photo['filename'] = os.path.join(constants.CACHE_DIR, path)
+
+        if os.path.exists(self.photo['filename']):
+            self._get_photo_cb(None, cb)
+            return
 
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.downloadPage(url, self.photo['filename'], headers=self.headers)
