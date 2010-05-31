@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-31 18:55+0900\n"
+"POT-Creation-Date: 2010-06-01 01:41+0900\n"
 "PO-Revision-Date: 2010-05-27 19:45+0900\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -263,18 +263,34 @@ msgid "Standard deviation of RSS feed random weights"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:53
+msgid "The field sets the number of photo cache files."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:54
+msgid "The field sets the number of recent photo menu items."
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:55
+msgid "The number of photo cache files"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:56
+msgid "The number of recent photo menu items"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "User ID"
 msgstr "వాడుకరి ID"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "User full name"
 msgstr "వాడుకరి పూర్తి పేరు"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "User name"
 msgstr "వాడుకరి పేరు"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:60
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."

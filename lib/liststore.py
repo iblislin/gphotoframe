@@ -140,7 +140,7 @@ class RecentQueue(list):
     def append(self, photo):
         self.remove(photo['filename'])
         super(RecentQueue, self).append(photo)
-        num = self.conf.get_int('queue_num', 30)
+        num = self.conf.get_int('recents/queue_number', 30)
         if len(self) > num:
             self.pop(0)
 
@@ -156,7 +156,7 @@ class RecentQueue(list):
             os.remove(filename)
 
     def menu_item(self):
-        num = self.conf.get_int('queue_menu_num', 6) * -1
+        num = self.conf.get_int('recents/queue_menu_number', 6) * -1
         return self[num:]
 
     def clear_cache(self):

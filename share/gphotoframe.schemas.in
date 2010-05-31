@@ -386,6 +386,30 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/recents/queue_number</key>
+      <applyto>/apps/gphotoframe/recents/queue_number</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>The number of photo cache files</short>
+        <long>The field sets the number of photo cache files.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/queue_menu_number</key>
+      <applyto>/apps/gphotoframe/recents/queue_menu_number</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>6</default>
+      <locale name="C">
+        <short>The number of recent photo menu items</short>
+        <long>The field sets the number of recent photo menu items.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/ui/animate_icons</key>
       <applyto>/apps/gphotoframe/ui/animate_icons</applyto>
       <owner>gphotoframe</owner>

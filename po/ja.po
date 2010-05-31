@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-31 18:55+0900\n"
-"PO-Revision-Date: 2010-05-28 18:27+0900\n"
+"POT-Creation-Date: 2010-06-01 01:41+0900\n"
+"PO-Revision-Date: 2010-06-01 01:41+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -280,18 +280,34 @@ msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
 #: ../share/gphotoframe.schemas.in.h:53
+msgid "The field sets the number of photo cache files."
+msgstr "画像キャッシュのファイル数を設定します。"
+
+#: ../share/gphotoframe.schemas.in.h:54
+msgid "The field sets the number of recent photo menu items."
+msgstr "「最近表示した写真」メニューのアイテム数を設定します。<"
+
+#: ../share/gphotoframe.schemas.in.h:55
+msgid "The number of photo cache files"
+msgstr "画像ファイルのキャッシュ数"
+
+#: ../share/gphotoframe.schemas.in.h:56
+msgid "The number of recent photo menu items"
+msgstr "「最近表示した写真」メニューのアイテム数"
+
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:60
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
