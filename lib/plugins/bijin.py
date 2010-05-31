@@ -1,13 +1,13 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # bijin-tokei plugin for GNOME Photo Frame
 # copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# 2010-05-30 Version 1.0
+# 2010-05-31 Version 1.1
 
 import time
+import random
 
 from base import *
 from ..utils.iconimage import WebIconImage
@@ -27,37 +27,44 @@ class BijinPlugin(PluginBase):
 class BijinPhotoList(PhotoList):
 
     def prepare(self):
-        list = BijinTokeiList()
-        (page_path, pic_path) = dict(list.list)[self.target]
-
-        url_base = 'http://www.bijint.com/'
-        self.url_page = url_base + page_path
-        self.url_pic = url_base + pic_path
-
         self.photos = ['dummy']
-        self.headers = {'Referer': self.url_page}
+        self.tokei = BijinTokeiList()
 
     def _random_choice(self):
+        tokei = self._select_clock(self.target)
+        (page_path, pic_path) = dict(self.tokei.list)[tokei]
+
+        url_base = 'http://www.bijint.com/'
+        url_page = url_base + page_path
+        self.headers = {'Referer': url_page}
+
         (h, m) = time.localtime(time.time())[3:5]
-        url = '%s/%02d%02d.jpg' % (self.url_pic, h, m)
+        url = '%s/%02d%02d.jpg' % (url_base + pic_path, h, m)
 
         data = {
             'type': BijinPlugin,
             'icon': BijinIcon,
             'url': url,
-            'title': '%02d:%02d (%s)' % (h, m, self.target),
+            'title': '%02d:%02d (%s)' % (h, m, tokei),
             'owner_name': 'bijin-tokei',
-            'page_url': self.url_page,
+            'page_url': url_page,
             }
 
         return Photo(data)
+
+    def _select_clock(self, target):
+        list = [i[0] for i in self.tokei.list if i[1][0]]
+        if self.conf.get_bool('plugins/bijin/female_only_random', False):
+            list.remove('美男時計')
+        result = random.choice(list) if target == 'ランダム' else target
+        return result
 
 
 class PhotoSourceBijinUI(PhotoSourceUI):
 
     def _label(self):
-        list = BijinTokeiList()
-        return [i[0] for i in list.list]
+        tokei = BijinTokeiList()
+        return [i[0] for i in tokei.list]
 
 
 class BijinTokeiList(object):
@@ -70,6 +77,7 @@ class BijinTokeiList(object):
             ['香港時計', ['hk', 'assets/pict/hk/590x450']],
             ['北海道時計', ['hokkaido', 'assets/pict/hokkaido/590x450']],
             ['仙台時計', ['sendai', 'assets/pict/sendai/590x450']],
+            ['ランダム', [None, None]],
             ]
 
 
