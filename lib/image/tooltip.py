@@ -51,8 +51,8 @@ class ToolTip(object):
                 tip += "by %s\n" % escape(owner)
             if date:
                 format = self.conf.get_string('date_format') or "%x"
-                tip += "%s\n" %  date if isinstance(date, str) else \
-                    time.strftime(format, time.gmtime(date))
+                tip += "%s\n" % (date if isinstance(date, str) else \
+                    time.strftime(format, time.gmtime(date)))
             if location:
                 tip += "%s\n" % escape(location)
 
