@@ -96,7 +96,7 @@ class FlickrPhotoList(PhotoList):
             try:
                 date = time.mktime(time.strptime(s['datetaken'], 
                                                  '%Y-%m-%d %H:%M:%S'))
-            except ValueError, info:
+            except (ValueError, OverflowError), info:
                 date = s['datetaken']
 
             data = {'type'       : 'flickr',
