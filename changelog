@@ -1,5 +1,7 @@
 2010-05-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actors.py (ActorSourceIcon): Added _check_hide_always() for
+	  hiding compulsory a source icon on photo images.
 	* liststore.py: Improved cache file management.
 	  Added gcon keys 'queue_menu_num' & 'queue_menu_num'.
 	* photo*: Removed 'photo' from module names.
