@@ -7,6 +7,7 @@ share/gphotoframe.schemas.in
 lib/menu.py
 lib/preferences.py
 lib/image/actors.py
+lib/image/tooltip.py
 lib/plugins/base.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py
