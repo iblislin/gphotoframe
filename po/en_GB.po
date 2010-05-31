@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 19:44+0900\n"
+"POT-Creation-Date: 2010-05-31 18:55+0900\n"
 "PO-Revision-Date: 2010-05-27 19:43+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,7 +339,7 @@ msgstr "Photo Source"
 msgid "Rate _Weight:"
 msgstr "Rate _Weight:"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:138
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:143
 msgid "_Argument:"
 msgstr "_Argument:"
 
@@ -363,7 +363,7 @@ msgstr "_Source:"
 msgid "_Specified other people's ID"
 msgstr "_Specified other people's ID"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:132
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:137
 msgid "_Target:"
 msgstr "_Target:"
 
@@ -459,7 +459,7 @@ msgstr "_Full Screen"
 msgid "_Next Photo"
 msgstr "_Next Photo"
 
-#: ../lib/menu.py:91 ../lib/photoimage/actors.py:206
+#: ../lib/menu.py:93 ../lib/image/actors.py:211
 msgid "No Title"
 msgstr "No Title"
 
@@ -483,65 +483,69 @@ msgstr "Weight"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "The photo source should be ignored if the weight is 0."
 
-#: ../lib/photoimage/actors.py:180
+#: ../lib/image/actors.py:185
 msgid "Open the photo"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:219
+#: ../lib/image/actors.py:224
 msgid "Open the map"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:254
+#: ../lib/image/actors.py:255
+msgid "Loading..."
+msgstr ""
+
+#: ../lib/image/actors.py:333
+msgid "Add to faves"
+msgstr ""
+
+#: ../lib/image/actors.py:334
+msgid "Remove from faves"
+msgstr ""
+
+#: ../lib/image/actors.py:334
+msgid "Rate the photo"
+msgstr ""
+
+#: ../lib/image/tooltip.py:80
 msgid "Maker"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:255
+#: ../lib/image/tooltip.py:81
 msgid "Camera"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:256
+#: ../lib/image/tooltip.py:82
 #, fuzzy
 msgid "Date"
 msgstr "Rate"
 
-#: ../lib/photoimage/actors.py:257
+#: ../lib/image/tooltip.py:83
 msgid "Focal Length"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:257
+#: ../lib/image/tooltip.py:83
 msgid "mm"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:258
+#: ../lib/image/tooltip.py:84
 msgid "Exposure"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:258
+#: ../lib/image/tooltip.py:84
 #, fuzzy
 msgid "sec"
 msgstr "seconds"
 
-#: ../lib/photoimage/actors.py:259
+#: ../lib/image/tooltip.py:85
 msgid "Aperture"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:260
+#: ../lib/image/tooltip.py:86
 msgid "ISO"
 msgstr ""
 
-#: ../lib/photoimage/actors.py:343
-msgid "Add to faves"
-msgstr ""
-
-#: ../lib/photoimage/actors.py:344
-msgid "Remove from faves"
-msgstr ""
-
-#: ../lib/photoimage/actors.py:344
-msgid "Rate the photo"
-msgstr ""
-
-#: ../lib/plugins/base.py:173
+#: ../lib/plugins/base.py:178
 msgid "Options"
 msgstr "Options"
 
