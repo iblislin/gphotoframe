@@ -146,7 +146,7 @@ class ActorSourceIcon(ActorIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorSourceIcon, self).set_icon(photoimage, x_offset, y_offset)
 
-        if self.photo == None:
+        if self.photo == None or self._check_hide_always():
             self.hide(True)
             return
 
@@ -157,8 +157,14 @@ class ActorSourceIcon(ActorIcon):
 
     def show(self, force=False):
         mouse_on = self.photoimage.check_mouse_on_window()
-        if (self.show_always or force or mouse_on) and self.photo:
+        if (self.show_always or force or mouse_on) and self.photo and \
+                not self._check_hide_always():
             self.texture.show()
+
+    def _check_hide_always(self):
+        return 'type' in self.photo and \
+            not isinstance(self.photo['type'], str) and \
+            hasattr(self.photo['type'](), 'hide_source_icon_on_image')
 
     def hide(self, force=False):
         mouse_on = self.photoimage.check_mouse_on_window() \
