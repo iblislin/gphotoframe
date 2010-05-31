@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-28 18:26+0900\n"
+"POT-Creation-Date: 2010-05-31 18:55+0900\n"
 "PO-Revision-Date: 2010-05-28 18:27+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -347,7 +347,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:138
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:143
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -371,7 +371,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:132
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:137
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -467,7 +467,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:91 ../lib/photoimage/actors.py:206
+#: ../lib/menu.py:93 ../lib/image/actors.py:211
 msgid "No Title"
 msgstr "無題"
 
@@ -491,67 +491,67 @@ msgstr "重み"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
-#: ../lib/photoimage/actors.py:180
+#: ../lib/image/actors.py:185
 msgid "Open the photo"
 msgstr "写真を開く"
 
-#: ../lib/photoimage/actors.py:219
+#: ../lib/image/actors.py:224
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/photoimage/actors.py:250
+#: ../lib/image/actors.py:255
 msgid "Loading..."
 msgstr "ロード中..."
 
-#: ../lib/photoimage/actors.py:265
-msgid "Maker"
-msgstr "メーカー"
-
-#: ../lib/photoimage/actors.py:266
-msgid "Camera"
-msgstr "カメラ"
-
-#: ../lib/photoimage/actors.py:267
-msgid "Date"
-msgstr "日時"
-
-#: ../lib/photoimage/actors.py:268
-msgid "Focal Length"
-msgstr "焦点距離"
-
-#: ../lib/photoimage/actors.py:268
-msgid "mm"
-msgstr "mm"
-
-#: ../lib/photoimage/actors.py:269
-msgid "Exposure"
-msgstr "露出"
-
-#: ../lib/photoimage/actors.py:269
-msgid "sec"
-msgstr "秒"
-
-#: ../lib/photoimage/actors.py:270
-msgid "Aperture"
-msgstr "絞り"
-
-#: ../lib/photoimage/actors.py:271
-msgid "ISO"
-msgstr "ISO"
-
-#: ../lib/photoimage/actors.py:354
+#: ../lib/image/actors.py:333
 msgid "Add to faves"
 msgstr "お気に入りに追加"
 
-#: ../lib/photoimage/actors.py:355
+#: ../lib/image/actors.py:334
 msgid "Remove from faves"
 msgstr "お気に入りから削除"
 
-#: ../lib/photoimage/actors.py:355
+#: ../lib/image/actors.py:334
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
 
-#: ../lib/plugins/base.py:173
+#: ../lib/image/tooltip.py:80
+msgid "Maker"
+msgstr "メーカー"
+
+#: ../lib/image/tooltip.py:81
+msgid "Camera"
+msgstr "カメラ"
+
+#: ../lib/image/tooltip.py:82
+msgid "Date"
+msgstr "日時"
+
+#: ../lib/image/tooltip.py:83
+msgid "Focal Length"
+msgstr "焦点距離"
+
+#: ../lib/image/tooltip.py:83
+msgid "mm"
+msgstr "mm"
+
+#: ../lib/image/tooltip.py:84
+msgid "Exposure"
+msgstr "露出"
+
+#: ../lib/image/tooltip.py:84
+msgid "sec"
+msgstr "秒"
+
+#: ../lib/image/tooltip.py:85
+msgid "Aperture"
+msgstr "絞り"
+
+#: ../lib/image/tooltip.py:86
+msgid "ISO"
+msgstr "ISO"
+
+#: ../lib/plugins/base.py:178
 msgid "Options"
 msgstr "オプション"
 
