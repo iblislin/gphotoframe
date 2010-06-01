@@ -5,7 +5,6 @@ import gtk
 import random
 import glib
 from gettext import gettext as _
-from urlparse import urlparse
 
 from .. import constants
 from ..utils.config import GConf

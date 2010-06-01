@@ -299,9 +299,6 @@ class PhotoSourceDialog(object):
         target_widget = self.gui.get_object('combobox4')
         target_widget.connect('changed', self._change_combobox)
 
-        # dic = { "on_combobox4_changed" : self._change_combobox }
-        # self.gui.connect_signals(dic)
-
         response_id = dialog.run()
 
         argument = argument_widget.get_text() \
@@ -309,7 +306,7 @@ class PhotoSourceDialog(object):
 
         v = { 'source'  : source_widget.get_active_text(),
               'target'  : self.ui.get(),
-              'argument' : argument,
+              'argument': argument,
               'weight'  : weight_widget.get_value(),
               'options' : self.ui.get_options() }
 
