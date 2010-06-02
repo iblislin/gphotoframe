@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-01 01:41+0900\n"
-"PO-Revision-Date: 2010-06-01 01:44+0900\n"
+"POT-Creation-Date: 2010-06-03 00:46+0900\n"
+"PO-Revision-Date: 2010-06-03 00:47+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -363,7 +363,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:143
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:140
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -387,7 +387,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:137
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:134
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -536,8 +536,8 @@ msgid "Maker"
 msgstr "メーカー"
 
 #: ../lib/image/tooltip.py:81
-msgid "Camera"
-msgstr "カメラ"
+msgid "Model"
+msgstr "モデル"
 
 #: ../lib/image/tooltip.py:82
 msgid "Date"
@@ -567,7 +567,7 @@ msgstr "絞り"
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/plugins/base.py:178
+#: ../lib/plugins/base.py:175
 msgid "Options"
 msgstr "オプション"
 
@@ -659,6 +659,9 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:118
 msgid "_URL:"
 msgstr "URL(_U)"
+
+#~ msgid "Camera"
+#~ msgstr "カメラ"
 
 #~ msgid ""
 #~ "All\n"
