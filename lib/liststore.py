@@ -83,7 +83,7 @@ class PhotoListStore(gtk.ListStore):
 
         return state
 
-    def _show_photo_cb(self, photo):
+    def _show_photo_cb(self, data, photo):
         # print photo.get('page_url') or photo.get('url')
         if self.photoframe.set_photo(photo):
             self.queue.append(photo)

@@ -76,7 +76,7 @@ class FSpotPhotoList(PhotoList):
                  'icon' : FSpotIcon }
 
         self.photo = Photo(data)
-        cb(self.photo)
+        cb(None, self.photo)
 
     def get_tooltip(self):
         period_days = self.sql.get_period_days(self.period)

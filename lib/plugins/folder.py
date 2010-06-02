@@ -32,7 +32,7 @@ class DirPhotoList(PhotoList):
 
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
-        cb(self.photo)
+        cb(None, self.photo)
 
     def _prepare_cb(self):
         path = self.target

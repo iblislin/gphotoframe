@@ -51,12 +51,12 @@ class PhotoList(object):
         self.photo['filename'] = os.path.join(constants.CACHE_DIR, path)
 
         if os.path.exists(self.photo['filename']):
-            self._get_photo_cb(None, cb)
+            cb(None, self.photo)
             return
 
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.downloadPage(url, self.photo['filename'], headers=self.headers)
-        d.addCallback(self._get_photo_cb, cb)
+        d.addCallback(cb, self.photo)
         d.addErrback(self._catch_error)
 
     def _random_choice(self):
@@ -70,6 +70,7 @@ class PhotoList(object):
         d = urlget.getPage(url)
         cb = cb_arg or self._prepare_cb
         d.addCallback(cb)
+        d.addErrback(self._catch_error)
 
     def _start_timer(self, min=60):
         if min < 10:
@@ -79,11 +80,8 @@ class PhotoList(object):
         self._timer = glib.timeout_add_seconds(min * 60, self.prepare)
         return False
 
-    def _get_photo_cb(self, data, cb):
-        cb(self.photo)
-
     def _catch_error(self, error):
-        print error, self.photo
+        print error, self
 
 class PhotoSourceUI(object):
 
