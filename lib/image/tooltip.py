@@ -78,7 +78,7 @@ class ToolTip(object):
             del exif['make']
 
         tag = [['make',  _('Maker'), ''],
-               ['model', _('Camera'), ''],
+               ['model', _('Model'), ''],
                ['date',  _('Date'), ''],
                ['focallength', _('Focal Length'), " " + _('mm')],
                ['exposure',    _('Exposure'),     " " + _('sec')],

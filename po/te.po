@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-01 01:41+0900\n"
+"POT-Creation-Date: 2010-06-03 00:46+0900\n"
 "PO-Revision-Date: 2010-05-27 19:45+0900\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -344,7 +344,7 @@ msgstr ""
 msgid "Rate _Weight:"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:143
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:140
 msgid "_Argument:"
 msgstr ""
 
@@ -368,7 +368,7 @@ msgstr ""
 msgid "_Specified other people's ID"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:137
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:134
 msgid "_Target:"
 msgstr ""
 
@@ -517,7 +517,7 @@ msgid "Maker"
 msgstr ""
 
 #: ../lib/image/tooltip.py:81
-msgid "Camera"
+msgid "Model"
 msgstr ""
 
 #: ../lib/image/tooltip.py:82
@@ -549,7 +549,7 @@ msgstr ""
 msgid "ISO"
 msgstr ""
 
-#: ../lib/plugins/base.py:178
+#: ../lib/plugins/base.py:175
 msgid "Options"
 msgstr "ఎంపికలు"
 
