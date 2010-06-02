@@ -83,7 +83,7 @@ class FlickrPhotoList(PhotoList):
         self.page_list.update(d['photos'])
 
         for s in d['photos']['photo']:
-            if s['media'] == 'video': continue
+            if s['media'] == 'video' or s['server'] is None: continue
 
             url_base = "http://farm%s.static.flickr.com/%s/%s_" % (
                 s['farm'], s['server'], s['id'])
@@ -94,8 +94,7 @@ class FlickrPhotoList(PhotoList):
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
 
             try:
-                date = time.mktime(time.strptime(s['datetaken'], 
-                                                 '%Y-%m-%d %H:%M:%S'))
+                date = time.mktime(time.strptime(s['datetaken'], '%F %T'))
             except (ValueError, OverflowError), info:
                 date = s['datetaken']
 
