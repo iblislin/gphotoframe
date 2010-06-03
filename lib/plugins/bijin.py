@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 #
 # bijin-tokei plugin for GNOME Photo Frame
-# copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# 2010-05-31 Version 1.1
+# 2010-06-03 Version 1.2
 
 import time
 import random
@@ -23,6 +23,7 @@ class BijinPlugin(PluginBase):
         self.name = '美人時計'
         self.icon = BijinIcon
         self.hide_source_icon_on_image = True
+
 
 class BijinPhotoList(PhotoList):
 
@@ -53,9 +54,8 @@ class BijinPhotoList(PhotoList):
         return Photo(data)
 
     def _select_clock(self, target):
-        list = [i[0] for i in self.tokei.list if i[1][0]]
-        if self.conf.get_bool('plugins/bijin/female_only_random', False):
-            list.remove('美男時計')
+        list = [i[0] for i in self.tokei.list if i[1][0] and i[0]
+                not in self.conf.get_list('plugins/bijin/disabled')]
         result = random.choice(list) if target == 'ランダム' else target
         return result
 
