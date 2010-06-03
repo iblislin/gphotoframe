@@ -96,7 +96,7 @@ class RSSRate(object):
     def __init__(self, name, total, mean, std, goal_std):
         self.name = name
 
-        if goal_std < 0:
+        if goal_std < 0 or std == 0:
             self.weight = total
         else:
             std_score = goal_std * (total - mean) / std + 50
