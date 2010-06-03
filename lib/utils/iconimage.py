@@ -50,7 +50,7 @@ class LocalIconImage(IconImage):
 class WebIconImage(IconImage):
 
     def _get_icon_file(self):
-        cache_dir = os.path.join(xdg_cache_home, 'gphotoframe')
+        cache_dir = os.path.join(xdg_cache_home, constants.APP_NAME)
         file = os.path.join(cache_dir, self.icon_name)
 
         if not os.access(file, os.R_OK):
