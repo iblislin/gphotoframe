@@ -1,3 +1,7 @@
+2010-06-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Fixed a ZeroDivisionError.
+
 2010-05-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actors.py (ActorSourceIcon): Added _check_hide_always() for
