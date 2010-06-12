@@ -1,3 +1,7 @@
+2010-06-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b1 release.
+
 2010-06-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* rss.py: Fixed a ZeroDivisionError.
