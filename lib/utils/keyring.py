@@ -22,7 +22,7 @@ class Keyring(object):
         try:
             items = gkey.find_items_sync(self.scheme, self.attributes)
             return (items[0].attributes["user"], items[0].secret)
-        except gkey.NoMatchError:
+        except (gkey.NoMatchError, IndexError):
             return None
 
     def set_passwd_async(self, user, passwd, user_cb):
