@@ -1,5 +1,7 @@
 2010-06-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.0-b2 release.
+	* actors.py (ActorInfoIcon): Adjust an EXIF icon position offset.
 	* keyring.py (Keyring.get_passwd): Added an exception for
 	  gnomekeyring.CancelledError.
 
