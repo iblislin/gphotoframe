@@ -229,6 +229,8 @@ class ActorInfoIcon(ActorGeoIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         photo = photoimage.photo
         self.icon_offset = 20 if photo and photo.geo_is_ok() else 0
+        if self.position == 0 or self.position == 3:
+            self.icon_offset *= -1
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _check_photo(self):
