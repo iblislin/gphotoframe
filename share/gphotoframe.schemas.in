@@ -450,7 +450,7 @@
       <applyto>/apps/gphotoframe/ui/source/always_show</applyto>
       <owner>gphotoframe</owner>
       <type>bool</type>
-      <default>True</default>
+      <default>false</default>
       <locale name="C">
         <short>Always show the source icon</short>
         <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
