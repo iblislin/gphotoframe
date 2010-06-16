@@ -1,5 +1,6 @@
 2010-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* fspot/__init__.py, utils/inotify.py: Removed __del__ methods.
 	* gphotoframe.schemas.in: Changed the default value of
 	  'ui/source/always_show' to 'false'.
 

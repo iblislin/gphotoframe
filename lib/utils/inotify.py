@@ -7,10 +7,10 @@ class Inotify(object):
         self.monitor = {}
         self.recursive = True
 
-    def __del__(self):
-        pass
-        # print "__del__"
-        # del self.monitor
+#    def __del__(self):
+#        pass
+#        print "__del__"
+#        del self.monitor
 
     def add_dir(self, folder):
         self.monitor[folder] = gio.File(folder).monitor_directory()
