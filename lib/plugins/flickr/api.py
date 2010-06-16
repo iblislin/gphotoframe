@@ -1,5 +1,4 @@
 import urllib
-import hashlib
 import random
 from gettext import gettext as _
 
