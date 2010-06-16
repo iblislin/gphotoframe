@@ -1,3 +1,8 @@
+2010-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe.schemas.in: Changed the default value of
+	  'ui/source/always_show' to 'false'.
+
 2010-06-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.0-b2 release.
