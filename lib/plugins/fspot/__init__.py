@@ -29,9 +29,6 @@ class FSpotPlugin(PluginBase):
 
 class FSpotPhotoList(PhotoList):
 
-    def __del__(self):
-        self.db.close()
-
     def prepare(self):
         self.db = FSpotDB()
         self.period = self.options.get('period')
