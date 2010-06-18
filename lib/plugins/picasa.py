@@ -1,5 +1,3 @@
-import time 
-
 from twisted.web import client
 from gettext import gettext as _
 import urllib
