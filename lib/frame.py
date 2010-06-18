@@ -1,8 +1,5 @@
 from __future__ import division
 
-import os
-import time
-
 import glib
 import gtk
 
