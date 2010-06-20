@@ -1,3 +1,7 @@
+2010-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b3 release.
+
 2010-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot/__init__.py, utils/inotify.py: Removed __del__ methods.
