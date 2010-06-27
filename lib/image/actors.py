@@ -176,7 +176,7 @@ class ActorSourceIcon(ActorIcon):
         return self.photo.get('icon')()
 
     def _get_ui_data(self):
-        self._set_ui_options('source', True, 1)
+        self._set_ui_options('source', False, 1)
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
