@@ -90,7 +90,6 @@ class PicasaPhotoList(PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
-                    'date_taken' : int(entry['gphoto$timestamp']['$t']) / 1000,
                     'icon'       : PicasaIcon}
 
             # exif
@@ -107,6 +106,10 @@ class PicasaPhotoList(PhotoList):
             if exif:
                 data['exif'] = exif
 
+            # date taken
+            if entry.get('gphoto$timestamp'):
+                data['date_taken'] = int(entry['gphoto$timestamp']['$t']) / 1000
+
             # geo
             if entry.get('georss$where'):
                 geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
@@ -114,7 +117,7 @@ class PicasaPhotoList(PhotoList):
                 data['geo'] = {'lon': lon, 'lat': lat}
 
             # location
-            if entry['gphoto$location']['$t']:
+            if entry.get('gphoto$location'):
                 data['location'] = entry['gphoto$location']['$t']
 
             photo = Photo(data)
