@@ -1,5 +1,7 @@
 2010-06-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actors.py (ActorSourceIcon._get_ui_data): Changed the
+	  'show_always' default value to 'False'.
 	* picasa.py (PicasaPhotoList._set_photo_cb): Fixed KeyErrors.
 
 2010-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
