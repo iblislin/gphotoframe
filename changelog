@@ -1,3 +1,31 @@
+2010-06-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py (ActorSourceIcon._get_ui_data): Changed the
+	  'show_always' default value to 'False'.
+	* picasa.py (PicasaPhotoList._set_photo_cb): Fixed KeyErrors.
+
+2010-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b3 release.
+
+2010-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py, utils/inotify.py: Removed __del__ methods.
+	* gphotoframe.schemas.in: Changed the default value of
+	  'ui/source/always_show' to 'false'.
+
+2010-06-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b2 release.
+	* actors.py (ActorInfoIcon): Adjust an EXIF icon position offset.
+	* keyring.py (Keyring.get_passwd): Added an exception for
+	  gnomekeyring.CancelledError.
+
+2010-06-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* keyring.py (Keyring.get_passwd): Added an exception for
+	  IndexError.
+
 2010-06-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.0-b1 release.
