@@ -176,7 +176,7 @@ class ActorSourceIcon(ActorIcon):
         return self.photo.get('icon')()
 
     def _get_ui_data(self):
-        self._set_ui_options('source', True, 1)
+        self._set_ui_options('source', False, 1)
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
@@ -229,6 +229,8 @@ class ActorInfoIcon(ActorGeoIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         photo = photoimage.photo
         self.icon_offset = 20 if photo and photo.geo_is_ok() else 0
+        if self.position == 0 or self.position == 3:
+            self.icon_offset *= -1
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _check_photo(self):
