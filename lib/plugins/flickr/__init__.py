@@ -114,8 +114,8 @@ class FlickrPhotoList(PhotoList):
                     'icon'       : FlickrIcon}
 
             if self.api.get_auth_token():
-                data['fav'] = FlickrFav(self.target == 'Favorites',
-                                        {'id': s['id']})
+                state = (self.target == 'Favorites' and not self.argument)
+                data['fav'] = FlickrFav(state, {'id': s['id']})
 
             if s.get('url_o'):
                 url = s.get('url_o')
