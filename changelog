@@ -1,5 +1,7 @@
 2010-07-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* flickr/__init__.py (FlickrPhotoList._prepare_cb): Fixed a
+	  strptime format.
 	* base.py (ParseEXIF.get_date_taken): Added support for 
 	  'EXIF DateTimeOriginal'.
 

@@ -266,7 +266,6 @@ class ParseEXIF(object):
 
     def get_date_taken(self):
         date = str(self.tags.get('EXIF DateTimeOriginal'))
-        print date
 
         try:
             format = '%Y:%m:%d %H:%M:%S'
