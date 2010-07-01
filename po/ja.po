@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-01 00:22+0900\n"
+"POT-Creation-Date: 2010-07-01 18:39+0900\n"
 "PO-Revision-Date: 2010-07-01 00:26+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -85,48 +85,38 @@ msgstr ""
 "します。"
 
 #: ../share/gphotoframe.schemas.in.h:12
-msgid ""
-"Determines the max old roll ID which was imported by F-Spot before v.0.6.2. "
-"F-Spot v.0.6.2 changed the conversion of the time zone. If this value is "
-"larger than 0, this is used to correct old photo time stamps."
-msgstr ""
-"F-Spot v.0.6.2 以前でインポートされた古いインポート・ロールの最大 ID を指定し"
-"ます。F-Spot は v.0.6.2 でタイムゾーンの扱いを変更しました。この値が 0 より大"
-"きければ、この値より古いインポートロールの写真のタイムスタンプを修正します。"
-
-#: ../share/gphotoframe.schemas.in.h:13
 msgid "E-mail adress as user ID"
 msgstr "ユーザ ID として E-mail アドレスを指定します。"
 
-#: ../share/gphotoframe.schemas.in.h:14
+#: ../share/gphotoframe.schemas.in.h:13
 msgid "Enable fullscreen mode animations"
 msgstr "フルスクリーン時のアニメーションを有効にする"
 
-#: ../share/gphotoframe.schemas.in.h:15
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "Enable icon animations"
 msgstr "アイコンのアニメーションを有効にする"
 
-#: ../share/gphotoframe.schemas.in.h:16
+#: ../share/gphotoframe.schemas.in.h:15
 msgid "Fav icon position"
 msgstr "お気に入りアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:17
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Fix the photo frame on the root window"
 msgstr "写真フレームをデスクトップに固定します"
 
-#: ../share/gphotoframe.schemas.in.h:18
+#: ../share/gphotoframe.schemas.in.h:17
 msgid "Flickr user ID"
 msgstr "Flickr ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:19
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Geo icon position"
 msgstr "地図アイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:20
+#: ../share/gphotoframe.schemas.in.h:19
 msgid "Google account user ID"
 msgstr "Google アカウントのユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:21
+#: ../share/gphotoframe.schemas.in.h:20
 msgid ""
 "If the RSS feed includes multiple RSS feeds, this value is used as the "
 "standard deviation for random weight of each RSS feed. When this value is "
@@ -137,7 +127,7 @@ msgstr ""
 "フィードのランダム重み付けの標準偏差として利用されます。この値が 0 以下の場合"
 "は、各フィードに含まれる画像数がそのまま各フィードの重みとなります。"
 
-#: ../share/gphotoframe.schemas.in.h:22
+#: ../share/gphotoframe.schemas.in.h:21
 msgid ""
 "If true, changing of photo image in fullscreen mode will be animated. The "
 "program needs to be restarted to take effect the change of the setting."
@@ -145,7 +135,7 @@ msgstr ""
 "TRUEにすると、フルスクリーン時に写真を変更する際にアニメーションを行います。"
 "なお、この設定を反映させるためにはプログラムの再スタートが必要です。"
 
-#: ../share/gphotoframe.schemas.in.h:23
+#: ../share/gphotoframe.schemas.in.h:22
 msgid ""
 "If true, hiding and un-hiding of icons will be animated. The program needs "
 "to be restarted to take effect the change of the setting."
@@ -153,35 +143,31 @@ msgstr ""
 "TRUEにすると、アイコンの表示と消去の際にアニメーションを行います。なお、この"
 "設定を反映させるためにはプログラムの再スタートが必要です。"
 
-#: ../share/gphotoframe.schemas.in.h:24
+#: ../share/gphotoframe.schemas.in.h:23
 msgid "If true, icons will be shown on screensaver."
 msgstr "TRUEにすると、スクリーンセーバー上でアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:25
+#: ../share/gphotoframe.schemas.in.h:24
 msgid "Interval seconds in full screen mode"
 msgstr "フルスクリーン表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:25
 msgid "Interval seconds in window mode"
 msgstr "ウィンドウ表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:26
 msgid "Max aspect ratio for Photo"
 msgstr "表示する写真の最大アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:28
-msgid "Max old roll ID"
-msgstr "古いインポート・ロールの最新 ID"
-
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:27
 msgid "Minimum aspect ratio for Photo"
 msgstr "表示する写真の最小アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "Minimum image file size in bytes"
 msgstr "表示する写真の最小ファイルサイズ (バイト)"
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:29
 msgid ""
 "Minimum image file size in bytes. When this value is less than 0, image file "
 "size filter is disabled."
@@ -189,11 +175,11 @@ msgstr ""
 "表示する写真の最小ファイルサイズをバイト単位で指定します。0 以下の値を指定し"
 "た場合、サイズフィルターは無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:30
 msgid "Minimum image height"
 msgstr "表示する写真の最小高"
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:31
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
@@ -201,11 +187,11 @@ msgstr ""
 "表示する写真の最小高を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "Minimum image width"
 msgstr "表示する写真の最小幅"
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:33
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
@@ -213,67 +199,67 @@ msgstr ""
 "表示する写真の最小幅を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:35
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:38
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Photo image max height"
 msgstr "写真の最大表示高"
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "RSS reload interval minutes"
 msgstr "RSS を再読込する間隔 (分)"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:49
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -281,47 +267,47 @@ msgstr ""
 "TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
 "レーム上にあるときのみアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "Show icons on screensaver"
 msgstr "スクリーンセーバー上でのアイコンの表示"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "Source icon position"
 msgstr "ソースアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "The field sets the number of photo cache files."
 msgstr "画像ファイルのキャッシュ数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "The field sets the number of recent photo menu items."
 msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:55
 msgid "The number of photo cache files"
 msgstr "画像ファイルのキャッシュ数"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "The number of recent photo menu items"
 msgstr "「最近表示した写真」メニューのアイテム数"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:60
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -329,7 +315,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:85
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:79
 msgid "All"
 msgstr "すべて"
 
@@ -377,7 +363,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:140
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:141
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -401,7 +387,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:134
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:135
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -581,7 +567,7 @@ msgstr "絞り"
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/plugins/base.py:175
+#: ../lib/plugins/base.py:176
 msgid "Options"
 msgstr "オプション"
 
@@ -644,16 +630,16 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/fspot/__init__.py:85
+#: ../lib/plugins/fspot/__init__.py:79
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:91
+#: ../lib/plugins/fspot/__init__.py:85
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:91
+#: ../lib/plugins/fspot/__init__.py:85
 msgid "Period"
 msgstr "期間"
 
@@ -673,21 +659,3 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:118
 msgid "_URL:"
 msgstr "URL(_U)"
-
-#~ msgid "Camera"
-#~ msgstr "カメラ"
-
-#~ msgid ""
-#~ "All\n"
-#~ "Last 7 days\n"
-#~ "Last 30 days\n"
-#~ "Last 90 days\n"
-#~ "Last 180 days\n"
-#~ "Last 360 days"
-#~ msgstr ""
-#~ "すべて\n"
-#~ "過去 7 日間\n"
-#~ "過去 30 日間\n"
-#~ "過去 90 日間\n"
-#~ "過去 180 日間\n"
-#~ "過去 360 日間"
