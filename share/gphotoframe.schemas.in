@@ -362,18 +362,6 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/plugins/fspot/old_roll_id</key>
-      <applyto>/apps/gphotoframe/plugins/fspot/old_roll_id</applyto>
-      <owner>gphotoframe</owner>
-      <type>int</type>
-      <default>0</default>
-      <locale name="C">
-        <short>Max old roll ID</short>
-        <long>Determines the max old roll ID which was imported by F-Spot before v.0.6.2.  F-Spot v.0.6.2 changed the conversion of the time zone.  If this value is larger than 0, this is used to correct old photo time stamps.</long>
-      </locale>
-    </schema>
-
-    <schema>
       <key>/schemas/apps/gphotoframe/recents/preferences</key>
       <applyto>/apps/gphotoframe/recents/preferences</applyto>
       <owner>gphotoframe</owner>
