@@ -14,8 +14,9 @@ class Keyring(object):
         self.keyring = gkey.get_default_keyring_sync()
 
     def get_passwd_async(self, user, user_cb):
-        d = threads.deferToThread(self.get_passwd, user)
-        d.addCallback(user_cb)
+        # d = threads.deferToThread(self.get_passwd, user)
+        # d.addCallback(user_cb)
+        user_cb(self.get_passwd(user))
 
     def get_passwd(self, user):
         self.attributes['user'] = user

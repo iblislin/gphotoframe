@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-03 00:46+0900\n"
-"PO-Revision-Date: 2010-06-03 00:47+0900\n"
+"POT-Creation-Date: 2010-07-01 18:39+0900\n"
+"PO-Revision-Date: 2010-07-01 00:26+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -315,7 +315,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:79
 msgid "All"
 msgstr "すべて"
 
@@ -363,7 +363,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:140
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:141
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -387,7 +387,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:134
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:135
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -515,19 +515,19 @@ msgstr "写真を開く"
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/image/actors.py:255
+#: ../lib/image/actors.py:257
 msgid "Loading..."
 msgstr "ロード中..."
 
-#: ../lib/image/actors.py:333
+#: ../lib/image/actors.py:335
 msgid "Add to faves"
 msgstr "お気に入りに追加"
 
-#: ../lib/image/actors.py:334
+#: ../lib/image/actors.py:336
 msgid "Remove from faves"
 msgstr "お気に入りから削除"
 
-#: ../lib/image/actors.py:334
+#: ../lib/image/actors.py:336
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
 
@@ -567,29 +567,29 @@ msgstr "絞り"
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/plugins/base.py:175
+#: ../lib/plugins/base.py:176
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:163
+#: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:164
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
-#: ../lib/plugins/flickr/api.py:72
+#: ../lib/plugins/flickr/api.py:71
 msgid "Enter NSID or User Name in the URL"
 msgstr "URL に含まれるユーザ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:202
+#: ../lib/plugins/flickr/api.py:201
 msgid "_Group:"
 msgstr "グループ(_G):"
 
-#: ../lib/plugins/flickr/api.py:206
+#: ../lib/plugins/flickr/api.py:205
 msgid "Enter NSID or Group Name in the URL"
 msgstr "URL に含まれるグループ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:296
+#: ../lib/plugins/flickr/api.py:295
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
@@ -630,20 +630,20 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/fspot/__init__.py:83
+#: ../lib/plugins/fspot/__init__.py:79
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:89
+#: ../lib/plugins/fspot/__init__.py:85
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:89
+#: ../lib/plugins/fspot/__init__.py:85
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/picasa.py:163
+#: ../lib/plugins/picasa.py:164
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -659,21 +659,3 @@ msgstr "タイトル(_T):"
 #: ../lib/plugins/rss.py:118
 msgid "_URL:"
 msgstr "URL(_U)"
-
-#~ msgid "Camera"
-#~ msgstr "カメラ"
-
-#~ msgid ""
-#~ "All\n"
-#~ "Last 7 days\n"
-#~ "Last 30 days\n"
-#~ "Last 90 days\n"
-#~ "Last 180 days\n"
-#~ "Last 360 days"
-#~ msgstr ""
-#~ "すべて\n"
-#~ "過去 7 日間\n"
-#~ "過去 30 日間\n"
-#~ "過去 90 日間\n"
-#~ "過去 180 日間\n"
-#~ "過去 360 日間"

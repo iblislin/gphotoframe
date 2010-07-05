@@ -1,3 +1,15 @@
+2010-07-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* keyring.py: Fixed a segmentation fault problem of relating to
+	  use DBus from multiple threads.
+
+2010-07-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py (FlickrPhotoList._prepare_cb): Fixed a
+	  strptime format.
+	* base.py (ParseEXIF.get_date_taken): Added support for 
+	  'EXIF DateTimeOriginal'.
+
 2010-06-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actors.py (ActorSourceIcon._get_ui_data): Changed the

@@ -1,5 +1,6 @@
 from __future__ import division
 import os
+import time
 
 import gtk
 import random
@@ -215,6 +216,9 @@ class Photo(dict):
         geo = tags.get_geo()
         if geo: self['geo'] = geo
 
+        date = tags.get_date_taken()
+        if date: self['date_taken'] = date
+
 class ParseEXIF(object):
 
     def __init__(self, filename):
@@ -259,6 +263,17 @@ class ParseEXIF(object):
             geo = {'lon': x * lon_ref, 'lat': y * lat_ref}
 
         return geo
+
+    def get_date_taken(self):
+        date = str(self.tags.get('EXIF DateTimeOriginal'))
+
+        try:
+            format = '%Y:%m:%d %H:%M:%S'
+            epoch = time.mktime(time.strptime(date, format)) - time.timezone
+        except:
+            epoch = None
+
+        return epoch
 
     def _convert_from_fraction(self, value):
         if value.find('/') > 0:
