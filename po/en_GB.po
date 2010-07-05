@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-03 00:46+0900\n"
+"POT-Creation-Date: 2010-07-01 18:39+0900\n"
 "PO-Revision-Date: 2010-05-27 19:43+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,7 +307,7 @@ msgid ""
 "specific format. See the strftime() manual for more information."
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:83
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:79
 msgid "All"
 msgstr "All"
 
@@ -355,7 +355,7 @@ msgstr "Photo Source"
 msgid "Rate _Weight:"
 msgstr "Rate _Weight:"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:140
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:141
 msgid "_Argument:"
 msgstr "_Argument:"
 
@@ -379,7 +379,7 @@ msgstr "_Source:"
 msgid "_Specified other people's ID"
 msgstr "_Specified other people's ID"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:134
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:135
 msgid "_Target:"
 msgstr "_Target:"
 
@@ -507,19 +507,19 @@ msgstr ""
 msgid "Open the map"
 msgstr ""
 
-#: ../lib/image/actors.py:255
+#: ../lib/image/actors.py:257
 msgid "Loading..."
 msgstr ""
 
-#: ../lib/image/actors.py:333
+#: ../lib/image/actors.py:335
 msgid "Add to faves"
 msgstr ""
 
-#: ../lib/image/actors.py:334
+#: ../lib/image/actors.py:336
 msgid "Remove from faves"
 msgstr ""
 
-#: ../lib/image/actors.py:334
+#: ../lib/image/actors.py:336
 msgid "Rate the photo"
 msgstr ""
 
@@ -561,29 +561,29 @@ msgstr ""
 msgid "ISO"
 msgstr ""
 
-#: ../lib/plugins/base.py:175
+#: ../lib/plugins/base.py:176
 msgid "Options"
 msgstr "Options"
 
-#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:186
-#: ../lib/plugins/flickr/api.py:260 ../lib/plugins/picasa.py:163
+#: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:164
 #: ../lib/plugins/tumblr.py:107
 msgid "_User:"
 msgstr "_User:"
 
-#: ../lib/plugins/flickr/api.py:72
+#: ../lib/plugins/flickr/api.py:71
 msgid "Enter NSID or User Name in the URL"
 msgstr "Enter NSID or User Name in the URL"
 
-#: ../lib/plugins/flickr/api.py:202
+#: ../lib/plugins/flickr/api.py:201
 msgid "_Group:"
 msgstr "_Group:"
 
-#: ../lib/plugins/flickr/api.py:206
+#: ../lib/plugins/flickr/api.py:205
 msgid "Enter NSID or Group Name in the URL"
 msgstr "Enter NSID or Group Name in the URL"
 
-#: ../lib/plugins/flickr/api.py:296
+#: ../lib/plugins/flickr/api.py:295
 msgid "_Tags:"
 msgstr "_Tags:"
 
@@ -625,20 +625,20 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "_Complete Authorisation"
 
-#: ../lib/plugins/fspot/__init__.py:83
+#: ../lib/plugins/fspot/__init__.py:79
 #, python-format
 msgid "Last %s days"
 msgstr "Last %s days"
 
-#: ../lib/plugins/fspot/__init__.py:89
+#: ../lib/plugins/fspot/__init__.py:85
 msgid "Rate"
 msgstr "Rate"
 
-#: ../lib/plugins/fspot/__init__.py:89
+#: ../lib/plugins/fspot/__init__.py:85
 msgid "Period"
 msgstr "Period"
 
-#: ../lib/plugins/picasa.py:163
+#: ../lib/plugins/picasa.py:164
 msgid "_Keyword:"
 msgstr "_Keyword:"
 

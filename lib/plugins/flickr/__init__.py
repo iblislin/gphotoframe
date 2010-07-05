@@ -94,7 +94,8 @@ class FlickrPhotoList(PhotoList):
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
 
             try:
-                date = time.mktime(time.strptime(s['datetaken'], '%F %T'))
+                format = '%Y-%m-%d %H:%M:%S'
+                date = time.mktime(time.strptime(s['datetaken'], format))
             except (ValueError, OverflowError), info:
                 date = s['datetaken']
 
