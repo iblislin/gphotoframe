@@ -1,3 +1,7 @@
+2010-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py, EXIF.py: Removed obsolete has_key methods.
+
 2010-07-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* keyring.py: Fixed a segmentation fault problem of relating to
