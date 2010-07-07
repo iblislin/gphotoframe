@@ -1,5 +1,6 @@
 2010-07-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.0-b5 release.
 	* keyring.py: Fixed a segmentation fault problem of relating to
 	  use DBus from multiple threads.
 
@@ -12,6 +13,7 @@
 
 2010-06-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.0-b4 release.
 	* actors.py (ActorSourceIcon._get_ui_data): Changed the
 	  'show_always' default value to 'False'.
 	* picasa.py (PicasaPhotoList._set_photo_cb): Fixed KeyErrors.
