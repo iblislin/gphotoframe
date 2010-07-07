@@ -273,7 +273,7 @@ class ActorFavIcon(ActorIcon):
             self.photo == None or 'fav' not in self.photo):
             return
 
-        if self.photo.has_key('rate'):
+        if 'rate' in self.photo:
             # for narrow photo image width
             space = self.icon_image.get_pixbuf().get_width() * 1.3
             num = int ((self.photoimage.w - 60) / space) \
