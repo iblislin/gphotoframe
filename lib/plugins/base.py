@@ -47,6 +47,10 @@ class PhotoList(object):
 
     def get_photo(self, cb):
         self.photo = self._random_choice()
+
+        if not self.photo:
+            return
+
         url = self.photo.get_url()
         path = url.replace('/', '_')
         self.photo['filename'] = os.path.join(constants.CACHE_DIR, path)
