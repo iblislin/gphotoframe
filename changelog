@@ -1,3 +1,8 @@
+2010-07-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/haikyo.py: Added new plugin for haikyo
+	  clock (http://www.madin.jp/haikyo/).
+
 2010-07-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.0 release.
