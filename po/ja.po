@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-01 18:39+0900\n"
-"PO-Revision-Date: 2010-07-01 00:26+0900\n"
+"POT-Creation-Date: 2010-07-06 00:20+0900\n"
+"PO-Revision-Date: 2010-09-13 13:18+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,7 +55,7 @@ msgstr "API を再読込する間隔を分で指定します。10 分以上を�
 
 #: ../share/gphotoframe.schemas.in.h:5
 msgid "Always on Visible Workspace"
-msgstr "全てのワークスペースに配置します"
+msgstr "すべてのワークスペースに配置します"
 
 #: ../share/gphotoframe.schemas.in.h:6
 msgid "Always show the fav icon"
@@ -425,7 +426,7 @@ msgstr "<b>プラグイン</b>"
 
 #: ../share/preferences.ui.h:6
 msgid "Always on _Visible Workspace"
-msgstr "全てのワークスペースに配置する(_V)"
+msgstr "すべてのワークスペースに配置する(_V)"
 
 #: ../share/preferences.ui.h:8
 msgid "In _Full Screen Mode:"
@@ -611,7 +612,7 @@ msgid ""
 msgstr ""
 "Gnome 写真フレームで Flickr.com 上のプライベート写真を閲覧したり、お気に入り"
 "への登録を行うためにはあなたの認証が必要です。\"認証\" ボタンをクリックして"
-"ウェブブラウザを開き、そちらで Gnome 写真フレームを認証して下さい。"
+"ウェブブラウザを開き、そちらで Gnome 写真フレームを認証してください。"
 
 #: ../lib/plugins/flickr/authdialog.py:39
 msgid "_Authorize"
@@ -624,7 +625,7 @@ msgid ""
 "Flickr.com and click the \"Complete Authorization\" button below"
 msgstr ""
 "Flickr.com での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完"
-"了する\" ボタンをクリックして下さい。"
+"了する\" ボタンをクリックしてください。"
 
 #: ../lib/plugins/flickr/authdialog.py:50
 msgid "_Complete Authorization"
