@@ -1,3 +1,7 @@
+2010-09-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* iconimage.py (IconImage.get_image): Fixed a bug.
+
 2010-07-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/haikyo.py: Added new plugin for haikyo
