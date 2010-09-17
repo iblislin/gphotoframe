@@ -13,10 +13,10 @@ class IconImage(object):
 
     def get_image(self, size=16):
         self.size = size
-        file = self._get_icon_file()
+        pixbuf = self.get_pixbuf()
 
         image = gtk.Image()
-        image.set_from_file(file)
+        image.set_from_pixbuf(pixbuf)
         return image
 
     def get_pixbuf(self, grayscale=False, size=16):
