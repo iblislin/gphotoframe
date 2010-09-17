@@ -48,6 +48,7 @@ class FSpotPhotoList(PhotoList):
             photo = self.db.fetchall(sql)
             if not photo: return False
             base_url, filename, id, version = photo[0]
+            base_url =  base_url.rstrip('/') + '/'
 
             if version != 1:
                 sql = ("SELECT filename FROM photo_versions WHERE photo_id=%s "
