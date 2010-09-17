@@ -2,6 +2,15 @@
 
 	* iconimage.py (IconImage.get_image): Fixed a bug.
 
+2010-09-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* ja.po: Updated translations.
+
+2010-09-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0.1 release.
+	* fspot/__init__.py: Added support for F-Spot 0.7.x database.
+
 2010-07-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/haikyo.py: Added new plugin for haikyo
