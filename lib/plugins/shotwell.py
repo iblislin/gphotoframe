@@ -40,7 +40,7 @@ class ShotwellPhotoList(FSpotPhotoList):
         if not photo: return False
         filename, id = photo[0]
 
-        data = { 'url' : 'file:/' + filename,
+        data = { 'url' : 'file://' + filename,
                  'rate' : rate.name,
                  'filename' : filename,
                  'title' : os.path.basename(filename), # without path
