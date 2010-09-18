@@ -4,11 +4,11 @@ import sqlite3
 import gtk
 from gettext import gettext as _
 
-from ..base import PhotoSourceUI, Photo, PluginBase
-from ...utils.iconimage import IconImage
-from ..fspot.__init__ import FSpotPlugin, FSpotPhotoList, FSpotFav, PhotoSourceOptionsFspotUI
-from ..fspot.rating import RateList
-from ..fspot.sqldb import FSpotDB, FSpotPhotoSQL
+from ..utils.iconimage import IconImage
+from base import *
+from fspot.__init__ import *
+from fspot.rating import RateList
+from fspot.sqldb import FSpotDB, FSpotPhotoSQL
 
 def info():
     return [ShotwellPlugin, ShotwellPhotoList, PhotoSourceShotwellUI]
