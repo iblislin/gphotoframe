@@ -1,5 +1,7 @@
 2010-09-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* haikyo.py (PhotoSourceHaikyoUI): Fixed the sensitiveness of
+	  target widget.
 	* shotwell.py: Added support for Shotwell.
 	* iconimage.py (IconImage.get_image): Fixed a bug.
 
