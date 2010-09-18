@@ -4,11 +4,11 @@ import gtk
 import pango
 from gettext import gettext as _
 
-import constants
-import plugins
-from utils.config import GConf
-from utils.autostart import AutoStart
-from utils.iconimage import IconImage, LocalIconImage
+from ..constants import SHARED_DATA_DIR, UI_FILE
+from ..plugins import PluginListStore, DIALOG_TOKEN, SOURCE_LIST, PHOTO_TARGET_TOKEN
+from ..utils.config import GConf
+from ..utils.autostart import AutoStart
+from ..utils.iconimage import IconImage, LocalIconImage
 
 class Preferences(object):
     """Preferences"""
@@ -19,7 +19,7 @@ class Preferences(object):
 
     def start(self, widget):
         self.gui = gui = gtk.Builder()
-        gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'preferences.ui'))
+        gui.add_from_file(os.path.join(SHARED_DATA_DIR, 'preferences.ui'))
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
@@ -37,7 +37,7 @@ class Preferences(object):
         checkbutton2.set_sensitive(self.auto_start.check_enable())
         checkbutton2.set_active(self.auto_start.get())
 
-        self.plugin_liststore = plugins.PluginListStore()
+        self.plugin_liststore = PluginListStore()
         self.preference_list = PhotoSourceTreeView(
             gui, "treeview1", self.photolist, self.prefs, self.plugin_liststore)
         self.plugins_list = PluginTreeView(
@@ -246,7 +246,7 @@ class PluginTreeView(PreferencesTreeView):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2] if iter else None
 
-        state = True if plugin_type in plugins.DIALOG_TOKEN else False
+        state = True if plugin_type in DIALOG_TOKEN else False
         self._set_button_sensitive(state)
         self.about_dialog.check(plugin_type)
 
@@ -254,8 +254,8 @@ class PluginTreeView(PreferencesTreeView):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2]
 
-        if plugin_type in plugins.DIALOG_TOKEN:
-            plugindialog = plugins.DIALOG_TOKEN[plugin_type](
+        if plugin_type in DIALOG_TOKEN:
+            plugindialog = DIALOG_TOKEN[plugin_type](
                 self.parent, model[iter])
             plugindialog.run()
 
@@ -266,7 +266,7 @@ class PluginAboutDialog(object):
         self.parent = parent
 
     def check(self, plugin_type):
-        for obj in plugins.SOURCE_LIST:
+        for obj in SOURCE_LIST:
             if plugin_type == obj.name:
                 break
 
@@ -298,7 +298,7 @@ class PhotoSourceDialog(object):
 
     def __init__(self, parent, data=None):
         self.gui = gtk.Builder()
-        self.gui.add_from_file(constants.UI_FILE)
+        self.gui.add_from_file(UI_FILE)
 
         self.conf = GConf()
         self.parent = parent
@@ -360,7 +360,7 @@ class PhotoSourceDialog(object):
         self.gui.get_object('button8').set_sensitive(True)
 
         text = combobox.get_active_text()
-        token = plugins.PHOTO_TARGET_TOKEN
+        token = PHOTO_TARGET_TOKEN
 
         self.ui = token[text](self.gui, data)
         self.ui.make()
