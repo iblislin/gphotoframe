@@ -26,9 +26,7 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
 
     def __init__(self, target=None, period=None):
         self.period = period
-
-        tag_list = ShotwellTagList()
-        self.tag_list = tag_list.get(target)
+        self.target = target
 
     def get_statement(self, select, rate_name=None, min=0, max=5):
         # sql = ['SELECT %s FROM photos P' % select]
@@ -48,12 +46,15 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         return " ".join(sql)
 
     def _tag(self):
-        if not self.tag_list: return ""
+        if not self.target: return ""
 
-        join = 'INNER JOIN photo_tags PT ON PT.photo_id=P.id'
-        tag = "WHERE tag_id IN (%s)" % ", ".join(map(str, self.tag_list))
+        sql = 'SELECT photo_id_list FROM TagTable WHERE name="%s"' % str(self.target)
+        db = ShotwellDB()
+        photo_id_list = db.fetchone(sql)
+        db.close()
 
-        return join, tag
+        tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
+        return [tag]
 
     def _period(self, period):
         if not period: return ""
@@ -65,31 +66,6 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         #sql = 'WHERE time>%s' % epoch
         sql = 'WHERE timestamp>%s' % epoch
         return sql
-
-class ShotwellTagList(object):
-    "F-Spot all photo Tags for getting photos with tag recursively."
-
-    def __init__(self):
-        self.db = ShotwellDB()
-        self.tag_list = []
-
-    def get(self, target):
-        if not target: return []
-
-        sql = 'SELECT id FROM tags WHERE name="%s"' % str(target)
-        id = self.db.fetchone(sql)
-        self._get_with_category_id(id)
-
-        self.db.close()
-        return self.tag_list
-
-    def _get_with_category_id(self, id):
-        self.tag_list.append(id)
-        sql = 'SELECT id FROM tags WHERE category_id=%s' % id
-        list = self.db.fetchall(sql)
-        if list:
-            for i in list:
-                self._get_with_category_id(i[0])
 
 class ShotwellPhotoTags(object):
     "Sorted Shotwell photo tags for gtk.ComboBox"
