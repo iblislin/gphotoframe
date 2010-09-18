@@ -18,9 +18,10 @@ class FSpotPlugin(PluginBase):
     def __init__(self):
         self.name = 'F-Spot'
         self.icon = FSpotIcon
+        self.db_class = FSpotDB
 
     def is_available(self):
-        db = FSpotDB()
+        db = self.db_class()
         if db.is_accessible:
             db.close()
             return True
