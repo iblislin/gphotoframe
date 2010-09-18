@@ -3,58 +3,36 @@ import sqlite3
 import time
 import datetime
 
+from ..fspot.sqldb import FSpotDB, FSpotPhotoSQL
 from xdg.BaseDirectory import xdg_config_home
 
-class FSpotDB(object):
+class ShotwellDB(FSpotDB):
 
     def __init__(self):
-        db_file, self.is_new = self._get_db_file()
+        db_file = self._get_db_file()
         self.is_accessible = True if db_file else False
         if db_file:
             self.db = sqlite3.connect(db_file)
 
-    def fetchall(self, sql):
-        data = self.db.execute(sql).fetchall()
-        return data
-
-    def fetchone(self, sql):
-        data = self.db.execute(sql).fetchone()[0]
-        return data
-
-    def execute(self, sql):
-        data = self.db.execute(sql)
-        return data
-
-    def commit(self):
-        self.db.commit()
-
-    def close(self):
-        self.db.close()
-
     def _get_db_file(self):
-        db_file_base = 'f-spot/photos.db'
-        db_file_new = os.path.join(xdg_config_home, db_file_base)
-        db_file_old = os.path.join(os.environ['HOME'], '.gnome2', db_file_base)
+        db_file_base = '.shotwell/data/photo.db'
+        db_file = os.path.join(os.environ['HOME'], db_file_base)
 
-        if os.access(db_file_new, os.R_OK):
-            db_file, is_new = db_file_new, True
-        elif os.access(db_file_old, os.R_OK):
-            db_file, is_new = db_file_old, False
-        else:
-            db_file = is_new = None
+        if not os.access(db_file, os.R_OK):
+            db_file = None
+        return db_file
 
-        return db_file, is_new
-
-class FSpotPhotoSQL(object):
+class ShotwellPhotoSQL(FSpotPhotoSQL):
 
     def __init__(self, target=None, period=None):
         self.period = period
 
-        tag_list = FSpotTagList()
+        tag_list = ShotwellTagList()
         self.tag_list = tag_list.get(target)
 
     def get_statement(self, select, rate_name=None, min=0, max=5):
-        sql = ['SELECT %s FROM photos P' % select]
+        # sql = ['SELECT %s FROM photos P' % select]
+        sql = ['SELECT %s FROM PhotoTable P' % select]
         sql += self._tag()
         sql.append(self._rate(rate_name, min, max))
         sql.append(self._period(self.period))
@@ -77,15 +55,6 @@ class FSpotPhotoSQL(object):
 
         return join, tag
 
-    def _rate(self, rate_name=None, min=0, max=5):
-        if rate_name is not None:
-            sql = 'WHERE rating=%s' % str(rate_name)
-        elif not (min == 0 and max == 5):
-            sql = 'WHERE (rating BETWEEN %s AND %s)' % (min, max)
-        else:
-            sql = ""
-        return sql
-
     def _period(self, period):
         if not period: return ""
 
@@ -93,19 +62,15 @@ class FSpotPhotoSQL(object):
         d = datetime.datetime.now() - datetime.timedelta(days=period_days)
         epoch = int(time.mktime(d.timetuple()))
 
-        sql = 'WHERE time>%s' % epoch
+        #sql = 'WHERE time>%s' % epoch
+        sql = 'WHERE timestamp>%s' % epoch
         return sql
 
-    def get_period_days(self, period):
-        period_dic = {0 : 0, 1 : 7, 2 : 30, 3 : 90, 4 : 180, 5 : 360}
-        period_days = period_dic[period]
-        return period_days
-
-class FSpotTagList(object):
+class ShotwellTagList(object):
     "F-Spot all photo Tags for getting photos with tag recursively."
 
     def __init__(self):
-        self.db = FSpotDB()
+        self.db = ShotwellDB()
         self.tag_list = []
 
     def get(self, target):
@@ -126,36 +91,20 @@ class FSpotTagList(object):
             for i in list:
                 self._get_with_category_id(i[0])
 
-class FSpotPhotoTags(object):
-    "Sorted F-Spot photo tags for gtk.ComboBox"
+class ShotwellPhotoTags(object):
+    "Sorted Shotwell photo tags for gtk.ComboBox"
 
     def __init__(self):
-        self.stags = []
-        list = [[0, '', 0]]
-        db = FSpotDB()
+        self.list = ['']
+        db = ShotwellDB()
 
         if not db.is_accessible:
             return
 
-        sql = 'SELECT * FROM tags ORDER BY id'
+        sql = 'SELECT name FROM TagTable'
         for tag in db.fetchall(sql):
-            list.append(tag)
+            self.list.append(tag[0])
         db.close()
 
-        self._sort_tags(list, [0])
-
     def get(self):
-        return self.stags
-
-    def _sort_tags(self, all_tags, ex_tags):
-        unadded_tags = []
-
-        for tag in all_tags:
-            if tag[2] in ex_tags:
-                self.stags.append(tag)
-                ex_tags.append(tag[0])
-            else:
-                unadded_tags.append(tag)
-
-        if unadded_tags:
-            self._sort_tags(unadded_tags, ex_tags)
+        return self.list
