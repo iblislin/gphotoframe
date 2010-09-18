@@ -6,7 +6,7 @@ from ..plugins import PluginListStore
 from ..utils.config import GConf
 from ..utils.autostart import AutoStart
 
-from pluginabout import PluginTreeView
+from plugin import PluginTreeView
 from photosource import PhotoSourceTreeView
 
 
