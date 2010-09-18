@@ -16,6 +16,7 @@ import re
 
 from xml.etree import ElementTree as etree
 from twisted.web import client
+from gettext import gettext as _
 
 from base import *
 from ..utils.iconimage import WebIconImage
@@ -28,7 +29,7 @@ def info():
 class HaikyoPlugin(PluginBase):
 
     def __init__(self):
-        self.name = '廃墟時計'
+        self.name = _('Ruins Clock')
         self.icon = HaikyoIcon
 
 

@@ -15,3 +15,4 @@ lib/plugins/fspot/__init__.py
 lib/plugins/picasa.py
 lib/plugins/tumblr.py
 lib/plugins/rss.py
+lib/plugins/haikyo.py
