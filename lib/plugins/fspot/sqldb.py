@@ -53,8 +53,11 @@ class FSpotPhotoSQL(object):
         tag_list = FSpotTagList()
         self.tag_list = tag_list.get(target)
 
+        self.photo_tabel = 'photos'
+        self.time_column = 'time'
+
     def get_statement(self, select, rate_name=None, min=0, max=5):
-        sql = ['SELECT %s FROM photos P' % select]
+        sql = ['SELECT %s FROM %s P' % (select, self.photo_tabel)]
         sql += self._tag()
         sql.append(self._rate(rate_name, min, max))
         sql.append(self._period(self.period))
@@ -93,7 +96,7 @@ class FSpotPhotoSQL(object):
         d = datetime.datetime.now() - datetime.timedelta(days=period_days)
         epoch = int(time.mktime(d.timetuple()))
 
-        sql = 'WHERE time>%s' % epoch
+        sql = 'WHERE %s>%s' % (self.time_column, epoch)
         return sql
 
     def get_period_days(self, period):
