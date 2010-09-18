@@ -1,5 +1,6 @@
 2010-09-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences.py: Added support for plugin about dialog. 
 	* haikyo.py (PhotoSourceHaikyoUI): Fixed the sensitiveness of
 	  target widget.
 	* shotwell.py: Added support for Shotwell.

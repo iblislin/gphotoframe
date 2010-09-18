@@ -8,6 +8,7 @@ import constants
 import plugins
 from utils.config import GConf
 from utils.autostart import AutoStart
+from utils.iconimage import IconImage, LocalIconImage
 
 class Preferences(object):
     """Preferences"""
@@ -227,9 +228,13 @@ class PluginTreeView(PreferencesTreeView):
         # plugin name
         self._add_text_column("Description", 2)
 
+        # plugin about dialog
+        self.about_dialog = PluginAboutDialog(self.gui, parent)
+
     def get_signal_dic(self):
         dic = {
             "on_button6_clicked" : self._prefs_button_cb,
+            "on_button7_clicked" : self.about_dialog.run,
             "on_treeview2_cursor_changed" : self._cursor_changed_cb
             }
         return dic
@@ -240,8 +245,10 @@ class PluginTreeView(PreferencesTreeView):
     def _cursor_changed_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2] if iter else None
+
         state = True if plugin_type in plugins.DIALOG_TOKEN else False
         self._set_button_sensitive(state)
+        self.about_dialog.check(plugin_type)
 
     def _prefs_button_cb(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
@@ -251,6 +258,40 @@ class PluginTreeView(PreferencesTreeView):
             plugindialog = plugins.DIALOG_TOKEN[plugin_type](
                 self.parent, model[iter])
             plugindialog.run()
+
+class PluginAboutDialog(object):
+
+    def __init__(self, gui, parent):
+        self.gui = gui
+        self.parent = parent
+
+    def check(self, plugin_type):
+        for obj in plugins.SOURCE_LIST:
+            if plugin_type == obj.name:
+                break
+
+        state = hasattr(obj, 'info')
+        self.gui.get_object('button7').set_sensitive(state)
+        self.plugin = obj
+
+    def run(self, widget):
+        about = gtk.AboutDialog()
+        about.set_transient_for(self.parent)
+        about.set_icon(IconImage('gphotoframe').get_pixbuf())
+
+        about.set_name(self.plugin.name)
+
+        for key, value in self.plugin.info.items():
+            try:
+                about.set_property(key, value)
+            except:
+                print "Error:", key, value
+
+        icon = LocalIconImage('/usr/share/gedit-2/icons/gedit-plugin.png')
+        about.set_logo(icon.get_pixbuf())
+
+        about.run()
+        about.destroy()
 
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""
