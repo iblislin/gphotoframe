@@ -1,6 +1,6 @@
 2010-09-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* plugins/shotwell/*: Added support for Shotwell.
+	* shotwell.py: Added support for Shotwell.
 	* iconimage.py (IconImage.get_image): Fixed a bug.
 
 2010-09-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
