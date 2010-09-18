@@ -31,6 +31,12 @@ class HaikyoPlugin(PluginBase):
     def __init__(self):
         self.name = _('Ruins Clock')
         self.icon = HaikyoIcon
+        self.info = { 'comments': 'Haikyo Clock',
+                      'copyright': 'Copyright © 2010 Yoshizimi Endo',
+                      'website': 'http://www.madin.jp/haikyo/',
+                      'authors': ['Yoshizimi Endo'],
+                      # 'version':,
+                      }
 
 
 class HaikyoPhotoList(PhotoList):
