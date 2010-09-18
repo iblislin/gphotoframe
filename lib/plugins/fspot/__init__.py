@@ -35,7 +35,7 @@ class FSpotPhotoList(PhotoList):
 
         if self.db:
             self.sql = FSpotPhotoSQL(self.target, self.period)
-            self.photos = self.rate_list = RateList(self)
+            self.photos = self.rate_list = RateList(self, FSpotDB)
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
@@ -160,14 +160,20 @@ class FSpotFav(object):
         self.fav = rate
         self.id = id
         self.rate_list = rate_list
+        self._prepare()
+
+    def _prepare(self):
+        self.sql_table = 'photos'
+        self.db_class = FSpotDB
 
     def change_fav(self, new_rate):
         old_rate = self.fav
         new_rate = 0 if old_rate == new_rate else new_rate
         self.fav = new_rate
 
-        sql = "UPDATE photos SET rating=%s WHERE id=%s" % (new_rate, self.id)
-        db = FSpotDB()
+        sql = "UPDATE %s SET rating=%s WHERE id=%s" % (
+            self.sql_table, new_rate, self.id)
+        db = self.db_class()
         db.execute(sql)
         db.commit()
         db.close()

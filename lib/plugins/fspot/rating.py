@@ -1,18 +1,17 @@
 from __future__ import division
 
 from ...utils.wrandom import WeightedRandom
-from sqldb import FSpotDB
 
 class RateList(list):
 
-    def __init__(self, photolist):
+    def __init__(self, photolist, db_class):
         super(RateList, self).__init__()
 
         self.raw_list = []
         self.photolist = photolist
         self.sql = photolist.sql
         options = photolist.options
-        db = FSpotDB()
+        db = db_class()
 
         if not db.is_accessible:
             self.total = 0
