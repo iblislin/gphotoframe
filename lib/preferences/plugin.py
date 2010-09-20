@@ -1,4 +1,6 @@
+import os
 import gtk
+from gettext import gettext as _
 
 from ..plugins import DIALOG_TOKEN, SOURCE_LIST, PHOTO_TARGET_TOKEN
 from ..utils.iconimage import IconImage, LocalIconImage
@@ -84,7 +86,8 @@ class PluginAboutDialog(object):
         about.set_transient_for(self.parent)
         about.set_icon(IconImage('gphotoframe').get_pixbuf())
 
-        about.set_name(self.plugin.name)
+        name = _("%s Plugin") % self.plugin.name
+        about.set_name(name)
 
         for key, value in self.plugin.info.items():
             try:
@@ -92,8 +95,10 @@ class PluginAboutDialog(object):
             except:
                 print "Error:", key, value
 
-        icon = LocalIconImage('/usr/share/gedit-2/icons/gedit-plugin.png')
-        about.set_logo(icon.get_pixbuf())
+        icon_file = '/usr/share/gedit-2/icons/gedit-plugin.png'
+        if os.access(icon_file, os.R_OK):
+            icon = LocalIconImage(icon_file)
+            about.set_logo(icon.get_pixbuf())
 
         about.run()
         about.destroy()

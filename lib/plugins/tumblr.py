@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+#
+# Tumblr plugin for GNOME Photo Frame
+# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Licence: GPL3
+
 import re
 import urllib
 from xml.etree import ElementTree as etree
@@ -14,11 +20,16 @@ from ..utils.config import GConf
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
+
 class TumblrPlugin(PluginBase):
 
     def __init__(self):
         self.name = 'Tumblr'
         self.icon = TumblrIcon
+        self.info = { 'comments': 'Share Anything',
+                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'website': 'http://www.tumblr.com/',
+                      'authors': ['Yoshizimi Endo'], }
 
 class TumblrPhotoList(PhotoList):
 

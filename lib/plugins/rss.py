@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+#
+# RSS plugin for GNOME Photo Frame
+# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Licence: GPL3
+
 import re
 import copy
 # import pprint
@@ -14,11 +20,15 @@ from ..utils.config import GConf
 def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
 
+
 class RSSPlugin(PluginBase):
 
     def __init__(self):
         self.name = 'RSS'
         self.icon = RSSIcon
+        self.info = { 'comments': 'RSS and Atom Feeds',
+                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'authors': ['Yoshizimi Endo'], }
 
 class RSSPhotoList(PhotoList):
 

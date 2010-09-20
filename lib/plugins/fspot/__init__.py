@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+#
+# F-Spot plugin for GNOME Photo Frame
+# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Licence: GPL3
+
 import urllib
 import time
 
@@ -13,12 +19,17 @@ from rating import RateList
 def info():
     return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
 
+
 class FSpotPlugin(PluginBase):
 
     def __init__(self):
         self.name = 'F-Spot'
         self.icon = FSpotIcon
         self.db_class = FSpotDB
+        self.info = { 'comments': 'F-Spot Photo Manager',
+                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'website': 'http://f-spot.org/',
+                      'authors': ['Yoshizimi Endo'], }
 
     def is_available(self):
         db = self.db_class()

@@ -1,3 +1,7 @@
+2010-09-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/*: Added about dialogs.
+
 2010-09-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences.py: Added support for plugin about dialog. 
