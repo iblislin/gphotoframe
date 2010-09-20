@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+#
+# Picasa Wb Album plugin for GNOME Photo Frame
+# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Licence: GPL3
+
 from twisted.web import client
 from gettext import gettext as _
 import urllib
@@ -17,11 +23,16 @@ def info():
     return [PicasaPlugin, PicasaPhotoList, PhotoSourcePicasaUI,
             PluginPicasaDialog]
 
+
 class PicasaPlugin(PluginBase):
 
     def __init__(self):
         self.name = 'Picasa Web'
         self.icon = PicasaIcon
+        self.info = { 'comments': 'Photo Share Service',
+                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'website': 'http://picasaweb.google.com/',
+                      'authors': ['Yoshizimi Endo'], }
 
     def is_available(self):
         username = GConf().get_string('plugins/picasa/user_id')

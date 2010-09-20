@@ -7,8 +7,7 @@
 #   廃墟時計 by Maripo GODA
 #   http://www.madin.jp/haikyo/
 #
-# 2010-07-28 Version 0.1
-
+# 2010-09-19 Version 0.2
 
 import time
 import random
@@ -34,10 +33,7 @@ class HaikyoPlugin(PluginBase):
         self.info = { 'comments': 'Haikyo Clock',
                       'copyright': 'Copyright © 2010 Yoshizimi Endo',
                       'website': 'http://www.madin.jp/haikyo/',
-                      'authors': ['Yoshizimi Endo'],
-                      # 'version':,
-                      }
-
+                      'authors': ['Yoshizimi Endo'], }
 
 class HaikyoPhotoList(PhotoList):
 

@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+#
+# Shotwell plugin for GNOME Photo Frame
+# Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Licence: GPL3
+#
+# 2010-09-19 Version 0.1
+
 import os
 import sqlite3
 
@@ -13,12 +21,17 @@ from fspot.sqldb import FSpotDB, FSpotPhotoSQL
 def info():
     return [ShotwellPlugin, ShotwellPhotoList, PhotoSourceShotwellUI]
 
+
 class ShotwellPlugin(FSpotPlugin):
 
     def __init__(self):
         self.name = 'Shotwell'
         self.icon = ShotwellIcon
         self.db_class = ShotwellDB
+        self.info = { 'comments': 'Shotwell Photo Manager',
+                      'copyright': 'Copyright © 2010 Yoshizimi Endo',
+                      'website': 'http://yorba.org/shotwell/',
+                      'authors': ['Yoshizimi Endo'], }
 
 class ShotwellPhotoList(FSpotPhotoList):
 
