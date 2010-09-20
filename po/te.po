@@ -6,14 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-01 18:39+0900\n"
+"POT-Creation-Date: 2010-09-20 19:04+0900\n"
 "PO-Revision-Date: 2010-05-27 19:45+0900\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
+"Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.5.2\n"
 
@@ -296,7 +296,7 @@ msgid ""
 "specific format. See the strftime() manual for more information."
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:79
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:92
 msgid "All"
 msgstr "అన్నీ"
 
@@ -344,7 +344,7 @@ msgstr ""
 msgid "Rate _Weight:"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:141
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:145
 msgid "_Argument:"
 msgstr ""
 
@@ -368,7 +368,8 @@ msgstr ""
 msgid "_Specified other people's ID"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:135
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:139
+#: ../lib/plugins/haikyo.py:81
 msgid "_Target:"
 msgstr ""
 
@@ -468,24 +469,29 @@ msgstr ""
 msgid "No Title"
 msgstr "శీర్షిక లేదు"
 
-#: ../lib/preferences.py:139
+#: ../lib/preferences/photosource.py:17
 msgid "Source"
 msgstr ""
 
-#: ../lib/preferences.py:140
+#: ../lib/preferences/photosource.py:18
 msgid "Target"
 msgstr ""
 
-#: ../lib/preferences.py:141
+#: ../lib/preferences/photosource.py:19
 msgid "Argument"
 msgstr ""
 
-#: ../lib/preferences.py:142
+#: ../lib/preferences/photosource.py:20
 msgid "Weight"
 msgstr "బరువు"
 
-#: ../lib/preferences.py:296
+#: ../lib/preferences/photosource.py:121
 msgid "The photo source should be ignored if the weight is 0."
+msgstr ""
+
+#: ../lib/preferences/plugin.py:89
+#, python-format
+msgid "%s Plugin"
 msgstr ""
 
 #: ../lib/image/actors.py:185
@@ -549,13 +555,13 @@ msgstr ""
 msgid "ISO"
 msgstr ""
 
-#: ../lib/plugins/base.py:176
+#: ../lib/plugins/base.py:180
 msgid "Options"
 msgstr "ఎంపికలు"
 
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:164
-#: ../lib/plugins/tumblr.py:107
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:175
+#: ../lib/plugins/tumblr.py:118
 msgid "_User:"
 msgstr ""
 
@@ -607,32 +613,36 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:79
+#: ../lib/plugins/fspot/__init__.py:92
 #, python-format
 msgid "Last %s days"
 msgstr "గత %s రోజులు"
 
-#: ../lib/plugins/fspot/__init__.py:85
+#: ../lib/plugins/fspot/__init__.py:98
 msgid "Rate"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:85
+#: ../lib/plugins/fspot/__init__.py:98
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:164
+#: ../lib/plugins/picasa.py:175
 msgid "_Keyword:"
 msgstr ""
 
-#: ../lib/plugins/tumblr.py:130
+#: ../lib/plugins/tumblr.py:141
 msgid "_E-mail:"
 msgstr ""
 
-#: ../lib/plugins/rss.py:115
+#: ../lib/plugins/rss.py:125
 msgid "_Title:"
 msgstr ""
 
 #. argument widget
-#: ../lib/plugins/rss.py:118
+#: ../lib/plugins/rss.py:128
 msgid "_URL:"
+msgstr ""
+
+#: ../lib/plugins/haikyo.py:31
+msgid "Ruins Clock"
 msgstr ""

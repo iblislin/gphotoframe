@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-18 15:53+0900\n"
-"PO-Revision-Date: 2010-09-18 15:53+0900\n"
+"POT-Creation-Date: 2010-09-19 02:55+0900\n"
+"PO-Revision-Date: 2010-09-19 02:55+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -316,7 +316,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:81
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:93
 msgid "All"
 msgstr "すべて"
 
@@ -389,6 +389,7 @@ msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
 #: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:139
+#: ../lib/plugins/haikyo.py:81
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -488,25 +489,30 @@ msgstr "次の写真(_N)"
 msgid "No Title"
 msgstr "無題"
 
-#: ../lib/preferences.py:139
+#: ../lib/preferences/photosource.py:17
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences.py:140
+#: ../lib/preferences/photosource.py:18
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences.py:141
+#: ../lib/preferences/photosource.py:19
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences.py:142
+#: ../lib/preferences/photosource.py:20
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/preferences.py:296
+#: ../lib/preferences/photosource.py:121
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
+
+#: ../lib/preferences/plugin.py:88
+#, python-format
+msgid "%s Plugin"
+msgstr "%s プラグイン"
 
 #: ../lib/image/actors.py:185
 msgid "Open the photo"
@@ -573,8 +579,8 @@ msgid "Options"
 msgstr "オプション"
 
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:164
-#: ../lib/plugins/tumblr.py:107
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:175
+#: ../lib/plugins/tumblr.py:118
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -631,36 +637,36 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/fspot/__init__.py:81
+#: ../lib/plugins/fspot/__init__.py:93
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:87
+#: ../lib/plugins/fspot/__init__.py:99
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:87
+#: ../lib/plugins/fspot/__init__.py:99
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/picasa.py:164
+#: ../lib/plugins/picasa.py:175
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
-#: ../lib/plugins/tumblr.py:130
+#: ../lib/plugins/tumblr.py:141
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
-#: ../lib/plugins/rss.py:115
+#: ../lib/plugins/rss.py:125
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:118
+#: ../lib/plugins/rss.py:128
 msgid "_URL:"
 msgstr "URL(_U)"
 
-#: ../lib/plugins/haikyo.py:32
+#: ../lib/plugins/haikyo.py:31
 msgid "Ruins Clock"
 msgstr "廃墟時計"

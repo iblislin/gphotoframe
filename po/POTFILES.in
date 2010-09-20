@@ -5,7 +5,8 @@ share/gphotoframe.schemas.in
 [type: gettext/glade]share/preferences.ui
 [type: gettext/glade]share/menu.ui
 lib/menu.py
-lib/preferences.py
+lib/preferences/photosource.py
+lib/preferences/plugin.py
 lib/image/actors.py
 lib/image/tooltip.py
 lib/plugins/base.py
