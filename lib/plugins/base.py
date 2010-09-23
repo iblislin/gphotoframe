@@ -236,16 +236,30 @@ class ParseEXIF(object):
                'fstop': 'EXIF FNumber',
                'focallength': 'EXIF FocalLength',
                'iso': 'EXIF ISOSpeedRatings',
-               'exposure': 'EXIF ExposureTime',}
+               'exposure': 'EXIF ExposureTime',
+               'exposurebias': 'EXIF ExposureBiasValue', 
+               'flash': 'EXIF Flash',
+               'flashbias': 'MakerNote FlashBias',}
         exif = {}
 
         for key, tag in tag.iteritems():
             value = self.tags.get(tag)
             if value:
                 value = str(value)
+
                 if key == 'fstop' or key == 'focallength':
                     value = self._convert_from_fraction(value)
+                elif key == 'exposurebias' and value == '0':
+                    continue
+                elif key == 'flash' and ('Off' in value or 'No' in value):
+                    continue
+                elif key == 'flashbias' and '0 EV' in value:
+                    continue
+
                 exif[key] = value
+
+        if 'flash' not in exif and 'flashbias' in exif:
+            del exif['flashbias']
 
         return exif
 

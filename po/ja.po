@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-19 02:55+0900\n"
-"PO-Revision-Date: 2010-09-19 02:55+0900\n"
+"POT-Creation-Date: 2010-09-21 18:53+0900\n"
+"PO-Revision-Date: 2010-09-21 19:10+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -316,7 +316,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:93
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:92
 msgid "All"
 msgstr "すべて"
 
@@ -509,7 +509,7 @@ msgstr "重み"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
-#: ../lib/preferences/plugin.py:88
+#: ../lib/preferences/plugin.py:89
 #, python-format
 msgid "%s Plugin"
 msgstr "%s プラグイン"
@@ -560,7 +560,7 @@ msgstr "mm"
 
 #: ../lib/image/tooltip.py:84
 msgid "Exposure"
-msgstr "露出"
+msgstr "露光時間"
 
 #: ../lib/image/tooltip.py:84
 msgid "sec"
@@ -574,12 +574,24 @@ msgstr "絞り"
 msgid "ISO"
 msgstr "ISO"
 
+#: ../lib/image/tooltip.py:87
+msgid "Exposure Bias"
+msgstr "露出補正"
+
+#: ../lib/image/tooltip.py:88
+msgid "Flash"
+msgstr "フラッシュ"
+
+#: ../lib/image/tooltip.py:89
+msgid "Flash Bias"
+msgstr "フラッシュ補正"
+
 #: ../lib/plugins/base.py:180
 msgid "Options"
 msgstr "オプション"
 
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:175
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:176
 #: ../lib/plugins/tumblr.py:118
 msgid "_User:"
 msgstr "ユーザ(_U):"
@@ -637,20 +649,20 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/fspot/__init__.py:93
+#: ../lib/plugins/fspot/__init__.py:92
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:99
+#: ../lib/plugins/fspot/__init__.py:98
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:99
+#: ../lib/plugins/fspot/__init__.py:98
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/picasa.py:175
+#: ../lib/plugins/picasa.py:176
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 

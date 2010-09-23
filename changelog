@@ -1,3 +1,8 @@
+2010-09-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/tooltip.py, plugins/*: Added more information on EXIF
+	  tooltips.
+
 2010-09-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/*: Added about dialogs.

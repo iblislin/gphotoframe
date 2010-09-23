@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-20 19:04+0900\n"
+"POT-Creation-Date: 2010-09-21 18:53+0900\n"
 "PO-Revision-Date: 2010-05-27 19:45+0900\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -555,12 +555,24 @@ msgstr ""
 msgid "ISO"
 msgstr ""
 
+#: ../lib/image/tooltip.py:87
+msgid "Exposure Bias"
+msgstr ""
+
+#: ../lib/image/tooltip.py:88
+msgid "Flash"
+msgstr ""
+
+#: ../lib/image/tooltip.py:89
+msgid "Flash Bias"
+msgstr ""
+
 #: ../lib/plugins/base.py:180
 msgid "Options"
 msgstr "ఎంపికలు"
 
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:175
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:176
 #: ../lib/plugins/tumblr.py:118
 msgid "_User:"
 msgstr ""
@@ -626,7 +638,7 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:175
+#: ../lib/plugins/picasa.py:176
 msgid "_Keyword:"
 msgstr ""
 

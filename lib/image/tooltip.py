@@ -83,7 +83,11 @@ class ToolTip(object):
                ['focallength', _('Focal Length'), " " + _('mm')],
                ['exposure',    _('Exposure'),     " " + _('sec')],
                ['fstop', _('Aperture'), ''],
-               ['iso',   _('ISO'), ''],]
+               ['iso',   _('ISO'), ''],
+               ['exposurebias',   _('Exposure Bias'), ''],
+               ['flash',   _('Flash'), ''],
+               ['flashbias',   _('Flash Bias'), ''],
+               ]
 
         tip = ''
         for key, name, unit in tag:
