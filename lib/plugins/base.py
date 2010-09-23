@@ -294,7 +294,7 @@ class ParseEXIF(object):
         return epoch
 
     def _convert_from_fraction(self, value):
-        if value.find('/') > 0:
+        if '/' in value:
             a, b = value.split('/')
             value = int(a) / int(b)
         return value
