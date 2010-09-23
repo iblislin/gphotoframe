@@ -74,7 +74,7 @@ class ToolTip(object):
 
         make = exif.get('make')
         model = exif.get('model')
-        if make and model and [w for w in make.split() if model.find(w) >= 0]:
+        if make and model and [w for w in make.split() if w in model]:
             del exif['make']
 
         tag = [['make',  _('Maker'), ''],
