@@ -285,13 +285,20 @@ class FlickrEXIF(object):
 
         target = {'Make': 'make', 'Model': 'model', 'FNumber': 'fstop', 
                   'ISO': 'iso', 'ExposureTime': 'exposure', 
-                  'FocalLength': 'focallength', 'Lens Model': 'lense',}
+                  'FocalLength': 'focallength', 'Lens Model': 'lense',
+                  'ExposureCompensation' : 'exposurebias', 'Flash': 'flash',}
 
         for i in [x for x in d['photo']['exif'] if x['tag'] in target.keys()]:
             tag = i['tag']
             raw = i['raw']['_content']
+
             if tag == 'FocalLength':
                 raw = raw.rstrip('m ')
+            elif tag == 'ExposureCompensation' and raw == '0':
+                continue
+            elif tag == 'Flash' and (
+                'Off' in raw or 'No' in raw or 'not' in raw):
+                continue
 
             #print i['label'], raw, tag
             self.photo['exif'][ target[tag] ] = raw
