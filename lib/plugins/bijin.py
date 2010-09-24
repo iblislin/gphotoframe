@@ -4,6 +4,7 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2010-09-25 Version 1.3
 # 2010-06-03 Version 1.2
 
 import time
@@ -23,6 +24,10 @@ class BijinPlugin(PluginBase):
         self.name = '美人時計'
         self.icon = BijinIcon
         self.hide_source_icon_on_image = True
+        self.info = { 'comments': '1min 自動更新時計サイト',
+                      'copyright': 'Copyright © 2010 Yoshizimi Endo',
+                      'website': 'http://www.bijint.com/',
+                      'authors': ['Yoshizimi Endo'], }
 
 
 class BijinPhotoList(PhotoList):
@@ -73,10 +78,16 @@ class BijinTokeiList(object):
         self.list = [
             ['美人時計', ['jp', 'jp/img/clk']],
             ['美男時計', ['binan', 'binan/img/clk']],
+            ['サーキット時計', ['cc', 'cc/tokei_images']],
             ['韓国時計', ['kr', 'assets/pict/kr/590x450']],
             ['香港時計', ['hk', 'assets/pict/hk/590x450']],
             ['北海道時計', ['hokkaido', 'assets/pict/hokkaido/590x450']],
             ['仙台時計', ['sendai', 'assets/pict/sendai/590x450']],
+            ['京都時計', ['kyoto', 'kyoto/tokei_images']],
+            ['金沢時計', ['kanazawa', 'kanazawa/tokei_images']],
+            ['福岡時計', ['fukuoka', 'fukuoka/tokei_images']],
+            ['岡山時計', ['okayama', 'okayama/tokei_images']],
+            ['香川時計', ['kagawa', 'kagawa/tokei_images']],
             ['ランダム', [None, None]],
             ]
 
