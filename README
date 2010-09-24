@@ -6,9 +6,11 @@ It shows pictures from:
 
 - Local folders
 - F-Spot database
+- Shotwell database
 - Flickr API
 - Tumblr API
 - Picasa Web Album API
+- Haikyo Clock
 - RSS
 
 * Installation
