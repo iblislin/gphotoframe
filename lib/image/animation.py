@@ -4,7 +4,7 @@ try:
 except ImportError:
     pass
 
-class FadeAnimationTimeline():
+class FadeAnimationTimeline(object):
 
     def __init__(self, actor, time=1000, start=0, end=255):
 
@@ -17,7 +17,7 @@ class FadeAnimationTimeline():
     def fade_out(self):
         self.timeline_fade_out.start()
 
-class FadeAnimation():
+class FadeAnimation(object):
 
     def __init__(self, actor, time=300, start=0, end=255):
         self.timeline = clutter.Timeline(time)
