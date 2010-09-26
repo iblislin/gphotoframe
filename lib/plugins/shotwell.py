@@ -113,7 +113,7 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         self.target = target
 
         self.photo_tabel = 'PhotoTable'
-        self.time_column = 'timestamp'
+        self.time_column = 'exposure_time'
 
     def _tag(self):
         if not self.target: return ""
