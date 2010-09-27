@@ -1,3 +1,11 @@
+2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* it.po: Added new translation.  Thanks Cristian Marchi!
+
+2010-09-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actors.py (IconTexture): Adjusted animation time.
+
 2010-09-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/tooltip.py, plugins/*: Added more information on EXIF

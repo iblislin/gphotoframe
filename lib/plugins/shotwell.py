@@ -12,7 +12,7 @@ import sqlite3
 import gtk
 from gettext import gettext as _
 
-from ..utils.iconimage import IconImage
+from ..utils.iconimage import LocalIconImage
 from base import *
 from fspot.__init__ import *
 from fspot.rating import RateList
@@ -83,10 +83,10 @@ class ShotwellFav(FSpotFav):
         self.sql_table = 'PhotoTable'
         self.db_class = ShotwellDB
 
-class ShotwellIcon(IconImage):
+class ShotwellIcon(LocalIconImage):
 
     def __init__(self):
-        self.icon_name = 'shotwell'
+        self.icon_name = 'shotwell-16.svg'
 
 # sql
 
@@ -113,7 +113,7 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         self.target = target
 
         self.photo_tabel = 'PhotoTable'
-        self.time_column = 'timestamp'
+        self.time_column = 'exposure_time'
 
     def _tag(self):
         if not self.target: return ""

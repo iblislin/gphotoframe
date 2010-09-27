@@ -5,7 +5,6 @@
 # Licence: GPL3
 
 import urllib
-import time
 
 import gtk
 from gettext import gettext as _
