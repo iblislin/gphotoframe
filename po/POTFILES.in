@@ -1,0 +1,19 @@
+share/gphotoframe.desktop.in
+share/gphotoframe-screensaver.desktop.in
+share/gphotoframe.schemas.in
+[type: gettext/glade]share/gphotoframe.ui
+[type: gettext/glade]share/preferences.ui
+[type: gettext/glade]share/menu.ui
+lib/menu.py
+lib/preferences/photosource.py
+lib/preferences/plugin.py
+lib/image/actors.py
+lib/image/tooltip.py
+lib/plugins/base.py
+lib/plugins/flickr/api.py
+lib/plugins/flickr/authdialog.py
+lib/plugins/fspot/__init__.py
+lib/plugins/picasa.py
+lib/plugins/tumblr.py
+lib/plugins/rss.py
+lib/plugins/haikyo.py
