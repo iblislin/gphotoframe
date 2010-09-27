@@ -10,10 +10,14 @@ lib/preferences/plugin.py
 lib/image/actors.py
 lib/image/tooltip.py
 lib/plugins/base.py
+lib/plugins/__init__.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py
+lib/plugins/flickr/__init__.py
 lib/plugins/fspot/__init__.py
 lib/plugins/picasa.py
 lib/plugins/tumblr.py
 lib/plugins/rss.py
 lib/plugins/haikyo.py
+lib/plugins/folder.py
+lib/plugins/shotwell.py

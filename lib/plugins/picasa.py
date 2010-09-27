@@ -27,9 +27,9 @@ def info():
 class PicasaPlugin(PluginBase):
 
     def __init__(self):
-        self.name = 'Picasa Web'
+        self.name = _('Picasa Web')
         self.icon = PicasaIcon
-        self.info = { 'comments': 'Photo Share Service',
+        self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',
                       'authors': ['Yoshizimi Endo'], }
@@ -55,7 +55,7 @@ class PicasaPhotoList(PhotoList):
         "Get Google Auth Token (ClientLogin)."
 
         if identity is None:
-            print "Certification Error"
+            print _("Certification Error")
             return
 
         url = 'https://www.google.com/accounts/ClientLogin'
