@@ -26,7 +26,7 @@ class RSSPlugin(PluginBase):
     def __init__(self):
         self.name = 'RSS'
         self.icon = RSSIcon
-        self.info = { 'comments': 'RSS and Atom Feeds',
+        self.info = { 'comments': _('RSS and Atom Feeds'),
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 

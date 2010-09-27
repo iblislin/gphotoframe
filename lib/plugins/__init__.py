@@ -1,6 +1,7 @@
 import os
 import inspect
 from os.path import join, abspath, dirname, isdir
+from gettext import gettext as _
 
 from base import *
 from ..utils.config import GConf
@@ -18,7 +19,7 @@ for item in os.listdir(plugin_dir):
     try:
         module = __import__(module_name, globals(), locals(), [])
     except ImportError, value:
-        print "Can't import %s plugin: %s." % (module_name, value)
+        print _("Can't import %s plugin: %s.") % (module_name, value)
     else:
         for function in inspect.getmembers(module, inspect.isfunction):
             if 'info' in function:

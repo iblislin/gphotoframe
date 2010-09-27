@@ -7,6 +7,7 @@
 import os
 import re
 import random
+from gettext import gettext as _
 
 from twisted.internet import threads
 import gtk
@@ -22,9 +23,9 @@ def info():
 class DirPlugin(PluginBase):
 
     def __init__(self):
-        self.name = 'Folder'
+        self.name = _('Folder')
         self.icon = FolderIcon
-        self.info = { 'comments': 'Local Folder',
+        self.info = { 'comments': _('Local Folder'),
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
