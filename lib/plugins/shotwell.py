@@ -59,10 +59,19 @@ class ShotwellPhotoList(FSpotPhotoList):
                  'title' : os.path.basename(filename), # without path
                  'id' : id,
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
+                 'trash': ShotwellTrash(id, filename),
                  'icon' : ShotwellIcon }
 
         self.photo = Photo(data)
         cb(None, self.photo)
+
+class ShotwellTrash(Trash):
+
+    def check_delete_from_catalog(self):
+        return True
+
+    def delete_from_catalog(self):
+        pass
 
 class PhotoSourceShotwellUI(PhotoSourceUI):
 
