@@ -299,6 +299,27 @@ class ParseEXIF(object):
             value = int(a) / int(b)
         return value
 
+class Trash(object):
+
+    def __init__(self, id, filename):
+        self.id = id
+        self.filename = filename
+
+    def check_delete_from_disk(self):
+        path = os.path.split(self.filename)[0]
+        # path = '/usr'
+        return os.access(path, os.W_OK)
+
+    def check_delete_from_catalog(self):
+        return False
+
+    def delete_from_disk(self):
+        self.delete_from_catalog()
+        # os.remove(self.filename)
+
+    def delete_from_catalog(self):
+        pass
+
 class PluginDialog(object):
     """Photo Source Dialog"""
 

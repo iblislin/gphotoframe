@@ -10,7 +10,7 @@ import gtk
 from gettext import gettext as _
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    Photo, PluginBase
+    Photo, PluginBase, Trash
 from ...utils.iconimage import IconImage
 from sqldb import FSpotDB, FSpotPhotoSQL, FSpotPhotoTags
 from rating import RateList
@@ -75,12 +75,14 @@ class FSpotPhotoList(PhotoList):
             url = ''.join(self.db.fetchall(sql)[0])
             filename = url[ url.rfind('/') + 1: ]
 
+        fullpath = url.replace('file://', '')
         data = { 'url' : url,
                  'rate' : rate.name,
-                 'filename' : url.replace('file://', ''),
+                 'filename' : fullpath,
                  'title' : filename, # without path
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
+                 'trash' : FSpotTrash(id, fullpath),
                  'icon' : FSpotIcon }
 
         self.photo = Photo(data)
@@ -96,6 +98,14 @@ class FSpotPhotoList(PhotoList):
         tip = "%s: %s-%s\n%s: %s" % (
             _('Rate'), rate_min, rate_max, _('Period'), period)
         return tip
+
+class FSpotTrash(Trash):
+
+    def check_delete_from_catalog(self):
+        return True
+
+    def delete_from_catalog(self):
+        pass
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 

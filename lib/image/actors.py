@@ -228,10 +228,13 @@ class ActorInfoIcon(ActorGeoIcon):
 
     def set_icon(self, photoimage, x_offset, y_offset):
         photo = photoimage.photo
-        self.icon_offset = 20 if photo and photo.geo_is_ok() else 0
+        self.icon_offset = 20 if self._check_other_icon(photo) else 0
         if self.position == 0 or self.position == 3:
             self.icon_offset *= -1
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
+
+    def _check_other_icon(self, photo):
+        return photo and photo.geo_is_ok() 
 
     def _check_photo(self):
         return self.photo.get('exif') or self._get_exif_class()
@@ -255,6 +258,54 @@ class ActorInfoIcon(ActorGeoIcon):
                 d = exif().get(self.photo)
                 d.addCallback(self._enter_cb, None, tooltip)
                 tooltip.update_text(_("Loading..."))
+
+class ActorTrashIcon(ActorGeoIcon):
+
+    def _check_photo(self):
+        if not 'trash' in self.photo:
+            return False
+
+        return self.photo['trash'].check_delete_from_disk()
+
+    def _get_icon(self):
+        return IconImage('user-trash')
+
+    def _get_ui_data(self):
+        self._set_ui_options('trash', False, 3)
+
+    def _on_button_press_cb(self, actor, event):
+        print "Delete from drive"
+
+    def _enter_cb(self, w, e, tooltip):
+        tip = _("Delete from drive")
+        tooltip.update_text(tip)
+
+class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
+
+    def _check_other_icon(self, photo):
+        if not 'trash' in photo:
+            return False
+
+        return photo['trash'].check_delete_from_disk()
+
+    def _check_photo(self):
+        if not 'trash' in self.photo:
+            return False
+
+        return self.photo['trash'].check_delete_from_catalog()
+
+    def _get_icon(self):
+        return IconImage('gtk-remove')
+
+    def _get_ui_data(self):
+        self._set_ui_options('trash', False, 3)
+
+    def _on_button_press_cb(self, actor, event):
+        print "Remove From catalog"
+
+    def _enter_cb(self, w, e, tooltip):
+        tip = _("Remove from catalog")
+        tooltip.update_text(tip)
 
 class ActorFavIcon(ActorIcon):
 
