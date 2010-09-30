@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-30 13:50+0200\n"
+"POT-Creation-Date: 2010-10-01 01:50+0900\n"
 "PO-Revision-Date: 2010-09-30 14:19+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: italian <cri.penta@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 
@@ -44,12 +44,18 @@ msgid "API reload interval minutes for meta groups"
 msgstr "Intervallo di aggiornamento API in minuti per i meta gruppi"
 
 #: ../share/gphotoframe.schemas.in.h:3
-msgid "API reload interval minutes for meta groups (Your Groups or The Commons). It should be greater than 10 minutes."
-msgstr "Intervallo di aggiornamento API in minuti per i meta gruppi (i propri gruppi o The Commons); dovrebbe essere superiore ai 10 minuti"
+msgid ""
+"API reload interval minutes for meta groups (Your Groups or The Commons). It "
+"should be greater than 10 minutes."
+msgstr ""
+"Intervallo di aggiornamento API in minuti per i meta gruppi (i propri gruppi "
+"o The Commons); dovrebbe essere superiore ai 10 minuti"
 
 #: ../share/gphotoframe.schemas.in.h:4
 msgid "API reload interval minutes. It should be greater than 10 minutes."
-msgstr "Intervallo di aggiornamento API in minuti; dovrebbe essere superiore a 10 minuti"
+msgstr ""
+"Intervallo di aggiornamento API in minuti; dovrebbe essere superiore a 10 "
+"minuti"
 
 #: ../share/gphotoframe.schemas.in.h:5
 msgid "Always on Visible Workspace"
@@ -76,8 +82,12 @@ msgid "Date format"
 msgstr "Formato data"
 
 #: ../share/gphotoframe.schemas.in.h:11
-msgid "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom."
-msgstr "Determina la posizione dell'icona: 0 sinistra-alto, 1 destra-alto, 2 destra-basso, 3 sinistra-basso"
+msgid ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
+msgstr ""
+"Determina la posizione dell'icona: 0 sinistra-alto, 1 destra-alto, 2 destra-"
+"basso, 3 sinistra-basso"
 
 #: ../share/gphotoframe.schemas.in.h:12
 msgid "E-mail adress as user ID"
@@ -112,16 +122,32 @@ msgid "Google account user ID"
 msgstr "ID utente Google"
 
 #: ../share/gphotoframe.schemas.in.h:20
-msgid "If the RSS feed includes multiple RSS feeds, this value is used as the standard deviation for random weight of each RSS feed. When this value is less than 0, the each weight is the number of total image included in each RSS feed."
-msgstr "Se il feed RSS contiene più canali, questo valore è utilizzato come deviazione standard per i pesi casuali di ogni feed RSS. Quando il valore è inferiore a 0, il peso è il numero di immagini totali incluse in ogni feed RSS."
+msgid ""
+"If the RSS feed includes multiple RSS feeds, this value is used as the "
+"standard deviation for random weight of each RSS feed. When this value is "
+"less than 0, the each weight is the number of total image included in each "
+"RSS feed."
+msgstr ""
+"Se il feed RSS contiene più canali, questo valore è utilizzato come "
+"deviazione standard per i pesi casuali di ogni feed RSS. Quando il valore è "
+"inferiore a 0, il peso è il numero di immagini totali incluse in ogni feed "
+"RSS."
 
 #: ../share/gphotoframe.schemas.in.h:21
-msgid "If true, changing of photo image in fullscreen mode will be animated. The program needs to be restarted to take effect the change of the setting."
-msgstr "Se abilitata, la transizione dell'immagine a schermo intero sarà animata. Il programma deve essere riavviato per rendere effettivi i cambiamenti"
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+"Se abilitata, la transizione dell'immagine a schermo intero sarà animata. Il "
+"programma deve essere riavviato per rendere effettivi i cambiamenti"
 
 #: ../share/gphotoframe.schemas.in.h:22
-msgid "If true, hiding and un-hiding of icons will be animated. The program needs to be restarted to take effect the change of the setting."
-msgstr "Se abilitata, la scomparsa e la comparsa delle icone sarà animata. Il programma deve essere riavviato per rendere effettivi i cambiamenti"
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+"Se abilitata, la scomparsa e la comparsa delle icone sarà animata. Il "
+"programma deve essere riavviato per rendere effettivi i cambiamenti"
 
 #: ../share/gphotoframe.schemas.in.h:23
 msgid "If true, icons will be shown on screensaver."
@@ -148,24 +174,36 @@ msgid "Minimum image file size in bytes"
 msgstr "Dimensione minima in byte del file di immagine"
 
 #: ../share/gphotoframe.schemas.in.h:29
-msgid "Minimum image file size in bytes. When this value is less than 0, image file size filter is disabled."
-msgstr "Dimensione minima dell'immagine in byte; quando questo valore è inferiore a 0, il filtro è disabilitato"
+msgid ""
+"Minimum image file size in bytes. When this value is less than 0, image file "
+"size filter is disabled."
+msgstr ""
+"Dimensione minima dell'immagine in byte; quando questo valore è inferiore a "
+"0, il filtro è disabilitato"
 
 #: ../share/gphotoframe.schemas.in.h:30
 msgid "Minimum image height"
 msgstr "Altezza minima dell'immagine"
 
 #: ../share/gphotoframe.schemas.in.h:31
-msgid "Minimum image height. When this value is less than 0, image size filter is disabled."
-msgstr "Altezza minima dell'immagine in byte; quando questo valore è inferiore a 0, il filtro è disabilitato"
+msgid ""
+"Minimum image height. When this value is less than 0, image size filter is "
+"disabled."
+msgstr ""
+"Altezza minima dell'immagine in byte; quando questo valore è inferiore a 0, "
+"il filtro è disabilitato"
 
 #: ../share/gphotoframe.schemas.in.h:32
 msgid "Minimum image width"
 msgstr "Larghezza minima dell'immagine"
 
 #: ../share/gphotoframe.schemas.in.h:33
-msgid "Minimum image width. When this value is less than 0, image size filter is disabled."
-msgstr "Larghezza minima dell'immagine in byte; quando questo valore è inferiore a 0, il filtro è disabilitato"
+msgid ""
+"Minimum image width. When this value is less than 0, image size filter is "
+"disabled."
+msgstr ""
+"Larghezza minima dell'immagine in byte; quando questo valore è inferiore a "
+"0, il filtro è disabilitato"
 
 #: ../share/gphotoframe.schemas.in.h:34
 msgid "NSID"
@@ -217,7 +255,9 @@ msgstr "Intervallo di aggiornamento RSS in minuti"
 
 #: ../share/gphotoframe.schemas.in.h:46
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
-msgstr "Intervallo di aggiornamento RSS in minuti; dovrebbe essere superiore a 10 minuti"
+msgstr ""
+"Intervallo di aggiornamento RSS in minuti; dovrebbe essere superiore a 10 "
+"minuti"
 
 #: ../share/gphotoframe.schemas.in.h:47
 msgid "Recent opend preferences page number"
@@ -228,8 +268,12 @@ msgid "Recent selected photo source"
 msgstr "La fonte selezionata di recente"
 
 #: ../share/gphotoframe.schemas.in.h:49
-msgid "Set to \"true\" to always show the icon. Set to \"false\" to only show the icon when the mouse pointer is over the photo frame."
-msgstr "Impostare a \"true\" per mostrare sempre l'icona. Impostare a \"false\" per mostrare l'icona quando il puntatore del mouse è sopra alla foto."
+msgid ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
+msgstr ""
+"Impostare a \"true\" per mostrare sempre l'icona. Impostare a \"false\" per "
+"mostrare l'icona quando il puntatore del mouse è sopra alla foto."
 
 #: ../share/gphotoframe.schemas.in.h:50
 msgid "Show icons on screensaver"
@@ -249,7 +293,9 @@ msgstr "Questo campo imposta il numero di file di immagine della cache"
 
 #: ../share/gphotoframe.schemas.in.h:54
 msgid "The field sets the number of recent photo menu items."
-msgstr "Il campo imposta il numero di elementi da visualizzare nella voce di menu delle foto recenti"
+msgstr ""
+"Il campo imposta il numero di elementi da visualizzare nella voce di menu "
+"delle foto recenti"
 
 #: ../share/gphotoframe.schemas.in.h:55
 msgid "The number of photo cache files"
@@ -272,16 +318,19 @@ msgid "User name"
 msgstr "Nome utente"
 
 #: ../share/gphotoframe.schemas.in.h:60
-msgid "You can use conversion specifiers understood by strftime() to obtain a specific format. See the strftime() manual for more information."
-msgstr "È possibile usare gli specificatori di conversione compresi da strftime() per ottenere uno specifico formato. Consultare il manuale di strftime() per maggiori informazioni."
+msgid ""
+"You can use conversion specifiers understood by strftime() to obtain a "
+"specific format. See the strftime() manual for more information."
+msgstr ""
+"È possibile usare gli specificatori di conversione compresi da strftime() "
+"per ottenere uno specifico formato. Consultare il manuale di strftime() per "
+"maggiori informazioni."
 
-#: ../share/gphotoframe.ui.h:1
-#: ../lib/plugins/fspot/__init__.py:91
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:91
 msgid "All"
 msgstr "Tutte"
 
-#: ../share/gphotoframe.ui.h:2
-#: ../share/preferences.ui.h:7
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:7
 msgid "General"
 msgstr "Generali"
 
@@ -325,8 +374,7 @@ msgstr "Fonte della foto"
 msgid "Rate _Weight:"
 msgstr "_Peso del voto:"
 
-#: ../share/gphotoframe.ui.h:13
-#: ../lib/plugins/base.py:145
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:145
 msgid "_Argument:"
 msgstr "_Argomento:"
 
@@ -350,8 +398,7 @@ msgstr "_Fonte:"
 msgid "_Specified other people's ID"
 msgstr "ID utente _specificato"
 
-#: ../share/gphotoframe.ui.h:19
-#: ../lib/plugins/base.py:139
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:139
 #: ../lib/plugins/haikyo.py:81
 msgid "_Target:"
 msgstr "O_biettivo:"
@@ -448,8 +495,7 @@ msgstr "Sc_hermo intero"
 msgid "_Next Photo"
 msgstr "Foto _successiva"
 
-#: ../lib/menu.py:93
-#: ../lib/image/actors.py:211
+#: ../lib/menu.py:93 ../lib/image/actors.py:211
 msgid "No Title"
 msgstr "Nessun titolo"
 
@@ -475,7 +521,7 @@ msgid "The photo source should be ignored if the weight is 0."
 msgstr "La fonte della foto dovrebbe essere ignorata se il peso è 0"
 
 #. TRANSLATORS: %s is the name of the Plugin
-#: ../lib/preferences/plugin.py:89
+#: ../lib/preferences/plugin.py:90
 #, python-format
 msgid "%s Plugin"
 msgstr "Plugin \"%s\""
@@ -603,10 +649,8 @@ msgstr "The Commons"
 msgid "Your Groups"
 msgstr "I propri gruppi"
 
-#: ../lib/plugins/flickr/api.py:67
-#: ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259
-#: ../lib/plugins/picasa.py:179
+#: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:179
 #: ../lib/plugins/tumblr.py:118
 msgid "_User:"
 msgstr "_Utente:"
@@ -637,8 +681,17 @@ msgid "_Switch User"
 msgstr "_Cambia utente"
 
 #: ../lib/plugins/flickr/authdialog.py:34
-msgid "Gnome Photo Frame needs your authorization in order to view private photos or to add photos to favorites list on your Flickr.com account. Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame the authorization. "
-msgstr "La cornice fotografica di Gnome necessita dell'autorizzazione per poter visualizzare le proprie foto private o per poter aggiungere le immagini alla lista delle favorite sul proprio account flickr.com. Premere il pulsante «Autorizza» per aprire un browser web e assegnare alla cornice fotografica di Gnome le necessarie autorizzazioni."
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+"La cornice fotografica di Gnome necessita dell'autorizzazione per poter "
+"visualizzare le proprie foto private o per poter aggiungere le immagini alla "
+"lista delle favorite sul proprio account flickr.com. Premere il pulsante "
+"«Autorizza» per aprire un browser web e assegnare alla cornice fotografica "
+"di Gnome le necessarie autorizzazioni."
 
 #: ../lib/plugins/flickr/authdialog.py:39
 msgid "_Authorize"
@@ -646,15 +699,18 @@ msgstr "_Autorizza"
 
 #. getfrob -> open browser
 #: ../lib/plugins/flickr/authdialog.py:47
-msgid "Return to this dialog after you have finished the authorization process on Flickr.com and click the \"Complete Authorization\" button below"
-msgstr "Tornare a questa schermata una volta terminato il processo di autorizzazione su flickr.com e fare clic sul pulsante «Completa autorizzazione» qui sotto."
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"Tornare a questa schermata una volta terminato il processo di autorizzazione "
+"su flickr.com e fare clic sul pulsante «Completa autorizzazione» qui sotto."
 
 #: ../lib/plugins/flickr/authdialog.py:50
 msgid "_Complete Authorization"
 msgstr "_Completa autorizzazione"
 
-#: ../lib/plugins/flickr/__init__.py:34
-#: ../lib/plugins/picasa.py:32
+#: ../lib/plugins/flickr/__init__.py:34 ../lib/plugins/picasa.py:32
 msgid "Photo Share Service"
 msgstr "Servizio di condivisione di foto"
 
@@ -697,8 +753,7 @@ msgstr "Periodo"
 msgid "Picasa Web"
 msgstr "Picasa Web"
 
-#: ../lib/plugins/picasa.py:58
-#: ../lib/plugins/tumblr.py:52
+#: ../lib/plugins/picasa.py:58 ../lib/plugins/tumblr.py:52
 msgid "Certification Error"
 msgstr "Errore di certificazione"
 
@@ -751,4 +806,3 @@ msgstr "Cartella locale"
 #: ../lib/plugins/shotwell.py:31
 msgid "Shotwell Photo Manager"
 msgstr "Gestore di fotografie Shotwell"
-
