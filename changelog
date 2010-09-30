@@ -1,3 +1,8 @@
+2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* it.po, image/tooltip.py, preferences/plugin.py: Updated
+	translation.  Thanks Cristian Marchi! (issue #65)
+
 2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/*: Added more translable strings.  Thanks Cristian
