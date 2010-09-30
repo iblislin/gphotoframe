@@ -274,7 +274,20 @@ class ActorTrashIcon(ActorGeoIcon):
         self._set_ui_options('trash', False, 3)
 
     def _on_button_press_cb(self, actor, event):
-        print "Delete from drive"
+        title = "warning"
+
+        dlog = gtk.MessageDialog(
+            title, gtk.DIALOG_MODAL, 
+            gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO,
+            "warning"   
+            )
+        response = dlog.run()
+        dlog.destroy()
+
+        if response == gtk.RESPONSE_YES:
+            print "Delete from drive"
+        else:
+            print 'REJECT'
 
     def _enter_cb(self, w, e, tooltip):
         tip = _("Delete from drive")
