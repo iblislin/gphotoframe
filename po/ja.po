@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-27 18:40+0900\n"
-"PO-Revision-Date: 2010-09-27 18:59+0900\n"
+"POT-Creation-Date: 2010-10-01 01:50+0900\n"
+"PO-Revision-Date: 2010-10-01 01:53+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -509,7 +509,8 @@ msgstr "重み"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
-#: ../lib/preferences/plugin.py:89
+#. TRANSLATORS: %s is the name of the Plugin
+#: ../lib/preferences/plugin.py:90
 #, python-format
 msgid "%s Plugin"
 msgstr "%s プラグイン"
@@ -538,51 +539,57 @@ msgstr "お気に入りから削除"
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
 
-#: ../lib/image/tooltip.py:80
+#. TRANSLATORS: %s is the name of the author of the photo
+#: ../lib/image/tooltip.py:52
+#, python-format
+msgid "by %s\n"
+msgstr "by %s\n"
+
+#: ../lib/image/tooltip.py:81
 msgid "Maker"
 msgstr "メーカー"
 
-#: ../lib/image/tooltip.py:81
+#: ../lib/image/tooltip.py:82
 msgid "Model"
 msgstr "モデル"
 
-#: ../lib/image/tooltip.py:82
+#: ../lib/image/tooltip.py:83
 msgid "Date"
 msgstr "日時"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:84
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:84
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:85
 msgid "Exposure"
 msgstr "露光時間"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:85
 msgid "sec"
 msgstr "秒"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:86
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:87
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:88
 msgid "Exposure Bias"
 msgstr "露出補正"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:89
 msgid "Flash"
 msgstr "フラッシュ"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:90
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
