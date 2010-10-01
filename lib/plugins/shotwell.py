@@ -28,7 +28,7 @@ class ShotwellPlugin(FSpotPlugin):
         self.name = 'Shotwell'
         self.icon = ShotwellIcon
         self.db_class = ShotwellDB
-        self.info = { 'comments': 'Shotwell Photo Manager',
+        self.info = { 'comments': _('Shotwell Photo Manager'),
                       'copyright': 'Copyright © 2010 Yoshizimi Endo',
                       'website': 'http://yorba.org/shotwell/',
                       'authors': ['Yoshizimi Endo'], }

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-21 18:53+0900\n"
+"POT-Creation-Date: 2010-10-01 01:50+0900\n"
 "PO-Revision-Date: 2010-05-27 19:45+0900\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: e-Telugu Localization Team\n"
@@ -296,7 +296,7 @@ msgid ""
 "specific format. See the strftime() manual for more information."
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:92
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:91
 msgid "All"
 msgstr "అన్నీ"
 
@@ -489,7 +489,8 @@ msgstr "బరువు"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr ""
 
-#: ../lib/preferences/plugin.py:89
+#. TRANSLATORS: %s is the name of the Plugin
+#: ../lib/preferences/plugin.py:90
 #, python-format
 msgid "%s Plugin"
 msgstr ""
@@ -518,52 +519,58 @@ msgstr ""
 msgid "Rate the photo"
 msgstr ""
 
-#: ../lib/image/tooltip.py:80
-msgid "Maker"
+#. TRANSLATORS: %s is the name of the author of the photo
+#: ../lib/image/tooltip.py:52
+#, python-format
+msgid "by %s\n"
 msgstr ""
 
 #: ../lib/image/tooltip.py:81
-msgid "Model"
+msgid "Maker"
 msgstr ""
 
 #: ../lib/image/tooltip.py:82
+msgid "Model"
+msgstr ""
+
+#: ../lib/image/tooltip.py:83
 msgid "Date"
 msgstr ""
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:84
 msgid "Focal Length"
 msgstr ""
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:84
 msgid "mm"
 msgstr ""
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:85
 msgid "Exposure"
 msgstr ""
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:85
 #, fuzzy
 msgid "sec"
 msgstr "క్షణాలు"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:86
 msgid "Aperture"
 msgstr ""
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:87
 msgid "ISO"
 msgstr ""
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:88
 msgid "Exposure Bias"
 msgstr ""
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:89
 msgid "Flash"
 msgstr ""
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:90
 msgid "Flash Bias"
 msgstr ""
 
@@ -571,8 +578,46 @@ msgstr ""
 msgid "Options"
 msgstr "ఎంపికలు"
 
+#: ../lib/plugins/__init__.py:22
+#, python-format
+msgid "Can't import %s plugin: %s."
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:15
+msgid "Contacts Photos"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:16
+msgid "Favorites"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:17
+msgid "Group Pool"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:18
+msgid "Interestingness"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:19
+#, fuzzy
+msgid "People Photos"
+msgstr "ఫొటోలు"
+
+#: ../lib/plugins/flickr/api.py:20
+msgid "Photo Search"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:21
+msgid "The Commons"
+msgstr ""
+
+#: ../lib/plugins/flickr/api.py:22
+msgid "Your Groups"
+msgstr ""
+
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:176
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:179
 #: ../lib/plugins/tumblr.py:118
 msgid "_User:"
 msgstr ""
@@ -625,25 +670,72 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:92
+#: ../lib/plugins/flickr/__init__.py:34 ../lib/plugins/picasa.py:32
+msgid "Photo Share Service"
+msgstr ""
+
+#: ../lib/plugins/flickr/__init__.py:52
+#, python-format
+msgid "Flickr: %s is invalid target."
+msgstr ""
+
+#: ../lib/plugins/flickr/__init__.py:62
+msgid "Flickr: invalid nsid API url."
+msgstr ""
+
+#: ../lib/plugins/flickr/__init__.py:72
+msgid "flickr: can not find, "
+msgstr ""
+
+#: ../lib/plugins/flickr/__init__.py:90
+#, python-format
+msgid "Flickr API Error (%s): %s"
+msgstr ""
+
+#: ../lib/plugins/fspot/__init__.py:28
+msgid "F-Spot Photo Manager"
+msgstr ""
+
+#: ../lib/plugins/fspot/__init__.py:91
 #, python-format
 msgid "Last %s days"
 msgstr "గత %s రోజులు"
 
-#: ../lib/plugins/fspot/__init__.py:98
+#: ../lib/plugins/fspot/__init__.py:97
 msgid "Rate"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:98
+#: ../lib/plugins/fspot/__init__.py:97
 msgid "Period"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:176
+#: ../lib/plugins/picasa.py:30
+msgid "Picasa Web"
+msgstr ""
+
+#: ../lib/plugins/picasa.py:58 ../lib/plugins/tumblr.py:52
+msgid "Certification Error"
+msgstr ""
+
+#: ../lib/plugins/picasa.py:179
 msgid "_Keyword:"
+msgstr ""
+
+#: ../lib/plugins/tumblr.py:29
+msgid "Share Anything"
+msgstr ""
+
+#: ../lib/plugins/tumblr.py:63
+#, python-format
+msgid "Tumblr Error: Invalid Target, %s"
 msgstr ""
 
 #: ../lib/plugins/tumblr.py:141
 msgid "_E-mail:"
+msgstr ""
+
+#: ../lib/plugins/rss.py:29
+msgid "RSS and Atom Feeds"
 msgstr ""
 
 #: ../lib/plugins/rss.py:125
@@ -657,4 +749,20 @@ msgstr ""
 
 #: ../lib/plugins/haikyo.py:31
 msgid "Ruins Clock"
+msgstr ""
+
+#: ../lib/plugins/haikyo.py:33
+msgid "Haikyo Clock"
+msgstr ""
+
+#: ../lib/plugins/folder.py:26
+msgid "Folder"
+msgstr ""
+
+#: ../lib/plugins/folder.py:28
+msgid "Local Folder"
+msgstr ""
+
+#: ../lib/plugins/shotwell.py:31
+msgid "Shotwell Photo Manager"
 msgstr ""

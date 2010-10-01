@@ -6,6 +6,7 @@
 
 import random
 import time
+from gettext import gettext as _
 
 try:
     import simplejson as json
@@ -30,7 +31,7 @@ class FlickrPlugin(PluginBase):
         self.name = 'Flickr'
         self.icon = FlickrIcon
         self.exif = FlickrEXIF
-        self.info = { 'comments': 'Photo Share Service',
+        self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'website': 'http://www.flickr.com/',
                       'authors': ['Yoshizimi Endo'], }
@@ -48,7 +49,7 @@ class FlickrPhotoList(PhotoList):
         factory = FlickrFactoryAPI()
         api_list = factory.api
         if not self.target in api_list:
-            print "flickr: %s is invalid target." % self.target
+            print _("Flickr: %s is invalid target.") % self.target
             return
 
         self.api = factory.create(self.target, self.argument)
@@ -58,7 +59,7 @@ class FlickrPhotoList(PhotoList):
             nsid_url = self.api.get_url_for_nsid_lookup(self.argument)
 
             if nsid_url is None:
-                print "flickr: invalid nsid API url."
+                print _("Flickr: invalid nsid API url.")
                 return
             self._get_url_with_twisted(nsid_url, self._nsid_cb)
         else:
@@ -68,7 +69,7 @@ class FlickrPhotoList(PhotoList):
         d = json.loads(data)
         argument = self.nsid_argument = self.api.parse_nsid(d)
         if argument is None:
-            print "flickr: can not find, ", self.argument
+            print _("flickr: can not find, "), self.argument
             return
 
         self._get_url_for(argument)
@@ -86,7 +87,7 @@ class FlickrPhotoList(PhotoList):
         d = json.loads(data)
 
         if d.get('stat') == 'fail':
-            print "Flickr API Error (%s): %s" % (d['code'], d['message'])
+            print _("Flickr API Error (%s): %s") % (d['code'], d['message'])
             return
 
         self.total = len(d['photos']['photo'])
