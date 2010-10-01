@@ -12,14 +12,14 @@ class FlickrFactoryAPI(object):
 
     def __init__(self):
         self.api = {
-            'Contacts Photos' : FlickrFactoryContactsAPI,
-            'Favorites'       : FlickrFactoryFavoritesAPI,
-            'Group Pool'      : FlickrGroupAPI,
-            'Interestingness' : FlickrInterestingnessAPI,
-            'People Photos'   : FlickrFactoryPeopleAPI,
-            'Photo Search'    : FlickrSearchAPI,
-            'The Commons'     : FlickrCommonsAPI,
-            'Your Groups'     : FlickrYourGroupsAPI,
+            _('Contacts Photos') : FlickrFactoryContactsAPI,
+            _('Favorites')       : FlickrFactoryFavoritesAPI,
+            _('Group Pool')      : FlickrGroupAPI,
+            _('Interestingness') : FlickrInterestingnessAPI,
+            _('People Photos')   : FlickrFactoryPeopleAPI,
+            _('Photo Search')    : FlickrSearchAPI,
+            _('The Commons')     : FlickrCommonsAPI,
+            _('Your Groups')     : FlickrYourGroupsAPI,
             }
 
     def create(self, api, argument=None):

@@ -86,6 +86,7 @@ class PluginAboutDialog(object):
         about.set_transient_for(self.parent)
         about.set_icon(IconImage('gphotoframe').get_pixbuf())
 
+	# TRANSLATORS: %s is the name of the Plugin
         name = _("%s Plugin") % self.plugin.name
         about.set_name(name)
 
