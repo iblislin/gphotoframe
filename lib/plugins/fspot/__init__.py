@@ -105,7 +105,7 @@ class FSpotTrash(Trash):
         return True
 
     def delete_from_catalog(self):
-        pass
+        print "f-spot delete!!"
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 

@@ -274,24 +274,33 @@ class ActorTrashIcon(ActorGeoIcon):
         self._set_ui_options('trash', False, 3)
 
     def _on_button_press_cb(self, actor, event):
-        title = "warning"
-
-        dlog = gtk.MessageDialog(
-            title, gtk.DIALOG_MODAL, 
-            gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO,
-            "warning"   
-            )
-        response = dlog.run()
-        dlog.destroy()
-
-        if response == gtk.RESPONSE_YES:
-            print "Delete from drive"
-        else:
-            print 'REJECT'
+        dialog = TrashDialog(self.photo)
 
     def _enter_cb(self, w, e, tooltip):
         tip = _("Delete from drive")
         tooltip.update_text(tip)
+
+class TrashDialog(object):
+
+    def __init__(self, photo):
+        self.photo = photo
+        title = "warning"
+        text1 = "warning"
+        text2 = "message"
+
+        dialog = gtk.MessageDialog(
+            None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
+            gtk.BUTTONS_YES_NO, text1)
+        dialog.set_title(title)
+        dialog.format_secondary_text(text2)
+        dialog.connect('response', self._response_cb)
+        dialog.show()
+
+    def _response_cb(self, widget, response):
+        if response == gtk.RESPONSE_YES:
+            self.photo['trash'].delete_from_disk()
+
+        widget.destroy()
 
 class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
 

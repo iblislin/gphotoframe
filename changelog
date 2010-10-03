@@ -1,5 +1,6 @@
 2010-10-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actors.py: Added new class TrashDialog.
 	* frame.py: Added the default icon configuration.
 
 2010-09-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
