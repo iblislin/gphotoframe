@@ -1,5 +1,7 @@
 2010-10-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* help/C/*: Added new help documentation.  Thanks Cristian
+	  Marchi! (issue #66).
 	* menu.py, menu.ui: Added new help menu item.
 
 2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
