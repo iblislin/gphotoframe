@@ -30,6 +30,7 @@ class PopUpMenu(object):
             "on_menuitem6_toggled"  : self._fix_window_cb,
             "on_menuitem8_toggled"  : self._full_screen_cb,
             "on_prefs" : preferences.start,
+            "on_help"  : self.open_help,
             "on_about" : about.start,
             "on_quit"  : self.quit,
             }
@@ -56,6 +57,9 @@ class PopUpMenu(object):
 
     def open_photo(self, *args):
         self.photoimage.photo.open()
+
+    def open_help(self, widget):
+        gtk.show_uri(None, 'ghelp:gphotoframe', gtk.gdk.CURRENT_TIME)
 
     def set_recent_menu(self):
         recent = self.gui.get_object('menuitem10')
