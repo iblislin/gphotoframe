@@ -1,3 +1,7 @@
+2010-10-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* frame.py: Added the default icon configuration.
+
 2010-09-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/actors.py, image/imageclutter.py, plugins/base.py,
