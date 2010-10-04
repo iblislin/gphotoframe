@@ -28,7 +28,7 @@
     </copyright>
 
     <authorgroup>
-      <author>
+      <author role="maintainer">
         <firstname>Cristian</firstname>
         <surname>Marchi</surname>
         <affiliation>
@@ -54,6 +54,13 @@
         distributed with this manual.
       </para>
     </legalnotice>
+
+    <revhistory>
+      <revision>
+        <revnumber>&applet; Manual &manrevision;</revnumber>
+        <date>2010-10-03</date>
+      </revision>
+    </revhistory>
 
    <releaseinfo>This manual describes version &appletversion; of &applet;.</releaseinfo>
     
@@ -125,7 +132,7 @@
 	<screenshot>
 	  <mediaobject>
 		<imageobject>
-          <imagedata fileref="figures/gphotoframe_fig2" format="PNG"/> 
+          <imagedata fileref="figures/gphotoframe_fig2.png" format="PNG"/> 
 		</imageobject>
         <textobject> 
 	   <phrase>Shows the photo frame with tooltip and icons</phrase>
@@ -206,7 +213,7 @@
 	<screenshot>
 	  <mediaobject> 
 		<imageobject>
-          <imagedata fileref="figures/gphotoframe_fig3" format="PNG"/> 
+          <imagedata fileref="figures/gphotoframe_fig3.png" format="PNG"/> 
 		</imageobject>
         <textobject> 
           <phrase>Shows the main menu</phrase>
@@ -314,7 +321,7 @@
 	<screenshot>
 	  <mediaobject> 
 		<imageobject>
-          <imagedata fileref="figures/gphotoframe_fig4" format="PNG"/> 
+          <imagedata fileref="figures/gphotoframe_fig4.png" format="PNG"/> 
 		</imageobject>
           <textobject> 
 	    <phrase>Shows the general tab under preferences</phrase>
@@ -361,7 +368,7 @@
 	<screenshot>
 	  <mediaobject> 
 		<imageobject>
-          <imagedata fileref="figures/gphotoframe_fig5" format="PNG"/> 
+          <imagedata fileref="figures/gphotoframe_fig5.png" format="PNG"/> 
 		</imageobject>
           <textobject>
             <phrase>Shows the plugin tab under preferences</phrase>
@@ -455,7 +462,7 @@
 	<screenshot>
 	  <mediaobject> 
 		<imageobject>
-          <imagedata fileref="figures/gphotoframe_fig6" format="PNG"/> 
+          <imagedata fileref="figures/gphotoframe_fig6.png" format="PNG"/> 
 		</imageobject>
           <textobject>
             <phrase>Shows the source tab under preferences</phrase> 
