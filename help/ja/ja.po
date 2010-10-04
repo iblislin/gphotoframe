@@ -1,0 +1,704 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gphotoframe 1.1\n"
+"POT-Creation-Date: 2010-10-04 20:21+0900\n"
+"PO-Revision-Date: 2010-10-04 20:36+0900\n"
+"Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: C/gphotoframe-C.omf:4(creator) C/gphotoframe-C.omf:5(maintainer)
+msgid "(Cristian Marchi)"
+msgstr ""
+
+#: C/gphotoframe-C.omf:6(title)
+#, fuzzy
+msgid "GNOME Photo Frame Applet Manual"
+msgstr "GNOME 写真フレーム マニュアル"
+
+#: C/gphotoframe-C.omf:7(date) C/gphotoframe.xml:61(date)
+msgid "2010-10-03"
+msgstr ""
+
+#: C/gphotoframe-C.omf:10(description)
+msgid "GNOME Photo Frame is an image viewer applet for the GNOME desktop."
+msgstr "GNOME 写真フレームは GNOME デスクトップ向けの画像ビューアです。"
+
+#: C/gphotoframe-C.omf:13(type)
+msgid "user's guide"
+msgstr "ユーザーズガイド"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gphotoframe.xml:80(None)
+msgid ""
+"@@image: 'figures/gphotoframe_fig1.png'; md5=08834c98fe024bde1cd6994f271d9253"
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gphotoframe.xml:135(None)
+msgid ""
+"@@image: 'figures/gphotoframe_fig2.png'; md5=0ef131b799140d51244481a95ac197aa"
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gphotoframe.xml:216(None)
+msgid ""
+"@@image: 'figures/gphotoframe_fig3.png'; md5=0bf248a74760db66440c99855c5e992b"
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gphotoframe.xml:324(None)
+msgid ""
+"@@image: 'figures/gphotoframe_fig4.png'; md5=2a5d67f0eaa1d1453e6ea49135a44340"
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gphotoframe.xml:371(None)
+msgid ""
+"@@image: 'figures/gphotoframe_fig5.png'; md5=cf8f01552396f94cd9d198eaddb6efa6"
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gphotoframe.xml:465(None)
+msgid ""
+"@@image: 'figures/gphotoframe_fig6.png'; md5=6cedb168955cd85480dac5c627733a83"
+msgstr ""
+
+#: C/gphotoframe.xml:20(title)
+msgid "<application>GNOME Photo Frame</application> Applet Manual"
+msgstr "<application>GNOME 写真フレーム</application> マニュアル"
+
+#: C/gphotoframe.xml:22(para)
+msgid ""
+"<application>GNOME Photo Frame</application> is an image viewer applet for "
+"the GNOME desktop."
+msgstr "<application>GNOME 写真フレーム</application>は GNOME デスクトップ向けの画像ビューアです。"
+
+#: C/gphotoframe.xml:26(year)
+msgid "2010"
+msgstr ""
+
+#: C/gphotoframe.xml:27(holder)
+msgid "Cristian Marchi"
+msgstr ""
+
+#: C/gphotoframe.xml:32(firstname)
+msgid "Cristian"
+msgstr ""
+
+#: C/gphotoframe.xml:33(surname)
+msgid "Marchi"
+msgstr ""
+
+#: C/gphotoframe.xml:37(email)
+msgid "cri.penta@gmail.com"
+msgstr ""
+
+#: C/gphotoframe.xml:44(title)
+msgid "Legal Notices"
+msgstr "商標"
+
+#: C/gphotoframe.xml:46(para)
+msgid ""
+"Permission is granted to copy, distribute and/or modify this document under "
+"the terms of the GNU Free Documentation License (GFDL), Version 1.1 or any "
+"later version published by the Free Software Foundation with no Invariant "
+"Sections, no Front-Cover Texts, and no Back-Cover Texts. You can find a copy "
+"of the GFDL at this <ulink type=\"help\" url=\"ghelp:fdl\">link</ulink> or "
+"in the file COPYING-DOCS distributed with this manual."
+msgstr ""
+
+#: C/gphotoframe.xml:60(revnumber)
+msgid "GNOME Photo Frame Manual 2.0"
+msgstr "GNOME 写真フレーム マニュアル 2.0"
+
+#: C/gphotoframe.xml:65(releaseinfo)
+msgid "This manual describes version 1.1 of GNOME Photo Frame."
+msgstr ""
+
+#: C/gphotoframe.xml:70(title)
+msgid "Introduction"
+msgstr "概要"
+
+#: C/gphotoframe.xml:71(para)
+msgid ""
+"<application>GNOME Photo Frame</application> is an image viewer for your "
+"GNOME desktop."
+msgstr ""
+
+#: C/gphotoframe.xml:83(phrase)
+msgid ""
+"Shows <application>GNOME Photo Frame</application> applet on GNOME desktop"
+msgstr ""
+
+#: C/gphotoframe.xml:89(para)
+msgid ""
+"The <application>GNOME Photo Frame</application> applet is able to show a "
+"frame on your desktop in which are displayed images and photos from user "
+"specified local and online sources."
+msgstr ""
+
+#: C/gphotoframe.xml:95(para)
+msgid ""
+"This manual describes how to set up and use the <application>GNOME Photo "
+"Frame</application> applet."
+msgstr ""
+
+#: C/gphotoframe.xml:101(title)
+msgid "Starting the <application>GNOME Photo Frame</application> applet"
+msgstr "<application>GNOME 写真フレーム</application> の起動"
+
+#: C/gphotoframe.xml:102(para)
+msgid ""
+"To start <application>GNOME Photo Frame</application> select the "
+"<menuchoice><guimenu>Applications</guimenu><guisubmenu>Graphics</"
+"guisubmenu><guimenuitem>Photo Frame</guimenuitem></menuchoice> entry from "
+"the main menu."
+msgstr ""
+
+#: C/gphotoframe.xml:107(para)
+msgid ""
+"Alternatively start <application>GNOME Photo Frame</application> from the "
+"shell with the <application>gphotoframe</application> command."
+msgstr ""
+
+#: C/gphotoframe.xml:111(para)
+msgid ""
+"As the <application>GNOME Photo Frame</application> applet is started, you "
+"may want to <link linkend=\"add-source\">Add</link> one or more sources."
+msgstr ""
+
+#: C/gphotoframe.xml:118(title)
+msgid "The Photo Frame"
+msgstr "写真フレーム"
+
+#: C/gphotoframe.xml:119(para)
+msgid ""
+"The photo frame is the main window of <application>GNOME Photo Frame</"
+"application>."
+msgstr ""
+
+#: C/gphotoframe.xml:122(para)
+msgid ""
+"When an image or photo is diplayed, hoovering on it with the mouse pointer "
+"will make some icons and a tooltip appears as showed in <xref linkend="
+"\"gphotoframe-fig2\"/>. The tooltip shows some basic informations about the "
+"content as the author name, the image title and the date taken."
+msgstr ""
+
+#: C/gphotoframe.xml:131(title)
+msgid "The photo frame"
+msgstr ""
+
+#: C/gphotoframe.xml:138(phrase)
+msgid "Shows the photo frame with tooltip and icons"
+msgstr ""
+
+#: C/gphotoframe.xml:141(para)
+msgid ""
+"The tooltip and the icons showed on the photo frame if the source is flickr "
+"photo sharing website"
+msgstr ""
+
+#: C/gphotoframe.xml:150(para)
+msgid ""
+"The number and type of icons displayed on the frame corners depends on the "
+"content's source. They could be:"
+msgstr ""
+
+#: C/gphotoframe.xml:157(para)
+msgid ""
+"<guiicon>fav-icon</guiicon>&mdash; if you are logged with your userID to an "
+"internet service like flickr, you could add an image to your's profile "
+"favorites by clicking on the icon in the upper left of the photo frame. The "
+"icon will light up indicating that the image has been added to favorites."
+msgstr ""
+
+#: C/gphotoframe.xml:164(para)
+msgid ""
+"Click again on that icon and the image will be removed from your favorites."
+msgstr ""
+
+#: C/gphotoframe.xml:167(para)
+msgid ""
+"If the contents comes from a local source (such as <application> F-Spot</"
+"application> or <application>Shotwell</application> database), there will be "
+"five stars so that you can assign a personal vote for the content displayed "
+"by clicking on them."
+msgstr ""
+
+#: C/gphotoframe.xml:175(para)
+msgid ""
+"<guiicon>geo-icon</guiicon>&mdash; this is a earth shaped icon that appears "
+"on the bottom right of the frame if gps (global positioning system) data are "
+"available for the content currently displayed. Click on it to open the "
+"default web browser in which the content's geographical position will be "
+"displayed in google maps."
+msgstr ""
+
+#: C/gphotoframe.xml:184(para)
+msgid ""
+"<guiicon>info-icon</guiicon>&mdash; this icon is located on the bottom left "
+"of the frame and depict a camera. If you hoover the mouse over it, a tooltip "
+"will be displayed containing all the image's metadata (if available) such as "
+"camera model and maker, shutter speed, aperture, etc..."
+msgstr ""
+
+#: C/gphotoframe.xml:192(para)
+msgid ""
+"<guiicon>service-icon</guiicon>&mdash; this icon is displayed in the upper "
+"right corner of the frame and shows the symbol of the service from where the "
+"content is retrieved. By clicking on the icon, the source will open in your "
+"system's default web browser if it is an online service, and in your "
+"system's default image viewer, if the content is local."
+msgstr ""
+
+#: C/gphotoframe.xml:205(title)
+msgid "The Main Menu"
+msgstr "メインメニュー"
+
+#: C/gphotoframe.xml:206(para)
+msgid ""
+"The main menu of <application>GNOME Photo Frame</application> could be "
+"opened by right clicking inside the photo frame."
+msgstr ""
+
+#: C/gphotoframe.xml:212(title) C/gphotoframe.xml:222(para)
+msgid "The <application>GNOME Photo Frame</application> main menu"
+msgstr ""
+
+#: C/gphotoframe.xml:219(phrase)
+msgid "Shows the main menu"
+msgstr ""
+
+#: C/gphotoframe.xml:228(para)
+msgid "In the menu there are the following entries:"
+msgstr ""
+
+#: C/gphotoframe.xml:237(keycap) C/gphotoframe.xml:292(keycap)
+msgid "Ctrl"
+msgstr ""
+
+#: C/gphotoframe.xml:237(keycap)
+msgid "O"
+msgstr ""
+
+#: C/gphotoframe.xml:239(guimenuitem)
+msgid "Open"
+msgstr ""
+
+#: C/gphotoframe.xml:242(para)
+msgid ""
+"Opens the displayed image in a web browser (if the image comes from an "
+"online service) or in the default image viewer if the image comes from the "
+"local machine."
+msgstr ""
+
+#: C/gphotoframe.xml:249(guimenuitem)
+msgid "Open Recent"
+msgstr ""
+
+#: C/gphotoframe.xml:250(para)
+msgid "Shows a list of recently displayed items."
+msgstr ""
+
+#: C/gphotoframe.xml:253(guimenuitem)
+msgid "Next Photo"
+msgstr ""
+
+#: C/gphotoframe.xml:254(para)
+msgid "Jump to the next image in the queue."
+msgstr ""
+
+#: C/gphotoframe.xml:260(keycap)
+msgid "F11"
+msgstr ""
+
+#: C/gphotoframe.xml:262(guimenuitem)
+msgid "Full Screen"
+msgstr ""
+
+#: C/gphotoframe.xml:265(para)
+msgid "Enable the fullscreen visualization of gphotoframe."
+msgstr ""
+
+#: C/gphotoframe.xml:268(guimenuitem)
+msgid "Fix photo frame"
+msgstr ""
+
+#: C/gphotoframe.xml:269(para)
+msgid ""
+"Fix the photo frame so that it will visible only in the current workspace."
+msgstr ""
+
+#: C/gphotoframe.xml:275(guimenuitem)
+msgid "Preferences"
+msgstr "設定"
+
+#: C/gphotoframe.xml:276(para)
+msgid ""
+"Opens the preferences dialog: see <xref linkend=\"gphotoframe-preferences\"/"
+"> for detailed informations."
+msgstr ""
+
+#: C/gphotoframe.xml:282(guimenuitem)
+msgid "About"
+msgstr ""
+
+#: C/gphotoframe.xml:283(para)
+msgid ""
+"Shows the applet's developers and contributors informations as well as the "
+"version number."
+msgstr ""
+
+#: C/gphotoframe.xml:292(keycap)
+msgid "Q"
+msgstr ""
+
+#: C/gphotoframe.xml:294(guimenuitem)
+msgid "Quit"
+msgstr ""
+
+#: C/gphotoframe.xml:297(para)
+msgid "Terminates the <application>GNOME Photo Frame</application> applet."
+msgstr ""
+
+#: C/gphotoframe.xml:303(title)
+msgid "Setting the Preferences"
+msgstr "設定"
+
+#: C/gphotoframe.xml:304(para)
+msgid ""
+"The <interface>Preferences</interface> dialog is accessible by right "
+"clicking inside the photo frame and selecting <guimenuitem>Preferences </"
+"guimenuitem> from the menu."
+msgstr ""
+
+#: C/gphotoframe.xml:308(para)
+msgid "In the <interface>Preferences</interface> dialog there are three tabs."
+msgstr ""
+
+#: C/gphotoframe.xml:313(title)
+msgid "General tab"
+msgstr ""
+
+#: C/gphotoframe.xml:314(para)
+msgid ""
+"In the <guilabel>General</guilabel> tab is possible to set some general "
+"options for <application>GNOME Photo Frame</application>."
+msgstr ""
+
+#: C/gphotoframe.xml:320(title)
+msgid "<guilabel>General</guilabel> tab"
+msgstr ""
+
+#: C/gphotoframe.xml:327(phrase)
+msgid "Shows the general tab under preferences"
+msgstr ""
+
+#: C/gphotoframe.xml:330(para)
+msgid ""
+"The <guilabel>General</guilabel> tab in the <interface>Preferences</"
+"interface> dialog"
+msgstr ""
+
+#: C/gphotoframe.xml:336(para)
+msgid "The <guilabel>General</guilabel> tab is composed of three subsections:"
+msgstr ""
+
+#: C/gphotoframe.xml:339(interface)
+msgid "Interval"
+msgstr ""
+
+#: C/gphotoframe.xml:340(para)
+msgid ""
+"Here is possible to set the time interval in seconds beetwen images for "
+"<interface>the window mode</interface> and for the <interface>full screen "
+"mode</interface>."
+msgstr ""
+
+#: C/gphotoframe.xml:346(interface)
+msgid "Maximum Display Size"
+msgstr ""
+
+#: C/gphotoframe.xml:347(para)
+msgid ""
+"The maximum display size of the displayed image could be set in the "
+"<interface>width</interface> and <interface>height</interface> fields."
+msgstr ""
+
+#: C/gphotoframe.xml:353(interface)
+msgid "Desktop"
+msgstr ""
+
+#: C/gphotoframe.xml:354(para)
+msgid ""
+"By checking the first option is possible to make <application>GNOME Photo "
+"Frame</application> visible on all workspaces. With the second option is "
+"possible to load automatically <application>GNOME Photo Frame</application> "
+"on next startup."
+msgstr ""
+
+#: C/gphotoframe.xml:363(title)
+msgid "Plugins tab"
+msgstr ""
+
+#: C/gphotoframe.xml:364(para)
+msgid "This tab shows the list of plugins currently installed in your system."
+msgstr ""
+
+#: C/gphotoframe.xml:367(title)
+msgid "The <guilabel>Plugins</guilabel> tab"
+msgstr ""
+
+#: C/gphotoframe.xml:374(phrase)
+msgid "Shows the plugin tab under preferences"
+msgstr ""
+
+#: C/gphotoframe.xml:377(para)
+msgid ""
+"The <guilabel>Plugins</guilabel> tab in the <interface>Preferences</"
+"interface> dialog"
+msgstr ""
+
+#: C/gphotoframe.xml:383(para)
+msgid ""
+"The <interface>plugins</interface> extends the capability of "
+"<application>GNOME Photo Frame</application> by making it possible to get "
+"more contents from various internet services as well as locally from your "
+"computer."
+msgstr ""
+
+#: C/gphotoframe.xml:388(para)
+msgid ""
+"<interface>Plugins</interface> could be enabled or disabled with a click on "
+"the checking box on the left of plugin's name. Clicking on the "
+"<guibutton>About</guibutton> button in the bottom right when a plugin row is "
+"highlighted, will display a dialog containing some information regarding the "
+"selected plugin."
+msgstr ""
+
+#: C/gphotoframe.xml:395(para)
+msgid ""
+"<application>GNOME Photo Frame</application> ships with the following pre-"
+"installed plugins:"
+msgstr ""
+
+#: C/gphotoframe.xml:400(para)
+msgid ""
+"<interface>F-Spot</interface>&mdash; shows in GNOME Photo Frame the images "
+"in your <application>F-Spot</application> database."
+msgstr ""
+
+#: C/gphotoframe.xml:406(para)
+msgid ""
+"<interface>Flickr</interface>&mdash; display the contents from the popular "
+"photo sharing service. This plugin is highly customizable as you can look "
+"for photos in different ways for example by specifying a tag, a group, a "
+"user or by showing the most interesting or the latest content."
+msgstr ""
+
+#: C/gphotoframe.xml:414(para)
+msgid ""
+"<interface>Folder</interface>&mdash; with this plugin you could add as a "
+"source for content a folder that contains image files on your computer."
+msgstr ""
+
+#: C/gphotoframe.xml:420(para)
+msgid ""
+"<interface>Picasa Web</interface>&mdash; display the contents from the "
+"google photo hosting service."
+msgstr ""
+
+#: C/gphotoframe.xml:426(para)
+msgid ""
+"<interface>RSS and Atom feed</interface>&mdash; shows images from a RSS or "
+"Atom feed."
+msgstr ""
+
+#: C/gphotoframe.xml:431(para)
+msgid ""
+"<interface>Ruins clock</interface>&mdash; gather images of old and abandoned "
+"clocks from Haikyo Clock website."
+msgstr ""
+
+#: C/gphotoframe.xml:437(para)
+msgid ""
+"<interface>Shotwell</interface>&mdash; shows in <application>GNOME Photo "
+"Frame</application> the images in your <application>Shotwell</application> "
+"database."
+msgstr ""
+
+#: C/gphotoframe.xml:443(para)
+msgid ""
+"<interface>Tumblr</interface>&mdash; shows images from the \"share anything"
+"\" online service."
+msgstr ""
+
+#: C/gphotoframe.xml:453(title)
+msgid "Source tab"
+msgstr ""
+
+#: C/gphotoframe.xml:454(para)
+msgid ""
+"In the <guilabel>source</guilabel> tab is possible to manage (<link linkend="
+"\"add-source\"> Add</link>, <link linkend=\"remove-source\">Remove</link> or "
+"<link linkend=\"edit-source\"> Edit</link>) the content's sources."
+msgstr ""
+
+#: C/gphotoframe.xml:461(title)
+msgid "The <guilabel>Source</guilabel> tab"
+msgstr ""
+
+#: C/gphotoframe.xml:468(phrase)
+msgid "Shows the source tab under preferences"
+msgstr ""
+
+#: C/gphotoframe.xml:471(para)
+msgid ""
+"The <guilabel>Source</guilabel> tab in the <interface>Preferences</"
+"interface> dialog"
+msgstr ""
+
+#: C/gphotoframe.xml:478(title)
+msgid "Adding a source"
+msgstr ""
+
+#: C/gphotoframe.xml:479(para)
+msgid ""
+"To add a source of contents to <application>GNOME Photo Frame</application> "
+"go to the <interface> Preferences</interface> dialog and click the "
+"<guibutton>New</guibutton> button"
+msgstr ""
+
+#: C/gphotoframe.xml:483(para)
+msgid ""
+"In the dialog that will appears, select a source from the pop-up list. "
+"Depending on the type of source selected (folder, <application>F-Spot</"
+"application> or <application>Shotwell</application> database, internet "
+"sharing service as flickr, tumblr or Picasa) different settings are "
+"available. Configure them to your liking and then press <guibutton>Ok</"
+"guibutton>. A new source will be added to the list and the new content will "
+"start to be displayed on the photo frame."
+msgstr ""
+
+#: C/gphotoframe.xml:490(para)
+msgid "If you want to add more sources just repeat this process."
+msgstr ""
+
+#: C/gphotoframe.xml:494(title)
+msgid "Weight"
+msgstr ""
+
+#: C/gphotoframe.xml:495(para)
+msgid ""
+"One of the most important setting if you have more than one source, is "
+"<interface>weight</interface>: the content from the source with the highest "
+"weight will be displayed more frequently."
+msgstr ""
+
+#: C/gphotoframe.xml:503(title)
+msgid "Removing a source"
+msgstr ""
+
+#: C/gphotoframe.xml:504(para)
+msgid ""
+"To remove a source just highlight it in the list and press the "
+"<guibutton>Remove</guibutton> button."
+msgstr ""
+
+#: C/gphotoframe.xml:510(title)
+msgid "Editing a source"
+msgstr ""
+
+#: C/gphotoframe.xml:511(para)
+msgid ""
+"To modify the settings for an existing source, highlight it's name with a "
+"click in the list and then press the <guibutton>Preferences</guibutton> "
+"button to open the settings dialog."
+msgstr ""
+
+#: C/gphotoframe.xml:522(title)
+msgid "Logging to an Online Service"
+msgstr "オンラインサービスの利用"
+
+#: C/gphotoframe.xml:523(para)
+msgid ""
+"In <application>GNOME Photo Frame</application> is possible to get logged to "
+"an online service listed in the <link linkend=\"pref-plugin\">Plugins tab</"
+"link> if you have an account."
+msgstr ""
+
+#: C/gphotoframe.xml:527(para)
+msgid ""
+"When <application>GNOME Photo Frame</application> is connected with your "
+"credentials to an online service, you could add displayed contents to your "
+"favorites, vote images and display photos from your account."
+msgstr ""
+
+#: C/gphotoframe.xml:532(para)
+msgid ""
+"To do this go to the <link linkend=\"pref-plugin\">Plugins tab</link>. Then "
+"highlight the row of the online service plugin you want to get logged in and "
+"press the <guilabel>Preferences</guilabel> button."
+msgstr ""
+
+#: C/gphotoframe.xml:537(para)
+msgid ""
+"Insert the information requested (user ID, e-mail address, password etc...), "
+"press <guibutton> Ok</guibutton> and follow the instructions provided by the "
+"dialog."
+msgstr ""
+
+#: C/gphotoframe.xml:543(para)
+msgid ""
+"Depending on the service you are logging in, it might be opened the default "
+"web browser so that you can give <application>GNOME Photo Frame</"
+"application> the required permissions through the online service's webpages. "
+"When you terminate this task, go back to <application>GNOME Photo Frame</"
+"application> and follow the instructions in the dialog."
+msgstr ""
+
+#: C/gphotoframe.xml:553(title)
+msgid "About <application>GNOME Photo Frame</application>"
+msgstr "<application>GNOME 写真フレーム</application>について"
+
+#: C/gphotoframe.xml:554(para)
+msgid ""
+"<application>GNOME Photo Frame</application> was written by yendo2006 "
+"(<email>hacker@gnome.org</email>). To find more information about "
+"<application>GNOME Photo Frame</application>, please visit the <ulink url="
+"\"http://code.google.com/p/gphotoframe/\" type=\"http\"><application>GNOME "
+"Photo Frame</application> Web page</ulink>."
+msgstr ""
+
+#: C/gphotoframe.xml:562(para)
+msgid ""
+"To report a bug or make a suggestion regarding this application or this "
+"manual, open a new issue in the <ulink url=\"http://code.google.com/p/"
+"gphotoframe/issues/list\" type=\"http\"><application>GNOME Photo Frame</"
+"application> issues page</ulink>."
+msgstr ""
+
+#: C/gphotoframe.xml:569(para)
+msgid ""
+"This program is distributed under the terms of the GNU General Public "
+"license version 3 as published by the Free Software Foundation. A <ulink url="
+"\"ghelp:gpl\" type=\"help\">copy of this license</ulink> is included with "
+"this documentation; another can be found in the file COPYING included with "
+"the source code of this program."
+msgstr ""
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/gphotoframe.xml:0(None)
+msgid "translator-credits"
+msgstr ""
