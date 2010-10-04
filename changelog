@@ -1,5 +1,6 @@
 2010-10-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* hekp/ja/ja.po: Added Japanese help translation.
 	* help/makedoc.py: Added a script for making GNOME documentation.
 	* help/C/*: Added new help documentation.  Thanks Cristian
 	  Marchi! (issue #66).
