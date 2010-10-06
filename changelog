@@ -1,3 +1,7 @@
+2010-10-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* extra/build_help.py: Added distutils.extras hacks.
+
 2010-10-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* hekp/ja/ja.po: Added Japanese help translation.
