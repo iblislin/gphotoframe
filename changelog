@@ -1,3 +1,7 @@
+2010-10-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* makedoc.py: Added support for xml2po.
+
 2010-10-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* COPYING, /gphotoframe.ui: Updated copyrights.

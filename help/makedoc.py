@@ -1,18 +1,27 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 # require: gnome-doc-utils, pkg-config
 #
+# for making the pot file
 # xml2po -o help.pot C/gphotoframe.xml C/gphotoframe-C.omf
+
+# for making locale
+# mkdir ja
+# cp help.pot ja/ja.pot
 # xml2po -p ja/ja.po -o ja/gphotoframe.xml C/gphotoframe.xml
+
+# for update
+# xml2po -u ja/ja.po C/gphotoframe.xml C/gphotoframe-C.omf
 
 import os
 import string
 
-path = os.getcwd()
-lang_list = [x for x in os.listdir(path) 
-             if os.path.isdir(os.path.join(path, x)) ]
+dir = os.path.abspath(os.path.dirname(__file__))
+lang_list = [ lang for lang in os.listdir(dir) 
+              if os.path.isdir(os.path.join(dir, lang)) ]
 
-command_template = """xsltproc \
+omf_template_str = """xsltproc \
 -o ./${lang}/gphotoframe-$lang.omf \
 --stringparam db2omf.basename gphotoframe \
 --stringparam db2omf.format 'docbook' \
@@ -20,13 +29,29 @@ command_template = """xsltproc \
 --stringparam db2omf.lang ${lang} \
 --stringparam db2omf.omf_dir "/usr/share/omf" \
 --stringparam db2omf.help_dir "/usr/share/gnome/help" \
---stringparam db2omf.omf_in ${path}/gphotoframe.omf.in \
+--stringparam db2omf.omf_in ${dir}/gphotoframe.omf.in \
 `pkg-config --variable db2omf gnome-doc-utils` \
-${path}/${lang}/gphotoframe.xml
+${dir}/${lang}/gphotoframe.xml
 """
 
-template = string.Template(command_template)
+xml_template_str = """xml2po \
+-p ${dir}/${lang}/${lang}.po \
+-o ${dir}/${lang}/gphotoframe.xml \
+${dir}/C/gphotoframe.xml
+"""
 
-for lang in lang_list:
-    command = template.substitute(lang=lang, path=path)
+omf_template = string.Template(omf_template_str)
+xml_template = string.Template(xml_template_str)
+
+for lang in sorted(lang_list):
+
+    # OMF
+    command = omf_template.substitute(lang=lang, dir=dir)
+    # print command
     os.system(command)
+
+    # XML with po
+    if lang != 'C':
+        command = xml_template.substitute(lang=lang, dir=dir)
+        #print command
+        os.system(command)
