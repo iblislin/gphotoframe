@@ -3,7 +3,7 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY appname "GNOME Photo Frame">
   <!ENTITY appversion "1.1">
-  <!ENTITY manrevision "2.0">
+  <!ENTITY manrevision "1.1">
   <!ENTITY date "October 2010">]>
   
   <!-- Information about the entities.
@@ -566,8 +566,8 @@
 <sect1 id="gphotoframe-about">
     <title>About <application>&appname;</application></title>
       <para>
-        <application>&appname;</application> was written by yendo2006
-        (<email>y-endo@ceres.dti.ne.jp</email>). To find more information about
+        <application>&appname;</application> was written by Yoshizumi Endo
+        <email>y-endo@ceres.dti.ne.jp</email>. To find more information about
         <application>&appname;</application>, please visit the <ulink
         url="http://code.google.com/p/gphotoframe/" type="http"><application>&appname;</application> Web
         page</ulink>.
@@ -585,7 +585,7 @@
       Foundation. A
       <ulink url="ghelp:gpl" type="help">copy of this license</ulink>
       is included with this documentation; another can be found in the file
-      COPYING included with the source code of this program.
+      GPL included with the source code of this program.
       </para>
  </sect1>
 
