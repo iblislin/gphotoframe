@@ -1,7 +1,6 @@
 2010-10-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* help/C/gphotoframe.xml: Changed manrevision to 1.1,
-	  COPYING -> GPL, yendo0206 -> Yoshizumi Endo.
+	* help/C/gphotoframe.xml: Added some modifications.
 	* help/*: Updated help documents.  Added italian help translation.
 	  Thanks Cristian Marchi!
 	* makedoc.py: Added support for xml2po.

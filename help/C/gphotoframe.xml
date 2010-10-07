@@ -173,7 +173,7 @@
            <caption>
            <para>
            The tooltip and the icons showed on the photo frame if the source
-           is flickr photo sharing website
+           is Flickr photo sharing website
            </para>
            </caption>
 	</mediaobject>
@@ -191,7 +191,7 @@
           <guiicon>fav-icon</guiicon> &mdash; this icon is located in the
           upper left corner of the photo frame. If you are
           <link linkend="gphotoframe-onlinelog">logged in</link> with your
-          userID to an internet service like flickr, you could add an image
+          userID to an internet service like Flickr, you could add an image
           to your's profile favorites with a click on this icon.
           The icon will then light up indicating that
           the image has been added to your favorites.
@@ -200,9 +200,9 @@
           Click again on that icon and the image will be removed from your favorites.
         </para>
         <para>
-          If the contents comes from a local source (such as <application>
-          F-Spot</application> or <application>Shotwell</application> database, or a
-          folder), there will be a row of five icons so that you can assign a personal vote
+          If the contents comes from photo manager applications (such as <application>
+          F-Spot</application> or <application>Shotwell</application> database), 
+          there will be a row of five icons so that you can assign a personal vote
           to the content displayed with a click on them.
         </para>
       </listitem>
@@ -217,7 +217,7 @@
       </listitem>
       <listitem>
         <para>
-          <guiicon>info-icon</guiicon> &mdash; this icon is located on the bottom left
+          <guiicon>info-icon</guiicon> &mdash; this icon is located on the bottom right
           of the frame and depict a camera. If you hoover the mouse on it, a tooltip will
           be displayed containing all the image's metadata (if available) such as camera
           model and maker, shutter speed, aperture, etc...
@@ -225,7 +225,7 @@
       </listitem>
       <listitem>
         <para>
-          <guiicon>service-icon</guiicon> &mdash; this icon is displayed in the
+          <guiicon>source-icon</guiicon> &mdash; this icon is displayed in the
           upper right corner of the frame and shows the symbol of the service
           from where the content is retrieved. With a click on the icon, the
           source will open in your system's default web browser (if the content comes from an
@@ -234,6 +234,13 @@
         </para>
       </listitem>
     </itemizedlist>
+    <note>
+      <title>Clutter support</title>
+      <para>
+        If your <application>&appname;</application> have no clutter
+        support, these icons and functions are not supported.
+      </para>
+    </note>
   </sect1>
 
   <sect1 id="gphotoframe-mainmenu">
@@ -279,15 +286,15 @@
         </menuchoice>
         </para>
         <para>
-        Enable the fullscreen visualization of
+        Toggle the fullscreen visualization of
         <application>&appname;</application>.
         </para>
       </listitem>
       <listitem>
         <para><guimenuitem>Fix photo frame</guimenuitem></para>
         <para>
-        Fix the photo frame so that it will be visible only
-        in the current workspace.
+        Fix the photo frame so that the movement with the mouse is
+        prevented, and it is not displayed in the pager.
         </para>
       </listitem>
       <listitem>
@@ -320,6 +327,12 @@
         <para>Terminates the <application>&appname;</application> application.</para>
       </listitem>
     </itemizedlist>
+    <note>
+      <title></title>
+      <para>
+        When <application>&appname;</application> is in fix mode, all shortcut keys are invalid.
+      </para>
+    </note>
   </sect1>
 
   <sect1 id="gphotoframe-preferences">
@@ -401,7 +414,7 @@
       </listitem>
       <listitem>
         <para>
-        <interface>flickr</interface> &mdash; display the contents from the popular
+        <interface>Flickr</interface> &mdash; display the contents from the popular
         photo sharing service. This plugin is highly customizable as you can look for
         photos by specifying a tag, a group, a user or by
         showing the most interesting or the latest content.
@@ -438,7 +451,7 @@
       </listitem>
       <listitem>
         <para>
-        <interface>tumblr</interface> &mdash; shows images from the "share anything"
+        <interface>Tumblr</interface> &mdash; shows images from the "share anything"
         online service.
         </para>
       </listitem>
@@ -462,8 +475,8 @@
         <para>
         In the dialog that will appear, select a source from the pop-up list.
         Depending on the type of source selected (folder, <application>F-Spot</application>
-        or <application>Shotwell</application> database, internet sharing services as flickr,
-        tumblr or Picasa) different settings are available. Configure them to your liking and then press
+        or <application>Shotwell</application> database, internet sharing services as Flickr,
+        Tumblr or Picasa) different settings are available. Configure them to your liking and then press
         <guibutton>Ok</guibutton>. A new source will be added to the list and the new content
         will start to be displayed on the photo frame.
         </para>
