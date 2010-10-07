@@ -1,5 +1,7 @@
 2010-10-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* help/*: Updated help documents.  Added italian help translation.
+	  Thanks Cristian Marchi!
 	* makedoc.py: Added support for xml2po.
 
 2010-10-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
@@ -18,7 +20,7 @@
 2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* it.po, image/tooltip.py, preferences/plugin.py: Updated
-	translation.  Thanks Cristian Marchi! (issue #65)
+	  translation.  Thanks Cristian Marchi! (issue #65)
 
 2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
