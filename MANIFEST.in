@@ -4,6 +4,6 @@ include GPL
 include gphotoframe-screensaver
 recursive-include share/ *.ui *.in *.png *.svg
 recursive-include po/ *.in *.po
-recursive-include help/ *.in *.py *.po *.png
+recursive-include help/ *.in *.py *.po *.png *.xcf
 recursive-include help/C *.xml
 recursive-include lib/extra *.py
