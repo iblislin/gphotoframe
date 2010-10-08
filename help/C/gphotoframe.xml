@@ -153,7 +153,7 @@
     The photo frame is the main window of <application>&appname;</application>.
     </para>
     <para>
-    When an image or photo is diplayed, hoovering on it with the mouse
+    When an image or photo is diplayed, hovering on it with the mouse
     pointer will make some icons and a tooltip appears as showed in
     <xref linkend="gphotoframe-fig2" />. The tooltip
     shows some basic informations about the content as the author name,
@@ -162,13 +162,13 @@
 
     <figure id="gphotoframe-fig2">
     <title>The Photo Frame</title>
-	<screenshot>
-	  <mediaobject>
-		<imageobject>
+        <screenshot>
+          <mediaobject>
+                <imageobject>
           <imagedata fileref="figures/gphotoframe_fig2.png" format="PNG"/>
-		</imageobject>
+                </imageobject>
         <textobject>
-	   <phrase>Shows the photo frame with tooltip and icons</phrase>
+           <phrase>Shows the photo frame with tooltip and icons</phrase>
         </textobject>
            <caption>
            <para>
@@ -176,9 +176,9 @@
            is Flickr photo sharing website
            </para>
            </caption>
-	</mediaobject>
+        </mediaobject>
     </screenshot>
-	</figure>
+        </figure>
 
     <para>
     The number and type of icons displayed on the frame corners depends
@@ -218,7 +218,7 @@
       <listitem>
         <para>
           <guiicon>info-icon</guiicon> &mdash; this icon is located on the bottom right
-          of the frame and depict a camera. If you hoover the mouse on it, a tooltip will
+          of the frame and depict a camera. If you hover the mouse on it, a tooltip will
           be displayed containing all the image's metadata (if available) such as camera
           model and maker, shutter speed, aperture, etc...
         </para>
@@ -235,10 +235,10 @@
       </listitem>
     </itemizedlist>
     <note>
-      <title>Clutter support</title>
+      <title>Clutter library support</title>
       <para>
-        If your <application>&appname;</application> have no clutter
-        support, these icons and functions are not supported.
+        Without the <application>Clutter library</application> support,
+        these icons will not be displayed.
       </para>
     </note>
   </sect1>
@@ -296,6 +296,12 @@
         Fix the photo frame so that the movement with the mouse is
         prevented, and it is not displayed in the pager.
         </para>
+        <note>
+          <title></title>
+          <para>
+            When <application>&appname;</application> is in fix mode, all shortcut keys are invalid.
+          </para>
+        </note>
       </listitem>
       <listitem>
         <para><guimenuitem>Preferences</guimenuitem></para>
@@ -327,12 +333,6 @@
         <para>Terminates the <application>&appname;</application> application.</para>
       </listitem>
     </itemizedlist>
-    <note>
-      <title></title>
-      <para>
-        When <application>&appname;</application> is in fix mode, all shortcut keys are invalid.
-      </para>
-    </note>
   </sect1>
 
   <sect1 id="gphotoframe-preferences">
