@@ -1,3 +1,7 @@
+2010-10-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* setup.py: Fixed an import error (issue #70).
+
 2010-10-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* help/ja/figures/*: Added Japanese localized figures.
