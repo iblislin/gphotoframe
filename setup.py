@@ -5,7 +5,7 @@ import glob
 from distutils.core import setup
 from DistUtilsExtra.command import *
 import lib.constants as constants
-import lib.utils.build_help
+import lib.extra.build_help
 
 for file in glob.glob('share/*.*'):
     os.chmod(file, 0644)
