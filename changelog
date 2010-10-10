@@ -1,5 +1,6 @@
 2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* setup.py, makedoc.py: Added a help documentation function.
 	* help/ja/ja.po: Update japanese translation of help.
 
 2010-10-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
