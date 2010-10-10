@@ -1,3 +1,8 @@
+2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* frame.py (PhotoFrame): Changed the window type hint in fix mode
+	  from "DOCK" to "DESKTOP" (issue #68).
+
 2010-10-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* setup.py: Fixed an import error (issue #70).
