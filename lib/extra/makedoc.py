@@ -77,8 +77,8 @@ class UpdatePO(CommandTemplate):
 
 class MakeDocument(object):
 
-    def __init__(self, dir=None):
-        self.dir = dir if dir else os.path.abspath(os.path.dirname(__file__))
+    def __init__(self, dir=os.path.dirname(__file__)):
+        self.dir = os.path.abspath(dir)
         self.lang_list = [ lang for lang in os.listdir(self.dir) 
                            if os.path.isdir(os.path.join(self.dir, lang)) ]
 
