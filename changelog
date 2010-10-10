@@ -1,5 +1,6 @@
 2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* help/ja/ja.po: Update japanese translation of help.
 	* frame.py (PhotoFrame): Changed the window type hint in fix mode
 	  from "DOCK" to "DESKTOP" (issue #68).
 
