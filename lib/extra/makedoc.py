@@ -35,7 +35,7 @@ class MakeOMF(CommandTemplate):
     def _get_template_str(self):
         self.template_str = (
             """xsltproc """
-            """-o ./${lang}/gphotoframe-$lang.omf """
+            """-o ${dir}/${lang}/gphotoframe-$lang.omf """
             """--stringparam db2omf.basename gphotoframe """
             """--stringparam db2omf.format 'docbook' """
             """--stringparam db2omf.dtd """
