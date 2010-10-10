@@ -28,7 +28,7 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.photolist = photolist
-        self.fixed_window_hint = gtk.gdk.WINDOW_TYPE_HINT_DESKTOP
+        self.fixed_window_hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK
 
         gui = gtk.Builder()
         gui.add_objects_from_file(constants.UI_FILE, ["window"])
