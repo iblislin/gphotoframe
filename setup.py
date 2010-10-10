@@ -4,11 +4,16 @@ import os
 import glob
 from distutils.core import setup
 from DistUtilsExtra.command import *
+
 import lib.constants as constants
 import lib.extra.build_help
+from lib.extra.makedoc import MakeDocument
 
 for file in glob.glob('share/*.*'):
     os.chmod(file, 0644)
+
+makedoc = MakeDocument('./help')
+makedoc.run()
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,
