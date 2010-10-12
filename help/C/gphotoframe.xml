@@ -106,7 +106,7 @@
     </para>
     <para>
     Alternatively start <application>&appname;</application> from the
-    shell with the <application>gphotoframe</application> command.
+    shell with the <command>gphotoframe</command> command.
     </para>
     <para>
     As the <application>&appname;</application> application is started and the 
