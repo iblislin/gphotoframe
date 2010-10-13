@@ -8,7 +8,10 @@ except ImportError:
     cluttergtk = Null()
 
 from ..utils.config import GConf
-from actors import *
+from actor.actors import *
+from actor.source import *
+from actor.info import *
+from actor.favicon import *
 from actor.trash import *
 from imagegtk import *
 
