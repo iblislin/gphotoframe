@@ -7,7 +7,9 @@ share/gphotoframe.schemas.in
 lib/menu.py
 lib/preferences/photosource.py
 lib/preferences/plugin.py
-lib/image/actors.py
+lib/image/actor/favicon.py
+lib/image/actor/info.py
+lib/image/actor/source.py
 lib/image/actor/trash.py
 lib/image/tooltip.py
 lib/plugins/base.py
