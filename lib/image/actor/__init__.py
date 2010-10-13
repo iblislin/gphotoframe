@@ -1,1 +1,1 @@
-__all__ = ["actors", "favicon", "info", "source", "trash"]
+__all__ = ["base", "favicon", "info", "source", "trash"]
