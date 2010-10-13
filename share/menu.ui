@@ -69,6 +69,15 @@
       </object>
     </child>
     <child>
+      <object class="GtkImageMenuItem" id="menu_help">
+        <property name="label">gtk-help</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_help"/>
+      </object>
+    </child>
+    <child>
       <object class="GtkImageMenuItem" id="menuitem2">
         <property name="label">gtk-about</property>
         <property name="visible">True</property>

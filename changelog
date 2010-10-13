@@ -1,7 +1,47 @@
+2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* setup.py, makedoc.py: Added a help documentation building
+	  function.
+	* help/ja/ja.po: Update japanese translation of help.
+
+2010-10-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* setup.py: Fixed an import error (issue #70).
+
+2010-10-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/ja/figures/*: Added Japanese localized figures.
+	* help/C/*: Updated help documentation.
+
+2010-10-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/C/gphotoframe.xml: Added some modifications.
+	* help/*: Updated help documents.  Added italian help translation.
+	  Thanks Cristian Marchi!
+	* makedoc.py: Added support for xml2po.
+
+2010-10-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* COPYING, /gphotoframe.ui: Updated copyrights.
+	* extra/build_help.py: Added distutils.extras hacks.
+
+2010-10-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* hekp/ja/ja.po: Added Japanese help translation.
+	* help/makedoc.py: Added a script for making GNOME documentation.
+	* help/C/*: Added new help documentation.  Thanks Cristian
+	  Marchi! (issue #66).
+	* menu.py, menu.ui: Added new help menu item.
+
 2010-10-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actors.py: Added new class TrashDialog.
 	* frame.py: Added the default icon configuration.
+
+2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* it.po, image/tooltip.py, preferences/plugin.py: Updated
+	  translation.  Thanks Cristian Marchi! (issue #65)
 
 2010-09-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
