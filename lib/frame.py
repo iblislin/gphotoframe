@@ -31,6 +31,7 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.photolist = photolist
+        self.fixed_window_hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK
 
         gui = gtk.Builder()
         gui.add_objects_from_file(constants.UI_FILE, ["window"])
@@ -106,7 +107,7 @@ class PhotoFrame(object):
 
     def _set_window_state(self):
         if self.conf.get_bool('window_fix'):
-            self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DOCK)
+            self.window.set_type_hint(self.fixed_window_hint)
         self.window.set_keep_below(True)
 
     def _set_accelerator(self):
@@ -173,7 +174,7 @@ class PhotoFrame(object):
         return False
 
     def _change_window_fix_cb(self, client, id, entry, data):
-        hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK \
+        hint = self.fixed_window_hint \
             if entry.value.get_bool() else gtk.gdk.WINDOW_TYPE_HINT_NORMAL
 
         if hint == self.window.get_type_hint(): return

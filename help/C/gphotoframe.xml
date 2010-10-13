@@ -1,0 +1,604 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY appname "GNOME Photo Frame">
+  <!ENTITY appversion "1.1">
+  <!ENTITY manrevision "1.1">
+  <!ENTITY date "October 2010">]>
+  
+  <!-- Information about the entities.
+       The legal.xml file contains legal information, there is no need to edit the file. 
+       Use the applicationversion entity to specify the version of the application.
+       Use the manrevision entity to specify the revision number of this manual.
+       Use the date entity to specify the release date of this manual.
+       Use the application entity to specify the name of the application. -->
+
+
+<article id="index" lang="en">
+
+  <articleinfo>
+  <title><application>&appname;</application> Application Manual</title>
+    <abstract role="description">
+      <para><application>&appname;</application> is an image viewer application for the GNOME desktop.</para>
+    </abstract>
+
+    <copyright>
+      <year>2010</year>
+      <holder>Cristian Marchi</holder>
+    </copyright>
+
+    <authorgroup>
+      <author role="maintainer">
+        <firstname>Cristian</firstname>
+        <surname>Marchi</surname>
+        <affiliation>
+          <address>
+            <email>cri.penta@gmail.com</email>
+          </address>
+        </affiliation>
+      </author>
+   </authorgroup>
+
+    <legalnotice>
+      <title>Legal Notices</title>
+
+      <para>
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the GNU Free Documentation
+        License (GFDL), Version 1.1 or any later version published
+        by the Free Software Foundation with no Invariant Sections,
+        no Front-Cover Texts, and no Back-Cover Texts.  You can find
+        a copy of the GFDL at this <ulink type="help"
+        url="ghelp:fdl">link</ulink> or in the file COPYING-DOCS
+        distributed with this manual.
+      </para>
+    </legalnotice>
+
+    <revhistory>
+      <revision>
+        <revnumber>&appname; Manual &manrevision;</revnumber>
+        <date>2010-10-03</date>
+      </revision>
+    </revhistory>
+
+   <releaseinfo>This manual describes version &appversion; of &appname;.</releaseinfo>
+
+  </articleinfo>
+
+  <sect1 id="gphotoframe-introduction">
+    <title>Introduction</title>
+    <para>
+    <application>&appname;</application> is an image viewer application for your GNOME
+    desktop.
+    </para>
+
+    <informalfigure id="gphotoframe-fig1">
+    <screenshot>
+      <mediaobject>
+    	 <imageobject><imagedata fileref="figures/gphotoframe_fig1.png"
+    		format="PNG"/>
+    	 </imageobject>
+       	 <textobject>
+    		<phrase>Shows <application>&appname;</application> application on GNOME desktop</phrase>
+    	 </textobject>
+      </mediaobject>
+    </screenshot>
+    </informalfigure>
+
+    <para>
+    The <application>&appname;</application> application is able to show a frame
+    on your desktop in which are displayed images and photos gathered from user
+    specified local and online sources.
+    </para>
+
+    <para>
+    This manual describes how to set up and use the <application>&appname;</application> application.
+    </para>
+  </sect1>
+
+  <sect1 id="gphotoframe-starting">
+  <title>Starting <application>&appname;</application></title>
+    <para>
+    To start <application>&appname;</application> select the <menuchoice>
+    <guimenu>Applications</guimenu><guisubmenu>Graphics</guisubmenu>
+    <guimenuitem>Photo Frame</guimenuitem></menuchoice> entry from the main menu.
+    </para>
+    <para>
+    Alternatively start <application>&appname;</application> from the
+    shell with the <command>gphotoframe</command> command.
+    </para>
+    <para>
+    As the <application>&appname;</application> application is started and the 
+    <link linkend="gphotoframe-photo-frame">photo frame</link> displayed, you could start to add
+    sources. Do this in the following way:
+    </para>
+
+    <orderedlist>
+      <listitem>
+        <para>
+        Right-click on the photo frame and select <guilabel>Preferences</guilabel> from
+        the <application>&appname;</application> main menu.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Select the <guilabel>Photos</guilabel> tab and press the 
+        <guibutton>New</guibutton> button.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        In the dialog that will open, select one of the <link linkend="pref-plugin">many sources</link>, adjust as desired the
+        options, then press <guibutton>Ok</guibutton>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        Go back to the photo frame by closing the <interface>Preferences</interface> dialog with the <guibutton>Close</guibutton> button. 
+        </para>
+      </listitem>
+    </orderedlist>
+        <note>
+        <title></title>
+          <para>
+          Some sources may require an active internet connection in order to display images.
+          </para>
+        </note>
+  </sect1>
+
+  <sect1 id="gphotoframe-photo-frame">
+  <title>Photo Frame</title>
+    <para>
+    The photo frame is the main window of <application>&appname;</application>.
+    </para>
+    <para>
+    When an image or photo is diplayed, hovering on it with the mouse
+    pointer will make some icons and a tooltip appears as showed in
+    <xref linkend="gphotoframe-fig2" />. The tooltip
+    shows some basic informations about the content as the author name,
+    the image title and the date taken.
+    </para>
+
+    <figure id="gphotoframe-fig2">
+    <title>The Photo Frame</title>
+        <screenshot>
+          <mediaobject>
+                <imageobject>
+          <imagedata fileref="figures/gphotoframe_fig2.png" format="PNG"/>
+                </imageobject>
+        <textobject>
+           <phrase>Shows the photo frame with tooltip and icons</phrase>
+        </textobject>
+           <caption>
+           <para>
+           The tooltip and the icons showed on the photo frame if the source
+           is Flickr photo sharing website
+           </para>
+           </caption>
+        </mediaobject>
+    </screenshot>
+        </figure>
+
+    <para>
+    The number and type of icons displayed on the frame corners depends
+    on the content's source. They could be:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <guiicon>fav-icon</guiicon> &mdash; this icon is located in the
+          upper left corner of the photo frame. If you are
+          <link linkend="gphotoframe-onlinelog">logged in</link> with your
+          userID to an internet service like Flickr, you could add an image
+          to your's profile favorites with a click on this icon.
+          The icon will then light up indicating that
+          the image has been added to your favorites.
+          </para>
+          <para>
+          Click again on that icon and the image will be removed from your favorites.
+        </para>
+        <para>
+          If the contents comes from photo manager applications (such as <application>
+          F-Spot</application> or <application>Shotwell</application> database), 
+          there will be a row of five icons so that you can assign a personal vote
+          to the content displayed with a click on them.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <guiicon>geo-icon</guiicon> &mdash; this is a earth shaped
+          icon that appears on the bottom right of the frame if GPS (Global
+          Positioning System) data are available for the content currently
+          displayed. Click on the icon to open the default web browser in which
+          the content's geographical position will be displayed in google maps.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <guiicon>info-icon</guiicon> &mdash; this icon is located on the bottom right
+          of the frame and depict a camera. If you hover the mouse on it, a tooltip will
+          be displayed containing all the image's metadata (if available) such as camera
+          model and maker, shutter speed, aperture, etc...
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <guiicon>source-icon</guiicon> &mdash; this icon is displayed in the
+          upper right corner of the frame and shows the symbol of the service
+          from where the content is retrieved. With a click on the icon, the
+          source will open in your system's default web browser (if the content comes from an
+          online service), and in your system's default image viewer (if the
+          content is local).
+        </para>
+      </listitem>
+    </itemizedlist>
+    <note>
+      <title>Clutter library support</title>
+      <para>
+        Without the <application>Clutter library</application> support,
+        these icons will not be displayed.
+      </para>
+    </note>
+  </sect1>
+
+  <sect1 id="gphotoframe-mainmenu">
+  <title><application>&appname;</application> Application Menu</title>
+    <para>
+    The <application>&appname;</application> menu could be opened with a right click
+    inside the photo frame.
+    </para>
+    <para>
+    In the menu there are the following entries:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        <menuchoice>
+          <shortcut>
+            <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>
+          </shortcut>
+          <guimenuitem>Open</guimenuitem>
+        </menuchoice>
+        </para>
+        <para>
+        Opens the displayed image in a web browser (if the image comes
+        from an online service) or in the default image viewer (if the image
+        comes from the local machine).
+        </para>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>Open Recent</guimenuitem></para>
+        <para>Shows a list of recently displayed items.</para>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>Next Photo</guimenuitem></para>
+        <para>Jump to the next image in the queue.</para>
+      </listitem>
+      <listitem>
+        <para>
+        <menuchoice>
+          <shortcut>
+            <keycap>F11</keycap>
+          </shortcut>
+          <guimenuitem>Full Screen</guimenuitem>
+        </menuchoice>
+        </para>
+        <para>
+        Toggle the fullscreen visualization of
+        <application>&appname;</application>.
+        </para>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>Fix photo frame</guimenuitem></para>
+        <para>
+        Fix the photo frame so that the movement with the mouse is
+        prevented, and it is not displayed in the pager.
+        </para>
+        <note>
+          <title></title>
+          <para>
+            When <application>&appname;</application> is in fix mode, all shortcut keys are invalid.
+          </para>
+        </note>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>Preferences</guimenuitem></para>
+        <para>
+        Opens the <interface>Preferences</interface> dialog: see <xref linkend="gphotoframe-preferences" />
+        for detailed informations.
+        </para>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>About</guimenuitem></para>
+        <para>
+        Shows the application's developers and contributors informations
+        as well as the version number.
+        </para>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>Help</guimenuitem></para>
+        <para>Open this manual.</para>
+      </listitem>
+      <listitem>
+        <para>
+        <menuchoice>
+          <shortcut>
+            <keycombo><keycap>Ctrl</keycap><keycap>Q</keycap></keycombo>
+          </shortcut>
+          <guimenuitem>Quit</guimenuitem>
+        </menuchoice>
+        </para>
+        <para>Terminates the <application>&appname;</application> application.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="gphotoframe-preferences">
+  <title>Setting the Preferences</title>
+    <para>The <interface>Preferences</interface> dialog is accessible with a right
+    click inside the photo frame and selecting <guimenuitem>Preferences
+    </guimenuitem> from the menu.
+    </para>
+    <para>
+    In the <interface>Preferences</interface> dialog there are three tabs.
+    </para>
+
+    <sect2 id="pref-general">
+    <title>General tab</title>
+    <para>
+    In the <guilabel>General</guilabel> tab is possible to set some general
+    options for <application>&appname;</application>.
+    </para>
+    <para>The <guilabel>General</guilabel> tab is composed of three subsections:</para>
+    <itemizedlist>
+      <listitem>
+        <para><interface>Interval</interface></para>
+        <para>
+        Here is possible to set the visualization time, in seconds, of an image for the <interface>window
+        mode</interface> and for the <interface>full screen mode</interface>.
+        </para>
+      </listitem>
+      <listitem>
+        <para><interface>Maximum Display Size</interface></para>
+        <para>
+        The maximum display size of the displayed image could be set in the <interface>width</interface>
+        and <interface>height</interface> fields.
+        </para>
+        <note>
+        <title>Image resizing</title>
+          <para>
+          The original image is always resized (not cropped). In particular, the image is scaled down so that it's 
+          smallest dimension (<interface>width</interface> or <interface>height</interface>)
+          fits the value set in the <guilabel>General</guilabel> tab.
+          </para>
+      </note>
+      </listitem>
+      <listitem>
+        <para><interface>Desktop</interface></para>
+        <para>
+        Check the first option to make <application>&appname;</application> visible on all workspaces.
+        </para>
+        <para>
+        Check the second option to load automatically <application>&appname;</application> on next system's startup.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+
+    <sect2 id="pref-plugin">
+    <title>Plugins tab</title>
+      <para>This tab shows the list of plugins currently installed on your system.</para>
+      <para>
+      The <interface>plugins</interface> extends the capability of <application>&appname;</application>
+      by making possible to get more contents from various internet
+      services as well as locally from your computer.
+      </para>
+      <para>
+      <interface>Plugins</interface> can be enabled or disabled with a click on the check
+      box on the left of the plugin's name.
+      With a click on the <guibutton>About</guibutton> button in the bottom right when a plugin row
+      is highlighted, will display a dialog containing some information regarding the
+      selected plugin.
+      </para>
+      <para>
+      <application>&appname;</application> ships with the following pre-installed plugins:
+      </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        <interface>F-Spot</interface> &mdash; shows in <application>&appname;</application> 
+        the images in your <application>F-Spot</application> database.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>Flickr</interface> &mdash; display the contents from the popular
+        photo sharing service. This plugin is highly customizable as you can look for
+        photos by specifying a tag, a group, a user or by
+        showing the most interesting or the latest content.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>Folder</interface> &mdash; with this plugin you could add as a source for
+        content a folder that contains image files on your computer.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>Picasa Web</interface> &mdash; display the contents from the google
+        photo hosting service.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>RSS and Atom feed</interface> &mdash; shows images from a RSS or Atom feed.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>Ruins clock</interface> &mdash; gather images of old and abandoned clocks
+        from Haikyo Clock website.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>Shotwell</interface> &mdash; shows in <application>&appname;</application> the images
+        in your <application>Shotwell</application> database.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <interface>Tumblr</interface> &mdash; shows images from the "share anything"
+        online service.
+        </para>
+      </listitem>
+
+    </itemizedlist>
+    </sect2>
+
+    <sect2 id="pref-photos">
+    <title>Photos tab</title>
+      <para>
+      From the <guilabel>Photos</guilabel> tab you could manage 
+      (<link linkend="add-source">Add</link>, <link linkend="delete-source">Delete</link> 
+      or <link linkend="edit-source">Edit</link>) the content's sources.
+      </para>
+      <sect3 id="add-source">
+      <title>Adding a source</title>
+        <para>
+        To add a source of contents to <application>&appname;</application>,
+        click the <guibutton>New</guibutton> button.
+        </para>
+        <para>
+        In the dialog that will appear, select a source from the pop-up list.
+        Depending on the type of source selected (folder, <application>F-Spot</application>
+        or <application>Shotwell</application> database, internet sharing services as Flickr,
+        Tumblr or Picasa) different settings are available. Configure them to your liking and then press
+        <guibutton>Ok</guibutton>. A new source will be added to the list and the new content
+        will start to be displayed on the photo frame.
+        </para>
+        <para>
+        If you want to add more sources just repeat this process.
+        </para>
+        <note>
+        <title>Weight</title>
+          <para>
+          One of the most important setting if you have more than one source, is
+          <interface>weight</interface>: the content from the source with the highest weight will
+          be displayed more frequently.
+          </para>
+        </note>
+      </sect3>
+      <sect3 id="delete-source">
+        <title>Deleting a source</title>
+        <para>
+        To remove a source just highlight the relative row in the list and press the
+        <guibutton>Delete</guibutton> button.
+        </para>
+      </sect3>
+      <sect3 id="edit-source">
+        <title>Editing a source</title>
+        <para>
+        To modify the settings for an existing source, highlight it's name with a click in the list
+        and press the <guibutton>Preferences</guibutton> button to open the settings dialog.
+        </para>
+      </sect3>
+
+   </sect2>
+
+</sect1>
+
+<sect1 id="gphotoframe-onlinelog">
+  <title>Logging to an Online Service</title>
+  <para>
+  In <application>&appname;</application> is possible to get logged in to an online service listed in the
+  <link linkend="pref-plugin">Plugins tab</link> if you have an account.
+  </para>
+  <para>
+  When <application>&appname;</application> is connected with your credentials to an online service,
+  you could add displayed contents to your favorites, vote images and display photos
+  from your account.
+  </para>
+  <para>
+  To do so follow these steps:
+  </para>
+  <orderedlist>
+    <listitem>
+      <para>
+      Go to the <link linkend="pref-plugin">Plugins tab</link> and highlight
+      the row of the online service plugin you want to get logged in.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      Press the <guibutton>Preferences</guibutton> button to open the login dialog.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      Insert the information requested (user ID, e-mail address, password etc...).
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      Press <guibutton>Ok</guibutton> and follow the instructions provided
+      by the dialog.
+      </para>
+    </listitem>
+  </orderedlist>
+
+  <note>
+  <title></title>
+    <para>
+      Depending on the service you are logging in, a web browser window might be opened so
+      that you can give <application>&appname;</application> the required permissions through the online
+      service's webpages. When you terminate this task, go back to <application>&appname;</application> and
+      follow the instructions in the dialog.
+    </para>
+  </note>
+
+</sect1>
+
+<sect1 id="gphotoframe-screensaver">
+  <title>Using <application>&appname;</application> as Screensaver</title>
+  <para><application>&appname;</application> can also be used as screensaver.</para>
+  <para>The screensaver should be configured
+  automatically at installation time.</para>
+  <para>
+  Open the application that manages the screensavers in your system and
+  you should see an entry named <interface>Photo Frame</interface>. Select it
+  and that's all. The next time the screensaver will starts, the <link linkend="pref-photos">
+  sources preferences</link> will be read as configured from the main window of <application>&appname;</application>
+  and consequently will display the contents.
+  </para>
+</sect1>
+
+<sect1 id="gphotoframe-about">
+    <title>About <application>&appname;</application></title>
+      <para>
+        <application>&appname;</application> was written by Yoshizumi Endo
+        <email>y-endo@ceres.dti.ne.jp</email>. To find more information about
+        <application>&appname;</application>, please visit the <ulink
+        url="http://code.google.com/p/gphotoframe/" type="http"><application>&appname;</application> Web
+        page</ulink>.
+      </para>
+
+      <para>
+      To report a bug or make a suggestion regarding this application or
+      this manual, open a new issue in the
+      <ulink url="http://code.google.com/p/gphotoframe/issues/list" type="http"><application>&appname;</application>
+      issues page</ulink>.
+      </para>
+
+      <para>This program is distributed under the terms of the GNU
+      General Public license version 3 as published by the Free Software
+      Foundation. A
+      <ulink url="ghelp:gpl" type="help">copy of this license</ulink>
+      is included with this documentation; another can be found in the file
+      GPL included with the source code of this program.
+      </para>
+ </sect1>
+
+</article>

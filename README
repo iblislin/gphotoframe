@@ -21,6 +21,8 @@ It shows pictures from:
 - Twisted: twisted.internet & twisted.web
 - PyXDG: except v.0.16 which has a bug
 - Python-Distutils-Extra: for installation
+- gnome-doc-utils: for help documentation
+- pkg-config: for help documentation
 
 ** Recommends
 

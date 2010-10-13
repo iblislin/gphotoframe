@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-27 18:40+0900\n"
+"POT-Creation-Date: 2010-10-01 01:50+0900\n"
 "PO-Revision-Date: 2010-05-27 19:43+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -501,7 +501,8 @@ msgstr "Weight"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "The photo source should be ignored if the weight is 0."
 
-#: ../lib/preferences/plugin.py:89
+#. TRANSLATORS: %s is the name of the Plugin
+#: ../lib/preferences/plugin.py:90
 #, fuzzy, python-format
 msgid "%s Plugin"
 msgstr "Plug-ins"
@@ -530,53 +531,59 @@ msgstr ""
 msgid "Rate the photo"
 msgstr ""
 
-#: ../lib/image/tooltip.py:80
-msgid "Maker"
+#. TRANSLATORS: %s is the name of the author of the photo
+#: ../lib/image/tooltip.py:52
+#, python-format
+msgid "by %s\n"
 msgstr ""
 
 #: ../lib/image/tooltip.py:81
-msgid "Model"
+msgid "Maker"
 msgstr ""
 
 #: ../lib/image/tooltip.py:82
+msgid "Model"
+msgstr ""
+
+#: ../lib/image/tooltip.py:83
 #, fuzzy
 msgid "Date"
 msgstr "Rate"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:84
 msgid "Focal Length"
 msgstr ""
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:84
 msgid "mm"
 msgstr ""
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:85
 msgid "Exposure"
 msgstr ""
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:85
 #, fuzzy
 msgid "sec"
 msgstr "seconds"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:86
 msgid "Aperture"
 msgstr ""
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:87
 msgid "ISO"
 msgstr ""
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:88
 msgid "Exposure Bias"
 msgstr ""
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:89
 msgid "Flash"
 msgstr ""
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:90
 msgid "Flash Bias"
 msgstr ""
 
