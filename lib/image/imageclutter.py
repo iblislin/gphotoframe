@@ -8,11 +8,7 @@ except ImportError:
     cluttergtk = Null()
 
 from ..utils.config import GConf
-from actor.actors import *
-from actor.source import *
-from actor.info import *
-from actor.favicon import *
-from actor.trash import *
+from actor import *
 from imagegtk import *
 
 class PhotoImageClutter(PhotoImage):
@@ -26,14 +22,14 @@ class PhotoImageClutter(PhotoImage):
         self.stage.set_color(clutter.color_from_string(color))
         self.embed.show()
 
-        self.photo_image = Texture(self.stage)
+        self.photo_image = actors.Texture(self.stage)
         self.photo_image.show()
-        self.actors = [ ActorSourceIcon(self.stage, self.tooltip),
-                        ActorGeoIcon(self.stage, self.tooltip),
-                        ActorInfoIcon(self.stage, self.tooltip),
-                        ActorTrashIcon(self.stage, self.tooltip),
-                        ActorRemoveCatalogIcon(self.stage, self.tooltip),
-                        ActorFavIcon(self.stage, self.tooltip), ]
+        self.actors = [ source.ActorSourceIcon(self.stage, self.tooltip),
+                        info.ActorGeoIcon(self.stage, self.tooltip),
+                        info.ActorInfoIcon(self.stage, self.tooltip),
+                        trash.ActorTrashIcon(self.stage, self.tooltip),
+                        trash.ActorRemoveCatalogIcon(self.stage, self.tooltip),
+                        favicon.ActorFavIcon(self.stage, self.tooltip), ]
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
