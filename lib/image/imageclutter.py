@@ -22,7 +22,7 @@ class PhotoImageClutter(PhotoImage):
         self.stage.set_color(clutter.color_from_string(color))
         self.embed.show()
 
-        self.photo_image = actors.Texture(self.stage)
+        self.photo_image = base.Texture(self.stage)
         self.photo_image.show()
         self.actors = [ source.ActorSourceIcon(self.stage, self.tooltip),
                         info.ActorGeoIcon(self.stage, self.tooltip),

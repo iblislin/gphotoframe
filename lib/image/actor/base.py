@@ -1,6 +1,4 @@
 from __future__ import division
-
-import gtk
 from gettext import gettext as _
 
 try:
@@ -12,7 +10,6 @@ except ImportError:
     cluttergtk.Texture = Null()
 
 from ..animation import FadeAnimationTimeline
-from ...utils.iconimage import IconImage
 from ...utils.config import GConf
 
 class Texture(cluttergtk.Texture):

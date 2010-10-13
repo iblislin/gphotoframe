@@ -2,7 +2,7 @@ from __future__ import division
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
-from actors import ActorIcon, IconTexture
+from base import ActorIcon, IconTexture
 
 class ActorFavIcon(ActorIcon):
 
