@@ -314,6 +314,7 @@ class Trash(object):
         return False
 
     def delete_from_disk(self):
+        print "delete from disk!"
         self.delete_from_catalog()
         # os.remove(self.filename)
 
