@@ -28,6 +28,7 @@ It shows pictures from:
 
 - simplejson: for Flickr, Picasa Web and Tumblr plugins (for python 2.5)
 - feedparser: for RSS plugin
+- python-numpy: for RSS plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 - python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings
