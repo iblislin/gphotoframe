@@ -7,7 +7,7 @@
 
 	* setup.py, makedoc.py: Added a help documentation building
 	  function.
-	* help/ja/ja.po: Update japanese translation of help.
+	* help/ja/ja.po: Update Japanese translation of help.
 
 2010-10-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -21,7 +21,7 @@
 2010-10-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* help/C/gphotoframe.xml: Added some modifications.
-	* help/*: Updated help documents.  Added italian help translation.
+	* help/*: Updated help documents.  Added Italian help translation.
 	  Thanks Cristian Marchi!
 	* makedoc.py: Added support for xml2po.
 
@@ -32,7 +32,7 @@
 
 2010-10-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* hekp/ja/ja.po: Added Japanese help translation.
+	* help/ja/ja.po: Added Japanese help translation.
 	* help/makedoc.py: Added a script for making GNOME documentation.
 	* help/C/*: Added new help documentation.  Thanks Cristian
 	  Marchi! (issue #66).
@@ -45,7 +45,7 @@
 
 2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* plugins/*: Added more translable strings.  Thanks Cristian
+	* plugins/*: Added more translatable strings.  Thanks Cristian
 	  Marchi! (issue #63)
 	* it.po: Added new translation.  Thanks Cristian Marchi!
 	  (issue #62)
