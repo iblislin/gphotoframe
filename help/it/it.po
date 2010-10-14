@@ -6,13 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe help 1.1\n"
 "POT-Creation-Date: 2010-10-12 14:56+0900\n"
-"PO-Revision-Date: 2010-10-12 14:55+0900\n"
+"PO-Revision-Date: 2010-10-13 10:36+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: C/gphotoframe-C.omf:4(creator) C/gphotoframe-C.omf:5(maintainer)
 msgid "(Cristian Marchi)"
@@ -248,7 +248,6 @@ msgstr ""
 "fotografica di GNOME</application>."
 
 #: C/gphotoframe.xml:155(para)
-#, fuzzy
 msgid ""
 "When an image or photo is diplayed, hovering on it with the mouse pointer "
 "will make some icons and a tooltip appears as showed in <xref linkend="
@@ -270,7 +269,6 @@ msgid "Shows the photo frame with tooltip and icons"
 msgstr "Mostra la cornice fotografica con il suggerimento e le icone"
 
 #: C/gphotoframe.xml:174(para)
-#, fuzzy
 msgid ""
 "The tooltip and the icons showed on the photo frame if the source is Flickr "
 "photo sharing website"
@@ -288,7 +286,6 @@ msgstr ""
 "essere:"
 
 #: C/gphotoframe.xml:190(para)
-#, fuzzy
 msgid ""
 "<guiicon>fav-icon</guiicon>&mdash; this icon is located in the upper left "
 "corner of the photo frame. If you are <link linkend=\"gphotoframe-onlinelog"
@@ -310,17 +307,17 @@ msgid ""
 msgstr "Fare di nuovo clic sull'immagine per rimuoverla dalle favorite."
 
 #: C/gphotoframe.xml:202(para)
-#, fuzzy
 msgid ""
 "If the contents comes from photo manager applications (such as <application> "
 "F-Spot</application> or <application>Shotwell</application> database), there "
 "will be a row of five icons so that you can assign a personal vote to the "
 "content displayed with a click on them."
 msgstr ""
-"Se il contenuto proviene da una fonte locale (quale il database di "
-"<application> F-Spot</application> o <application>Shotwell</application>, o "
-"una cartella), sarà presente una riga di cinque icone in modo che sia "
-"possibile assegnare al contenuto un voto facendovi clic sopra."
+"Se il contenuto proviene da una applicazione per la gestione delle "
+"fotografie (quale <application> F-Spot</application> o "
+"<application>Shotwell</application>), sarà presente una riga di cinque icone "
+"in modo che sia possibile assegnare al contenuto un voto facendovi clic "
+"sopra."
 
 #: C/gphotoframe.xml:210(para)
 msgid ""
@@ -338,7 +335,6 @@ msgstr ""
 "google."
 
 #: C/gphotoframe.xml:219(para)
-#, fuzzy
 msgid ""
 "<guiicon>info-icon</guiicon>&mdash; this icon is located on the bottom right "
 "of the frame and depict a camera. If you hover the mouse on it, a tooltip "
@@ -353,7 +349,6 @@ msgstr ""
 "esposizione, all'apertura ecc..."
 
 #: C/gphotoframe.xml:227(para)
-#, fuzzy
 msgid ""
 "<guiicon>source-icon</guiicon>&mdash; this icon is displayed in the upper "
 "right corner of the frame and shows the symbol of the service from where the "
@@ -361,7 +356,7 @@ msgid ""
 "system's default web browser (if the content comes from an online service), "
 "and in your system's default image viewer (if the content is local)."
 msgstr ""
-"<guiicon>Icona del servizio</guiicon>: questa icona è visualizzata "
+"<guiicon>Icona della fonte</guiicon>: questa icona è visualizzata "
 "nell'angolo superiore destro della cornice fotografica e mostra il simbolo "
 "del servizio da cui proviene il contenuto. Facendo clic sull'icona, la fonte "
 "verrà aperta nel browser web predefinito, se si tratta di un servizio "
@@ -370,13 +365,15 @@ msgstr ""
 
 #: C/gphotoframe.xml:238(title)
 msgid "Clutter library support"
-msgstr ""
+msgstr "Supporto alla libreria \"Clutter\""
 
 #: C/gphotoframe.xml:239(para)
 msgid ""
 "Without the <application>Clutter library</application> support, these icons "
 "will not be displayed."
 msgstr ""
+"Senza il supporto alla libreria <application>Clutter</application>, queste "
+"icone non verranno visualizzate."
 
 #: C/gphotoframe.xml:247(title)
 msgid "<application>GNOME Photo Frame</application> Application Menu"
@@ -444,13 +441,12 @@ msgid "Full Screen"
 msgstr "Schermo intero"
 
 #: C/gphotoframe.xml:288(para)
-#, fuzzy
 msgid ""
 "Toggle the fullscreen visualization of <application>GNOME Photo Frame</"
 "application>."
 msgstr ""
-"Abilita la visualizzazione a schermo intero della <application>cornice "
-"fotografica di GNOME</application>."
+"Abilita o disabilita la visualizzazione a schermo intero della "
+"<application>cornice fotografica di GNOME</application>."
 
 #: C/gphotoframe.xml:294(guimenuitem)
 msgid "Fix photo frame"
@@ -461,15 +457,17 @@ msgid ""
 "Fix the photo frame so that the movement with the mouse is prevented, and it "
 "is not displayed in the pager."
 msgstr ""
+"Fissa la cornice fotografica in modo che ne sia inibito il trascinamento con "
+"il mouse e che la sua sagoma non venga visualizzata nel selettore di spazi "
+"di lavoro."
 
 #: C/gphotoframe.xml:301(para)
-#, fuzzy
 msgid ""
 "When <application>GNOME Photo Frame</application> is in fix mode, all "
 "shortcut keys are invalid."
 msgstr ""
-"La <application>cornice fotografica di GNOME</application> può anche essere "
-"utilizzata come salvaschermo."
+"Quando la <application>cornice fotografica di GNOME</application> è in "
+"modalità fissa, tutte le scorciatoie da tastiera sono inibite."
 
 #: C/gphotoframe.xml:307(guimenuitem)
 msgid "Preferences"
@@ -536,7 +534,7 @@ msgstr ""
 msgid "In the <interface>Preferences</interface> dialog there are three tabs."
 msgstr ""
 "Nella schermata delle <interface>Preferenze</interface> sono disponibili tre "
-"schede"
+"schede."
 
 #: C/gphotoframe.xml:349(title)
 msgid "General tab"
@@ -673,7 +671,6 @@ msgstr ""
 "Spot</application>."
 
 #: C/gphotoframe.xml:416(para)
-#, fuzzy
 msgid ""
 "<interface>Flickr</interface>&mdash; display the contents from the popular "
 "photo sharing service. This plugin is highly customizable as you can look "
@@ -683,7 +680,7 @@ msgstr ""
 "<interface>flickr</interface>: visualizza il contenuto proveniente dal "
 "popolare sito di condivisione di fotografie. Questo plugin è altamente "
 "personalizzabile dato che è possibile cercare fotografie specificando un "
-"tag, un gruppo, un utente o mostrare le foto più interessanti o recenti."
+"tag, un gruppo, un utente o mostrare i contenuti più interessanti o recenti."
 
 #: C/gphotoframe.xml:424(para)
 msgid ""
@@ -729,7 +726,6 @@ msgstr ""
 "di <application>Shotwell</application>."
 
 #: C/gphotoframe.xml:453(para)
-#, fuzzy
 msgid ""
 "<interface>Tumblr</interface>&mdash; shows images from the \"share anything"
 "\" online service."
@@ -765,7 +761,6 @@ msgstr ""
 "di GNOME</application>, premere il pulsante <guibutton>Nuovo</guibutton>."
 
 #: C/gphotoframe.xml:475(para)
-#, fuzzy
 msgid ""
 "In the dialog that will appear, select a source from the pop-up list. "
 "Depending on the type of source selected (folder, <application>F-Spot</"
@@ -775,7 +770,7 @@ msgid ""
 "guibutton>. A new source will be added to the list and the new content will "
 "start to be displayed on the photo frame."
 msgstr ""
-"Nella schermata che comparirà, selezionare una fonta dalla lista a comparsa. "
+"Nella schermata che comparirà, selezionare una fonte dalla lista a comparsa. "
 "A seconda del tipo di fonte selezionata (cartella, database di "
 "<application>F-Spot</application> o <application>Shotwell</application>, "
 "servizio di condivisione internet come \"flickr\", \"tumblr\" o \"Picasa\") "
@@ -786,7 +781,7 @@ msgstr ""
 
 #: C/gphotoframe.xml:483(para)
 msgid "If you want to add more sources just repeat this process."
-msgstr "Per aggiungere altre fonti ripetere il processo precedente."
+msgstr "Per aggiungere altre fonti ripetere il procedimento appena descritto."
 
 #: C/gphotoframe.xml:487(title)
 msgid "Weight"
@@ -943,7 +938,6 @@ msgstr ""
 "Informazioni sulla <application>cornice fotografica di GNOME</application>"
 
 #: C/gphotoframe.xml:581(para)
-#, fuzzy
 msgid ""
 "<application>GNOME Photo Frame</application> was written by Yoshizumi Endo "
 "<email>y-endo@ceres.dti.ne.jp</email>. To find more information about "
@@ -952,7 +946,7 @@ msgid ""
 "Photo Frame</application> Web page</ulink>."
 msgstr ""
 "L'applicazione <application>cornice fotografica di GNOME</application> è "
-"scritta da yendo2006 (<email>y-endo@ceres.dti.ne.jp</email>). Per avere "
+"scritta da Yoshizumi Endo (<email>y-endo@ceres.dti.ne.jp</email>). Per avere "
 "maggiori informazioni sulla <application>cornice fotografica di GNOME</"
 "application>, visitare la <ulink url=\"http://code.google.com/p/gphotoframe/"
 "\" type=\"http\">pagina web della <application>cornice fotografica di GNOME</"
@@ -965,14 +959,13 @@ msgid ""
 "gphotoframe/issues/list\" type=\"http\"><application>GNOME Photo Frame</"
 "application> issues page</ulink>."
 msgstr ""
-"Per segnalare un bug o proporre delle migliorie relativamente "
+"Per segnalare un problema o proporre delle migliorie relativamente "
 "all'applicazione o a questo manuale, aprire una nuova discussione nella "
 "<ulink url=\"http://code.google.com/p/gphotoframe/issues/list\" type=\"http"
 "\">pagina delle discussioni sulla <application>cornice fotografica di GNOME</"
 "application></ulink>."
 
 #: C/gphotoframe.xml:596(para)
-#, fuzzy
 msgid ""
 "This program is distributed under the terms of the GNU General Public "
 "license version 3 as published by the Free Software Foundation. A <ulink url="
@@ -983,8 +976,8 @@ msgstr ""
 "Questo programmo è distribuito nei termini della licenza GNU General Public "
 "License versione 3 come pubblicata dalla Free Software Foundation. Una "
 "<ulink url=\"ghelp:gpl\" type=\"help\">copia di questa licenza</ulink> è "
-"inclusa con questa documentazione; un'altra può essere trovata nel file "
-"COPYING incluso nel codice sorgente di questo programma."
+"inclusa con questa documentazione; un'altra può essere trovata nel file GPL "
+"incluso nel codice sorgente di questo programma."
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
 #: C/gphotoframe.xml:0(None)
