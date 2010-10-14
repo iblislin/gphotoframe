@@ -1,5 +1,6 @@
 2010-10-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* help/it/*: Updated Italian translation of help.
 	* gphotoframe: Fixed CPU usage issue (issue #69).
 
 2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
