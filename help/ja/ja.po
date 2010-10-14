@@ -1,6 +1,6 @@
 # Japanese translations of gphotoframe-help.
 # Copyright (C) 2010 Cristian Marchi <cri.penta@gmail.com>.
-# This file is distributed under the same license as the gphotoframe package.
+# This file is distributed under the same license as the the gphotoframe-help.
 # Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2010.
 #
 msgid ""
