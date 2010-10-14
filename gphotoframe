@@ -12,7 +12,6 @@ from os.path import join, abspath, dirname
 from twisted.internet import gtk2reactor, glib2reactor
 dist = set(platform.dist()[:2])
 greactor = glib2reactor if dist == set(['Ubuntu', '10.10']) else gtk2reactor
-print greactor
 greactor.install()
 
 from twisted.internet import reactor
