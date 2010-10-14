@@ -1,3 +1,7 @@
+2010-10-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe: Fixed CPU usage issue (issue #69).
+
 2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* setup.py, makedoc.py: Added a help documentation building
