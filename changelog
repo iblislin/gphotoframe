@@ -1,3 +1,7 @@
+2010-10-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added DeleteDialog.
+
 2010-10-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actor/trash.py: Implemented confirmation dialogs for removing

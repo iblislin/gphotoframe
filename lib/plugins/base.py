@@ -11,6 +11,7 @@ from .. import constants
 from ..utils.config import GConf
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.EXIF import process_file as exif_process_file
+from ..utils.trash import GioTrash
 
 class PluginBase(object):
 
@@ -316,10 +317,44 @@ class Trash(object):
     def delete_from_disk(self):
         print "delete from disk!"
         self.delete_from_catalog()
-        # os.remove(self.filename)
+
+        trash = GioTrash(self.filename)
+        #if not trash.check_file():
+        #    return
+        
+        result = trash.move()
+        if not result:
+            dialog = DeleteDialog()
+            # os.remove(self.filename)
 
     def delete_from_catalog(self):
         pass
+
+class DeleteDialog(object):
+
+    def __init__(self, photo=None):
+        #self.photo = photo
+        self._set_variable(photo)
+        title = ""
+
+        dialog = gtk.MessageDialog(
+            None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
+            gtk.BUTTONS_YES_NO, self.text1)
+        dialog.set_title(title)
+        dialog.format_secondary_text(self.text2)
+        dialog.connect('response', self._response_cb)
+        dialog.show()
+
+    def _set_variable(self, photo):
+        self.text1 = _("Cannot move file to trash, do you want to delete immediately?")
+        self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
+        # self.delete_method = self.photo['trash'].delete_from_disk
+
+    def _response_cb(self, widget, response):
+        if response == gtk.RESPONSE_YES:
+            print "really delete!!"
+            #self.delete_method()
+        widget.destroy()
 
 class PluginDialog(object):
     """Photo Source Dialog"""
