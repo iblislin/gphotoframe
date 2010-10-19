@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-13 20:10+0900\n"
-"PO-Revision-Date: 2010-10-13 17:16+0900\n"
+"POT-Creation-Date: 2010-10-19 18:03+0900\n"
+"PO-Revision-Date: 2010-10-19 18:03+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -364,7 +364,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:145
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:146
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -388,7 +388,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:139
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:140
 #: ../lib/plugins/haikyo.py:81
 msgid "_Target:"
 msgstr "ターゲット(_T):"
@@ -545,7 +545,7 @@ msgstr "ゴミ箱に移動する"
 
 #: ../lib/image/actor/trash.py:53
 msgid "Remove from catalog"
-msgstr "カタログから削除"
+msgstr "カタログから削除する"
 
 #: ../lib/image/actor/trash.py:72
 msgid "Move this photo to the trash?"
@@ -618,9 +618,18 @@ msgstr "フラッシュ"
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
-#: ../lib/plugins/base.py:180
+#: ../lib/plugins/base.py:181
 msgid "Options"
 msgstr "オプション"
+
+#: ../lib/plugins/base.py:337
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "ファイルをゴミ箱に移動できません。今すぐ削除しますか?"
+
+#: ../lib/plugins/base.py:339
+#, python-format
+msgid "The file \"%s\" cannot be moved to the trash. "
+msgstr "ファイル %s はゴミ箱に移動できません。"
 
 #: ../lib/plugins/__init__.py:22
 #, python-format

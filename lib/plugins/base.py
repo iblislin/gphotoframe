@@ -324,36 +324,31 @@ class Trash(object):
         
         result = trash.move()
         if not result:
-            dialog = DeleteDialog()
-            # os.remove(self.filename)
+            dialog = ReallyDeleteDialog(self.filename)
 
     def delete_from_catalog(self):
         pass
 
-class DeleteDialog(object):
+class ReallyDeleteDialog(object):
 
-    def __init__(self, photo=None):
-        #self.photo = photo
-        self._set_variable(photo)
-        title = ""
+    def __init__(self, file=None):
+        self.file = file
+
+        text1 = _( "Cannot move file to trash, " 
+                   "do you want to delete immediately?")
+        text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
 
         dialog = gtk.MessageDialog(
-            None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
-            gtk.BUTTONS_YES_NO, self.text1)
-        dialog.set_title(title)
+            None, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING, 
+            gtk.BUTTONS_OK_CANCEL, self.text1)
         dialog.format_secondary_text(self.text2)
         dialog.connect('response', self._response_cb)
         dialog.show()
 
-    def _set_variable(self, photo):
-        self.text1 = _("Cannot move file to trash, do you want to delete immediately?")
-        self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
-        # self.delete_method = self.photo['trash'].delete_from_disk
-
     def _response_cb(self, widget, response):
-        if response == gtk.RESPONSE_YES:
+        if response == gtk.RESPONSE_OK:
             print "really delete!!"
-            #self.delete_method()
+            # os.remove(self.file)
         widget.destroy()
 
 class PluginDialog(object):
