@@ -29,7 +29,7 @@ class ActorTrashIcon(ActorGeoIcon):
 class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
 
     def _check_other_icon(self, photo):
-        if not 'trash' in photo:
+        if not photo or not 'trash' in photo:
             return False
 
         return photo['trash'].check_delete_from_disk()
