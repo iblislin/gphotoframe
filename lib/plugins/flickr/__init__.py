@@ -179,7 +179,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         label = [api for api in keys]
 
         if not GConf().get_string('plugins/flickr/nsid'):
-            label.remove('Your Groups')
+            label.remove(_('Your Groups'))
 
         return label
 
