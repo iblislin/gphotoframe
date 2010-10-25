@@ -108,8 +108,8 @@ class FlickrPhotoList(PhotoList):
 
             data = {'type'       : 'flickr',
                     'info'       : FlickrPlugin,
-                    'url'        : url,
-                    'url_b'      : url_b,
+                    'url'        : str(url),
+                    'url_b'      : str(url_b),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
