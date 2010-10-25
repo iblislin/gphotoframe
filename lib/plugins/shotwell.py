@@ -4,6 +4,7 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2010-10-25 Version 0.1.1
 # 2010-09-19 Version 0.1
 
 import os
@@ -92,18 +93,9 @@ class ShotwellIcon(LocalIconImage):
 
 class ShotwellDB(FSpotDB):
 
-    def __init__(self):
-        db_file = self._get_db_file()
-        self.is_accessible = True if db_file else False
-        if db_file:
-            self.db = sqlite3.connect(db_file)
-
     def _get_db_file(self):
         db_file_base = '.shotwell/data/photo.db'
         db_file = os.path.join(os.environ['HOME'], db_file_base)
-
-        if not os.access(db_file, os.R_OK):
-            db_file = None
         return db_file
 
 class ShotwellPhotoSQL(FSpotPhotoSQL):
