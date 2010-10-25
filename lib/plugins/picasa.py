@@ -7,11 +7,7 @@
 from twisted.web import client
 from gettext import gettext as _
 import urllib
-
-try:
-    import simplejson as json
-except:
-    import json
+import json
 
 from base import *
 from ..constants import APP_NAME, VERSION
