@@ -6,12 +6,8 @@
 
 import random
 import time
+import json
 from gettext import gettext as _
-
-try:
-    import simplejson as json
-except:
-    import json
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase
