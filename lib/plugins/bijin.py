@@ -33,7 +33,6 @@ class BijinPlugin(PluginBase):
                       'website': 'http://www.bijint.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-
 class BijinPhotoList(PhotoList):
 
     def prepare(self):
@@ -65,18 +64,18 @@ class BijinPhotoList(PhotoList):
         return Photo(data)
 
     def _select_clock(self, target):
+        if target != 'ランダム':
+            return target
+
         list = [i[0] for i in self.tokei.list if i[1][0] and i[0]
                 not in self.conf.get_list('plugins/bijin/disabled')]
-        result = random.choice(list) if target == 'ランダム' else target
-        return result
-
+        return random.choice(list)
 
 class PhotoSourceBijinUI(PhotoSourceUI):
 
     def _label(self):
         tokei = BijinTokeiList()
         return [i[0] for i in tokei.list]
-
 
 class BijinTokeiList(object):
 
@@ -91,14 +90,13 @@ class BijinTokeiList(object):
             ['北海道時計', ['hokkaido', None]],
             ['仙台時計',   ['sendai', None]],
             ['名古屋時計', ['nagoya', None]],
-            ['京都時計', ['kyoto', None]],
             ['金沢時計', ['kanazawa', None]],
-            ['福岡時計', ['fukuoka', None]],
+            ['京都時計', ['kyoto', None]],
             ['岡山時計', ['okayama', None]],
             ['香川時計', ['kagawa', None]],
+            ['福岡時計', ['fukuoka', None]],
             ['ランダム', [None, None]],
             ]
-
 
 class BijinIcon(WebIconImage):
 
