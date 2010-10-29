@@ -4,15 +4,19 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2010-10-30 Version 1.4
 # 2010-09-25 Version 1.3
 # 2010-06-03 Version 1.2
 
 import time
 import random
 
-from base import *
-from ..utils.iconimage import WebIconImage
-
+try:
+    from base import *
+    from ..utils.iconimage import WebIconImage
+except:
+    from gphotoframe.plugins.base import *
+    from gphotoframe.utils.iconimage import WebIconImage
 
 def info():
     return [BijinPlugin, BijinPhotoList, PhotoSourceBijinUI]
@@ -39,6 +43,8 @@ class BijinPhotoList(PhotoList):
     def _random_choice(self):
         tokei = self._select_clock(self.target)
         (page_path, pic_path) = dict(self.tokei.list)[tokei]
+        if not pic_path:
+            pic_path = page_path + '/tokei_images'
 
         url_base = 'http://www.bijint.com/'
         url_page = url_base + page_path
@@ -76,18 +82,20 @@ class BijinTokeiList(object):
 
     def __init__(self):
         self.list = [
-            ['美人時計', ['jp', 'jp/img/clk']],
-            ['美男時計', ['binan', 'binan/img/clk']],
-            ['サーキット時計', ['cc', 'cc/tokei_images']],
+            # ['美人時計', ['jp', 'jp/img/clk']],
+            ['美人時計', ['jp', None]],
+            ['美男時計', ['binan', None]],
+            ['サーキット時計', ['cc', None]],
             ['韓国時計', ['kr', 'assets/pict/kr/590x450']],
             ['香港時計', ['hk', 'assets/pict/hk/590x450']],
-            ['北海道時計', ['hokkaido', 'assets/pict/hokkaido/590x450']],
-            ['仙台時計', ['sendai', 'assets/pict/sendai/590x450']],
-            ['京都時計', ['kyoto', 'kyoto/tokei_images']],
-            ['金沢時計', ['kanazawa', 'kanazawa/tokei_images']],
-            ['福岡時計', ['fukuoka', 'fukuoka/tokei_images']],
-            ['岡山時計', ['okayama', 'okayama/tokei_images']],
-            ['香川時計', ['kagawa', 'kagawa/tokei_images']],
+            ['北海道時計', ['hokkaido', None]],
+            ['仙台時計',   ['sendai', None]],
+            ['名古屋時計', ['nagoya', None]],
+            ['京都時計', ['kyoto', None]],
+            ['金沢時計', ['kanazawa', None]],
+            ['福岡時計', ['fukuoka', None]],
+            ['岡山時計', ['okayama', None]],
+            ['香川時計', ['kagawa', None]],
             ['ランダム', [None, None]],
             ]
 
