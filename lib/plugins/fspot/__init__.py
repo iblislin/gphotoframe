@@ -5,7 +5,6 @@
 # Licence: GPL3
 
 import urllib
-import time
 
 import gtk
 from gettext import gettext as _
@@ -26,7 +25,7 @@ class FSpotPlugin(PluginBase):
         self.name = 'F-Spot'
         self.icon = FSpotIcon
         self.db_class = FSpotDB
-        self.info = { 'comments': 'F-Spot Photo Manager',
+        self.info = { 'comments': _('F-Spot Photo Manager'),
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'website': 'http://f-spot.org/',
                       'authors': ['Yoshizimi Endo'], }

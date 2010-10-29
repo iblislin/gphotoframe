@@ -6,9 +6,11 @@ It shows pictures from:
 
 - Local folders
 - F-Spot database
+- Shotwell database
 - Flickr API
 - Tumblr API
 - Picasa Web Album API
+- Haikyo Clock
 - RSS
 
 * Installation
@@ -19,11 +21,14 @@ It shows pictures from:
 - Twisted: twisted.internet & twisted.web
 - PyXDG: except v.0.16 which has a bug
 - Python-Distutils-Extra: for installation
+- gnome-doc-utils: for help documentation
+- pkg-config: for help documentation
 
 ** Recommends
 
 - simplejson: for Flickr, Picasa Web and Tumblr plugins (for python 2.5)
 - feedparser: for RSS plugin
+- python-numpy: for RSS plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 - python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings

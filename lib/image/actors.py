@@ -71,7 +71,7 @@ class IconTexture(Texture):
             self.timeline.fade_out()
 
     def _set_animation_timeline(self):
-        self.timeline = FadeAnimationTimeline(self, 300)
+        self.timeline = FadeAnimationTimeline(self, 200)
 
 class ActorIcon(object):
 

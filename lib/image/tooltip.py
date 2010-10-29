@@ -48,7 +48,8 @@ class ToolTip(object):
             if title:
                 tip += "<big>%s</big>\n" % escape(title)
             if owner:
-                tip += "by %s\n" % escape(owner)
+		# TRANSLATORS: %s is the name of the author of the photo
+                tip += _("by %s\n") % escape(owner)
             if date:
                 format = self.conf.get_string('date_format') or "%x"
                 tip += "%s\n" % (date if isinstance(date, str) else \
