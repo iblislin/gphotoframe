@@ -26,7 +26,7 @@ class TumblrPlugin(PluginBase):
     def __init__(self):
         self.name = 'Tumblr'
         self.icon = TumblrIcon
-        self.info = { 'comments': 'Share Anything',
+        self.info = { 'comments': _('Share Anything'),
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
@@ -49,7 +49,7 @@ class TumblrPhotoList(PhotoList):
             self.email = identity[0]
             self.password = identity[1]
         elif (self.target != 'User'):
-            print "Certification Error"
+            print _("Certification Error")
             return
 
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
@@ -60,7 +60,7 @@ class TumblrPhotoList(PhotoList):
             url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
             values.update( {'email': self.email, 'password': self.password} )
         else:
-            print "Tumblr Error: Invalid Target, %s" % self.target
+            print _("Tumblr Error: Invalid Target, %s") % self.target
             return
 
         # print url
