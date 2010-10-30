@@ -16,7 +16,9 @@ user_plugin_dir = os.path.join(xdg_config_home, 'gphotoframe/plugins')
 
 if not os.access(user_plugin_dir, os.F_OK):
     os.makedirs(user_plugin_dir)
-sys.path.append(user_plugin_dir)
+
+if __name__ == 'gphotoframe.plugins':
+    sys.path.append(user_plugin_dir)
 
 for item in os.listdir(plugin_dir) + os.listdir(user_plugin_dir):
     if not (item.endswith('.py') and item != '__init__.py' and
