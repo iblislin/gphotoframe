@@ -7,11 +7,7 @@
 from twisted.web import client
 from gettext import gettext as _
 import urllib
-
-try:
-    import simplejson as json
-except:
-    import json
+import json
 
 from base import *
 from ..constants import APP_NAME, VERSION
@@ -94,7 +90,7 @@ class PicasaPhotoList(PhotoList):
             owner_name = entry['author'][0]['name']['$t'] \
                 if entry.get('author') else self.argument
 
-            data = {'url'        : entry['content']['src'],
+            data = {'url'        : str(entry['content']['src']),
                     'owner_name' : owner_name,
                     'owner'      : owner_name,
                     'id'         : entry['gphoto$id']['$t'],
