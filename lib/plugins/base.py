@@ -327,6 +327,7 @@ class Trash(object):
             dialog = ReallyDeleteDialog(self.filename)
 
     def delete_from_catalog(self):
+        # next_image
         pass
 
 class ReallyDeleteDialog(object):
@@ -334,9 +335,9 @@ class ReallyDeleteDialog(object):
     def __init__(self, file=None):
         self.file = file
 
-        text1 = _( "Cannot move file to trash, " 
+        self.text1 = _( "Cannot move file to trash, " 
                    "do you want to delete immediately?")
-        text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
+        self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
 
         dialog = gtk.MessageDialog(
             None, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING, 
@@ -348,7 +349,7 @@ class ReallyDeleteDialog(object):
     def _response_cb(self, widget, response):
         if response == gtk.RESPONSE_OK:
             print "really delete!!"
-            # os.remove(self.file)
+            os.remove(self.file)
         widget.destroy()
 
 class PluginDialog(object):

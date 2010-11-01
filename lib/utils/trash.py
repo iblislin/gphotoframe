@@ -23,8 +23,9 @@ class GioTrash(object):
 
         try:
             if can_trash:
-                self.is_trashed = False #file.trash()
-        except gio.Error as error:
+                self.is_trashed = file.trash()
+        except gio.Error, error:
+            print error
             if error.code == gio.ERROR_NOT_SUPPORTED:
                 print "not supported."
         except:

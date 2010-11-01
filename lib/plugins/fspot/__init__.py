@@ -8,6 +8,7 @@ import urllib
 
 import gtk
 from gettext import gettext as _
+from string import Template
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase, Trash
@@ -65,8 +66,8 @@ class FSpotPhotoList(PhotoList):
                    "FROM photos WHERE id=%s)") % (id, id)
             filename = self.db.fetchone(sql)
 
-        filename = urllib.unquote(filename).encode(
-            'raw_unicode_escape').decode('utf8')
+        base_url = self._raw_to_utf8(base_url)
+        filename = self._raw_to_utf8(filename)
         url = base_url + filename
 
         fullpath = url.replace('file://', '')
@@ -76,11 +77,14 @@ class FSpotPhotoList(PhotoList):
                  'title' : filename, # without path
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
-                 'trash' : FSpotTrash(id, fullpath),
+                 'trash' : FSpotTrash(id, version, fullpath),
                  'icon' : FSpotIcon }
 
         self.photo = Photo(data)
         cb(None, self.photo)
+
+    def _raw_to_utf8(self, text):
+        return urllib.unquote(text).encode('raw_unicode_escape').decode('utf8')
 
     def get_tooltip(self):
         period_days = self.sql.get_period_days(self.period)
@@ -95,11 +99,37 @@ class FSpotPhotoList(PhotoList):
 
 class FSpotTrash(Trash):
 
+    def __init__(self, id, version, filename):
+        super(FSpotTrash, self).__init__(id, filename)
+        self.version = version
+
     def check_delete_from_catalog(self):
         return True
 
     def delete_from_catalog(self):
-        print "f-spot catalog delete!!"
+        print "f-spot catalog delete!", self.id, self.version
+
+        if self.version == 1:
+            sql_templates = [ 
+                "DELETE FROM photo_tags WHERE photo_id=$id",
+                "DELETE FROM photo_versions WHERE photo_id=$id",
+                "DELETE FROM photos WHERE id=$id",
+                "DELETE FROM exports WHERE image_id=$id"]
+        else:
+            sql_templates = [ 
+                "DELETE FROM photo_versions WHERE photo_id=$id AND version_id=$version;",
+                "Update photos SET default_version_id=1 WHERE id=$id;" ]
+
+        db = FSpotDB()
+
+        for sql in sql_templates:
+            s = Template(sql)
+            statement = s.substitute(id=self.id, version=self.version)
+            print statement
+            db.execute(statement)
+
+        db.commit()
+        db.close()
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 
