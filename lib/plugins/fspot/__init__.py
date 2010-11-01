@@ -67,6 +67,8 @@ class FSpotPhotoList(PhotoList):
                        "FROM photos WHERE id=%s)") % (id, id)
                 filename = self.db.fetchone(sql)
 
+            base_url = urllib.unquote(base_url).encode(
+                'raw_unicode_escape').decode('utf8')
             filename = urllib.unquote(filename).encode(
                 'raw_unicode_escape').decode('utf8')
             url = base_url + filename
