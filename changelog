@@ -1,3 +1,8 @@
+2010-11-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added a remove function.
+	* fspot/__init__.py: Added a remove catalogue function.
+
 2010-10-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/__init__.py: Added user plugins dir.
