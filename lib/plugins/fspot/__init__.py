@@ -77,7 +77,7 @@ class FSpotPhotoList(PhotoList):
                  'title' : filename, # without path
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
-                 'trash' : FSpotTrash(id, version, fullpath),
+                 'trash' : FSpotTrash(id, version, fullpath, self.photolist),
                  'icon' : FSpotIcon }
 
         self.photo = Photo(data)
@@ -99,14 +99,15 @@ class FSpotPhotoList(PhotoList):
 
 class FSpotTrash(Trash):
 
-    def __init__(self, id, version, filename):
-        super(FSpotTrash, self).__init__(id, filename)
+    def __init__(self, id, version, filename, photolist):
+        super(FSpotTrash, self).__init__(id, filename, photolist)
         self.version = version
 
     def check_delete_from_catalog(self):
         return True
 
     def delete_from_catalog(self):
+        super(FSpotTrash, self).delete_from_catalog()
         print "f-spot catalog delete!", self.id, self.version
 
         if self.version == 1:
