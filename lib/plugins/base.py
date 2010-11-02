@@ -302,9 +302,10 @@ class ParseEXIF(object):
 
 class Trash(object):
 
-    def __init__(self, id, filename):
+    def __init__(self, id, filename, photolist=None):
         self.id = id
         self.filename = filename
+        self.photolist = photolist
 
     def check_delete_from_disk(self):
         path = os.path.split(self.filename)[0]
@@ -316,7 +317,6 @@ class Trash(object):
 
     def delete_from_disk(self):
         print "delete from disk!"
-        self.delete_from_catalog()
 
         trash = GioTrash(self.filename)
         #if not trash.check_file():
@@ -324,16 +324,18 @@ class Trash(object):
         
         result = trash.move()
         if not result:
-            dialog = ReallyDeleteDialog(self.filename)
+            dialog = ReallyDeleteDialog(self.filename, self.delete_from_catalog)
+        else:
+            self.delete_from_catalog()
 
     def delete_from_catalog(self):
-        # next_image
-        pass
+        self.photolist.delete_photo(self.filename)
 
 class ReallyDeleteDialog(object):
 
-    def __init__(self, file=None):
+    def __init__(self, file, delete_from_catalog):
         self.file = file
+        self.delete_from_catalog = delete_from_catalog
 
         self.text1 = _( "Cannot move file to trash, " 
                    "do you want to delete immediately?")
@@ -350,6 +352,7 @@ class ReallyDeleteDialog(object):
         if response == gtk.RESPONSE_OK:
             print "really delete!!"
             os.remove(self.file)
+            self.delete_from_catalog()
         widget.destroy()
 
 class PluginDialog(object):
