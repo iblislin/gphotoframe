@@ -67,10 +67,8 @@ class FSpotPhotoList(PhotoList):
                        "FROM photos WHERE id=%s)") % (id, id)
                 filename = self.db.fetchone(sql)
 
-            base_url = urllib.unquote(base_url).encode(
-                'raw_unicode_escape').decode('utf8')
-            filename = urllib.unquote(filename).encode(
-                'raw_unicode_escape').decode('utf8')
+            base_url = self._unquote(base_url)
+            filename = self._unquote(filename)
             url = base_url + filename
 
         else: # for ver.0.5
@@ -87,6 +85,11 @@ class FSpotPhotoList(PhotoList):
 
         self.photo = Photo(data)
         cb(None, self.photo)
+
+    def _unquote(self, text):
+        result = text if text.find('%') < 0 else \
+            urllib.unquote(text).encode('raw_unicode_escape').decode('utf8')
+        return result
 
     def get_tooltip(self):
         period_days = self.sql.get_period_days(self.period)
