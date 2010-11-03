@@ -1,6 +1,6 @@
-2010-11-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+2010-11-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* fspot/__init__.py: Fixed an URI encoding.
+	* fspot/__init__.py: Fixed an URI encoding (issue #76).
 
 2010-10-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
