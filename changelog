@@ -1,3 +1,7 @@
+2010-11-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py: Fixed an URI encoding (issue #76).
+
 2010-10-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/__init__.py: Added user plugins dir.
