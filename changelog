@@ -2,6 +2,18 @@
 
 	* fspot/__init__.py: Fixed an URI encoding (issue #76).
 
+2010-10-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Added user plugins dir.
+
+2010-10-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, picasa.py: Added kludges for avoiding a json
+	  module 1.9 bug.
+	* fspot/__init__.py, sqldb.py: Dropped support for F-Spot 0.5.
+	* flickr/__init__.py, picasa.py: Dropped depends on simplejson.
+	  gphotoframe requires python 2.6.
+
 2010-10-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py: Fixed a value error (issue #73).

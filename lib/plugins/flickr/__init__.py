@@ -6,12 +6,8 @@
 
 import random
 import time
+import json
 from gettext import gettext as _
-
-try:
-    import simplejson as json
-except:
-    import json
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
     Photo, PluginBase
@@ -112,8 +108,8 @@ class FlickrPhotoList(PhotoList):
 
             data = {'type'       : 'flickr',
                     'info'       : FlickrPlugin,
-                    'url'        : url,
-                    'url_b'      : url_b,
+                    'url'        : str(url),
+                    'url_b'      : str(url_b),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
@@ -132,7 +128,7 @@ class FlickrPhotoList(PhotoList):
             if s.get('url_o'):
                 url = s.get('url_o')
                 w, h = int(s.get('width_o')), int(s.get('height_o'))
-                data.update({'url_o': url, 'size_o': [w, h]})
+                data.update({'url_o': str(url), 'size_o': [w, h]})
 
             photo = FlickrPhoto(data)
             self.photos.append(photo)

@@ -8,7 +8,10 @@ from xdg.BaseDirectory import xdg_config_home
 class FSpotDB(object):
 
     def __init__(self):
-        db_file, self.is_new = self._get_db_file()
+        db_file = self._get_db_file()
+        if not os.access(db_file, os.R_OK):
+            db_file = None
+
         self.is_accessible = True if db_file else False
         if db_file:
             self.db = sqlite3.connect(db_file)
@@ -33,17 +36,8 @@ class FSpotDB(object):
 
     def _get_db_file(self):
         db_file_base = 'f-spot/photos.db'
-        db_file_new = os.path.join(xdg_config_home, db_file_base)
-        db_file_old = os.path.join(os.environ['HOME'], '.gnome2', db_file_base)
-
-        if os.access(db_file_new, os.R_OK):
-            db_file, is_new = db_file_new, True
-        elif os.access(db_file_old, os.R_OK):
-            db_file, is_new = db_file_old, False
-        else:
-            db_file = is_new = None
-
-        return db_file, is_new
+        db_file = os.path.join(xdg_config_home, db_file_base)
+        return db_file
 
 class FSpotPhotoSQL(object):
 
