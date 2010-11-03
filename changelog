@@ -2,6 +2,11 @@
 
 	* fspot/__init__.py: Fixed an URI encoding (issue #76).
 
+2010-11-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added a remove function.
+	* fspot/__init__.py: Added a remove catalogue function.
+
 2010-10-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/__init__.py: Added user plugins dir.
@@ -24,8 +29,14 @@
 
 2010-10-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/base.py: Added DeleteDialog.
 	* help/it/*: Updated Italian translation of help.
 	* gphotoframe: Fixed CPU usage issue (issue #69).
+
+2010-10-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/trash.py: Implemented confirmation dialogs for removing
+	  photos.
 
 2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -62,10 +73,21 @@
 	  Marchi! (issue #66).
 	* menu.py, menu.ui: Added new help menu item.
 
+2010-10-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py: Added new class TrashDialog.
+	* frame.py: Added the default icon configuration.
+
 2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* it.po, image/tooltip.py, preferences/plugin.py: Updated
 	  translation.  Thanks Cristian Marchi! (issue #65)
+
+2010-09-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actors.py, image/imageclutter.py, plugins/base.py,
+	  folder.py, fspot/__init__.py, shotwell.py: Added new clutter
+	  icons for deleting photos.
 
 2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
