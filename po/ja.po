@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-01 01:50+0900\n"
-"PO-Revision-Date: 2010-10-01 01:53+0900\n"
+"POT-Creation-Date: 2010-10-19 18:03+0900\n"
+"PO-Revision-Date: 2010-10-19 18:03+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -316,7 +316,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:91
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:93
 msgid "All"
 msgstr "すべて"
 
@@ -364,7 +364,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:145
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:146
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -388,7 +388,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:139
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:140
 #: ../lib/plugins/haikyo.py:81
 msgid "_Target:"
 msgstr "ターゲット(_T):"
@@ -485,7 +485,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:93 ../lib/image/actors.py:211
+#: ../lib/menu.py:97 ../lib/image/actor/info.py:31
 msgid "No Title"
 msgstr "無題"
 
@@ -515,29 +515,54 @@ msgstr "0 を指定するとこの写真ソースは無視されます"
 msgid "%s Plugin"
 msgstr "%s プラグイン"
 
-#: ../lib/image/actors.py:185
-msgid "Open the photo"
-msgstr "写真を開く"
-
-#: ../lib/image/actors.py:224
-msgid "Open the map"
-msgstr "地図を開く"
-
-#: ../lib/image/actors.py:257
-msgid "Loading..."
-msgstr "ロード中..."
-
-#: ../lib/image/actors.py:335
+#: ../lib/image/actor/favicon.py:83
 msgid "Add to faves"
 msgstr "お気に入りに追加"
 
-#: ../lib/image/actors.py:336
+#: ../lib/image/actor/favicon.py:84
 msgid "Remove from faves"
 msgstr "お気に入りから削除"
 
-#: ../lib/image/actors.py:336
+#: ../lib/image/actor/favicon.py:84
 msgid "Rate the photo"
 msgstr "写真を評価付けする"
+
+#: ../lib/image/actor/info.py:44
+msgid "Open the map"
+msgstr "地図を開く"
+
+#: ../lib/image/actor/info.py:80
+msgid "Loading..."
+msgstr "ロード中..."
+
+#: ../lib/image/actor/source.py:55
+msgid "Open the photo"
+msgstr "写真を開く"
+
+#: ../lib/image/actor/trash.py:26
+msgid "Move to trash"
+msgstr "ゴミ箱に移動する"
+
+#: ../lib/image/actor/trash.py:53
+msgid "Remove from catalog"
+msgstr "カタログから削除する"
+
+#: ../lib/image/actor/trash.py:72
+msgid "Move this photo to the trash?"
+msgstr "この写真をゴミ箱に移動しますか?"
+
+#: ../lib/image/actor/trash.py:73
+msgid "This photo will be moved to the trash."
+msgstr "この写真をゴミ箱に移動します。"
+
+#: ../lib/image/actor/trash.py:85
+msgid "Remove this photo from the catalog?"
+msgstr "この写真をカタログから削除しますか?"
+
+#: ../lib/image/actor/trash.py:86
+#, python-format
+msgid "This photo will be removed from the %s catalog."
+msgstr "この写真を %s のカタログから削除します。"
 
 #. TRANSLATORS: %s is the name of the author of the photo
 #: ../lib/image/tooltip.py:52
@@ -593,9 +618,18 @@ msgstr "フラッシュ"
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
-#: ../lib/plugins/base.py:180
+#: ../lib/plugins/base.py:181
 msgid "Options"
 msgstr "オプション"
+
+#: ../lib/plugins/base.py:337
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "ファイルをゴミ箱に移動できません。今すぐ削除しますか?"
+
+#: ../lib/plugins/base.py:339
+#, python-format
+msgid "The file \"%s\" cannot be moved to the trash. "
+msgstr "ファイル %s はゴミ箱に移動できません。"
 
 #: ../lib/plugins/__init__.py:22
 #, python-format
@@ -719,16 +753,16 @@ msgstr "Flickr API エラー (%s): %s"
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot 写真マネージャ"
 
-#: ../lib/plugins/fspot/__init__.py:91
+#: ../lib/plugins/fspot/__init__.py:93
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:97
+#: ../lib/plugins/fspot/__init__.py:99
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:97
+#: ../lib/plugins/fspot/__init__.py:99
 msgid "Period"
 msgstr "期間"
 
