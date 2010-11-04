@@ -114,13 +114,14 @@ class FSpotTrash(Trash):
 
         if self.version == 1:
             sql_templates = [ 
-                "DELETE FROM photo_tags WHERE photo_id=$id",
-                "DELETE FROM photo_versions WHERE photo_id=$id",
-                "DELETE FROM photos WHERE id=$id",
-                "DELETE FROM exports WHERE image_id=$id"]
+                "DELETE FROM photo_tags WHERE photo_id=$id;",
+                "DELETE FROM photo_versions WHERE photo_id=$id;",
+                "DELETE FROM photos WHERE id=$id;",
+                "DELETE FROM exports WHERE image_id=$id;"]
         else:
             sql_templates = [ 
-                "DELETE FROM photo_versions WHERE photo_id=$id AND version_id=$version;",
+                "DELETE FROM photo_versions "
+                "WHERE photo_id=$id AND version_id=$version;",
                 "Update photos SET default_version_id=1 WHERE id=$id;" ]
 
         db = FSpotDB()
