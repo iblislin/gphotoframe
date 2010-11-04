@@ -76,7 +76,7 @@ class ActorFavIcon(ActorIcon):
     def _enter_cb(self, w, e, tooltip):
         try: # FIXME
             status = self.photo['fav'].fav
-        except KeyError:
+        except (KeyError, TypeError):
             return
 
         if w.number > 0 and isinstance(status, bool): return
@@ -87,7 +87,7 @@ class ActorFavIcon(ActorIcon):
     def _leave_cb(self, w, e, tooltip):
         try: # FIXME
             status = self.photo['fav'].fav
-        except KeyError:
+        except (KeyError, TypeError):
             return
 
         if w.number > 0 and isinstance(status, bool): return
