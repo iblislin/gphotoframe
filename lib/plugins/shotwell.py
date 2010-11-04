@@ -69,9 +69,7 @@ class ShotwellPhotoList(FSpotPhotoList):
 
 class ShotwellTrash(FSpotTrash):
 
-    def delete_from_catalog(self):
-        super(ShotwellTrash, self).delete_from_catalog()
-
+    def _get_sql_obj(self):
         if self.version == -1:
             sql_templates = [ 
                 "DELETE FROM PhotoTable WHERE id=$id;" ]
@@ -80,15 +78,7 @@ class ShotwellTrash(FSpotTrash):
                 "DELETE FROM BackingPhotoTable WHERE id=$version;" ]
 
         db = ShotwellDB()
-
-        for sql in sql_templates:
-            s = Template(sql)
-            statement = s.substitute(id=self.id, version=self.version)
-            print statement
-            db.execute(statement)
-
-        db.commit()
-        db.close()
+        return db, sql_templates
 
 class PhotoSourceShotwellUI(PhotoSourceUI):
 
