@@ -1,3 +1,7 @@
+2010-11-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Added a Shotwell remove function.
+
 2010-11-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* fspot/__init__.py: Fixed an URI encoding (issue #76).

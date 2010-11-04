@@ -46,33 +46,49 @@ class ShotwellPhotoList(FSpotPhotoList):
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
-        columns = 'filename, id'
+        columns = 'P.id, filename, editable_id, filepath, title'
         sql = self.sql.get_statement(columns, rate.name)
         sql += ' ORDER BY random() LIMIT 1;'
 
         photo = self.db.fetchall(sql)
         if not photo: return False
-        filename, id = photo[0]
+        id, original_filename, version, version_filename, title = photo[0]
+        filename = version_filename or original_filename
 
         data = { 'url' : 'file://' + filename,
                  'rate' : rate.name,
                  'filename' : filename,
-                 'title' : os.path.basename(filename), # without path
+                 'title' : title or os.path.basename(filename), # without path
                  'id' : id,
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
-                 'trash': ShotwellTrash(id, filename),
+                 'trash': ShotwellTrash(id, version, filename, self.photolist),
                  'icon' : ShotwellIcon }
 
         self.photo = Photo(data)
         cb(None, self.photo)
 
-class ShotwellTrash(Trash):
-
-    def check_delete_from_catalog(self):
-        return True
+class ShotwellTrash(FSpotTrash):
 
     def delete_from_catalog(self):
-        pass
+        super(ShotwellTrash, self).delete_from_catalog()
+
+        if self.version == -1:
+            sql_templates = [ 
+                "DELETE FROM PhotoTable WHERE id=$id;" ]
+        else:
+            sql_templates = [ 
+                "DELETE FROM BackingPhotoTable WHERE id=$version;" ]
+
+        db = ShotwellDB()
+
+        for sql in sql_templates:
+            s = Template(sql)
+            statement = s.substitute(id=self.id, version=self.version)
+            print statement
+            db.execute(statement)
+
+        db.commit()
+        db.close()
 
 class PhotoSourceShotwellUI(PhotoSourceUI):
 
@@ -117,15 +133,17 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         self.time_column = 'exposure_time'
 
     def _tag(self):
-        if not self.target: return ""
+        joint = 'LEFT OUTER JOIN BackingPhotoTable BT ON P.editable_id=BT.id'
+        if not self.target: 
+            return [joint]
 
         sql = 'SELECT photo_id_list FROM TagTable WHERE name="%s"' % str(self.target)
         db = ShotwellDB()
         photo_id_list = db.fetchone(sql)
         db.close()
 
-        tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
-        return [tag]
+        tag = "WHERE P.id IN (%s)" % photo_id_list.rstrip(',')
+        return [joint, tag]
 
 class ShotwellPhotoTags(object):
     "Sorted Shotwell photo tags for gtk.ComboBox"
