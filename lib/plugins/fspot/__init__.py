@@ -112,6 +112,17 @@ class FSpotTrash(Trash):
         super(FSpotTrash, self).delete_from_catalog()
         print "f-spot catalog delete!", self.id, self.version
 
+        db, sql_templates = self._get_sql_obj() 
+        for sql in sql_templates:
+            s = Template(sql)
+            statement = s.substitute(id=self.id, version=self.version)
+            print statement
+            db.execute(statement)
+
+        db.commit()
+        db.close()
+
+    def _get_sql_obj(self):
         if self.version == 1:
             sql_templates = [ 
                 "DELETE FROM photo_tags WHERE photo_id=$id;",
@@ -125,15 +136,7 @@ class FSpotTrash(Trash):
                 "Update photos SET default_version_id=1 WHERE id=$id;" ]
 
         db = FSpotDB()
-
-        for sql in sql_templates:
-            s = Template(sql)
-            statement = s.substitute(id=self.id, version=self.version)
-            print statement
-            db.execute(statement)
-
-        db.commit()
-        db.close()
+        return db, sql_templates
 
 class PhotoSourceFspotUI(PhotoSourceUI):
 
