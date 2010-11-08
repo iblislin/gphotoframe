@@ -3,8 +3,7 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY appname "GNOME Photo Frame">
   <!ENTITY appversion "1.1">
-  <!ENTITY manrevision "1.1">
-  <!ENTITY date "October 2010">]>
+  <!ENTITY manrevision "1.1.1">]>
   
   <!-- Information about the entities.
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -13,13 +12,13 @@
        Use the date entity to specify the release date of this manual.
        Use the application entity to specify the name of the application. -->
 
-
 <article id="index" lang="en">
 
   <articleinfo>
   <title><application>&appname;</application> Application Manual</title>
     <abstract role="description">
-      <para><application>&appname;</application> is an image viewer application for the GNOME desktop.</para>
+      <para><application>&appname;</application> is an image viewer application for the 
+      GNOME desktop.</para>
     </abstract>
 
     <copyright>
@@ -55,10 +54,23 @@
     </legalnotice>
 
     <revhistory>
-      <revision>
-        <revnumber>&appname; Manual &manrevision;</revnumber>
-        <date>2010-10-03</date>
+      <revision> 
+        <revnumber>&appname; Manual V&manrevision;</revnumber> 
+        <date>2010-11-04</date> 
+        <revdescription> 
+          <para role="author">Cristian Marchi
+          <email>cri.penta@gmail.com</email></para>
+        </revdescription> 
       </revision>
+
+      <revision>
+        <revnumber>&appname; Manual V1.1</revnumber>
+        <date>2010-10-03</date>
+        <revdescription> 
+          <para role="author">Cristian Marchi
+          <email>cri.penta@gmail.com</email></para>
+        </revdescription> 
+      </revision>  
     </revhistory>
 
    <releaseinfo>This manual describes version &appversion; of &appname;.</releaseinfo>
@@ -75,12 +87,12 @@
     <informalfigure id="gphotoframe-fig1">
     <screenshot>
       <mediaobject>
-    	 <imageobject><imagedata fileref="figures/gphotoframe_fig1.png"
-    		format="PNG"/>
-    	 </imageobject>
-       	 <textobject>
-    		<phrase>Shows <application>&appname;</application> application on GNOME desktop</phrase>
-    	 </textobject>
+        <imageobject>
+          <imagedata fileref="figures/gphotoframe_fig1.png" format="PNG"></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase>Shows <application>&appname;</application> application on GNOME desktop</phrase>
+        </textobject>
       </mediaobject>
     </screenshot>
     </informalfigure>
@@ -117,24 +129,25 @@
       <listitem>
         <para>
         Right-click on the photo frame and select <guilabel>Preferences</guilabel> from
-        the <application>&appname;</application> main menu.
+        the <link linkend="gphotoframe-mainmenu"><application>&appname;</application> main menu</link>.
         </para>
       </listitem>
       <listitem>
         <para>
-        Select the <guilabel>Photos</guilabel> tab and press the 
+        Select the <link linkend="pref-photos"><guilabel>Photos</guilabel></link> tab and press the 
         <guibutton>New</guibutton> button.
         </para>
       </listitem>
       <listitem>
         <para>
-        In the dialog that will open, select one of the <link linkend="pref-plugin">many sources</link>, adjust as desired the
-        options, then press <guibutton>Ok</guibutton>.
+        In the dialog that will open, select one of the <link linkend="pref-plugins">many sources</link>. 
+        Adjust as desired the options and apply the changes with the <guibutton>Ok</guibutton> button.
         </para>
       </listitem>
       <listitem>
         <para>
-        Go back to the photo frame by closing the <interface>Preferences</interface> dialog with the <guibutton>Close</guibutton> button. 
+        Go back to the photo frame by closing the <interface>Preferences</interface> dialog with 
+        the <guibutton>Close</guibutton> button.
         </para>
       </listitem>
     </orderedlist>
@@ -161,78 +174,83 @@
 
     <figure id="gphotoframe-fig2">
     <title>The Photo Frame</title>
-        <screenshot>
-          <mediaobject>
-                <imageobject>
-          <imagedata fileref="figures/gphotoframe_fig2.png" format="PNG"/>
-                </imageobject>
-        <textobject>
-           <phrase>Shows the photo frame with tooltip and icons</phrase>
-        </textobject>
-           <caption>
-           <para>
-           The tooltip and the icons showed on the photo frame if the source
-           is Flickr photo sharing website
-           </para>
-           </caption>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/gphotoframe_fig2.png" format="PNG"></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase>Shows the photo frame with tooltip and icons</phrase>
+          </textobject>
+          <caption>
+            <para>
+            The tooltip and the icons showed on the photo frame if the source
+            is Flickr photo sharing website
+            </para>
+          </caption>
         </mediaobject>
-    </screenshot>
-        </figure>
+      </screenshot>
+    </figure>
 
     <para>
     The number and type of icons displayed on the frame corners depends
     on the content's source. They could be:
     </para>
-
-    <itemizedlist>
-      <listitem>
-        <para>
-          <guiicon>fav-icon</guiicon> &mdash; this icon is located in the
-          upper left corner of the photo frame. If you are
-          <link linkend="gphotoframe-onlinelog">logged in</link> with your
-          userID to an internet service like Flickr, you could add an image
-          to your's profile favorites with a click on this icon.
-          The icon will then light up indicating that
-          the image has been added to your favorites.
-          </para>
-          <para>
-          Click again on that icon and the image will be removed from your favorites.
-        </para>
-        <para>
-          If the contents comes from photo manager applications (such as <application>
-          F-Spot</application> or <application>Shotwell</application> database), 
-          there will be a row of five icons so that you can assign a personal vote
-          to the content displayed with a click on them.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <guiicon>geo-icon</guiicon> &mdash; this is a earth shaped
+    
+    <variablelist id="icons-list">
+    
+      <varlistentry>
+      <term><guiicon>fav-icon</guiicon></term> 
+        <listitem>
+           <para>This icon is located in the upper left corner of the 
+           photo frame. If you are <link linkend="gphotoframe-onlinelog">logged in</link>
+           with your userID to an internet service like Flickr, you could add an image
+           to your's profile favorites with a click on this icon.
+           The icon will then light up indicating that
+           the image has been added to your favorites.</para>
+           <para>Click again on that icon and the image will be removed from your favorites.</para>
+           <para>If the contents comes from photo manager applications (such as <application>
+           F-Spot</application> or <application>Shotwell</application> database), 
+           there will be a row of five icons so that you can assign a personal vote
+           to the content displayed with a click on them.</para>
+         </listitem>
+      </varlistentry>
+       
+      <varlistentry> 
+      <term><guiicon>geo-icon</guiicon></term>
+        <listitem>
+          <para>This is the earth shaped
           icon that appears on the bottom right of the frame if GPS (Global
           Positioning System) data are available for the content currently
           displayed. Click on the icon to open the default web browser in which
-          the content's geographical position will be displayed in google maps.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <guiicon>info-icon</guiicon> &mdash; this icon is located on the bottom right
+          the content's geographical position will be displayed in google maps.</para>
+        </listitem>
+      </varlistentry>
+       
+      <varlistentry>
+      <term><guiicon>info-icon</guiicon></term>
+        <listitem>
+          <para>This icon is located on the bottom right
           of the frame and depict a camera. If you hover the mouse on it, a tooltip will
           be displayed containing all the image's metadata (if available) such as camera
-          model and maker, shutter speed, aperture, etc...
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <guiicon>source-icon</guiicon> &mdash; this icon is displayed in the
+          model and maker, shutter speed, aperture, etc...</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+      <term><guiicon>source-icon</guiicon></term>
+        <listitem>
+          <para>This icon is displayed in the
           upper right corner of the frame and shows the symbol of the service
           from where the content is retrieved. With a click on the icon, the
           source will open in your system's default web browser (if the content comes from an
           online service), and in your system's default image viewer (if the
-          content is local).
-        </para>
-      </listitem>
-    </itemizedlist>
+          content is local).</para>
+       </listitem>
+      </varlistentry>
+      
+    </variablelist>
+
     <note>
       <title>Clutter library support</title>
       <para>
@@ -292,8 +310,8 @@
       <listitem>
         <para><guimenuitem>Fix photo frame</guimenuitem></para>
         <para>
-        Fix the photo frame so that the movement with the mouse is
-        prevented, and it is not displayed in the pager.
+        When this option is activated, the photo frame can not be dragged wih the mouse
+        and it's shape is not displayed in the pager.
         </para>
         <note>
           <title></title>
@@ -318,7 +336,7 @@
       </listitem>
       <listitem>
         <para><guimenuitem>Help</guimenuitem></para>
-        <para>Open this manual.</para>
+        <para>Opens this manual.</para>
       </listitem>
       <listitem>
         <para>
@@ -347,7 +365,7 @@
     <sect2 id="pref-general">
     <title>General tab</title>
     <para>
-    In the <guilabel>General</guilabel> tab is possible to set some general
+    In the <guilabel>General</guilabel> you can set some general
     options for <application>&appname;</application>.
     </para>
     <para>The <guilabel>General</guilabel> tab is composed of three subsections:</para>
@@ -355,7 +373,7 @@
       <listitem>
         <para><interface>Interval</interface></para>
         <para>
-        Here is possible to set the visualization time, in seconds, of an image for the <interface>window
+        Sets the visualization time, in seconds, of an image for the <interface>window
         mode</interface> and for the <interface>full screen mode</interface>.
         </para>
       </listitem>
@@ -377,16 +395,27 @@
       <listitem>
         <para><interface>Desktop</interface></para>
         <para>
-        Check the first option to make <application>&appname;</application> visible on all workspaces.
+        Enable the <guilabel>Visible on all workspaces</guilabel> option to make <application>&appname;</application> 
+        visible on all workspaces.
         </para>
         <para>
-        Check the second option to load automatically <application>&appname;</application> on next system's startup.
+        Check the <guilabel>Run at startup</guilabel> option to load 
+        automatically <application>&appname;</application> on next system's startup.
         </para>
       </listitem>
     </itemizedlist>
+    
+    <tip>
+     <para>The appearence and behavior of <application>&appname;</application> can be further customized by changing some
+     <application>gconf</application> parameters. For example if you want to change the frame color to black,
+     run the following command in a terminal window:</para>
+     <para><command>gconftool-2 --type str --set /apps/gphotoframe/border_color "black"</command></para>
+     <para>If you want to make the frame wider than the default value, run the following command in a terminal window:</para>
+     <para><command>gconftool-2 --type int --set /apps/gphotoframe/border_width 12</command></para>
+    </tip>     
     </sect2>
 
-    <sect2 id="pref-plugin">
+    <sect2 id="pref-plugins">
     <title>Plugins tab</title>
       <para>This tab shows the list of plugins currently installed on your system.</para>
       <para>
@@ -482,7 +511,7 @@
         <para>
         If you want to add more sources just repeat this process.
         </para>
-        <note>
+        <note id="weight-note">
         <title>Weight</title>
           <para>
           One of the most important setting if you have more than one source, is
@@ -514,10 +543,10 @@
   <title>Logging to an Online Service</title>
   <para>
   In <application>&appname;</application> is possible to get logged in to an online service listed in the
-  <link linkend="pref-plugin">Plugins tab</link> if you have an account.
+  <link linkend="pref-plugins">Plugins tab</link> if you have an account.
   </para>
   <para>
-  When <application>&appname;</application> is connected with your credentials to an online service,
+  When <application>&appname;</application> is connected with your data to an online service,
   you could add displayed contents to your favorites, vote images and display photos
   from your account.
   </para>
@@ -527,7 +556,7 @@
   <orderedlist>
     <listitem>
       <para>
-      Go to the <link linkend="pref-plugin">Plugins tab</link> and highlight
+      Go to the <link linkend="pref-plugins">Plugins tab</link> and highlight
       the row of the online service plugin you want to get logged in.
       </para>
     </listitem>
