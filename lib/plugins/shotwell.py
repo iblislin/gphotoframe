@@ -46,14 +46,17 @@ class ShotwellPhotoList(FSpotPhotoList):
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
-        columns = 'P.id, filename, editable_id, filepath, title'
+        columns = 'id, filename, editable_id, title'
         sql = self.sql.get_statement(columns, rate.name)
         sql += ' ORDER BY random() LIMIT 1;'
 
         photo = self.db.fetchall(sql)
         if not photo: return False
-        id, original_filename, version, version_filename, title = photo[0]
-        filename = version_filename or original_filename
+        id, filename, version, title = photo[0]
+
+        if version != -1:
+            sql = "SELECT filepath FROM BackingPhotoTable WHERE id=%s" % version
+            filename = self.db.fetchone(sql)
 
         data = { 'url' : 'file://' + filename,
                  'rate' : rate.name,
@@ -75,7 +78,17 @@ class ShotwellTrash(FSpotTrash):
                 "DELETE FROM PhotoTable WHERE id=$id;" ]
         else:
             sql_templates = [ 
-                "DELETE FROM BackingPhotoTable WHERE id=$version;" ]
+                "DELETE FROM BackingPhotoTable WHERE id=$version;", 
+                "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
+
+        # cache delete
+        cache_path = os.path.join(os.environ['HOME'], '.shotwell/thumbs')
+        cache_file = "thumb%016x.jpg" % self.id
+
+        for size in ['thumbs128', 'thumbs360']:
+            fullpath = os.path.join(cache_path, size, cache_file)
+            if os.access(fullpath, os.W_OK):
+                os.remove(fullpath)
 
         db = ShotwellDB()
         return db, sql_templates
@@ -123,17 +136,15 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         self.time_column = 'exposure_time'
 
     def _tag(self):
-        joint = 'LEFT OUTER JOIN BackingPhotoTable BT ON P.editable_id=BT.id'
-        if not self.target: 
-            return [joint]
+        if not self.target: return ""
 
         sql = 'SELECT photo_id_list FROM TagTable WHERE name="%s"' % str(self.target)
         db = ShotwellDB()
         photo_id_list = db.fetchone(sql)
         db.close()
 
-        tag = "WHERE P.id IN (%s)" % photo_id_list.rstrip(',')
-        return [joint, tag]
+        tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
+        return [tag]
 
 class ShotwellPhotoTags(object):
     "Sorted Shotwell photo tags for gtk.ComboBox"
