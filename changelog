@@ -1,3 +1,8 @@
+2010-11-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py (ShotwellPhotoSQL): Added support for flags on the
+	  photo database (deleted photos).
+
 2010-11-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* shotwell.py: Fixed bugs.

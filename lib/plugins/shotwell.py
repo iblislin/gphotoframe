@@ -136,7 +136,10 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         self.time_column = 'exposure_time'
 
     def _tag(self):
-        if not self.target: return ""
+        default = "WHERE flags=0"
+
+        if not self.target: 
+            return [default]
 
         sql = 'SELECT photo_id_list FROM TagTable WHERE name="%s"' % str(self.target)
         db = ShotwellDB()
@@ -144,7 +147,7 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         db.close()
 
         tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
-        return [tag]
+        return [default, tag]
 
 class ShotwellPhotoTags(object):
     "Sorted Shotwell photo tags for gtk.ComboBox"
