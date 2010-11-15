@@ -11,6 +11,7 @@ from .. import constants
 from ..utils.config import GConf
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.EXIF import process_file as exif_process_file
+from ..utils.trash import GioTrash
 
 class PluginBase(object):
 
@@ -298,6 +299,61 @@ class ParseEXIF(object):
             a, b = value.split('/')
             value = int(a) / int(b)
         return value
+
+class Trash(object):
+
+    def __init__(self, id, filename, photolist=None):
+        self.id = id
+        self.filename = filename
+        self.photolist = photolist
+
+    def check_delete_from_disk(self):
+        path = os.path.split(self.filename)[0]
+        # path = '/usr'
+        return os.access(path, os.W_OK)
+
+    def check_delete_from_catalog(self):
+        return False
+
+    def delete_from_disk(self):
+        print "delete from disk!"
+
+        trash = GioTrash(self.filename)
+        #if not trash.check_file():
+        #    return
+        
+        result = trash.move()
+        if not result:
+            dialog = ReallyDeleteDialog(self.filename, self.delete_from_catalog)
+        else:
+            self.delete_from_catalog()
+
+    def delete_from_catalog(self):
+        self.photolist.delete_photo(self.filename)
+
+class ReallyDeleteDialog(object):
+
+    def __init__(self, file, delete_from_catalog):
+        self.file = file
+        self.delete_from_catalog = delete_from_catalog
+
+        self.text1 = _( "Cannot move file to trash, " 
+                   "do you want to delete immediately?")
+        self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
+
+        dialog = gtk.MessageDialog(
+            None, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING, 
+            gtk.BUTTONS_OK_CANCEL, self.text1)
+        dialog.format_secondary_text(self.text2)
+        dialog.connect('response', self._response_cb)
+        dialog.show()
+
+    def _response_cb(self, widget, response):
+        if response == gtk.RESPONSE_OK:
+            print "really delete!!"
+            os.remove(self.file)
+            self.delete_from_catalog()
+        widget.destroy()
 
 class PluginDialog(object):
     """Photo Source Dialog"""

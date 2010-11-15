@@ -46,24 +46,52 @@ class ShotwellPhotoList(FSpotPhotoList):
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
-        columns = 'filename, id'
+        columns = 'id, filename, editable_id, title'
         sql = self.sql.get_statement(columns, rate.name)
         sql += ' ORDER BY random() LIMIT 1;'
 
         photo = self.db.fetchall(sql)
         if not photo: return False
-        filename, id = photo[0]
+        id, filename, version, title = photo[0]
+
+        if version != -1:
+            sql = "SELECT filepath FROM BackingPhotoTable WHERE id=%s" % version
+            filename = self.db.fetchone(sql)
 
         data = { 'url' : 'file://' + filename,
                  'rate' : rate.name,
                  'filename' : filename,
-                 'title' : os.path.basename(filename), # without path
+                 'title' : title or os.path.basename(filename), # without path
                  'id' : id,
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
+                 'trash': ShotwellTrash(id, version, filename, self.photolist),
                  'icon' : ShotwellIcon }
 
         self.photo = Photo(data)
         cb(None, self.photo)
+
+class ShotwellTrash(FSpotTrash):
+
+    def _get_sql_obj(self):
+        if self.version == -1:
+            sql_templates = [ 
+                "DELETE FROM PhotoTable WHERE id=$id;" ]
+        else:
+            sql_templates = [ 
+                "DELETE FROM BackingPhotoTable WHERE id=$version;", 
+                "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
+
+        # cache delete
+        cache_path = os.path.join(os.environ['HOME'], '.shotwell/thumbs')
+        cache_file = "thumb%016x.jpg" % self.id
+
+        for size in ['thumbs128', 'thumbs360']:
+            fullpath = os.path.join(cache_path, size, cache_file)
+            if os.access(fullpath, os.W_OK):
+                os.remove(fullpath)
+
+        db = ShotwellDB()
+        return db, sql_templates
 
 class PhotoSourceShotwellUI(PhotoSourceUI):
 
@@ -108,7 +136,10 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         self.time_column = 'exposure_time'
 
     def _tag(self):
-        if not self.target: return ""
+        default = "WHERE flags=0"
+
+        if not self.target: 
+            return [default]
 
         sql = 'SELECT photo_id_list FROM TagTable WHERE name="%s"' % str(self.target)
         db = ShotwellDB()
@@ -116,7 +147,7 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         db.close()
 
         tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
-        return [tag]
+        return [default, tag]
 
 class ShotwellPhotoTags(object):
     "Sorted Shotwell photo tags for gtk.ComboBox"
