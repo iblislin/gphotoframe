@@ -4,6 +4,7 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2010-11-21 Version 1.4.1
 # 2010-10-30 Version 1.4
 # 2010-09-25 Version 1.3
 # 2010-06-03 Version 1.2
@@ -85,6 +86,7 @@ class BijinTokeiList(object):
             ['美人時計', ['jp', None]],
             ['美男時計', ['binan', None]],
             ['サーキット時計', ['cc', None]],
+            ['カンバン娘時計', ['k-musume', None]],
             ['韓国時計', ['kr', 'assets/pict/kr/590x450']],
             ['香港時計', ['hk', 'assets/pict/hk/590x450']],
             ['北海道時計', ['hokkaido', None]],
@@ -95,6 +97,7 @@ class BijinTokeiList(object):
             ['岡山時計', ['okayama', None]],
             ['香川時計', ['kagawa', None]],
             ['福岡時計', ['fukuoka', None]],
+            ['鹿児島時計', ['kagoshima', None]],
             ['ランダム', [None, None]],
             ]
 
