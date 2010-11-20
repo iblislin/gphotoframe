@@ -1,3 +1,7 @@
+2010-11-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* clutterimage.py: Fixed module names for Screen Saver.
+
 2010-11-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* shotwell.py (ShotwellPhotoSQL): Added support for flags on the
