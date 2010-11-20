@@ -80,11 +80,11 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
     def __init__(self, photoframe):
         super(PhotoImageClutterFullScreen, self).__init__(photoframe)
 
-        self.photo_image2 = Texture(self.stage)
+        self.photo_image2 = base.Texture(self.stage)
         self.photo_image2.show()
-        self.actors2 = [ ActorSourceIcon(self.stage, self.tooltip),
-                        ActorGeoIcon(self.stage, self.tooltip),
-                        ActorFavIcon(self.stage, self.tooltip), ]
+        self.actors2 = [ source.ActorSourceIcon(self.stage, self.tooltip),
+                        info.ActorGeoIcon(self.stage, self.tooltip),
+                        favicon.ActorFavIcon(self.stage, self.tooltip), ]
         self.first = True # image1 or image2
 
         self.animation = self.conf.get_bool('ui/animate_fullscreen', False)
