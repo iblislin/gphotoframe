@@ -1,3 +1,7 @@
+2010-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py (ShotwellTrash): Added support for Shotwell Trash.
+
 2010-11-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* clutterimage.py: Fixed module names for Screen Saver.
