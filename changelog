@@ -1,5 +1,6 @@
 2010-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* liststore.py: Reset the timer in delete_photo function.
 	* shotwell.py (ShotwellTrash): Added support for Shotwell Trash.
 
 2010-11-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
