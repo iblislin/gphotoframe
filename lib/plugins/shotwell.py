@@ -72,6 +72,20 @@ class ShotwellPhotoList(FSpotPhotoList):
 
 class ShotwellTrash(FSpotTrash):
 
+    def check_delete_from_disk(self):
+        # super(ShotwellTrash, self).check_delete_from_disk()
+        return True
+
+    def delete_from_disk(self):
+        # super(ShotwellTrash, self).delete_from_disk()
+        self.photolist.delete_photo(self.filename)
+
+        sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % self.id 
+        db = ShotwellDB()
+        db.execute(sql)
+        db.commit()
+        db.close()
+
     def _get_sql_obj(self):
         if self.version == -1:
             sql_templates = [ 
