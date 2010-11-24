@@ -4,6 +4,10 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# Put this file to ~/.config/gphotoframe/plugins/ (the user plguins
+# directory) if you use gphotoframe 1.2 or later.
+#
+# 2010-11-24 Version 1.5
 # 2010-11-21 Version 1.4.1
 # 2010-10-30 Version 1.4
 # 2010-09-25 Version 1.3
@@ -42,24 +46,20 @@ class BijinPhotoList(PhotoList):
 
     def _random_choice(self):
         tokei = self._select_clock(self.target)
-        (page_path, pic_path) = dict(self.tokei.list)[tokei]
-        if not pic_path:
-            pic_path = page_path + '/tokei_images'
 
-        url_base = 'http://www.bijint.com/'
-        url_page = url_base + page_path
-        self.headers = {'Referer': url_page}
+        pic_url = self.tokei.get_pic_path(tokei)
+        page_url = self.tokei.get_page_url(tokei)
+        self.headers = {'Referer': page_url}
 
         (h, m) = time.localtime(time.time())[3:5]
-        url = '%s/%02d%02d.jpg' % (url_base + pic_path, h, m)
 
         data = {
             'type': BijinPlugin,
             'icon': BijinIcon,
-            'url': url,
+            'url': '%s/%02d%02d.jpg' % (pic_url, h, m),
             'title': '%02d:%02d (%s)' % (h, m, tokei),
             'owner_name': 'bijin-tokei',
-            'page_url': url_page,
+            'page_url': page_url,
             }
 
         return Photo(data)
@@ -68,7 +68,7 @@ class BijinPhotoList(PhotoList):
         if target != 'ランダム':
             return target
 
-        list = [i[0] for i in self.tokei.list if i[1][0] and i[0]
+        list = [i[0] for i in self.tokei.list if i[1] and i[0]
                 not in self.conf.get_list('plugins/bijin/disabled')]
         return random.choice(list)
 
@@ -81,25 +81,42 @@ class PhotoSourceBijinUI(PhotoSourceUI):
 class BijinTokeiList(object):
 
     def __init__(self):
+        self.url_base = 'http://www.bijint.com/'
+
         self.list = [
-            # ['美人時計', ['jp', 'jp/img/clk']],
-            ['美人時計', ['jp', None]],
-            ['美男時計', ['binan', None]],
-            ['サーキット時計', ['cc', None]],
-            ['カンバン娘時計', ['k-musume', None]],
-            ['韓国時計', ['kr', 'assets/pict/kr/590x450']],
-            ['香港時計', ['hk', 'assets/pict/hk/590x450']],
-            ['北海道時計', ['hokkaido', None]],
-            ['仙台時計',   ['sendai', None]],
-            ['名古屋時計', ['nagoya', None]],
-            ['金沢時計', ['kanazawa', None]],
-            ['京都時計', ['kyoto', None]],
-            ['岡山時計', ['okayama', None]],
-            ['香川時計', ['kagawa', None]],
-            ['福岡時計', ['fukuoka', None]],
-            ['鹿児島時計', ['kagoshima', None]],
-            ['ランダム', [None, None]],
+            ['美人時計', 'jp'],
+            ['美男時計', 'binan'],
+            ['サーキット時計', 'cc'],
+            ['カンバン娘時計', 'k-musume'],
+            ['韓国時計', 'kr'],
+            ['香港時計', 'hk'],
+            ['北海道時計', 'hokkaido'],
+            ['仙台時計',   'sendai'],
+            ['名古屋時計', 'nagoya'],
+            ['金沢時計', 'kanazawa'],
+            ['京都時計', 'kyoto'],
+            ['岡山時計', 'okayama'],
+            ['香川時計', 'kagawa'],
+            ['福岡時計', 'fukuoka'],
+            ['鹿児島時計', 'kagoshima'],
+            ['ランダム', None],
             ]
+
+        self.dic = dict(self.list)
+
+    def get_pic_path(self, tokei):
+        page_path = self.dic[tokei]
+
+        if page_path == 'hk' or page_path == 'kr':
+            pic_path = 'assets/pict/%s/590x450' % page_path
+        else:
+            pic_path = page_path + '/tokei_images'
+
+        return self.url_base + pic_path
+
+    def get_page_url(self, tokei):
+        url_page = self.url_base + self.dic[tokei]
+        return url_page
 
 class BijinIcon(WebIconImage):
 
