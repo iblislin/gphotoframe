@@ -104,7 +104,7 @@ class DirPhotoList(PhotoList):
         pass
 
     def _del_dir(self, fullpath):
-        print fullpath
+        # print fullpath
         for i, photo in enumerate(self.photos):
             if photo['filename'].startswith(fullpath+"/"):
                 self.photos.pop(i)

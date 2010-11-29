@@ -110,13 +110,13 @@ class FSpotTrash(Trash):
 
     def delete_from_catalog(self):
         super(FSpotTrash, self).delete_from_catalog()
-        print "f-spot catalog delete!", self.id, self.version
+        # print "f-spot catalog delete!", self.id, self.version
 
         db, sql_templates = self._get_sql_obj() 
         for sql in sql_templates:
             s = Template(sql)
             statement = s.substitute(id=self.id, version=self.version)
-            print statement
+            # print statement
             db.execute(statement)
 
         db.commit()
