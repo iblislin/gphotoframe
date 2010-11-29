@@ -309,15 +309,12 @@ class Trash(object):
 
     def check_delete_from_disk(self):
         path = os.path.split(self.filename)[0]
-        # path = '/usr'
         return os.access(path, os.W_OK)
 
     def check_delete_from_catalog(self):
         return False
 
     def delete_from_disk(self):
-        print "delete from disk!"
-
         trash = GioTrash(self.filename)
         #if not trash.check_file():
         #    return
@@ -339,7 +336,7 @@ class ReallyDeleteDialog(object):
 
         self.text1 = _( "Cannot move file to trash, " 
                    "do you want to delete immediately?")
-        self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % "aa"
+        self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % file
 
         dialog = gtk.MessageDialog(
             None, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING, 
@@ -350,7 +347,7 @@ class ReallyDeleteDialog(object):
 
     def _response_cb(self, widget, response):
         if response == gtk.RESPONSE_OK:
-            print "really delete!!"
+            # print "really delete!!"
             os.remove(self.file)
             self.delete_from_catalog()
         widget.destroy()
