@@ -3,7 +3,7 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY appname "GNOME Photo Frame">
   <!ENTITY appversion "1.1">
-  <!ENTITY manrevision "1.1.1">]>
+  <!ENTITY manrevision "1.1.2">]>
   
   <!-- Information about the entities.
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -54,23 +54,32 @@
     </legalnotice>
 
     <revhistory>
-      <revision> 
-        <revnumber>&appname; Manual V&manrevision;</revnumber> 
-        <date>2010-11-04</date> 
-        <revdescription> 
+      <revision>
+        <revnumber>&appname; Manual V&manrevision;</revnumber>
+        <date>2010-11-18</date>
+        <revdescription>
           <para role="author">Cristian Marchi
           <email>cri.penta@gmail.com</email></para>
-        </revdescription> 
+        </revdescription>
+      </revision>
+      
+      <revision>
+        <revnumber>&appname; Manual V1.1.1</revnumber>
+        <date>2010-11-04</date>
+        <revdescription>
+          <para role="author">Cristian Marchi
+          <email>cri.penta@gmail.com</email></para>
+        </revdescription>
       </revision>
 
       <revision>
         <revnumber>&appname; Manual V1.1</revnumber>
         <date>2010-10-03</date>
-        <revdescription> 
+        <revdescription>
           <para role="author">Cristian Marchi
           <email>cri.penta@gmail.com</email></para>
-        </revdescription> 
-      </revision>  
+        </revdescription>
+      </revision>
     </revhistory>
 
    <releaseinfo>This manual describes version &appversion; of &appname;.</releaseinfo>
@@ -83,19 +92,6 @@
     <application>&appname;</application> is an image viewer application for your GNOME
     desktop.
     </para>
-
-    <informalfigure id="gphotoframe-fig1">
-    <screenshot>
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="figures/gphotoframe_fig1.png" format="PNG"></imagedata>
-        </imageobject>
-        <textobject>
-          <phrase>Shows <application>&appname;</application> application on GNOME desktop</phrase>
-        </textobject>
-      </mediaobject>
-    </screenshot>
-    </informalfigure>
 
     <para>
     The <application>&appname;</application> application is able to show a frame
@@ -194,7 +190,7 @@
 
     <para>
     The number and type of icons displayed on the frame corners depends
-    on the content's source. They could be:
+    on the content's source. They can be:
     </para>
     
     <variablelist id="icons-list">
@@ -246,6 +242,20 @@
           source will open in your system's default web browser (if the content comes from an
           online service), and in your system's default image viewer (if the
           content is local).</para>
+       </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+      <term><guiicon>trash-icon</guiicon></term>
+        <listitem>
+          <para>This icon is displayed in the lower left corner of the frame and allows you to 
+          <link linkend="gphotoframe-trashimage">move to the trash the displayed image</link>.</para>
+          <note>
+            <para>The <guiicon>delete-icon</guiicon> is showed only if the displayed image 
+            comes from a local source such as a local folder or a 
+            <application>F-spot</application> or <application>Shotwell</application>
+            database.</para>
+          </note>
        </listitem>
       </varlistentry>
       
@@ -395,11 +405,11 @@
       <listitem>
         <para><interface>Desktop</interface></para>
         <para>
-        Enable the <guilabel>Visible on all workspaces</guilabel> option to make <application>&appname;</application> 
+        Enable the <guilabel>Visible on All Workspaces</guilabel> option to make <application>&appname;</application> 
         visible on all workspaces.
         </para>
         <para>
-        Check the <guilabel>Run at startup</guilabel> option to load 
+        Check the <guilabel>Auto Start</guilabel> option to load 
         automatically <application>&appname;</application> on next system's startup.
         </para>
       </listitem>
@@ -536,6 +546,20 @@
       </sect3>
 
    </sect2>
+
+</sect1>
+
+
+<sect1 id="gphotoframe-trashimage">
+  <title>Moving to the trash a displayed image</title>
+  <para>To move to trash a displayed image, click on the trash shaped icon in the lower left of the photo frame. 
+  A dialog will appear to confirm the operation.</para>
+    <note>
+      <para>This icon is showed only if the displayed image 
+      comes from a local source such as a local folder or a 
+      <application>F-spot</application> or <application>Shotwell</application>
+      database.</para>
+    </note>
 
 </sect1>
 
