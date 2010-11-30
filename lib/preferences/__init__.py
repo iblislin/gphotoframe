@@ -52,6 +52,7 @@ class Preferences(object):
 
         dic = {
             "on_close_button"              : self._close_cb,
+            "on_help_button"               : self._help_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
             "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
             "on_spinbutton_w_value_changed" : self._width_changed_cb,
@@ -95,6 +96,10 @@ class Preferences(object):
         self.photolist.save_gconf()
         self.plugin_liststore.save_gconf()
         self.prefs.destroy()
+
+    def _help_cb(self, widget):
+        gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
+                     gtk.gdk.CURRENT_TIME)
 
     def _set_spinbutton_value(self, widget, key, default_value):
         spinbutton = self.gui.get_object(widget)
