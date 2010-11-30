@@ -1,3 +1,8 @@
+2010-11-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/__init__.py, preferences.ui: Enable help button on
+	  Preferences.
+
 2010-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* liststore.py: Reset the timer in delete_photo function.
