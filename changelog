@@ -1,5 +1,6 @@
 2010-12-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* image/__init__.py: Added new gconf key: ui/disable_clutter.
 	* help/C/gphotoframe.xml: Updated help documentation.
 	  Thanks Cristian Marchi!
 
