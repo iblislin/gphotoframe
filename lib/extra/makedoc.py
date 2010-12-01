@@ -19,8 +19,8 @@ from optparse import OptionParser
 class CommandTemplate(object):
 
     def __init__(self):
-        self._get_template_str()
-        self.template = string.Template(self.template_str)
+        template_str = self._get_template_str()
+        self.template = string.Template(template_str)
 
     def _get_template_str(self):
         pass
@@ -33,7 +33,7 @@ class CommandTemplate(object):
 class MakeOMF(CommandTemplate):
 
     def _get_template_str(self):
-        self.template_str = (
+        return (
             """xsltproc """
             """-o ${dir}/${lang}/gphotoframe-$lang.omf """
             """--stringparam db2omf.basename gphotoframe """
@@ -50,7 +50,7 @@ class MakeOMF(CommandTemplate):
 class MakeXML(CommandTemplate):
 
     def _get_template_str(self):
-        self.template_str = (
+        return (
             """xml2po """
             """-p ${dir}/${lang}/${lang}.po """
             """-o ${dir}/${lang}/gphotoframe.xml """
@@ -59,7 +59,7 @@ class MakeXML(CommandTemplate):
 class MakePOT(CommandTemplate):
 
     def _get_template_str(self):
-        self.template_str = (
+        return (
             """xml2po """
             """-o ${dir}/help.pot """
             """${dir}/${lang}/gphotoframe.xml """
@@ -68,12 +68,11 @@ class MakePOT(CommandTemplate):
 class UpdatePO(CommandTemplate):
 
     def _get_template_str(self):
-        self.template_str = (
+        return (
             """xml2po """
             """-u ${dir}/${lang}/${lang}.po """
             """${dir}/C/gphotoframe.xml """
-            """${dir}/C/gphotoframe-C.omf\n"""
-            )
+            """${dir}/C/gphotoframe-C.omf\n""")
 
 class MakeDocument(object):
 
