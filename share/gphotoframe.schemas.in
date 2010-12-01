@@ -410,6 +410,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/ui/disable_clutter</key>
+      <applyto>/apps/gphotoframe/ui/disable_clutter</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Disable Clutter library support</short>
+        <long>Set this true if you have problems with Clutter library support.  When you change this value, you need to restart gphotoframe.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/ui/animate_icons</key>
       <applyto>/apps/gphotoframe/ui/animate_icons</applyto>
       <owner>gphotoframe</owner>
