@@ -7,7 +7,6 @@ except ImportError:
     from ..utils.nullobject import Null
     cluttergtk = Null()
 
-from ..utils.config import GConf
 from actor import *
 from gtkimage import *
 
