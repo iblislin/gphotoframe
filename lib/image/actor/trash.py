@@ -2,7 +2,6 @@ import gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
-from ...utils.config import GConf
 from info import ActorGeoIcon, ActorInfoIcon
 
 class ActorTrashIcon(ActorGeoIcon):
