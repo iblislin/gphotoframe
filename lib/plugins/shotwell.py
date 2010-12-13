@@ -58,7 +58,8 @@ class ShotwellPhotoList(FSpotPhotoList):
             sql = "SELECT filepath FROM BackingPhotoTable WHERE id=%s" % version
             filename = self.db.fetchone(sql)
 
-        data = { 'url' : 'file://' + filename,
+        data = { 'info': ShotwellPlugin,
+                 'url' : 'file://' + filename,
                  'rate' : rate.name,
                  'filename' : filename,
                  'title' : title or os.path.basename(filename), # without path
