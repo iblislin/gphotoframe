@@ -26,11 +26,14 @@ class History(object):
             pass
 
     def add(self, photo):
-        sql = "SELECT MAX(id) FROM %s;" % self.table
-        id = (self.con.execute(sql).fetchone()[0] or 0) + 1
+        sql = "SELECT id, url FROM %s ORDER BY id DESC LIMIT 1;" % self.table
+        max_id, prev_photo_url = self.con.execute(sql).fetchone() or (0, None)
+        if prev_photo_url == photo.get('url'):
+            return
+
         sql = "INSERT INTO %s VALUES (%s, '%s', '%s', '%s', '%s','%s');" % (
             self.table,
-            id, 
+            max_id + 1, 
             photo.get('url'), 
             photo.get('page_url') or '', 
 
@@ -40,15 +43,14 @@ class History(object):
 
         self.con.execute(sql)
         self.con.commit()
-
-        # con.close()
-
-    def _get_table_name(self):
-        return 'photoframe'
+        # self.con.close()
 
     def get(self):
         sql = "SELECT * FROM %s;" % self.table 
         return self.con.execute(sql).fetchall()
+
+    def _get_table_name(self):
+        return 'photoframe'
 
 class ScreenSaverHistory(History):
 
