@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-01 14:42+0900\n"
-"PO-Revision-Date: 2010-12-01 14:42+0900\n"
+"POT-Creation-Date: 2010-12-14 00:06+0900\n"
+"PO-Revision-Date: 2010-12-14 00:07+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -328,7 +328,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:93
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:94
 msgid "All"
 msgstr "すべて"
 
@@ -401,7 +401,7 @@ msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
 #: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:140
-#: ../lib/plugins/haikyo.py:81
+#: ../lib/plugins/haikyo.py:82
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -497,11 +497,15 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:97 ../lib/image/actor/info.py:31
+#: ../lib/menu.py:105 ../lib/image/actor/info.py:31
 msgid "No Title"
 msgstr "無題"
 
-#: ../lib/menu.py:121
+#: ../lib/menu.py:125
+msgid "Show All _History"
+msgstr "すべての履歴を表示(_H)"
+
+#: ../lib/menu.py:140
 msgid "GNOME Photo Frame"
 msgstr "GNOME 写真フレーム"
 
@@ -685,8 +689,8 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:175
-#: ../lib/plugins/tumblr.py:118
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:176
+#: ../lib/plugins/tumblr.py:119
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -769,16 +773,16 @@ msgstr "Flickr API エラー (%s): %s"
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot 写真マネージャ"
 
-#: ../lib/plugins/fspot/__init__.py:93
+#: ../lib/plugins/fspot/__init__.py:94
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:99
+#: ../lib/plugins/fspot/__init__.py:100
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:99
+#: ../lib/plugins/fspot/__init__.py:100
 msgid "Period"
 msgstr "期間"
 
@@ -790,7 +794,7 @@ msgstr "Picasa Web"
 msgid "Certification Error"
 msgstr "認証エラーです"
 
-#: ../lib/plugins/picasa.py:175
+#: ../lib/plugins/picasa.py:176
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -803,7 +807,7 @@ msgstr "Share Anything"
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
-#: ../lib/plugins/tumblr.py:141
+#: ../lib/plugins/tumblr.py:142
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
@@ -811,12 +815,12 @@ msgstr "E-mail(_E):"
 msgid "RSS and Atom Feeds"
 msgstr "RSS や Atom フィード"
 
-#: ../lib/plugins/rss.py:125
+#: ../lib/plugins/rss.py:126
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:128
+#: ../lib/plugins/rss.py:129
 msgid "_URL:"
 msgstr "URL(_U)"
 
