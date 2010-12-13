@@ -42,6 +42,7 @@ class ToolTip(object):
         if photo:
             title = photo.get('title')
             owner = photo.get('owner_name')
+            target = photo.get('target')
             date = photo.get('date_taken')
             location = photo.get('location')
 
@@ -50,6 +51,10 @@ class ToolTip(object):
             if owner:
 		# TRANSLATORS: %s is the name of the author of the photo
                 tip += _("by %s\n") % escape(owner)
+            if target:
+                target = [x.rstrip(' ').lstrip(' ') for x in target]
+                text = '/'.join(target) if target[1] else target[0]
+                tip += "%s\n" % escape(text)
             if date:
                 format = self.conf.get_string('date_format') or "%x"
                 tip += "%s\n" % (date if isinstance(date, str) else \
