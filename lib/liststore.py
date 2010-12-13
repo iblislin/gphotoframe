@@ -142,7 +142,7 @@ class RecentQueue(list):
         self.remove(photo['filename'])
         super(RecentQueue, self).append(photo)
 
-        print photo.get('page_url') or photo.get('url')
+        # print photo.get('page_url') or photo.get('url')
         self.history.add(photo)
         num = self.conf.get_int('recents/queue_number', 30)
         if len(self) > num:

@@ -9,6 +9,7 @@ import constants
 from utils.config import GConf
 from preferences import Preferences
 from utils.iconimage import IconImage
+from utils.history import HistoryHTML
 
 class PopUpMenu(object):
 
@@ -72,9 +73,16 @@ class PopUpMenu(object):
             item = RecentMenuItem(photo)
             menu.prepend(item)
 
+        # history menuitem
+        sep = gtk.SeparatorMenuItem()
+        history = HistoryMenuItem()
+        for item in [sep, history]:
+            menu.append(item)
+
         sensitive = True if len(recents) else False
         recent.set_submenu(menu)
         recent.set_sensitive(sensitive)
+        menu.show_all()
 
     def set_open_menu_sensitive(self, state):
         self.gui.get_object('menuitem5').set_sensitive(state)
@@ -110,7 +118,18 @@ class RecentMenuItem(gtk.ImageMenuItem):
 
         self.set_always_show_image(True)
         self.connect('activate', photo.open)
-        self.show()
+
+class HistoryMenuItem(gtk.MenuItem):
+
+    def __init__(self):
+        title = _("Show All _History")
+        super(HistoryMenuItem, self).__init__(title)
+        self.connect('activate', self._open)
+
+    def _open(self, widget):
+        html = HistoryHTML()
+        html.make()
+        gtk.show_uri(None, 'file:///tmp/photo.html', gtk.gdk.CURRENT_TIME)
 
 class AboutDialog(object):
 

@@ -1,4 +1,6 @@
+import os
 import sqlite3
+
 from xdg.BaseDirectory import xdg_cache_home
 from gnomescreensaver import GsThemeWindow
 
@@ -13,7 +15,7 @@ class History(object):
 
     def __init__(self):
         self.table = self._get_table_name()
-        db_file = os.path.join(xdg_cache_home, 'history.db')
+        db_file = os.path.join(xdg_cache_home, 'gphotoframe/history.db')
         self.con = sqlite3.connect(db_file)
 
         sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
@@ -44,7 +46,37 @@ class History(object):
     def _get_table_name(self):
         return 'photoframe'
 
+    def get(self):
+        sql = "SELECT * FROM %s;" % self.table 
+        return self.con.execute(sql).fetchall()
+
 class ScreenSaverHistory(History):
 
     def _get_table_name(self):
         return 'screensaver'
+
+class HistoryHTML(object):
+
+    def __init__(self):
+        self.screensaver = ScreenSaverHistory()
+        self.photoframe = History()
+
+    def make(self):
+        fh = open('/tmp/photo.html','w')
+
+        fh.write('<h1>Photo Frame</h1>')
+        self._output(self.photoframe.get(), fh)
+
+        fh.write('<h1>Screen Saver</h1>')
+        self._output(self.screensaver.get(), fh)
+
+        fh.close()
+
+    def _output(self, list, fh):
+        list.sort(reverse=True)
+
+        for photo in list[:10]:
+            page_url = photo[2] or photo[1]
+            fh.write('<p>%s<a href="%s"><img src="%s" height=200><a>' % (
+                    photo[0], page_url, photo[1]))
+
