@@ -9,6 +9,8 @@ from constants import CACHE_DIR
 from frame import PhotoFrameFactory
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
+from utils.history import HistoryFactory
+
 
 class PhotoListStore(gtk.ListStore):
     """ListStore for Photo sources.
@@ -83,7 +85,6 @@ class PhotoListStore(gtk.ListStore):
         return state
 
     def _show_photo_cb(self, data, photo):
-        # print photo.get('page_url') or photo.get('url')
         if self.photoframe.set_photo(photo):
             self.queue.append(photo)
         else:
@@ -135,10 +136,14 @@ class RecentQueue(list):
     def __init__(self):
         super(RecentQueue, self).__init__()
         self.conf = GConf()
+        self.history = HistoryFactory().create()
 
     def append(self, photo):
         self.remove(photo['filename'])
         super(RecentQueue, self).append(photo)
+
+        print photo.get('page_url') or photo.get('url')
+        self.history.add(photo)
         num = self.conf.get_int('recents/queue_number', 30)
         if len(self) > num:
             self.pop(0)

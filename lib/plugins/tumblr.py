@@ -95,7 +95,8 @@ class TumblrPhotoList(PhotoList):
             caption = photo.get('photo-caption')
             entry_title = re_nl.sub('\n', caption) if caption else None
 
-            data = {'url'        : photo['photo-url-500'],
+            data = {'info'       : TumblrPlugin,
+                    'url'        : photo['photo-url-500'],
                     'id'         : post.attrib['id'],
                     'owner_name' : owner,
                     'title'      : entry_title,
