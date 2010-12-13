@@ -1,3 +1,7 @@
+2010-12-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/history.py: Added photo history with sqlite.
+
 2010-12-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/__init__.py: Added new gconf key: ui/disable_clutter.
