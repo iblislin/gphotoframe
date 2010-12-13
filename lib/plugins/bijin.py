@@ -54,7 +54,7 @@ class BijinPhotoList(PhotoList):
         (h, m) = time.localtime(time.time())[3:5]
 
         data = {
-            'type': BijinPlugin,
+            'info': BijinPlugin,
             'icon': BijinIcon,
             'url': '%s/%02d%02d.jpg' % (pic_url, h, m),
             'title': '%02d:%02d (%s)' % (h, m, tokei),
