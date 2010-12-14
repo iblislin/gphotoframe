@@ -1,0 +1,847 @@
+# Japanese translations for gphotoframe package.
+# Copyright (C) 2009-2010 Yoshizumi Endo
+# This file is distributed under the same license as the gphotoframe package.
+# Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2009-2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gphotoframe VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-01 14:42+0900\n"
+"PO-Revision-Date: 2010-12-01 14:42+0900\n"
+"Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../share/gphotoframe.desktop.in.h:1
+msgid "Image Viewer"
+msgstr "イメージビューア"
+
+#: ../share/gphotoframe.desktop.in.h:2
+#: ../share/gphotoframe-screensaver.desktop.in.h:2
+msgid "Photo Frame"
+msgstr "写真フレーム"
+
+#: ../share/gphotoframe.desktop.in.h:3
+msgid "Show photos on Desktop"
+msgstr "デスクトップに写真を表示します"
+
+#: ../share/gphotoframe-screensaver.desktop.in.h:1
+msgid "Display a slideshow from your Photo Frame"
+msgstr "写真フレームの画像をスライドショー形式で表示します"
+
+#: ../share/gphotoframe.schemas.in.h:1
+msgid "API reload interval minutes"
+msgstr "API を再読込する間隔 (分)"
+
+#: ../share/gphotoframe.schemas.in.h:2
+msgid "API reload interval minutes for meta groups"
+msgstr "メタグループのために API を再読込する間隔 (分)"
+
+#: ../share/gphotoframe.schemas.in.h:3
+msgid ""
+"API reload interval minutes for meta groups (Your Groups or The Commons). It "
+"should be greater than 10 minutes."
+msgstr ""
+"メタグループ (Your Groups や The Commons) のために API を再読込する間隔を分で"
+"指定します。10 分以上を指定してください。"
+
+#: ../share/gphotoframe.schemas.in.h:4
+msgid "API reload interval minutes. It should be greater than 10 minutes."
+msgstr "API を再読込する間隔を分で指定します。10 分以上を指定してください。"
+
+#: ../share/gphotoframe.schemas.in.h:5
+msgid "Always on Visible Workspace"
+msgstr "すべてのワークスペースに配置します"
+
+#: ../share/gphotoframe.schemas.in.h:6
+msgid "Always show the fav icon"
+msgstr "常にお気に入りアイコンを表示"
+
+#: ../share/gphotoframe.schemas.in.h:7
+msgid "Always show the geo icon"
+msgstr "常に地図アイコンを表示"
+
+#: ../share/gphotoframe.schemas.in.h:8
+msgid "Always show the source icon"
+msgstr "常にソースアイコンを表示"
+
+#: ../share/gphotoframe.schemas.in.h:9
+msgid "Auth token"
+msgstr "認証トークン"
+
+#: ../share/gphotoframe.schemas.in.h:10
+msgid "Date format"
+msgstr "日時の形式"
+
+#: ../share/gphotoframe.schemas.in.h:11
+msgid ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
+msgstr ""
+"アイコンの位置を指定します。0: 左上、1: 右上、2: 右下、3: 左下、を数値で指定"
+"します。"
+
+#: ../share/gphotoframe.schemas.in.h:12
+msgid "Disable Clutter library support"
+msgstr "Clutter ライブラリのサポートを無効化"
+
+#: ../share/gphotoframe.schemas.in.h:13
+msgid "E-mail adress as user ID"
+msgstr "ユーザ ID として E-mail アドレスを指定します。"
+
+#: ../share/gphotoframe.schemas.in.h:14
+msgid "Enable fullscreen mode animations"
+msgstr "フルスクリーン時のアニメーションを有効にする"
+
+#: ../share/gphotoframe.schemas.in.h:15
+msgid "Enable icon animations"
+msgstr "アイコンのアニメーションを有効にする"
+
+#: ../share/gphotoframe.schemas.in.h:16
+msgid "Fav icon position"
+msgstr "お気に入りアイコンの位置"
+
+#: ../share/gphotoframe.schemas.in.h:17
+msgid "Fix the photo frame on the root window"
+msgstr "写真フレームをデスクトップに固定します"
+
+#: ../share/gphotoframe.schemas.in.h:18
+msgid "Flickr user ID"
+msgstr "Flickr ユーザ ID"
+
+#: ../share/gphotoframe.schemas.in.h:19
+msgid "Geo icon position"
+msgstr "地図アイコンの位置"
+
+#: ../share/gphotoframe.schemas.in.h:20
+msgid "Google account user ID"
+msgstr "Google アカウントのユーザ ID"
+
+#: ../share/gphotoframe.schemas.in.h:21
+msgid ""
+"If the RSS feed includes multiple RSS feeds, this value is used as the "
+"standard deviation for random weight of each RSS feed. When this value is "
+"less than 0, the each weight is the number of total image included in each "
+"RSS feed."
+msgstr ""
+"対象の RSS フィードが複数の RSS フィードを束ねたものである場合、この値は各"
+"フィードのランダム重み付けの標準偏差として利用されます。この値が 0 以下の場合"
+"は、各フィードに含まれる画像数がそのまま各フィードの重みとなります。"
+
+#: ../share/gphotoframe.schemas.in.h:22
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+"TRUEにすると、フルスクリーン時に写真を変更する際にアニメーションを行います。"
+"なお、この設定を反映させるためにはプログラムの再スタートが必要です。"
+
+#: ../share/gphotoframe.schemas.in.h:23
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+"TRUEにすると、アイコンの表示と消去の際にアニメーションを行います。なお、この"
+"設定を反映させるためにはプログラムの再スタートが必要です。"
+
+#: ../share/gphotoframe.schemas.in.h:24
+msgid "If true, icons will be shown on screensaver."
+msgstr "TRUEにすると、スクリーンセーバー上でアイコンを表示します。"
+
+#: ../share/gphotoframe.schemas.in.h:25
+msgid "Interval seconds in full screen mode"
+msgstr "フルスクリーン表示時の表示間隔 (秒)"
+
+#: ../share/gphotoframe.schemas.in.h:26
+msgid "Interval seconds in window mode"
+msgstr "ウィンドウ表示時の表示間隔 (秒)"
+
+#: ../share/gphotoframe.schemas.in.h:27
+msgid "Max aspect ratio for Photo"
+msgstr "表示する写真の最大アスペクト率"
+
+#: ../share/gphotoframe.schemas.in.h:28
+msgid "Minimum aspect ratio for Photo"
+msgstr "表示する写真の最小アスペクト率"
+
+#: ../share/gphotoframe.schemas.in.h:29
+msgid "Minimum image file size in bytes"
+msgstr "表示する写真の最小ファイルサイズ (バイト)"
+
+#: ../share/gphotoframe.schemas.in.h:30
+msgid ""
+"Minimum image file size in bytes. When this value is less than 0, image file "
+"size filter is disabled."
+msgstr ""
+"表示する写真の最小ファイルサイズをバイト単位で指定します。0 以下の値を指定し"
+"た場合、サイズフィルターは無効になります。"
+
+#: ../share/gphotoframe.schemas.in.h:31
+msgid "Minimum image height"
+msgstr "表示する写真の最小高"
+
+#: ../share/gphotoframe.schemas.in.h:32
+msgid ""
+"Minimum image height. When this value is less than 0, image size filter is "
+"disabled."
+msgstr ""
+"表示する写真の最小高を指定します。0 以下の値を指定した場合、サイズフィルター"
+"は無効になります。"
+
+#: ../share/gphotoframe.schemas.in.h:33
+msgid "Minimum image width"
+msgstr "表示する写真の最小幅"
+
+#: ../share/gphotoframe.schemas.in.h:34
+msgid ""
+"Minimum image width. When this value is less than 0, image size filter is "
+"disabled."
+msgstr ""
+"表示する写真の最小幅を指定します。0 以下の値を指定した場合、サイズフィルター"
+"は無効になります。"
+
+#: ../share/gphotoframe.schemas.in.h:35
+msgid "NSID"
+msgstr "NSID"
+
+#: ../share/gphotoframe.schemas.in.h:36
+msgid "Photo frame X position"
+msgstr "写真フレームの X 座標"
+
+#: ../share/gphotoframe.schemas.in.h:37
+msgid "Photo frame Y position"
+msgstr "写真フレームの Y 座標"
+
+#: ../share/gphotoframe.schemas.in.h:38
+msgid "Photo frame border color"
+msgstr "写真フレームのボーダー色"
+
+#: ../share/gphotoframe.schemas.in.h:39
+msgid "Photo frame border width"
+msgstr "写真フレームのボーダーの幅"
+
+#: ../share/gphotoframe.schemas.in.h:40
+msgid "Photo frame fix mode"
+msgstr "写真フレームの固定モード"
+
+#: ../share/gphotoframe.schemas.in.h:41
+msgid "Photo frame full screen mode"
+msgstr "写真フレームのフルスクリーン表示"
+
+#: ../share/gphotoframe.schemas.in.h:42
+msgid "Photo frame sticky mode"
+msgstr "写真フレームのスティッキーモード"
+
+#: ../share/gphotoframe.schemas.in.h:43
+msgid "Photo image max height"
+msgstr "写真の最大表示高"
+
+#: ../share/gphotoframe.schemas.in.h:44
+msgid "Photo image max width"
+msgstr "写真の最大表示幅"
+
+#: ../share/gphotoframe.schemas.in.h:45
+msgid "Photo source default weight"
+msgstr "写真ソースのデフォルトの重み"
+
+#: ../share/gphotoframe.schemas.in.h:46
+msgid "RSS reload interval minutes"
+msgstr "RSS を再読込する間隔 (分)"
+
+#: ../share/gphotoframe.schemas.in.h:47
+msgid "RSS reload interval minutes. It should be greater than 10 minutes."
+msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
+
+#: ../share/gphotoframe.schemas.in.h:48
+msgid "Recent opend preferences page number"
+msgstr "設定画面で最後に開かれたペイン"
+
+#: ../share/gphotoframe.schemas.in.h:49
+msgid "Recent selected photo source"
+msgstr "最後に選択された写真ソース"
+
+#: ../share/gphotoframe.schemas.in.h:50
+msgid ""
+"Set this to true if you have problems with Clutter library support. When you "
+"change this value, you need to restart gphotoframe."
+msgstr ""
+"Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
+"この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
+
+#: ../share/gphotoframe.schemas.in.h:51
+msgid ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
+msgstr ""
+"TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
+"レーム上にあるときのみアイコンを表示します。"
+
+#: ../share/gphotoframe.schemas.in.h:52
+msgid "Show icons on screensaver"
+msgstr "スクリーンセーバー上でのアイコンの表示"
+
+#: ../share/gphotoframe.schemas.in.h:53
+msgid "Source icon position"
+msgstr "ソースアイコンの位置"
+
+#: ../share/gphotoframe.schemas.in.h:54
+msgid "Standard deviation of RSS feed random weights"
+msgstr "RSS フィードのランダム重み付けの標準偏差"
+
+#: ../share/gphotoframe.schemas.in.h:55
+msgid "The field sets the number of photo cache files."
+msgstr "画像ファイルのキャッシュ数を設定します。"
+
+#: ../share/gphotoframe.schemas.in.h:56
+msgid "The field sets the number of recent photo menu items."
+msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
+
+#: ../share/gphotoframe.schemas.in.h:57
+msgid "The number of photo cache files"
+msgstr "画像ファイルのキャッシュ数"
+
+#: ../share/gphotoframe.schemas.in.h:58
+msgid "The number of recent photo menu items"
+msgstr "「最近表示した写真」メニューのアイテム数"
+
+#: ../share/gphotoframe.schemas.in.h:59
+msgid "User ID"
+msgstr "ユーザ ID"
+
+#: ../share/gphotoframe.schemas.in.h:60
+msgid "User full name"
+msgstr "ユーザのフルネーム"
+
+#: ../share/gphotoframe.schemas.in.h:61
+msgid "User name"
+msgstr "ユーザ名"
+
+#: ../share/gphotoframe.schemas.in.h:62
+msgid ""
+"You can use conversion specifiers understood by strftime() to obtain a "
+"specific format. See the strftime() manual for more information."
+msgstr ""
+"日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
+"strftime() のマニュアルを参照してください。"
+
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:93
+msgid "All"
+msgstr "すべて"
+
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:7
+msgid "General"
+msgstr "全般"
+
+#: ../share/gphotoframe.ui.h:3
+msgid "Last 180 days"
+msgstr "過去 180 日間"
+
+#: ../share/gphotoframe.ui.h:4
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+#: ../share/gphotoframe.ui.h:5
+msgid "Last 360 days"
+msgstr "過去 360 日間"
+
+#: ../share/gphotoframe.ui.h:6
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+#: ../share/gphotoframe.ui.h:7
+msgid "Last 90 days"
+msgstr "過去 90 日間"
+
+#: ../share/gphotoframe.ui.h:8
+msgid "Ma_x Rate:"
+msgstr "最大の評価(_X):"
+
+#: ../share/gphotoframe.ui.h:9
+msgid "Mi_n Rate:"
+msgstr "最小の評価(_N):"
+
+#: ../share/gphotoframe.ui.h:10
+msgid "Photo Frame for GNOME Desktop"
+msgstr "GNOME デスクトップ向けの写真フレームです。"
+
+#: ../share/gphotoframe.ui.h:11
+msgid "Photo Source"
+msgstr "写真のソース"
+
+#: ../share/gphotoframe.ui.h:12
+msgid "Rate _Weight:"
+msgstr "評価の重み(_W):"
+
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:146
+msgid "_Argument:"
+msgstr "引数(_A):"
+
+#: ../share/gphotoframe.ui.h:14
+msgid "_Include subfolders"
+msgstr "サブフォルダを含める(_I)"
+
+#: ../share/gphotoframe.ui.h:15
+msgid "_Password:"
+msgstr "パスワード(_P):"
+
+#: ../share/gphotoframe.ui.h:16
+msgid "_Period:"
+msgstr "期間(_P):"
+
+#: ../share/gphotoframe.ui.h:17
+msgid "_Source:"
+msgstr "ソース(_S):"
+
+#: ../share/gphotoframe.ui.h:18
+msgid "_Specified other people's ID"
+msgstr "他のユーザの ID を指定する(_S)"
+
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:140
+#: ../lib/plugins/haikyo.py:81
+msgid "_Target:"
+msgstr "ターゲット(_T):"
+
+#: ../share/gphotoframe.ui.h:20
+msgid "_User ID:"
+msgstr "ユーザ ID(_U):"
+
+#: ../share/gphotoframe.ui.h:21
+msgid "_Weight:"
+msgstr "重み(_W):"
+
+#: ../share/gphotoframe.ui.h:22
+msgid "translator-credits"
+msgstr "Yoshizumi Endo <y-endo@ceres.dti.ne.jp>"
+
+#: ../share/preferences.ui.h:1
+msgid "<b>Desktop</b>"
+msgstr "<b>デスクトップ</b>"
+
+#: ../share/preferences.ui.h:2
+msgid "<b>Interval</b>"
+msgstr "<b>表示間隔</b>"
+
+#: ../share/preferences.ui.h:3
+msgid "<b>Maximum Display Size</b>"
+msgstr "<b>最大表示サイズ</b>"
+
+#: ../share/preferences.ui.h:4
+msgid "<b>Photo Sources</b>"
+msgstr "<b>写真のソース</b>"
+
+#: ../share/preferences.ui.h:5
+msgid "<b>Plugins</b>"
+msgstr "<b>プラグイン</b>"
+
+#: ../share/preferences.ui.h:6
+msgid "Always on _Visible Workspace"
+msgstr "すべてのワークスペースに配置する(_V)"
+
+#: ../share/preferences.ui.h:8
+msgid "In _Full Screen Mode:"
+msgstr "フルスクリーン表示時(_F):"
+
+#: ../share/preferences.ui.h:9
+msgid "In _Window Mode:"
+msgstr "ウィンドウ表示時(_W)"
+
+#: ../share/preferences.ui.h:10
+msgid "Photo Frame Preferences"
+msgstr "写真フレームの設定"
+
+#: ../share/preferences.ui.h:11
+msgid "Photos"
+msgstr "写真"
+
+#: ../share/preferences.ui.h:12
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: ../share/preferences.ui.h:13
+msgid "Wi_dth:"
+msgstr "幅(_D):"
+
+#: ../share/preferences.ui.h:14
+msgid "_Auto Start"
+msgstr "ログイン時に自動起動する(_A)"
+
+#: ../share/preferences.ui.h:15
+msgid "_Height:"
+msgstr "高さ(_H):"
+
+#: ../share/preferences.ui.h:16
+msgid "pixels"
+msgstr "ピクセル"
+
+#: ../share/preferences.ui.h:17
+msgid "seconds"
+msgstr "秒"
+
+#: ../share/menu.ui.h:1
+msgid "Fi_x Photo Frame"
+msgstr "写真フレームの固定(_X)"
+
+#: ../share/menu.ui.h:2
+msgid "Open _Recent"
+msgstr "最近表示した写真(_R)"
+
+#: ../share/menu.ui.h:3
+msgid "_Full Screen"
+msgstr "フルスクリーン表示(_F)"
+
+#: ../share/menu.ui.h:4
+msgid "_Next Photo"
+msgstr "次の写真(_N)"
+
+#: ../lib/menu.py:97 ../lib/image/actor/info.py:31
+msgid "No Title"
+msgstr "無題"
+
+#: ../lib/menu.py:121
+msgid "GNOME Photo Frame"
+msgstr "GNOME 写真フレーム"
+
+#: ../lib/preferences/photosource.py:17
+msgid "Source"
+msgstr "ソース"
+
+#: ../lib/preferences/photosource.py:18
+msgid "Target"
+msgstr "ターゲット"
+
+#: ../lib/preferences/photosource.py:19
+msgid "Argument"
+msgstr "引数"
+
+#: ../lib/preferences/photosource.py:20
+msgid "Weight"
+msgstr "重み"
+
+#: ../lib/preferences/photosource.py:121
+msgid "The photo source should be ignored if the weight is 0."
+msgstr "0 を指定するとこの写真ソースは無視されます"
+
+#. TRANSLATORS: %s is the name of the Plugin
+#: ../lib/preferences/plugin.py:90
+#, python-format
+msgid "%s Plugin"
+msgstr "%s プラグイン"
+
+#: ../lib/image/actor/favicon.py:83
+msgid "Add to faves"
+msgstr "お気に入りに追加"
+
+#: ../lib/image/actor/favicon.py:84
+msgid "Remove from faves"
+msgstr "お気に入りから削除"
+
+#: ../lib/image/actor/favicon.py:84
+msgid "Rate the photo"
+msgstr "写真を評価付けする"
+
+#: ../lib/image/actor/info.py:44
+msgid "Open the map"
+msgstr "地図を開く"
+
+#: ../lib/image/actor/info.py:80
+msgid "Loading..."
+msgstr "ロード中..."
+
+#: ../lib/image/actor/source.py:55
+msgid "Open the photo"
+msgstr "写真を開く"
+
+#: ../lib/image/actor/trash.py:25
+msgid "Move to trash"
+msgstr "ゴミ箱に移動する"
+
+#: ../lib/image/actor/trash.py:52
+msgid "Remove from catalog"
+msgstr "カタログから削除する"
+
+#: ../lib/image/actor/trash.py:71
+msgid "Move this photo to the trash?"
+msgstr "この写真をゴミ箱に移動しますか?"
+
+#: ../lib/image/actor/trash.py:72
+msgid "This photo will be moved to the trash."
+msgstr "この写真をゴミ箱に移動します。"
+
+#: ../lib/image/actor/trash.py:84
+msgid "Remove this photo from the catalog?"
+msgstr "この写真をカタログから削除しますか?"
+
+#: ../lib/image/actor/trash.py:85
+#, python-format
+msgid "This photo will be removed from the %s catalog."
+msgstr "この写真を %s のカタログから削除します。"
+
+#. TRANSLATORS: %s is the name of the author of the photo
+#: ../lib/image/tooltip.py:52
+#, python-format
+msgid "by %s\n"
+msgstr "by %s\n"
+
+#: ../lib/image/tooltip.py:81
+msgid "Maker"
+msgstr "メーカー"
+
+#: ../lib/image/tooltip.py:82
+msgid "Model"
+msgstr "モデル"
+
+#: ../lib/image/tooltip.py:83
+msgid "Date"
+msgstr "日時"
+
+#: ../lib/image/tooltip.py:84
+msgid "Focal Length"
+msgstr "焦点距離"
+
+#: ../lib/image/tooltip.py:84
+msgid "mm"
+msgstr "mm"
+
+#: ../lib/image/tooltip.py:85
+msgid "Exposure"
+msgstr "露光時間"
+
+#: ../lib/image/tooltip.py:85
+msgid "sec"
+msgstr "秒"
+
+#: ../lib/image/tooltip.py:86
+msgid "Aperture"
+msgstr "絞り"
+
+#: ../lib/image/tooltip.py:87
+msgid "ISO"
+msgstr "ISO"
+
+#: ../lib/image/tooltip.py:88
+msgid "Exposure Bias"
+msgstr "露出補正"
+
+#: ../lib/image/tooltip.py:89
+msgid "Flash"
+msgstr "フラッシュ"
+
+#: ../lib/image/tooltip.py:90
+msgid "Flash Bias"
+msgstr "フラッシュ補正"
+
+#: ../lib/plugins/base.py:181
+msgid "Options"
+msgstr "オプション"
+
+#: ../lib/plugins/base.py:337
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "ファイルをゴミ箱に移動できません。今すぐ削除しますか?"
+
+#: ../lib/plugins/base.py:339
+#, python-format
+msgid "The file \"%s\" cannot be moved to the trash. "
+msgstr "ファイル %s はゴミ箱に移動できません。"
+
+#: ../lib/plugins/__init__.py:33
+#, python-format
+msgid "Can't import %s plugin: %s."
+msgstr "%s プラグインをインポートできません: %s"
+
+#: ../lib/plugins/flickr/api.py:15
+msgid "Contacts Photos"
+msgstr "Contacts Photos"
+
+#: ../lib/plugins/flickr/api.py:16
+msgid "Favorites"
+msgstr "Favorites"
+
+#: ../lib/plugins/flickr/api.py:17
+msgid "Group Pool"
+msgstr "Group Pool"
+
+#: ../lib/plugins/flickr/api.py:18
+msgid "Interestingness"
+msgstr "Interestingness"
+
+#: ../lib/plugins/flickr/api.py:19
+msgid "People Photos"
+msgstr "People Photos"
+
+#: ../lib/plugins/flickr/api.py:20
+msgid "Photo Search"
+msgstr "Photo Search"
+
+#: ../lib/plugins/flickr/api.py:21
+msgid "The Commons"
+msgstr "The Commons"
+
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:178
+msgid "Your Groups"
+msgstr "Your Groups"
+
+#: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:175
+#: ../lib/plugins/tumblr.py:118
+msgid "_User:"
+msgstr "ユーザ(_U):"
+
+#: ../lib/plugins/flickr/api.py:71
+msgid "Enter NSID or User Name in the URL"
+msgstr "URL に含まれるユーザ名か NSID を入力します"
+
+#: ../lib/plugins/flickr/api.py:201
+msgid "_Group:"
+msgstr "グループ(_G):"
+
+#: ../lib/plugins/flickr/api.py:205
+msgid "Enter NSID or Group Name in the URL"
+msgstr "URL に含まれるグループ名か NSID を入力します"
+
+#: ../lib/plugins/flickr/api.py:295
+msgid "_Tags:"
+msgstr "タグ(_T):"
+
+#: ../lib/plugins/flickr/authdialog.py:25
+#, python-format
+msgid "You are connected to Flickr.com as %s."
+msgstr "Flickr.com にアカウント %s でログインしています"
+
+#: ../lib/plugins/flickr/authdialog.py:26
+msgid "_Switch User"
+msgstr "アカウントの変更"
+
+#: ../lib/plugins/flickr/authdialog.py:34
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+"Gnome 写真フレームで Flickr.com 上のプライベート写真を閲覧したり、お気に入り"
+"への登録を行うためにはあなたの認証が必要です。\"認証\" ボタンをクリックして"
+"ウェブブラウザを開き、そちらで Gnome 写真フレームを認証してください。"
+
+#: ../lib/plugins/flickr/authdialog.py:39
+msgid "_Authorize"
+msgstr "認証(_A)"
+
+#. getfrob -> open browser
+#: ../lib/plugins/flickr/authdialog.py:47
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"Flickr.com での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完"
+"了する\" ボタンをクリックしてください。"
+
+#: ../lib/plugins/flickr/authdialog.py:50
+msgid "_Complete Authorization"
+msgstr "認証を完了する(_C)"
+
+#: ../lib/plugins/flickr/__init__.py:30 ../lib/plugins/picasa.py:28
+msgid "Photo Share Service"
+msgstr "写真共有サービス"
+
+#: ../lib/plugins/flickr/__init__.py:48
+#, python-format
+msgid "Flickr: %s is invalid target."
+msgstr "Flickr: %s は不正なターゲットです。"
+
+#: ../lib/plugins/flickr/__init__.py:58
+msgid "Flickr: invalid nsid API url."
+msgstr "Flickr: 不正な NSID API URL です。"
+
+#: ../lib/plugins/flickr/__init__.py:68
+msgid "flickr: can not find, "
+msgstr "Flickr: 以下が見つかりません。"
+
+#: ../lib/plugins/flickr/__init__.py:86
+#, python-format
+msgid "Flickr API Error (%s): %s"
+msgstr "Flickr API エラー (%s): %s"
+
+#: ../lib/plugins/fspot/__init__.py:29
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot 写真マネージャ"
+
+#: ../lib/plugins/fspot/__init__.py:93
+#, python-format
+msgid "Last %s days"
+msgstr "過去 %s 日間"
+
+#: ../lib/plugins/fspot/__init__.py:99
+msgid "Rate"
+msgstr "評価"
+
+#: ../lib/plugins/fspot/__init__.py:99
+msgid "Period"
+msgstr "期間"
+
+#: ../lib/plugins/picasa.py:26
+msgid "Picasa Web"
+msgstr "Picasa Web"
+
+#: ../lib/plugins/picasa.py:54 ../lib/plugins/tumblr.py:52
+msgid "Certification Error"
+msgstr "認証エラーです"
+
+#: ../lib/plugins/picasa.py:175
+msgid "_Keyword:"
+msgstr "キーワード(_K):"
+
+#: ../lib/plugins/tumblr.py:29
+msgid "Share Anything"
+msgstr "Share Anything"
+
+#: ../lib/plugins/tumblr.py:63
+#, python-format
+msgid "Tumblr Error: Invalid Target, %s"
+msgstr "Tumblr エラー: %s は不正なターゲットです。"
+
+#: ../lib/plugins/tumblr.py:141
+msgid "_E-mail:"
+msgstr "E-mail(_E):"
+
+#: ../lib/plugins/rss.py:29
+msgid "RSS and Atom Feeds"
+msgstr "RSS や Atom フィード"
+
+#: ../lib/plugins/rss.py:125
+msgid "_Title:"
+msgstr "タイトル(_T):"
+
+#. argument widget
+#: ../lib/plugins/rss.py:128
+msgid "_URL:"
+msgstr "URL(_U)"
+
+#: ../lib/plugins/haikyo.py:31
+msgid "Ruins Clock"
+msgstr "廃墟時計"
+
+#: ../lib/plugins/haikyo.py:33
+msgid "Haikyo Clock"
+msgstr "廃墟にたたずむ時計たちの写真"
+
+#: ../lib/plugins/folder.py:26
+msgid "Folder"
+msgstr "Folder"
+
+#: ../lib/plugins/folder.py:28
+msgid "Local Folder"
+msgstr "ローカルフォルダ"
+
+#: ../lib/plugins/shotwell.py:32
+msgid "Shotwell Photo Manager"
+msgstr "Shotwell 写真マネージャ"
+
+#~ msgid "Always show the trash icon"
+#~ msgstr "常にゴミ箱アイコンを表示"
+
+#~ msgid "Trash icon position"
+#~ msgstr "ゴミ箱アイコンの位置"
