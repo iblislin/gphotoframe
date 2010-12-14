@@ -1,3 +1,7 @@
+2010-12-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Dropped depends on python-numpy.
+
 2010-12-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/__init__.py: Added new gconf key: ui/disable_clutter.

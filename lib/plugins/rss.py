@@ -8,7 +8,11 @@ import re
 import copy
 # import pprint
 
-import numpy
+try:
+    import numpy
+except ImportError:
+    pass
+
 import feedparser
 from gettext import gettext as _
 
@@ -73,7 +77,8 @@ class RSSPhotoList(PhotoList):
                     if hasattr(entry, 'media_content_attrs') else image[0]
                 title = re_del_tag.sub('', entry.title)
 
-                data = {'url'        : str(url),
+                data = {'info'       : RSSPlugin,
+                        'url'        : str(url),
                         'owner_name' : owner,
                         'owner'      : owner,
                         'title'      : title,
@@ -89,10 +94,14 @@ class RSSPhotoList(PhotoList):
 
         self.raw_list = []
 
-        num_list = [len(self.photos[i]) for i in self.photos]
-        mean = numpy.mean(num_list)
-        std = numpy.std(num_list)
         goal_std = GConf().get_int('plugins/rss/standard_deviation', -1)
+        num_list = [len(self.photos[i]) for i in self.photos]
+
+        try:
+            mean = numpy.mean(num_list)
+            std = numpy.std(num_list)
+        except NameError:
+            mean = std = 0
 
         for title in self.photos:
             total_in_this = len(self.photos[title])
