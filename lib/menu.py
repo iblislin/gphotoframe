@@ -128,8 +128,7 @@ class HistoryMenuItem(gtk.MenuItem):
 
     def _open(self, widget):
         html = HistoryHTML()
-        html.make()
-        gtk.show_uri(None, 'file:///tmp/photo.html', gtk.gdk.CURRENT_TIME)
+        html.show()
 
 class AboutDialog(object):
 

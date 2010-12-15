@@ -1,9 +1,12 @@
 import os
 import sys
+import gtk
 import sqlite3
 
 from xdg.BaseDirectory import xdg_cache_home
+
 from gnomescreensaver import GsThemeWindow
+from ..constants import SHARED_DATA_DIR, CACHE_DIR
 
 class HistoryFactory(object):
 
@@ -38,7 +41,7 @@ class History(object):
             photo.get('url'), 
             photo.get('page_url') or '', 
 
-            self._escape_quote(photo.get('owner')),
+            self._escape_quote(photo.get('owner_name')),
             self._escape_quote(photo.get('title')),
             photo.get('info')().name or '')
 
@@ -70,23 +73,51 @@ class HistoryHTML(object):
     def __init__(self):
         self.screensaver = ScreenSaverHistory()
         self.photoframe = History()
+        self.html_file = os.path.join(CACHE_DIR, 'history.html')
 
-    def make(self):
-        fh = open('/tmp/photo.html','w')
+    def show(self):
+        self._make()
+        gtk.show_uri(None, 'file://%s' % self.html_file, gtk.gdk.CURRENT_TIME)
 
-        fh.write('<h1>Photo Frame</h1>')
+    def _make(self):
+        css_file = os.path.join(SHARED_DATA_DIR, 'history.css')
+
+        fh = open(self.html_file,'w')
+
+        fh.write('<html><head>'
+                 "<title>%s</title>"
+                 '<link rel="stylesheet" href="%s">'
+                 '</head><body>' % ('Gnome Photo Frame History', css_file))
+
+        fh.write('<h1>Photo Frame</h1>\n\n')
         self._output(self.photoframe.get(), fh)
 
-        fh.write('<h1>Screen Saver</h1>')
+        fh.write('<h1>Screen Saver</h1>\n\n')
         self._output(self.screensaver.get(), fh)
+
+        fh.write('</body></html>')
 
         fh.close()
 
     def _output(self, list, fh):
         list.sort(reverse=True)
 
-        for photo in list[:10]:
-            page_url = photo[2] or photo[1]
-            fh.write('<p>%s<a href="%s"><img src="%s" height=200><a>' % (
-                    photo[0], page_url, photo[1]))
 
+        fh.write('<table>\n')
+
+        for d in list[:10]:
+            page_url = d[2] or d[1]
+            fh.write('<tr>')
+            fh.write('<td class="photo"><a href="%s"><img src="%s" class="photo"></td><td>' % (
+                    page_url, d[1]))
+
+            if d[4]:
+                fh.write('<span class="title">%s<br></span>' % d[4])
+            if d[3]:
+                fh.write('by %s<br>' % d[3])
+            if d[5]:
+                fh.write('%s<br>' % d[5])
+
+            fh.write('</td></tr>\n')
+
+        fh.write('</table>\n\n')
