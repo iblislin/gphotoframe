@@ -1,0 +1,4 @@
+.title { font-size: large; font-weight: bold  }
+td.photo { text-align: center; }
+img { border: 0px; }
+img.photo { max-width: 200; max-height: 200; }
