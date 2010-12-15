@@ -1,4 +1,5 @@
 import os
+import sys
 import sqlite3
 
 from xdg.BaseDirectory import xdg_cache_home
@@ -37,18 +38,25 @@ class History(object):
             photo.get('url'), 
             photo.get('page_url') or '', 
 
-            photo.get('owner') or '',
-            photo.get('title') or '',
+            self._escape_quote(photo.get('owner')),
+            self._escape_quote(photo.get('title')),
             photo.get('info')().name or '')
 
-        self.con.execute(sql)
-        self.con.commit()
+        try:
+            self.con.execute(sql)
+            self.con.commit()
+        except:
+            print "%s: %s" % (sys.exc_info()[1], sql)
+
         # self.con.close()
 
     def get(self):
         sql = "SELECT * FROM %s;" % self.table 
         return self.con.execute(sql).fetchall()
 
+    def _escape_quote(self, text):
+        return text.replace("'","''") if text else ''
+        
     def _get_table_name(self):
         return 'photoframe'
 
