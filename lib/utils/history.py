@@ -2,6 +2,7 @@ import os
 import sys
 import gtk
 import sqlite3
+from string import Template
 
 from xdg.BaseDirectory import xdg_cache_home
 
@@ -80,44 +81,49 @@ class HistoryHTML(object):
         gtk.show_uri(None, 'file://%s' % self.html_file, gtk.gdk.CURRENT_TIME)
 
     def _make(self):
+        template_file = os.path.join(SHARED_DATA_DIR, 'history.html')
         css_file = os.path.join(SHARED_DATA_DIR, 'history.css')
 
+        photoframe_table = self._output(self.photoframe.get())
+        screensaver_table = self._output(self.screensaver.get())
+
+        keyword = { 'title': 'Gnome Photo Frame History',
+                    'stylesheet': css_file,
+
+                    'photoframe': 'Photo Frame',
+                    'photoframe_table': photoframe_table,
+                    'screensaver': 'Screen Saver',
+                    'screensaver_table': screensaver_table }
+
+        template = Template(open(template_file).read())
+        html = template.safe_substitute(keyword)
+
         fh = open(self.html_file,'w')
-
-        fh.write('<html><head>'
-                 "<title>%s</title>"
-                 '<link rel="stylesheet" href="%s">'
-                 '</head><body>' % ('Gnome Photo Frame History', css_file))
-
-        fh.write('<h1>Photo Frame</h1>\n\n')
-        self._output(self.photoframe.get(), fh)
-
-        fh.write('<h1>Screen Saver</h1>\n\n')
-        self._output(self.screensaver.get(), fh)
-
-        fh.write('</body></html>')
-
+        fh.write(html)
         fh.close()
 
-    def _output(self, list, fh):
+    def _output(self, list):
         list.sort(reverse=True)
+        table = ''
 
-
-        fh.write('<table>\n')
+        table_file = os.path.join(SHARED_DATA_DIR, 'history_table.html')
+        template = Template(open(table_file).read())
 
         for d in list[:10]:
             page_url = d[2] or d[1]
-            fh.write('<tr>')
-            fh.write('<td class="photo"><a href="%s"><img src="%s" class="photo"></td><td>' % (
-                    page_url, d[1]))
+            info = ''
 
             if d[4]:
-                fh.write('<span class="title">%s<br></span>' % d[4])
+                info += '<span class="title">%s<br></span>' % d[4]
             if d[3]:
-                fh.write('by %s<br>' % d[3])
+                info += 'by %s<br>' % d[3]
             if d[5]:
-                fh.write('%s<br>' % d[5])
+                info += '%s<br>' % d[5]
 
-            fh.write('</td></tr>\n')
+            table_dic = { 'url': d[1],
+                          'page_url': page_url,
+                          'info': info }
 
-        fh.write('</table>\n\n')
+            table += template.safe_substitute(table_dic)
+
+        return table
