@@ -38,6 +38,7 @@ class FlickrPhotoList(PhotoList):
         super(FlickrPhotoList, self).__init__(
             target, argument, weight, options, photolist)
         self.page_list = FlickrAPIPages()
+        self.argument_group_name = None
 
     def prepare(self):
         self.photos = []
