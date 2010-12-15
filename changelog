@@ -1,3 +1,7 @@
+2010-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/history.py: Added single quotation mark escaping in SQL.
+
 2010-12-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/tooltip.py: More tooltips for Flickr.
