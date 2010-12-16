@@ -15,13 +15,14 @@ class HistoryFactory(object):
 
     def create(self):
         is_screensaver = GsThemeWindow().get_anid()
-        history = ScreenSaverHistory() if is_screensaver else History()
-        return history
+        table = 'screensaver' if is_screensaver else 'photoframe'
+        return History(table)
 
 class History(object):
 
-    def __init__(self):
-        self.table = self._get_table_name()
+    def __init__(self, table):
+        self.table = table
+
         db_file = os.path.join(xdg_cache_home, 'gphotoframe/history.db')
         self.con = sqlite3.connect(db_file)
 
@@ -77,19 +78,11 @@ class History(object):
     def _escape_quote(self, text):
         return text.replace("'","''") if text else ''
         
-    def _get_table_name(self):
-        return 'photoframe'
-
-class ScreenSaverHistory(History):
-
-    def _get_table_name(self):
-        return 'screensaver'
-
 class HistoryHTML(object):
 
     def __init__(self):
-        self.screensaver = ScreenSaverHistory()
-        self.photoframe = History()
+        self.screensaver = History('screensaver')
+        self.photoframe = History('photoframe')
         self.html_file = os.path.join(CACHE_DIR, 'history.html')
 
     def show(self):
