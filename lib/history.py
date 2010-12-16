@@ -111,16 +111,16 @@ class HistoryHTML(object):
         table_file = os.path.join(SHARED_DATA_DIR, 'history_table.html')
         template = Template(open(table_file).read())
 
-        for d in list[:10]:
+        for id, org_url, page_url, owner, title, source in list[:10]:
 
-            if d[5] in ICON_LIST:
-                icon = ICON_LIST[d[5]]()
+            if source in ICON_LIST:
+                icon = ICON_LIST[source]()
                 icon.get_image()
                 icon_file = 'file://' + icon._get_icon_file()
             else:
                 icon_file = ''
 
-            url = d[1]
+            url = org_url
             path = url.replace('/', '_')
             cache_file = os.path.join(CACHE_DIR, path)
 
@@ -128,18 +128,17 @@ class HistoryHTML(object):
                 url = 'file://' + cache_file
                 url = url.replace('%20', '%2520') # for space characters
 
-            page_url = d[2] or d[1]
-            info = '<span class="title">%s</span><br>' % (d[4] or _('Untitled'))
+            info = '<span class="title">%s</span><br>' % (title or _('Untitled'))
 
-            if d[3]:
-                info += 'by %s<br>' % d[3]
+            if owner:
+                info += 'by %s<br>' % owner
             if icon_file:
                 info += '<img src="%s"> ' % icon_file
-            if d[5]:
-                info += '%s<br>' % d[5]
+            if source:
+                info += '%s<br>' % source
 
             table_dic = { 'url': url,
-                          'page_url': page_url,
+                          'page_url': page_url or org_url,
                           'info': info }
 
             table += template.safe_substitute(table_dic)
