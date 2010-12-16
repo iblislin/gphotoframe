@@ -6,8 +6,8 @@ from string import Template
 
 from xdg.BaseDirectory import xdg_cache_home
 
-from gnomescreensaver import GsThemeWindow
-from ..constants import SHARED_DATA_DIR, CACHE_DIR
+from constants import SHARED_DATA_DIR, CACHE_DIR
+from utils.gnomescreensaver import GsThemeWindow
 
 class HistoryFactory(object):
 
