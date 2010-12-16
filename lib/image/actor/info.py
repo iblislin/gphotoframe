@@ -28,7 +28,7 @@ class ActorGeoIcon(ActorSourceIcon):
         lat = self.photo['geo']['lat']
         lon = self.photo['geo']['lon']
 
-        title = self.photo['title'] or _('No Title')
+        title = self.photo['title'] or _('Untitled')
         title = title.replace("'", "%27") \
             .replace("(", "[").replace(")", "]") \
             .replace("<", "").replace(">", "")

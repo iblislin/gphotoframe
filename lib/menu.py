@@ -102,7 +102,7 @@ class PopUpMenuFullScreen(PopUpMenu):
 class RecentMenuItem(gtk.ImageMenuItem):
 
     def __init__(self, photo):
-        title = photo.get('title') or "(%s)" % _('No Title')
+        title = photo.get('title') or "(%s)" % _('Untitled')
         title = title.replace("\n", " ")
 
         super(RecentMenuItem, self).__init__(title)
@@ -122,7 +122,7 @@ class RecentMenuItem(gtk.ImageMenuItem):
 class HistoryMenuItem(gtk.MenuItem):
 
     def __init__(self):
-        title = _("Show All _History")
+        title = _("Show _History")
         super(HistoryMenuItem, self).__init__(title)
         self.connect('activate', self._open)
 
