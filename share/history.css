@@ -1,4 +1,18 @@
-.title { font-size: large; font-weight: bold  }
-td.photo { text-align: center; }
+body { color: #444; }
+
 img { border: 0px; }
-img.photo { max-width: 200; max-height: 200; }
+img.photo { max-width: 300px; max-height: 300px; }
+
+h2 { width: 800px; margin-right: auto; margin-left: auto; min-width: 800px; }
+
+table { width: 700px; margin-right: auto; margin-left: auto; min-width: 700px; }
+td { padding: 10px; vertical-align: top; }
+td.photo { width: 300px; min-height: 300px }
+td.info { padding-top: 20px; }
+
+.title { font-size: large; font-weight: bold;}
+
+
+/* hr { border-width: 1px 0px 0px 0px; border-style: solid; 
+     border-color: #888; height: 1px; } */
+/* table, td, th {border: 2px #ff0000 solid;} */

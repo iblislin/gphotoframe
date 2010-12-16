@@ -1,5 +1,6 @@
 2010-12-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* share/history*: Added templates for history html.
 	* utils/history.py: Code refactoring.
 
 2010-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
