@@ -33,11 +33,13 @@ class History(object):
             pass
 
     def add(self, photo):
+        # check the previous entry
         sql = "SELECT id, url FROM %s ORDER BY id DESC LIMIT 1;" % self.table
         max_id, prev_photo_url = self.con.execute(sql).fetchone() or (0, None)
         if prev_photo_url == photo.get('url'):
             return
 
+        # add new entry
         sql = "INSERT INTO %s VALUES (%s, '%s', '%s', '%s', '%s','%s');" % (
             self.table,
             max_id + 1, 
@@ -48,17 +50,29 @@ class History(object):
             self._escape_quote(photo.get('title')),
             photo.get('info')().name or '')
 
+        self._execute_with_commit(sql)
+
+        # delete old entries
+        count = self._count_entries(self.table)
+        if count > 1000:
+            sql = ("DELETE FROM %s WHERE id < (select id FROM photoframe "
+                   "ORDER BY id DESC LIMIT 1) - 1000" ) % self.table
+        self._execute_with_commit(sql)
+
+    def get(self):
+        sql = "SELECT * FROM %s;" % self.table 
+        return self.con.execute(sql).fetchall()
+
+    def _execute_with_commit(self, sql):
         try:
             self.con.execute(sql)
             self.con.commit()
         except:
             print "%s: %s" % (sys.exc_info()[1], sql)
 
-        # self.con.close()
-
-    def get(self):
-        sql = "SELECT * FROM %s;" % self.table 
-        return self.con.execute(sql).fetchall()
+    def _count_entries(self, table):
+        sql = "SELECT count(*) FROM %s" % table
+        return self.con.execute(sql).fetchone()[0]
 
     def _escape_quote(self, text):
         return text.replace("'","''") if text else ''
