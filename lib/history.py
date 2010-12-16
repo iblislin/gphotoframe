@@ -112,7 +112,7 @@ class HistoryHTML(object):
 
         for d in list[:10]:
             page_url = d[2] or d[1]
-            info = '<span class="title">%s<br></span>' % d[4] or _('Untitled')
+            info = '<span class="title">%s</span><br>' % (d[4] or _('Untitled'))
 
             if d[3]:
                 info += 'by %s<br>' % d[3]
