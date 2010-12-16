@@ -7,9 +7,9 @@ import glib
 import plugins
 from constants import CACHE_DIR
 from frame import PhotoFrameFactory
+from history import HistoryFactory
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
-from utils.history import HistoryFactory
 
 
 class PhotoListStore(gtk.ListStore):

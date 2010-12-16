@@ -6,10 +6,10 @@ from twisted.internet import reactor
 from gettext import gettext as _
 
 import constants
-from utils.config import GConf
 from preferences import Preferences
+from history import HistoryHTML
+from utils.config import GConf
 from utils.iconimage import IconImage
-from utils.history import HistoryHTML
 
 class PopUpMenu(object):
 
