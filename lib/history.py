@@ -8,6 +8,7 @@ from xdg.BaseDirectory import xdg_cache_home
 from gettext import gettext as _
 
 from constants import SHARED_DATA_DIR, CACHE_DIR
+from plugins import ICON_LIST
 from utils.gnomescreensaver import GsThemeWindow
 
 class HistoryFactory(object):
@@ -111,18 +112,29 @@ class HistoryHTML(object):
         template = Template(open(table_file).read())
 
         for d in list[:10]:
+
+            if d[5] in ICON_LIST:
+                icon = ICON_LIST[d[5]]()
+                icon.get_image()
+                icon_file = 'file://' + icon._get_icon_file()
+            else:
+                icon_file = ''
+
             url = d[1]
             path = url.replace('/', '_')
             cache_file = os.path.join(CACHE_DIR, path)
 
             if os.access(cache_file, os.R_OK):
                 url = 'file://' + cache_file
+                url = url.replace('%20', '%2520') # for space characters
 
             page_url = d[2] or d[1]
             info = '<span class="title">%s</span><br>' % (d[4] or _('Untitled'))
 
             if d[3]:
                 info += 'by %s<br>' % d[3]
+            if icon_file:
+                info += '<img src="%s"> ' % icon_file
             if d[5]:
                 info += '%s<br>' % d[5]
 

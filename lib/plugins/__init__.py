@@ -40,6 +40,7 @@ SOURCE_LIST=[]
 MAKE_PHOTO_TOKEN ={}
 PHOTO_TARGET_TOKEN={}
 DIALOG_TOKEN={}
+ICON_LIST={}
 
 for k in sorted(token_base):
     plugin = k[0]()
@@ -47,6 +48,8 @@ for k in sorted(token_base):
     SOURCE_LIST.append(plugin)
     MAKE_PHOTO_TOKEN[plugin.name] = k[1]
     PHOTO_TARGET_TOKEN[plugin.name] = k[2]
+    ICON_LIST[plugin.name.decode('utf_8')] = plugin.icon
+
     if len(k) > 3:
         DIALOG_TOKEN[plugin.name] = k[3]
 
