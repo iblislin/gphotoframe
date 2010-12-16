@@ -111,6 +111,13 @@ class HistoryHTML(object):
         template = Template(open(table_file).read())
 
         for d in list[:10]:
+            url = d[1]
+            path = url.replace('/', '_')
+            cache_file = os.path.join(CACHE_DIR, path)
+
+            if os.access(cache_file, os.R_OK):
+                url = 'file://' + cache_file
+
             page_url = d[2] or d[1]
             info = '<span class="title">%s</span><br>' % (d[4] or _('Untitled'))
 
@@ -119,7 +126,7 @@ class HistoryHTML(object):
             if d[5]:
                 info += '%s<br>' % d[5]
 
-            table_dic = { 'url': d[1],
+            table_dic = { 'url': url,
                           'page_url': page_url,
                           'info': info }
 
