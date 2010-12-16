@@ -50,7 +50,7 @@ class ToolTip(object):
                 tip += "<big>%s</big>\n" % escape(title)
             if owner:
 		# TRANSLATORS: %s is the name of the author of the photo
-                tip += _("by %s\n") % escape(owner)
+                tip += _("by %s") % escape(owner) + "\n"
             if target:
                 target = [x.rstrip(' ').lstrip(' ') for x in target]
                 text = '/'.join(target) if target[1] else target[0]

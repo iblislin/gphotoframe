@@ -131,7 +131,7 @@ class HistoryHTML(object):
             info = '<span class="title">%s</span><br>' % (title or _('Untitled'))
 
             if owner:
-                info += 'by %s<br>' % owner
+                info += _('by %s') % owner + '<br>'
             if icon_file:
                 info += '<img src="%s"> ' % icon_file
             if source:

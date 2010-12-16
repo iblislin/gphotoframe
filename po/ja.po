@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 17:14+0900\n"
-"PO-Revision-Date: 2010-12-16 17:12+0900\n"
+"POT-Creation-Date: 2010-12-16 23:59+0900\n"
+"PO-Revision-Date: 2010-12-17 00:00+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -21,7 +21,7 @@ msgid "Image Viewer"
 msgstr "イメージビューア"
 
 #: ../share/gphotoframe.desktop.in.h:2
-#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history.py:94
+#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history.py:95
 msgid "Photo Frame"
 msgstr "写真フレーム"
 
@@ -497,7 +497,8 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:105 ../lib/history.py:115 ../lib/image/actor/info.py:31
+#. for space characters
+#: ../lib/menu.py:105 ../lib/history.py:131 ../lib/image/actor/info.py:31
 msgid "Untitled"
 msgstr "無題"
 
@@ -509,13 +510,19 @@ msgstr "履歴を表示(_H)"
 msgid "GNOME Photo Frame"
 msgstr "GNOME 写真フレーム"
 
-#: ../lib/history.py:91
+#: ../lib/history.py:92
 msgid "Gnome Photo Frame History"
 msgstr "GNOME 写真フレームの履歴"
 
-#: ../lib/history.py:96
+#: ../lib/history.py:97
 msgid "Screen Saver"
 msgstr "スクリーンセーバー"
+
+#. TRANSLATORS: %s is the name of the author of the photo
+#: ../lib/history.py:134 ../lib/image/tooltip.py:53
+#, python-format
+msgid "by %s"
+msgstr "by %s"
 
 #: ../lib/preferences/photosource.py:17
 msgid "Source"
@@ -591,12 +598,6 @@ msgstr "この写真をカタログから削除しますか?"
 #, python-format
 msgid "This photo will be removed from the %s catalog."
 msgstr "この写真を %s のカタログから削除します。"
-
-#. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/image/tooltip.py:53
-#, python-format
-msgid "by %s\n"
-msgstr "by %s\n"
 
 #: ../lib/image/tooltip.py:86
 msgid "Maker"
