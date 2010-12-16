@@ -5,6 +5,7 @@ import sqlite3
 from string import Template
 
 from xdg.BaseDirectory import xdg_cache_home
+from gettext import gettext as _
 
 from constants import SHARED_DATA_DIR, CACHE_DIR
 from utils.gnomescreensaver import GsThemeWindow
@@ -87,12 +88,12 @@ class HistoryHTML(object):
         photoframe_table = self._output(self.photoframe.get())
         screensaver_table = self._output(self.screensaver.get())
 
-        keyword = { 'title': 'Gnome Photo Frame History',
+        keyword = { 'title': _('Gnome Photo Frame History'),
                     'stylesheet': css_file,
 
-                    'photoframe': 'Photo Frame',
+                    'photoframe': _('Photo Frame'),
                     'photoframe_table': photoframe_table,
-                    'screensaver': 'Screen Saver',
+                    'screensaver': _('Screen Saver'),
                     'screensaver_table': screensaver_table }
 
         template = Template(open(template_file).read())
@@ -111,10 +112,8 @@ class HistoryHTML(object):
 
         for d in list[:10]:
             page_url = d[2] or d[1]
-            info = ''
+            info = '<span class="title">%s<br></span>' % d[4] or _('Untitled')
 
-            if d[4]:
-                info += '<span class="title">%s<br></span>' % d[4]
             if d[3]:
                 info += 'by %s<br>' % d[3]
             if d[5]:

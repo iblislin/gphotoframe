@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-14 00:06+0900\n"
-"PO-Revision-Date: 2010-12-14 00:07+0900\n"
+"POT-Creation-Date: 2010-12-16 17:14+0900\n"
+"PO-Revision-Date: 2010-12-16 17:12+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -21,7 +21,7 @@ msgid "Image Viewer"
 msgstr "イメージビューア"
 
 #: ../share/gphotoframe.desktop.in.h:2
-#: ../share/gphotoframe-screensaver.desktop.in.h:2
+#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history.py:94
 msgid "Photo Frame"
 msgstr "写真フレーム"
 
@@ -497,17 +497,25 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:105 ../lib/image/actor/info.py:31
-msgid "No Title"
+#: ../lib/menu.py:105 ../lib/history.py:115 ../lib/image/actor/info.py:31
+msgid "Untitled"
 msgstr "無題"
 
 #: ../lib/menu.py:125
-msgid "Show All _History"
-msgstr "すべての履歴を表示(_H)"
+msgid "Show _History"
+msgstr "履歴を表示(_H)"
 
-#: ../lib/menu.py:140
+#: ../lib/menu.py:139
 msgid "GNOME Photo Frame"
 msgstr "GNOME 写真フレーム"
+
+#: ../lib/history.py:91
+msgid "Gnome Photo Frame History"
+msgstr "GNOME 写真フレームの履歴"
+
+#: ../lib/history.py:96
+msgid "Screen Saver"
+msgstr "スクリーンセーバー"
 
 #: ../lib/preferences/photosource.py:17
 msgid "Source"
@@ -585,56 +593,56 @@ msgid "This photo will be removed from the %s catalog."
 msgstr "この写真を %s のカタログから削除します。"
 
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/image/tooltip.py:52
+#: ../lib/image/tooltip.py:53
 #, python-format
 msgid "by %s\n"
 msgstr "by %s\n"
 
-#: ../lib/image/tooltip.py:81
+#: ../lib/image/tooltip.py:86
 msgid "Maker"
 msgstr "メーカー"
 
-#: ../lib/image/tooltip.py:82
+#: ../lib/image/tooltip.py:87
 msgid "Model"
 msgstr "モデル"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:88
 msgid "Date"
 msgstr "日時"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:89
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:89
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:90
 msgid "Exposure"
 msgstr "露光時間"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:90
 msgid "sec"
 msgstr "秒"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:91
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:92
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:93
 msgid "Exposure Bias"
 msgstr "露出補正"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:94
 msgid "Flash"
 msgstr "フラッシュ"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:95
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
@@ -684,7 +692,7 @@ msgstr "Photo Search"
 msgid "The Commons"
 msgstr "The Commons"
 
-#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:178
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:181
 msgid "Your Groups"
 msgstr "Your Groups"
 
@@ -751,20 +759,20 @@ msgstr "認証を完了する(_C)"
 msgid "Photo Share Service"
 msgstr "写真共有サービス"
 
-#: ../lib/plugins/flickr/__init__.py:48
+#: ../lib/plugins/flickr/__init__.py:49
 #, python-format
 msgid "Flickr: %s is invalid target."
 msgstr "Flickr: %s は不正なターゲットです。"
 
-#: ../lib/plugins/flickr/__init__.py:58
+#: ../lib/plugins/flickr/__init__.py:59
 msgid "Flickr: invalid nsid API url."
 msgstr "Flickr: 不正な NSID API URL です。"
 
-#: ../lib/plugins/flickr/__init__.py:68
+#: ../lib/plugins/flickr/__init__.py:69
 msgid "flickr: can not find, "
 msgstr "Flickr: 以下が見つかりません。"
 
-#: ../lib/plugins/flickr/__init__.py:86
+#: ../lib/plugins/flickr/__init__.py:87
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr "Flickr API エラー (%s): %s"
@@ -843,6 +851,9 @@ msgstr "ローカルフォルダ"
 #: ../lib/plugins/shotwell.py:32
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
+
+#~ msgid "No Title"
+#~ msgstr "無題"
 
 #~ msgid "Always show the trash icon"
 #~ msgstr "常にゴミ箱アイコンを表示"
