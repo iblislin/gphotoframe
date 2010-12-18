@@ -1,38 +1,12 @@
 import os
-import sqlite3
 import time
 import datetime
 
 from xdg.BaseDirectory import xdg_config_home
+from ...utils.sqldb import SqliteDB
 
-class FSpotDB(object):
 
-    def __init__(self):
-        db_file = self._get_db_file()
-        if not os.access(db_file, os.R_OK):
-            db_file = None
-
-        self.is_accessible = True if db_file else False
-        if db_file:
-            self.db = sqlite3.connect(db_file)
-
-    def fetchall(self, sql):
-        data = self.db.execute(sql).fetchall()
-        return data
-
-    def fetchone(self, sql):
-        data = self.db.execute(sql).fetchone()[0]
-        return data
-
-    def execute(self, sql):
-        data = self.db.execute(sql)
-        return data
-
-    def commit(self):
-        self.db.commit()
-
-    def close(self):
-        self.db.close()
+class FSpotDB(SqliteDB):
 
     def _get_db_file(self):
         db_file_base = 'f-spot/photos.db'

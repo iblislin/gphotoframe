@@ -1,3 +1,7 @@
+2010-12-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/sqldb.py: Added new module for sqlite.
+
 2010-12-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* share/history*: Added templates for history html.
