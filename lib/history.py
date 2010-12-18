@@ -1,5 +1,4 @@
 import os
-import sys
 import gtk
 import sqlite3
 from string import Template
@@ -10,6 +9,7 @@ from gettext import gettext as _
 from constants import SHARED_DATA_DIR, CACHE_DIR
 from plugins import ICON_LIST
 from utils.gnomescreensaver import GsThemeWindow
+from plugins.fspot.sqldb import FSpotDB
 
 class HistoryFactory(object):
 
@@ -22,21 +22,12 @@ class History(object):
 
     def __init__(self, table):
         self.table = table
-
-        db_file = os.path.join(xdg_cache_home, 'gphotoframe/history.db')
-        self.con = sqlite3.connect(db_file)
-
-        sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
-               "owner TEXT, title TEXT, source TEXT);") % self.table
-        try:
-            self.con.execute(sql)
-        except:
-            pass
+        self.con = HistoryDB(table)
 
     def add(self, photo):
         # check the previous entry
         sql = "SELECT id, url FROM %s ORDER BY id DESC LIMIT 1;" % self.table
-        max_id, prev_photo_url = self.con.execute(sql).fetchone() or (0, None)
+        max_id, prev_photo_url = self.con.fetchone_raw(sql) or (0, None)
         if prev_photo_url == photo.get('url'):
             return
 
@@ -51,33 +42,41 @@ class History(object):
             self._escape_quote(photo.get('title')),
             photo.get('info')().name or '')
 
-        self._execute_with_commit(sql)
+        self.con.execute_with_commit(sql)
 
         # delete old entries
         count = self._count_entries(self.table)
         if count > 1000:
             sql = ("DELETE FROM %s WHERE id < (select id FROM photoframe "
                    "ORDER BY id DESC LIMIT 1) - 1000" ) % self.table
-        self._execute_with_commit(sql)
+            self.con.execute_with_commit(sql)
 
     def get(self):
         sql = "SELECT * FROM %s;" % self.table 
-        return self.con.execute(sql).fetchall()
-
-    def _execute_with_commit(self, sql):
-        try:
-            self.con.execute(sql)
-            self.con.commit()
-        except:
-            print "%s: %s" % (sys.exc_info()[1], sql)
+        return self.con.fetchall(sql)
 
     def _count_entries(self, table):
         sql = "SELECT count(*) FROM %s" % table
-        return self.con.execute(sql).fetchone()[0]
+        return self.con.fetchone(sql)
 
     def _escape_quote(self, text):
         return text.replace("'","''") if text else ''
-        
+
+class HistoryDB(FSpotDB):
+
+    def __init__(self, table):
+        self.table = table
+
+        db_file = os.path.join(xdg_cache_home, 'gphotoframe/history.db')
+        self.db = sqlite3.connect(db_file)
+
+        sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
+               "owner TEXT, title TEXT, source TEXT);") % self.table
+        try:
+            self.execute(sql)
+        except:
+            pass
+
 class HistoryHTML(object):
 
     def __init__(self):
