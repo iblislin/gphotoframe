@@ -5,8 +5,8 @@ from string import Template
 import gtk
 from gettext import gettext as _
 
-from constants import SHARED_DATA_DIR, CACHE_DIR
-from plugins import ICON_LIST
+from ..constants import SHARED_DATA_DIR, CACHE_DIR
+from ..plugins import ICON_LIST
 from history import History
 
 class HistoryHTML(object):
@@ -88,10 +88,6 @@ class HistoryHTML(object):
 
             if owner:
                 info += _('by %s') % owner + '<br>'
-            if date:
-                # format = self.conf.get_string('date_format') or "%x"
-                format = "%x"
-                info += "%s<br>" % time.strftime(format, time.gmtime(date))
             if icon_file:
                 info += '<img src="%s"> ' % icon_file
             if source:
@@ -99,7 +95,10 @@ class HistoryHTML(object):
                 if target:
                     info += '/%s' % target
                 info += '<br>'
-
+            if date:
+                # format = self.conf.get_string('date_format') or "%x"
+                format = "%x"
+                info += "%s<br>" % time.strftime(format, time.gmtime(date))
 
             table_dic = { 'url': url,
                           'page_url': page_url or org_url,
