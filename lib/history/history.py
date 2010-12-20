@@ -35,8 +35,8 @@ class History(object):
             photo.get('url'), 
             photo.get('page_url') or '', 
 
-            self._escape_quote(photo.get('owner_name')),
             self._escape_quote(photo.get('title')),
+            self._escape_quote(photo.get('owner_name')),
 
             date,
 
@@ -72,7 +72,7 @@ class HistoryDB(FSpotDB):
         self.db = sqlite3.connect(db_file)
 
         sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
-               "owner TEXT, title TEXT, date FLOAT, "
+               "title TEXT, owner TEXT, date FLOAT, "
                "source TEXT, target TEXT);") % self.table
         try:
             self.execute(sql)
