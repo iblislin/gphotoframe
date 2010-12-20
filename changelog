@@ -1,3 +1,7 @@
+2010-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Added cheking for session idle mode.
+
 2010-12-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gtkimage.py, html.py: Added support for generating thumbnails.

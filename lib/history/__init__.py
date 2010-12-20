@@ -1,9 +1,8 @@
-from ..utils.gnomescreensaver import GsThemeWindow
+from ..utils.gnomescreensaver import is_screensaver_mode
 from history import History
 
 class HistoryFactory(object):
 
     def create(self):
-        is_screensaver = GsThemeWindow().get_anid()
-        table = 'screensaver' if is_screensaver else 'photoframe'
+        table = 'screensaver' if is_screensaver_mode() else 'photoframe'
         return History(table)

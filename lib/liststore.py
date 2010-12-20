@@ -3,6 +3,7 @@ import glob
 
 import gtk
 import glib
+import dbus
 
 import plugins
 from constants import CACHE_DIR
@@ -10,6 +11,7 @@ from frame import PhotoFrameFactory
 from history import HistoryFactory
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
+from utils.gnomescreensaver import is_screensaver_mode
 
 
 class PhotoListStore(gtk.ListStore):
@@ -27,6 +29,7 @@ class PhotoListStore(gtk.ListStore):
 
         self.queue = RecentQueue()
         self.photoframe = PhotoFrameFactory().create(self)
+        self.idle = SessionIdle()
         self._start_timer()
 
     def append(self, d, iter=None):
@@ -73,6 +76,9 @@ class PhotoListStore(gtk.ListStore):
         return False
 
     def _change_photo(self):
+        if self.idle.check():
+            return True
+
         target_list = [ x[5] for x in self if x[5].photos and x[5].weight > 0 ]
         if target_list:
             target = WeightedRandom(target_list)
@@ -168,3 +174,16 @@ class RecentQueue(list):
         for filename in glob.iglob(os.path.join(CACHE_DIR, '*')):
             if filename not in recents:
                 os.remove(filename)
+
+class SessionIdle(object):
+
+    def __init__(self):
+        bus = dbus.SessionBus()
+        self.object = bus.get_object("org.gnome.ScreenSaver", 
+                                     "/org/gnome/ScreenSaver")
+        self.is_screensaver = is_screensaver_mode()
+
+    def check(self):
+        status = False if self.is_screensaver else self.object.GetActive()
+        # print status
+        return status
