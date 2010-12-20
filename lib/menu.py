@@ -7,7 +7,7 @@ from gettext import gettext as _
 
 import constants
 from preferences import Preferences
-from history import HistoryHTML
+from history_html import HistoryHTML
 from utils.config import GConf
 from utils.iconimage import IconImage
 
