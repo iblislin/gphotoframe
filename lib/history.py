@@ -91,14 +91,15 @@ class HistoryHTML(object):
         template_file = os.path.join(SHARED_DATA_DIR, 'history.html')
         css_file = os.path.join(SHARED_DATA_DIR, 'history.css')
 
-        photoframe_table = self._output(self.photoframe.get())
+        photoframe_table = self._get_table(self.photoframe.get())
         screensaver_table = screensaver_head = ""
         if self.screensaver.count_entries() > 0:
             screensaver_head = _('Screen Saver')
-            screensaver_table = self._output(self.screensaver.get())
+            screensaver_table = self._get_table(self.screensaver.get())
 
         keyword = { 'title': _('Gnome Photo Frame History'),
                     'stylesheet': css_file,
+                    'javascript': self._get_js(),
 
                     'photoframe': _('Photo Frame'),
                     'photoframe_table': photoframe_table,
@@ -112,9 +113,22 @@ class HistoryHTML(object):
         fh.write(html)
         fh.close()
 
-    def _output(self, list):
+    def _get_js(self, js=''):
+        js_enable = False
+        jquery = '/usr/share/javascript/jquery/jquery.js'
+        if not os.access(jquery, os.R_OK) or not js_enable:
+            return ''
+
+        lazyload = os.path.join(SHARED_DATA_DIR, 'jquery.lazyload.js')
+        locale = os.path.join(SHARED_DATA_DIR, 'jquery.gphotoframe.js')
+
+        for i in [jquery, lazyload, locale]:
+            js += '  <script type="text/javascript" src="%s"></script>\n' % i
+
+        return js.rstrip()
+
+    def _get_table(self, list, table = ''):
         list.sort(reverse=True)
-        table = ''
 
         table_file = os.path.join(SHARED_DATA_DIR, 'history_table.html')
         template = Template(open(table_file).read())
