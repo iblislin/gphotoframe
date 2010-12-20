@@ -32,6 +32,7 @@ It shows pictures from:
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 - python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings
+- jQuery: for photo history html
 
 ** Installation
 

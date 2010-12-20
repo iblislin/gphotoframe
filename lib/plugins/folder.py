@@ -68,7 +68,8 @@ class DirPhotoList(PhotoList):
         if filename is None:
             filename = os.path.split(fullpath)[1]
 
-        data = { 'url'      : 'file://' + fullpath,
+        data = { 'info'     : DirPlugin,
+                 'url'      : 'file://' + fullpath,
                  'filename' : fullpath,
                  'title'    : filename,
                  'trash'    : Trash(None, fullpath),

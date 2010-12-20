@@ -79,7 +79,7 @@ class FlickrAPI(object):
 
     def parse_nsid(self, d):
         argument = d['user']['id'] if d.get('user') else None
-        return argument
+        return argument, None
 
     def _add_auth_argument(self, values):
         values['auth_token'] = self.get_auth_token()
@@ -212,7 +212,7 @@ class FlickrGroupAPI(FlickrAPI):
 
     def parse_nsid(self, d):
         argument = d['group']['id'] if d.get('group') else None
-        return argument
+        return argument, None
 
     def get_page_url(self, owner, id, group):
         url = "http://www.flickr.com/photos/%s/%s/in/pool-%s/"
@@ -229,7 +229,7 @@ class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):
     def parse_nsid(self, d):
         list = [[g['nsid'], g['name']] for g in d['groups']['group']]
         argument, name = random.choice(list)
-        return argument
+        return argument, name
 
 class FlickrInterestingnessAPI(FlickrAPI):
 
@@ -279,7 +279,7 @@ class FlickrCommonsAPI(FlickrMetaGroupAPI, FlickrPeopleAPI):
         list = [[g['nsid'], g['name']['_content']]
                 for g in d['institutions']['institution']]
         argument, name = random.choice(list)
-        return argument
+        return argument, name
 
 class FlickrSearchAPI(FlickrAPI):
 

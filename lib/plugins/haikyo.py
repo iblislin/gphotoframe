@@ -53,7 +53,8 @@ class HaikyoPhotoList(PhotoList):
             for child in post.getchildren():
                 picture[child.tag] = child.text
 
-            data = {'url'        : farm_url + picture['pictureUrl'],
+            data = {'info'       : HaikyoPlugin,
+                    'url'        : farm_url + picture['pictureUrl'],
                     'hour'       : picture['hour'],
                     'min'        : picture['min'],
                     'owner_name' : self._unescape(picture['author'])[:-2],

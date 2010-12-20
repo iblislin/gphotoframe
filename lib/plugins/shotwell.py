@@ -4,20 +4,20 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2010-12-17 Version 0.1.2
 # 2010-10-25 Version 0.1.1
 # 2010-09-19 Version 0.1
 
 import os
-import sqlite3
 
-import gtk
 from gettext import gettext as _
 
+from ..utils.sqldb import SqliteDB
 from ..utils.iconimage import LocalIconImage
 from base import *
 from fspot.__init__ import *
 from fspot.rating import RateList
-from fspot.sqldb import FSpotDB, FSpotPhotoSQL
+from fspot.sqldb import FSpotPhotoSQL
 
 def info():
     return [ShotwellPlugin, ShotwellPhotoList, PhotoSourceShotwellUI]
@@ -58,7 +58,8 @@ class ShotwellPhotoList(FSpotPhotoList):
             sql = "SELECT filepath FROM BackingPhotoTable WHERE id=%s" % version
             filename = self.db.fetchone(sql)
 
-        data = { 'url' : 'file://' + filename,
+        data = { 'info': ShotwellPlugin,
+                 'url' : 'file://' + filename,
                  'rate' : rate.name,
                  'filename' : filename,
                  'title' : title or os.path.basename(filename), # without path
@@ -133,7 +134,7 @@ class ShotwellIcon(LocalIconImage):
 
 # sql
 
-class ShotwellDB(FSpotDB):
+class ShotwellDB(SqliteDB):
 
     def _get_db_file(self):
         db_file_base = '.shotwell/data/photo.db'

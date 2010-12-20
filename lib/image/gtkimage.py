@@ -9,6 +9,7 @@ import gtk
 
 from ..utils.config import GConf
 from tooltip import ToolTip
+from ..constants import CACHE_DIR
 
 class PhotoImage(object):
 
@@ -107,6 +108,12 @@ class PhotoImagePixbuf(object):
         pixbuf = self._scale(pixbuf)
         photo.get_exif()
 
+        if self.max_src_size > 800:
+            url = photo.get('url')
+            path = 'thumb_' + url.replace('/', '_')
+            filename = os.path.join(CACHE_DIR, path)
+            pixbuf.save(filename, "jpeg")
+
         self.data = pixbuf
         return True
 
@@ -138,6 +145,7 @@ class PhotoImagePixbuf(object):
         w = int( src_w * ratio + 0.4 )
         h = int( src_h * ratio + 0.4 )
 
+        self.max_src_size = src_w if src_w > src_h else src_h
         pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
         return pixbuf
 
