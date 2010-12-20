@@ -77,12 +77,15 @@ class HistoryHTML(object):
                 icon_file = ''
 
             url = org_url
-            path = url.replace('/', '_')
-            cache_file = os.path.join(CACHE_DIR, path)
+            path_thumb = 'thumb_' + url.replace('/', '_')
+            path_cache = url.replace('/', '_')
 
-            if os.access(cache_file, os.R_OK):
-                url = 'file://' + cache_file
-                url = url.replace('%20', '%2520') # for space characters
+            for path in [path_thumb, path_cache]:
+                cache_file = os.path.join(CACHE_DIR, path)
+                if os.access(cache_file, os.R_OK):
+                    url = 'file://' + cache_file
+                    url = url.replace('%20', '%2520') # for space characters
+                    break
 
             info = '<span class="title">%s</span><br>' % (title or _('Untitled'))
 
