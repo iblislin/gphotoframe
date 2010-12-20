@@ -3,6 +3,9 @@ import os
 import gtk
 from gtk import gdk
 
+def is_screensaver_mode():
+    return GsThemeWindow().get_anid()
+
 class GsThemeWindow(gtk.Window):
     __gtype_name__ = 'GsThemeWindow'
 
