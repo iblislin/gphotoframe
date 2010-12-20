@@ -71,7 +71,8 @@ class FSpotPhotoList(PhotoList):
         url = base_url + filename
 
         fullpath = url.replace('file://', '')
-        data = { 'url' : url,
+        data = { 'info': FSpotPlugin,
+                 'url' : url,
                  'rate' : rate.name,
                  'filename' : fullpath,
                  'title' : filename, # without path

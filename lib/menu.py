@@ -6,8 +6,9 @@ from twisted.internet import reactor
 from gettext import gettext as _
 
 import constants
-from utils.config import GConf
 from preferences import Preferences
+from history.html import HistoryHTML
+from utils.config import GConf
 from utils.iconimage import IconImage
 
 class PopUpMenu(object):
@@ -72,9 +73,16 @@ class PopUpMenu(object):
             item = RecentMenuItem(photo)
             menu.prepend(item)
 
+        # history menuitem
+        sep = gtk.SeparatorMenuItem()
+        history = HistoryMenuItem()
+        for item in [sep, history]:
+            menu.append(item)
+
         sensitive = True if len(recents) else False
         recent.set_submenu(menu)
         recent.set_sensitive(sensitive)
+        menu.show_all()
 
     def set_open_menu_sensitive(self, state):
         self.gui.get_object('menuitem5').set_sensitive(state)
@@ -94,7 +102,7 @@ class PopUpMenuFullScreen(PopUpMenu):
 class RecentMenuItem(gtk.ImageMenuItem):
 
     def __init__(self, photo):
-        title = photo.get('title') or "(%s)" % _('No Title')
+        title = photo.get('title') or "(%s)" % _('Untitled')
         title = title.replace("\n", " ")
 
         super(RecentMenuItem, self).__init__(title)
@@ -110,7 +118,17 @@ class RecentMenuItem(gtk.ImageMenuItem):
 
         self.set_always_show_image(True)
         self.connect('activate', photo.open)
-        self.show()
+
+class HistoryMenuItem(gtk.MenuItem):
+
+    def __init__(self):
+        title = _("Show _History")
+        super(HistoryMenuItem, self).__init__(title)
+        self.connect('activate', self._open)
+
+    def _open(self, widget):
+        html = HistoryHTML()
+        html.show()
 
 class AboutDialog(object):
 
