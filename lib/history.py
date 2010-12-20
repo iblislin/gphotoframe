@@ -1,6 +1,7 @@
 import os
 import gtk
 import sqlite3
+import time
 from string import Template
 
 from xdg.BaseDirectory import xdg_cache_home
@@ -31,16 +32,31 @@ class History(object):
         if prev_photo_url == photo.get('url'):
             return
 
+        target = photo.get('target') or ''
+        if target:
+            target = [x.rstrip(' ').lstrip(' ') for x in target]
+            target = '/'.join(target) if target[1] else target[0]
+
+        date = photo.get('date_taken') or ''
+        if isinstance(date, unicode):
+            data = ''
+
         # add new entry
-        sql = "INSERT INTO %s VALUES (%s, '%s', '%s', '%s', '%s','%s');" % (
+        sql = "INSERT INTO %s VALUES (%s, '%s', '%s', '%s', '%s', %s, '%s', '%s');" % (
             self.table,
+
             max_id + 1, 
             photo.get('url'), 
             photo.get('page_url') or '', 
 
             self._escape_quote(photo.get('owner_name')),
             self._escape_quote(photo.get('title')),
-            photo.get('info')().name or '')
+
+            date,
+
+            photo.get('info')().name or '',
+            target,
+            )
 
         self.con.execute_with_commit(sql)
 
@@ -70,7 +86,8 @@ class HistoryDB(FSpotDB):
         self.db = sqlite3.connect(db_file)
 
         sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
-               "owner TEXT, title TEXT, source TEXT);") % self.table
+               "owner TEXT, title TEXT, date FLOAT, "
+               "source TEXT, target TEXT);") % self.table
         try:
             self.execute(sql)
         except:
@@ -134,7 +151,7 @@ class HistoryHTML(object):
         table_file = os.path.join(self.template_dir, 'history_table.html')
         template = Template(open(table_file).read())
 
-        for id, org_url, page_url, owner, title, source in list[:10]:
+        for id, org_url, page_url, owner, title, date, source, target in list[:10]:
 
             if source in ICON_LIST:
                 icon = ICON_LIST[source]()
@@ -155,10 +172,18 @@ class HistoryHTML(object):
 
             if owner:
                 info += _('by %s') % owner + '<br>'
+            if date:
+                # format = self.conf.get_string('date_format') or "%x"
+                format = "%x"
+                info += "%s<br>" % time.strftime(format, time.gmtime(date))
             if icon_file:
                 info += '<img src="%s"> ' % icon_file
             if source:
-                info += '%s<br>' % source
+                info += '%s' % source
+                if target:
+                    info += '/%s' % target
+                info += '<br>'
+
 
             table_dic = { 'url': url,
                           'page_url': page_url or org_url,
