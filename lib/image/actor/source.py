@@ -32,9 +32,8 @@ class ActorSourceIcon(ActorIcon):
             self.texture.show()
 
     def _check_hide_always(self):
-        return 'type' in self.photo and \
-            not isinstance(self.photo['type'], str) and \
-            hasattr(self.photo['type'](), 'hide_source_icon_on_image')
+        info_obj = self.photo['info']()
+        return hasattr(info_obj, 'hide_source_icon_on_image')
 
     def hide(self, force=False):
         mouse_on = self.photoimage.check_mouse_on_window() \
