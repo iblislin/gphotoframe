@@ -1,19 +1,9 @@
 import os
-import gtk
 import sqlite3
 
 from xdg.BaseDirectory import xdg_cache_home
+from ..plugins.fspot.sqldb import FSpotDB
 
-from utils.gnomescreensaver import GsThemeWindow
-from plugins.fspot.sqldb import FSpotDB
-
-
-class HistoryFactory(object):
-
-    def create(self):
-        is_screensaver = GsThemeWindow().get_anid()
-        table = 'screensaver' if is_screensaver else 'photoframe'
-        return History(table)
 
 class History(object):
 
@@ -33,7 +23,7 @@ class History(object):
             target = [x.rstrip(' ').lstrip(' ') for x in target]
             target = '/'.join(target) if target[1] else target[0]
 
-        date = photo.get('date_taken') or ''
+        date = photo.get('date_taken') or 0
         if isinstance(date, unicode):
             data = ''
 
