@@ -67,7 +67,7 @@ class HistoryHTML(object):
         table_file = os.path.join(self.template_dir, 'history_table.html')
         template = Template(open(table_file).read())
 
-        for id, org_url, page_url, owner, title, date, source, target in list[:10]:
+        for id, org_url, page_url, title, owner, date, source, target in list[:10]:
 
             if source in ICON_LIST:
                 icon = ICON_LIST[source]()
