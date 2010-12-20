@@ -2,7 +2,7 @@ import os
 import getpass
 from os.path import join, abspath, dirname
 
-VERSION = '1.2-b1'
+VERSION = '1.2-b2'
 APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(join(dirname(__file__), '../share'))
