@@ -25,7 +25,7 @@ class History(object):
 
         date = photo.get('date_taken') or 0
         if isinstance(date, unicode):
-            data = ''
+            date = 0
 
         # add new entry
         sql = "INSERT INTO %s VALUES (%s, '%s', '%s', '%s', '%s', %s, '%s', '%s');" % (
