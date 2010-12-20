@@ -45,8 +45,7 @@ class History(object):
         self.con.execute_with_commit(sql)
 
         # delete old entries
-        count = self._count_entries(self.table)
-        if count > 1000:
+        if self.count_entries() > 1000:
             sql = ("DELETE FROM %s WHERE id < (select id FROM photoframe "
                    "ORDER BY id DESC LIMIT 1) - 1000" ) % self.table
             self.con.execute_with_commit(sql)
@@ -55,8 +54,8 @@ class History(object):
         sql = "SELECT * FROM %s;" % self.table 
         return self.con.fetchall(sql)
 
-    def _count_entries(self, table):
-        sql = "SELECT count(*) FROM %s" % table
+    def count_entries(self):
+        sql = "SELECT count(*) FROM %s" % self.table
         return self.con.fetchone(sql)
 
     def _escape_quote(self, text):
@@ -93,14 +92,17 @@ class HistoryHTML(object):
         css_file = os.path.join(SHARED_DATA_DIR, 'history.css')
 
         photoframe_table = self._output(self.photoframe.get())
-        screensaver_table = self._output(self.screensaver.get())
+        screensaver_table = screensaver_head = ""
+        if self.screensaver.count_entries() > 0:
+            screensaver_head = _('Screen Saver')
+            screensaver_table = self._output(self.screensaver.get())
 
         keyword = { 'title': _('Gnome Photo Frame History'),
                     'stylesheet': css_file,
 
                     'photoframe': _('Photo Frame'),
                     'photoframe_table': photoframe_table,
-                    'screensaver': _('Screen Saver'),
+                    'screensaver': screensaver_head,
                     'screensaver_table': screensaver_table }
 
         template = Template(open(template_file).read())
