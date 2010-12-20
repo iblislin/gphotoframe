@@ -1,7 +1,7 @@
 2010-12-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* share/jquery.*.js: Added support for jQuery plugin for lazy
-	  loading images.
+	* share/history/jquery.*.js: Added support for jQuery plugin for
+	  lazy loading images.
 
 2010-12-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

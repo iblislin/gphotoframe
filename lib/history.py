@@ -82,14 +82,15 @@ class HistoryHTML(object):
         self.screensaver = History('screensaver')
         self.photoframe = History('photoframe')
         self.html_file = os.path.join(CACHE_DIR, 'history.html')
+        self.template_dir = os.path.join(SHARED_DATA_DIR, 'history')
 
     def show(self):
         self._make()
         gtk.show_uri(None, 'file://%s' % self.html_file, gtk.gdk.CURRENT_TIME)
 
     def _make(self):
-        template_file = os.path.join(SHARED_DATA_DIR, 'history.html')
-        css_file = os.path.join(SHARED_DATA_DIR, 'history.css')
+        template_file = os.path.join(self.template_dir, 'history.html')
+        css_file = os.path.join(self.template_dir, 'history.css')
 
         photoframe_table = self._get_table(self.photoframe.get())
         screensaver_table = screensaver_head = ""
@@ -114,13 +115,13 @@ class HistoryHTML(object):
         fh.close()
 
     def _get_js(self, js=''):
-        js_enable = False
+        js_enable = True
         jquery = '/usr/share/javascript/jquery/jquery.js'
         if not os.access(jquery, os.R_OK) or not js_enable:
             return ''
 
-        lazyload = os.path.join(SHARED_DATA_DIR, 'jquery.lazyload.js')
-        locale = os.path.join(SHARED_DATA_DIR, 'jquery.gphotoframe.js')
+        lazyload = os.path.join(self.template_dir, 'jquery.lazyload.js')
+        locale = os.path.join(self.template_dir, 'jquery.gphotoframe.js')
 
         for i in [jquery, lazyload, locale]:
             js += '  <script type="text/javascript" src="%s"></script>\n' % i
@@ -130,7 +131,7 @@ class HistoryHTML(object):
     def _get_table(self, list, table = ''):
         list.sort(reverse=True)
 
-        table_file = os.path.join(SHARED_DATA_DIR, 'history_table.html')
+        table_file = os.path.join(self.template_dir, 'history_table.html')
         template = Template(open(table_file).read())
 
         for id, org_url, page_url, owner, title, source in list[:10]:
