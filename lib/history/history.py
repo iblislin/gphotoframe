@@ -41,7 +41,7 @@ class History(object):
             date,
 
             photo.get('info')().name or '',
-            target,
+            self._escape_quote(target),
             )
 
         self.con.execute_with_commit(sql)
