@@ -108,8 +108,7 @@ class FlickrPhotoList(PhotoList):
             except (ValueError, OverflowError), info:
                 date = s['datetaken']
 
-            data = {'type'       : 'flickr',
-                    'info'       : FlickrPlugin,
+            data = {'info'       : FlickrPlugin,
                     'target'     : (self.target, argument),
                     'url'        : str(url),
                     'url_b'      : str(url_b),

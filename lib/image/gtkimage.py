@@ -157,7 +157,7 @@ class PhotoImagePixbuf(object):
         if min > 0 and size < min:
             print "Skip a small file size image (%s bytes)." % size
             return False
-        elif photo.get('type') == 'flickr' and size < 3000:
+        elif photo.get('info')().name == 'flickr' and size < 3000:
             # ad-hoc for avoiding flickr no image.
             return False
         else:
