@@ -1,3 +1,7 @@
+2010-12-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* folder.py: Fixed an AttributeError (issue #79).
+
 2010-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/base.py: Added new gconf key (show_filename_suffix).
