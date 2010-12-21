@@ -40,7 +40,7 @@ class ToolTip(object):
         tip = ""
 
         if photo:
-            title = photo.get('title')
+            title = photo.get_title()
             owner = photo.get('owner_name')
             target = photo.get('target')
             date = photo.get('date_taken')
