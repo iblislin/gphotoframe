@@ -72,7 +72,7 @@ class HistoryDB(FSpotDB):
         self.db = sqlite3.connect(db_file)
 
         sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
-               "title TEXT, owner TEXT, date FLOAT, "
+               "title TEXT, owner TEXT, date INTEGER, "
                "source TEXT, target TEXT);") % self.table
         try:
             self.execute(sql)
