@@ -1,14 +1,13 @@
 import sys
-import time
 from xml.sax.saxutils import escape
-from gettext import gettext as _
 
-from ..utils.config import GConf
+from gettext import gettext as _
+from ..utils.datetimeformat import get_formatted_datatime
+
 
 class ToolTip(object):
 
     def __init__(self, widget):
-        self.conf = GConf()
         self.widget = widget
         self.icon = False
         self.photo = None
@@ -56,9 +55,7 @@ class ToolTip(object):
                 text = '/'.join(target) if target[1] else target[0]
                 tip += "%s\n" % escape(text)
             if date:
-                format = self.conf.get_string('date_format') or "%x"
-                tip += "%s\n" % (date if isinstance(date, unicode) else \
-                    time.strftime(format, time.gmtime(date)))
+                tip += "%s\n" % get_formatted_datatime(date)
             if location:
                 tip += "%s\n" % escape(location)
 
@@ -74,9 +71,7 @@ class ToolTip(object):
         date = photo.get('date_taken')
 
         if date:
-            format = self.conf.get_string('date_format') or "%x"
-            exif['date'] = date if isinstance(date, unicode) else \
-                    time.strftime(format, time.gmtime(date))
+            exif['date'] = get_formatted_datatime(date)
 
         make = exif.get('make')
         model = exif.get('model')

@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 from xdg.BaseDirectory import xdg_cache_home
-from ..plugins.fspot.sqldb import FSpotDB
+from ..utils.sqldb import SqliteDB
 
 
 class History(object):
@@ -63,17 +63,15 @@ class History(object):
     def _escape_quote(self, text):
         return text.replace("'","''") if text else ''
 
-class HistoryDB(FSpotDB):
+class HistoryDB(SqliteDB):
 
     def __init__(self, table):
-        self.table = table
-
         db_file = os.path.join(xdg_cache_home, 'gphotoframe/history.db')
         self.db = sqlite3.connect(db_file)
 
         sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "
                "title TEXT, owner TEXT, date INTEGER, "
-               "source TEXT, target TEXT);") % self.table
+               "source TEXT, target TEXT);") % table
         try:
             self.execute(sql)
         except:
