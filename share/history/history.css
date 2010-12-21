@@ -6,12 +6,13 @@ img.photo { max-width: 300px; max-height: 300px; }
 h1 { width: 800px; margin-right: auto; margin-left: auto; min-width: 800px; }
 h2 { width: 700px; margin-right: auto; margin-left: auto; min-width: 700px; }
 
-table { width: 600px; margin-right: auto; margin-left: auto; min-width: 600px; }
+table { width: 500px; margin-right: auto; margin-left: auto; min-width: 500px; }
 td { padding: 10px; vertical-align: top; }
 td.photo { width: 300px; min-height: 300px }
 td.info { padding-top: 20px; }
 
-.title { font-size: large; font-weight: bold;}
+.title { font-size: large; font-weight: bold; 
+         display: inline-block; width: 200px; }
 
 
 /* hr { border-width: 1px 0px 0px 0px; border-style: solid; 
