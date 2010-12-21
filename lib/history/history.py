@@ -47,9 +47,9 @@ class History(object):
         self.con.execute_with_commit(sql)
 
         # delete old entries
-        if self.count_entries() > 1000:
+        if self.count_entries() > 100:
             sql = ("DELETE FROM %s WHERE id < (select id FROM photoframe "
-                   "ORDER BY id DESC LIMIT 1) - 1000" ) % self.table
+                   "ORDER BY id DESC LIMIT 1) - 100" ) % self.table
             self.con.execute_with_commit(sql)
 
     def get(self):
