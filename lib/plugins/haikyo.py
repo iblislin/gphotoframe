@@ -75,7 +75,7 @@ class HaikyoPhotoList(PhotoList):
         return random.choice(photos) if photos else None
 
     def _unescape(self, text):
-        return re.sub(r'\\(.)', r'\1', text) if text else text
+        return re.sub(r'\\(.)', r'\1', text) if text else text or ''
 
 class PhotoSourceHaikyoUI(PhotoSourceUI):
 
