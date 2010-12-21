@@ -62,12 +62,9 @@ class HistoryHTML(object):
         return js.rstrip()
 
     def _get_table(self, list, table = ''):
-        list.sort(reverse=True)
-
         table_file = os.path.join(self.template_dir, 'history_table.html')
-        template = Template(open(table_file).read())
 
-        for id, org_url, page_url, title, owner, date, source, target in list[:10]:
+        for id, org_url, page_url, title, owner, date, source, target in list:
 
             if source in ICON_LIST:
                 icon = ICON_LIST[source]()

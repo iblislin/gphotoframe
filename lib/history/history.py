@@ -52,8 +52,8 @@ class History(object):
                    "ORDER BY id DESC LIMIT 1) - 100" ) % self.table
             self.con.execute_with_commit(sql)
 
-    def get(self):
-        sql = "SELECT * FROM %s;" % self.table 
+    def get(self, num=10):
+        sql = "SELECT * FROM %s ORDER BY id DESC LIMIT %s;" % (self.table, num)
         return self.con.fetchall(sql)
 
     def count_entries(self):
