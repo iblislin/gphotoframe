@@ -7,6 +7,7 @@ from gettext import gettext as _
 
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
 from ..plugins import ICON_LIST
+from ..utils.config import GConf
 from history import History
 
 class HistoryHTML(object):
@@ -16,6 +17,7 @@ class HistoryHTML(object):
         self.photoframe = History('photoframe')
         self.html_file = os.path.join(CACHE_DIR, 'history.html')
         self.template_dir = os.path.join(SHARED_DATA_DIR, 'history')
+        self.conf = GConf()
 
     def show(self):
         self._make()
@@ -63,6 +65,7 @@ class HistoryHTML(object):
 
     def _get_table(self, list, table = ''):
         table_file = os.path.join(self.template_dir, 'history_table.html')
+        template = Template(open(table_file).read())
 
         for id, org_url, page_url, title, owner, date, source, target in list:
 
@@ -96,8 +99,7 @@ class HistoryHTML(object):
                     info += '/%s' % target
                 info += '<br>'
             if date:
-                # format = self.conf.get_string('date_format') or "%x"
-                format = "%x"
+                format = self.conf.get_string('date_format') or "%x"
                 info += "%s<br>" % time.strftime(format, time.gmtime(date))
 
             table_dic = { 'url': url,
