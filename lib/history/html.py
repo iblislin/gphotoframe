@@ -6,7 +6,6 @@ from gettext import gettext as _
 
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
 from ..plugins import ICON_LIST
-from ..utils.config import GConf
 from ..utils.datetimeformat import get_formatted_datatime
 from history import History
 
