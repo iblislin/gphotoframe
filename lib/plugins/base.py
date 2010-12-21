@@ -1,6 +1,7 @@
 from __future__ import division
 import os
 import time
+import re
 
 import gtk
 import random
@@ -52,7 +53,7 @@ class PhotoList(object):
         if not self.photo:
             return
 
-        url = self.photo.get_url()
+        url = self.photo.get('url')
         path = url.replace('/', '_')
         self.photo['filename'] = os.path.join(constants.CACHE_DIR, path)
 
@@ -193,9 +194,18 @@ class Photo(dict):
 
     def __init__(self, init_dic={}):
         self.update(init_dic)
+        self.conf = GConf()
 
-    def get_url(self):
-        return self['url']
+    def get_title(self):
+        with_suffix = self.conf.get_bool('show_filename_suffix', True)
+        title = self['title']
+
+        if not with_suffix:
+            re_img = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)        
+            if re_img.search(title):
+                title, suffix = os.path.splitext(title)
+
+        return title
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 23:59+0900\n"
-"PO-Revision-Date: 2010-12-17 00:00+0900\n"
+"POT-Creation-Date: 2010-12-21 14:34+0900\n"
+"PO-Revision-Date: 2010-12-21 14:46+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -21,7 +21,7 @@ msgid "Image Viewer"
 msgstr "イメージビューア"
 
 #: ../share/gphotoframe.desktop.in.h:2
-#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history.py:95
+#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history/html.py:38
 msgid "Photo Frame"
 msgstr "写真フレーム"
 
@@ -153,26 +153,31 @@ msgid "If true, icons will be shown on screensaver."
 msgstr "TRUEにすると、スクリーンセーバー上でアイコンを表示します。"
 
 #: ../share/gphotoframe.schemas.in.h:25
+msgid "If true, image filename suffixes (jpe?g|png|gif|bmp) are shown."
+msgstr ""
+"TRUEにすると、画像ファイル名のサフィックス (jpe?g|png|gif|bmp) を表示します。"
+
+#: ../share/gphotoframe.schemas.in.h:26
 msgid "Interval seconds in full screen mode"
 msgstr "フルスクリーン表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:27
 msgid "Interval seconds in window mode"
 msgstr "ウィンドウ表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "Max aspect ratio for Photo"
 msgstr "表示する写真の最大アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:29
 msgid "Minimum aspect ratio for Photo"
 msgstr "表示する写真の最小アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:30
 msgid "Minimum image file size in bytes"
 msgstr "表示する写真の最小ファイルサイズ (バイト)"
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:31
 msgid ""
 "Minimum image file size in bytes. When this value is less than 0, image file "
 "size filter is disabled."
@@ -180,11 +185,11 @@ msgstr ""
 "表示する写真の最小ファイルサイズをバイト単位で指定します。0 以下の値を指定し"
 "た場合、サイズフィルターは無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "Minimum image height"
 msgstr "表示する写真の最小高"
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:33
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
@@ -192,11 +197,11 @@ msgstr ""
 "表示する写真の最小高を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "Minimum image width"
 msgstr "表示する写真の最小幅"
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:35
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
@@ -204,67 +209,67 @@ msgstr ""
 "表示する写真の最小幅を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:38
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Photo image max height"
 msgstr "写真の最大表示高"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "RSS reload interval minutes"
 msgstr "RSS を再読込する間隔 (分)"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:51
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
@@ -272,7 +277,7 @@ msgstr ""
 "Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
 "この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:52
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -280,47 +285,51 @@ msgstr ""
 "TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
 "レーム上にあるときのみアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Show icons on screensaver"
 msgstr "スクリーンセーバー上でのアイコンの表示"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "Source icon position"
 msgstr "ソースアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:55
 msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "The field sets the number of photo cache files."
 msgstr "画像ファイルのキャッシュ数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "The field sets the number of recent photo menu items."
 msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "The number of photo cache files"
 msgstr "画像ファイルのキャッシュ数"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "The number of recent photo menu items"
 msgstr "「最近表示した写真」メニューのアイテム数"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:60
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:63
+msgid "Whether to show filename suffix"
+msgstr "ファイル名のサフィックスの表示"
+
+#: ../share/gphotoframe.schemas.in.h:64
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -376,7 +385,7 @@ msgstr "写真のソース"
 msgid "Rate _Weight:"
 msgstr "評価の重み(_W):"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:146
+#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:147
 msgid "_Argument:"
 msgstr "引数(_A):"
 
@@ -400,7 +409,7 @@ msgstr "ソース(_S):"
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:140
+#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:141
 #: ../lib/plugins/haikyo.py:82
 msgid "_Target:"
 msgstr "ターゲット(_T):"
@@ -497,8 +506,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#. for space characters
-#: ../lib/menu.py:105 ../lib/history.py:131 ../lib/image/actor/info.py:31
+#: ../lib/menu.py:105 ../lib/history/html.py:90 ../lib/image/actor/info.py:31
 msgid "Untitled"
 msgstr "無題"
 
@@ -510,16 +518,16 @@ msgstr "履歴を表示(_H)"
 msgid "GNOME Photo Frame"
 msgstr "GNOME 写真フレーム"
 
-#: ../lib/history.py:92
-msgid "Gnome Photo Frame History"
-msgstr "GNOME 写真フレームの履歴"
-
-#: ../lib/history.py:97
+#: ../lib/history/html.py:31
 msgid "Screen Saver"
 msgstr "スクリーンセーバー"
 
+#: ../lib/history/html.py:34
+msgid "Gnome Photo Frame History"
+msgstr "GNOME 写真フレームの履歴"
+
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/history.py:134 ../lib/image/tooltip.py:53
+#: ../lib/history/html.py:93 ../lib/image/tooltip.py:53
 #, python-format
 msgid "by %s"
 msgstr "by %s"
@@ -570,7 +578,7 @@ msgstr "地図を開く"
 msgid "Loading..."
 msgstr "ロード中..."
 
-#: ../lib/image/actor/source.py:55
+#: ../lib/image/actor/source.py:54
 msgid "Open the photo"
 msgstr "写真を開く"
 
@@ -647,15 +655,15 @@ msgstr "フラッシュ"
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
-#: ../lib/plugins/base.py:181
+#: ../lib/plugins/base.py:182
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/base.py:337
+#: ../lib/plugins/base.py:347
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "ファイルをゴミ箱に移動できません。今すぐ削除しますか?"
 
-#: ../lib/plugins/base.py:339
+#: ../lib/plugins/base.py:349
 #, python-format
 msgid "The file \"%s\" cannot be moved to the trash. "
 msgstr "ファイル %s はゴミ箱に移動できません。"
@@ -693,7 +701,7 @@ msgstr "Photo Search"
 msgid "The Commons"
 msgstr "The Commons"
 
-#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:181
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:180
 msgid "Your Groups"
 msgstr "Your Groups"
 
@@ -820,16 +828,16 @@ msgstr "Tumblr エラー: %s は不正なターゲットです。"
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
-#: ../lib/plugins/rss.py:29
+#: ../lib/plugins/rss.py:33
 msgid "RSS and Atom Feeds"
 msgstr "RSS や Atom フィード"
 
-#: ../lib/plugins/rss.py:126
+#: ../lib/plugins/rss.py:134
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:129
+#: ../lib/plugins/rss.py:137
 msgid "_URL:"
 msgstr "URL(_U)"
 

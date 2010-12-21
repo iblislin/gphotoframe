@@ -35,7 +35,7 @@ class History(object):
             photo.get('url'), 
             photo.get('page_url') or '', 
 
-            self._escape_quote(photo.get('title')),
+            self._escape_quote(photo.get_title()),
             self._escape_quote(photo.get('owner_name')),
 
             date,

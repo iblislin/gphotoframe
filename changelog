@@ -1,5 +1,6 @@
 2010-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/base.py: Added new gconf key (show_filename_suffix).
 	* liststore.py: Added cheking for session idle mode.
 
 2010-12-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
