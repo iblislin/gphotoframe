@@ -130,7 +130,7 @@ class ShotwellFav(FSpotFav):
 class ShotwellIcon(LocalIconImage):
 
     def __init__(self):
-        self.icon_name = 'shotwell-16.svg'
+        self.icon_name = 'shotwell-16.png'
 
 # sql
 
