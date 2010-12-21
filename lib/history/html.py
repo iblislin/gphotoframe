@@ -1,5 +1,4 @@
 import os
-import time
 from string import Template
 
 import gtk
@@ -8,7 +7,9 @@ from gettext import gettext as _
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
 from ..plugins import ICON_LIST
 from ..utils.config import GConf
+from ..utils.datetimeformat import get_formatted_datatime
 from history import History
+
 
 class HistoryHTML(object):
 
@@ -17,7 +18,6 @@ class HistoryHTML(object):
         self.photoframe = History('photoframe')
         self.html_file = os.path.join(CACHE_DIR, 'history.html')
         self.template_dir = os.path.join(SHARED_DATA_DIR, 'history')
-        self.conf = GConf()
 
     def show(self):
         self._make()
@@ -99,8 +99,7 @@ class HistoryHTML(object):
                     info += '/%s' % target
                 info += '<br>'
             if date:
-                format = self.conf.get_string('date_format') or "%x"
-                info += "%s<br>" % time.strftime(format, time.gmtime(date))
+                info += "%s<br>" % get_formatted_datatime(date)
 
             table_dic = { 'url': url,
                           'page_url': page_url or org_url,
