@@ -28,10 +28,13 @@ It shows pictures from:
 ** Recommends
 
 - feedparser: for RSS plugin
-- python-numpy: for RSS plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 - python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings
+
+** Suggests
+
+- python-numpy: for RSS plugin
 - jQuery: for photo history html
 
 ** Installation
