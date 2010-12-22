@@ -150,15 +150,15 @@ class PhotoImagePixbuf(object):
         return pixbuf
 
     def _file_size_is_ok(self, filename, photo):
-
         min = self.conf.get_int('filter/min_file_size', 0)
         size = os.path.getsize(filename)
 
         if min > 0 and size < min:
             print "Skip a small file size image (%s bytes)." % size
             return False
-        elif photo.get('info')().name == 'flickr' and size < 3000:
+        elif photo.get('url').find('static.flickr.com') > 0 and size < 3000:
             # ad-hoc for avoiding flickr no image.
+            # print "Obsolete URL: %s" % photo.get('url')
             return False
         else:
             return True
