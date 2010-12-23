@@ -198,7 +198,7 @@ class Photo(dict):
 
     def get_title(self):
         with_suffix = self.conf.get_bool('show_filename_suffix', True)
-        title = self['title']
+        title = self['title'] or ''
 
         if not with_suffix:
             re_img = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)        
