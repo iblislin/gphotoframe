@@ -35,6 +35,7 @@ It shows pictures from:
 ** Suggests
 
 - python-numpy: for RSS plugin
+- python-dbys: for checking session idle status
 - jQuery: for photo history html
 
 ** Installation
