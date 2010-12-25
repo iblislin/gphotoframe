@@ -1,3 +1,7 @@
+2010-12-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* idlecheck.py: Fixed dbus errors.
+
 2010-12-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gtkimage.py: Modified Flickr photo size check.
