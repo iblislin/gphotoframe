@@ -29,7 +29,7 @@ class GioTrash(object):
             if error.code == gio.ERROR_NOT_SUPPORTED:
                 print "not supported."
         except:
-            print sys.exc_info()
+            print sys.exc_info()[1]
 
         return self.is_trashed
 
