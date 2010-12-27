@@ -8,6 +8,7 @@ import plugins
 from constants import CACHE_DIR
 from frame import PhotoFrameFactory
 from history import HistoryFactory
+from history.history import HistoryDB
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
 from utils.idlecheck import SessionIdle
@@ -27,6 +28,7 @@ class PhotoListStore(gtk.ListStore):
         self._load_gconf()
 
         self.queue = RecentQueue()
+        self.ban_db = BlackList()
         self.photoframe = PhotoFrameFactory().create(self)
         self.idle = SessionIdle()
         self._start_timer()
@@ -90,7 +92,11 @@ class PhotoListStore(gtk.ListStore):
         return state
 
     def _show_photo_cb(self, data, photo):
-        if self.photoframe.set_photo(photo):
+        # check!! blacklist
+        if self.ban_db.is_banned(photo.get('url')):
+            print "ban!"
+            self._change_photo()
+        elif self.photoframe.set_photo(photo):
             self.queue.append(photo)
         else:
             self._change_photo()
@@ -173,3 +179,12 @@ class RecentQueue(list):
         for filename in glob.iglob(os.path.join(CACHE_DIR, '*')):
             if filename not in recents:
                 os.remove(filename)
+
+class BlackList(object):
+
+    def __init__(self):
+        self.con = HistoryDB('ban')
+
+    def is_banned(self, url):
+        sql = "SELECT count(*) FROM ban WHERE url='%s';" % url
+        return self.con.fetchone(sql)
