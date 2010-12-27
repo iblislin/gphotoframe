@@ -337,7 +337,7 @@ class Trash(object):
             self.delete_from_catalog(photo)
 
     def delete_from_catalog(self, photo):
-        self.photolist.delete_photo(self.filename)
+        self.photolist.delete_photo(photo.get('url'))
 
 class Ban(Trash):
 
