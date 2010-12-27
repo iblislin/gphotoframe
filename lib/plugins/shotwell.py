@@ -77,8 +77,8 @@ class ShotwellTrash(FSpotTrash):
         # super(ShotwellTrash, self).check_delete_from_disk()
         return True
 
-    def delete_from_disk(self):
-        # super(ShotwellTrash, self).delete_from_disk()
+    def delete_from_disk(self, photo):
+        # super(ShotwellTrash, self).delete_from_disk(photo)
         self.photolist.delete_photo(self.filename)
 
         sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % self.id 

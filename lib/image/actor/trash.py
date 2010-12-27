@@ -74,7 +74,7 @@ class TrashDialog(object):
 
     def _response_cb(self, widget, response):
         if response == gtk.RESPONSE_YES:
-            self.delete_method()
+            self.delete_method(self.photo)
         widget.destroy()
 
 class RemoveCatalogDialog(TrashDialog):

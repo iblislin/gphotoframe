@@ -10,7 +10,7 @@ import json
 from gettext import gettext as _
 
 from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    Photo, PluginBase
+    Photo, PluginBase, Ban
 from ...utils.iconimage import WebIconImage
 from ...utils.config import GConf
 from ...utils.gnomescreensaver import GsThemeWindow
@@ -121,6 +121,7 @@ class FlickrPhotoList(PhotoList):
                     # 'description' : s['description']['_content'],
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
+                    'trash' : Ban(id, str(url), self.photolist),
                     'icon'       : FlickrIcon}
 
             if self.api.get_auth_token():
