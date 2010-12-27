@@ -79,7 +79,7 @@ class ShotwellTrash(FSpotTrash):
 
     def delete_from_disk(self, photo):
         # super(ShotwellTrash, self).delete_from_disk(photo)
-        self.photolist.delete_photo(self.filename)
+        self.photolist.delete_photo(photo.get('url'))
 
         sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % self.id 
         db = ShotwellDB()

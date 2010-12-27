@@ -99,7 +99,8 @@ class DirPhotoList(PhotoList):
             if photo['filename'] == fullpath:
                 self.photos.pop(i)
 
-        self.photolist.delete_photo(fullpath)
+        url = 'file://' + fullpath
+        self.photolist.delete_photo(url)
 
     def _add_dir(self, fullpath):
         pass

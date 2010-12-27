@@ -53,9 +53,9 @@ class PhotoListStore(gtk.ListStore):
         glib.source_remove(self._timer)
         self._start_timer()
 
-    def delete_photo(self, filename):
-        self.queue.remove(filename)
-        self.photoframe.remove_photo(filename)
+    def delete_photo(self, url):
+        self.queue.remove(url)
+        self.photoframe.remove_photo(url)
 
         glib.source_remove(self._timer)
         self._start_timer(False)
@@ -159,9 +159,9 @@ class RecentQueue(list):
         if len(self) > num:
             self.pop(0)
 
-    def remove(self, filename):
+    def remove(self, url):
         for i, queue_photo in enumerate(self):
-            if queue_photo['filename'] == filename:
+            if queue_photo['url'] == url:
                 super(RecentQueue, self).pop(i)
 
     def pop(self, num):
