@@ -13,6 +13,7 @@ from ..utils.config import GConf
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.EXIF import process_file as exif_process_file
 from ..utils.trash import GioTrash
+from ..history.history import History
 
 class PluginBase(object):
 
@@ -324,7 +325,7 @@ class Trash(object):
     def check_delete_from_catalog(self):
         return False
 
-    def delete_from_disk(self):
+    def delete_from_disk(self, photo):
         trash = GioTrash(self.filename)
         #if not trash.check_file():
         #    return
@@ -333,10 +334,23 @@ class Trash(object):
         if not result:
             dialog = ReallyDeleteDialog(self.filename, self.delete_from_catalog)
         else:
-            self.delete_from_catalog()
+            self.delete_from_catalog(photo)
 
-    def delete_from_catalog(self):
+    def delete_from_catalog(self, photo):
         self.photolist.delete_photo(self.filename)
+
+class Ban(Trash):
+
+    def check_delete_from_catalog(self):
+        return True
+
+    def delete_from_catalog(self, photo):
+        super(Ban, self).delete_from_catalog(photo)
+        print "Ban this photo!"
+
+        db = History('ban')
+        db.add(photo)
+        db.close()
 
 class ReallyDeleteDialog(object):
 
@@ -359,7 +373,7 @@ class ReallyDeleteDialog(object):
         if response == gtk.RESPONSE_OK:
             # print "really delete!!"
             os.remove(self.file)
-            self.delete_from_catalog()
+            self.delete_from_catalog(None)
         widget.destroy()
 
 class PluginDialog(object):

@@ -109,8 +109,8 @@ class FSpotTrash(Trash):
     def check_delete_from_catalog(self):
         return True
 
-    def delete_from_catalog(self):
-        super(FSpotTrash, self).delete_from_catalog()
+    def delete_from_catalog(self, photo):
+        super(FSpotTrash, self).delete_from_catalog(photo)
         # print "f-spot catalog delete!", self.id, self.version
 
         db, sql_templates = self._get_sql_obj() 

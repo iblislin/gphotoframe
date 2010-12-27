@@ -60,6 +60,9 @@ class History(object):
         sql = "SELECT count(*) FROM %s" % self.table
         return self.con.fetchone(sql)
 
+    def close(self):
+        self.con.close()
+
     def _escape_quote(self, text):
         return text.replace("'","''") if text else ''
 
