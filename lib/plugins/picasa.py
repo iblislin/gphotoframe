@@ -98,6 +98,7 @@ class PicasaPhotoList(PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
+                    'trash'      : Ban(self.photolist),
                     'icon'       : PicasaIcon}
 
             # exif

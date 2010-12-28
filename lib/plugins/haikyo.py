@@ -60,6 +60,7 @@ class HaikyoPhotoList(PhotoList):
                     'owner_name' : self._unescape(picture['author'])[:-2],
                     'title'      : self._unescape(picture['title']),
                     'page_url'   : page_url + picture['url'],
+                    'trash'      : Ban(self.photolist),
                     'icon'       : HaikyoIcon}
 
             photo = Photo(data)
