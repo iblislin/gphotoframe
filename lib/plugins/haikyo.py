@@ -25,7 +25,7 @@ def info():
     return [HaikyoPlugin, HaikyoPhotoList, PhotoSourceHaikyoUI]
 
 
-class HaikyoPlugin(PluginBase):
+class HaikyoPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = _('Ruins Clock')
@@ -35,7 +35,7 @@ class HaikyoPlugin(PluginBase):
                       'website': 'http://www.madin.jp/haikyo/',
                       'authors': ['Yoshizimi Endo'], }
 
-class HaikyoPhotoList(PhotoList):
+class HaikyoPhotoList(base.PhotoList):
 
     def prepare(self):
         url = 'http://www.madin.jp/haikyo/list.xml'
@@ -53,15 +53,17 @@ class HaikyoPhotoList(PhotoList):
             for child in post.getchildren():
                 picture[child.tag] = child.text
 
-            data = {'url'        : farm_url + picture['pictureUrl'],
+            data = {'info'       : HaikyoPlugin,
+                    'url'        : farm_url + picture['pictureUrl'],
                     'hour'       : picture['hour'],
                     'min'        : picture['min'],
                     'owner_name' : self._unescape(picture['author'])[:-2],
                     'title'      : self._unescape(picture['title']),
                     'page_url'   : page_url + picture['url'],
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : HaikyoIcon}
 
-            photo = Photo(data)
+            photo = base.Photo(data)
             self.photos.append(photo)
 
     def _random_choice(self):
@@ -74,9 +76,9 @@ class HaikyoPhotoList(PhotoList):
         return random.choice(photos) if photos else None
 
     def _unescape(self, text):
-        return re.sub(r'\\(.)', r'\1', text) if text else text
+        return re.sub(r'\\(.)', r'\1', text) if text else text or ''
 
-class PhotoSourceHaikyoUI(PhotoSourceUI):
+class PhotoSourceHaikyoUI(ui.PhotoSourceUI):
 
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
         super(PhotoSourceHaikyoUI, self)._set_target_sensitive(label, False)

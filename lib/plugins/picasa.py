@@ -7,11 +7,8 @@
 from twisted.web import client
 from gettext import gettext as _
 import urllib
-
-try:
-    import simplejson as json
-except:
-    import json
+import json
+import gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
@@ -24,7 +21,7 @@ def info():
             PluginPicasaDialog]
 
 
-class PicasaPlugin(PluginBase):
+class PicasaPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = _('Picasa Web')
@@ -38,7 +35,7 @@ class PicasaPlugin(PluginBase):
         username = GConf().get_string('plugins/picasa/user_id')
         return True if username else False
 
-class PicasaPhotoList(PhotoList):
+class PicasaPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = []
@@ -94,13 +91,15 @@ class PicasaPhotoList(PhotoList):
             owner_name = entry['author'][0]['name']['$t'] \
                 if entry.get('author') else self.argument
 
-            data = {'url'        : entry['content']['src'],
+            data = {'info'       : PicasaPlugin,
+                    'url'        : str(entry['content']['src']),
                     'owner_name' : owner_name,
                     'owner'      : owner_name,
                     'id'         : entry['gphoto$id']['$t'],
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : PicasaIcon}
 
             # exif
@@ -135,7 +134,7 @@ class PicasaPhotoList(PhotoList):
             if entry.get('gphoto$location'):
                 data['location'] = entry['gphoto$location']['$t']
 
-            photo = Photo(data)
+            photo = base.Photo(data)
             self.photos.append(photo)
 
     def _get_feed_url(self, target, argument, option=None):
@@ -158,7 +157,7 @@ class PicasaPhotoList(PhotoList):
 
         return url
 
-class PhotoSourcePicasaUI(PhotoSourceUI):
+class PhotoSourcePicasaUI(ui.PhotoSourceUI):
 
     def _build_target_widget(self):
         super(PhotoSourcePicasaUI, self)._build_target_widget()
@@ -184,7 +183,7 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
-class PluginPicasaDialog(PluginDialog):
+class PluginPicasaDialog(ui.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)

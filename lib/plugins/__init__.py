@@ -1,17 +1,29 @@
 import os
+import sys
 import inspect
 from os.path import join, abspath, dirname, isdir
 from gettext import gettext as _
+
+import gtk
+from xdg.BaseDirectory import xdg_config_home
 
 from base import *
 from ..utils.config import GConf
 
 token_base = []
-plugin_dir = abspath(join(dirname(__file__)))
 
-for item in os.listdir(plugin_dir):
-    if not (item.endswith('.py') and item != '__init__.py' and
-            item != 'base.py') and not isdir(join(plugin_dir, item)):
+plugin_dir = abspath(join(dirname(__file__)))
+user_plugin_dir = os.path.join(xdg_config_home, 'gphotoframe/plugins')
+
+if not os.access(user_plugin_dir, os.F_OK):
+    os.makedirs(user_plugin_dir)
+
+if __name__ == 'gphotoframe.plugins':
+    sys.path.append(user_plugin_dir)
+
+for item in os.listdir(plugin_dir) + os.listdir(user_plugin_dir):
+    if not (item.endswith('.py') and item != '__init__.py'
+            ) and not (isdir(join(plugin_dir, item)) and item != 'base'):
         continue
 
     module_name = inspect.getmodulename(item) if item.endswith('.py') else item
@@ -29,6 +41,7 @@ SOURCE_LIST=[]
 MAKE_PHOTO_TOKEN ={}
 PHOTO_TARGET_TOKEN={}
 DIALOG_TOKEN={}
+ICON_LIST={}
 
 for k in sorted(token_base):
     plugin = k[0]()
@@ -36,6 +49,8 @@ for k in sorted(token_base):
     SOURCE_LIST.append(plugin)
     MAKE_PHOTO_TOKEN[plugin.name] = k[1]
     PHOTO_TARGET_TOKEN[plugin.name] = k[2]
+    ICON_LIST[plugin.name.decode('utf_8')] = plugin.icon
+
     if len(k) > 3:
         DIALOG_TOKEN[plugin.name] = k[3]
 

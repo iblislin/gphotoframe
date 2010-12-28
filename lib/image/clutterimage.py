@@ -7,9 +7,8 @@ except ImportError:
     from ..utils.nullobject import Null
     cluttergtk = Null()
 
-from ..utils.config import GConf
-from actors import *
-from imagegtk import *
+from actor import *
+from gtkimage import *
 
 class PhotoImageClutter(PhotoImage):
 
@@ -22,12 +21,14 @@ class PhotoImageClutter(PhotoImage):
         self.stage.set_color(clutter.color_from_string(color))
         self.embed.show()
 
-        self.photo_image = Texture(self.stage)
+        self.photo_image = base.Texture(self.stage)
         self.photo_image.show()
-        self.actors = [ ActorSourceIcon(self.stage, self.tooltip),
-                        ActorGeoIcon(self.stage, self.tooltip),
-                        ActorInfoIcon(self.stage, self.tooltip),
-                        ActorFavIcon(self.stage, self.tooltip), ]
+        self.actors = [ source.ActorSourceIcon(self.stage, self.tooltip),
+                        info.ActorGeoIcon(self.stage, self.tooltip),
+                        info.ActorInfoIcon(self.stage, self.tooltip),
+                        trash.ActorTrashIcon(self.stage, self.tooltip),
+                        trash.ActorRemoveCatalogIcon(self.stage, self.tooltip),
+                        favicon.ActorFavIcon(self.stage, self.tooltip), ]
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
@@ -78,11 +79,11 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
     def __init__(self, photoframe):
         super(PhotoImageClutterFullScreen, self).__init__(photoframe)
 
-        self.photo_image2 = Texture(self.stage)
+        self.photo_image2 = base.Texture(self.stage)
         self.photo_image2.show()
-        self.actors2 = [ ActorSourceIcon(self.stage, self.tooltip),
-                        ActorGeoIcon(self.stage, self.tooltip),
-                        ActorFavIcon(self.stage, self.tooltip), ]
+        self.actors2 = [ source.ActorSourceIcon(self.stage, self.tooltip),
+                        info.ActorGeoIcon(self.stage, self.tooltip),
+                        favicon.ActorFavIcon(self.stage, self.tooltip), ]
         self.first = True # image1 or image2
 
         self.animation = self.conf.get_bool('ui/animate_fullscreen', False)

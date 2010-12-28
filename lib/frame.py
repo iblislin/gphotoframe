@@ -11,6 +11,9 @@ from utils.gnomescreensaver import GsThemeWindow
 
 GConf().set_bool('fullscreen', False)
 
+from utils.iconimage import IconImage
+gtk.window_set_default_icon(IconImage('gphotoframe').get_pixbuf())
+
 class PhotoFrameFactory(object):
 
     def create(self, photolist):
@@ -71,9 +74,9 @@ class PhotoFrame(object):
 
         return True
 
-    def remove_photo(self, filename):
+    def remove_photo(self, url):
         change = True if self.photoimage.photo and \
-            self.photoimage.photo['filename'] == filename else False
+            self.photoimage.photo['url'] == url else False
         self.set_photo(None, change)
 
     def _set_window_position(self):

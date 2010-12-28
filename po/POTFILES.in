@@ -5,11 +5,16 @@ share/gphotoframe.schemas.in
 [type: gettext/glade]share/preferences.ui
 [type: gettext/glade]share/menu.ui
 lib/menu.py
+lib/history/html.py
 lib/preferences/photosource.py
 lib/preferences/plugin.py
-lib/image/actors.py
+lib/image/actor/favicon.py
+lib/image/actor/info.py
+lib/image/actor/source.py
+lib/image/actor/trash.py
 lib/image/tooltip.py
-lib/plugins/base.py
+lib/plugins/base/ui.py
+lib/plugins/base/trash.py
 lib/plugins/__init__.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py

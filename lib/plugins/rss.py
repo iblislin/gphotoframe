@@ -6,9 +6,15 @@
 
 import re
 import copy
+import random
 # import pprint
 
-import numpy
+try:
+    import numpy
+except ImportError:
+    pass
+
+import gtk
 import feedparser
 from gettext import gettext as _
 
@@ -21,7 +27,7 @@ def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
 
 
-class RSSPlugin(PluginBase):
+class RSSPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = 'RSS'
@@ -30,7 +36,7 @@ class RSSPlugin(PluginBase):
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
-class RSSPhotoList(PhotoList):
+class RSSPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = {}
@@ -73,14 +79,16 @@ class RSSPhotoList(PhotoList):
                     if hasattr(entry, 'media_content_attrs') else image[0]
                 title = re_del_tag.sub('', entry.title)
 
-                data = {'url'        : str(url),
+                data = {'info'       : RSSPlugin,
+                        'url'        : str(url),
                         'owner_name' : owner,
                         'owner'      : owner,
                         'title'      : title,
                         'page_url'   : str(entry.link),
+                        'trash'      : trash.Ban(self.photolist),
                         'icon'       : RSSIcon}
 
-                photo = Photo(data)
+                photo = base.Photo(data)
 
                 if owner not in self.photos:
                     self.photos[owner] = []
@@ -89,10 +97,14 @@ class RSSPhotoList(PhotoList):
 
         self.raw_list = []
 
-        num_list = [len(self.photos[i]) for i in self.photos]
-        mean = numpy.mean(num_list)
-        std = numpy.std(num_list)
         goal_std = GConf().get_int('plugins/rss/standard_deviation', -1)
+        num_list = [len(self.photos[i]) for i in self.photos]
+
+        try:
+            mean = numpy.mean(num_list)
+            std = numpy.std(num_list)
+        except NameError:
+            mean = std = 0
 
         for title in self.photos:
             total_in_this = len(self.photos[title])
@@ -114,7 +126,7 @@ class RSSRate(object):
 
         # print name, self.weight
 
-class PhotoSourceRSSUI(PhotoSourceUI):
+class PhotoSourceRSSUI(ui.PhotoSourceUI):
 
     def get(self):
         return self.target_widget.get_text();
