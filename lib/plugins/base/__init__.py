@@ -8,12 +8,12 @@ import random
 import glib
 from gettext import gettext as _
 
-from .. import constants
-from ..utils.config import GConf
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
-from ..utils.EXIF import process_file as exif_process_file
-from ..utils.trash import GioTrash
-from ..history.history import History
+from ... import constants
+from ...utils.config import GConf
+from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.EXIF import process_file as exif_process_file
+from ...utils.trash import GioTrash
+from ...history.history import History
 
 class PluginBase(object):
 

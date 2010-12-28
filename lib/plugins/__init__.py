@@ -21,8 +21,8 @@ if __name__ == 'gphotoframe.plugins':
     sys.path.append(user_plugin_dir)
 
 for item in os.listdir(plugin_dir) + os.listdir(user_plugin_dir):
-    if not (item.endswith('.py') and item != '__init__.py' and
-            item != 'base.py') and not isdir(join(plugin_dir, item)):
+    if not (item.endswith('.py') and item != '__init__.py'
+            ) and not (isdir(join(plugin_dir, item)) and item != 'base'):
         continue
 
     module_name = inspect.getmodulename(item) if item.endswith('.py') else item
