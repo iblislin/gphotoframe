@@ -13,7 +13,8 @@ lib/image/actor/info.py
 lib/image/actor/source.py
 lib/image/actor/trash.py
 lib/image/tooltip.py
-lib/plugins/base.py
+lib/plugins/base/ui.py
+lib/plugins/base/trash.py
 lib/plugins/__init__.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py

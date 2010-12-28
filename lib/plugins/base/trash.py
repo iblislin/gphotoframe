@@ -1,5 +1,6 @@
 import os
 import gtk
+from gettext import gettext as _
 
 from ...utils.trash import GioTrash
 from ...history.history import History
