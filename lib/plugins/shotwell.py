@@ -109,7 +109,7 @@ class ShotwellTrash(FSpotTrash):
         db = ShotwellDB()
         return db, sql_templates
 
-class PhotoSourceShotwellUI(base.PhotoSourceUI):
+class PhotoSourceShotwellUI(ui.PhotoSourceUI):
 
     def get_options(self):
         return self.options_ui.get_value()

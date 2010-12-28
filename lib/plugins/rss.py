@@ -125,7 +125,7 @@ class RSSRate(object):
 
         # print name, self.weight
 
-class PhotoSourceRSSUI(base.PhotoSourceUI):
+class PhotoSourceRSSUI(ui.PhotoSourceUI):
 
     def get(self):
         return self.target_widget.get_text();

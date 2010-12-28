@@ -135,7 +135,7 @@ class FlickrPhotoList(base.PhotoList):
             photo = FlickrPhoto(data)
             self.photos.append(photo)
 
-class PhotoSourceFlickrUI(base.PhotoSourceUI):
+class PhotoSourceFlickrUI(ui.PhotoSourceUI):
 
     def get_options(self):
         return self.options_ui.get_value()
@@ -184,7 +184,7 @@ class PhotoSourceFlickrUI(base.PhotoSourceUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFlickrUI(self.gui, self.data)
 
-class PhotoSourceOptionsFlickrUI(base.PhotoSourceOptionsUI):
+class PhotoSourceOptionsFlickrUI(ui.PhotoSourceOptionsUI):
 
     def get_value(self):
         state = self.checkbutton_flickr_id.get_active()

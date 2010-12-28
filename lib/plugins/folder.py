@@ -111,7 +111,7 @@ class DirPhotoList(base.PhotoList):
             if photo['filename'].startswith(fullpath+"/"):
                 self.photos.pop(i)
 
-class PhotoSourceDirUI(base.PhotoSourceUI):
+class PhotoSourceDirUI(ui.PhotoSourceUI):
     def get(self):
         return self.target_widget.get_current_folder()
 
@@ -134,7 +134,7 @@ class PhotoSourceDirUI(base.PhotoSourceUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsDirUI(self.gui, self.data)
 
-class PhotoSourceOptionsDirUI(base.PhotoSourceOptionsUI):
+class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
 
     def get_value(self):
         state = self.gui.get_object('checkbutton_dir').get_active()
