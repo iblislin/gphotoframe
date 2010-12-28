@@ -156,7 +156,7 @@ class PicasaPhotoList(base.PhotoList):
 
         return url
 
-class PhotoSourcePicasaUI(base.PhotoSourceUI):
+class PhotoSourcePicasaUI(ui.PhotoSourceUI):
 
     def _build_target_widget(self):
         super(PhotoSourcePicasaUI, self)._build_target_widget()
@@ -182,7 +182,7 @@ class PhotoSourcePicasaUI(base.PhotoSourceUI):
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
-class PluginPicasaDialog(base.PluginDialog):
+class PluginPicasaDialog(ui.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)

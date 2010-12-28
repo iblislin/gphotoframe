@@ -78,7 +78,7 @@ class HaikyoPhotoList(base.PhotoList):
     def _unescape(self, text):
         return re.sub(r'\\(.)', r'\1', text) if text else text or ''
 
-class PhotoSourceHaikyoUI(base.PhotoSourceUI):
+class PhotoSourceHaikyoUI(ui.PhotoSourceUI):
 
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
         super(PhotoSourceHaikyoUI, self)._set_target_sensitive(label, False)

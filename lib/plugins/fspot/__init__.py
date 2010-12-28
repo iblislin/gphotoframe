@@ -138,7 +138,7 @@ class FSpotTrash(trash.Trash):
         db = FSpotDB()
         return db, sql_templates
 
-class PhotoSourceFspotUI(base.PhotoSourceUI):
+class PhotoSourceFspotUI(ui.PhotoSourceUI):
 
     def get(self):
         iter = self.target_widget.get_active_iter()
@@ -179,7 +179,7 @@ class PhotoSourceFspotUI(base.PhotoSourceUI):
             iter = self.tree_list[self.data[1]]
             self.target_widget.set_active_iter(iter)
 
-class PhotoSourceOptionsFspotUI(base.PhotoSourceOptionsUI):
+class PhotoSourceOptionsFspotUI(ui.PhotoSourceOptionsUI):
 
     def get_value(self):
         value = {
