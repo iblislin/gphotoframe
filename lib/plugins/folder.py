@@ -20,7 +20,7 @@ from ..utils.iconimage import IconImage
 def info():
     return [DirPlugin, DirPhotoList, PhotoSourceDirUI]
 
-class DirPlugin(PluginBase):
+class DirPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = _('Folder')
@@ -29,7 +29,7 @@ class DirPlugin(PluginBase):
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
-class DirPhotoList(PhotoList):
+class DirPhotoList(base.PhotoList):
 
     def prepare(self):
         self.re_image = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)
@@ -72,9 +72,9 @@ class DirPhotoList(PhotoList):
                  'url'      : 'file://' + fullpath,
                  'filename' : fullpath,
                  'title'    : filename,
-                 'trash'    : Trash(self.photolist),
+                 'trash'    : trash.Trash(self.photolist),
                  'icon'     : FolderIcon}
-        photo = Photo(data)
+        photo = base.Photo(data)
         self.photos.append(photo)
 
     def _inotify(self):
@@ -111,7 +111,7 @@ class DirPhotoList(PhotoList):
             if photo['filename'].startswith(fullpath+"/"):
                 self.photos.pop(i)
 
-class PhotoSourceDirUI(PhotoSourceUI):
+class PhotoSourceDirUI(base.PhotoSourceUI):
     def get(self):
         return self.target_widget.get_current_folder()
 
@@ -134,7 +134,7 @@ class PhotoSourceDirUI(PhotoSourceUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsDirUI(self.gui, self.data)
 
-class PhotoSourceOptionsDirUI(PhotoSourceOptionsUI):
+class PhotoSourceOptionsDirUI(base.PhotoSourceOptionsUI):
 
     def get_value(self):
         state = self.gui.get_object('checkbutton_dir').get_active()

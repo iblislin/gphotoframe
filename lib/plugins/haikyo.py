@@ -25,7 +25,7 @@ def info():
     return [HaikyoPlugin, HaikyoPhotoList, PhotoSourceHaikyoUI]
 
 
-class HaikyoPlugin(PluginBase):
+class HaikyoPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = _('Ruins Clock')
@@ -35,7 +35,7 @@ class HaikyoPlugin(PluginBase):
                       'website': 'http://www.madin.jp/haikyo/',
                       'authors': ['Yoshizimi Endo'], }
 
-class HaikyoPhotoList(PhotoList):
+class HaikyoPhotoList(base.PhotoList):
 
     def prepare(self):
         url = 'http://www.madin.jp/haikyo/list.xml'
@@ -60,10 +60,10 @@ class HaikyoPhotoList(PhotoList):
                     'owner_name' : self._unescape(picture['author'])[:-2],
                     'title'      : self._unescape(picture['title']),
                     'page_url'   : page_url + picture['url'],
-                    'trash'      : Ban(self.photolist),
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : HaikyoIcon}
 
-            photo = Photo(data)
+            photo = base.Photo(data)
             self.photos.append(photo)
 
     def _random_choice(self):
@@ -78,7 +78,7 @@ class HaikyoPhotoList(PhotoList):
     def _unescape(self, text):
         return re.sub(r'\\(.)', r'\1', text) if text else text or ''
 
-class PhotoSourceHaikyoUI(PhotoSourceUI):
+class PhotoSourceHaikyoUI(base.PhotoSourceUI):
 
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
         super(PhotoSourceHaikyoUI, self)._set_target_sensitive(label, False)

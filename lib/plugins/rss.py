@@ -6,6 +6,7 @@
 
 import re
 import copy
+import random
 # import pprint
 
 try:
@@ -25,7 +26,7 @@ def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
 
 
-class RSSPlugin(PluginBase):
+class RSSPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = 'RSS'
@@ -34,7 +35,7 @@ class RSSPlugin(PluginBase):
                       'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
-class RSSPhotoList(PhotoList):
+class RSSPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = {}
@@ -83,10 +84,10 @@ class RSSPhotoList(PhotoList):
                         'owner'      : owner,
                         'title'      : title,
                         'page_url'   : str(entry.link),
-                        'trash'      : Ban(self.photolist),
+                        'trash'      : trash.Ban(self.photolist),
                         'icon'       : RSSIcon}
 
-                photo = Photo(data)
+                photo = base.Photo(data)
 
                 if owner not in self.photos:
                     self.photos[owner] = []
@@ -124,7 +125,7 @@ class RSSRate(object):
 
         # print name, self.weight
 
-class PhotoSourceRSSUI(PhotoSourceUI):
+class PhotoSourceRSSUI(base.PhotoSourceUI):
 
     def get(self):
         return self.target_widget.get_text();

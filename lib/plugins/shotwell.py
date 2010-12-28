@@ -68,7 +68,7 @@ class ShotwellPhotoList(FSpotPhotoList):
                  'trash': ShotwellTrash(self.photolist),
                  'icon' : ShotwellIcon }
 
-        self.photo = Photo(data)
+        self.photo = base.Photo(data)
         cb(None, self.photo)
 
 class ShotwellTrash(FSpotTrash):
@@ -109,7 +109,7 @@ class ShotwellTrash(FSpotTrash):
         db = ShotwellDB()
         return db, sql_templates
 
-class PhotoSourceShotwellUI(PhotoSourceUI):
+class PhotoSourceShotwellUI(base.PhotoSourceUI):
 
     def get_options(self):
         return self.options_ui.get_value()

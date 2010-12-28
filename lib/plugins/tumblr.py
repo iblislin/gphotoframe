@@ -21,7 +21,7 @@ def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
 
-class TumblrPlugin(PluginBase):
+class TumblrPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = 'Tumblr'
@@ -31,7 +31,7 @@ class TumblrPlugin(PluginBase):
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-class TumblrPhotoList(PhotoList):
+class TumblrPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = []
@@ -101,7 +101,7 @@ class TumblrPhotoList(PhotoList):
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
-                    'trash'      : Ban(self.photolist),
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : TumblrIcon}
 
             if hasattr(self, 'email'):
@@ -111,7 +111,7 @@ class TumblrPhotoList(PhotoList):
                             'reblog-key': post.attrib['reblog-key']}
                 data['fav'] = TumblrFav(self.target == 'Likes', like_arg)
 
-            photo = Photo(data)
+            photo = base.Photo(data)
             self.photos.append(photo)
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):

@@ -4,6 +4,7 @@ import inspect
 from os.path import join, abspath, dirname, isdir
 from gettext import gettext as _
 
+import gtk
 from xdg.BaseDirectory import xdg_config_home
 
 from base import *

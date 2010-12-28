@@ -19,7 +19,7 @@ def info():
     return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
 
 
-class FSpotPlugin(PluginBase):
+class FSpotPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = 'F-Spot'
@@ -38,7 +38,7 @@ class FSpotPlugin(PluginBase):
         else:
             return False
 
-class FSpotPhotoList(PhotoList):
+class FSpotPhotoList(base.PhotoList):
 
     def prepare(self):
         self.db = FSpotDB()
@@ -81,7 +81,7 @@ class FSpotPhotoList(PhotoList):
                  'trash' : FSpotTrash(self.photolist),
                  'icon' : FSpotIcon }
 
-        self.photo = Photo(data)
+        self.photo = base.Photo(data)
         cb(None, self.photo)
 
     def _unquote(self, text):
@@ -100,7 +100,7 @@ class FSpotPhotoList(PhotoList):
             _('Rate'), rate_min, rate_max, _('Period'), period)
         return tip
 
-class FSpotTrash(Trash):
+class FSpotTrash(trash.Trash):
 
     def check_delete_from_catalog(self):
         return True
@@ -138,7 +138,7 @@ class FSpotTrash(Trash):
         db = FSpotDB()
         return db, sql_templates
 
-class PhotoSourceFspotUI(PhotoSourceUI):
+class PhotoSourceFspotUI(base.PhotoSourceUI):
 
     def get(self):
         iter = self.target_widget.get_active_iter()
@@ -179,7 +179,7 @@ class PhotoSourceFspotUI(PhotoSourceUI):
             iter = self.tree_list[self.data[1]]
             self.target_widget.set_active_iter(iter)
 
-class PhotoSourceOptionsFspotUI(PhotoSourceOptionsUI):
+class PhotoSourceOptionsFspotUI(base.PhotoSourceOptionsUI):
 
     def get_value(self):
         value = {

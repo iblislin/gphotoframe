@@ -20,7 +20,7 @@ from authdialog import *
 def info():
     return [FlickrPlugin, FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
 
-class FlickrPlugin(PluginBase):
+class FlickrPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = 'Flickr'
@@ -31,7 +31,7 @@ class FlickrPlugin(PluginBase):
                       'website': 'http://www.flickr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-class FlickrPhotoList(PhotoList):
+class FlickrPhotoList(base.PhotoList):
 
     def __init__(self, target, argument, weight, options, photolist):
         super(FlickrPhotoList, self).__init__(
@@ -120,7 +120,7 @@ class FlickrPhotoList(PhotoList):
                     # 'description' : s['description']['_content'],
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
-                    'trash'      : Ban(self.photolist),
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : FlickrIcon}
 
             if self.api.get_auth_token():
@@ -135,7 +135,7 @@ class FlickrPhotoList(PhotoList):
             photo = FlickrPhoto(data)
             self.photos.append(photo)
 
-class PhotoSourceFlickrUI(PhotoSourceUI):
+class PhotoSourceFlickrUI(base.PhotoSourceUI):
 
     def get_options(self):
         return self.options_ui.get_value()
@@ -184,7 +184,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFlickrUI(self.gui, self.data)
 
-class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
+class PhotoSourceOptionsFlickrUI(base.PhotoSourceOptionsUI):
 
     def get_value(self):
         state = self.checkbutton_flickr_id.get_active()
@@ -206,7 +206,7 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
     def _check_authorized(self):
         return GConf().get_string('plugins/flickr/nsid')
 
-class FlickrPhoto(Photo):
+class FlickrPhoto(base.Photo):
 
     def get_url(self):
         self.conf = GConf()
