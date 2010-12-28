@@ -1,0 +1,946 @@
+2010-12-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py, plugins/base.py: Added ban (black list) functions.
+
+2010-12-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* idlecheck.py: Fixed dbus errors.
+
+2010-12-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gtkimage.py: Modified Flickr photo size check.
+	* folder.py: Fixed an AttributeError (issue #79).
+
+2010-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added new gconf key (show_filename_suffix).
+	* liststore.py: Added cheking for session idle mode.
+
+2010-12-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gtkimage.py, html.py: Added support for generating thumbnails.
+	* share/history/jquery.*.js: Added support for jQuery plugin for
+	  lazy loading images.
+
+2010-12-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/sqldb.py: Added new module for sqlite.
+
+2010-12-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* share/history*: Added templates for history html.
+	* utils/history.py: Code refactoring.
+
+2010-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/history.py: Added single quotation mark escaping in SQL.
+
+2010-12-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Dropped depends on python-numpy.
+	* image/tooltip.py: More tooltips for Flickr.
+	* utils/history.py: Added photo history with sqlite.
+
+2010-12-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/__init__.py: Added new gconf key: ui/disable_clutter.
+	* help/C/gphotoframe.xml: Updated help documentation.
+	  Thanks Cristian Marchi!
+
+2010-11-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/__init__.py, preferences.ui: Enable help button on
+	  Preferences.
+
+2010-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Reset the timer in delete_photo function.
+	* shotwell.py (ShotwellTrash): Added support for Shotwell Trash.
+
+2010-11-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* clutterimage.py: Fixed module names for Screen Saver.
+
+2010-11-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py (ShotwellPhotoSQL): Added support for flags on the
+	  photo database (deleted photos).
+
+2010-11-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/ja/ja.po, po/ja.po: Update Japanese translation.
+
+2010-11-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/C/gphotoframe.xml: Updated help documentation.
+	  Thanks Cristian Marchi!
+	* shotwell.py: Fixed bugs.
+
+2010-11-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Added a Shotwell remove function.
+
+2010-11-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py: Fixed an URI encoding (issue #76).
+
+2010-11-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added a remove function.
+	* fspot/__init__.py: Added a remove catalogue function.
+
+2010-10-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Added user plugins dir.
+
+2010-10-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, picasa.py: Added kludges for avoiding a json
+	  module 1.9 bug.
+	* fspot/__init__.py, sqldb.py: Dropped support for F-Spot 0.5.
+	* flickr/__init__.py, picasa.py: Dropped depends on simplejson.
+	  gphotoframe requires python 2.6.
+
+2010-10-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py: Fixed a value error (issue #73).
+
+2010-10-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.1 release.
+
+2010-10-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added DeleteDialog.
+	* help/it/*: Updated Italian translation of help.
+	* gphotoframe: Fixed CPU usage issue (issue #69).
+
+2010-10-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/trash.py: Implemented confirmation dialogs for removing
+	  photos.
+
+2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* setup.py, makedoc.py: Added a help documentation building
+	  function.
+	* help/ja/ja.po: Update Japanese translation of help.
+
+2010-10-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* setup.py: Fixed an import error (issue #70).
+
+2010-10-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/ja/figures/*: Added Japanese localized figures.
+	* help/C/*: Updated help documentation.
+
+2010-10-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/C/gphotoframe.xml: Added some modifications.
+	* help/*: Updated help documents.  Added Italian help translation.
+	  Thanks Cristian Marchi!
+	* makedoc.py: Added support for xml2po.
+
+2010-10-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* COPYING, /gphotoframe.ui: Updated copyrights.
+	* extra/build_help.py: Added distutils.extras hacks.
+
+2010-10-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/ja/ja.po: Added Japanese help translation.
+	* help/makedoc.py: Added a script for making GNOME documentation.
+	* help/C/*: Added new help documentation.  Thanks Cristian
+	  Marchi! (issue #66).
+	* menu.py, menu.ui: Added new help menu item.
+
+2010-10-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py: Added new class TrashDialog.
+	* frame.py: Added the default icon configuration.
+
+2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* it.po, image/tooltip.py, preferences/plugin.py: Updated
+	  translation.  Thanks Cristian Marchi! (issue #65)
+
+2010-09-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actors.py, image/imageclutter.py, plugins/base.py,
+	  folder.py, fspot/__init__.py, shotwell.py: Added new clutter
+	  icons for deleting photos.
+
+2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/*: Added more translatable strings.  Thanks Cristian
+	  Marchi! (issue #63)
+	* it.po: Added new translation.  Thanks Cristian Marchi!
+	  (issue #62)
+
+2010-09-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actors.py (IconTexture): Adjusted animation time.
+
+2010-09-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/tooltip.py, plugins/*: Added more information on EXIF
+	  tooltips.
+
+2010-09-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/*: Added about dialogs.
+
+2010-09-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py: Added support for plugin about dialog. 
+	* haikyo.py (PhotoSourceHaikyoUI): Fixed the sensitiveness of
+	  target widget.
+	* shotwell.py: Added support for Shotwell.
+	* iconimage.py (IconImage.get_image): Fixed a bug.
+
+2010-09-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* ja.po: Updated translations.
+
+2010-09-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0.1 release.
+	* fspot/__init__.py: Added support for F-Spot 0.7.x database.
+
+2010-07-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/haikyo.py: Added new plugin for haikyo
+	  clock (http://www.madin.jp/haikyo/).
+
+2010-07-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0 release.
+
+2010-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py, EXIF.py: Removed obsolete has_key methods.
+
+2010-07-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b5 release.
+	* keyring.py: Fixed a segmentation fault problem of relating to
+	  use DBus from multiple threads.
+
+2010-07-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py (FlickrPhotoList._prepare_cb): Fixed a
+	  strptime format.
+	* base.py (ParseEXIF.get_date_taken): Added support for 
+	  'EXIF DateTimeOriginal'.
+
+2010-06-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b4 release.
+	* actors.py (ActorSourceIcon._get_ui_data): Changed the
+	  'show_always' default value to 'False'.
+	* picasa.py (PicasaPhotoList._set_photo_cb): Fixed KeyErrors.
+
+2010-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b3 release.
+
+2010-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py, utils/inotify.py: Removed __del__ methods.
+	* gphotoframe.schemas.in: Changed the default value of
+	  'ui/source/always_show' to 'false'.
+
+2010-06-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b2 release.
+	* actors.py (ActorInfoIcon): Adjust an EXIF icon position offset.
+	* keyring.py (Keyring.get_passwd): Added an exception for
+	  gnomekeyring.CancelledError.
+
+2010-06-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* keyring.py (Keyring.get_passwd): Added an exception for
+	  IndexError.
+
+2010-06-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.0-b1 release.
+
+2010-06-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Fixed a ZeroDivisionError.
+
+2010-05-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py (ActorSourceIcon): Added _check_hide_always() for
+	  hiding compulsory a source icon on photo images.
+	* liststore.py: Improved cache file management.
+	  Added gcon keys 'queue_menu_num' & 'queue_menu_num'.
+	* photo*: Removed 'photo' from module names.
+
+2010-05-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py, flickr/__init__.py: Added support for EXIF info. of
+	  Flickr photos.
+	* flickr/api.py: Added FlickrExifAPI.
+
+2010-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* iconimage.py: Added support for custom icon theme.
+	* tumblr.py: Added checking entries without title.
+
+2010-05-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py: Improved Code (Added support for EXIF make tag).
+	* rss.py: Added support weighted random with standard scores.
+
+2010-05-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Added support weighted random for each rss feed in mixed
+	  rss feeds.
+
+2010-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py, base.py, picasa.py: Added support for EXIF tooltips.
+
+2010-05-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py: Added ActorInfoIcon.
+	* preferences.py: Added tooltips on the photo source
+	  treeview (issue #57).
+
+2010-05-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoimage/: Added tooltip on clutter actors.
+
+2010-05-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimagegtk.py, gphotoframe.schemas.in: Added new gconf key
+	  'date_format'.
+	* flickr, fspot, picasa, photoimagegtk.py: Added date taken on
+	  tooltips.
+
+2010-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, api.py: Added checking authorization.
+	* tumblr.py: Added checking authorization.
+	* config.py: Added get_list & set_list.
+	* preferences.py, plugins/__init__.py: Added plugin on/off function.
+
+2010-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Fixed class of URL (unicode -> str).
+	* utils/urlgetautoproxy.py: Added new class UrlgetWithAutoProxy.
+	  Code refactoring.  pacparser -> libproxy.
+	* flickr/__init__.py, api.py: Added new gconf key
+	  'plugins/flickr/interval_for_meta_group'.
+	* flickr/api.py: Added a random group pickup method among 'The Commons'.
+	
+2010-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/api.py: Added a random group pickup method among 'Your Groups'.
+	* photoimagegtk.py: Added image size filter.
+	  Changed gconf key names: aspect_* -> filter/aspect_*.
+	  Added image file size filter.
+
+2010-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe.schemas.in: Fixed the default value of 'ui/geo/position'.
+	* NEWS: 0.7.2 release.
+	* setup.py: Fixed the permission of share/rss-16.png.
+	* NEWS: 0.7.1 release.
+	* iconimage.py (IconImage): Fixed a F-Spot icon loading bug
+	  (issue #50).
+
+2010-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py (Preferences.start): Set default value for
+	  the 'window_sticky' gconf key (issue #49).
+
+2010-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* te.po: Added new translation.  Thanks Veeven!
+	* NEWS: 0.7 release.
+
+2010-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoimagegtk.py, photoliststore.py, base.py:
+	  Switched gobject -> glib.
+	* actors.py, menu.py: Updated translations.
+
+2010-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py (ActorGeoIcon): Normalize Google Map URI.
+
+2010-04-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe.glade: Added translator credits.
+	* rss.py (RSSPhotoList): Remove redundant tags from entry title.
+
+2010-04-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* en_GB.po: Added new translation.  Thanks Robert Readman!
+
+2010-04-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py, rating.py, sqldb.py: Divided fspot.py.
+	* fspot.py: Added support for random photos with support for rate
+	  changing.
+
+2010-04-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Added support for recursive tag search.
+
+2010-04-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Fixed total photo numbers with rating filter.
+	  Code refactoring.
+
+2010-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Fixed a ambiguous column name bug (id -> P.id).
+	* actors.py (Texture): Fixed a bug of texture show/hide behaviour.
+
+2010-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/api.py: Improved code for certification.
+	* flickr/authdialog.py (PluginFlickrDialog): Added a black magic
+	  for avoiding unintended GC for sub instances.
+
+2010-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* menu.py, actors.py, plugins/base.py, plugins/flickr/auth.py:
+	  gnome-open -> gtk.show_uri.
+	* share/*.ui, menu.py, preferences.py: Divided gphotoframe.ui.
+	  Completed transition from libGlade to GtkBuilder.
+	* gphotoframe.glade: Removed from the repository.
+
+2010-04-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, actors.py, animation.py: Improved icon
+	  animation on fullscreen.
+
+2010-04-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added support fade-in/out animation in
+	  fullscreen mode.
+
+2010-04-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added GConf notify for UI.  Fixed bugs.
+	  Code refactoring.
+
+2010-03-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added support for clutter icon animations.
+	* photoimageclutter.py, photoframe.py: Fixed clutter icons
+	  show/hide behavior.
+
+2010-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, photoframe.py: Fixed interval time in screen
+	  saver mode.
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  screen saver mode.
+
+2010-03-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py, photoframe.py: Added clutter support on
+	  fullscreen mode.
+
+2010-03-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, photoimagegtk.py: Improved the support for
+	  large or original Flickr photos in fullscreen mode.
+
+2010-03-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, flickr/__init__.py: Added support for large or original
+	  Flickr photos in fullscreen mode.
+
+2010-03-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, api.py: Added support for page argument on
+	  Flickr API.  Added support original image url.
+
+2010-03-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/: Added new conf for API reload interval.
+
+2010-03-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Fixed icon show/hide behaviors.
+
+2010-03-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, preferences.py, gphotoframe.glade:
+	  If the weight is 0 on photo source, the source should be ignored.
+	* photoimageclutter.py: Code refactoring.
+	* utils/nullobject.py: Initial import.
+
+2010-03-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py, photoimageclutter.py: Added support for F-Spot Rating.
+
+2010-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimageclutter.py: Added clutter UI support.
+	  Added ActorFavIconNum for favoring on Flickr and Tumblr.
+
+2010-03-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6.2 release.
+	* flickr/api.py: Fixed invalid Flickr NSID API URL (issue #47).
+
+2010-03-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6.1 release.
+	* photoframe.py: Fixed a gconf default value error (issue #44).
+
+2010-03-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.6 release.
+
+2010-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* proxypac.py: Added support for proxy pac.
+	* menu.py: Always show the image of menu items.
+	* plugins/*: Added Icons to Plugins Treeview.
+
+2010-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py, picasa.py: Implemented plugin check functions.
+	* plugins/*, preferences.py: Changed SOURCE_LIST elements from str
+	  to class ('F-Spot' -> FSpotPlugin).
+
+2010-02-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py: Fixed a cache file removing bug.
+	* fspot.py: Added support for rating on F-Spot.
+
+2010-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr.py: Added support for liking on Tumblr.
+	* plugins/flickr/, base.py: Added support for Favoring on Flickr.
+	* photoframe.py: Reimplemented frame fix mode for clutter.
+	* picasa.py: : Added support geo infomation of Picasa Web photos.
+	* plugins/base.py, utils/EXIF.py: Added support for EXIF geo
+	  information.
+	* flickr/__init__.py, flickr/api.py: Added support geo infomation
+	  of Flickr photos.
+	* photoimageclutter.py, photoimagegtk.py, photoframe.py:
+	  Added support for hide/show function for Icons.
+
+2010-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py: Added Photo Source Icons on the clutter stage.
+
+2010-02-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, photoframe.py: Added clutter support.
+
+2010-02-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, tumblr.py, picasa.py: Added PluginAuthDialog.
+	* tumblr.py: Changed API format from JSON to XML.  Added support
+	  dashboard & likes API.  Added Gnome Keyring support.
+	* flickr/__init__.py, flickr/api.py: Added new option "Specify
+	  other people's ID".
+
+2010-02-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py: Added check_token.
+	* flickr/api.py: Added FlickrFavoritesAddAPI & FlickrFavoritesRemoveAPI.
+	* flickr/__init__.py, flickr/api.py: Added support for authorized
+	  API access.
+
+2010-02-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, preferences.py, gphotoframe.schemas.in:
+	  Fixed default values of max_width & max_height.
+
+2010-02-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, gphotoframe.glade, flickr/auth.py:
+	  Implemented Flickr Auth functions.
+	* flickr/api.py: Divided flickr/__init__.py.
+	* plugins/__init__.py, plugins/flickr/__init__.py: Added support
+	  for loading plugins from directories.
+	* flickr.py, base.py: Added support for user name and group name
+	  in url.  Added tooltips for argument entries.
+
+2010-01-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py (RecentQueue.pop): Delete old cache files.
+
+2010-01-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, gphotoframe.glade: Added GUI for preferences of
+	  max_width and max_height.
+
+2010-01-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, photoliststore.py, gphotoframe.glade: Added new
+	  option "Display Interval in Full Screen Mode".
+	* folder.py: Set default folder to the xdg user dir (Pictures).
+	* menu.py, photoliststore.py, gphotoframe.glade: Added new menu
+	  item "Next Photo"
+	* gphotoframe.png, gphotoframe.svg: Added application icons.
+
+2010-01-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py (PhotoSourceDialog.run): Added new GConf key
+	  "default_weight".  The default value was changed to 3.
+	* flickr.py (FlickrAPI.get_url): Fixed a bug. "Interestingness"
+	  API doesn't need any argument. (issue #37)
+	* gphotoframe.schemas.in, setup.cfg: Added Gconf schemas file.
+	* POTFILES.in, po/ja.po: Updated translation.
+
+2010-01-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* config.py (GConf.get_int): Fixed a bug. If the key is invalid,
+	  "None" object is returned (issue #34).
+	* photoframe.py: Added support for border color config. (issue #34)
+	* rss.py: Added support for images in <content:encoded>, feed
+	  titles in Photo Source Preferences.
+	* photoimage.py, base.py: Added photo source icons in Tooltips.
+	* base.py, rss.py, rss-16.png: Added RSS icon.
+
+2010-01-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py, base.py, POTFILES.in, ja.po: Implemented F-Spot
+	  options tooltip on photo source treeview.
+	* preferences.py, gphotoframe.glade: Implemented tooltips for
+	  photo source treeview.
+	* plugins/*.py: Introduced xdg.IconTheme.getIconPath.  Support for
+	  downloading favicons.
+
+2010-01-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.5 release.
+	* photoframe.py: Fixed a bug (set_photo should return value in
+	  screen saver mode).
+
+2010-01-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoimage.py, photoliststore.py: Added GConf
+	  options (aspect_max, aspect_min: aspect = width / height) to
+	  disable display of very tall or wide images. (issue #22)
+	* config.py: Added set_float & get_float.
+	* photoimage.py: Code refactoring. Added new PhotoImagePixbuf class.
+	* menu.py, base.py, flickr.py, fspot.py, picasa.py: Added basic
+	  support for source icons.
+
+2010-01-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoimage.py: Fixed a frame position bug (issue #31).
+	* COPYING, gphotoframe.glade: Updated copyright years.
+	* picasa.py: Removed gdata-python-client dependency.
+	* setup.cfg: Enabled gnome-screensaver support (issue #21).
+
+2009-08-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* constants.py: Fixed the glade file directory.
+
+2009-08-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.4.1 release.
+
+2009-08-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Added support for F-Spot 0.6.0 database (issue #28).
+
+2009-08-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* README, COPYING, GPL: Updated the copyright notice (issue #27).
+
+2009-07-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Fixed a tag related bug (issue #25).
+	  Fixed a sql statement bug (issue #26).
+
+2009-07-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.4 release.
+	* gnomescreensaver.py (GsThemeWindow): Code refactoring.
+	* photoimage.py: Fixed a bug.
+
+2009-07-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoimage.py, menu.py, photoframe.py: Divided photoframe.py.
+
+2009-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, gnomescreensaver.py, etc: Added support for
+	  gnome-screensaver (issue #21).
+	* extras/build_i18n.py: Added distutils.extras hacks.
+	* fspot.py: Fixed bugs of ratings.
+
+2009-07-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoliststore.py: Update Popup menu when an
+	  opened image file is deleted (issue #16).
+	* inotify.py, folder.py, base.py, photoliststore.py: Added support
+	  for inotify in the Folder plugin.  Update recents queue with inotify.
+
+2009-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* ja.po: Updated translation.
+	* fspot.py: Added a rate weight option.  Added advanced options.
+	* base.py, gphotoframe.glade: Adjust UI.
+	* base.py, folder.py, gphotoframe.glade: Added subfolders settings
+	  for Folder plguin.
+	* photoliststore.py: Regard False as data in gconf.
+	* config.py: Added bool type in get_value and set_value.
+
+2009-06-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, fspot.py, preferences.py, gphotoframe.glade: Added rate
+	  settings for F-Spot plguin.
+
+2009-06-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, preferences.py, base.py, fspot.py:
+	  Started implementation for advanced plugin options.
+
+2009-06-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr.py: Added support for getting original phtos.
+	* photoframe.py, photoliststore.py, gphotoframe.glade:
+	  Added support for Recent Photos (issue #14).
+
+2009-06-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Added a key board accelerator for full screen mode.
+	  Hide the mouse cursor in full screen mode.
+
+2009-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Added UI for full screen mode.
+
+2009-06-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Improved the implementation of full screen mode.
+
+2009-06-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Added support for full screen mode.
+
+2009-06-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py (Photo.open): Escape "'" characters in url.  Fixed issue #20.
+
+2009-06-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.3.1 release.
+
+2009-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Added support for "media content" elements.
+	* preferences.py (PreferencesTreeView): Dont' use markup on
+	  gtk.CellRendererText.
+	
+2009-06-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base.py, flickr.py, picasa.py: Fixed issue #19. (Can't
+	  reconfigure photo source settings of Picasa Web Album.)
+
+2009-06-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* picasa.py (PicasaPhotoList): Fixed issue #18. (The User target of
+	  the Picasa Web Plugin shows only one album.)
+
+2009-06-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* picasa.py (PluginPicasaDialog): Fixed issue #17. (Can't set the
+	  Google Account).
+
+2009-06-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.3 release.
+	* photoframe.py (PhotoImage): Check if the local file exists.
+
+2009-06-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/*.py: Added support for updating the photo list
+	  periodically.
+	* photoframe.py (PopUpMenu): Set the sensitiveness of
+	  the menu item 'open'.
+
+2009-06-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, base.py: Added new class PhotoImage in
+	  photoframe.py for memory saving.
+
+2009-05-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr.py (PhotoSourceTumblrUI): Fixed bugs.
+	* photoliststore.py, photoframe.py, base.py: Improved the timer
+	  implementation.  Added next_photo (restart timer).
+
+2009-05-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Improved plugin imports.
+	* gphotoframe.glade, base.py: Added mnemonics.
+	* preferences.py (PreferencesTreeView): Truncate long arguments on
+	  Photo Source TreeView.
+
+2009-05-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr.py: Changed API name labels.
+
+2009-05-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* picasa.py: Added support for Picasa Web Album.
+	* keyring.py: Added support for GNOME Keyring.
+
+2009-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, gphotoframe.glade, ja.po, plugins/*:
+	  Added plugin preferences.
+
+2009-05-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Fixed the plugins path.
+
+2009-05-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Initial import (issue #12).
+	* tumblr.py: Initial import (issue #11).
+	* *: Code refactoring.
+
+2009-05-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.2.1 release.
+	* setup.py: Set the permission for data_files (issue #8).
+
+2009-05-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.2 release.
+	* autostart.py: Fixed bugs for non-install mode.
+	* photoframe.py (PhotoFrame.set_photo): Fixed tooltips for
+	  photo information.
+
+2009-05-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py (PhotoDialog.run): Delete disused arguments.
+	* photoframe.py, plugins/*.py: Code refactoring.
+	* urlget.py: Added the copyright notice.
+
+2009-05-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences.py, autostart.py, gphotoframe.glade: Added support
+	  for auto start.
+
+2009-05-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoliststore.py, base.py: Dropped depend on the glib module
+	  (issue #6).
+	* preferences.py, base.py, folder.py, flicke.py: Code refactoring.
+	* gphotoframe: Updated lib loading.
+	* setup.py: Added gphotoframe.utils package.
+	* fspot.py (PhotoTargetFspot): Support for F-Spot tag tree.
+
+2009-05-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Capitalized some valiables.
+	* preferences.py: Save the recent preference tab / source.
+	* flickr.py: Added support for flickr.photos.search.
+	* fspot.py: Fixed a bug.
+	* gphotoframe.glade, photoframe.py: Renamed some object names.
+
+2009-05-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe.glade, POTFILES.in, ja.po: Updated translation.
+	* flickr.py, preferences.py: Set the sensitiveness and the label
+	  of the argument widget.
+	* config.py, urlget.py, wrandom.py: Moved to utils/.
+	* flickr.py: Added support user_id or group_id.
+	* photoliststore.py, preferences.py, base.py: Added new photo
+	  source options: argument.
+
+2009-05-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, photoliststore.py, base.py: Code refactoring.
+	  Added new class PopUpMenu & NoPhoto. Added new photo source options.
+	  Added new functions load_gconf & save_gconf.
+	
+2009-05-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, lib/*.py: Code refactoring.
+	* photoframe.py: Code refactoring.  Added new class NoImage &
+	  AboutDialog.  Fixed the hidden bug (behind the nautilus).
+	* preferences.py: AboutDialog.set_transient_for(Preferences).
+	  Set sensivitiness of buttons in Photo Sources.
+
+2009-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py: Fixed the window position.
+	  gtk.gdk.WINDOW_TYPE_HINT_DOCK. -> gtk.gdk.WINDOW_TYPE_HINT_DESKTOP.
+	* base.py: Added 'import sys' (issue #6).
+	* photoliststore.py: Added checking source configurations.
+	* gphotoframe.desktop.in, ja.po: Updated strings.
+
+2009-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, gphotoframe.glade: Added support for
+	  gtk.gdk.WINDOW_TYPE_HINT_DOCK.  Added check_window_state.
+
+2009-05-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* ja.po: Updated translation.
+	* gphotoframe.desktop.in: Initial import.
+	* photoframe.py, gphotoframe.glade: Added the menu "Fix Photo
+	  Frame" (issue #1). Added new gconf key: window_fix.
+	  Removed redundant keys: window_keep_below and window_non_movable.
+
+2009-05-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py (PhotoFrame.set_accelerator):
+	  Added support for accelerator keys.
+	* photoframe.py, preferences.py: Added new gconf keys:
+	  window_keep_below and window_non_movable (issue #1).
+
+2009-04-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* photoframe.py, preferences.py, config.py, gphotoframe.glade:
+	  Added new option for sticky mode.
+	* preferences.py, flickr.py: Embedded Flickr api_key.
+	* lib/plugins/__init__.py, photoliststore.py, preferences.py:
+	  Code refactoring. __init__.py manages plug-in tokens.
+
+2009-04-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot.py: Added support for F-Spot tags.
+	* gphotoframe.glade: Removed combobox initial text.
+
+2009-04-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* ja.po: Updated translation.
+	* setup.py, lib/__init__.py, po/: Added gettext support.
+	* setup.py, MANIFEST.in: Initial import.
+	* glade.py, constants.py: Removed glade.py and added constants.py.
+	* gphotoframe: Try to load local modules at first.
+	* gphotoframe.glade: Modified positions of labels.
+
+2009-04-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe: Divided in modules.
+
+2009-04-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe: Code refactoring (Removed global variables).
+
+2009-04-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 0.1 release.
+	* gphotoframe: Added a blank image and checking the F-Spot database.
+	  Use threading for os.walk.  Fixed minor bugs.
+	* gphotoframe, gphotoframe.glade: Modified source names.
+
+2009-04-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe (MakePhoto.rotate): EXIF.process_file ->
+	  pixbuf.get_option. Droped depend on EXIF.py
+	* gphotoframe, gphotoframe.glade: Initial import.
