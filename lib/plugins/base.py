@@ -350,7 +350,7 @@ class Ban(Trash):
         super(Ban, self).delete_from_catalog(photo)
 
         db = History('ban')
-        db.add(photo)
+        db.add(photo, 1000)
         db.close()
 
 class ReallyDeleteDialog(object):

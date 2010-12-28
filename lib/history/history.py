@@ -11,7 +11,7 @@ class History(object):
         self.table = table
         self.con = HistoryDB(table)
 
-    def add(self, photo):
+    def add(self, photo, max_num=100):
         # check the previous entry
         sql = "SELECT id, url FROM %s ORDER BY id DESC LIMIT 1;" % self.table
         max_id, prev_photo_url = self.con.fetchone_raw(sql) or (0, None)
@@ -47,7 +47,7 @@ class History(object):
         self.con.execute_with_commit(sql)
 
         # delete old entries
-        if self.count_entries() > 100:
+        if self.count_entries() > max_num:
             sql = ("DELETE FROM %s WHERE id < (select id FROM photoframe "
                    "ORDER BY id DESC LIMIT 1) - 100" ) % self.table
             self.con.execute_with_commit(sql)
