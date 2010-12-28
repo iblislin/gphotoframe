@@ -20,7 +20,7 @@ def info():
             PluginPicasaDialog]
 
 
-class PicasaPlugin(PluginBase):
+class PicasaPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = _('Picasa Web')
@@ -34,7 +34,7 @@ class PicasaPlugin(PluginBase):
         username = GConf().get_string('plugins/picasa/user_id')
         return True if username else False
 
-class PicasaPhotoList(PhotoList):
+class PicasaPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = []
@@ -98,7 +98,7 @@ class PicasaPhotoList(PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
-                    'trash'      : Ban(self.photolist),
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : PicasaIcon}
 
             # exif
@@ -133,7 +133,7 @@ class PicasaPhotoList(PhotoList):
             if entry.get('gphoto$location'):
                 data['location'] = entry['gphoto$location']['$t']
 
-            photo = Photo(data)
+            photo = base.Photo(data)
             self.photos.append(photo)
 
     def _get_feed_url(self, target, argument, option=None):
@@ -156,7 +156,7 @@ class PicasaPhotoList(PhotoList):
 
         return url
 
-class PhotoSourcePicasaUI(PhotoSourceUI):
+class PhotoSourcePicasaUI(base.PhotoSourceUI):
 
     def _build_target_widget(self):
         super(PhotoSourcePicasaUI, self)._build_target_widget()
@@ -182,7 +182,7 @@ class PhotoSourcePicasaUI(PhotoSourceUI):
     def _label(self):
         return ['User', 'Community Search', 'Featured']
 
-class PluginPicasaDialog(PluginDialog):
+class PluginPicasaDialog(base.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)

@@ -1,7 +1,7 @@
 import gtk
 from gettext import gettext as _
 
-from ..base import PluginDialog
+from ..base.photolist import PluginDialog
 from ...utils.config import GConf
 from auth import FlickrAuth
 from api import API_KEY, SECRET
