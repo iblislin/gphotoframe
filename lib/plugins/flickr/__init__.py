@@ -71,7 +71,11 @@ class FlickrPhotoList(base.PhotoList):
         self._get_url_for(self.nsid_argument)
 
     def _get_url_for(self, argument):
-        page = self.page_list.get_page()
+        page = 1 if self.options.get('only_latest_roll') \
+            else self.page_list.get_page()
+
+        # print page, self.options
+
         url = self.api.get_url(argument, page)
         if not url: return
 
@@ -187,17 +191,22 @@ class PhotoSourceFlickrUI(ui.PhotoSourceUI):
 class PhotoSourceOptionsFlickrUI(ui.PhotoSourceOptionsUI):
 
     def get_value(self):
-        state = self.checkbutton_flickr_id.get_active()
-        return {'other_id' : state}
+        other_id = self.checkbutton_flickr_id.get_active()
+        latest = self.checkbutton_latest.get_active()
+        return {'other_id': other_id, 'only_latest_roll': latest}
 
     def _set_ui(self):
         self.child = self.gui.get_object('flickr_vbox')
         self.checkbutton_flickr_id = self.gui.get_object('checkbutton_flickr_id')
+        self.checkbutton_latest = self.gui.get_object('checkbutton_latest_roll')
 
     def _set_default(self):
         state = True if not self._check_authorized() \
             else self.options.get('other_id', False)
         self.checkbutton_flickr_id.set_active(state)
+
+        latest = self.options.get('only_latest_roll', False)
+        self.checkbutton_latest.set_active(latest)
 
     def checkbutton_flickr_id_sensitive(self, api):
         state = False if not self._check_authorized() else api.is_use_own_id()
