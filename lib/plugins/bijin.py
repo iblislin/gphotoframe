@@ -4,9 +4,10 @@
 # Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# Put this file to ~/.config/gphotoframe/plugins/ (the user plguins
-# directory) if you use gphotoframe 1.2 or later.
+# It requires gphotoframe 1.2 or later.  Put this file to the user
+# plguins directory (~/.config/gphotoframe/plugins/).
 #
+# 2010-12-28 Version 1.5.1
 # 2010-11-24 Version 1.5
 # 2010-11-21 Version 1.4.1
 # 2010-10-30 Version 1.4
@@ -27,7 +28,7 @@ def info():
     return [BijinPlugin, BijinPhotoList, PhotoSourceBijinUI]
 
 
-class BijinPlugin(PluginBase):
+class BijinPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = '美人時計'
@@ -38,7 +39,7 @@ class BijinPlugin(PluginBase):
                       'website': 'http://www.bijint.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-class BijinPhotoList(PhotoList):
+class BijinPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = ['dummy']
@@ -62,7 +63,7 @@ class BijinPhotoList(PhotoList):
             'page_url': page_url,
             }
 
-        return Photo(data)
+        return base.Photo(data)
 
     def _select_clock(self, target):
         if target != 'ランダム':
@@ -72,7 +73,7 @@ class BijinPhotoList(PhotoList):
                 not in self.conf.get_list('plugins/bijin/disabled')]
         return random.choice(list)
 
-class PhotoSourceBijinUI(PhotoSourceUI):
+class PhotoSourceBijinUI(ui.PhotoSourceUI):
 
     def _label(self):
         tokei = BijinTokeiList()
@@ -84,6 +85,7 @@ class BijinTokeiList(object):
         self.url_base = 'http://www.bijint.com/'
 
         self.list = [
+            ['ランダム', None],
             ['美人時計', 'jp'],
             ['美男時計', 'binan'],
             ['サーキット時計', 'cc'],
@@ -91,7 +93,8 @@ class BijinTokeiList(object):
             ['韓国時計', 'kr'],
             ['香港時計', 'hk'],
             ['北海道時計', 'hokkaido'],
-            ['仙台時計',   'sendai'],
+            ['仙台時計', 'sendai'],
+            ['新潟時計', 'niigata'],
             ['名古屋時計', 'nagoya'],
             ['金沢時計', 'kanazawa'],
             ['京都時計', 'kyoto'],
@@ -99,7 +102,6 @@ class BijinTokeiList(object):
             ['香川時計', 'kagawa'],
             ['福岡時計', 'fukuoka'],
             ['鹿児島時計', 'kagoshima'],
-            ['ランダム', None],
             ]
 
         self.dic = dict(self.list)
