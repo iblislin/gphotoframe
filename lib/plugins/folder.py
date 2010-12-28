@@ -72,7 +72,7 @@ class DirPhotoList(PhotoList):
                  'url'      : 'file://' + fullpath,
                  'filename' : fullpath,
                  'title'    : filename,
-                 'trash'    : Trash(None, fullpath, self.photolist),
+                 'trash'    : Trash(self.photolist),
                  'icon'     : FolderIcon}
         photo = Photo(data)
         self.photos.append(photo)

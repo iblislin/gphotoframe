@@ -313,20 +313,19 @@ class ParseEXIF(object):
 
 class Trash(object):
 
-    def __init__(self, id, filename, photolist=None):
-        self.id = id
-        self.filename = filename
+    def __init__(self, photolist=None):
         self.photolist = photolist
 
-    def check_delete_from_disk(self):
-        path = os.path.split(self.filename)[0]
+    def check_delete_from_disk(self, filename):
+        path = os.path.split(filename)[0]
         return os.access(path, os.W_OK)
 
     def check_delete_from_catalog(self):
         return False
 
     def delete_from_disk(self, photo):
-        trash = GioTrash(self.filename)
+        filename = photo.get('filename')
+        trash = GioTrash(filename)
         #if not trash.check_file():
         #    return
         
@@ -341,12 +340,14 @@ class Trash(object):
 
 class Ban(Trash):
 
+    def check_delete_from_disk(self, filename):
+        return False
+
     def check_delete_from_catalog(self):
         return True
 
     def delete_from_catalog(self, photo):
         super(Ban, self).delete_from_catalog(photo)
-        print "Ban this photo!"
 
         db = History('ban')
         db.add(photo)

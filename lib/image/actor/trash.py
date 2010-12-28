@@ -10,7 +10,8 @@ class ActorTrashIcon(ActorGeoIcon):
         if not 'trash' in self.photo:
             return False
 
-        return self.photo['trash'].check_delete_from_disk()
+        filename = self.photo.get('filename')
+        return self.photo['trash'].check_delete_from_disk(filename)
 
     def _get_icon(self):
         return IconImage('user-trash')
@@ -31,7 +32,8 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         if not photo or not 'trash' in photo:
             return False
 
-        return photo['trash'].check_delete_from_disk()
+        filename = photo.get('filename')
+        return photo['trash'].check_delete_from_disk(filename)
 
     def _check_photo(self):
         if not 'trash' in self.photo:
@@ -49,7 +51,9 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         dialog = RemoveCatalogDialog(self.photo)
 
     def _enter_cb(self, w, e, tooltip):
-        tip = _("Remove from catalog")
+        is_localfile = self.photo.get('url').startswith('file://')
+
+        tip = _("Remove from catalog") if is_localfile else _("Ban the photo")
         tooltip.update_text(tip)
 
 class TrashDialog(object):
@@ -80,8 +84,14 @@ class TrashDialog(object):
 class RemoveCatalogDialog(TrashDialog):
 
     def _set_variable(self, photo):
-        plugin_name = ''
-        self.text1 = _("Remove this photo from the catalog?")
-        self.text2 = _("This photo will be removed from the %s catalog."
-                       ) % plugin_name
+        plugin_name = photo.get('info')().name
+
+        if photo.get('url').startswith('file://'):
+            self.text1 = _("Remove this photo from the catalog?")
+            self.text2 = _("This photo will be removed from the %s catalog."
+                           ) % plugin_name
+        else:
+            self.text1 = _("Ban this photo?")
+            self.text2 = _("This photo will be add to the black list.")
+
         self.delete_method = self.photo['trash'].delete_from_catalog
