@@ -8,6 +8,7 @@ from twisted.web import client
 from gettext import gettext as _
 import urllib
 import json
+import gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION

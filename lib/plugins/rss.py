@@ -14,6 +14,7 @@ try:
 except ImportError:
     pass
 
+import gtk
 import feedparser
 from gettext import gettext as _
 
