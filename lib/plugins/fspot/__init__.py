@@ -78,7 +78,8 @@ class FSpotPhotoList(PhotoList):
                  'title' : filename, # without path
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
-                 'trash' : FSpotTrash(id, version, fullpath, self.photolist),
+                 'version' : version,
+                 'trash' : FSpotTrash(self.photolist),
                  'icon' : FSpotIcon }
 
         self.photo = Photo(data)
@@ -102,29 +103,28 @@ class FSpotPhotoList(PhotoList):
 
 class FSpotTrash(Trash):
 
-    def __init__(self, id, version, filename, photolist):
-        super(FSpotTrash, self).__init__(id, filename, photolist)
-        self.version = version
-
     def check_delete_from_catalog(self):
         return True
 
     def delete_from_catalog(self, photo):
         super(FSpotTrash, self).delete_from_catalog(photo)
+ 
+        id = photo.get('id')
+        version =  photo.get('version')
         # print "f-spot catalog delete!", self.id, self.version
 
-        db, sql_templates = self._get_sql_obj() 
+        db, sql_templates = self._get_sql_obj(version)
         for sql in sql_templates:
             s = Template(sql)
-            statement = s.substitute(id=self.id, version=self.version)
+            statement = s.substitute(id=id, version=version)
             # print statement
             db.execute(statement)
 
         db.commit()
         db.close()
 
-    def _get_sql_obj(self):
-        if self.version == 1:
+    def _get_sql_obj(self, version):
+        if version == 1:
             sql_templates = [ 
                 "DELETE FROM photo_tags WHERE photo_id=$id;",
                 "DELETE FROM photo_versions WHERE photo_id=$id;",

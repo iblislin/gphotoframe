@@ -121,7 +121,7 @@ class FlickrPhotoList(PhotoList):
                     # 'description' : s['description']['_content'],
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
-                    'trash' : Ban(id, str(url), self.photolist),
+                    'trash'      : Ban(self.photolist),
                     'icon'       : FlickrIcon}
 
             if self.api.get_auth_token():
