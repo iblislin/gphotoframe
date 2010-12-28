@@ -1,4 +1,5 @@
 import os
+import gtk
 
 from ...utils.trash import GioTrash
 from ...history.history import History
