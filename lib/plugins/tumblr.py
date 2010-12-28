@@ -101,6 +101,7 @@ class TumblrPhotoList(PhotoList):
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
+                    'trash'      : Ban(self.photolist),
                     'icon'       : TumblrIcon}
 
             if hasattr(self, 'email'):

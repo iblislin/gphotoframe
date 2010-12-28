@@ -83,6 +83,7 @@ class RSSPhotoList(PhotoList):
                         'owner'      : owner,
                         'title'      : title,
                         'page_url'   : str(entry.link),
+                        'trash'      : Ban(self.photolist),
                         'icon'       : RSSIcon}
 
                 photo = Photo(data)
