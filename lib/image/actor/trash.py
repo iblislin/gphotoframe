@@ -53,7 +53,7 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
     def _enter_cb(self, w, e, tooltip):
         is_localfile = self.photo.get('url').startswith('file://')
 
-        tip = _("Remove from catalog") if is_localfile else _("Ban the photo")
+        tip = _("Remove from catalog") if is_localfile else _("Ban this photo")
         tooltip.update_text(tip)
 
 class TrashDialog(object):

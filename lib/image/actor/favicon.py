@@ -81,7 +81,7 @@ class ActorFavIcon(ActorIcon):
 
         if w.number > 0 and isinstance(status, bool): return
         tip = _("Add to faves") if status is False else \
-            _("Remove from faves") if status is True else _("Rate the photo")
+            _("Remove from faves") if status is True else _("Rate this photo")
         tooltip.update_text(tip)
 
     def _leave_cb(self, w, e, tooltip):

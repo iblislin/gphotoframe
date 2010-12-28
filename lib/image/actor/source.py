@@ -51,5 +51,5 @@ class ActorSourceIcon(ActorIcon):
         self.photo.open()
 
     def _enter_cb(self, w, e, tooltip):
-        tip = _("Open the photo")
+        tip = _("Open this photo")
         tooltip.update_text(tip)
