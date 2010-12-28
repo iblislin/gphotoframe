@@ -10,8 +10,7 @@ import gtk
 from gettext import gettext as _
 from string import Template
 
-from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    Photo, PluginBase, Trash
+from ..base import *
 from ...utils.iconimage import IconImage
 from sqldb import FSpotDB, FSpotPhotoSQL, FSpotPhotoTags
 from rating import RateList

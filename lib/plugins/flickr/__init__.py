@@ -9,8 +9,7 @@ import time
 import json
 from gettext import gettext as _
 
-from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    Photo, PluginBase, Ban
+from ..base import *
 from ...utils.iconimage import WebIconImage
 from ...utils.config import GConf
 from ...utils.gnomescreensaver import GsThemeWindow
