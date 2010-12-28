@@ -1,3 +1,106 @@
+2010-12-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py, plugins/base.py: Added ban (black list) functions.
+
+2010-12-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* idlecheck.py: Fixed dbus errors.
+
+2010-12-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gtkimage.py: Modified Flickr photo size check.
+	* folder.py: Fixed an AttributeError (issue #79).
+
+2010-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added new gconf key (show_filename_suffix).
+	* liststore.py: Added cheking for session idle mode.
+
+2010-12-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gtkimage.py, html.py: Added support for generating thumbnails.
+	* share/history/jquery.*.js: Added support for jQuery plugin for
+	  lazy loading images.
+
+2010-12-18  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/sqldb.py: Added new module for sqlite.
+
+2010-12-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* share/history*: Added templates for history html.
+	* utils/history.py: Code refactoring.
+
+2010-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/history.py: Added single quotation mark escaping in SQL.
+
+2010-12-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* rss.py: Dropped depends on python-numpy.
+	* image/tooltip.py: More tooltips for Flickr.
+	* utils/history.py: Added photo history with sqlite.
+
+2010-12-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/__init__.py: Added new gconf key: ui/disable_clutter.
+	* help/C/gphotoframe.xml: Updated help documentation.
+	  Thanks Cristian Marchi!
+
+2010-11-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/__init__.py, preferences.ui: Enable help button on
+	  Preferences.
+
+2010-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Reset the timer in delete_photo function.
+	* shotwell.py (ShotwellTrash): Added support for Shotwell Trash.
+
+2010-11-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* clutterimage.py: Fixed module names for Screen Saver.
+
+2010-11-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py (ShotwellPhotoSQL): Added support for flags on the
+	  photo database (deleted photos).
+
+2010-11-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/ja/ja.po, po/ja.po: Update Japanese translation.
+
+2010-11-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* help/C/gphotoframe.xml: Updated help documentation.
+	  Thanks Cristian Marchi!
+	* shotwell.py: Fixed bugs.
+
+2010-11-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Added a Shotwell remove function.
+
+2010-11-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fspot/__init__.py: Fixed an URI encoding (issue #76).
+
+2010-11-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/base.py: Added a remove function.
+	* fspot/__init__.py: Added a remove catalogue function.
+
+2010-10-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/__init__.py: Added user plugins dir.
+
+2010-10-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py, picasa.py: Added kludges for avoiding a json
+	  module 1.9 bug.
+	* fspot/__init__.py, sqldb.py: Dropped support for F-Spot 0.5.
+	* flickr/__init__.py, picasa.py: Dropped depends on simplejson.
+	  gphotoframe requires python 2.6.
+
 2010-10-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/__init__.py: Fixed a value error (issue #73).
@@ -8,8 +111,14 @@
 
 2010-10-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/base.py: Added DeleteDialog.
 	* help/it/*: Updated Italian translation of help.
 	* gphotoframe: Fixed CPU usage issue (issue #69).
+
+2010-10-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/trash.py: Implemented confirmation dialogs for removing
+	  photos.
 
 2010-10-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -46,10 +155,21 @@
 	  Marchi! (issue #66).
 	* menu.py, menu.ui: Added new help menu item.
 
+2010-10-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actors.py: Added new class TrashDialog.
+	* frame.py: Added the default icon configuration.
+
 2010-10-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* it.po, image/tooltip.py, preferences/plugin.py: Updated
 	  translation.  Thanks Cristian Marchi! (issue #65)
+
+2010-09-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actors.py, image/imageclutter.py, plugins/base.py,
+	  folder.py, fspot/__init__.py, shotwell.py: Added new clutter
+	  icons for deleting photos.
 
 2010-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

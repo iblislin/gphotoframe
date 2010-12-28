@@ -1,21 +1,30 @@
-from imageclutter import *
+from clutterimage import *
+from ..utils.config import GConf
 
-class PhotoImageFactory(object):
-
-    def create(self, photoframe):
-        cls = PhotoImageClutter if cluttergtk else PhotoImageGtk
-        return cls(photoframe)
-
-class PhotoImageFullScreenFactory(object):
+class PhotoImageFactoryBase(object):
 
     def create(self, photoframe):
-        cls = PhotoImageClutterFullScreen if cluttergtk \
-            else PhotoImageFullScreen
+        conf = GConf()
+        disable_clutter = conf.get_bool('ui/disable_clutter', False)
+
+        cls = self.clutter if cluttergtk and not disable_clutter \
+            else self.gtkimage
         return cls(photoframe)
 
-class PhotoImageScreenSaverFactory(object):
+class PhotoImageFactory(PhotoImageFactoryBase):
 
-    def create(self, photoframe):
-        cls = PhotoImageClutterScreenSaver if cluttergtk \
-            else PhotoImageScreenSaver
-        return cls(photoframe)
+    def __init__(self):
+        self.clutter  = PhotoImageClutter
+        self.gtkimage = PhotoImageGtk
+
+class PhotoImageFullScreenFactory(PhotoImageFactoryBase):
+
+    def __init__(self):
+        self.clutter  = PhotoImageClutterFullScreen
+        self.gtkimage = PhotoImageFullScreen
+
+class PhotoImageScreenSaverFactory(PhotoImageFactoryBase):
+
+    def __init__(self):
+        self.clutter  = PhotoImageClutterScreenSaver
+        self.gtkimage = PhotoImageScreenSaver

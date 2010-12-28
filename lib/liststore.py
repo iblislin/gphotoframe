@@ -7,8 +7,12 @@ import glib
 import plugins
 from constants import CACHE_DIR
 from frame import PhotoFrameFactory
+from history import HistoryFactory
+from history.history import HistoryDB
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
+from utils.idlecheck import SessionIdle
+
 
 class PhotoListStore(gtk.ListStore):
     """ListStore for Photo sources.
@@ -24,7 +28,9 @@ class PhotoListStore(gtk.ListStore):
         self._load_gconf()
 
         self.queue = RecentQueue()
+        self.ban_db = BlackList()
         self.photoframe = PhotoFrameFactory().create(self)
+        self.idle = SessionIdle()
         self._start_timer()
 
     def append(self, d, iter=None):
@@ -47,22 +53,21 @@ class PhotoListStore(gtk.ListStore):
         glib.source_remove(self._timer)
         self._start_timer()
 
-    def delete_photo(self, filename):
-        self.queue.remove(filename)
-        self.photoframe.remove_photo(filename)
+    def delete_photo(self, url):
+        self.queue.remove(url)
+        self.photoframe.remove_photo(url)
 
-    def reset_timer(self, *args):
         glib.source_remove(self._timer)
-        self._start_timer(True)
+        self._start_timer(False)
 
     def _start_timer(self, change=True):
-        state = self._change_photo() if change else True
+        state = self._change_photo() if change else False
 
         fullscreen = self.conf.get_bool('fullscreen')
         screensaver = hasattr(self.photoframe, 'screensaver')
 
         if state is False:
-            interval = 5
+            interval = 3
         elif fullscreen or screensaver:
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
@@ -72,6 +77,9 @@ class PhotoListStore(gtk.ListStore):
         return False
 
     def _change_photo(self):
+        if self.idle.check():
+            return True
+
         target_list = [ x[5] for x in self if x[5].photos and x[5].weight > 0 ]
         if target_list:
             target = WeightedRandom(target_list)
@@ -84,8 +92,11 @@ class PhotoListStore(gtk.ListStore):
         return state
 
     def _show_photo_cb(self, data, photo):
-        # print photo.get('page_url') or photo.get('url')
-        if self.photoframe.set_photo(photo):
+        # check!! blacklist
+        if self.ban_db.is_banned(photo.get('url')):
+            print "ban!"
+            self._change_photo()
+        elif self.photoframe.set_photo(photo):
             self.queue.append(photo)
         else:
             self._change_photo()
@@ -136,17 +147,21 @@ class RecentQueue(list):
     def __init__(self):
         super(RecentQueue, self).__init__()
         self.conf = GConf()
+        self.history = HistoryFactory().create()
 
     def append(self, photo):
         self.remove(photo['filename'])
         super(RecentQueue, self).append(photo)
+
+        # print photo.get('page_url') or photo.get('url')
+        self.history.add(photo)
         num = self.conf.get_int('recents/queue_number', 30)
         if len(self) > num:
             self.pop(0)
 
-    def remove(self, filename):
+    def remove(self, url):
         for i, queue_photo in enumerate(self):
-            if queue_photo['filename'] == filename:
+            if queue_photo['url'] == url:
                 super(RecentQueue, self).pop(i)
 
     def pop(self, num):
@@ -164,3 +179,12 @@ class RecentQueue(list):
         for filename in glob.iglob(os.path.join(CACHE_DIR, '*')):
             if filename not in recents:
                 os.remove(filename)
+
+class BlackList(object):
+
+    def __init__(self):
+        self.con = HistoryDB('ban')
+
+    def is_banned(self, url):
+        sql = "SELECT count(*) FROM ban WHERE url='%s';" % url
+        return self.con.fetchone(sql)

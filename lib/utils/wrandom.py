@@ -2,7 +2,7 @@ import random
 import bisect
 
 class WeightedRandom(object):
-    '''Weighted Ramdom'''
+    '''Weighted Random'''
 
     def __init__(self, list):
         self.list = list

@@ -6,15 +6,10 @@
 
 import random
 import time
+import json
 from gettext import gettext as _
 
-try:
-    import simplejson as json
-except:
-    import json
-
-from ..base import PhotoList, PhotoSourceUI, PhotoSourceOptionsUI, \
-    Photo, PluginBase
+from ..base import *
 from ...utils.iconimage import WebIconImage
 from ...utils.config import GConf
 from ...utils.gnomescreensaver import GsThemeWindow
@@ -25,7 +20,7 @@ from authdialog import *
 def info():
     return [FlickrPlugin, FlickrPhotoList, PhotoSourceFlickrUI, PluginFlickrDialog]
 
-class FlickrPlugin(PluginBase):
+class FlickrPlugin(base.PluginBase):
 
     def __init__(self):
         self.name = 'Flickr'
@@ -36,12 +31,13 @@ class FlickrPlugin(PluginBase):
                       'website': 'http://www.flickr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-class FlickrPhotoList(PhotoList):
+class FlickrPhotoList(base.PhotoList):
 
     def __init__(self, target, argument, weight, options, photolist):
         super(FlickrPhotoList, self).__init__(
             target, argument, weight, options, photolist)
         self.page_list = FlickrAPIPages()
+        self.argument_group_name = None
 
     def prepare(self):
         self.photos = []
@@ -67,12 +63,12 @@ class FlickrPhotoList(PhotoList):
 
     def _nsid_cb(self, data):
         d = json.loads(data)
-        argument = self.nsid_argument = self.api.parse_nsid(d)
-        if argument is None:
+        self.nsid_argument, self.argument_group_name = self.api.parse_nsid(d)
+        if self.nsid_argument is None:
             print _("flickr: can not find, "), self.argument
             return
 
-        self._get_url_for(argument)
+        self._get_url_for(self.nsid_argument)
 
     def _get_url_for(self, argument):
         page = self.page_list.get_page()
@@ -103,6 +99,7 @@ class FlickrPhotoList(PhotoList):
 
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
+            argument = self.argument_group_name or self.argument
 
             try:
                 format = '%Y-%m-%d %H:%M:%S'
@@ -110,10 +107,10 @@ class FlickrPhotoList(PhotoList):
             except (ValueError, OverflowError), info:
                 date = s['datetaken']
 
-            data = {'type'       : 'flickr',
-                    'info'       : FlickrPlugin,
-                    'url'        : url,
-                    'url_b'      : url_b,
+            data = {'info'       : FlickrPlugin,
+                    'target'     : (self.target, argument),
+                    'url'        : str(url),
+                    'url_b'      : str(url_b),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
@@ -123,6 +120,7 @@ class FlickrPhotoList(PhotoList):
                     # 'description' : s['description']['_content'],
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
+                    'trash'      : trash.Ban(self.photolist),
                     'icon'       : FlickrIcon}
 
             if self.api.get_auth_token():
@@ -132,12 +130,12 @@ class FlickrPhotoList(PhotoList):
             if s.get('url_o'):
                 url = s.get('url_o')
                 w, h = int(s.get('width_o')), int(s.get('height_o'))
-                data.update({'url_o': url, 'size_o': [w, h]})
+                data.update({'url_o': str(url), 'size_o': [w, h]})
 
             photo = FlickrPhoto(data)
             self.photos.append(photo)
 
-class PhotoSourceFlickrUI(PhotoSourceUI):
+class PhotoSourceFlickrUI(ui.PhotoSourceUI):
 
     def get_options(self):
         return self.options_ui.get_value()
@@ -186,7 +184,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFlickrUI(self.gui, self.data)
 
-class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
+class PhotoSourceOptionsFlickrUI(ui.PhotoSourceOptionsUI):
 
     def get_value(self):
         state = self.checkbutton_flickr_id.get_active()
@@ -208,7 +206,7 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
     def _check_authorized(self):
         return GConf().get_string('plugins/flickr/nsid')
 
-class FlickrPhoto(Photo):
+class FlickrPhoto(base.Photo):
 
     def get_url(self):
         self.conf = GConf()

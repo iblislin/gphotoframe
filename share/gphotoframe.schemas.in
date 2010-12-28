@@ -158,6 +158,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/show_filename_suffix</key>
+      <applyto>/apps/gphotoframe/show_filename_suffix</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether to show filename suffix</short>
+        <long>If true, image filename suffixes (jpe?g|png|gif|bmp) are shown.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
       <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
       <owner>gphotoframe</owner>
@@ -410,6 +422,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/ui/disable_clutter</key>
+      <applyto>/apps/gphotoframe/ui/disable_clutter</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Disable Clutter library support</short>
+        <long>Set this to true if you have problems with Clutter library support.  When you change this value, you need to restart gphotoframe.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/ui/animate_icons</key>
       <applyto>/apps/gphotoframe/ui/animate_icons</applyto>
       <owner>gphotoframe</owner>
@@ -513,6 +537,30 @@
       <default>0</default>
       <locale name="C">
         <short>Fav icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/trash/always_show</key>
+      <applyto>/apps/gphotoframe/ui/trash/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the trash icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/trash/position</key>
+      <applyto>/apps/gphotoframe/ui/trash/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>3</default>
+      <locale name="C">
+        <short>Trash icon position</short>
         <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
       </locale>
     </schema>
