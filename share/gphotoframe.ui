@@ -9,13 +9,13 @@
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
     <signal name="window_state_event" handler="on_window_window_state_event"/>
+    <signal name="key_press_event" handler="on_window_key_press_event"/>
+    <signal name="enter_notify_event" handler="on_window_enter_notify_event"/>
     <signal name="realize" handler="on_window_realize"/>
+    <signal name="query_tooltip" handler="on_window_query_tooltip"/>
     <signal name="destroy" handler="on_window_destroy"/>
     <signal name="button_press_event" handler="on_window_button_press_event"/>
     <signal name="motion_notify_event" handler="on_window_motion_notify_event"/>
-    <signal name="query_tooltip" handler="on_window_query_tooltip"/>
-    <signal name="key_press_event" handler="on_window_key_press_event"/>
-    <signal name="enter_notify_event" handler="on_window_enter_notify_event"/>
     <signal name="leave_notify_event" handler="on_window_leave_notify_event"/>
     <child>
       <placeholder/>
@@ -29,7 +29,6 @@
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
-    <property name="has_separator">False</property>
     <property name="program_name">Gnome Photo Frame</property>
     <property name="copyright">Copyright &#xA9; 2009-2010 Yoshizumi Endo.</property>
     <property name="comments" translatable="yes">Photo Frame for GNOME Desktop</property>
@@ -90,7 +89,6 @@
     <property name="window_position">center-on-parent</property>
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
@@ -283,7 +281,6 @@
     <property name="window_position">center-on-parent</property>
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox3">
         <property name="visible">True</property>
@@ -558,7 +555,6 @@
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox5">
         <property name="visible">True</property>
@@ -640,6 +636,20 @@
       <packing>
         <property name="expand">False</property>
         <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkCheckButton" id="checkbutton_latest_roll">
+        <property name="label" translatable="yes">Show only _latest photos</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="use_underline">True</property>
+        <property name="draw_indicator">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </object>
