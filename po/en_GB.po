@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-22 01:05+0900\n"
+"POT-Creation-Date: 2011-01-05 17:47+0900\n"
 "PO-Revision-Date: 2010-05-27 19:43+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,14 +70,19 @@ msgid "Always show the source icon"
 msgstr "Always show the source icon"
 
 #: ../share/gphotoframe.schemas.in.h:9
+#, fuzzy
+msgid "Always show the trash icon"
+msgstr "Always show the fav icon"
+
+#: ../share/gphotoframe.schemas.in.h:10
 msgid "Auth token"
 msgstr "Auth token"
 
-#: ../share/gphotoframe.schemas.in.h:10
+#: ../share/gphotoframe.schemas.in.h:11
 msgid "Date format"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:11
+#: ../share/gphotoframe.schemas.in.h:12
 msgid ""
 "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
 "left-bottom."
@@ -85,43 +90,48 @@ msgstr ""
 "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
 "left-bottom."
 
-#: ../share/gphotoframe.schemas.in.h:12
+#: ../share/gphotoframe.schemas.in.h:13
 msgid "Disable Clutter library support"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:13
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "E-mail adress as user ID"
 msgstr "E-mail adress as user ID"
 
-#: ../share/gphotoframe.schemas.in.h:14
-msgid "Enable fullscreen mode animations"
-msgstr "Enable fullscreen mode animations"
-
 #: ../share/gphotoframe.schemas.in.h:15
-msgid "Enable icon animations"
+#, fuzzy
+msgid "Enable ban icon"
 msgstr "Enable icon animations"
 
 #: ../share/gphotoframe.schemas.in.h:16
+msgid "Enable fullscreen mode animations"
+msgstr "Enable fullscreen mode animations"
+
+#: ../share/gphotoframe.schemas.in.h:17
+msgid "Enable icon animations"
+msgstr "Enable icon animations"
+
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Fav icon position"
 msgstr "Fav icon position"
 
-#: ../share/gphotoframe.schemas.in.h:17
+#: ../share/gphotoframe.schemas.in.h:19
 msgid "Fix the photo frame on the root window"
 msgstr "Fix the photo frame on the root window"
 
-#: ../share/gphotoframe.schemas.in.h:18
+#: ../share/gphotoframe.schemas.in.h:20
 msgid "Flickr user ID"
 msgstr "Flickr user ID"
 
-#: ../share/gphotoframe.schemas.in.h:19
+#: ../share/gphotoframe.schemas.in.h:21
 msgid "Geo icon position"
 msgstr "Geo icon position"
 
-#: ../share/gphotoframe.schemas.in.h:20
+#: ../share/gphotoframe.schemas.in.h:22
 msgid "Google account user ID"
 msgstr "Google account user ID"
 
-#: ../share/gphotoframe.schemas.in.h:21
+#: ../share/gphotoframe.schemas.in.h:23
 msgid ""
 "If the RSS feed includes multiple RSS feeds, this value is used as the "
 "standard deviation for random weight of each RSS feed. When this value is "
@@ -129,146 +139,151 @@ msgid ""
 "RSS feed."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:22
-msgid ""
-"If true, changing of photo image in fullscreen mode will be animated. The "
-"program needs to be restarted to take effect the change of the setting."
-msgstr ""
-"If true, changing of photo image in fullscreen mode will be animated. The "
-"program needs to be restarted to take effect the change of the setting."
-
-#: ../share/gphotoframe.schemas.in.h:23
-msgid ""
-"If true, hiding and un-hiding of icons will be animated. The program needs "
-"to be restarted to take effect the change of the setting."
-msgstr ""
-"If true, hiding and un-hiding of icons will be animated. The program needs "
-"to be restarted to take effect the change of the setting."
-
 #: ../share/gphotoframe.schemas.in.h:24
-msgid "If true, icons will be shown on screensaver."
+#, fuzzy
+msgid "If true, a ban icon will be shown on photos from shotwell."
 msgstr "If true, icons will be shown on screensaver."
 
 #: ../share/gphotoframe.schemas.in.h:25
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+
+#: ../share/gphotoframe.schemas.in.h:26
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+
+#: ../share/gphotoframe.schemas.in.h:27
+msgid "If true, icons will be shown on screensaver."
+msgstr "If true, icons will be shown on screensaver."
+
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "If true, image filename suffixes (jpe?g|png|gif|bmp) are shown."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:29
 msgid "Interval seconds in full screen mode"
 msgstr "Interval seconds in full screen mode"
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:30
 msgid "Interval seconds in window mode"
 msgstr "Interval seconds in window mode"
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:31
 msgid "Max aspect ratio for Photo"
 msgstr "Max aspect ratio for Photo"
 
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "Minimum aspect ratio for Photo"
 msgstr "Minimum aspect ratio for Photo"
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:33
 #, fuzzy
 msgid "Minimum image file size in bytes"
 msgstr "Photo image max height"
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:34
 msgid ""
 "Minimum image file size in bytes. When this value is less than 0, image file "
 "size filter is disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:35
 #, fuzzy
 msgid "Minimum image height"
 msgstr "Photo image max height"
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:36
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:37
 #, fuzzy
 msgid "Minimum image width"
 msgstr "Photo image max width"
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:38
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Photo frame X position"
 msgstr "Photo frame X position"
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Photo frame Y position"
 msgstr "Photo frame Y position"
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Photo frame border color"
 msgstr "Photo frame border colour"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Photo frame border width"
 msgstr "Photo frame border width"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Photo frame fix mode"
 msgstr "Photo frame fix mode"
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "Photo frame full screen mode"
 msgstr "Photo frame full screen mode"
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Photo frame sticky mode"
 msgstr "Photo frame sticky mode"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Photo image max height"
 msgstr "Photo image max height"
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "Photo image max width"
 msgstr "Photo image max width"
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Photo source default weight"
 msgstr "Photo source default weight"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "RSS reload interval minutes"
 msgstr "RSS reload interval minutes"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS reload interval minutes. It should be greater than 10 minutes."
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "Recent opend preferences page number"
 msgstr "Recent opend preferences page number"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Recent selected photo source"
 msgstr "Recent selected photo source"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:54
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:55
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -276,51 +291,56 @@ msgstr ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "Show icons on screensaver"
 msgstr "Show icons on screensaver"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "Source icon position"
 msgstr "Source icon position"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "Standard deviation of RSS feed random weights"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "The field sets the number of photo cache files."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:60
 msgid "The field sets the number of recent photo menu items."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "The number of photo cache files"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "The number of recent photo menu items"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:63
+#, fuzzy
+msgid "Trash icon position"
+msgstr "Fav icon position"
+
+#: ../share/gphotoframe.schemas.in.h:64
 msgid "User ID"
 msgstr "User ID"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:65
 msgid "User full name"
 msgstr "User full name"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:66
 msgid "User name"
 msgstr "User name"
 
-#: ../share/gphotoframe.schemas.in.h:63
+#: ../share/gphotoframe.schemas.in.h:67
 msgid "Whether to show filename suffix"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:68
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -374,44 +394,48 @@ msgstr "Photo Source"
 msgid "Rate _Weight:"
 msgstr "Rate _Weight:"
 
-#: ../share/gphotoframe.ui.h:13 ../lib/plugins/base.py:147
+#: ../share/gphotoframe.ui.h:13
+msgid "Show only _latest photos"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:14 ../lib/plugins/base/ui.py:62
 msgid "_Argument:"
 msgstr "_Argument:"
 
-#: ../share/gphotoframe.ui.h:14
+#: ../share/gphotoframe.ui.h:15
 msgid "_Include subfolders"
 msgstr "_Include subfolders"
 
-#: ../share/gphotoframe.ui.h:15
+#: ../share/gphotoframe.ui.h:16
 msgid "_Password:"
 msgstr "_Password:"
 
-#: ../share/gphotoframe.ui.h:16
+#: ../share/gphotoframe.ui.h:17
 msgid "_Period:"
 msgstr "_Period:"
 
-#: ../share/gphotoframe.ui.h:17
+#: ../share/gphotoframe.ui.h:18
 msgid "_Source:"
 msgstr "_Source:"
 
-#: ../share/gphotoframe.ui.h:18
+#: ../share/gphotoframe.ui.h:19
 msgid "_Specified other people's ID"
 msgstr "_Specified other people's ID"
 
-#: ../share/gphotoframe.ui.h:19 ../lib/plugins/base.py:141
-#: ../lib/plugins/haikyo.py:82
+#: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:56
+#: ../lib/plugins/haikyo.py:83
 msgid "_Target:"
 msgstr "_Target:"
 
-#: ../share/gphotoframe.ui.h:20
+#: ../share/gphotoframe.ui.h:21
 msgid "_User ID:"
 msgstr "_User ID:"
 
-#: ../share/gphotoframe.ui.h:21
+#: ../share/gphotoframe.ui.h:22
 msgid "_Weight:"
 msgstr "_Weight:"
 
-#: ../share/gphotoframe.ui.h:22
+#: ../share/gphotoframe.ui.h:23
 msgid "translator-credits"
 msgstr "Robert Readman <Robert_Readman@Hotmail.com>"
 
@@ -558,7 +582,7 @@ msgid "Remove from faves"
 msgstr ""
 
 #: ../lib/image/actor/favicon.py:84
-msgid "Rate the photo"
+msgid "Rate this photo"
 msgstr ""
 
 #: ../lib/image/actor/info.py:44
@@ -570,32 +594,44 @@ msgid "Loading..."
 msgstr ""
 
 #: ../lib/image/actor/source.py:54
-msgid "Open the photo"
+msgid "Open this photo"
 msgstr ""
 
-#: ../lib/image/actor/trash.py:25
+#: ../lib/image/actor/trash.py:26
 msgid "Move to trash"
 msgstr ""
 
-#: ../lib/image/actor/trash.py:52
+#: ../lib/image/actor/trash.py:56
 msgid "Remove from catalog"
 msgstr ""
 
-#: ../lib/image/actor/trash.py:71
+#: ../lib/image/actor/trash.py:56
+msgid "Ban this photo"
+msgstr ""
+
+#: ../lib/image/actor/trash.py:75
 msgid "Move this photo to the trash?"
 msgstr ""
 
-#: ../lib/image/actor/trash.py:72
+#: ../lib/image/actor/trash.py:76
 msgid "This photo will be moved to the trash."
 msgstr ""
 
-#: ../lib/image/actor/trash.py:84
+#: ../lib/image/actor/trash.py:90
 msgid "Remove this photo from the catalog?"
 msgstr ""
 
-#: ../lib/image/actor/trash.py:85
+#: ../lib/image/actor/trash.py:91
 #, python-format
 msgid "This photo will be removed from the %s catalog."
+msgstr ""
+
+#: ../lib/image/actor/trash.py:94
+msgid "Ban this photo?"
+msgstr ""
+
+#: ../lib/image/actor/trash.py:95
+msgid "This photo will be add to the black list."
 msgstr ""
 
 #: ../lib/image/tooltip.py:81
@@ -648,20 +684,20 @@ msgstr ""
 msgid "Flash Bias"
 msgstr ""
 
-#: ../lib/plugins/base.py:182
+#: ../lib/plugins/base/ui.py:97
 msgid "Options"
 msgstr "Options"
 
-#: ../lib/plugins/base.py:347
+#: ../lib/plugins/base/trash.py:58
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr ""
 
-#: ../lib/plugins/base.py:349
+#: ../lib/plugins/base/trash.py:60
 #, python-format
 msgid "The file \"%s\" cannot be moved to the trash. "
 msgstr ""
 
-#: ../lib/plugins/__init__.py:33
+#: ../lib/plugins/__init__.py:34
 #, python-format
 msgid "Can't import %s plugin: %s."
 msgstr ""
@@ -696,13 +732,13 @@ msgstr "Photo Source"
 msgid "The Commons"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:180
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:184
 msgid "Your Groups"
 msgstr ""
 
 #: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:176
-#: ../lib/plugins/tumblr.py:119
+#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:178
+#: ../lib/plugins/tumblr.py:120
 msgid "_User:"
 msgstr "_User:"
 
@@ -760,30 +796,30 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "_Complete Authorisation"
 
-#: ../lib/plugins/flickr/__init__.py:30 ../lib/plugins/picasa.py:28
+#: ../lib/plugins/flickr/__init__.py:29 ../lib/plugins/picasa.py:29
 #, fuzzy
 msgid "Photo Share Service"
 msgstr "Photo Source"
 
-#: ../lib/plugins/flickr/__init__.py:49
+#: ../lib/plugins/flickr/__init__.py:48
 #, python-format
 msgid "Flickr: %s is invalid target."
 msgstr ""
 
-#: ../lib/plugins/flickr/__init__.py:59
+#: ../lib/plugins/flickr/__init__.py:58
 msgid "Flickr: invalid nsid API url."
 msgstr ""
 
-#: ../lib/plugins/flickr/__init__.py:69
+#: ../lib/plugins/flickr/__init__.py:68
 msgid "flickr: can not find, "
 msgstr ""
 
-#: ../lib/plugins/flickr/__init__.py:87
+#: ../lib/plugins/flickr/__init__.py:90
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr ""
 
-#: ../lib/plugins/fspot/__init__.py:29
+#: ../lib/plugins/fspot/__init__.py:28
 msgid "F-Spot Photo Manager"
 msgstr ""
 
@@ -800,15 +836,15 @@ msgstr "Rate"
 msgid "Period"
 msgstr "Period"
 
-#: ../lib/plugins/picasa.py:26
+#: ../lib/plugins/picasa.py:27
 msgid "Picasa Web"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:54 ../lib/plugins/tumblr.py:52
+#: ../lib/plugins/picasa.py:55 ../lib/plugins/tumblr.py:52
 msgid "Certification Error"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:176
+#: ../lib/plugins/picasa.py:178
 msgid "_Keyword:"
 msgstr "_Keyword:"
 
@@ -821,20 +857,20 @@ msgstr ""
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr ""
 
-#: ../lib/plugins/tumblr.py:142
+#: ../lib/plugins/tumblr.py:143
 msgid "_E-mail:"
 msgstr "_E-mail:"
 
-#: ../lib/plugins/rss.py:33
+#: ../lib/plugins/rss.py:35
 msgid "RSS and Atom Feeds"
 msgstr ""
 
-#: ../lib/plugins/rss.py:134
+#: ../lib/plugins/rss.py:137
 msgid "_Title:"
 msgstr "_Title:"
 
 #. argument widget
-#: ../lib/plugins/rss.py:137
+#: ../lib/plugins/rss.py:140
 msgid "_URL:"
 msgstr "_URL:"
 
