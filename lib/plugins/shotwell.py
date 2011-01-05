@@ -73,6 +73,9 @@ class ShotwellPhotoList(FSpotPhotoList):
 
 class ShotwellTrash(FSpotTrash):
 
+    def check_delete_from_catalog(self):
+        return self.conf.get_bool('plugins/shotwell/ban_icon_enabled', False)
+
     def check_delete_from_disk(self, filename):
         # super(ShotwellTrash, self).check_delete_from_disk(filename)
         return True
