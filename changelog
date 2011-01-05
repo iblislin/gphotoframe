@@ -1,3 +1,7 @@
+2011-01-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Disable a ban icon on shotwell plugin by default.
+
 2010-12-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* liststore.py, plugins/base.py: Added ban (black list) functions.
