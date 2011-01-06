@@ -36,7 +36,7 @@ class FlickrPhotoList(base.PhotoList):
     def __init__(self, target, argument, weight, options, photolist):
         super(FlickrPhotoList, self).__init__(
             target, argument, weight, options, photolist)
-        self.page_list = FlickrAPIPages()
+        self.page_list = FlickrAPIPages(options)
         self.argument_group_name = None
 
     def prepare(self):
@@ -71,8 +71,7 @@ class FlickrPhotoList(base.PhotoList):
         self._get_url_for(self.nsid_argument)
 
     def _get_url_for(self, argument):
-        page = 1 if self.options.get('only_latest_roll') \
-            else self.page_list.get_page()
+        page = self.page_list.get_page()
 
         # print page, self.options
 
@@ -252,11 +251,22 @@ class FlickrFav(object):
 
 class FlickrAPIPages(object):
 
-    def __init__(self):
+    def __init__(self, options):
         self.page_list = []
+        self.conf = GConf()
+        self.only_latest = options.get('only_latest_roll')
 
     def get_page(self):
-        page = random.sample(self.page_list, 1)[0] if self.page_list else 1
+        key = 'plugins/flickr/latest_photos_rate'
+        threshold = self.conf.get_int(key, 0) / 100.0
+        random_rate = random.random()
+
+        if self.only_latest or not self.page_list or threshold > random_rate:
+            page = 1
+        else:
+            page = random.sample(self.page_list, 1)[0]
+
+        print threshold, random_rate, page
         return page
 
     def update(self, feed):
