@@ -302,6 +302,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/latest_photos_rate</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/latest_photos_rate</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Rate of latest photos</short>
+        <long>The Flickr plugin gets photos via API with an argument of random page number from latest to oldest.  This value specifies the percentage of reading 1st page (latest photos) in all pages.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/picasa/interval</key>
       <applyto>/apps/gphotoframe/plugins/picasa/interval</applyto>
       <owner>gphotoframe</owner>
