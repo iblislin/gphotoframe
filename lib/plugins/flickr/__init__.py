@@ -95,11 +95,6 @@ class FlickrPhotoList(base.PhotoList):
         for s in d['photos']['photo']:
             if s['media'] == 'video' or s['server'] is None: continue
 
-            url_base = "http://farm%s.static.flickr.com/%s/%s_" % (
-                s['farm'], s['server'], s['id'])
-            url = "%s%s.jpg" % (url_base, s['secret'])
-            url_b = "%s%s_b.jpg" % (url_base, s['secret'])
-
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
             argument = self.argument_group_name or self.argument
@@ -112,8 +107,7 @@ class FlickrPhotoList(base.PhotoList):
 
             data = {'info'       : FlickrPlugin,
                     'target'     : (self.target, argument),
-                    'url'        : str(url),
-                    'url_b'      : str(url_b),
+                    'url'        : str(s.get('url_m')),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
@@ -130,10 +124,13 @@ class FlickrPhotoList(base.PhotoList):
                 state = (self.target == 'Favorites' and not self.argument)
                 data['fav'] = FlickrFav(state, {'id': s['id']})
 
-            if s.get('url_o'):
-                url = s.get('url_o')
-                w, h = int(s.get('width_o')), int(s.get('height_o'))
-                data.update({'url_o': str(url), 'size_o': [w, h]})
+            for type in ['url_z', 'url_l', 'url_o']:
+                if s.get(type):
+                    url = s.get(type)
+                    data[type] = str(url)
+                    if type == 'url_o':
+                        w, h = int(s.get('width_o')), int(s.get('height_o'))
+                        data['size_o'] = [w, h]
 
             photo = FlickrPhoto(data)
             self.photos.append(photo)
@@ -216,7 +213,7 @@ class PhotoSourceOptionsFlickrUI(ui.PhotoSourceOptionsUI):
 
 class FlickrPhoto(base.Photo):
 
-    def get_url(self):
+    def get_image_url(self):
         self.conf = GConf()
         screensaver = GsThemeWindow().get_anid()
         fullscreen = self.conf.get_bool('fullscreen', False)
@@ -225,12 +222,12 @@ class FlickrPhoto(base.Photo):
         if high_resolution and (screensaver or fullscreen):
             w, h = self.get('size_o') or [None, None]
             cond = w and h and (w <= 1280 or h <= 1024)
-            url = 'url_o' if cond else 'url_b'
+            url = 'url_o' if cond else 'url_z'
         else:
             url = 'url'
 
         #print url, w or None, h or None
-        return self[url]
+        return self.get(url) or self.get('url') 
 
 class FlickrFav(object):
 
@@ -266,7 +263,7 @@ class FlickrAPIPages(object):
         else:
             page = random.sample(self.page_list, 1)[0]
 
-        print threshold, random_rate, page
+        # print threshold, random_rate, page
         return page
 
     def update(self, feed):

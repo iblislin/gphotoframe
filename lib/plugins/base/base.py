@@ -50,7 +50,7 @@ class PhotoList(object):
         if not self.photo:
             return
 
-        url = self.photo.get('url')
+        url = self.photo.get_image_url()
         path = url.replace('/', '_')
         self.photo['filename'] = os.path.join(constants.CACHE_DIR, path)
 
@@ -103,6 +103,9 @@ class Photo(dict):
                 title, suffix = os.path.splitext(title)
 
         return title
+
+    def get_image_url(self):
+        return self['url']
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']
