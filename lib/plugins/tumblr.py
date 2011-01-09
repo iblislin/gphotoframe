@@ -89,6 +89,9 @@ class TumblrPhotoList(base.PhotoList):
                     if child.tag == 'photo-url' else child.tag
                 photo[key] = child.text
 
+            url_m = photo['photo-url-500']
+            url_l = photo['photo-url-1280']
+
             if self.target != 'User':
                 owner = post.attrib['tumblelog']
 
@@ -96,13 +99,16 @@ class TumblrPhotoList(base.PhotoList):
             entry_title = re_nl.sub('\n', caption) if caption else None
 
             data = {'info'       : TumblrPlugin,
-                    'url'        : photo['photo-url-500'],
+                    'url'        : url_m,
                     'id'         : post.attrib['id'],
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
                     'trash'      : trash.Ban(self.photolist),
                     'icon'       : TumblrIcon}
+
+            if url_m != url_l:
+                data['url_l'] = url_l
 
             if hasattr(self, 'email'):
                 like_arg = {'email'     : self.email,
