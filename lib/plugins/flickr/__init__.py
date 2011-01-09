@@ -217,14 +217,14 @@ class FlickrPhoto(base.Photo):
     def get_image_url(self):
         if self._is_fullscreen_mode():
             w, h = self.get('size_o') or [None, None]
-            print w,h
+            # print w,h
             cond = w and h and (w <= 1280 or h <= 1024)
             type = 'url_o' if cond else 'url_l'
         else:
             type = 'url'
 
         url = self.get(type) or self.get('url_z') or self.get('url') 
-        print type, url
+        # print type, url
         return url
 
 class FlickrFav(object):
