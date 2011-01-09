@@ -12,7 +12,6 @@ from gettext import gettext as _
 from ..base import *
 from ...utils.iconimage import WebIconImage
 from ...utils.config import GConf
-from ...utils.gnomescreensaver import GsThemeWindow
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 from api import *
 from authdialog import *
@@ -95,6 +94,8 @@ class FlickrPhotoList(base.PhotoList):
         for s in d['photos']['photo']:
             if s['media'] == 'video' or s['server'] is None: continue
 
+            url = "http://farm%s.static.flickr.com/%s/%s_%s.jpg" % (
+                s['farm'], s['server'], s['id'], s['secret'])
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
             argument = self.argument_group_name or self.argument
@@ -107,7 +108,7 @@ class FlickrPhotoList(base.PhotoList):
 
             data = {'info'       : FlickrPlugin,
                     'target'     : (self.target, argument),
-                    'url'        : str(s.get('url_m')),
+                    'url'        : str(url),
                     'owner_name' : s['ownername'],
                     'owner'      : s['owner'],
                     'id'         : s['id'],
@@ -214,20 +215,17 @@ class PhotoSourceOptionsFlickrUI(ui.PhotoSourceOptionsUI):
 class FlickrPhoto(base.Photo):
 
     def get_image_url(self):
-        self.conf = GConf()
-        screensaver = GsThemeWindow().get_anid()
-        fullscreen = self.conf.get_bool('fullscreen', False)
-        high_resolution = self.conf.get_bool('high_resolution', True)
-
-        if high_resolution and (screensaver or fullscreen):
+        if self._is_fullscreen_mode():
             w, h = self.get('size_o') or [None, None]
+            print w,h
             cond = w and h and (w <= 1280 or h <= 1024)
-            url = 'url_o' if cond else 'url_z'
+            type = 'url_o' if cond else 'url_l'
         else:
-            url = 'url'
+            type = 'url'
 
-        #print url, w or None, h or None
-        return self.get(url) or self.get('url') 
+        url = self.get(type) or self.get('url_z') or self.get('url') 
+        print type, url
+        return url
 
 class FlickrFav(object):
 
