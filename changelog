@@ -1,5 +1,6 @@
 2011-01-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/tumblr.py: Added support for large images.
 	* flickr/api.py: Added support for url_z and url_l.
 
 2011-01-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

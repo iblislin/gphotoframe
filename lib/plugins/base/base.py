@@ -8,6 +8,7 @@ import glib
 from ... import constants
 from ...utils.config import GConf
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.gnomescreensaver import is_screensaver_mode
 from parseexif import ParseEXIF
 
 
@@ -105,7 +106,8 @@ class Photo(dict):
         return title
 
     def get_image_url(self):
-        return self['url']
+        url = 'url_l' if self._is_fullscreen_mode() else 'url'
+        return self.get(url) or self.get('url')
 
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']
@@ -133,3 +135,10 @@ class Photo(dict):
 
         date = tags.get_date_taken()
         if date: self['date_taken'] = date
+
+    def _is_fullscreen_mode(self):
+        is_fullscreen = self.conf.get_bool('fullscreen', False)
+        high_resolution = self.conf.get_bool('high_resolution', True)
+
+        flag = high_resolution and (is_screensaver_mode() or is_fullscreen)
+        return flag
