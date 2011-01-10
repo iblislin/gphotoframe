@@ -225,7 +225,7 @@ class PhotoImageFullScreen(PhotoImageGtk):
         return max_w, max_h
 
     def _set_tips(self, photo):
-        pass
+        self.tooltip.update() # Erase Tooltip
 
 class PhotoImageScreenSaver(PhotoImageFullScreen):
 
