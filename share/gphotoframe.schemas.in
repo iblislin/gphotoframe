@@ -302,14 +302,14 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/plugins/flickr/latest_photos_rate</key>
-      <applyto>/apps/gphotoframe/plugins/flickr/latest_photos_rate</applyto>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/latest_photos_min_rate</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/latest_photos_min_rate</applyto>
       <owner>gphotoframe</owner>
       <type>int</type>
-      <default>0</default>
+      <default>10</default>
       <locale name="C">
-        <short>Rate of latest photos</short>
-        <long>The Flickr plugin gets photos from latest to oldest via API with a page number.  This value specifies the percentage of showing photos of 1st page (latest photos)</long>
+        <short>Minimum rate of latest photos</short>
+        <long>The Flickr plugin gets photos from latest to oldest via API with a page number.  This value specifies the minimum percentage of showing photos of 1st page (latest photos)</long>
       </locale>
     </schema>
 
