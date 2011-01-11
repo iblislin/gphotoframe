@@ -47,7 +47,7 @@ class FlickrAPI(object):
         api_key = '343677ff5aa31f37042513d533293062'
 
         values = { 'api_key' : API_KEY,
-                   'count'   : 50,
+                   'per_page': 100,
                    'method'  : self.method,
                    'format'  : 'json',
                    'extras'  : ('description,date_taken,owner_name,'
@@ -135,12 +135,19 @@ class FlickrContactsAPI(FlickrAPI):
     def is_use_own_id(self):
         return True
 
+    def _url_argument(self, argument, values):
+        values['count'] = 50
+        del values['per_page']
+        return values
+
 class FlickrContactsAuthAPI(FlickrContactsAPI):
 
     def _set_method(self):
         self.method = 'flickr.photos.getContactsPhotos'
 
     def _url_argument(self, argument, values):
+        values = super(
+            FlickrContactsAuthAPI, self)._url_argument(argument, values)
         return self._add_auth_argument(values)
 
 class FlickrFactoryFavoritesAPI(FlickrAuthFactory):
