@@ -36,25 +36,33 @@ class FlickrPhotoList(base.PhotoList):
         super(FlickrPhotoList, self).__init__(
             target, argument, weight, options, photolist)
         self.page_list = FlickrAPIPages(options)
-        self.page = 1
+        self.page = 1 # obsolete
         self.photos_other_page = []
         self.argument_group_name = None
   
     def _random_choice(self):
         only_latest = self.options.get('only_latest_roll')
 
-        if only_latest:
-            other_page = False
+        if only_latest or not self.page_list.pages:
+            first_page = True
         else:
-            key = 'plugins/flickr/latest_photos_rate'
-            threshold = self.conf.get_int(key, 0) / 100.0
-            other_page = self.photos_other_page and random.random() > threshold
+            threshold = self._get_threshold()
+            rate = random.random()
+            first_page = not self.photos_other_page or rate < threshold
 
-        print "only_latest: %s, other_page: %s" %  (only_latest, other_page)
+        print "pages: %s (%s)" % (self.page_list.pages, self.page_list.perpage),
+        print "only_latest: %s, first_page: %s" %  (only_latest, first_page)
 
-        target_list = self.photos_other_page if other_page else self.photos
-        photo = random.choice(target_list)
-        return photo
+        target_list = self.photos if first_page else self.photos_other_page 
+        return random.choice(target_list)
+
+    def _get_threshold(self):
+        min = self.conf.get_int('plugins/flickr/latest_photos_min_rate', 10)
+        original = 100.0 / self.page_list.pages
+        threshold = original if original > min else min
+        print threshold, min, original
+
+        return threshold / 100.0
 
     def prepare(self):
         factory = FlickrFactoryAPI()
@@ -87,7 +95,7 @@ class FlickrPhotoList(base.PhotoList):
 
     def _get_url_for(self, argument):
         page = self.page_list.get_page()
-        self.page = page
+        self.page = page # obsolete
 
         # print page, self.options
 
@@ -108,7 +116,10 @@ class FlickrPhotoList(base.PhotoList):
         self.total = len(d['photos']['photo'])
         self.page_list.update(d['photos'])
 
-        if self.page == 1:
+        if self.page != self.page_list.page:
+            print "oops! page num error."  # obsolete
+
+        if self.page_list.page == 1:
             update_photo_list = self.photos = []
         else:
             update_photo_list = self.photos_other_page = []
@@ -285,7 +296,7 @@ class FlickrAPIPages(object):
         return page
 
     def update(self, feed):
-        self.page = feed.get('page')
+        self.page = feed.get('page') or 1
         self.pages = feed.get('pages')
         self.perpage = feed.get('perpage')
 
