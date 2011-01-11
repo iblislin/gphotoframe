@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-05 17:47+0900\n"
-"PO-Revision-Date: 2011-01-05 17:46+0900\n"
+"POT-Creation-Date: 2011-01-11 13:08+0900\n"
+"PO-Revision-Date: 2011-01-11 12:43+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -274,14 +274,18 @@ msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
 
 #: ../share/gphotoframe.schemas.in.h:52
+msgid "Rate of latest photos"
+msgstr "最新の写真を表示する割合"
+
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:55
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
@@ -289,7 +293,7 @@ msgstr ""
 "Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
 "この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:56
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -297,55 +301,65 @@ msgstr ""
 "TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
 "レーム上にあるときのみアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "Show icons on screensaver"
 msgstr "スクリーンセーバー上でのアイコンの表示"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "Source icon position"
 msgstr "ソースアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:60
+#, fuzzy
+msgid ""
+"The Flickr plugin gets photos from latest to oldest via API with a page "
+"number. This value specifies the percentage of showing photos of 1st page "
+"(latest photos)"
+msgstr ""
+"Flickr プラグインは古い写真から新しい写真まで、API でページを指定して写真を取"
+"得します。この値で最初のページ (最新の写真) を表示する割合を指定します。"
+
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "The field sets the number of photo cache files."
 msgstr "画像ファイルのキャッシュ数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "The field sets the number of recent photo menu items."
 msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:63
 msgid "The number of photo cache files"
 msgstr "画像ファイルのキャッシュ数"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:64
 msgid "The number of recent photo menu items"
 msgstr "「最近表示した写真」メニューのアイテム数"
 
-#: ../share/gphotoframe.schemas.in.h:63
+#: ../share/gphotoframe.schemas.in.h:65
 msgid "Trash icon position"
 msgstr "ゴミ箱アイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:66
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:65
+#: ../share/gphotoframe.schemas.in.h:67
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:66
+#: ../share/gphotoframe.schemas.in.h:68
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:67
+#: ../share/gphotoframe.schemas.in.h:69
 msgid "Whether to show filename suffix"
 msgstr "ファイル名のサフィックスの表示"
 
-#: ../share/gphotoframe.schemas.in.h:68
+#: ../share/gphotoframe.schemas.in.h:70
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -733,29 +747,29 @@ msgstr "Photo Search"
 msgid "The Commons"
 msgstr "The Commons"
 
-#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:184
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:203
 msgid "Your Groups"
 msgstr "Your Groups"
 
-#: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:178
-#: ../lib/plugins/tumblr.py:120
+#: ../lib/plugins/flickr/api.py:69 ../lib/plugins/flickr/api.py:187
+#: ../lib/plugins/flickr/api.py:261 ../lib/plugins/picasa.py:178
+#: ../lib/plugins/tumblr.py:126
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
-#: ../lib/plugins/flickr/api.py:71
+#: ../lib/plugins/flickr/api.py:73
 msgid "Enter NSID or User Name in the URL"
 msgstr "URL に含まれるユーザ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:201
+#: ../lib/plugins/flickr/api.py:203
 msgid "_Group:"
 msgstr "グループ(_G):"
 
-#: ../lib/plugins/flickr/api.py:205
+#: ../lib/plugins/flickr/api.py:207
 msgid "Enter NSID or Group Name in the URL"
 msgstr "URL に含まれるグループ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:295
+#: ../lib/plugins/flickr/api.py:297
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
@@ -796,24 +810,24 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/flickr/__init__.py:29 ../lib/plugins/picasa.py:29
+#: ../lib/plugins/flickr/__init__.py:28 ../lib/plugins/picasa.py:29
 msgid "Photo Share Service"
 msgstr "写真共有サービス"
 
-#: ../lib/plugins/flickr/__init__.py:48
+#: ../lib/plugins/flickr/__init__.py:63
 #, python-format
 msgid "Flickr: %s is invalid target."
 msgstr "Flickr: %s は不正なターゲットです。"
 
-#: ../lib/plugins/flickr/__init__.py:58
+#: ../lib/plugins/flickr/__init__.py:73
 msgid "Flickr: invalid nsid API url."
 msgstr "Flickr: 不正な NSID API URL です。"
 
-#: ../lib/plugins/flickr/__init__.py:68
+#: ../lib/plugins/flickr/__init__.py:83
 msgid "flickr: can not find, "
 msgstr "Flickr: 以下が見つかりません。"
 
-#: ../lib/plugins/flickr/__init__.py:90
+#: ../lib/plugins/flickr/__init__.py:105
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr "Flickr API エラー (%s): %s"
@@ -856,7 +870,7 @@ msgstr "Share Anything"
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
-#: ../lib/plugins/tumblr.py:143
+#: ../lib/plugins/tumblr.py:149
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 

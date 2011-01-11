@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-05 17:47+0900\n"
+"POT-Creation-Date: 2011-01-11 13:08+0900\n"
 "PO-Revision-Date: 2010-05-27 19:43+0900\n"
 "Last-Translator: Robert Readman <Robert_Readman@Hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,20 +270,24 @@ msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS reload interval minutes. It should be greater than 10 minutes."
 
 #: ../share/gphotoframe.schemas.in.h:52
+msgid "Rate of latest photos"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Recent opend preferences page number"
 msgstr "Recent opend preferences page number"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "Recent selected photo source"
 msgstr "Recent selected photo source"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:55
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:56
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -291,56 +295,63 @@ msgstr ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "Show icons on screensaver"
 msgstr "Show icons on screensaver"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "Source icon position"
 msgstr "Source icon position"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "Standard deviation of RSS feed random weights"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:59
-msgid "The field sets the number of photo cache files."
-msgstr ""
-
 #: ../share/gphotoframe.schemas.in.h:60
-msgid "The field sets the number of recent photo menu items."
+msgid ""
+"The Flickr plugin gets photos from latest to oldest via API with a page "
+"number. This value specifies the percentage of showing photos of 1st page "
+"(latest photos)"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:61
-msgid "The number of photo cache files"
+msgid "The field sets the number of photo cache files."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:62
-msgid "The number of recent photo menu items"
+msgid "The field sets the number of recent photo menu items."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:63
+msgid "The number of photo cache files"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:64
+msgid "The number of recent photo menu items"
+msgstr ""
+
+#: ../share/gphotoframe.schemas.in.h:65
 #, fuzzy
 msgid "Trash icon position"
 msgstr "Fav icon position"
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:66
 msgid "User ID"
 msgstr "User ID"
 
-#: ../share/gphotoframe.schemas.in.h:65
+#: ../share/gphotoframe.schemas.in.h:67
 msgid "User full name"
 msgstr "User full name"
 
-#: ../share/gphotoframe.schemas.in.h:66
+#: ../share/gphotoframe.schemas.in.h:68
 msgid "User name"
 msgstr "User name"
 
-#: ../share/gphotoframe.schemas.in.h:67
+#: ../share/gphotoframe.schemas.in.h:69
 msgid "Whether to show filename suffix"
 msgstr ""
 
-#: ../share/gphotoframe.schemas.in.h:68
+#: ../share/gphotoframe.schemas.in.h:70
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -732,29 +743,29 @@ msgstr "Photo Source"
 msgid "The Commons"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:184
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:203
 msgid "Your Groups"
 msgstr ""
 
-#: ../lib/plugins/flickr/api.py:67 ../lib/plugins/flickr/api.py:185
-#: ../lib/plugins/flickr/api.py:259 ../lib/plugins/picasa.py:178
-#: ../lib/plugins/tumblr.py:120
+#: ../lib/plugins/flickr/api.py:69 ../lib/plugins/flickr/api.py:187
+#: ../lib/plugins/flickr/api.py:261 ../lib/plugins/picasa.py:178
+#: ../lib/plugins/tumblr.py:126
 msgid "_User:"
 msgstr "_User:"
 
-#: ../lib/plugins/flickr/api.py:71
+#: ../lib/plugins/flickr/api.py:73
 msgid "Enter NSID or User Name in the URL"
 msgstr "Enter NSID or User Name in the URL"
 
-#: ../lib/plugins/flickr/api.py:201
+#: ../lib/plugins/flickr/api.py:203
 msgid "_Group:"
 msgstr "_Group:"
 
-#: ../lib/plugins/flickr/api.py:205
+#: ../lib/plugins/flickr/api.py:207
 msgid "Enter NSID or Group Name in the URL"
 msgstr "Enter NSID or Group Name in the URL"
 
-#: ../lib/plugins/flickr/api.py:295
+#: ../lib/plugins/flickr/api.py:297
 msgid "_Tags:"
 msgstr "_Tags:"
 
@@ -796,25 +807,25 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "_Complete Authorisation"
 
-#: ../lib/plugins/flickr/__init__.py:29 ../lib/plugins/picasa.py:29
+#: ../lib/plugins/flickr/__init__.py:28 ../lib/plugins/picasa.py:29
 #, fuzzy
 msgid "Photo Share Service"
 msgstr "Photo Source"
 
-#: ../lib/plugins/flickr/__init__.py:48
+#: ../lib/plugins/flickr/__init__.py:63
 #, python-format
 msgid "Flickr: %s is invalid target."
 msgstr ""
 
-#: ../lib/plugins/flickr/__init__.py:58
+#: ../lib/plugins/flickr/__init__.py:73
 msgid "Flickr: invalid nsid API url."
 msgstr ""
 
-#: ../lib/plugins/flickr/__init__.py:68
+#: ../lib/plugins/flickr/__init__.py:83
 msgid "flickr: can not find, "
 msgstr ""
 
-#: ../lib/plugins/flickr/__init__.py:90
+#: ../lib/plugins/flickr/__init__.py:105
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr ""
@@ -857,7 +868,7 @@ msgstr ""
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr ""
 
-#: ../lib/plugins/tumblr.py:143
+#: ../lib/plugins/tumblr.py:149
 msgid "_E-mail:"
 msgstr "_E-mail:"
 
