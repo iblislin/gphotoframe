@@ -309,7 +309,7 @@
       <default>0</default>
       <locale name="C">
         <short>Rate of latest photos</short>
-        <long>The Flickr plugin gets photos via API with an argument of random page number from latest to oldest.  This value specifies the percentage of reading 1st page (latest photos) in all pages.</long>
+        <long>The Flickr plugin gets photos from latest to oldest via API with a page number.  This value specifies the percentage of showing photos of 1st page (latest photos)</long>
       </locale>
     </schema>
 

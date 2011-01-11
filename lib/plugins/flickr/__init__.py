@@ -36,11 +36,27 @@ class FlickrPhotoList(base.PhotoList):
         super(FlickrPhotoList, self).__init__(
             target, argument, weight, options, photolist)
         self.page_list = FlickrAPIPages(options)
+        self.page = 1
+        self.photos_other_page = []
         self.argument_group_name = None
+  
+    def _random_choice(self):
+        only_latest = self.options.get('only_latest_roll')
+
+        if only_latest:
+            other_page = False
+        else:
+            key = 'plugins/flickr/latest_photos_rate'
+            threshold = self.conf.get_int(key, 0) / 100.0
+            other_page = self.photos_other_page and random.random() > threshold
+
+        print "only_latest: %s, other_page: %s" %  (only_latest, other_page)
+
+        target_list = self.photos_other_page if other_page else self.photos
+        photo = random.choice(target_list)
+        return photo
 
     def prepare(self):
-        self.photos = []
-
         factory = FlickrFactoryAPI()
         api_list = factory.api
         if not self.target in api_list:
@@ -71,6 +87,7 @@ class FlickrPhotoList(base.PhotoList):
 
     def _get_url_for(self, argument):
         page = self.page_list.get_page()
+        self.page = page
 
         # print page, self.options
 
@@ -90,6 +107,11 @@ class FlickrPhotoList(base.PhotoList):
 
         self.total = len(d['photos']['photo'])
         self.page_list.update(d['photos'])
+
+        if self.page == 1:
+            update_photo_list = self.photos = []
+        else:
+            update_photo_list = self.photos_other_page = []
 
         for s in d['photos']['photo']:
             if s['media'] == 'video' or s['server'] is None: continue
@@ -134,7 +156,7 @@ class FlickrPhotoList(base.PhotoList):
                         data['size_o'] = [w, h]
 
             photo = FlickrPhoto(data)
-            self.photos.append(photo)
+            update_photo_list.append(photo)
 
 class PhotoSourceFlickrUI(ui.PhotoSourceUI):
 
@@ -248,12 +270,10 @@ class FlickrAPIPages(object):
 
     def __init__(self, options):
         self.page_list = []
-        self.conf = GConf()
         self.only_latest = options.get('only_latest_roll')
 
     def get_page(self):
-        key = 'plugins/flickr/latest_photos_rate'
-        threshold = self.conf.get_int(key, 0) / 100.0
+        threshold = 0.2
         random_rate = random.random()
 
         if self.only_latest or not self.page_list or threshold > random_rate:
