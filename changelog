@@ -1,3 +1,7 @@
+2011-01-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* flickr/__init__.py: Improved code for rate of latest photos.
+
 2011-01-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/tumblr.py: Added support for large images.
