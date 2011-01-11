@@ -136,7 +136,7 @@ class FlickrContactsAPI(FlickrAPI):
         return True
 
     def _url_argument(self, argument, values):
-        values['count'] = 50
+        values.update({'user_id': argument, 'count': 50})
         del values['per_page']
         return values
 
@@ -149,6 +149,10 @@ class FlickrContactsAuthAPI(FlickrContactsAPI):
         values = super(
             FlickrContactsAuthAPI, self)._url_argument(argument, values)
         return self._add_auth_argument(values)
+
+    def get_page_url(self, owner, id, nsid):
+        url = "http://www.flickr.com/photos/%s/%s/in/contacts/" 
+        return url % (owner, id)
 
 class FlickrFactoryFavoritesAPI(FlickrAuthFactory):
 
@@ -163,6 +167,10 @@ class FlickrFavoritesAPI(FlickrAPI):
 
     def is_use_own_id(self):
         return True
+
+    def get_page_url(self, owner, id, nsid):
+        url = "http://www.flickr.com/photos/%s/%s/in/faves-%s/"
+        return url % (owner, id, nsid)
 
 class FlickrFavoritesAuthAPI(FlickrFavoritesAPI):
 
