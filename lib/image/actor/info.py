@@ -3,7 +3,7 @@ import gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
-from ...utils.geocoding import GeoCoderFactory
+from ..geocoding import GeoCoderFactory
 from source import ActorSourceIcon
 
 

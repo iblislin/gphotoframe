@@ -2,7 +2,7 @@ import urllib
 import json
 import pprint
 
-from urlgetautoproxy import UrlGetWithAutoProxy
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 
 class GeoCoderFactory(object):

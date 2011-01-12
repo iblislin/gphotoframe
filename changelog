@@ -1,3 +1,7 @@
+2011-01-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/geocoding.py: Added support for reverse geocoding on tooltip.
+
 2011-01-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* flickr/api.py: Fixed count & per_page options.
