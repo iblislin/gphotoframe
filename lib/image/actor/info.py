@@ -3,7 +3,7 @@ import gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
-from ...utils.geocoding import GeoCoding
+from ...utils.geocoding import GeoCoderFactory
 from source import ActorSourceIcon
 
 
@@ -47,9 +47,8 @@ class ActorGeoIcon(ActorSourceIcon):
         if location:
             tooltip.update_text(location)
         else:
-            geo = GeoCoding()
-            d = geo.get(self.photo)
-            d.addCallback(self._enter_cb, None, tooltip)
+            geo = GeoCoderFactory().create(self._enter_cb, tooltip)
+            geo.get(self.photo)
             tooltip.update_text(_("Loading..."))
 
 class ActorInfoIcon(ActorGeoIcon):
