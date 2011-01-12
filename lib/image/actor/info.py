@@ -3,7 +3,9 @@ import gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
+from ...utils.geocoding import GeoCoding
 from source import ActorSourceIcon
+
 
 class ActorGeoIcon(ActorSourceIcon):
 
@@ -41,8 +43,14 @@ class ActorGeoIcon(ActorSourceIcon):
         gtk.show_uri(None, url, event.time)
 
     def _enter_cb(self, w, e, tooltip):
-        tip = _("Open the map")
-        tooltip.update_text(tip)
+        location = self.photo.get('location')
+        if location:
+            tooltip.update_text(location)
+        else:
+            geo = GeoCoding()
+            d = geo.get(self.photo)
+            d.addCallback(self._enter_cb, None, tooltip)
+            tooltip.update_text(_("Loading..."))
 
 class ActorInfoIcon(ActorGeoIcon):
 
