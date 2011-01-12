@@ -36,7 +36,6 @@ class FlickrPhotoList(base.PhotoList):
         super(FlickrPhotoList, self).__init__(
             target, argument, weight, options, photolist)
         self.page_list = FlickrAPIPages(options)
-        self.page = 1 # obsolete
         self.photos_other_page = []
         self.argument_group_name = None
   
@@ -50,9 +49,6 @@ class FlickrPhotoList(base.PhotoList):
             rate = random.random()
             first_page = not self.photos_other_page or rate < threshold
 
-        print "pages: %s (%s)" % (self.page_list.pages, self.page_list.perpage),
-        print "only_latest: %s, first_page: %s" %  (only_latest, first_page)
-
         target_list = self.photos if first_page else self.photos_other_page 
         return random.choice(target_list)
 
@@ -60,7 +56,6 @@ class FlickrPhotoList(base.PhotoList):
         min = self.conf.get_int('plugins/flickr/latest_photos_min_rate', 10)
         original = 100.0 / self.page_list.pages
         threshold = original if original > min else min
-        print threshold, min, original
 
         return threshold / 100.0
 
@@ -95,10 +90,6 @@ class FlickrPhotoList(base.PhotoList):
 
     def _get_url_for(self, argument):
         page = self.page_list.get_page()
-        self.page = page # obsolete
-
-        # print page, self.options
-
         url = self.api.get_url(argument, page)
         if not url: return
 
@@ -115,9 +106,6 @@ class FlickrPhotoList(base.PhotoList):
 
         self.total = len(d['photos']['photo'])
         self.page_list.update(d['photos'])
-
-        if self.page != self.page_list.page:
-            print "oops! page num error."  # obsolete
 
         if self.page_list.page == 1:
             update_photo_list = self.photos = []
