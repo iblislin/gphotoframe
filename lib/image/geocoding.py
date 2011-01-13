@@ -28,7 +28,7 @@ class GeoCoderBase(object):
         self.lat = None
 
     def get(self, photo):
-        if self.lat == photo['geo']['lat']:
+        if not photo.get('geo') or self.lat == photo['geo']['lat']:
             return
 
         self.lat = photo['geo']['lat']
