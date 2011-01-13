@@ -49,7 +49,7 @@ class GeoCoderBase(object):
        
         location = self.get_location(obj)
         print location
-        photo['location'] = location or "Open the map"
+        photo['location'] = location
         self.cb(None, None, self.tooltip)
 
     def _urlget(self, cb, photo):
@@ -80,7 +80,7 @@ class FindsjpGeonamesGeoCoder(GeoCoderBase):
             self.geocoding = GeoNamesGeoCoder() # 2nd geocoder
             self._urlget(self._parse_geocoding, photo) # recursive call
         else:
-            photo['location'] = "Open the map"
+            photo['location'] = None
 
 class GeoNamesGeoCoder(GeoCoderBase):
     """
@@ -98,7 +98,7 @@ class GeoNamesGeoCoder(GeoCoderBase):
     def get_location(self, obj):
         geonames = obj.get('geonames')
         if not geonames: 
-            return ""
+            return None
 
         entry = geonames[0]
         name = entry.get('name')
@@ -129,7 +129,7 @@ class FindsJPGeoCoder(GeoCoderBase):
     def get_location(self, obj):
         entry = obj.get('result')
         if not entry:
-            return ""
+            return None
 
         section = entry['local'][0]['section'] if entry.get('local') else ""
         mname = entry['municipality']['mname']
@@ -154,7 +154,7 @@ class GoogleGeoCoder(GeoCoderBase):
         return url
 
     def get_location(self, obj):
-        location = ""
+        location = None
         for entry in obj['results']:
             location = entry['formatted_address']
             if 'political' in entry['types']:
