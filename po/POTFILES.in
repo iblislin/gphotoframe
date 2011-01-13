@@ -19,6 +19,7 @@ lib/plugins/__init__.py
 lib/plugins/flickr/api.py
 lib/plugins/flickr/authdialog.py
 lib/plugins/flickr/__init__.py
+lib/plugins/flickr/ui.py
 lib/plugins/fspot/__init__.py
 lib/plugins/picasa.py
 lib/plugins/tumblr.py
