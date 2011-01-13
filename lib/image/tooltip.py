@@ -45,7 +45,7 @@ class ToolTip(object):
             owner = photo.get('owner_name')
             target = photo.get('target')
             date = photo.get('date_taken')
-            location = photo.get('location')
+            location = photo.get_location(short=True)
 
             if title:
                 tip += "<big>%s</big>\n" % escape(title)
@@ -57,9 +57,6 @@ class ToolTip(object):
                 text = '/'.join(target) if target[1] else target[0]
                 tip += "%s\n" % escape(text)
             if location and self.conf.get_bool('location_on_toolip', False):
-                location_names = location.split(", ")
-                if len(location_names) > 1:
-                    location = ", ".join(location_names[1:])
                 tip += "%s\n" % escape(location)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)
