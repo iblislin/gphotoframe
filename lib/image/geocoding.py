@@ -48,7 +48,6 @@ class GeoCoderBase(object):
         # pp.pprint(obj)
        
         location = self.get_location(obj)
-        print location
         photo['location'] = location
         self.cb(None, None, self.tooltip)
 
@@ -73,7 +72,6 @@ class FindsjpGeonamesGeoCoder(GeoCoderBase):
         location = self.geocoding.get_location(obj)
 
         if location:
-            print location
             photo['location'] = location
             self.cb(None, None, self.tooltip)
         elif not isinstance(self.geocoding, GeoNamesGeoCoder):
