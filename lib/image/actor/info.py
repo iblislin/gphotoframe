@@ -47,8 +47,8 @@ class ActorGeoIcon(ActorSourceIcon):
         gtk.show_uri(None, url, event.time)
 
     def _enter_cb(self, w, e, tooltip):
-        location = self.photo.get('location')
-        if location:
+        if 'location' in self.photo:
+            location = self.photo.get('location') or _("Open the map")
             tooltip.update_text(location)
         else:
             self.geo.get(self.photo)
