@@ -7,7 +7,7 @@ import constants
 from image import *
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
-from utils.gnomescreensaver import GsThemeWindow
+from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
 
 GConf().set_bool('fullscreen', False)
 
@@ -18,7 +18,7 @@ class PhotoFrameFactory(object):
 
     def create(self, photolist):
 
-        if GsThemeWindow().get_anid():
+        if is_screensaver_mode():
             photoframe = PhotoFrameScreenSaver()
         else:
             photoframe = PhotoFrame(photolist)
