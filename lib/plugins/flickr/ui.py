@@ -1,6 +1,9 @@
+from gettext import gettext as _
+
 from ...utils.config import GConf
 from ..base.ui import PhotoSourceUI, PhotoSourceOptionsUI
 from api import FlickrFactoryAPI
+
 
 class PhotoSourceFlickrUI(PhotoSourceUI):
 
