@@ -1,5 +1,6 @@
 import urllib
 import json
+import locale
 import pprint
 
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
@@ -8,17 +9,28 @@ from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 class GeoCoderFactory(object):
 
     def create(self, cb, tooltip):
-        obj = FindsjpGeonamesGeoCoder(cb, tooltip)
-        #obj = GoogleGeoCoder(cb, tooltip)
-        return obj
+        language = locale.getdefaultlocale()[0]
+
+        if language == 'ja_JP':
+            cls = FindsjpGeonamesGeoCoder
+            # cls = GoogleGeoCoder
+        else:
+            cls = GeoNamesGeoCoder
+
+        obj = cls(cb, tooltip)
+        return obj 
 
 class GeoCoderBase(object):
 
     def __init__(self, cb=None, tooltip=None):
         self.cb = cb
         self.tooltip = tooltip
+        self.lat = None
 
     def get(self, photo):
+        if self.lat == photo['geo']['lat']:
+            return
+
         self.lat = photo['geo']['lat']
         self.lon = photo['geo']['lon']
 
@@ -42,6 +54,7 @@ class GeoCoderBase(object):
 
     def _urlget(self, cb, photo):
         url = self.geocoding.get_url(self.lat, self.lon)
+        self.old_url = url
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(cb, photo)
@@ -53,7 +66,7 @@ class FindsjpGeonamesGeoCoder(GeoCoderBase):
     """
 
     def _get_geocoding_obj(self):
-        return FindsJPGeoCoder()
+        return FindsJPGeoCoder() # 1st geocoder
 
     def _parse_geocoding(self, data, photo):
         obj = json.loads(data)
@@ -64,7 +77,7 @@ class FindsjpGeonamesGeoCoder(GeoCoderBase):
             photo['location'] = location
             self.cb(None, None, self.tooltip)
         elif not isinstance(self.geocoding, GeoNamesGeoCoder):
-            self.geocoding = GeoNamesGeoCoder()
+            self.geocoding = GeoNamesGeoCoder() # 2nd geocoder
             self._urlget(self._parse_geocoding, photo) # recursive call
         else:
             photo['location'] = "Open the map"
@@ -83,9 +96,21 @@ class GeoNamesGeoCoder(GeoCoderBase):
         return url
 
     def get_location(self, obj):
-        entry = obj['geonames'][0]
-        location = "%s, %s, %s" % (
-            entry['name'], entry['adminName1'], entry['countryName'])
+        geonames = obj.get('geonames')
+        if not geonames: 
+            return ""
+
+        entry = geonames[0]
+        name = entry.get('name')
+        mname = entry.get('adminName1')
+
+        location = ""
+        if name:
+            location += name + ", "
+        if mname:
+            location += mname + ", "
+        location += entry['countryName']
+
         return location
 
 class FindsJPGeoCoder(GeoCoderBase):
