@@ -102,17 +102,10 @@ class GeoNamesGeoCoder(GeoCoderBase):
             return None
 
         entry = geonames[0]
-        name = entry.get('name')
-        mname = entry.get('adminName1')
-
-        location = ""
-        if name:
-            location += name + ", "
-        if mname:
-            location += mname + ", "
-        location += entry['countryName']
-
-        return location
+        loc_list = [entry.get('name'), 
+                    entry.get('adminName1'), 
+                    entry.get('countryName')]
+        return loc_list
 
 class FindsJPGeoCoder(GeoCoderBase):
     """
@@ -137,7 +130,7 @@ class FindsJPGeoCoder(GeoCoderBase):
         pname = entry['prefecture']['pname']
 
         location = "%s%s%s" % (pname, mname, section)
-        return location.replace(' ', '')
+        return [location.replace(' ', '')]
 
 class GoogleGeoCoder(GeoCoderBase):
     """
@@ -161,4 +154,4 @@ class GoogleGeoCoder(GeoCoderBase):
             if 'political' in entry['types']:
                 break
 
-        return location
+        return [location]

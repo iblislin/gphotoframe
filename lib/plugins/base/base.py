@@ -123,6 +123,18 @@ class Photo(dict):
         return (self.get('geo') and
                 self['geo']['lat'] != 0 and self['geo']['lon'] != 0)
 
+    def get_location(self, short=False):
+        locations = self.get('location')
+        if not locations:
+            result = None
+        elif len(locations) > 1:
+            start = 1 if len(locations) > 2 and short else 0
+            result = ", ".join([x for x in locations[start:] if x])
+        else:
+            result = locations[0]
+
+        return result
+
     def get_exif(self):
         tags = ParseEXIF(self['filename'])
 
