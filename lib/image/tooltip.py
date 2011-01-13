@@ -3,12 +3,14 @@ from xml.sax.saxutils import escape
 
 from gettext import gettext as _
 from ..utils.datetimeformat import get_formatted_datatime
+from ..utils.config import GConf
 
 
 class ToolTip(object):
 
     def __init__(self, widget):
         self.widget = widget
+        self.conf = GConf()
         self.icon = False
         self.photo = None
 
@@ -54,7 +56,10 @@ class ToolTip(object):
                 target = [x.rstrip(' ').lstrip(' ') for x in target]
                 text = '/'.join(target) if target[1] else target[0]
                 tip += "%s\n" % escape(text)
-            if location and 0:
+            if location and self.conf.get_bool('location_on_toolip', False):
+                location_names = location.split(", ")
+                if len(location_names) > 1:
+                    location = ", ".join(location_names[1:])
                 tip += "%s\n" % escape(location)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)

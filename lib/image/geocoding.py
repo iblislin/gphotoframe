@@ -98,6 +98,7 @@ class GeoNamesGeoCoder(GeoCoderBase):
     def get_location(self, obj):
         geonames = obj.get('geonames')
         if not geonames: 
+            print obj
             return None
 
         entry = geonames[0]
