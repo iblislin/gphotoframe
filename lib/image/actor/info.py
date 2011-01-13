@@ -9,6 +9,10 @@ from source import ActorSourceIcon
 
 class ActorGeoIcon(ActorSourceIcon):
 
+    def __init__(self, stage, tooltip):
+        super(ActorGeoIcon, self).__init__(stage, tooltip)
+        self.geo = GeoCoderFactory().create(self._enter_cb, tooltip)
+
     def show(self, force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
 
@@ -47,15 +51,14 @@ class ActorGeoIcon(ActorSourceIcon):
         if location:
             tooltip.update_text(location)
         else:
-            geo = GeoCoderFactory().create(self._enter_cb, tooltip)
-            geo.get(self.photo)
+            self.geo.get(self.photo)
             tooltip.update_text(_("Loading..."))
 
 class ActorInfoIcon(ActorGeoIcon):
 
     def set_icon(self, photoimage, x_offset, y_offset):
         photo = photoimage.photo
-        self.icon_offset = 20 if self._check_other_icon(photo) else 0
+        self.icon_offset = 22 if self._check_other_icon(photo) else 0
         if self.position == 0 or self.position == 3:
             self.icon_offset *= -1
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
