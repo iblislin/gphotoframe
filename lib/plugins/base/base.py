@@ -95,7 +95,7 @@ class Photo(dict):
         self.conf = GConf()
 
     def get_title(self):
-        with_suffix = self.conf.get_bool('show_filename_suffix', True)
+        with_suffix = self.conf.get_bool('format/show_filename_suffix', True)
         title = self['title'] or ''
 
         if not with_suffix:

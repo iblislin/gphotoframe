@@ -146,8 +146,8 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/date_format</key>
-      <applyto>/apps/gphotoframe/date_format</applyto>
+      <key>/schemas/apps/gphotoframe/format/date_format</key>
+      <applyto>/apps/gphotoframe/format/date_format</applyto>
       <owner>gphotoframe</owner>
       <type>string</type>
       <default>%x</default>
@@ -158,8 +158,8 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/show_filename_suffix</key>
-      <applyto>/apps/gphotoframe/show_filename_suffix</applyto>
+      <key>/schemas/apps/gphotoframe/format/show_filename_suffix</key>
+      <applyto>/apps/gphotoframe/format/show_filename_suffix</applyto>
       <owner>gphotoframe</owner>
       <type>bool</type>
       <default>true</default>

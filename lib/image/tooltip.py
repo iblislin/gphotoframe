@@ -56,7 +56,7 @@ class ToolTip(object):
                 target = [x.rstrip(' ').lstrip(' ') for x in target]
                 text = '/'.join(target) if target[1] else target[0]
                 tip += "%s\n" % escape(text)
-            if location and self.conf.get_bool('location_on_toolip', False):
+            if location and self.conf.get_bool('format/location_on_toolip'):
                 tip += "%s\n" % escape(location)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)
