@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-11 13:08+0900\n"
-"PO-Revision-Date: 2011-01-11 12:43+0900\n"
+"POT-Creation-Date: 2011-01-13 20:29+0900\n"
+"PO-Revision-Date: 2011-01-13 20:29+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -222,60 +222,60 @@ msgstr ""
 "は無効になります。"
 
 #: ../share/gphotoframe.schemas.in.h:39
+msgid "Minimum rate of latest photos"
+msgstr "最新の写真を表示する最小の割合"
+
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "Photo image max height"
 msgstr "写真の最大表示高"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "RSS reload interval minutes"
 msgstr "RSS を再読込する間隔 (分)"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
-
-#: ../share/gphotoframe.schemas.in.h:52
-msgid "Rate of latest photos"
-msgstr "最新の写真を表示する割合"
 
 #: ../share/gphotoframe.schemas.in.h:53
 msgid "Recent opend preferences page number"
@@ -314,14 +314,14 @@ msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
 #: ../share/gphotoframe.schemas.in.h:60
-#, fuzzy
 msgid ""
 "The Flickr plugin gets photos from latest to oldest via API with a page "
-"number. This value specifies the percentage of showing photos of 1st page "
-"(latest photos)"
+"number. This value specifies the minimum percentage of showing photos of 1st "
+"page (latest photos)"
 msgstr ""
 "Flickr プラグインは古い写真から新しい写真まで、API でページを指定して写真を取"
-"得します。この値で最初のページ (最新の写真) を表示する割合を指定します。"
+"得します。この値で最初のページ (最新の写真) を表示するパーセンテージを指定し"
+"ます。"
 
 #: ../share/gphotoframe.schemas.in.h:61
 msgid "The field sets the number of photo cache files."
@@ -540,7 +540,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:105 ../lib/history/html.py:89 ../lib/image/actor/info.py:31
+#: ../lib/menu.py:105 ../lib/history/html.py:89 ../lib/image/actor/info.py:37
 msgid "Untitled"
 msgstr "無題"
 
@@ -561,7 +561,7 @@ msgid "Gnome Photo Frame History"
 msgstr "GNOME 写真フレームの履歴"
 
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/history/html.py:92 ../lib/image/tooltip.py:52
+#: ../lib/history/html.py:92 ../lib/image/tooltip.py:54
 #, python-format
 msgid "by %s"
 msgstr "by %s"
@@ -604,11 +604,11 @@ msgstr "お気に入りから削除する"
 msgid "Rate this photo"
 msgstr "写真を評価付けする"
 
-#: ../lib/image/actor/info.py:44
+#: ../lib/image/actor/info.py:51
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/image/actor/info.py:80
+#: ../lib/image/actor/info.py:55 ../lib/image/actor/info.py:90
 msgid "Loading..."
 msgstr "ロード中..."
 
@@ -653,51 +653,51 @@ msgstr "ブラックリストに追加しますか?"
 msgid "This photo will be add to the black list."
 msgstr "この写真をブラックリストに追加し、今後表示しません。"
 
-#: ../lib/image/tooltip.py:81
+#: ../lib/image/tooltip.py:83
 msgid "Maker"
 msgstr "メーカー"
 
-#: ../lib/image/tooltip.py:82
+#: ../lib/image/tooltip.py:84
 msgid "Model"
 msgstr "モデル"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:85
 msgid "Date"
 msgstr "日時"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:86
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:86
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:87
 msgid "Exposure"
 msgstr "露光時間"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:87
 msgid "sec"
 msgstr "秒"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:88
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:89
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:90
 msgid "Exposure Bias"
 msgstr "露出補正"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:91
 msgid "Flash"
 msgstr "フラッシュ"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:92
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
@@ -747,12 +747,12 @@ msgstr "Photo Search"
 msgid "The Commons"
 msgstr "The Commons"
 
-#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/__init__.py:203
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/ui.py:50
 msgid "Your Groups"
 msgstr "Your Groups"
 
-#: ../lib/plugins/flickr/api.py:69 ../lib/plugins/flickr/api.py:187
-#: ../lib/plugins/flickr/api.py:261 ../lib/plugins/picasa.py:178
+#: ../lib/plugins/flickr/api.py:69 ../lib/plugins/flickr/api.py:202
+#: ../lib/plugins/flickr/api.py:276 ../lib/plugins/picasa.py:178
 #: ../lib/plugins/tumblr.py:126
 msgid "_User:"
 msgstr "ユーザ(_U):"
@@ -761,15 +761,15 @@ msgstr "ユーザ(_U):"
 msgid "Enter NSID or User Name in the URL"
 msgstr "URL に含まれるユーザ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:203
+#: ../lib/plugins/flickr/api.py:218
 msgid "_Group:"
 msgstr "グループ(_G):"
 
-#: ../lib/plugins/flickr/api.py:207
+#: ../lib/plugins/flickr/api.py:222
 msgid "Enter NSID or Group Name in the URL"
 msgstr "URL に含まれるグループ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:297
+#: ../lib/plugins/flickr/api.py:312
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
@@ -814,20 +814,20 @@ msgstr "認証を完了する(_C)"
 msgid "Photo Share Service"
 msgstr "写真共有サービス"
 
-#: ../lib/plugins/flickr/__init__.py:63
+#: ../lib/plugins/flickr/__init__.py:66
 #, python-format
 msgid "Flickr: %s is invalid target."
 msgstr "Flickr: %s は不正なターゲットです。"
 
-#: ../lib/plugins/flickr/__init__.py:73
+#: ../lib/plugins/flickr/__init__.py:76
 msgid "Flickr: invalid nsid API url."
 msgstr "Flickr: 不正な NSID API URL です。"
 
-#: ../lib/plugins/flickr/__init__.py:83
+#: ../lib/plugins/flickr/__init__.py:86
 msgid "flickr: can not find, "
 msgstr "Flickr: 以下が見つかりません。"
 
-#: ../lib/plugins/flickr/__init__.py:105
+#: ../lib/plugins/flickr/__init__.py:104
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr "Flickr API エラー (%s): %s"
