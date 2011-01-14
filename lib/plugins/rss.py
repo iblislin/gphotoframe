@@ -21,7 +21,6 @@ from gettext import gettext as _
 from base import *
 from ..utils.iconimage import LocalIconImage
 from ..utils.wrandom import WeightedRandom
-from ..utils.config import GConf
 
 def info():
     return [RSSPlugin, RSSPhotoList, PhotoSourceRSSUI]
@@ -97,7 +96,7 @@ class RSSPhotoList(base.PhotoList):
 
         self.raw_list = []
 
-        goal_std = GConf().get_int('plugins/rss/standard_deviation', -1)
+        goal_std = self.conf.get_int('plugins/rss/standard_deviation', -1)
         num_list = [len(self.photos[i]) for i in self.photos]
 
         try:
@@ -124,7 +123,8 @@ class RSSRate(object):
             std_score = goal_std * (total - mean) / std + 50
             self.weight = 1 if std_score < 1 else std_score
 
-        # print name, self.weight
+        # print "%s: %s, %s, %s" % (
+        #     name, total, self.weight, self.weight / total)
 
 class PhotoSourceRSSUI(ui.PhotoSourceUI):
 
