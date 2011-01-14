@@ -60,7 +60,7 @@ class PhotoImage(object):
         return width, height
 
     def _set_tips(self, photo):
-        self.tooltip.set(photo)
+        self.tooltip.update_photo(photo)
 
 class PhotoImageGtk(PhotoImage):
 
@@ -225,7 +225,7 @@ class PhotoImageFullScreen(PhotoImageGtk):
         return max_w, max_h
 
     def _set_tips(self, photo):
-        self.tooltip.update() # Erase Tooltip
+        self.tooltip.update_text() # Erase Tooltip
 
 class PhotoImageScreenSaver(PhotoImageFullScreen):
 
