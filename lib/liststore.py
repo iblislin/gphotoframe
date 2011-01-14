@@ -92,9 +92,8 @@ class PhotoListStore(gtk.ListStore):
         return state
 
     def _show_photo_cb(self, data, photo):
-        # check!! blacklist
-        if self.ban_db.is_banned(photo.get('url')):
-            print "ban!"
+        if self.ban_db.check_banned_for(photo.get('url')):
+            # print "ban!: %s" % photo.get('url')
             self._change_photo()
         elif self.photoframe.set_photo(photo):
             self.queue.append(photo)
@@ -185,6 +184,6 @@ class BlackList(object):
     def __init__(self):
         self.con = HistoryDB('ban')
 
-    def is_banned(self, url):
+    def check_banned_for(self, url):
         sql = "SELECT count(*) FROM ban WHERE url='%s';" % url
         return self.con.fetchone(sql)
