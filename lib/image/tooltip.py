@@ -15,28 +15,26 @@ class ToolTip(object):
         self.photo = None
 
     def query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
-        if not self.photo or not self.icon: return
+        if not self.photo or not self._has_icon: return
 
         icon = self.photo.get('icon')
         pixbuf = icon().get_pixbuf()
 
         tooltip.set_icon(pixbuf)
 
-    def update(self):
-        self.icon = False
-        self.widget.set_tooltip_markup("")
+    def _clear(self):
+        self._has_icon = False
+        self.widget.set_tooltip_markup(None)
         self.widget.trigger_tooltip_query()
 
     def update_text(self, text=None):
-        self.update()
+        self._clear()
         self.widget.set_tooltip_markup(text)
 
-    def update_photo(self, photo):
-        self.update()
-        self.set(photo)
+    def update_photo(self, photo=None):
+        self._clear()
+        self._has_icon = True
 
-    def set(self, photo=None):
-        self.icon = True
         self.photo = photo
         tip = ""
 
