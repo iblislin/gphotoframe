@@ -52,7 +52,7 @@ class ActorGeoIcon(ActorSourceIcon):
             tooltip.update_text(location)
         else:
             self.geo.get(self.photo)
-            tooltip.update_text(_("Loading..."))
+            tooltip.update_text(_("Querying..."))
 
 class ActorInfoIcon(ActorGeoIcon):
 
