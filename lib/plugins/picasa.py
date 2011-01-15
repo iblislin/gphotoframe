@@ -133,7 +133,7 @@ class PicasaPhotoList(base.PhotoList):
             if entry.get('gphoto$location'):
                 data['location'] = entry['gphoto$location']['$t']
 
-            photo = base.Photo(data)
+            photo = PicasaPhoto(data)
             self.photos.append(photo)
 
     def _get_feed_url(self, target, argument, option=None):
@@ -155,6 +155,13 @@ class PicasaPhotoList(base.PhotoList):
             url += '&max-results=%s' % max_result
 
         return url
+
+class PicasaPhoto(base.Photo):
+
+    def is_my_photo(self):
+        user_name = self.conf.get_string('plugins/picasa/user_id')
+        result = user_name and user_name == self['owner_name']
+        return result
 
 class PhotoSourcePicasaUI(ui.PhotoSourceUI):
 

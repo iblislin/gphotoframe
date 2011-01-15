@@ -39,7 +39,8 @@ class ActorGeoIcon(ActorSourceIcon):
             .replace("(", "[").replace(")", "]") \
             .replace("<", "").replace(">", "")
 
-        zoom = self.conf.get_int('ui/geo/zoom_level', 0)
+        zoom = 0 if self.photo.is_my_photo() else 6
+        #zoom = self.conf.get_int('ui/geo/zoom_level', 0)
         zoom = "&z=%s" % zoom if zoom else ""
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
