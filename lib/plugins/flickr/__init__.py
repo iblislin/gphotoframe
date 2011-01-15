@@ -139,8 +139,7 @@ class FlickrPhotoList(base.PhotoList):
                     # 'description' : s['description']['_content'],
                     'geo'        : {'lon' : s['longitude'],
                                     'lat' : s['latitude']},
-                    'trash'      : trash.Ban(self.photolist),
-                    'icon'       : FlickrIcon}
+                    'trash'      : trash.Ban(self.photolist)}
 
             if self.api.get_auth_token():
                 state = (self.target == 'Favorites' and not self.argument)

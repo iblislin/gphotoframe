@@ -99,8 +99,7 @@ class PicasaPhotoList(base.PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
-                    'trash'      : trash.Ban(self.photolist),
-                    'icon'       : PicasaIcon}
+                    'trash'      : trash.Ban(self.photolist)}
 
             # exif
             exif = {}

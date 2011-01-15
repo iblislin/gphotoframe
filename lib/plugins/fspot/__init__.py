@@ -78,8 +78,7 @@ class FSpotPhotoList(base.PhotoList):
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'version' : version,
-                 'trash' : FSpotTrash(self.photolist),
-                 'icon' : FSpotIcon }
+                 'trash' : FSpotTrash(self.photolist) }
 
         self.photo = base.Photo(data)
         cb(None, self.photo)

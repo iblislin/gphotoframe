@@ -65,8 +65,7 @@ class ShotwellPhotoList(FSpotPhotoList):
                  'title' : title or os.path.basename(filename), # without path
                  'id' : id,
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
-                 'trash': ShotwellTrash(self.photolist),
-                 'icon' : ShotwellIcon }
+                 'trash': ShotwellTrash(self.photolist) }
 
         self.photo = base.Photo(data)
         cb(None, self.photo)

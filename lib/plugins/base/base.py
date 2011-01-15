@@ -109,6 +109,10 @@ class Photo(dict):
         url = 'url_l' if self._is_fullscreen_mode() else 'url'
         return self.get(url) or self.get('url')
 
+    def get_icon(self):
+        icon = self.get('info')().icon # icon class
+        return icon()
+
     def open(self, *args):
         url = self['page_url'] if 'page_url' in self else self['url']
         url = url.replace("'", "%27")
