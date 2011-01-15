@@ -67,7 +67,7 @@ class ShotwellPhotoList(FSpotPhotoList):
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
                  'trash': ShotwellTrash(self.photolist) }
 
-        self.photo = base.Photo(data)
+        self.photo = base.MyPhoto(data)
         cb(None, self.photo)
 
 class ShotwellTrash(FSpotTrash):

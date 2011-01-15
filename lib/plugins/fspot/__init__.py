@@ -80,7 +80,7 @@ class FSpotPhotoList(base.PhotoList):
                  'version' : version,
                  'trash' : FSpotTrash(self.photolist) }
 
-        self.photo = base.Photo(data)
+        self.photo = base.MyPhoto(data)
         cb(None, self.photo)
 
     def _unquote(self, text):
