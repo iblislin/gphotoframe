@@ -1,9 +1,8 @@
 import os
 import sqlite3
 
-from xdg.BaseDirectory import xdg_cache_home
 from ..utils.sqldb import SqliteDB
-
+from ..constants import DATA_HOME
 
 class History(object):
 
@@ -69,7 +68,7 @@ class History(object):
 class HistoryDB(SqliteDB):
 
     def __init__(self, table):
-        db_file = os.path.join(xdg_cache_home, 'gphotoframe/history.db')
+        db_file = os.path.join(DATA_HOME, 'history.db')
         self.db = sqlite3.connect(db_file)
 
         sql = ("CREATE TABLE %s (id INTEGER, url TEXT, page_url TEXT, "

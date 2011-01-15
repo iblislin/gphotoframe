@@ -5,23 +5,19 @@ from os.path import join, abspath, dirname, isdir
 from gettext import gettext as _
 
 import gtk
-from xdg.BaseDirectory import xdg_config_home
 
 from base import *
 from ..utils.config import GConf
+from ..constants import PLUGIN_HOME
 
 token_base = []
 
 plugin_dir = abspath(join(dirname(__file__)))
-user_plugin_dir = os.path.join(xdg_config_home, 'gphotoframe/plugins')
-
-if not os.access(user_plugin_dir, os.F_OK):
-    os.makedirs(user_plugin_dir)
 
 if __name__ == 'gphotoframe.plugins':
-    sys.path.append(user_plugin_dir)
+    sys.path.append(PLUGIN_HOME)
 
-for item in os.listdir(plugin_dir) + os.listdir(user_plugin_dir):
+for item in os.listdir(plugin_dir) + os.listdir(PLUGIN_HOME):
     if not (item.endswith('.py') and item != '__init__.py'
             ) and not (isdir(join(plugin_dir, item)) and item != 'base'):
         continue

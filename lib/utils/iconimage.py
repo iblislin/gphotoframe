@@ -1,9 +1,8 @@
 import os
 
 import gtk
-from xdg.BaseDirectory import xdg_cache_home
 
-from .. import constants
+from ..constants import SHARED_DATA_DIR, CACHE_HOME
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 class IconImage(object):
@@ -44,27 +43,23 @@ class IconImage(object):
 class LocalIconImage(IconImage):
 
     def _get_icon_file(self):
-        icon_path = os.path.join(constants.SHARED_DATA_DIR, self.icon_name)
+        icon_path = os.path.join(SHARED_DATA_DIR, self.icon_name)
         return icon_path
 
 class WebIconImage(IconImage):
 
     def _get_icon_file(self):
-        cache_dir = os.path.join(xdg_cache_home, constants.APP_NAME)
-        file = os.path.join(cache_dir, self.icon_name)
+        file = os.path.join(CACHE_HOME, self.icon_name)
 
         if not os.access(file, os.R_OK):
-            self._download_icon(self.icon_url, cache_dir, self.icon_name)
+            self._download_icon(self.icon_url, self.icon_name)
 
             super(WebIconImage, self).__init__()
             file = super(WebIconImage, self)._get_icon_file()
 
         return file
 
-    def _download_icon(self, icon_url, cache_dir, icon_name):
-        if not os.access(cache_dir, os.W_OK):
-            os.makedirs(cache_dir)
-
-        icon_file = os.path.join(cache_dir, icon_name)
+    def _download_icon(self, icon_url, icon_name):
+        icon_file = os.path.join(CACHE_HOME, icon_name)
         urlget = UrlGetWithAutoProxy(icon_url)
         d = urlget.downloadPage(icon_url, icon_file)
