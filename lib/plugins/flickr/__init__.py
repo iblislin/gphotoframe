@@ -176,6 +176,9 @@ class FlickrPhoto(base.Photo):
         result = user_name and user_name == self['owner_name']
         return result
 
+    def can_fav(self):
+        return not self.is_my_photo()
+
 class FlickrFav(object):
 
     def __init__(self, state=False, arg={}):
