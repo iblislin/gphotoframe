@@ -104,9 +104,9 @@ class Photo(dict):
             fav_obj = self['fav']
             fav_obj.change_fav(new_rate)
 
-    def geo_is_ok(self):
-        return (self.get('geo') and
-                self['geo']['lat'] != 0 and self['geo']['lon'] != 0)
+    def has_geotag(self):
+        geo = self.get('geo')
+        return (geo and geo['lat'] != 0 and geo['lon'] != 0)
 
     def is_my_photo(self):
         return False
