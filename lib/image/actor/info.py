@@ -22,7 +22,7 @@ class ActorGeoIcon(ActorSourceIcon):
             super(ActorGeoIcon, self).hide(True)
 
     def _check_photo(self):
-        return self.photo.geo_is_ok()
+        return self.photo.has_geotag()
 
     def _get_icon(self):
         return IconImage('gnome-globe')
@@ -65,7 +65,7 @@ class ActorInfoIcon(ActorGeoIcon):
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _check_other_icon(self, photo):
-        return photo and photo.geo_is_ok() 
+        return photo and photo.has_geotag() 
 
     def _check_photo(self):
         return self.photo.get('exif') or self._get_exif_class()
