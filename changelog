@@ -1,3 +1,7 @@
+2011-01-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* constants.py: Added checking for user directory permissions.
+
 2011-01-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/geocoding.py: Added support for reverse geocoding on tooltip.

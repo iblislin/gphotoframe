@@ -1,6 +1,9 @@
 import os
 import getpass
 from os.path import join, abspath, dirname
+from stat import S_IMODE
+
+from xdg.BaseDirectory import *
 
 VERSION = '1.2-b4'
 APP_NAME = 'gphotoframe'
@@ -11,7 +14,15 @@ if not os.access(join(SHARED_DATA_DIR, 'gphotoframe.ui'), os.R_OK):
 
 UI_FILE = join(SHARED_DATA_DIR, 'gphotoframe.ui')
 
-user = getpass.getuser()
-CACHE_DIR = "/tmp/gphotoframe-%s" % user
-if not os.access(CACHE_DIR, os.W_OK):
-    os.makedirs(CACHE_DIR)
+CACHE_DIR = "/tmp/gphotoframe-%s" % getpass.getuser()
+DATA_HOME = os.path.join(xdg_data_home, APP_NAME)
+CACHE_HOME = os.path.join(xdg_cache_home, APP_NAME)
+CONFIG_HOME = os.path.join(xdg_config_home, APP_NAME)
+PLUGIN_HOME = os.path.join(CONFIG_HOME, 'plugins')
+
+for dir in [CACHE_DIR, DATA_HOME, CACHE_HOME, CONFIG_HOME, PLUGIN_HOME]:
+    if not os.path.isdir(dir):
+        os.makedirs(dir, 0700)
+    elif S_IMODE(os.stat(dir).st_mode) != 0700:
+        print "change:", dir, oct(mode),
+        os.chmod(dir, 0700)
