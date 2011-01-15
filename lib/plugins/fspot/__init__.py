@@ -78,10 +78,9 @@ class FSpotPhotoList(base.PhotoList):
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'version' : version,
-                 'trash' : FSpotTrash(self.photolist),
-                 'icon' : FSpotIcon }
+                 'trash' : FSpotTrash(self.photolist) }
 
-        self.photo = base.Photo(data)
+        self.photo = base.MyPhoto(data)
         cb(None, self.photo)
 
     def _unquote(self, text):
