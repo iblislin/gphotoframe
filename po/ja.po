@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-13 20:29+0900\n"
-"PO-Revision-Date: 2011-01-14 01:49+0900\n"
+"POT-Creation-Date: 2011-01-16 20:55+0900\n"
+"PO-Revision-Date: 2011-01-16 20:56+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -561,7 +561,7 @@ msgid "Gnome Photo Frame History"
 msgstr "GNOME 写真フレームの履歴"
 
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/history/html.py:92 ../lib/image/tooltip.py:54
+#: ../lib/history/html.py:92 ../lib/image/tooltip.py:52
 #, python-format
 msgid "by %s"
 msgstr "by %s"
@@ -608,7 +608,11 @@ msgstr "写真を評価付けする"
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/image/actor/info.py:55 ../lib/image/actor/info.py:90
+#: ../lib/image/actor/info.py:55
+msgid "Querying..."
+msgstr "問い合わせ中..."
+
+#: ../lib/image/actor/info.py:90
 msgid "Loading..."
 msgstr "ロード中..."
 
@@ -653,51 +657,51 @@ msgstr "ブラックリストに追加しますか?"
 msgid "This photo will be add to the black list."
 msgstr "この写真をブラックリストに追加し、今後表示しません。"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:81
 msgid "Maker"
 msgstr "メーカー"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:82
 msgid "Model"
 msgstr "モデル"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:83
 msgid "Date"
 msgstr "日時"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:84
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:84
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:85
 msgid "Exposure"
 msgstr "露光時間"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:85
 msgid "sec"
 msgstr "秒"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:86
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:87
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:88
 msgid "Exposure Bias"
 msgstr "露出補正"
 
-#: ../lib/image/tooltip.py:91
+#: ../lib/image/tooltip.py:89
 msgid "Flash"
 msgstr "フラッシュ"
 
-#: ../lib/image/tooltip.py:92
+#: ../lib/image/tooltip.py:90
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
@@ -714,7 +718,7 @@ msgstr "ファイルをゴミ箱に移動できません。今すぐ削除しま
 msgid "The file \"%s\" cannot be moved to the trash. "
 msgstr "ファイル %s はゴミ箱に移動できません。"
 
-#: ../lib/plugins/__init__.py:34
+#: ../lib/plugins/__init__.py:30
 #, python-format
 msgid "Can't import %s plugin: %s."
 msgstr "%s プラグインをインポートできません: %s"
@@ -874,7 +878,7 @@ msgstr "Tumblr エラー: %s は不正なターゲットです。"
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
-#: ../lib/plugins/rss.py:35
+#: ../lib/plugins/rss.py:34
 msgid "RSS and Atom Feeds"
 msgstr "RSS や Atom フィード"
 
