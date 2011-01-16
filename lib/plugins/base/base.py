@@ -95,7 +95,7 @@ class Photo(dict):
         self.conf = GConf()
 
     def open(self, *args):
-        url = self['page_url'] if 'page_url' in self else self['url']
+        url = self.get('page_url') or self.get('url')
         url = url.replace("'", "%27")
         gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
