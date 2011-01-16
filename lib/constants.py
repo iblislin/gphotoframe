@@ -5,7 +5,7 @@ from stat import S_IMODE
 
 from xdg.BaseDirectory import *
 
-VERSION = '1.2-b5'
+VERSION = '1.2-b6'
 APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(os.path.join(dirname(__file__), '../share'))
@@ -23,5 +23,4 @@ for dir in [CACHE_DIR, DATA_HOME, CACHE_HOME, CONFIG_HOME, PLUGIN_HOME]:
     if not os.path.isdir(dir):
         os.makedirs(dir, 0700)
     elif S_IMODE(os.stat(dir).st_mode) != 0700:
-        print "change:", dir, oct(mode),
         os.chmod(dir, 0700)
