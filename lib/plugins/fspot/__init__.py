@@ -108,8 +108,8 @@ class FSpotTrash(trash.Trash):
     def delete_from_catalog(self, photo):
         super(FSpotTrash, self).delete_from_catalog(photo)
  
-        id = photo.get('id')
-        version =  photo.get('version')
+        self.id = id = photo.get('id') # self.id for ShotwellTrash
+        version = photo.get('version')
         # print "f-spot catalog delete!", self.id, self.version
 
         db, sql_templates = self._get_sql_obj(version)
