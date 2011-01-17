@@ -2,7 +2,7 @@
 #
 # gphotoframe - Photo Frame for the GNOME Desktop.
 #
-# Copyright (c) 2009-2010, Yoshizumi Endo.
+# Copyright (c) 2009-2011, Yoshizumi Endo.
 # Licence: GPL3
 
 import os
@@ -10,8 +10,9 @@ import platform
 from os.path import join, abspath, dirname
 
 from twisted.internet import gtk2reactor, glib2reactor
-dist = set(platform.dist()[:2])
-greactor = glib2reactor if dist == set(['Ubuntu', '10.10']) else gtk2reactor
+dist, ver = platform.dist()[:2]
+greactor = glib2reactor if dist == 'Ubuntu' and float(ver) >= 10.10 \
+    else gtk2reactor
 greactor.install()
 
 from twisted.internet import reactor
