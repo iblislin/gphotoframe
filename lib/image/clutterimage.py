@@ -1,5 +1,9 @@
 from __future__ import division
 
+# from clutter.x11 import set_use_argb_visual, get_use_argb_visual
+# set_use_argb_visual(True)
+# print get_use_argb_visual()
+
 try:
     import cluttergtk
     import clutter
@@ -17,6 +21,8 @@ class PhotoImageClutter(PhotoImage):
 
         self.image = self.embed = cluttergtk.Embed()
         self.stage = self.embed.get_stage()
+        self.stage.set_property('use-alpha', True)
+        self.stage.set_opacity(255)
         color = self._get_border_color()
         self.stage.set_color(clutter.color_from_string(color))
         self.embed.show()
@@ -24,6 +30,16 @@ class PhotoImageClutter(PhotoImage):
         self.photo_image = base.Texture(self.stage)
         self.photo_image.show()
         self.actors = self._get_actors()
+
+        self.photo_image2 = base.Texture(self.stage)
+        self.photo_image2.show()
+        self.actors2 = self._get_actors()
+
+        self.first = True # image1 or image2
+
+        self.animation = self.conf.get_bool('ui/animate_fullscreen', False)
+        if self.animation:
+            self.photo_image.set_opacity(0)
 
     def _get_actors(self):
         return [ source.ActorSourceIcon(self.stage, self.tooltip),
@@ -46,50 +62,6 @@ class PhotoImageClutter(PhotoImage):
         x, y = self._get_image_position()
         self._change_texture(pixbuf, x, y)
 
-    def _change_texture(self, pixbuf, x, y):
-        self.photo_image.change(pixbuf, x, y)
-
-        for actor in self.actors:
-            actor.set_icon(self, x, y)
-
-    def _get_image_position(self):
-        return self.border, self.border
-
-    def clear(self):
-        pass
-
-    def on_enter_cb(self, w, e):
-        for actor in self.actors:
-            actor.show(True)
-
-    def on_leave_cb(self, w, e):
-        for actor in self.actors:
-            actor.hide()
-
-    def check_actor(self, stage, event):
-        x, y = int(event.x), int(event.y)
-        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, x, y)
-        result = (actor != self.photo_image)
-        return result
-
-    def check_mouse_on_window(self):
-        window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
-        result = window is self.embed.window
-        return result
-
-class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
-
-    def __init__(self, photoframe):
-        super(PhotoImageClutterFullScreen, self).__init__(photoframe)
-
-        self.photo_image2 = base.Texture(self.stage)
-        self.photo_image2.show()
-        self.actors2 = self._get_actors()
-        self.first = True # image1 or image2
-
-        self.animation = self.conf.get_bool('ui/animate_fullscreen', False)
-        if self.animation:
-            self.photo_image.set_opacity(0)
 
     def _change_texture(self, pixbuf, x, y):
         if not self.animation:
@@ -114,6 +86,35 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         self.first = not self.first
 
     def _get_image_position(self):
+        return self.border, self.border
+
+    def clear(self):
+        pass
+
+    def on_enter_cb(self, w, e):
+        act = self.actors2 if self.first and self.animation else self.actors
+        for actor in act:
+            actor.show(True)
+
+    def on_leave_cb(self, w, e):
+        act = self.actors2 if self.first and self.animation else self.actors
+        for actor in act:
+            actor.hide()
+
+    def check_actor(self, stage, event):
+        x, y = int(event.x), int(event.y)
+        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, x, y)
+        result = (actor != self.photo_image)
+        return result
+
+    def check_mouse_on_window(self):
+        window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
+        result = window is self.embed.window
+        return result
+
+class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
+
+    def _get_image_position(self):
         root_w, root_h = self._get_max_display_size()
         x = (root_w - self.w) / 2
         y = (root_h - self.h) / 2
@@ -127,16 +128,6 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         state = super(PhotoImageClutterFullScreen, self).check_mouse_on_window()
         result = state if self.photoframe.ui.is_show else False
         return result
-
-    def on_enter_cb(self, w, e):
-        act = self.actors2 if self.first and self.animation else self.actors
-        for actor in act:
-            actor.show(True)
-
-    def on_leave_cb(self, w, e):
-        act = self.actors2 if self.first and self.animation else self.actors
-        for actor in act:
-            actor.hide()
 
 class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen,
                                    PhotoImageScreenSaver):
