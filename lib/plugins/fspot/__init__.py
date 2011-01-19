@@ -78,10 +78,9 @@ class FSpotPhotoList(base.PhotoList):
                  'id' : id,
                  'fav' : FSpotFav(rate.name, id, self.rate_list),
                  'version' : version,
-                 'trash' : FSpotTrash(self.photolist),
-                 'icon' : FSpotIcon }
+                 'trash' : FSpotTrash(self.photolist) }
 
-        self.photo = base.Photo(data)
+        self.photo = base.MyPhoto(data)
         cb(None, self.photo)
 
     def _unquote(self, text):
@@ -112,7 +111,7 @@ class FSpotTrash(trash.Trash):
         version = photo.get('version')
         # print "f-spot catalog delete!", self.id, self.version
 
-        db, sql_templates = self._get_sql_obj(version)
+        db, sql_templates = self._get_sql_obj(photo)
         for sql in sql_templates:
             s = Template(sql)
             statement = s.substitute(id=id, version=version)
@@ -122,7 +121,9 @@ class FSpotTrash(trash.Trash):
         db.commit()
         db.close()
 
-    def _get_sql_obj(self, version):
+    def _get_sql_obj(self, photo):
+        version =  photo.get('version')
+
         if version == 1:
             sql_templates = [ 
                 "DELETE FROM photo_tags WHERE photo_id=$id;",
