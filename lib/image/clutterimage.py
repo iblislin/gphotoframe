@@ -7,6 +7,8 @@ except ImportError:
     from ..utils.nullobject import Null
     cluttergtk = Null()
 
+import gtk
+
 from actor import *
 from gtkimage import *
 
@@ -19,6 +21,7 @@ class PhotoImageClutter(PhotoImage):
         self.stage = self.embed.get_stage()
         color = self._get_border_color()
         self.stage.set_color(clutter.color_from_string(color))
+        self.embed.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
         self.embed.show()
 
         self.photo_image = base.Texture(self.stage)
