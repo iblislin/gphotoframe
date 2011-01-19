@@ -17,8 +17,7 @@ class ActorFavIcon(ActorIcon):
             icon.connect('button-press-event', self._button_press_event_cb)
 
     def show(self, force=False):
-        if (not hasattr(self, 'photo') or
-            self.photo == None or 'fav' not in self.photo):
+        if self._is_hidden():
             return
 
         if 'rate' in self.photo:
@@ -42,12 +41,16 @@ class ActorFavIcon(ActorIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         super(ActorFavIcon, self).set_icon(photoimage, x_offset, y_offset)
 
-        if self.photo == None or 'fav' not in self.photo:
+        if self._is_hidden():
             self.hide(True)
             return
 
         self._change_icon()
 
+    def _is_hidden(self):
+        photo = getattr(self, 'photo', {}) or {}
+        return 'fav' not in photo or not self.photo.can_fav()
+          
     def _get_icon(self):
         return IconImage('emblem-favorite')
 
