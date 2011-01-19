@@ -87,8 +87,8 @@ class ShotwellTrash(FSpotTrash):
         # super(ShotwellTrash, self).delete_from_disk(photo)
         self.photolist.delete_photo(photo.get('url'))
 
-        self.id = photo.get('id')
-        sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % self.id 
+        id = photo.get('id')
+        sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % id
         db = ShotwellDB()
         db.execute(sql)
         db.commit()
@@ -113,6 +113,12 @@ class ShotwellTrash(FSpotTrash):
                              "VALUES (%s)" % tombstone_value)
 
         # cache delete
+        self._delete_thumbnail(photo)
+
+        db = ShotwellDB()
+        return db, sql_templates
+
+    def _delete_thumbnail(self, photo):
         id =  photo.get('id')
         cache_path = os.path.join(os.environ['HOME'], '.shotwell/thumbs')
         cache_file = "thumb%016x.jpg" % id
@@ -121,9 +127,6 @@ class ShotwellTrash(FSpotTrash):
             fullpath = os.path.join(cache_path, size, cache_file)
             if os.access(fullpath, os.W_OK):
                 os.remove(fullpath)
-
-        db = ShotwellDB()
-        return db, sql_templates
 
     def _get_tombstone_values(self, file):
         filesize = os.path.getsize(file)
