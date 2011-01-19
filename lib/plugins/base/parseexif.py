@@ -7,9 +7,8 @@ from ...utils.EXIF import process_file as exif_process_file
 class ParseEXIF(object):
 
     def __init__(self, filename):
-        file = open(filename, 'rb')
-        self.tags = exif_process_file(file)
-        file.close()
+        with open(filename, 'rb') as file:
+            self.tags = exif_process_file(file)
 
     def get_exif(self):
         tag = {'make': 'Image Make',
