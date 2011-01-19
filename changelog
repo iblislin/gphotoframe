@@ -1,3 +1,7 @@
+2011-01-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Added support for removing from catalog on Shotwell 0.8.
+
 2011-01-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actor/favicon.py: Added checking to my flickr photo for favoring.
