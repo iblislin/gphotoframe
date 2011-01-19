@@ -137,9 +137,8 @@ class ShotwellTrash(FSpotTrash):
         return value
 
     def _get_md5sum(self, file):
-        f = open(file, 'rb')
-        content = f.read()
-        f.close()
+        with open(file, 'rb') as f:
+            content = f.read()
 
         m = hashlib.md5()
         m.update(content)
