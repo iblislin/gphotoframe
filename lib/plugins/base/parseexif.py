@@ -52,8 +52,8 @@ class ParseEXIF(object):
             lon = lon_array.values
             lat = lat_array.values
 
-            x = lon[0].num + lon[1].num/60.0 + lon[2].num/3600.0/lon[2].den
-            y = lat[0].num + lat[1].num/60.0 + lat[2].num/3600.0/lat[2].den
+            x = lon[0].num + lon[1].num/60 + lon[2].num/3600/lon[2].den
+            y = lat[0].num + lat[1].num/60 + lat[2].num/3600/lat[2].den
 
             lon_ref = -1 if str(self.tags.get('GPS GPSLongitudeRef')) == 'W' else 1
             lat_ref = -1 if str(self.tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
