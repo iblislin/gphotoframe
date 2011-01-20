@@ -58,7 +58,7 @@ class ParseEXIF(object):
             lon_ref = -1 if str(self.tags.get('GPS GPSLongitudeRef')) == 'W' else 1
             lat_ref = -1 if str(self.tags.get('GPS GPSLatitudeRef'))  == 'S' else 1
 
-            geo = {'lon': x * lon_ref, 'lat': y * lat_ref}
+            geo = [y * lat_ref, x * lon_ref]
 
         return geo
 

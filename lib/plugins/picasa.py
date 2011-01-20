@@ -126,8 +126,7 @@ class PicasaPhotoList(base.PhotoList):
             # geo
             if entry.get('georss$where'):
                 geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
-                lat, lon = geo_raw.split()
-                data['geo'] = {'lon': lon, 'lat': lat}
+                data['geo'] = geo_raw.split()
 
             # location
             if entry.get('gphoto$location'):

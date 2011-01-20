@@ -109,7 +109,7 @@ class Photo(dict):
 
     def has_geotag(self):
         geo = self.get('geo')
-        return (geo and geo['lat'] != 0 and geo['lon'] != 0)
+        return geo
 
     def is_my_photo(self):
         return False

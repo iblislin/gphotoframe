@@ -31,8 +31,7 @@ class ActorGeoIcon(ActorSourceIcon):
         self._set_ui_options('geo', False, 2)
 
     def _on_button_press_cb(self, actor, event):
-        lat = self.photo['geo']['lat']
-        lon = self.photo['geo']['lon']
+        lat, lon = self.photo['geo']
 
         title = self.photo['title'] or _('Untitled')
         title = title.replace("'", "%27").replace('"', "%22") \
@@ -50,6 +49,7 @@ class ActorGeoIcon(ActorSourceIcon):
     def _enter_cb(self, w, e, tooltip):
         if 'location' in self.photo:
             location = self.photo.get_location() or _("Open the map")
+            print "- %s -" % location
             tooltip.update_text(location)
         else:
             self.geo.get(self.photo)
