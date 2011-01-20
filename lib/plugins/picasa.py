@@ -132,7 +132,9 @@ class PicasaPhotoList(base.PhotoList):
 
             # location
             if entry.get('gphoto$location'):
-                data['location'] = entry['gphoto$location']['$t']
+                location = entry['gphoto$location']['$t']
+                if location:
+                    data['location'] = [location]
 
             photo = base.Photo(data)
             self.photos.append(photo)
