@@ -29,7 +29,7 @@ class ToolTip(object):
 
     def update_text(self, text=None):
         self._clear()
-        self.widget.set_tooltip_markup(text)
+        self.widget.set_tooltip_markup(escape(text))
 
     def update_photo(self, photo=None):
         self._clear()
