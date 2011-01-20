@@ -25,14 +25,13 @@ class GeoCoderBase(object):
     def __init__(self, cb=None, tooltip=None):
         self.cb = cb
         self.tooltip = tooltip
-        self.lat = None
+        self.geo = []
 
     def get(self, photo):
-        if not photo.get('geo') or self.lat == photo['geo']['lat']:
+        if not photo.get('geo') or self.geo == photo['geo']:
             return
 
-        self.lat = photo['geo']['lat']
-        self.lon = photo['geo']['lon']
+        self.geo = photo['geo']
 
         self.geocoding = self._get_geocoding_obj()
         self._urlget(self._parse_geocoding, photo)
@@ -52,7 +51,8 @@ class GeoCoderBase(object):
         self.cb(None, None, self.tooltip)
 
     def _urlget(self, cb, photo):
-        url = self.geocoding.get_url(self.lat, self.lon)
+        lat, lon = self.geo
+        url = self.geocoding.get_url(lat, lon)
         self.old_url = url
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)

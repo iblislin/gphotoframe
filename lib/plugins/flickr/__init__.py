@@ -136,10 +136,11 @@ class FlickrPhotoList(base.PhotoList):
                     'title'      : s['title'],
                     'page_url'   : page_url,
                     'date_taken' : date,
-                    # 'description' : s['description']['_content'],
-                    'geo'        : {'lon' : s['longitude'],
-                                    'lat' : s['latitude']},
                     'trash'      : trash.Ban(self.photolist)}
+
+            geo = [s['latitude'], s['longitude']]
+            if geo != [0, 0]:
+                data['geo'] = geo
 
             if self.api.get_auth_token():
                 state = (self.target == 'Favorites' and not self.argument)
