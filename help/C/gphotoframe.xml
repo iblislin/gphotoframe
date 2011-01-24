@@ -2,8 +2,8 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY appname "GNOME Photo Frame">
-  <!ENTITY appversion "1.1">
-  <!ENTITY manrevision "1.1.2">]>
+  <!ENTITY appversion "1.2">
+  <!ENTITY manrevision "1.2">]>
   
   <!-- Information about the entities.
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -22,6 +22,7 @@
     </abstract>
 
     <copyright>
+      <year>2011</year>
       <year>2010</year>
       <holder>Cristian Marchi</holder>
     </copyright>
@@ -56,7 +57,7 @@
     <revhistory>
       <revision>
         <revnumber>&appname; Manual V&manrevision;</revnumber>
-        <date>2010-11-18</date>
+        <date>2011-01-22</date>
         <revdescription>
           <para role="author">Cristian Marchi
           <email>cri.penta@gmail.com</email></para>
@@ -142,7 +143,7 @@
       </listitem>
       <listitem>
         <para>
-        Go back to the photo frame by closing the <interface>Preferences</interface> dialog with 
+        Go back to the photo frame by closing the <guilabel>Preferences</guilabel> dialog with 
         the <guibutton>Close</guibutton> button.
         </para>
       </listitem>
@@ -181,27 +182,35 @@
           <caption>
             <para>
             The tooltip and the icons showed on the photo frame if the source
-            is Flickr photo sharing website
+            is <emphasis>Flickr</emphasis> photo sharing website
             </para>
           </caption>
         </mediaobject>
       </screenshot>
     </figure>
+    
+    <note>
+      <title>Clutter library support</title>
+      <para>
+        Without the <application>Clutter library</application> support,
+        these icons will not be displayed. You will see only the tooltip.
+      </para>
+    </note>
 
     <para>
     The number and type of icons displayed on the frame corners depends
-    on the content's source. They can be:
+    on the content&rsquo;s source. They can be:
     </para>
     
     <variablelist id="icons-list">
     
       <varlistentry>
-      <term><guiicon>fav-icon</guiicon></term> 
+      <term><emphasis role="bold"><guiicon>fav-icon</guiicon></emphasis></term> 
         <listitem>
            <para>This icon is located in the upper left corner of the 
            photo frame. If you are <link linkend="gphotoframe-onlinelog">logged in</link>
-           with your userID to an internet service like Flickr, you could add an image
-           to your's profile favorites with a click on this icon.
+           with your userID to an internet service like <emphasis>Flickr</emphasis>, you could add an image
+           to your&rsquo;s profile favorites with a click on this icon.
            The icon will then light up indicating that
            the image has been added to your favorites.</para>
            <para>Click again on that icon and the image will be removed from your favorites.</para>
@@ -213,61 +222,50 @@
       </varlistentry>
        
       <varlistentry> 
-      <term><guiicon>geo-icon</guiicon></term>
+      <term><emphasis role="bold"><guiicon>geo-icon</guiicon></emphasis></term>
         <listitem>
           <para>This is the earth shaped
           icon that appears on the bottom right of the frame if GPS (Global
           Positioning System) data are available for the content currently
           displayed. Click on the icon to open the default web browser in which
-          the content's geographical position will be displayed in google maps.</para>
+          the content&rsquo;s geographical position will be displayed in google maps.</para>
         </listitem>
       </varlistentry>
        
       <varlistentry>
-      <term><guiicon>info-icon</guiicon></term>
+      <term><emphasis role="bold"><guiicon>info-icon</guiicon></emphasis></term>
         <listitem>
           <para>This icon is located on the bottom right
           of the frame and depict a camera. If you hover the mouse on it, a tooltip will
-          be displayed containing all the image's metadata (if available) such as camera
+          be displayed containing all the image&rsquo; metadata (if available) such as camera
           model and maker, shutter speed, aperture, etc...</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-      <term><guiicon>source-icon</guiicon></term>
+      <term><emphasis role="bold"><guiicon>source-icon</guiicon></emphasis></term>
         <listitem>
           <para>This icon is displayed in the
           upper right corner of the frame and shows the symbol of the service
           from where the content is retrieved. With a click on the icon, the
-          source will open in your system's default web browser (if the content comes from an
-          online service), and in your system's default image viewer (if the
+          source will open in your system&rsquo;s default web browser (if the content comes from an
+          online service), and in your system&rsquo;s default image viewer (if the
           content is local).</para>
        </listitem>
       </varlistentry>
       
       <varlistentry>
-      <term><guiicon>trash-icon</guiicon></term>
+      <term><emphasis role="bold"><guiicon>ban, trash and remove from catalog icons</guiicon></emphasis></term>
         <listitem>
-          <para>This icon is displayed in the lower left corner of the frame and allows you to 
-          <link linkend="gphotoframe-trashimage">move to the trash the displayed image</link>.</para>
-          <note>
-            <para>The <guiicon>delete-icon</guiicon> is showed only if the displayed image 
-            comes from a local source such as a local folder or a 
-            <application>F-spot</application> or <application>Shotwell</application>
-            database.</para>
-          </note>
+          <para>These icons are displayed in the lower left corner of the frame and allows you to 
+          <link linkend="gphotoframe-removeimage">ban, move to the trash or remove from 
+          <application>Shotwell</application> or <application>F-Spot</application> catalog</link> the 
+          displayed image.</para>
        </listitem>
       </varlistentry>
       
     </variablelist>
 
-    <note>
-      <title>Clutter library support</title>
-      <para>
-        Without the <application>Clutter library</application> support,
-        these icons will not be displayed.
-      </para>
-    </note>
   </sect1>
 
   <sect1 id="gphotoframe-mainmenu">
@@ -297,7 +295,8 @@
       </listitem>
       <listitem>
         <para><guimenuitem>Open Recent</guimenuitem></para>
-        <para>Shows a list of recently displayed items.</para>
+        <para>Shows a list of names of recently displayed images and allow the user to open
+        a webpage that displays the <link linkend="gphotoframe-history">images history</link>.</para>
       </listitem>
       <listitem>
         <para><guimenuitem>Next Photo</guimenuitem></para>
@@ -321,7 +320,7 @@
         <para><guimenuitem>Fix photo frame</guimenuitem></para>
         <para>
         When this option is activated, the photo frame can not be dragged wih the mouse
-        and it's shape is not displayed in the pager.
+        and it&rsquo;s shape is not displayed in the pager.
         </para>
         <note>
           <title></title>
@@ -333,14 +332,14 @@
       <listitem>
         <para><guimenuitem>Preferences</guimenuitem></para>
         <para>
-        Opens the <interface>Preferences</interface> dialog: see <xref linkend="gphotoframe-preferences" />
+        Opens the <guilabel>Preferences</guilabel> dialog: see <xref linkend="gphotoframe-preferences" />
         for detailed informations.
         </para>
       </listitem>
       <listitem>
         <para><guimenuitem>About</guimenuitem></para>
         <para>
-        Shows the application's developers and contributors informations
+        Shows the application&rsquo;s developers and contributors informations
         as well as the version number.
         </para>
       </listitem>
@@ -364,53 +363,53 @@
 
   <sect1 id="gphotoframe-preferences">
   <title>Setting the Preferences</title>
-    <para>The <interface>Preferences</interface> dialog is accessible with a right
+    <para>The <guilabel>Preferences</guilabel> dialog is accessible with a right
     click inside the photo frame and selecting <guimenuitem>Preferences
     </guimenuitem> from the menu.
     </para>
     <para>
-    In the <interface>Preferences</interface> dialog there are three tabs.
+    In the <guilabel>Preferences</guilabel> dialog there are three tabs.
     </para>
 
     <sect2 id="pref-general">
     <title>General tab</title>
     <para>
-    In the <guilabel>General</guilabel> you can set some general
+    In the <guilabel>General</guilabel> tab you can set some general
     options for <application>&appname;</application>.
     </para>
     <para>The <guilabel>General</guilabel> tab is composed of three subsections:</para>
     <itemizedlist>
       <listitem>
-        <para><interface>Interval</interface></para>
+        <para><guilabel>Interval</guilabel></para>
         <para>
-        Sets the visualization time, in seconds, of an image for the <interface>window
-        mode</interface> and for the <interface>full screen mode</interface>.
+        Sets the visualization time, in seconds, of an image for the <guilabel>window
+        mode</guilabel> and for the <guilabel>full screen mode</guilabel>.
         </para>
       </listitem>
       <listitem>
-        <para><interface>Maximum Display Size</interface></para>
+        <para><guilabel>Maximum Display Size</guilabel></para>
         <para>
-        The maximum display size of the displayed image could be set in the <interface>width</interface>
-        and <interface>height</interface> fields.
+        The maximum display size of the displayed image could be set in the <guilabel>width</guilabel>
+        and <guilabel>height</guilabel> fields.
         </para>
         <note>
         <title>Image resizing</title>
           <para>
-          The original image is always resized (not cropped). In particular, the image is scaled down so that it's 
-          smallest dimension (<interface>width</interface> or <interface>height</interface>)
+          The original image is always resized (not cropped). In particular, the image is scaled down so that it&rsquo;s 
+          smallest dimension (<guilabel>width</guilabel> or <guilabel>height</guilabel>)
           fits the value set in the <guilabel>General</guilabel> tab.
           </para>
       </note>
       </listitem>
       <listitem>
-        <para><interface>Desktop</interface></para>
+        <para><guilabel>Desktop</guilabel></para>
         <para>
         Enable the <guilabel>Visible on All Workspaces</guilabel> option to make <application>&appname;</application> 
         visible on all workspaces.
         </para>
         <para>
         Check the <guilabel>Auto Start</guilabel> option to load 
-        automatically <application>&appname;</application> on next system's startup.
+        automatically <application>&appname;</application> on next system&rsquo;s startup.
         </para>
       </listitem>
     </itemizedlist>
@@ -429,13 +428,13 @@
     <title>Plugins tab</title>
       <para>This tab shows the list of plugins currently installed on your system.</para>
       <para>
-      The <interface>plugins</interface> extends the capability of <application>&appname;</application>
+      The <emphasis>plugins</emphasis> extends the capability of <application>&appname;</application>
       by making possible to get more contents from various internet
       services as well as locally from your computer.
       </para>
       <para>
-      <interface>Plugins</interface> can be enabled or disabled with a click on the check
-      box on the left of the plugin's name.
+      <guilabel>Plugins</guilabel> can be enabled or disabled with a click on the check
+      box on the left of the plugin&rsquo;s name.
       With a click on the <guibutton>About</guibutton> button in the bottom right when a plugin row
       is highlighted, will display a dialog containing some information regarding the
       selected plugin.
@@ -446,13 +445,13 @@
     <itemizedlist>
       <listitem>
         <para>
-        <interface>F-Spot</interface> &mdash; shows in <application>&appname;</application> 
+        <guilabel>F-Spot</guilabel> &mdash; shows in <application>&appname;</application> 
         the images in your <application>F-Spot</application> database.
         </para>
       </listitem>
       <listitem>
         <para>
-        <interface>Flickr</interface> &mdash; display the contents from the popular
+        <guilabel>Flickr</guilabel> &mdash; display the contents from the popular
         photo sharing service. This plugin is highly customizable as you can look for
         photos by specifying a tag, a group, a user or by
         showing the most interesting or the latest content.
@@ -460,36 +459,36 @@
       </listitem>
       <listitem>
         <para>
-        <interface>Folder</interface> &mdash; with this plugin you could add as a source for
+        <guilabel>Folder</guilabel> &mdash; with this plugin you could add as a source for
         content a folder that contains image files on your computer.
         </para>
       </listitem>
       <listitem>
         <para>
-        <interface>Picasa Web</interface> &mdash; display the contents from the google
+        <guilabel>Picasa Web</guilabel> &mdash; display the contents from the google
         photo hosting service.
         </para>
       </listitem>
       <listitem>
         <para>
-        <interface>RSS and Atom feed</interface> &mdash; shows images from a RSS or Atom feed.
+        <guilabel>RSS and Atom feed</guilabel> &mdash; shows images from a RSS or Atom feed.
         </para>
       </listitem>
       <listitem>
         <para>
-        <interface>Ruins clock</interface> &mdash; gather images of old and abandoned clocks
+        <guilabel>Ruins clock</guilabel> &mdash; gather images of old and abandoned clocks
         from Haikyo Clock website.
         </para>
       </listitem>
       <listitem>
         <para>
-        <interface>Shotwell</interface> &mdash; shows in <application>&appname;</application> the images
+        <guilabel>Shotwell</guilabel> &mdash; shows in <application>&appname;</application> the images
         in your <application>Shotwell</application> database.
         </para>
       </listitem>
       <listitem>
         <para>
-        <interface>Tumblr</interface> &mdash; shows images from the "share anything"
+        <guilabel>Tumblr</guilabel> &mdash; shows images from the <quote>share anything</quote>
         online service.
         </para>
       </listitem>
@@ -500,9 +499,9 @@
     <sect2 id="pref-photos">
     <title>Photos tab</title>
       <para>
-      From the <guilabel>Photos</guilabel> tab you could manage 
+      From the <guilabel>Photos</guilabel> tab you can manage 
       (<link linkend="add-source">Add</link>, <link linkend="delete-source">Delete</link> 
-      or <link linkend="edit-source">Edit</link>) the content's sources.
+      or <link linkend="edit-source">Edit</link>) the content&rsquo;s sources.
       </para>
       <sect3 id="add-source">
       <title>Adding a source</title>
@@ -513,8 +512,9 @@
         <para>
         In the dialog that will appear, select a source from the pop-up list.
         Depending on the type of source selected (folder, <application>F-Spot</application>
-        or <application>Shotwell</application> database, internet sharing services as Flickr,
-        Tumblr or Picasa) different settings are available. Configure them to your liking and then press
+        or <application>Shotwell</application> database, internet sharing services as <emphasis>Flickr</emphasis>,
+        <emphasis>Tumblr</emphasis> or <emphasis>Picasa</emphasis>) different settings are available. 
+        Configure them to your liking and then press
         <guibutton>Ok</guibutton>. A new source will be added to the list and the new content
         will start to be displayed on the photo frame.
         </para>
@@ -525,7 +525,7 @@
         <title>Weight</title>
           <para>
           One of the most important setting if you have more than one source, is
-          <interface>weight</interface>: the content from the source with the highest weight will
+          <guilabel>weight</guilabel>: the content from the source with the highest weight will
           be displayed more frequently.
           </para>
         </note>
@@ -540,7 +540,7 @@
       <sect3 id="edit-source">
         <title>Editing a source</title>
         <para>
-        To modify the settings for an existing source, highlight it's name with a click in the list
+        To modify the settings for an existing source, highlight it&rsquo;s name with a click in the list
         and press the <guibutton>Preferences</guibutton> button to open the settings dialog.
         </para>
       </sect3>
@@ -549,17 +549,71 @@
 
 </sect1>
 
+<sect1 id="gphotoframe-history">
+  <title>Showing the images history</title>
+    <para>
+    <application>&appname;</application> allows you to see the history of displayed images in a 
+    web browser. Select <menuchoice><guimenu>Open Recent</guimenu><guimenuitem>Show History</guimenuitem></menuchoice>
+    from the <application>&appname;</application> <link linkend="gphotoframe-mainmenu">Application Menu</link>.
+    A web page will be opened in your default web browser with all the images displayed in the current session sorted in 
+    appearence order (from latest to oldest).
+    For every image, you can see many information as the <emphasis>title</emphasis>, the <emphasis>source</emphasis>, 
+    the <emphasis>author&rsquo;s name</emphasis> and the <emphasis>date</emphasis> taken.
+    <tip>
+      <para>
+      Click on any image to open it directly in the source. 
+      </para>
+    </tip>
+    </para>
+</sect1>
 
-<sect1 id="gphotoframe-trashimage">
-  <title>Moving to the trash a displayed image</title>
-  <para>To move to trash a displayed image, click on the trash shaped icon in the lower left of the photo frame. 
-  A dialog will appear to confirm the operation.</para>
-    <note>
-      <para>This icon is showed only if the displayed image 
-      comes from a local source such as a local folder or a 
-      <application>F-spot</application> or <application>Shotwell</application>
-      database.</para>
-    </note>
+<sect1 id="gphotoframe-removeimage">
+  <title>Removing a displayed image</title>
+    <para>
+      Removing a displayed image is accomplished by clicking on the icons that appears in the bottom 
+      left of the <application>&appname;</application> window when hovering over a displayed photo.
+    </para>
+    <variablelist>
+      <varlistentry>
+      <term><emphasis role="bold">Move to the trash</emphasis></term>
+        <listitem> 
+          <para>
+            To move to the trash a displayed image, click on the trash shaped icon in the lower left 
+            of the photo frame. A dialog will appear to confirm the operation.
+          </para>
+
+          <note>
+            <para>
+              This icon is showed only if the displayed image comes from a local source such 
+              as a local folder or a <application>F-spot</application> or <application>Shotwell</application>
+              database.
+            </para>
+          </note>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="bold">Remove from catalog</emphasis></term>
+          <listitem>
+            <para>
+              To remove from catalog a displayed image coming from a <application>F-spot</application> database, 
+              click on the minus sign in the lower left of the photo frame. 
+              A dialog will appear to confirm the operation.
+            </para>
+          </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="bold">Ban</emphasis></term>
+          <listitem>
+            <para>
+              To ban a photo coming from an online source (<emphasis>Flickr</emphasis>, 
+              <emphasis>Tumbler</emphasis> etc...), press the minus icon
+              that appears in the bottom left when hovering over the displayed photo.
+            </para>
+          </listitem>
+      </varlistentry>
+    </variablelist>
 
 </sect1>
 
@@ -575,7 +629,7 @@
   from your account.
   </para>
   <para>
-  To do so follow these steps:
+  To do so, follow these steps:
   </para>
   <orderedlist>
     <listitem>
@@ -607,7 +661,7 @@
     <para>
       Depending on the service you are logging in, a web browser window might be opened so
       that you can give <application>&appname;</application> the required permissions through the online
-      service's webpages. When you terminate this task, go back to <application>&appname;</application> and
+      service&rsquo;s webpages. When you terminate this task, go back to <application>&appname;</application> and
       follow the instructions in the dialog.
     </para>
   </note>
@@ -621,8 +675,8 @@
   automatically at installation time.</para>
   <para>
   Open the application that manages the screensavers in your system and
-  you should see an entry named <interface>Photo Frame</interface>. Select it
-  and that's all. The next time the screensaver will starts, the <link linkend="pref-photos">
+  you should see an entry named <guilabel>Photo Frame</guilabel>. Select it
+  and that&rsquo;s all. The next time the screensaver will starts, the <link linkend="pref-photos">
   sources preferences</link> will be read as configured from the main window of <application>&appname;</application>
   and consequently will display the contents.
   </para>
