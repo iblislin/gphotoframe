@@ -21,9 +21,8 @@ class IconImage(object):
     def get_pixbuf(self, grayscale=False, size=16):
         self.size = size
         file = self._get_icon_file()
+        pixbuf = gtk.gdk.pixbuf_new_from_file_at_scale(file, size, size, True)
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(file, size, size) \
-            if file.endswith('.svg') else gtk.gdk.pixbuf_new_from_file(file)
         if grayscale:
             pixbuf = self._set_grayscale(pixbuf)
 
