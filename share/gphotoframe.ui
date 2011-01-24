@@ -30,7 +30,7 @@
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="program_name">Gnome Photo Frame</property>
-    <property name="copyright">Copyright &#xA9; 2009-2010 Yoshizumi Endo.</property>
+    <property name="copyright">Copyright &#xA9; 2009-2011 Yoshizumi Endo.</property>
     <property name="comments" translatable="yes">Photo Frame for GNOME Desktop</property>
     <property name="website">http://code.google.com/p/gphotoframe/</property>
     <property name="authors">Yoshizumi Endo &lt;y-endo@ceres.dti.ne.jp&gt;</property>
