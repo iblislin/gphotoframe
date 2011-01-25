@@ -49,7 +49,6 @@ class ActorGeoIcon(ActorSourceIcon):
     def _enter_cb(self, w, e, tooltip):
         if 'location' in self.photo:
             location = self.photo.get_location() or _("Open the map")
-            print "- %s -" % location
             tooltip.update_text(location)
         else:
             self.geo.get(self.photo)
