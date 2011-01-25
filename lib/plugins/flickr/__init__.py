@@ -174,9 +174,9 @@ class FlickrPhoto(base.Photo):
 
 class FlickrFav(object):
 
-    def __init__(self, state=False, arg={}):
+    def __init__(self, state=False, arg=None):
         self.fav = state
-        self.arg = arg
+        self.arg = {} if arg is None else arg
 
     def change_fav(self, rate_dummy):
         url = self._get_url()

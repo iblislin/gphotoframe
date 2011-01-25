@@ -90,7 +90,9 @@ class PhotoList(object):
 
 class Photo(dict):
 
-    def __init__(self, init_dic={}):
+    def __init__(self, init_dic=None):
+        if init_dic is None:
+            init_dic = {}
         self.update(init_dic)
         self.conf = GConf()
 
