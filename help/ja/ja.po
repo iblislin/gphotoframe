@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.1\n"
-"POT-Creation-Date: 2011-01-24 20:13+0900\n"
-"PO-Revision-Date: 2011-01-25 15:42+0900\n"
+"POT-Creation-Date: 2011-01-26 09:03+0900\n"
+"PO-Revision-Date: 2011-01-26 09:03+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -15,7 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gphotoframe.omf.in:5(type)
+#: C/gphotoframe-C.omf:4(creator) C/gphotoframe-C.omf:5(maintainer)
+msgid "(Cristian Marchi)"
+msgstr "(Cristian Marchi)"
+
+#: C/gphotoframe-C.omf:6(title)
+msgid "GNOME Photo Frame Application Manual"
+msgstr "GNOME 写真フレームマニュアル"
+
+#: C/gphotoframe-C.omf:7(date) C/gphotoframe.xml:78(date)
+msgid "2010-10-03"
+msgstr "2010-10-03"
+
+#: C/gphotoframe-C.omf:10(description)
+msgid "GNOME Photo Frame is an image viewer application for the GNOME desktop."
+msgstr "GNOME 写真フレームは GNOME デスクトップ向けの画像ビューアです。"
+
+#: C/gphotoframe-C.omf:14(type)
 msgid "user's guide"
 msgstr "ユーザーズガイド"
 
@@ -23,7 +39,7 @@ msgstr "ユーザーズガイド"
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/gphotoframe.xml:177(None)
 msgid ""
-"@@image: 'figures/gphotoframe_fig2.png'; md5=232c2606ec4b5cab54c6075942880d8b"
+"@@image: 'figures/gphotoframe_fig2.png'; md5=271391ff0ab65ad411a618683fdf2e16"
 msgstr "ok"
 
 #: C/gphotoframe.xml:18(title)
@@ -105,10 +121,6 @@ msgstr "2010-11-04"
 #: C/gphotoframe.xml:77(revnumber)
 msgid "GNOME Photo Frame Manual V1.1"
 msgstr "GNOME 写真フレームマニュアル 1.1"
-
-#: C/gphotoframe.xml:78(date)
-msgid "2010-10-03"
-msgstr "2010-10-03"
 
 #: C/gphotoframe.xml:86(releaseinfo)
 msgid "This manual describes version 1.2 of GNOME Photo Frame."
@@ -210,7 +222,9 @@ msgstr ""
 msgid ""
 "Go back to the photo frame by closing the <guilabel>Preferences</guilabel> "
 "dialog with the <guibutton>Close</guibutton> button."
-msgstr "<guibutton>閉じる</guibutton>ボタンを押して<guilabel>設定</guilabel>ダイアログを閉じ、写真フレームに戻ります。"
+msgstr ""
+"<guibutton>閉じる</guibutton>ボタンを押して<guilabel>設定</guilabel>ダイアロ"
+"グを閉じ、写真フレームに戻ります。"
 
 #: C/gphotoframe.xml:153(para)
 msgid ""
@@ -286,7 +300,12 @@ msgid ""
 "an internet service like <emphasis>Flickr</emphasis>, you could add an image "
 "to your&rsquo;s profile favorites with a click on this icon. The icon will "
 "then light up indicating that the image has been added to your favorites."
-msgstr "このアイコンはデフォルトでは写真フレームの左上に表示されます。<emphasis>Flickr</emphasis> のようなインターネットのサービスに<link linkend=\"gphotoframe-onlinelog\">ログイン</link>している場合、このアイコンをクリックすることでお気に入りに登録することができます。表示している写真がお気に入りに登録されていれば、それを示すようにアイコンが明るく表示されます。"
+msgstr ""
+"このアイコンはデフォルトでは写真フレームの左上に表示されます。"
+"<emphasis>Flickr</emphasis> のようなインターネットのサービスに<link linkend="
+"\"gphotoframe-onlinelog\">ログイン</link>している場合、このアイコンをクリック"
+"することでお気に入りに登録することができます。表示している写真がお気に入りに"
+"登録されていれば、それを示すようにアイコンが明るく表示されます。"
 
 #: C/gphotoframe.xml:216(para)
 msgid ""
@@ -354,7 +373,7 @@ msgstr ""
 
 #: C/gphotoframe.xml:258(guiicon)
 msgid "ban, trash and remove from catalog icons"
-msgstr "バンアイコン、ゴミ箱アイコン"
+msgstr "禁止アイコン、ゴミ箱アイコン"
 
 #: C/gphotoframe.xml:260(para)
 msgid ""
@@ -364,7 +383,8 @@ msgid ""
 "application> catalog</link> the displayed image."
 msgstr ""
 "このアイコンはデフォルトでは左下に表示され、表示中の写真を<link linkend="
-"\"gphotoframe-removeimage\">バンしたり、ゴミ箱へ移動したりします。"
+"\"gphotoframe-removeimage\">表示させないようにしたり、ゴミ箱へ移動したりしま"
+"す。"
 
 #: C/gphotoframe.xml:272(title)
 msgid "<application>GNOME Photo Frame</application> Application Menu"
@@ -468,7 +488,9 @@ msgstr "設定"
 msgid ""
 "Opens the <guilabel>Preferences</guilabel> dialog: see <xref linkend="
 "\"gphotoframe-preferences\"/> for detailed informations."
-msgstr "<guilabel>設定</guilabel>ダイアログを表示します。詳細は<xref linkend=\"gphotoframe-preferences\"/>をご覧ください。"
+msgstr ""
+"<guilabel>設定</guilabel>ダイアログを表示します。詳細は<xref linkend="
+"\"gphotoframe-preferences\"/>をご覧ください。"
 
 #: C/gphotoframe.xml:340(guimenuitem)
 msgid "About"
@@ -511,8 +533,8 @@ msgid ""
 "inside the photo frame and selecting <guimenuitem>Preferences </guimenuitem> "
 "from the menu."
 msgstr ""
-"<guilabel>設定</guilabel>ダイアログを開くには、写真フレーム上で右クリック"
-"し、表示されるメインメニューから<guimenuitem>設定</guimenuitem>を選択します。"
+"<guilabel>設定</guilabel>ダイアログを開くには、写真フレーム上で右クリックし、"
+"表示されるメインメニューから<guimenuitem>設定</guimenuitem>を選択します。"
 
 #: C/gphotoframe.xml:370(para)
 msgid "In the <guilabel>Preferences</guilabel> dialog there are three tabs."
@@ -545,8 +567,8 @@ msgid ""
 "guilabel>."
 msgstr ""
 "ここでは各画像の表示時間を秒で指定します。<guilabel>ウィンドウ表示時</"
-"guilabel>の表示時間と<guilabel>フルスクリーン表示時</guilabel>の表示時間を"
-"それぞれを指定できます。"
+"guilabel>の表示時間と<guilabel>フルスクリーン表示時</guilabel>の表示時間をそ"
+"れぞれを指定できます。"
 
 #: C/gphotoframe.xml:390(guilabel)
 msgid "Maximum Display Size"
@@ -650,7 +672,11 @@ msgid ""
 "<guibutton>About</guibutton> button in the bottom right when a plugin row is "
 "highlighted, will display a dialog containing some information regarding the "
 "selected plugin."
-msgstr "<guilabel>プラグイン</guilabel>は、各プラグイン名の左側にあるチェックボックスをクリックすることで、その有効化・無効化を切り替えられます。プラグインを選択した上で、右下にある<guibutton>情報</guibutton>ボタンをクリックすると、そのプラグインに関する情報が表示されます。"
+msgstr ""
+"<guilabel>プラグイン</guilabel>は、各プラグイン名の左側にあるチェックボックス"
+"をクリックすることで、その有効化・無効化を切り替えられます。プラグインを選択"
+"した上で、右下にある<guibutton>情報</guibutton>ボタンをクリックすると、そのプ"
+"ラグインに関する情報が表示されます。"
 
 #: C/gphotoframe.xml:442(para)
 msgid ""
@@ -664,7 +690,10 @@ msgstr ""
 msgid ""
 "<guilabel>F-Spot</guilabel>&mdash; shows in <application>GNOME Photo Frame</"
 "application> the images in your <application>F-Spot</application> database."
-msgstr "<guilabel>F-Spot</guilabel>&mdash; <application>F-Spot</application> のデータベースに登録された写真を <application>GNOME 写真フレーム</application>に表示します。"
+msgstr ""
+"<guilabel>F-Spot</guilabel>&mdash; <application>F-Spot</application> のデータ"
+"ベースに登録された写真を <application>GNOME 写真フレーム</application>に表示"
+"します。"
 
 #: C/gphotoframe.xml:453(para)
 msgid ""
@@ -672,44 +701,60 @@ msgid ""
 "photo sharing service. This plugin is highly customizable as you can look "
 "for photos by specifying a tag, a group, a user or by showing the most "
 "interesting or the latest content."
-msgstr "<guilabel>Flickr</guilabel>&mdash; 人気のある写真共有サービスの写真を取得します。このプラグインは高度なカスタマイズが可能で、タグ、グループ、ユーザを指定したり、インタレスティングの高い写真を表示したりできます。"
+msgstr ""
+"<guilabel>Flickr</guilabel>&mdash; 人気のある写真共有サービスの写真を取得しま"
+"す。このプラグインは高度なカスタマイズが可能で、タグ、グループ、ユーザを指定"
+"したり、インタレスティングの高い写真を表示したりできます。"
 
 #: C/gphotoframe.xml:461(para)
 msgid ""
 "<guilabel>Folder</guilabel>&mdash; with this plugin you could add as a "
 "source for content a folder that contains image files on your computer."
-msgstr "<guilabel>Folder</guilabel>&mdash; このプラグインは、お使いのコンピュータにあるフォルダから写真を取得します。指定したフォルダについて、このプラグインは、写真の追加や削除を自動的に検知します。"
+msgstr ""
+"<guilabel>Folder</guilabel>&mdash; このプラグインは、お使いのコンピュータにあ"
+"るフォルダから写真を取得します。指定したフォルダについて、このプラグインは、"
+"写真の追加や削除を自動的に検知します。"
 
 #: C/gphotoframe.xml:467(para)
 msgid ""
 "<guilabel>Picasa Web</guilabel>&mdash; display the contents from the google "
 "photo hosting service."
-msgstr "<guilabel>Picasa Web</guilabel>&mdash; Google Picasa Web Album から写真を取得します。人気の高い画像の取得、ユーザの指定や検索なども行えます。"
+msgstr ""
+"<guilabel>Picasa Web</guilabel>&mdash; Google Picasa Web Album から写真を取得"
+"します。人気の高い画像の取得、ユーザの指定や検索なども行えます。"
 
 #: C/gphotoframe.xml:473(para)
 msgid ""
 "<guilabel>RSS and Atom feed</guilabel>&mdash; shows images from a RSS or "
 "Atom feed."
-msgstr "<guilabel>RSS</guilabel>&mdash; RSS や Atom フィードから写真を取得します。"
+msgstr ""
+"<guilabel>RSS</guilabel>&mdash; RSS や Atom フィードから写真を取得します。"
 
 #: C/gphotoframe.xml:478(para)
 msgid ""
 "<guilabel>Ruins clock</guilabel>&mdash; gather images of old and abandoned "
 "clocks from Haikyo Clock website."
-msgstr "<guilabel>廃墟時計</guilabel>&mdash; 廃墟時計のサイトから、廃墟にたたずむ時計たちの写真を取得します。"
+msgstr ""
+"<guilabel>廃墟時計</guilabel>&mdash; 廃墟時計のサイトから、廃墟にたたずむ時計"
+"たちの写真を取得します。"
 
 #: C/gphotoframe.xml:484(para)
 msgid ""
 "<guilabel>Shotwell</guilabel>&mdash; shows in <application>GNOME Photo "
 "Frame</application> the images in your <application>Shotwell</application> "
 "database."
-msgstr "<guilabel>Shotwell</guilabel>&mdash; <application>Shotwell</application> のデータベースに登録された写真を <application>GNOME 写真フレーム</application>に表示します。"
+msgstr ""
+"<guilabel>Shotwell</guilabel>&mdash; <application>Shotwell</application> の"
+"データベースに登録された写真を <application>GNOME 写真フレーム</application>"
+"に表示します。"
 
 #: C/gphotoframe.xml:490(para)
 msgid ""
 "<guilabel>Tumblr</guilabel>&mdash; shows images from the <quote>share "
 "anything</quote> online service."
-msgstr "<guilabel>Tumblr</guilabel>&mdash; 「何でも共有」オンラインサービスから写真を取得します。"
+msgstr ""
+"<guilabel>Tumblr</guilabel>&mdash; 「何でも共有」オンラインサービスから写真を"
+"取得します。"
 
 #: C/gphotoframe.xml:500(title)
 msgid "Photos tab"
@@ -810,11 +855,11 @@ msgid ""
 "Recent</guimenu><guimenuitem>Show History</guimenuitem></menuchoice> from "
 "the <application>GNOME Photo Frame</application><link linkend=\"gphotoframe-"
 "mainmenu\">Application Menu</link>. A web page will be opened in your "
-"default web browser with all the images displayed in the current session "
-"sorted in appearence order (from latest to oldest). For every image, you can "
-"see many information as the <emphasis>title</emphasis>, the "
-"<emphasis>source</emphasis>, the <emphasis>author&rsquo;s name</emphasis> "
-"and the <emphasis>date</emphasis> taken. <placeholder-1/>"
+"default web browser that shows the latest ten images displayed, sorted in "
+"appearence order (from latest to oldest). For every image, you can see many "
+"information as the <emphasis>title</emphasis>, the <emphasis>source</"
+"emphasis>, the <emphasis>author&rsquo;s name</emphasis> and the "
+"<emphasis>date</emphasis> taken. <placeholder-1/>"
 msgstr ""
 "<application>GNOME 写真フレーム</application>には最近表示した写真の履歴一覧を"
 "ブラウザに表示する機能があります。<application>GNOME 写真フレーム</"
@@ -873,7 +918,7 @@ msgstr ""
 
 #: C/gphotoframe.xml:607(emphasis)
 msgid "Ban"
-msgstr "バン"
+msgstr "禁止"
 
 #: C/gphotoframe.xml:609(para)
 msgid ""
@@ -1030,16 +1075,6 @@ msgstr ""
 #: C/gphotoframe.xml:0(None)
 msgid "translator-credits"
 msgstr "Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2010"
-
-#~ msgid "(Cristian Marchi)"
-#~ msgstr "(Cristian Marchi)"
-
-#~ msgid "GNOME Photo Frame Application Manual"
-#~ msgstr "GNOME 写真フレームマニュアル"
-
-#~ msgid ""
-#~ "GNOME Photo Frame is an image viewer application for the GNOME desktop."
-#~ msgstr "GNOME 写真フレームは GNOME デスクトップ向けの画像ビューアです。"
 
 #~ msgid "2010-11-18"
 #~ msgstr "2010-11-18"

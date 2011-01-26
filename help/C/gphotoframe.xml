@@ -555,7 +555,7 @@
     <application>&appname;</application> allows you to see the history of displayed images in a 
     web browser. Select <menuchoice><guimenu>Open Recent</guimenu><guimenuitem>Show History</guimenuitem></menuchoice>
     from the <application>&appname;</application> <link linkend="gphotoframe-mainmenu">Application Menu</link>.
-    A web page will be opened in your default web browser with all the images displayed in the current session sorted in 
+    A web page will be opened in your default web browser that shows the latest ten images displayed, sorted in 
     appearence order (from latest to oldest).
     For every image, you can see many information as the <emphasis>title</emphasis>, the <emphasis>source</emphasis>, 
     the <emphasis>author&rsquo;s name</emphasis> and the <emphasis>date</emphasis> taken.
