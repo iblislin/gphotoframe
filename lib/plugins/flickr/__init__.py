@@ -131,16 +131,16 @@ class FlickrPhotoList(base.PhotoList):
                     'target'     : (self.target, argument),
                     'url'        : str(url),
                     'owner_name' : s['ownername'],
-                    'owner'      : s['owner'],
+                    'owner'      : s['owner'], # nsid
                     'id'         : s['id'],
                     'title'      : s['title'],
                     'page_url'   : page_url,
                     'date_taken' : date,
-                    # 'description' : s['description']['_content'],
-                    'geo'        : {'lon' : s['longitude'],
-                                    'lat' : s['latitude']},
-                    'trash'      : trash.Ban(self.photolist),
-                    'icon'       : FlickrIcon}
+                    'trash'      : trash.Ban(self.photolist)}
+
+            geo = [s['latitude'], s['longitude']]
+            if geo != [0, 0]:
+                data['geo'] = geo
 
             if self.api.get_auth_token():
                 state = (self.target == 'Favorites' and not self.argument)
@@ -171,6 +171,14 @@ class FlickrPhoto(base.Photo):
         url = self.get(type) or self.get('url_z') or self.get('url') 
         # print type, url
         return url
+
+    def is_my_photo(self):
+        user_name = self.conf.get_string('plugins/flickr/user_name')
+        result = user_name and user_name == self['owner_name']
+        return result
+
+    def can_fav(self):
+        return not self.is_my_photo()
 
 class FlickrFav(object):
 

@@ -9,6 +9,9 @@
 # 2010-09-19 Version 0.1
 
 import os
+import hashlib
+import datetime
+import time
 
 from gettext import gettext as _
 
@@ -66,10 +69,9 @@ class ShotwellPhotoList(FSpotPhotoList):
                  'id' : id,
                  'version' : version,
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
-                 'trash': ShotwellTrash(self.photolist),
-                 'icon' : ShotwellIcon }
+                 'trash': ShotwellTrash(self.photolist) }
 
-        self.photo = base.Photo(data)
+        self.photo = base.MyPhoto(data)
         cb(None, self.photo)
 
 class ShotwellTrash(FSpotTrash):
@@ -85,14 +87,16 @@ class ShotwellTrash(FSpotTrash):
         # super(ShotwellTrash, self).delete_from_disk(photo)
         self.photolist.delete_photo(photo.get('url'))
 
-        self.id = photo.get('id')
-        sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % self.id 
+        id = photo.get('id')
+        sql = "UPDATE PhotoTable SET flags=4 WHERE id=%s;" % id
         db = ShotwellDB()
         db.execute(sql)
         db.commit()
         db.close()
 
-    def _get_sql_obj(self, version):
+    def _get_sql_obj(self, photo):
+        version =  photo.get('version')
+
         if version == -1:
             sql_templates = [ 
                 "DELETE FROM PhotoTable WHERE id=$id;" ]
@@ -101,17 +105,49 @@ class ShotwellTrash(FSpotTrash):
                 "DELETE FROM BackingPhotoTable WHERE id=$version;", 
                 "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
 
+
+        filename = photo.get('filename')
+        tombstone_value = self._get_tombstone_values(filename)
+        sql_templates.append("INSERT INTO TombstoneTable "
+                             "(filepath, filesize, md5, time_created) "
+                             "VALUES (%s)" % tombstone_value)
+
         # cache delete
+        self._delete_thumbnail(photo)
+
+        db = ShotwellDB()
+        return db, sql_templates
+
+    def _delete_thumbnail(self, photo):
+        id =  photo.get('id')
         cache_path = os.path.join(os.environ['HOME'], '.shotwell/thumbs')
-        cache_file = "thumb%016x.jpg" % self.id
+        cache_file = "thumb%016x.jpg" % id
 
         for size in ['thumbs128', 'thumbs360']:
             fullpath = os.path.join(cache_path, size, cache_file)
             if os.access(fullpath, os.W_OK):
                 os.remove(fullpath)
 
-        db = ShotwellDB()
-        return db, sql_templates
+    def _get_tombstone_values(self, file):
+        filesize = os.path.getsize(file)
+        md5 = self._get_md5sum(file)
+        time_created = self._get_timestamp()
+
+        value = "'%s', %s, '%s', %s" % (file, filesize, md5, time_created)
+        return value
+
+    def _get_md5sum(self, file):
+        with open(file, 'rb') as f:
+            content = f.read()
+
+        m = hashlib.md5()
+        m.update(content)
+        md5sum = m.hexdigest()
+        return md5sum
+
+    def _get_timestamp(self):
+        d = datetime.datetime.today()
+        return int(time.mktime(d.timetuple()))
 
 class PhotoSourceShotwellUI(ui.PhotoSourceUI):
 

@@ -41,12 +41,14 @@ class HistoryHTML(object):
                     'screensaver': screensaver_head,
                     'screensaver_table': screensaver_table }
 
-        template = Template(open(template_file).read())
+        with open(template_file,'r') as fh:
+            template_format = fh.read()
+
+        template = Template(template_format)
         html = template.safe_substitute(keyword)
 
-        fh = open(self.html_file,'w')
-        fh.write(html)
-        fh.close()
+        with open(self.html_file,'w') as fh:
+            fh.write(html)
 
     def _get_js(self, js=''):
         js_enable = True
@@ -64,7 +66,8 @@ class HistoryHTML(object):
 
     def _get_table(self, list, table = ''):
         table_file = os.path.join(self.template_dir, 'history_table.html')
-        template = Template(open(table_file).read())
+        with open(table_file) as fh:
+            template = Template(fh.read())
 
         for id, org_url, page_url, title, owner, date, source, target in list:
 

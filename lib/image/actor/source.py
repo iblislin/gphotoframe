@@ -42,7 +42,7 @@ class ActorSourceIcon(ActorIcon):
             self.texture.hide()
 
     def _get_icon(self):
-        return self.photo.get('icon')()
+        return self.photo.get_icon()
 
     def _get_ui_data(self):
         self._set_ui_options('source', False, 1)
