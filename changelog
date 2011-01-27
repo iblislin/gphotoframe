@@ -1,3 +1,7 @@
+2011-01-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/info.py: Added a quotation for google map image title.
+
 2011-01-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* help/*: Updated help documents, images and translations.
