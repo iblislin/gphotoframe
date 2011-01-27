@@ -1,4 +1,6 @@
 from __future__ import division
+import urllib
+
 import gtk
 from gettext import gettext as _
 
@@ -35,15 +37,14 @@ class ActorGeoIcon(ActorSourceIcon):
         lon = self.photo['geo']['lon']
 
         title = self.photo['title'] or _('Untitled')
-        title = title.replace("'", "%27").replace('"', "%22") \
-            .replace("(", "[").replace(")", "]") \
+        title = title.replace("(", "[").replace(")", "]") \
             .replace("<", "").replace(">", "")
 
         zoom = self.conf.get_int('ui/geo/zoom_level', 0)
         zoom = "&z=%s" % zoom if zoom else ""
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
-            lat, lon, title, zoom)
+            lat, lon, urllib.quote(title), zoom)
         gtk.show_uri(None, url, event.time)
 
     def _enter_cb(self, w, e, tooltip):
