@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Picasa Wb Album plugin for GNOME Photo Frame
-# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 from twisted.web import client
@@ -27,7 +27,7 @@ class PicasaPlugin(base.PluginBase):
         self.name = _('Picasa Web')
         self.icon = PicasaIcon
         self.info = { 'comments': _('Photo Share Service'),
-                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',
                       'authors': ['Yoshizimi Endo'], }
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Flickr plugin for GNOME Photo Frame
-# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import random
@@ -26,7 +26,7 @@ class FlickrPlugin(base.PluginBase):
         self.icon = FlickrIcon
         self.exif = FlickrEXIF
         self.info = { 'comments': _('Photo Share Service'),
-                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.flickr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
