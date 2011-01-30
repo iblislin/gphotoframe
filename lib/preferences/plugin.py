@@ -99,7 +99,7 @@ class PluginAboutDialog(object):
         icon_file = '/usr/share/gedit-2/icons/gedit-plugin.png'
         if os.access(icon_file, os.R_OK):
             icon = LocalIconImage(icon_file)
-            about.set_logo(icon.get_pixbuf())
+            about.set_logo(icon.get_pixbuf(size=48))
 
         about.run()
         about.destroy()
