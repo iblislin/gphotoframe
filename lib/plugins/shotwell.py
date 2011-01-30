@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 #
 # Shotwell plugin for GNOME Photo Frame
-# Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-01-16 Version 0.1.3
 # 2010-12-17 Version 0.1.2
 # 2010-10-25 Version 0.1.1
 # 2010-09-19 Version 0.1
@@ -30,7 +31,7 @@ class ShotwellPlugin(FSpotPlugin):
         self.icon = ShotwellIcon
         self.db_class = ShotwellDB
         self.info = { 'comments': _('Shotwell Photo Manager'),
-                      'copyright': 'Copyright © 2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2010-2011 Yoshizimi Endo',
                       'website': 'http://yorba.org/shotwell/',
                       'authors': ['Yoshizimi Endo'], }
 

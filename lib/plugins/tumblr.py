@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Tumblr plugin for GNOME Photo Frame
-# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import re
@@ -27,7 +27,7 @@ class TumblrPlugin(base.PluginBase):
         self.name = 'Tumblr'
         self.icon = TumblrIcon
         self.info = { 'comments': _('Share Anything'),
-                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
