@@ -99,8 +99,7 @@ class PicasaPhotoList(base.PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
-                    'trash'      : trash.Ban(self.photolist),
-                    'icon'       : PicasaIcon}
+                    'trash'      : trash.Ban(self.photolist)}
 
             # exif
             exif = {}
@@ -127,8 +126,7 @@ class PicasaPhotoList(base.PhotoList):
             # geo
             if entry.get('georss$where'):
                 geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
-                lat, lon = geo_raw.split()
-                data['geo'] = {'lon': lon, 'lat': lat}
+                data['geo'] = geo_raw.split()
 
             # location
             if entry.get('gphoto$location'):
@@ -136,7 +134,7 @@ class PicasaPhotoList(base.PhotoList):
                 if location:
                     data['location'] = [location]
 
-            photo = base.Photo(data)
+            photo = PicasaPhoto(data)
             self.photos.append(photo)
 
     def _get_feed_url(self, target, argument, option=None):
@@ -158,6 +156,13 @@ class PicasaPhotoList(base.PhotoList):
             url += '&max-results=%s' % max_result
 
         return url
+
+class PicasaPhoto(base.Photo):
+
+    def is_my_photo(self):
+        user_name = self.conf.get_string('plugins/picasa/user_id')
+        result = user_name and user_name == self['owner_name']
+        return result
 
 class PhotoSourcePicasaUI(ui.PhotoSourceUI):
 

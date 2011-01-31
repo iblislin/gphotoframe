@@ -3,10 +3,17 @@ import gconf
 class GConf(object):
     """Gconf Wrapper"""
 
+    def __new__(cls, *args, **kw):
+        if not hasattr(cls, '_instance'):
+            orig = super(GConf, cls)
+            cls._instance = orig.__new__(cls, *args, **kw)
+        return cls._instance
+
     def __init__(self):
-        self.dir = "/apps/gphotoframe/"
-        self.gconf = gconf.client_get_default()
-        self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
+        if not hasattr(self, "dir"):
+            self.dir = "/apps/gphotoframe/"
+            self.gconf = gconf.client_get_default()
+            self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
 
     def set_notify_add(self, key, cb):
         self.gconf.notify_add(self.dir + key, cb)

@@ -112,8 +112,8 @@ class RecentMenuItem(gtk.ImageMenuItem):
         label.set_max_width_chars(20)
         label.set_property('ellipsize', pango.ELLIPSIZE_END)
 
-        icon = photo.get('icon') or IconImage
-        icon_img = icon().get_image()
+        icon = photo.get_icon() or IconImage()
+        icon_img = icon.get_image()
         self.set_image(icon_img)
 
         self.set_always_show_image(True)

@@ -104,8 +104,7 @@ class TumblrPhotoList(base.PhotoList):
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
-                    'trash'      : trash.Ban(self.photolist),
-                    'icon'       : TumblrIcon}
+                    'trash'      : trash.Ban(self.photolist)}
 
             if url_m != url_l:
                 data['url_l'] = url_l
