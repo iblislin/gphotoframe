@@ -84,8 +84,7 @@ class RSSPhotoList(base.PhotoList):
                         'owner'      : owner,
                         'title'      : title,
                         'page_url'   : str(entry.link),
-                        'trash'      : trash.Ban(self.photolist),
-                        'icon'       : RSSIcon}
+                        'trash'      : trash.Ban(self.photolist)}
 
                 photo = base.Photo(data)
 

@@ -24,7 +24,7 @@ class ActorGeoIcon(ActorSourceIcon):
             super(ActorGeoIcon, self).hide(True)
 
     def _check_photo(self):
-        return self.photo.geo_is_ok()
+        return self.photo.has_geotag()
 
     def _get_icon(self):
         return IconImage('gnome-globe')
@@ -33,14 +33,14 @@ class ActorGeoIcon(ActorSourceIcon):
         self._set_ui_options('geo', False, 2)
 
     def _on_button_press_cb(self, actor, event):
-        lat = self.photo['geo']['lat']
-        lon = self.photo['geo']['lon']
+        lat, lon = self.photo['geo']
 
         title = self.photo['title'] or _('Untitled')
         title = title.replace("(", "[").replace(")", "]") \
             .replace("<", "").replace(">", "")
 
-        zoom = self.conf.get_int('ui/geo/zoom_level', 0)
+        zoom = 0 if self.photo.is_my_photo() else 6
+        #zoom = self.conf.get_int('ui/geo/zoom_level', 0)
         zoom = "&z=%s" % zoom if zoom else ""
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
@@ -65,7 +65,7 @@ class ActorInfoIcon(ActorGeoIcon):
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _check_other_icon(self, photo):
-        return photo and photo.geo_is_ok() 
+        return photo and photo.has_geotag() 
 
     def _check_photo(self):
         return self.photo.get('exif') or self._get_exif_class()

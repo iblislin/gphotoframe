@@ -96,6 +96,26 @@ class Photo(dict):
         self.update(init_dic)
         self.conf = GConf()
 
+    def open(self, *args):
+        url = self.get('page_url') or self.get('url')
+        url = url.replace("'", "%27")
+        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+
+    def fav(self, new_rate):
+        if self.get('fav'):
+            fav_obj = self['fav']
+            fav_obj.change_fav(new_rate)
+
+    def can_fav(self):
+        return True
+
+    def has_geotag(self):
+        geo = self.get('geo')
+        return geo
+
+    def is_my_photo(self):
+        return False
+
     def get_title(self):
         with_suffix = self.conf.get_bool('format/show_filename_suffix', True)
         title = self['title'] or ''
@@ -111,19 +131,9 @@ class Photo(dict):
         url = 'url_l' if self._is_fullscreen_mode() else 'url'
         return self.get(url) or self.get('url')
 
-    def open(self, *args):
-        url = self['page_url'] if 'page_url' in self else self['url']
-        url = url.replace("'", "%27")
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
-
-    def fav(self, new_rate):
-        if self.get('fav'):
-            fav_obj = self['fav']
-            fav_obj.change_fav(new_rate)
-
-    def geo_is_ok(self):
-        return (self.get('geo') and
-                self['geo']['lat'] != 0 and self['geo']['lon'] != 0)
+    def get_icon(self):
+        icon = self.get('info')().icon # icon class
+        return icon()
 
     def get_location(self, short=False):
         locations = self.get('location')
@@ -156,3 +166,8 @@ class Photo(dict):
 
         flag = high_resolution and (is_screensaver_mode() or is_fullscreen)
         return flag
+
+class MyPhoto(Photo):
+
+    def is_my_photo(self):
+        return True

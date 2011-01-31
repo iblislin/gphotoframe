@@ -18,8 +18,15 @@
 	* help/C/gphotoframe.xml: Updated help documentation.
 	  Thanks Cristian Marchi!
 
+2011-01-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Added support for removing from catalog on Shotwell 0.8.
+
 2011-01-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actor/favicon.py: Added checking to my flickr photo for favoring.
+	* base/base.py, actor/info.py: Added support for changing zoom
+	  level for map.
 	* constants.py: Added checking for user directory permissions.
 
 2011-01-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

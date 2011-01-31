@@ -17,8 +17,8 @@ class ToolTip(object):
     def query_tooltip_cb(self, widget, x, y, keyboard_mode, tooltip):
         if not self.photo or not self._has_icon: return
 
-        icon = self.photo.get('icon')
-        pixbuf = icon().get_pixbuf()
+        icon = self.photo.get_icon()
+        pixbuf = icon.get_pixbuf()
 
         tooltip.set_icon(pixbuf)
 
