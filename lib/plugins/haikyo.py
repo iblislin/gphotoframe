@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 #
 # Haikyo (廃墟時計) plugin for GNOME Photo Frame
-# Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
 #   廃墟時計 by Maripo GODA
 #   http://www.madin.jp/haikyo/
 #
+# 2011-01-14 Version 0.2.1
 # 2010-09-19 Version 0.2
 
 import time
@@ -31,7 +32,7 @@ class HaikyoPlugin(base.PluginBase):
         self.name = _('Ruins Clock')
         self.icon = HaikyoIcon
         self.info = { 'comments': _('Haikyo Clock'),
-                      'copyright': 'Copyright © 2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2010-2011 Yoshizimi Endo',
                       'website': 'http://www.madin.jp/haikyo/',
                       'authors': ['Yoshizimi Endo'], }
 

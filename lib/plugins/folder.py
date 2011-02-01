@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Folder plugin for GNOME Photo Frame
-# Copyright (c) 2009-2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import os
@@ -26,7 +26,7 @@ class DirPlugin(base.PluginBase):
         self.name = _('Folder')
         self.icon = FolderIcon
         self.info = { 'comments': _('Local Folder'),
-                      'copyright': 'Copyright © 2009-2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
 class DirPhotoList(base.PhotoList):
