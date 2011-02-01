@@ -1,5 +1,5 @@
 # Copyright (c) 2001-2008 Twisted Matrix Laboratories.
-# Copyright (c) 2009-2010 Yoshizumi Endo.
+# Copyright (c) 2009-2011 Yoshizumi Endo.
 #
 # This urlget is a modified version of twisted.web.client module.
 #
@@ -41,7 +41,7 @@ class UrlGetWithProxy(object):
 
     def getPage(self, url, contextFactory=None, *args, **kwargs):
         factory = client.HTTPClientFactory(url, *args, **kwargs)
-        d = self._urlget(factory, url, file)
+        d = self._urlget(factory, url, contextFactory, *args, **kwargs)
         return d
 
     def downloadPage(self, url, file, contextFactory=None, *args, **kwargs):
