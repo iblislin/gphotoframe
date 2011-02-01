@@ -1,5 +1,6 @@
 2011-02-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/haikyo.py: Added support for proxy.
 	* utils/urlget.py: Fixed a bug.
 
 2011-01-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

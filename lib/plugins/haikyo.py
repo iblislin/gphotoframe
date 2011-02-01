@@ -7,6 +7,7 @@
 #   廃墟時計 by Maripo GODA
 #   http://www.madin.jp/haikyo/
 #
+# 2011-02-01 Version 0.3
 # 2011-01-14 Version 0.2.1
 # 2010-09-19 Version 0.2
 
@@ -15,10 +16,10 @@ import random
 import re
 
 from xml.etree import ElementTree as etree
-from twisted.web import client
 from gettext import gettext as _
 
 from base import *
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.iconimage import WebIconImage
 
 
@@ -40,7 +41,8 @@ class HaikyoPhotoList(base.PhotoList):
 
     def prepare(self):
         url = 'http://www.madin.jp/haikyo/list.xml'
-        d = client.getPage(url)
+        urlget = UrlGetWithAutoProxy(url)
+        d = urlget.getPage(url)
         d.addCallback(self._prepare_cb)
 
     def _prepare_cb(self, data):
