@@ -4,14 +4,15 @@
 # Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
-from twisted.web import client
 from gettext import gettext as _
 import urllib
 import json
+
 import gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
@@ -65,6 +66,7 @@ class PicasaPhotoList(base.PhotoList):
                'source' : source}
         content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
+        client = UrlGetWithAutoProxy(url)
         d = client.getPage(url, method='POST',
                            postdata = urllib.urlencode(arg),
                            headers = content_type)
@@ -79,6 +81,7 @@ class PicasaPhotoList(base.PhotoList):
         url = self._get_feed_url(self.target, self.argument)
         # print url
 
+        client = UrlGetWithAutoProxy(url)
         d = client.getPage(url, headers = auth_header)
         d.addCallback(self._set_photo_cb)
 
