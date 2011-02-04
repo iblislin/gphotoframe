@@ -1,3 +1,7 @@
+2011-02-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/urlget.py, plugins/picasa.py: Code refactoring.
+
 2011-02-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/haikyo.py: Added support for proxy.

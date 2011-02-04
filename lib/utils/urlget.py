@@ -41,17 +41,17 @@ class UrlGetWithProxy(object):
 
     def getPage(self, url, contextFactory=None, *args, **kwargs):
         factory = client.HTTPClientFactory(url, *args, **kwargs)
-        d = self._urlget(factory, url, contextFactory, *args, **kwargs)
+        d = self._urlget(factory, url, contextFactory)
         return d
 
     def downloadPage(self, url, file, contextFactory=None, *args, **kwargs):
         factory = client.HTTPDownloader(url, file, *args, **kwargs)
-        d = self._urlget(factory, url, contextFactory, *args, **kwargs)
+        d = self._urlget(factory, url, contextFactory)
         return d
 
-    def _urlget(self, factory, url, contextFactory=None, *args, **kwargs):
+    def _urlget(self, factory, url, contextFactory=None):
         scheme, host, port, path = client._parse(url)
-        if self.use_proxy:
+        if self.use_proxy and scheme != 'https': # HTTPS proxy isn't supported.
             host, port = self.proxy_host, self.proxy_port
             factory.path = url
         if scheme == 'https':
