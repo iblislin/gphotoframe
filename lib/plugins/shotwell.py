@@ -96,7 +96,7 @@ class ShotwellTrash(FSpotTrash):
         db.close()
 
     def _get_sql_obj(self, photo):
-        version =  photo.get('version')
+        version = photo.get('version')
 
         if version == -1:
             sql_templates = [ 
@@ -106,12 +106,19 @@ class ShotwellTrash(FSpotTrash):
                 "DELETE FROM BackingPhotoTable WHERE id=$version;", 
                 "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
 
+        check_table_sql = ( "SELECT count(*) FROM sqlite_master "
+                            "WHERE type='table' AND name='%s';"
+                            % 'TombstoneTable2')
 
-        filename = photo.get('filename')
-        tombstone_value = self._get_tombstone_values(filename)
-        sql_templates.append("INSERT INTO TombstoneTable "
-                             "(filepath, filesize, md5, time_created) "
-                             "VALUES (%s)" % tombstone_value)
+        db = ShotwellDB()
+        has_tombstonetable = db.fetchone(check_table_sql)
+        db.close()
+
+        if has_tombstonetable:
+            tombstone_value = self._get_tombstone_values(photo.get('filename'))
+            sql_templates.append("INSERT INTO TombstoneTable "
+                                 "(filepath, filesize, md5, time_created) "
+                                 "VALUES (%s)" % tombstone_value)
 
         # cache delete
         self._delete_thumbnail(photo)
@@ -120,7 +127,7 @@ class ShotwellTrash(FSpotTrash):
         return db, sql_templates
 
     def _delete_thumbnail(self, photo):
-        id =  photo.get('id')
+        id = photo.get('id')
         cache_path = os.path.join(os.environ['HOME'], '.shotwell/thumbs')
         cache_file = "thumb%016x.jpg" % id
 
