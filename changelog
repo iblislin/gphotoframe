@@ -1,3 +1,7 @@
+2011-02-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/shotwell.py: Added checking for TombstoneTable.
+
 2011-02-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* utils/urlget.py, plugins/picasa.py: Code refactoring.
