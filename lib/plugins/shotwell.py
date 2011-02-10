@@ -4,6 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-02-11 Version 0.1.4
 # 2011-01-16 Version 0.1.3
 # 2010-12-17 Version 0.1.2
 # 2010-10-25 Version 0.1.1
@@ -106,19 +107,11 @@ class ShotwellTrash(FSpotTrash):
                 "DELETE FROM BackingPhotoTable WHERE id=$version;", 
                 "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
 
-        check_table_sql = ( "SELECT count(*) FROM sqlite_master "
-                            "WHERE type='table' AND name='%s';"
-                            % 'TombstoneTable2')
-
-        db = ShotwellDB()
-        has_tombstonetable = db.fetchone(check_table_sql)
-        db.close()
-
-        if has_tombstonetable:
-            tombstone_value = self._get_tombstone_values(photo.get('filename'))
-            sql_templates.append("INSERT INTO TombstoneTable "
-                                 "(filepath, filesize, md5, time_created) "
-                                 "VALUES (%s)" % tombstone_value)
+        # TombstoneTable
+        tombstone = TombstoneSQL()
+        tombstonetable_sql = tombstone.get_sql(photo.get('filename'))
+        if tombstonetable_sql:
+            sql_templates.append(tombstonetable_sql)
 
         # cache delete
         self._delete_thumbnail(photo)
@@ -135,6 +128,29 @@ class ShotwellTrash(FSpotTrash):
             fullpath = os.path.join(cache_path, size, cache_file)
             if os.access(fullpath, os.W_OK):
                 os.remove(fullpath)
+
+class TombstoneSQL(object):
+
+    def get_sql(self, file):
+        sql = ""
+
+        if self._has_tombstone_tabe():
+            tombstone_value = self._get_tombstone_values(file)
+            sql = ("INSERT INTO TombstoneTable "
+                   "(filepath, filesize, md5, time_created) "
+                   "VALUES (%s)" % tombstone_value)
+
+        return sql
+
+    def _has_tombstone_tabe(self):
+        check_table_sql = ("SELECT count(*) FROM sqlite_master "
+                           "WHERE type='table' AND name='TombstoneTable';")
+
+        db = ShotwellDB()
+        has_tombstonetable = db.fetchone(check_table_sql)
+        db.close()
+
+        return has_tombstonetable 
 
     def _get_tombstone_values(self, file):
         filesize = os.path.getsize(file)
