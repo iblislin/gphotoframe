@@ -182,9 +182,9 @@ class PhotoSourceShotwellUI(ui.PhotoSourceUI):
         self.options_ui = PhotoSourceOptionsFspotUI(self.gui, self.data)
 
     def _label(self):
-        tags = ShotwellPhotoTags()
-        sorted_tags = tags.get()
-        return sorted_tags
+        tags = ShotwellPhotoTagList()
+        tags.sort()
+        return tags
 
 class ShotwellFav(FSpotFav):
 
@@ -229,22 +229,15 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
         return [default, tag]
 
-class ShotwellPhotoTags(object):
-    "Sorted Shotwell photo tags for gtk.ComboBox"
+class ShotwellPhotoTagList(list):
+    "Shotwell photo tags for gtk.ComboBox"
 
     def __init__(self):
-        self.list = ['']
+        self.append('')
         db = ShotwellDB()
 
-        if not db.is_accessible:
-            return
-
-        sql = 'SELECT name FROM TagTable'
-        for tag in db.fetchall(sql):
-            self.list.append(tag[0])
-        db.close()
-
-        self.list.sort()
-
-    def get(self):
-        return self.list
+        if db.is_accessible:
+            sql = 'SELECT name FROM TagTable'
+            for tag in db.fetchall(sql):
+                self.append(tag[0])
+            db.close()
