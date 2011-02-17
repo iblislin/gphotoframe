@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 #
 # bijin-tokei plugin for GNOME Photo Frame
-# Copyright (c) 2010, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
 # It requires gphotoframe 1.2 or later.  Put this file to the user
 # plguins directory (~/.config/gphotoframe/plugins/).
 #
+# 2011-02-17 Version 1.5.2
 # 2010-12-28 Version 1.5.1
 # 2010-11-24 Version 1.5
 # 2010-11-21 Version 1.4.1
@@ -35,7 +36,7 @@ class BijinPlugin(base.PluginBase):
         self.icon = BijinIcon
         self.hide_source_icon_on_image = True
         self.info = { 'comments': '1min 自動更新時計サイト',
-                      'copyright': 'Copyright © 2010 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2010-2011 Yoshizimi Endo',
                       'website': 'http://www.bijint.com/',
                       'authors': ['Yoshizimi Endo'], }
 
@@ -90,18 +91,21 @@ class BijinTokeiList(object):
             ['美男時計', 'binan'],
             ['サーキット時計', 'cc'],
             ['カンバン娘時計', 'k-musume'],
-            ['韓国時計', 'kr'],
-            ['香港時計', 'hk'],
-            ['北海道時計', 'hokkaido'],
-            ['仙台時計', 'sendai'],
-            ['新潟時計', 'niigata'],
-            ['名古屋時計', 'nagoya'],
-            ['金沢時計', 'kanazawa'],
-            ['京都時計', 'kyoto'],
-            ['岡山時計', 'okayama'],
-            ['香川時計', 'kagawa'],
-            ['福岡時計', 'fukuoka'],
-            ['鹿児島時計', 'kagoshima'],
+            ['韓国版', 'kr'],
+            ['香港版', 'hk'],
+            ['北海道版', 'hokkaido'],
+            ['仙台版', 'sendai'],
+            ['群馬版', 'gunma'],
+            ['新潟版', 'niigata'],
+            ['名古屋版', 'nagoya'],
+            ['金沢版', 'kanazawa'],
+            ['福井版', 'fukui'],
+            ['京都版', 'kyoto'],
+            ['大阪版', 'osaka'],
+            ['岡山版', 'okayama'],
+            ['香川版', 'kagawa'],
+            ['福岡版', 'fukuoka'],
+            ['鹿児島版', 'kagoshima'],
             ]
 
         self.dic = dict(self.list)
