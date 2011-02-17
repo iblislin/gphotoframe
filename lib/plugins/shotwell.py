@@ -4,6 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-02-17 Version 0.1.5
 # 2011-02-11 Version 0.1.4
 # 2011-01-16 Version 0.1.3
 # 2010-12-17 Version 0.1.2
@@ -174,6 +175,10 @@ class TombstoneSQL(object):
         return int(time.mktime(d.timetuple()))
 
 class PhotoSourceShotwellUI(ui.PhotoSourceUI):
+
+    def make(self):
+        super(PhotoSourceShotwellUI, self).make()
+        self._set_target_sensitive(_("_Tag:"), True)
 
     def get_options(self):
         return self.options_ui.get_value()

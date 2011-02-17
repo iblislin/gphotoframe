@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 20:55+0900\n"
-"PO-Revision-Date: 2011-02-17 13:25+0900\n"
+"POT-Creation-Date: 2011-02-17 13:43+0900\n"
+"PO-Revision-Date: 2011-02-17 13:45+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -367,7 +367,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:94
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:93
 msgid "All"
 msgstr "すべて"
 
@@ -444,7 +444,7 @@ msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
 #: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:56
-#: ../lib/plugins/haikyo.py:83
+#: ../lib/plugins/haikyo.py:85
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -540,7 +540,7 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:105 ../lib/history/html.py:89 ../lib/image/actor/info.py:37
+#: ../lib/menu.py:105 ../lib/history/html.py:92 ../lib/image/actor/info.py:38
 msgid "Untitled"
 msgstr "無題"
 
@@ -561,7 +561,7 @@ msgid "Gnome Photo Frame History"
 msgstr "GNOME 写真フレームの履歴"
 
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/history/html.py:92 ../lib/image/tooltip.py:52
+#: ../lib/history/html.py:95 ../lib/image/tooltip.py:54
 #, python-format
 msgid "by %s"
 msgstr "by %s"
@@ -592,27 +592,27 @@ msgstr "0 を指定するとこの写真ソースは無視されます"
 msgid "%s Plugin"
 msgstr "%s プラグイン"
 
-#: ../lib/image/actor/favicon.py:83
+#: ../lib/image/actor/favicon.py:86
 msgid "Add to faves"
 msgstr "お気に入りに追加する"
 
-#: ../lib/image/actor/favicon.py:84
+#: ../lib/image/actor/favicon.py:87
 msgid "Remove from faves"
 msgstr "お気に入りから削除する"
 
-#: ../lib/image/actor/favicon.py:84
+#: ../lib/image/actor/favicon.py:87
 msgid "Rate this photo"
 msgstr "写真を評価付けする"
 
-#: ../lib/image/actor/info.py:51
+#: ../lib/image/actor/info.py:52
 msgid "Open the map"
 msgstr "地図を開く"
 
-#: ../lib/image/actor/info.py:55
+#: ../lib/image/actor/info.py:56
 msgid "Querying..."
 msgstr "問い合わせ中..."
 
-#: ../lib/image/actor/info.py:90
+#: ../lib/image/actor/info.py:91
 msgid "Loading..."
 msgstr "ロード中..."
 
@@ -657,51 +657,51 @@ msgstr "ブラックリストに追加しますか?"
 msgid "This photo will be add to the black list."
 msgstr "この写真をブラックリストに追加し、今後表示しません。"
 
-#: ../lib/image/tooltip.py:81
+#: ../lib/image/tooltip.py:83
 msgid "Maker"
 msgstr "メーカー"
 
-#: ../lib/image/tooltip.py:82
+#: ../lib/image/tooltip.py:84
 msgid "Model"
 msgstr "モデル"
 
-#: ../lib/image/tooltip.py:83
+#: ../lib/image/tooltip.py:85
 msgid "Date"
 msgstr "日時"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:86
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:86
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:87
 msgid "Exposure"
 msgstr "露光時間"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:87
 msgid "sec"
 msgstr "秒"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:88
 msgid "Aperture"
 msgstr "絞り"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:89
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:90
 msgid "Exposure Bias"
 msgstr "露出補正"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:91
 msgid "Flash"
 msgstr "フラッシュ"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:92
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
@@ -755,25 +755,25 @@ msgstr "The Commons"
 msgid "Your Groups"
 msgstr "Your Groups"
 
-#: ../lib/plugins/flickr/api.py:69 ../lib/plugins/flickr/api.py:202
-#: ../lib/plugins/flickr/api.py:276 ../lib/plugins/picasa.py:178
-#: ../lib/plugins/tumblr.py:126
+#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/picasa.py:188
+#: ../lib/plugins/tumblr.py:125
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
-#: ../lib/plugins/flickr/api.py:73
+#: ../lib/plugins/flickr/api.py:72
 msgid "Enter NSID or User Name in the URL"
 msgstr "URL に含まれるユーザ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:218
+#: ../lib/plugins/flickr/api.py:217
 msgid "_Group:"
 msgstr "グループ(_G):"
 
-#: ../lib/plugins/flickr/api.py:222
+#: ../lib/plugins/flickr/api.py:221
 msgid "Enter NSID or Group Name in the URL"
 msgstr "URL に含まれるグループ名か NSID を入力します"
 
-#: ../lib/plugins/flickr/api.py:312
+#: ../lib/plugins/flickr/api.py:311
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
@@ -814,7 +814,7 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/flickr/__init__.py:28 ../lib/plugins/picasa.py:29
+#: ../lib/plugins/flickr/__init__.py:28 ../lib/plugins/picasa.py:30
 msgid "Photo Share Service"
 msgstr "写真共有サービス"
 
@@ -840,28 +840,32 @@ msgstr "Flickr API エラー (%s): %s"
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot 写真マネージャ"
 
-#: ../lib/plugins/fspot/__init__.py:94
+#: ../lib/plugins/fspot/__init__.py:93
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:100
+#: ../lib/plugins/fspot/__init__.py:99
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:100
+#: ../lib/plugins/fspot/__init__.py:99
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/picasa.py:27
+#: ../lib/plugins/fspot/__init__.py:167 ../lib/plugins/shotwell.py:181
+msgid "_Tag:"
+msgstr "タグ(_T):"
+
+#: ../lib/plugins/picasa.py:28
 msgid "Picasa Web"
 msgstr "Picasa Web"
 
-#: ../lib/plugins/picasa.py:55 ../lib/plugins/tumblr.py:52
+#: ../lib/plugins/picasa.py:56 ../lib/plugins/tumblr.py:52
 msgid "Certification Error"
 msgstr "認証エラーです"
 
-#: ../lib/plugins/picasa.py:178
+#: ../lib/plugins/picasa.py:188
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -874,7 +878,7 @@ msgstr "Share Anything"
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
-#: ../lib/plugins/tumblr.py:149
+#: ../lib/plugins/tumblr.py:148
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
@@ -882,20 +886,20 @@ msgstr "E-mail(_E):"
 msgid "RSS and Atom Feeds"
 msgstr "RSS や Atom フィード"
 
-#: ../lib/plugins/rss.py:137
+#: ../lib/plugins/rss.py:136
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:140
+#: ../lib/plugins/rss.py:139
 msgid "_URL:"
 msgstr "URL(_U):"
 
-#: ../lib/plugins/haikyo.py:31
+#: ../lib/plugins/haikyo.py:33
 msgid "Ruins Clock"
 msgstr "廃墟時計"
 
-#: ../lib/plugins/haikyo.py:33
+#: ../lib/plugins/haikyo.py:35
 msgid "Haikyo Clock"
 msgstr "廃墟にたたずむ時計たちの写真"
 
@@ -907,6 +911,6 @@ msgstr "Folder"
 msgid "Local Folder"
 msgstr "ローカルフォルダ"
 
-#: ../lib/plugins/shotwell.py:32
+#: ../lib/plugins/shotwell.py:38
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
