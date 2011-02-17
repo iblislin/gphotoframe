@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-16 20:55+0900\n"
-"PO-Revision-Date: 2011-01-16 20:56+0900\n"
+"PO-Revision-Date: 2011-02-17 13:25+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -889,7 +889,7 @@ msgstr "タイトル(_T):"
 #. argument widget
 #: ../lib/plugins/rss.py:140
 msgid "_URL:"
-msgstr "URL(_U)"
+msgstr "URL(_U):"
 
 #: ../lib/plugins/haikyo.py:31
 msgid "Ruins Clock"
