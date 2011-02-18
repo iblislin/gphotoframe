@@ -2,6 +2,7 @@ import os
 import sys
 import sqlite3
 
+
 class SqliteDB(object):
 
     def __init__(self):

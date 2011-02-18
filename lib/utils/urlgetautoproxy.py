@@ -5,6 +5,7 @@ except ImportError:
 
 from urlget import UrlGetWithProxy
 
+
 class AutoProxy(object):
 
     def get_proxy(self, url):

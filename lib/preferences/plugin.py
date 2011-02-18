@@ -6,6 +6,7 @@ from ..plugins import DIALOG_TOKEN, SOURCE_LIST, PHOTO_TARGET_TOKEN
 from ..utils.iconimage import IconImage, LocalIconImage
 from treeview import PreferencesTreeView
 
+
 class PluginTreeView(PreferencesTreeView):
     """Preferences Plugin List"""
 

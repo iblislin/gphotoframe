@@ -5,6 +5,7 @@ import sys
 
 import gio
 
+
 class GioTrash(object):
 
     def __init__(self, filename):

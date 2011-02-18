@@ -3,6 +3,7 @@ import os
 from xdg.DesktopEntry import *
 from xdg.BaseDirectory import xdg_config_home
 
+
 class AutoStart(object):
     """Read and Write Desktop Entry for Autostart
 

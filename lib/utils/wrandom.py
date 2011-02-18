@@ -1,6 +1,7 @@
 import random
 import bisect
 
+
 class WeightedRandom(object):
     '''Weighted Random'''
 
