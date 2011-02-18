@@ -5,6 +5,7 @@ import gtk
 from ..constants import SHARED_DATA_DIR, CACHE_HOME
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 
+
 class IconImage(object):
 
     def __init__(self, icon_name='image-x-generic'):

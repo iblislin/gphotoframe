@@ -3,6 +3,7 @@
 from twisted.internet import threads
 import gnomekeyring as gkey
 
+
 class Keyring(object):
     def __init__(self, name, server=None, protocol=None):
         self.name = name

@@ -1,6 +1,7 @@
 import os
 import gio
 
+
 class Inotify(object):
 
     def __init__(self):

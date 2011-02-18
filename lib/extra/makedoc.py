@@ -16,6 +16,7 @@ import os
 import string
 from optparse import OptionParser
 
+
 class CommandTemplate(object):
 
     def __init__(self):
