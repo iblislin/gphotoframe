@@ -88,9 +88,7 @@ class RSSPhotoList(base.PhotoList):
 
                 photo = base.Photo(data)
 
-                if owner not in self.photos:
-                    self.photos[owner] = []
-
+                self.photos.setdefault(owner, [])
                 self.photos[owner].append(photo)
 
         self.raw_list = []
