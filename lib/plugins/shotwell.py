@@ -4,6 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-02-17 Version 0.1.6
 # 2011-02-17 Version 0.1.5
 # 2011-02-11 Version 0.1.4
 # 2011-01-16 Version 0.1.3
@@ -79,15 +80,10 @@ class ShotwellPhotoList(FSpotPhotoList):
 
 class ShotwellTrash(FSpotTrash):
 
-    def check_delete_from_catalog(self):
-        return self.conf.get_bool('plugins/shotwell/ban_icon_enabled', False)
-
     def check_delete_from_disk(self, filename):
-        # super(ShotwellTrash, self).check_delete_from_disk(filename)
         return True
 
     def delete_from_disk(self, photo):
-        # super(ShotwellTrash, self).delete_from_disk(photo)
         self.photolist.delete_photo(photo.get('url'))
 
         id = photo.get('id')
@@ -102,20 +98,14 @@ class ShotwellTrash(FSpotTrash):
 
         if version == -1:
             sql_templates = [ 
-                "DELETE FROM PhotoTable WHERE id=$id;" ]
+                "UPDATE PhotoTable SET rating=-1 WHERE id=$id;" ]
         else:
             sql_templates = [ 
                 "DELETE FROM BackingPhotoTable WHERE id=$version;", 
                 "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
 
-        # TombstoneTable
-        tombstone = TombstoneSQL()
-        tombstonetable_sql = tombstone.get_sql(photo.get('filename'))
-        if tombstonetable_sql:
-            sql_templates.append(tombstonetable_sql)
-
         # cache delete
-        self._delete_thumbnail(photo)
+        # self._delete_thumbnail(photo)
 
         db = ShotwellDB()
         return db, sql_templates
@@ -129,50 +119,6 @@ class ShotwellTrash(FSpotTrash):
             fullpath = os.path.join(cache_path, size, cache_file)
             if os.access(fullpath, os.W_OK):
                 os.remove(fullpath)
-
-class TombstoneSQL(object):
-
-    def get_sql(self, file):
-        sql = ""
-
-        if self._has_tombstone_tabe():
-            tombstone_value = self._get_tombstone_values(file)
-            sql = ("INSERT INTO TombstoneTable "
-                   "(filepath, filesize, md5, time_created) "
-                   "VALUES (%s)" % tombstone_value)
-
-        return sql
-
-    def _has_tombstone_tabe(self):
-        check_table_sql = ("SELECT count(*) FROM sqlite_master "
-                           "WHERE type='table' AND name='TombstoneTable';")
-
-        db = ShotwellDB()
-        has_tombstonetable = db.fetchone(check_table_sql)
-        db.close()
-
-        return has_tombstonetable 
-
-    def _get_tombstone_values(self, file):
-        filesize = os.path.getsize(file)
-        md5 = self._get_md5sum(file)
-        time_created = self._get_timestamp()
-
-        value = "'%s', %s, '%s', %s" % (file, filesize, md5, time_created)
-        return value
-
-    def _get_md5sum(self, file):
-        with open(file, 'rb') as f:
-            content = f.read()
-
-        m = hashlib.md5()
-        m.update(content)
-        md5sum = m.hexdigest()
-        return md5sum
-
-    def _get_timestamp(self):
-        d = datetime.datetime.today()
-        return int(time.mktime(d.timetuple()))
 
 class PhotoSourceShotwellUI(ui.PhotoSourceUI):
 
