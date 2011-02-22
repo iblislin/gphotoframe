@@ -59,22 +59,21 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
 
 class TrashDialog(object):
 
-    def __init__(self, photo):
+    def __init__(self, photo, title=""):
         self.photo = photo
         self._set_variable(photo)
-        title = ""
 
         dialog = gtk.MessageDialog(
             None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
-            gtk.BUTTONS_YES_NO, self.text1)
+            gtk.BUTTONS_YES_NO, self.text[0])
         dialog.set_title(title)
-        dialog.format_secondary_text(self.text2)
+        dialog.format_secondary_text(self.text[1])
         dialog.connect('response', self._response_cb)
         dialog.show()
 
     def _set_variable(self, photo):
-        self.text1 = _("Move this photo to the trash?")
-        self.text2 = _("This photo will be moved to the trash.")
+        self.text = [ _("Move this photo to the trash?"),
+                      _("This photo will be moved to the trash.") ]
         self.delete_method = self.photo['trash'].delete_from_disk
 
     def _response_cb(self, widget, response):
@@ -86,9 +85,9 @@ class RemoveCatalogDialog(TrashDialog):
 
     def _set_variable(self, photo):
         if hasattr(self.photo.get('info')(), 'ban_messages'):
-            self.text1, self.text2 = self.photo.get('info')().ban_messages
+            self.text = self.photo.get('info')().ban_messages
         else:
-            self.text1 = _("Ban this photo?")
-            self.text2 = _("This photo will be add to the black list.")
+            self.text = [ _("Ban this photo?"), 
+                          _("This photo will be add to the black list.") ]
 
         self.delete_method = self.photo['trash'].delete_from_catalog
