@@ -51,9 +51,10 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         dialog = RemoveCatalogDialog(self.photo)
 
     def _enter_cb(self, w, e, tooltip):
-        is_localfile = self.photo.get('url').startswith('file://')
-
-        tip = _("Remove from catalog") if is_localfile else _("Ban this photo")
+        if hasattr(self.photo.get('info')(), 'ban_icon_tip'):
+             tip = self.photo.get('info')().ban_icon_tip
+        else:
+            tip = _("Ban this photo")
         tooltip.update_text(tip)
 
 class TrashDialog(object):
@@ -84,12 +85,8 @@ class TrashDialog(object):
 class RemoveCatalogDialog(TrashDialog):
 
     def _set_variable(self, photo):
-        plugin_name = photo.get('info')().name
-
-        if photo.get('url').startswith('file://'):
-            self.text1 = _("Remove this photo from the catalog?")
-            self.text2 = _("This photo will be removed from the %s catalog."
-                           ) % plugin_name
+        if hasattr(self.photo.get('info')(), 'ban_messages'):
+            self.text1, self.text2 = self.photo.get('info')().ban_messages
         else:
             self.text1 = _("Ban this photo?")
             self.text2 = _("This photo will be add to the black list.")

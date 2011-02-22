@@ -4,7 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# 2011-02-17 Version 0.1.6
+# 2011-02-22 Version 0.1.6
 # 2011-02-17 Version 0.1.5
 # 2011-02-11 Version 0.1.4
 # 2011-01-16 Version 0.1.3
@@ -40,6 +40,12 @@ class ShotwellPlugin(FSpotPlugin):
                       'copyright': 'Copyright © 2010-2011 Yoshizimi Endo',
                       'website': 'http://yorba.org/shotwell/',
                       'authors': ['Yoshizimi Endo'], }
+
+        self.ban_icon_tip = _('Set rating as rejected')
+        self.ban_messages = [ _('Set rating as rejected?'),
+                              _('The rating of this photo will be set as '
+                                'rejected.  Gnome photo frame will skip '
+                                'rejected photos.') ]
 
 class ShotwellPhotoList(FSpotPhotoList):
 
