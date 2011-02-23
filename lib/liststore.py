@@ -61,15 +61,13 @@ class PhotoListStore(gtk.ListStore):
         self._start_timer(False)
 
     def _start_timer(self, change=True):
-        is_mouse_over = self.photoframe.check_mouse_on_frame() and change != 'force'
-        state = self._change_photo() if change and not is_mouse_over else False
+        frame = self.photoframe
+        is_mouse_over = frame.check_mouse_on_frame() and change != 'force'
+        updated = self._change_photo() if change and not is_mouse_over else False
 
-        fullscreen = self.conf.get_bool('fullscreen')
-        screensaver = hasattr(self.photoframe, 'screensaver')
-
-        if state is False:
+        if updated is False:
             interval = 3
-        elif fullscreen or screensaver:
+        elif frame.is_fullscreen() or frame.is_screensaver():
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
             interval = self.conf.get_int('interval', 30)
@@ -85,12 +83,12 @@ class PhotoListStore(gtk.ListStore):
         if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self._show_photo_cb)
-            state = True
+            updated = True
         else:
             self.photoframe.set_photo(None)
-            state = False
+            updated = False
 
-        return state
+        return updated
 
     def _show_photo_cb(self, data, photo):
         if self.ban_db.check_banned_for(photo.get('url')):
