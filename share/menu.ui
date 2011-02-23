@@ -4,6 +4,7 @@
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkMenu" id="menu">
     <property name="visible">True</property>
+    <signal name="hide" handler="on_menu_hide"/>
     <child>
       <object class="GtkImageMenuItem" id="menuitem5">
         <property name="label">gtk-open</property>

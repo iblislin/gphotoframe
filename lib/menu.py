@@ -17,6 +17,7 @@ class PopUpMenu(object):
 
         self.gui = gtk.Builder()
         self.gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'menu.ui'))
+        self.is_show = False
 
         self.photoimage = photoframe.photoimage
         self.photolist = photolist
@@ -30,6 +31,7 @@ class PopUpMenu(object):
             "on_next_photo"         : self.photolist.next_photo,
             "on_menuitem6_toggled"  : self._fix_window_cb,
             "on_menuitem8_toggled"  : self._full_screen_cb,
+            "on_menu_hide"          : self._on_hide_cb,
             "on_prefs" : preferences.start,
             "on_help"  : self.open_help,
             "on_about" : about.start,
@@ -51,6 +53,7 @@ class PopUpMenu(object):
 
         menu = self.gui.get_object('menu')
         menu.popup(None, None, None, event.button, event.time)
+        self.is_show = True
 
     def quit(self, *args):
         self.photolist.queue.clear_cache()
@@ -92,6 +95,9 @@ class PopUpMenu(object):
 
     def _full_screen_cb(self, widget, *args):
         self.conf.set_bool('fullscreen', widget.get_active())
+
+    def _on_hide_cb(self, *args):
+        self.is_show = False
 
 class PopUpMenuFullScreen(PopUpMenu):
 

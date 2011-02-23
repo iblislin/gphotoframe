@@ -81,7 +81,7 @@ class PhotoFrame(object):
 
     def check_mouse_on_frame(self):
         frame = self._get_frame_obj()
-        return frame.photoimage.check_mouse_on_window() 
+        return frame.photoimage.check_mouse_on_window() or self.popup_menu.is_show
 
     def has_trash_dialog(self):
         frame = self._get_frame_obj()
