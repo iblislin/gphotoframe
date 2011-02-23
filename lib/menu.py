@@ -45,7 +45,8 @@ class PopUpMenu(object):
         if self.conf.get_bool('window_fix'):
             self.gui.get_object('menuitem6').set_active(True)
 
-        accessible = self.photoimage.is_accessible_local_file()
+        photo = self.photoimage.photo
+        accessible = photo.can_open() if photo else False
         self.set_open_menu_sensitive(accessible)
 
         fullscreen = self.conf.get_bool('fullscreen')
