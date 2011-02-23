@@ -27,6 +27,7 @@ class PhotoImageClutter(PhotoImage):
         self.photo_image = base.Texture(self.stage)
         self.photo_image.show()
         self.actors = self._get_actors()
+        self.trash_actors = self.actors[3:5]
 
     def _get_actors(self):
         return [ source.ActorSourceIcon(self.stage, self.tooltip),
@@ -75,6 +76,9 @@ class PhotoImageClutter(PhotoImage):
         result = (actor != self.photo_image)
         return result
 
+    def has_trash_dialog(self):
+        return True in [trash.dialog.is_show for trash in self.trash_actors]
+
 class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def __init__(self, photoframe):
@@ -83,6 +87,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         self.photo_image2 = base.Texture(self.stage)
         self.photo_image2.show()
         self.actors2 = self._get_actors()
+        self.trash_actors += self.actors2[3:5]
         self.first = True # image1 or image2
 
         self.animation = self.conf.get_bool('ui/animate_fullscreen', False)

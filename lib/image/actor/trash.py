@@ -6,6 +6,13 @@ from info import ActorGeoIcon, ActorInfoIcon
 
 class ActorTrashIcon(ActorGeoIcon):
 
+    def __init__(self, stage, tooltip):
+        super(ActorTrashIcon, self).__init__(stage, tooltip)
+        self._set_dialog()
+        
+    def _set_dialog(self):
+        self.dialog = TrashDialog()
+
     def _check_photo(self):
         if not 'trash' in self.photo:
             return False
@@ -20,13 +27,16 @@ class ActorTrashIcon(ActorGeoIcon):
         self._set_ui_options('trash', False, 3)
 
     def _on_button_press_cb(self, actor, event):
-        dialog = TrashDialog(self.photo)
+        self.dialog.run(self.photo)
 
     def _enter_cb(self, w, e, tooltip):
         tip = _("Move to trash")
         tooltip.update_text(tip)
 
 class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
+
+    def _set_dialog(self):
+        self.dialog = RemoveCatalogDialog()
 
     def _check_other_icon(self, photo):
         if not photo or not 'trash' in photo:
@@ -47,9 +57,6 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
     def _get_ui_data(self):
         self._set_ui_options('trash', False, 3)
 
-    def _on_button_press_cb(self, actor, event):
-        dialog = RemoveCatalogDialog(self.photo)
-
     def _enter_cb(self, w, e, tooltip):
         if hasattr(self.photo.get('info')(), 'ban_icon_tip'):
              tip = self.photo.get('info')().ban_icon_tip
@@ -59,9 +66,13 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
 
 class TrashDialog(object):
 
-    def __init__(self, photo, title=""):
+    def __init__(self):
+        self.is_show = False
+
+    def run(self, photo, title=""):
         self.photo = photo
         self._set_variable(photo)
+        self.is_show = True
 
         dialog = gtk.MessageDialog(
             None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
@@ -80,6 +91,7 @@ class TrashDialog(object):
         if response == gtk.RESPONSE_YES:
             self.delete_method(self.photo)
         widget.destroy()
+        self.is_show = False
 
 class RemoveCatalogDialog(TrashDialog):
 

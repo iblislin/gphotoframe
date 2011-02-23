@@ -63,10 +63,15 @@ class PhotoListStore(gtk.ListStore):
     def _start_timer(self, change=True):
         frame = self.photoframe
         is_mouse_over = frame.check_mouse_on_frame() and change != 'force'
-        updated = self._change_photo() if change and not is_mouse_over else False
+
+        if change and not is_mouse_over and not frame.has_trash_dialog():
+            updated = self._change_photo()
+        else:
+            updated = False
 
         if updated is False:
             interval = 3
+            print "skip!"
         elif frame.is_fullscreen() or frame.is_screensaver():
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
