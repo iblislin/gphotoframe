@@ -41,8 +41,6 @@ class PhotoImageClutter(PhotoImage):
         return self.conf.get_string('border_color') or '#edeceb'
 
     def _set_photo_image(self, pixbuf):
-        self.border = border = self.conf.get_int('border_width', 5)
-
         self.window_border = 0
         self.w = pixbuf.get_width()
         self.h = pixbuf.get_height()
@@ -57,7 +55,8 @@ class PhotoImageClutter(PhotoImage):
             actor.set_icon(self, x, y)
 
     def _get_image_position(self):
-        return self.border, self.border
+        border = self.conf.get_int('border_width', 5)
+        return border, border
 
     def clear(self):
         pass
@@ -120,7 +119,6 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         root_w, root_h = self._get_max_display_size()
         x = (root_w - self.w) / 2
         y = (root_h - self.h) / 2
-        self.border = 0
         return x, y
 
     def _get_border_color(self):
