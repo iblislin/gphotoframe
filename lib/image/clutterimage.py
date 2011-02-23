@@ -75,11 +75,6 @@ class PhotoImageClutter(PhotoImage):
         result = (actor != self.photo_image)
         return result
 
-    def check_mouse_on_window(self):
-        window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
-        result = window is self.embed.window
-        return result
-
 class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def __init__(self, photoframe):

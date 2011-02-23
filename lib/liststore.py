@@ -51,7 +51,7 @@ class PhotoListStore(gtk.ListStore):
 
     def next_photo(self, *args):
         glib.source_remove(self._timer)
-        self._start_timer()
+        self._start_timer(change='force')
 
     def delete_photo(self, url):
         self.queue.remove(url)
@@ -61,7 +61,8 @@ class PhotoListStore(gtk.ListStore):
         self._start_timer(False)
 
     def _start_timer(self, change=True):
-        state = self._change_photo() if change else False
+        is_mouse_over = self.photoframe.check_mouse_on_frame() and change != 'force'
+        state = self._change_photo() if change and not is_mouse_over else False
 
         fullscreen = self.conf.get_bool('fullscreen')
         screensaver = hasattr(self.photoframe, 'screensaver')
