@@ -1,5 +1,6 @@
 import os
 import re
+from urlparse import urlparse
 
 import gtk
 import random
@@ -100,6 +101,13 @@ class Photo(dict):
         url = self.get('page_url') or self.get('url')
         url = url.replace("'", "%27")
         gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+
+    def can_open(self):
+        url = urlparse(self['url'])
+        if url.scheme == 'file' and not os.path.exists(self['filename']):
+            return False
+        else:
+            return True
 
     def fav(self, new_rate):
         if self.get('fav'):

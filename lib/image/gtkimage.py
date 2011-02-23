@@ -1,7 +1,6 @@
 from __future__ import division
 
 import os
-from urlparse import urlparse
 from xml.sax.saxutils import escape
 
 import glib
@@ -43,16 +42,6 @@ class PhotoImage(object):
 
     def check_actor(self, stage, event):
         return False
-
-    def is_accessible_local_file(self):
-        if self.photo is None:
-            return False
-
-        url = urlparse(self.photo['url'])
-        if url.scheme == 'file' and not os.path.exists(self.photo['filename']):
-            return False
-        else:
-            return True
 
     def check_mouse_on_window(self):
         window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
