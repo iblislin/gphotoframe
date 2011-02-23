@@ -1,5 +1,6 @@
 2011-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* actor/trash.py: Added checking if the trash dialog is shown.
 	* liststore.py, frame.py: Added checking if the mouse pointer is
 	  on the photo frame.
 

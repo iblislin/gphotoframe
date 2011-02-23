@@ -80,8 +80,15 @@ class PhotoFrame(object):
         self.set_photo(None, change)
 
     def check_mouse_on_frame(self):
-        frame = self.fullframe if self.is_fullscreen() else self
+        frame = self._get_frame_obj()
         return frame.photoimage.check_mouse_on_window() 
+
+    def has_trash_dialog(self):
+        frame = self._get_frame_obj()
+        return frame.photoimage.has_trash_dialog() 
+
+    def _get_frame_obj(self):
+        return self.fullframe if self.is_fullscreen() else self
 
     def is_fullscreen(self):
         return hasattr(self, "fullframe") and self.fullframe.window.window

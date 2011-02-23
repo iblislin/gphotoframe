@@ -59,6 +59,9 @@ class PhotoImage(object):
         result = window is self.image.window
         return result
 
+    def has_trash_dialog(self):
+        return False
+
     def _get_max_display_size(self):
         width = self.conf.get_int('max_width') or 400
         height = self.conf.get_int('max_height') or 300
