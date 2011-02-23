@@ -69,7 +69,7 @@ class PhotoFrame(object):
         self.popup_menu.set_open_menu_sensitive(state)
         self.popup_menu.set_recent_menu()
 
-        if self._has_fullframe():
+        if self.is_fullscreen():
             self.fullframe.set_photo(photo, change)
 
         return True
@@ -80,8 +80,14 @@ class PhotoFrame(object):
         self.set_photo(None, change)
 
     def check_mouse_on_frame(self):
-        frame = self.fullframe if self._has_fullframe() else self
+        frame = self.fullframe if self.is_fullscreen() else self
         return frame.photoimage.check_mouse_on_window() 
+
+    def is_fullscreen(self):
+        return hasattr(self, "fullframe") and self.fullframe.window.window
+
+    def is_screensaver(self):
+        return hasattr(self, 'screensaver')
 
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x', 0),
@@ -205,9 +211,6 @@ class PhotoFrame(object):
             self.window.stick()
         else:
             self.window.unstick()
-
-    def _has_fullframe(self):
-        return hasattr(self, "fullframe") and self.fullframe.window.window
 
 class PhotoFrameFullScreen(PhotoFrame):
 
