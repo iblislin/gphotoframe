@@ -69,7 +69,7 @@ class PhotoFrame(object):
         self.popup_menu.set_open_menu_sensitive(state)
         self.popup_menu.set_recent_menu()
 
-        if hasattr(self, "fullframe") and self.fullframe.window.window:
+        if self._has_fullframe():
             self.fullframe.set_photo(photo, change)
 
         return True
@@ -78,6 +78,10 @@ class PhotoFrame(object):
         change = True if self.photoimage.photo and \
             self.photoimage.photo['url'] == url else False
         self.set_photo(None, change)
+
+    def check_mouse_on_frame(self):
+        frame = self.fullframe if self._has_fullframe() else self
+        return frame.photoimage.check_mouse_on_window() 
 
     def _set_window_position(self):
         self.window.move(self.conf.get_int('root_x', 0),
@@ -201,6 +205,9 @@ class PhotoFrame(object):
             self.window.stick()
         else:
             self.window.unstick()
+
+    def _has_fullframe(self):
+        return hasattr(self, "fullframe") and self.fullframe.window.window
 
 class PhotoFrameFullScreen(PhotoFrame):
 

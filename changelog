@@ -1,3 +1,8 @@
+2011-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py, frame.py: Added checking if the mouse pointer is
+	  on the photo frame.
+
 2011-02-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actor/trash.py: Modified trash dialog messages.
