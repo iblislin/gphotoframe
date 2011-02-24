@@ -170,10 +170,7 @@ class Photo(dict):
 
     def _is_fullscreen_mode(self):
         is_fullscreen = self.conf.get_bool('fullscreen', False)
-        high_resolution = self.conf.get_bool('high_resolution', True)
-
-        flag = high_resolution and (is_screensaver_mode() or is_fullscreen)
-        return flag
+        return is_fullscreen or is_screensaver_mode()
 
 class MyPhoto(Photo):
 
