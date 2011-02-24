@@ -264,7 +264,7 @@ class PhotoFrameFullScreen(PhotoFrame):
         if event.keyval == gtk.keysyms.Escape:
             self.conf.set_bool('fullscreen', False)
 
-class PhotoFrameScreenSaver(object):
+class PhotoFrameScreenSaver(PhotoFrame):
 
     def __init__(self):
         self.window = GsThemeWindow()
@@ -276,6 +276,9 @@ class PhotoFrameScreenSaver(object):
 
     def set_photo(self, photo, change=True):
         return self.photoimage.set_photo(photo)
+
+    def check_mouse_on_frame(self):
+        return False
 
 class FullScreenUI(object):
 
