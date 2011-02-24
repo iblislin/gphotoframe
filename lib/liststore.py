@@ -108,7 +108,6 @@ class PhotoListStore(gtk.ListStore):
         for dir in self.conf.all_dirs('sources'):
             data = { 'target' : '', 'argument' : '',
                      'weight' : 1, 'options' : {} }
-            options = {}
 
             for entry in self.conf.all_entries(dir):
                 value = self.conf.get_value(entry)
@@ -120,10 +119,9 @@ class PhotoListStore(gtk.ListStore):
                     if key in ['source', 'target', 'argument', 'weight']:
                         data[key] = value
                     else:
-                        options[key] = value
+                        data['options'][key] = value
 
             if 'source' in data:
-                data['options'] = options
                 self.append(data)
 
     def save_gconf(self):
