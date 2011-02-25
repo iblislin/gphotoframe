@@ -49,6 +49,8 @@ class ShotwellPlugin(FSpotPlugin):
 
 class ShotwellPhotoList(FSpotPhotoList):
 
+    delay_for_prepare = False
+
     def prepare(self):
         self.db = ShotwellDB()
         self.period = self.options.get('period')

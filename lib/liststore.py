@@ -33,7 +33,8 @@ class PhotoListStore(gtk.ListStore):
         self.idle = SessionIdle()
         self._start_timer()
 
-    def append(self, d, iter=None):
+
+    def append(self, d, iter=None, delay=0):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
             return
 
@@ -43,7 +44,15 @@ class PhotoListStore(gtk.ListStore):
                  d['options'], obj ]
 
         self.insert_before(iter, list)
-        obj.prepare()
+
+        # print d['source'], obj.delay_for_prepare, delay
+        if obj.delay_for_prepare:
+            glib.timeout_add_seconds(delay, obj.prepare)
+            delay += 5
+        else:
+            obj.prepare()
+
+        return delay
 
     def remove(self, iter):
         self.get_value(iter, 5).exit() # photolist object
@@ -104,7 +113,7 @@ class PhotoListStore(gtk.ListStore):
         else:
             self._change_photo()
 
-    def _load_gconf(self):
+    def _load_gconf(self, delay=0):
         for dir in self.conf.all_dirs('sources'):
             data = { 'target' : '', 'argument' : '',
                      'weight' : 1, 'options' : {} }
@@ -122,7 +131,7 @@ class PhotoListStore(gtk.ListStore):
                         data['options'][key] = value
 
             if 'source' in data:
-                self.append(data)
+                delay = self.append(data, delay=delay)
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')

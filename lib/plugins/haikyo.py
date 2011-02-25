@@ -39,6 +39,8 @@ class HaikyoPlugin(base.PluginBase):
 
 class HaikyoPhotoList(base.PhotoList):
 
+    delay_for_prepare = False
+
     def prepare(self):
         url = 'http://www.madin.jp/haikyo/list.xml'
         urlget = UrlGetWithAutoProxy(url)
