@@ -34,6 +34,7 @@ for item in os.listdir(plugin_dir) + os.listdir(PLUGIN_HOME):
                 token_base.append(module.info())
 
 SOURCE_LIST=[]
+PLUGIN_INFO_TOKEN = {}
 MAKE_PHOTO_TOKEN ={}
 PHOTO_TARGET_TOKEN={}
 DIALOG_TOKEN={}
@@ -43,6 +44,7 @@ for k in sorted(token_base):
     plugin = k[0]()
 
     SOURCE_LIST.append(plugin)
+    PLUGIN_INFO_TOKEN[plugin.name] = k[0]
     MAKE_PHOTO_TOKEN[plugin.name] = k[1]
     PHOTO_TARGET_TOKEN[plugin.name] = k[2]
     ICON_LIST[plugin.name.decode('utf_8')] = plugin.icon
