@@ -14,10 +14,10 @@ class PhotoSourceTreeView(PreferencesTreeView):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
         self.plugin_liststore = plugin_liststore
 
-        self._add_text_column(_("Source"), 0)
-        self._add_text_column(_("Target"), 1, 150)
-        self._add_text_column(_("Argument"), 2, 100)
-        self._add_text_column(_("Weight"), 3)
+        self._add_icon_text_column(_("Source"), 0)
+        self._add_text_column(_("Target"), 2, 150)
+        self._add_text_column(_("Argument"), 3, 100)
+        self._add_text_column(_("Weight"), 4)
 
     def get_signal_dic(self):
         dic = {
@@ -38,7 +38,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
             col_id = col.get_sort_column_id()
             row = self.liststore[row_id]
 
-            plugin_tip = row[5].get_tooltip()
+            plugin_tip = row[6].get_tooltip() # 6th is plugin object.
             tip = plugin_tip if plugin_tip and col_id == 2 else row[col_id]
 
             if tip and isinstance(tip, str) and col_id > 0:
