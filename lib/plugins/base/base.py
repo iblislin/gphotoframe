@@ -85,7 +85,10 @@ class PhotoList(object):
             print "Interval for API access should be greater than 10 minutes."
             min = 10
 
-        self._timer = glib.timeout_add_seconds(min * 60, self.prepare)
+        delay = min * 60 / 20 # 5%
+        interval = min * 60 + random.randint(delay*-1, delay)
+        self._timer = glib.timeout_add_seconds(interval, self.prepare)
+
         return False
 
     def _catch_error(self, error):
