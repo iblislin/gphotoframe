@@ -17,12 +17,13 @@ from utils.idlecheck import SessionIdle
 class PhotoListStore(gtk.ListStore):
     """ListStore for Photo sources.
 
-    0,      1,      2,        3,      4,       5
-    source, target, argument, weight, options, object
+    0,    1,      2,        3,      4,       5,      6
+    icon, source, target, argument, weight, options, object
     """
 
     def __init__(self):
-        super(PhotoListStore, self).__init__(str, str, str, int, object, object)
+        super(PhotoListStore, self).__init__(
+            gtk.gdk.Pixbuf, str, str, str, int, object, object)
 
         self.conf = GConf()
         self._load_gconf()
@@ -40,8 +41,10 @@ class PhotoListStore(gtk.ListStore):
 
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
-        list = [ d['source'], d['target'], d['argument'], d['weight'],
-                 d['options'], obj ]
+        pixbuf = plugins.PLUGIN_INFO_TOKEN[d['source']]().get_icon_pixbuf()
+
+        list = [ pixbuf, d['source'],
+                 d['target'], d['argument'], d['weight'], d['options'], obj ]
 
         self.insert_before(iter, list)
 
@@ -93,7 +96,7 @@ class PhotoListStore(gtk.ListStore):
         if self.idle.check():
             return True
 
-        target_list = [ x[5] for x in self if x[5].photos and x[5].weight > 0 ]
+        target_list = [ x[6] for x in self if x[6].photos and x[6].weight > 0 ]
         if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self._show_photo_cb)
@@ -139,12 +142,12 @@ class PhotoListStore(gtk.ListStore):
 
         for i, row in enumerate(self):
             for num, key in enumerate(data_list):
-                value = row[num]
+                value = row[num+1] # 1st column is pixbuf.
                 if value is not None:
                     self._set_gconf(i, key, value)
 
-            if row[4]: # options
-                for key, value in row[4].iteritems():
+            if row[5]: # options
+                for key, value in row[5].iteritems():
                     self._set_gconf(i, key, value)
                     # print key, value
 
