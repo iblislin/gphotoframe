@@ -2,7 +2,7 @@ import gtk
 from gettext import gettext as _
 
 from ..constants import UI_FILE
-from ..plugins import PHOTO_TARGET_TOKEN
+from ..plugins import PHOTO_TARGET_TOKEN, PLUGIN_INFO_TOKEN
 from ..utils.config import GConf
 from treeview import PreferencesTreeView
 
@@ -96,8 +96,16 @@ class PhotoSourceDialog(object):
 
         # source
         source_widget = self.gui.get_object('combobox4')
-        for str in source_list:
-            source_widget.append_text(str)
+        liststore = TargetListStore(source_list)
+        source_widget.set_model(liststore)
+
+        renderer = gtk.CellRendererPixbuf()
+        source_widget.pack_start(renderer, expand=False)
+        source_widget.add_attribute(renderer, 'pixbuf', 0)
+
+        renderer = gtk.CellRendererText()
+        source_widget.pack_start(renderer, expand=False)
+        source_widget.add_attribute(renderer, 'text', 1)
 
         recent = self.conf.get_string('recents/source')
         # liststore source
@@ -131,7 +139,11 @@ class PhotoSourceDialog(object):
         argument = argument_widget.get_text() \
             if argument_widget.get_property('sensitive') else ''
 
-        v = { 'source'  : source_widget.get_active_text(),
+        model = source_widget.get_model()
+        iter = source_widget.get_active_iter()
+        source = model[iter][1]
+
+        v = { 'source'  : source,
               'target'  : self.ui.get(),
               'argument': argument,
               'weight'  : weight_widget.get_value(),
@@ -145,8 +157,22 @@ class PhotoSourceDialog(object):
     def _change_combobox(self, combobox, data=None):
         self.gui.get_object('button8').set_sensitive(True)
 
-        text = combobox.get_active_text()
+        #text = combobox.get_active_text()
+
+        model = combobox.get_model()
+        iter = combobox.get_active_iter()
+        text = model[iter][1]
+
         token = PHOTO_TARGET_TOKEN
 
         self.ui = token[text](self.gui, data)
         self.ui.make()
+
+class TargetListStore(gtk.ListStore):
+
+    def __init__(self, source_list):
+        super(TargetListStore, self).__init__(gtk.gdk.Pixbuf, str)
+        for name in source_list:
+            pixbuf = PLUGIN_INFO_TOKEN[name]().get_icon_pixbuf()
+            list = [pixbuf, name]
+            self.insert_before(None, list)
