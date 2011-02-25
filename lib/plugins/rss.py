@@ -141,7 +141,8 @@ class PhotoSourceRSSUI(ui.PhotoSourceUI):
 
     def _set_target_default(self):
         if self.data:
-            feed_title = self.data[1] or self.data[4].get('feed_title') or ""
+            # liststore target [2] & object [5]
+            feed_title = self.data[2] or self.data[5].get('feed_title') or ""
             self.target_widget.set_text(feed_title)
 
 class RSSIcon(LocalIconImage):

@@ -14,6 +14,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         super(PhotoSourceTreeView, self).__init__(gui, widget, liststore, parent)
         self.plugin_liststore = plugin_liststore
 
+        # liststore order
         self._add_icon_text_column(_("Source"), 0)
         self._add_text_column(_("Target"), 2, 150)
         self._add_text_column(_("Argument"), 3, 100)
@@ -38,7 +39,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
             col_id = col.get_sort_column_id()
             row = self.liststore[row_id]
 
-            plugin_tip = row[6].get_tooltip() # 6th is plugin object.
+            plugin_tip = row[6].get_tooltip() # liststore object
             tip = plugin_tip if plugin_tip and col_id == 2 else row[col_id]
 
             if tip and isinstance(tip, str) and col_id > 0:
@@ -99,7 +100,8 @@ class PhotoSourceDialog(object):
             source_widget.append_text(str)
 
         recent = self.conf.get_string('recents/source')
-        source_num = source_list.index(self.data[0]) if self.data \
+        # liststore source
+        source_num = source_list.index(self.data[1]) if self.data \
             else source_list.index(recent) if recent in source_list \
             else 0
         source_widget.set_active(source_num)
@@ -110,10 +112,10 @@ class PhotoSourceDialog(object):
         # argument
         argument_widget = self.gui.get_object('entry1')
         if self.data:
-            argument_widget.set_text(self.data[2])
+            argument_widget.set_text(self.data[3]) # liststore argument
 
-        # weight
-        weight = self.data[3] if self.data \
+        # weight # liststore weight
+        weight = self.data[4] if self.data \
             else self.conf.get_int('default_weight', 3)
         weight_widget = self.gui.get_object('spinbutton3')
         weight_widget.set_value(weight)

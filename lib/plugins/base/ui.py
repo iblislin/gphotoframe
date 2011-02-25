@@ -71,7 +71,7 @@ class PhotoSourceUI(object):
     def _set_target_default(self):
         if self.data:
             try:
-                fr_num = self._label().index(self.data[1])
+                fr_num = self._label().index(self.data[2]) # liststore target
             except ValueError:
                 fr_num = 0
 
@@ -99,7 +99,7 @@ class PhotoSourceOptionsUI(object):
         self._set_ui()
         note.append_page(self.child, tab_label=label)
 
-        self.options = data[4] if data else {}
+        self.options = data[5] if data else {} # liststore options
         self._set_default()
 
     def _set_ui(self):
