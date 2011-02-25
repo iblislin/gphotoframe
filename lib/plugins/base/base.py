@@ -28,6 +28,8 @@ class PluginBase(object):
 class PhotoList(object):
     """Photo Factory"""
 
+    delay_for_prepare = True
+
     def __init__(self, target, argument, weight, options, photolist):
         self.weight = weight
         self.argument = argument

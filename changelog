@@ -1,3 +1,7 @@
+2011-02-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Added delays for accessing API.
+
 2011-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* menu.py: Added checking if the menu is pop-upped.

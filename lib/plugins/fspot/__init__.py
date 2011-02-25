@@ -45,6 +45,8 @@ class FSpotPlugin(base.PluginBase):
 
 class FSpotPhotoList(base.PhotoList):
 
+    delay_for_prepare = False
+
     def prepare(self):
         self.db = FSpotDB()
         self.period = self.options.get('period')
