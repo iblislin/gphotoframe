@@ -74,8 +74,12 @@ class PluginAboutDialog(object):
         self.parent = parent
 
     def check(self, plugin_type):
-        self.plugin = PLUGIN_INFO_TOKEN[plugin_type]()
-        state = hasattr(self.plugin, 'info')
+        if plugin_type in PLUGIN_INFO_TOKEN:
+            self.plugin = PLUGIN_INFO_TOKEN[plugin_type]()
+            state = hasattr(self.plugin, 'info')
+        else:
+            state = False
+
         self.gui.get_object('button7').set_sensitive(state)
 
     def run(self, widget):

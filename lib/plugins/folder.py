@@ -127,7 +127,7 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
             default = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
         except:
             default = os.environ['HOME']
-        folder = self.data[1] if self.data else default
+        folder = self.data[2] if self.data else default # liststore target
         self.target_widget.set_current_folder(folder)
 
     def _make_options_ui(self):

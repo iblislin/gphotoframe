@@ -58,7 +58,7 @@ class PhotoListStore(gtk.ListStore):
         return delay
 
     def remove(self, iter):
-        self.get_value(iter, 5).exit() # photolist object
+        self.get_value(iter, 6).exit() # liststore object
         super(PhotoListStore, self).remove(iter)
 
     def next_photo(self, *args):
@@ -96,6 +96,7 @@ class PhotoListStore(gtk.ListStore):
         if self.idle.check():
             return True
 
+        # liststore object
         target_list = [ x[6] for x in self if x[6].photos and x[6].weight > 0 ]
         if target_list:
             target = WeightedRandom(target_list)
@@ -142,11 +143,11 @@ class PhotoListStore(gtk.ListStore):
 
         for i, row in enumerate(self):
             for num, key in enumerate(data_list):
-                value = row[num+1] # 1st column is pixbuf.
+                value = row[num+1] # liststore except icon.
                 if value is not None:
                     self._set_gconf(i, key, value)
 
-            if row[5]: # options
+            if row[5]: # liststore options
                 for key, value in row[5].iteritems():
                     self._set_gconf(i, key, value)
                     # print key, value
