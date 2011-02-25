@@ -184,7 +184,7 @@ class PhotoSourceFspotUI(ui.PhotoSourceUI):
 
     def _set_target_default(self):
         if self.data:
-            iter = self.tree_list[self.data[1]]
+            iter = self.tree_list[self.data[2]] # liststore
             self.target_widget.set_active_iter(iter)
 
 class PhotoSourceOptionsFspotUI(ui.PhotoSourceOptionsUI):
