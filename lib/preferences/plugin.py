@@ -2,7 +2,7 @@ import os
 import gtk
 from gettext import gettext as _
 
-from ..plugins import DIALOG_TOKEN, SOURCE_LIST, PHOTO_TARGET_TOKEN
+from ..plugins import DIALOG_TOKEN, PLUGIN_INFO_TOKEN, PHOTO_TARGET_TOKEN
 from ..utils.iconimage import IconImage, LocalIconImage
 from treeview import PreferencesTreeView
 
@@ -74,13 +74,9 @@ class PluginAboutDialog(object):
         self.parent = parent
 
     def check(self, plugin_type):
-        for obj in SOURCE_LIST:
-            if plugin_type == obj.name:
-                break
-
-        state = hasattr(obj, 'info')
+        self.plugin = PLUGIN_INFO_TOKEN[plugin_type]()
+        state = hasattr(self.plugin, 'info')
         self.gui.get_object('button7').set_sensitive(state)
-        self.plugin = obj
 
     def run(self, widget):
         about = gtk.AboutDialog()

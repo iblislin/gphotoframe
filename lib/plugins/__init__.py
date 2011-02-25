@@ -33,7 +33,6 @@ for item in os.listdir(plugin_dir) + os.listdir(PLUGIN_HOME):
             if 'info' in function:
                 token_base.append(module.info())
 
-SOURCE_LIST=[]
 PLUGIN_INFO_TOKEN = {}
 MAKE_PHOTO_TOKEN ={}
 PHOTO_TARGET_TOKEN={}
@@ -43,7 +42,6 @@ ICON_LIST={}
 for k in sorted(token_base):
     plugin = k[0]()
 
-    SOURCE_LIST.append(plugin)
     PLUGIN_INFO_TOKEN[plugin.name] = k[0]
     MAKE_PHOTO_TOKEN[plugin.name] = k[1]
     PHOTO_TARGET_TOKEN[plugin.name] = k[2]
@@ -59,10 +57,10 @@ class PluginListStore(gtk.ListStore):
 
         self.conf = GConf()
         disabled_list = self._load_gconf()
-        all_plugin_list = [(plugin.name, plugin) for plugin in SOURCE_LIST]
 
-        for name, obj in sorted(all_plugin_list):
+        for name, cls in sorted(PLUGIN_INFO_TOKEN.items()):
             available = name not in disabled_list
+            obj = cls()
             list = [available, obj.get_icon_pixbuf(), name, obj]
             self.append(list)
 
