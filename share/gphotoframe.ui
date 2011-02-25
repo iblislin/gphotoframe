@@ -77,12 +77,6 @@
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="liststore2">
-    <columns>
-      <!-- column-name item -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkDialog" id="photo_source">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Photo Source</property>
@@ -157,10 +151,10 @@
                     <signal name="changed" handler="on_combobox4_changed"/>
                     <signal name="move_active" handler="on_combobox4_move_active"/>
                     <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
+                      <object class="GtkCellRendererText" id="cellrenderertext_name"/>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererPixbuf" id="cellrenderertext_pixbuf"/>
                     </child>
                   </object>
                   <packing>
@@ -671,5 +665,13 @@
   <object class="GtkAdjustment" id="adjustment4">
     <property name="upper">100</property>
     <property name="step_increment">1</property>
+  </object>
+  <object class="GtkListStore" id="liststore2">
+    <columns>
+      <!-- column-name GdkPixbuf1 -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+    </columns>
   </object>
 </interface>
