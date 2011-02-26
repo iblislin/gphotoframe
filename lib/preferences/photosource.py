@@ -95,24 +95,7 @@ class PhotoSourceDialog(object):
         source_list = plugin_liststore.available_list()
 
         # source
-        source_widget = self.gui.get_object('combobox4')
-        liststore = TargetListStore(source_list)
-        source_widget.set_model(liststore)
-
-        renderer = gtk.CellRendererPixbuf()
-        source_widget.pack_start(renderer, expand=False)
-        source_widget.add_attribute(renderer, 'pixbuf', 0)
-
-        renderer = gtk.CellRendererText()
-        source_widget.pack_start(renderer, expand=False)
-        source_widget.add_attribute(renderer, 'text', 1)
-
-        recent = self.conf.get_string('recents/source')
-        # liststore source
-        source_num = source_list.index(self.data[1]) if self.data \
-            else source_list.index(recent) if recent in source_list \
-            else 0
-        source_widget.set_active(source_num)
+        source_widget = SourceComboBox(self.gui, source_list, self.data)
 
         # target
         self._change_combobox(source_widget, self.data)
@@ -139,9 +122,7 @@ class PhotoSourceDialog(object):
         argument = argument_widget.get_text() \
             if argument_widget.get_property('sensitive') else ''
 
-        model = source_widget.get_model()
-        iter = source_widget.get_active_iter()
-        source = model[iter][1]
+        source = source_widget.get_active_text()
 
         v = { 'source'  : source,
               'target'  : self.ui.get(),
@@ -157,12 +138,7 @@ class PhotoSourceDialog(object):
     def _change_combobox(self, combobox, data=None):
         self.gui.get_object('button8').set_sensitive(True)
 
-        #text = combobox.get_active_text()
-
-        model = combobox.get_model()
-        iter = combobox.get_active_iter()
-        text = model[iter][1]
-
+        text = combobox.get_active_text()
         token = PHOTO_TARGET_TOKEN
 
         self.ui = token[text](self.gui, data)
@@ -176,3 +152,40 @@ class TargetListStore(gtk.ListStore):
             pixbuf = PLUGIN_INFO_TOKEN[name]().get_icon_pixbuf()
             list = [pixbuf, name]
             self.insert_before(None, list)
+
+class SourceComboBox(object):
+
+    def __init__(self, gui, source_list, photoliststore):
+        self.conf = GConf()
+        self.data = photoliststore
+
+        self.widget = widget = gui.get_object('combobox4')
+        # liststore = TargetListStore(source_list)
+        #widget.set_model(liststore)
+        liststore = widget.get_model()
+
+        for name in source_list:
+            pixbuf = PLUGIN_INFO_TOKEN[name]().get_icon_pixbuf()
+            list = [pixbuf, name]
+            liststore.insert_before(None, list)
+
+        renderer = gtk.CellRendererPixbuf()
+        widget.pack_start(renderer, expand=False)
+        widget.add_attribute(renderer, 'pixbuf', 0)
+
+        renderer = gtk.CellRendererText()
+        widget.pack_start(renderer, expand=False)
+        widget.add_attribute(renderer, 'text', 1)
+
+        recent = self.conf.get_string('recents/source')
+        # liststore source
+        source_num = source_list.index(photoliststore[1]) if photoliststore \
+            else source_list.index(recent) if recent in source_list \
+            else 0
+        widget.set_active(source_num)
+
+    def get_active_text(self):
+        model = self.widget.get_model()
+        iter = self.widget.get_active_iter()
+        text = model[iter][1]
+        return text
