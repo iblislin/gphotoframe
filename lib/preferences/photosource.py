@@ -144,15 +144,6 @@ class PhotoSourceDialog(object):
         self.ui = token[text](self.gui, data)
         self.ui.make()
 
-class TargetListStore(gtk.ListStore):
-
-    def __init__(self, source_list):
-        super(TargetListStore, self).__init__(gtk.gdk.Pixbuf, str)
-        for name in source_list:
-            pixbuf = PLUGIN_INFO_TOKEN[name]().get_icon_pixbuf()
-            list = [pixbuf, name]
-            self.insert_before(None, list)
-
 class SourceComboBox(object):
 
     def __init__(self, gui, source_list, photoliststore):
@@ -160,8 +151,6 @@ class SourceComboBox(object):
         self.data = photoliststore
 
         self.widget = widget = gui.get_object('combobox4')
-        # liststore = TargetListStore(source_list)
-        #widget.set_model(liststore)
         liststore = widget.get_model()
 
         for name in source_list:
