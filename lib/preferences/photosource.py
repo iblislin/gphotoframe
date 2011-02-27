@@ -94,63 +94,31 @@ class PhotoSourceDialog(object):
         dialog.set_transient_for(self.parent)
         source_list = plugin_liststore.available_list()
 
-        # source
         source_widget = SourceComboBox(self.gui, source_list, self.data)
-
-        # target
-        self._change_combobox(source_widget, self.data)
-
-        # argument
-        argument_widget = self.gui.get_object('entry1')
-        if self.data:
-            argument_widget.set_text(self.data[3]) # liststore argument
-
-        # weight # liststore weight
-        weight = self.data[4] if self.data \
-            else self.conf.get_int('default_weight', 3)
-        weight_widget = self.gui.get_object('spinbutton3')
-        weight_widget.set_value(weight)
-        weight_widget.set_tooltip_markup(
-            _("The photo source should be ignored if the weight is 0."))
+        argument_widget = ArgumentEntry(self.gui, self.data)
+        weight_widget = WeightEntry(self.gui, self.data)
 
         # run
-        target_widget = self.gui.get_object('combobox4')
-        target_widget.connect('changed', self._change_combobox)
-
         response_id = dialog.run()
 
-        argument = argument_widget.get_text() \
-            if argument_widget.get_property('sensitive') else ''
-
-        source = source_widget.get_active_text()
-
-        v = { 'source'  : source,
-              'target'  : self.ui.get(),
-              'argument': argument,
+        v = { 'source'  : source_widget.get_active_text(),
+              'target'  : source_widget.ui.get(),
+              'argument': argument_widget.get_text(),
               'weight'  : weight_widget.get_value(),
-              'options' : self.ui.get_options() }
+              'options' : source_widget.ui.get_options() }
 
         dialog.destroy()
         if response_id == gtk.RESPONSE_OK:
             self.conf.set_string('recents/source', v['source'])
         return response_id, v
 
-    def _change_combobox(self, combobox, data=None):
-        self.gui.get_object('button8').set_sensitive(True)
-
-        text = combobox.get_active_text()
-        token = PHOTO_TARGET_TOKEN
-
-        self.ui = token[text](self.gui, data)
-        self.ui.make()
-
 class SourceComboBox(object):
 
     def __init__(self, gui, source_list, photoliststore):
-        self.conf = GConf()
         self.data = photoliststore
 
         self.widget = widget = gui.get_object('combobox4')
+        self.button = gui.get_object('button8')
         liststore = widget.get_model()
 
         for name in source_list:
@@ -166,15 +134,60 @@ class SourceComboBox(object):
         widget.pack_start(renderer, expand=False)
         widget.add_attribute(renderer, 'text', 1)
 
-        recent = self.conf.get_string('recents/source')
+        recent = GConf().get_string('recents/source')
         # liststore source
         source_num = source_list.index(photoliststore[1]) if photoliststore \
             else source_list.index(recent) if recent in source_list \
             else 0
         widget.set_active(source_num)
 
+        widget.connect('changed', self._change_combobox, gui)
+
+        # target
+        self._change_combobox(None, gui, photoliststore)
+
     def get_active_text(self):
         model = self.widget.get_model()
         iter = self.widget.get_active_iter()
         text = model[iter][1]
         return text
+
+    def get_target(self):
+        return self.ui.get()
+
+    def _change_combobox(self, widget, gui, data=None):
+        self.button.set_sensitive(True)
+
+        text = self.get_active_text()
+        token = PHOTO_TARGET_TOKEN
+
+        self.ui = token[text](gui, data)
+        self.ui.make()
+
+class ArgumentEntry(object):
+
+    def __init__(self, gui, photoliststore):
+
+        self.widget = gui.get_object('entry1')
+        if photoliststore:
+            self.widget.set_text(photoliststore[3]) # liststore argument
+
+    def get_text(self):
+        argument = self.widget.get_text() \
+            if self.widget.get_property('sensitive') else ''
+        return argument
+
+class WeightEntry(object):
+
+    def __init__(self, gui, photoliststore):
+
+        default_weight = GConf().get_int('default_weight', 3)
+        # liststore weight
+        weight = photoliststore[4] if photoliststore else default_weight 
+        self.widget = gui.get_object('spinbutton3')
+        self.widget.set_value(weight)
+        self.widget.set_tooltip_markup(
+            _("The photo source should be ignored if the weight is 0."))
+
+    def get_value(self):
+        return self.widget.get_value() 
