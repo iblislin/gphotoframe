@@ -34,7 +34,6 @@ class PhotoListStore(gtk.ListStore):
         self.idle = SessionIdle()
         self._start_timer()
 
-
     def append(self, d, iter=None, delay=0):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
             return
@@ -77,6 +76,7 @@ class PhotoListStore(gtk.ListStore):
         is_mouse_over = frame.check_mouse_on_frame() and change != 'force'
 
         if change and not is_mouse_over and not frame.has_trash_dialog():
+            self.recursion_depth = 0
             updated = self._change_photo()
         else:
             updated = False
@@ -114,7 +114,8 @@ class PhotoListStore(gtk.ListStore):
             self._change_photo()
         elif self.photoframe.set_photo(photo):
             self.queue.append(photo)
-        else:
+        elif self.recursion_depth < 10: # check recursion depth
+            self.recursion_depth += 1
             self._change_photo()
 
     def _load_gconf(self, delay=0):
