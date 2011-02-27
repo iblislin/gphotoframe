@@ -1,3 +1,8 @@
+2011-02-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py (PhotoListStore._show_photo_cb): Added checking for
+	  recursion depth.
+
 2011-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences/photosource.py: Added support for double clicking on
