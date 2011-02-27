@@ -27,6 +27,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
             "on_button5_clicked" : self._delete_button_cb,
             "on_treeview1_cursor_changed" : self._cursor_changed_cb,
             "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
+            "on_treeview1_button_press_event" : self._button_press_cb,
             }
         return dic
 
@@ -52,6 +53,11 @@ class PhotoSourceTreeView(PreferencesTreeView):
     def _set_button_sensitive(self, state):
         self.gui.get_object('button4').set_sensitive(state)
         self.gui.get_object('button5').set_sensitive(state)
+
+    def _button_press_cb(self, widget, event):
+        if event.type == gtk.gdk._2BUTTON_PRESS:
+            self._prefs_button_cb(widget)
+            return True
 
     def _new_button_cb(self, widget):
         photodialog = PhotoSourceDialog(self.parent)
