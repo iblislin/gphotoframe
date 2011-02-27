@@ -37,8 +37,9 @@ class DirPhotoList(base.PhotoList):
         d = threads.deferToThread(self._prepare_cb)
 
     def exit(self):
-        del self.inotify.monitor
-        del self.inotify
+        if hasattr(self, 'inotify'):
+            del self.inotify.monitor
+            del self.inotify
 
     def get_photo(self, cb):
         self.photo = random.choice(self.photos)
