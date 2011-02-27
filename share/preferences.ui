@@ -494,6 +494,7 @@
                                     <property name="reorderable">True</property>
                                     <property name="rules_hint">True</property>
                                     <signal name="cursor_changed" handler="on_treeview1_cursor_changed"/>
+                                    <signal name="button_press_event" handler="on_treeview1_button_press_event"/>
                                     <signal name="query_tooltip" handler="on_treeview1_query_tooltip"/>
                                   </object>
                                 </child>

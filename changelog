@@ -1,3 +1,8 @@
+2011-02-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/photosource.py: Added support for double clicking on
+	  Photo Source Treeview to open Photo Source Dialog.
+
 2011-02-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* photosource.py, gphotoframe.ui: Added icons on photo source ComboBox.
