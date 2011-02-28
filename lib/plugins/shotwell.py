@@ -21,6 +21,7 @@ from gettext import gettext as _
 
 from ..utils.sqldb import SqliteDB
 from ..utils.iconimage import LocalIconImage
+from ..utils.config import GConf
 from base import *
 from fspot.__init__ import *
 from fspot.rating import RateList
@@ -133,6 +134,8 @@ class PhotoSourceShotwellUI(ui.PhotoSourceUI):
     def make(self):
         super(PhotoSourceShotwellUI, self).make()
         self._set_target_sensitive(_("_Tag:"), True)
+        state = GConf().get_bool('plugins/shotwell/use_description', False)
+        self._set_argument_sensitive(label=_('_Description:'), state=state)
 
     def get_options(self):
         return self.options_ui.get_value()
