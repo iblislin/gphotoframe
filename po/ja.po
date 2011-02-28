@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-22 23:11+0900\n"
-"PO-Revision-Date: 2011-02-22 23:19+0900\n"
+"POT-Creation-Date: 2011-02-28 19:26+0900\n"
+"PO-Revision-Date: 2011-02-28 19:29+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -98,8 +98,8 @@ msgid "E-mail adress as user ID"
 msgstr "ユーザ ID として E-mail アドレスを指定します。"
 
 #: ../share/gphotoframe.schemas.in.h:15
-msgid "Enable ban icon"
-msgstr "禁止アイコンを有効にする"
+msgid "Enable description field"
+msgstr "説明フィールドを有効にする"
 
 #: ../share/gphotoframe.schemas.in.h:16
 msgid "Enable fullscreen mode animations"
@@ -141,16 +141,20 @@ msgstr ""
 "は、各フィードに含まれる画像数がそのまま各フィードの重みとなります。"
 
 #: ../share/gphotoframe.schemas.in.h:24
-msgid "If true, a ban icon will be shown on photos from shotwell."
-msgstr "TRUEにすると、Shotwell の写真上に禁止アイコンを表示します。"
-
-#: ../share/gphotoframe.schemas.in.h:25
 msgid ""
 "If true, changing of photo image in fullscreen mode will be animated. The "
 "program needs to be restarted to take effect the change of the setting."
 msgstr ""
 "TRUEにすると、フルスクリーン時に写真を変更する際にアニメーションを行います。"
 "なお、この設定を反映させるためにはプログラムの再スタートが必要です。"
+
+#: ../share/gphotoframe.schemas.in.h:25
+msgid ""
+"If true, description (identifier) field will be enabled on photo source "
+"dialog. Users can use the field freely."
+msgstr ""
+"TRUEにすると、写真ソースダイアログで説明 (識別子) フィールドを有効にします。"
+"このフィールドはユーザが識別のために自由に利用できます。"
 
 #: ../share/gphotoframe.schemas.in.h:26
 msgid ""
@@ -367,7 +371,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:98
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:100
 msgid "All"
 msgstr "すべて"
 
@@ -444,7 +448,7 @@ msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
 #: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:56
-#: ../lib/plugins/haikyo.py:85
+#: ../lib/plugins/haikyo.py:87
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -540,15 +544,15 @@ msgstr "フルスクリーン表示(_F)"
 msgid "_Next Photo"
 msgstr "次の写真(_N)"
 
-#: ../lib/menu.py:105 ../lib/history/html.py:92 ../lib/image/actor/info.py:38
+#: ../lib/menu.py:112 ../lib/history/html.py:92 ../lib/image/actor/info.py:38
 msgid "Untitled"
 msgstr "無題"
 
-#: ../lib/menu.py:125
+#: ../lib/menu.py:132
 msgid "Show _History"
 msgstr "履歴を表示(_H)"
 
-#: ../lib/menu.py:139
+#: ../lib/menu.py:146
 msgid "GNOME Photo Frame"
 msgstr "GNOME 写真フレーム"
 
@@ -566,23 +570,24 @@ msgstr "GNOME 写真フレームの履歴"
 msgid "by %s"
 msgstr "by %s"
 
-#: ../lib/preferences/photosource.py:17
+#. liststore order
+#: ../lib/preferences/photosource.py:18
 msgid "Source"
 msgstr "ソース"
 
-#: ../lib/preferences/photosource.py:18
+#: ../lib/preferences/photosource.py:19
 msgid "Target"
 msgstr "ターゲット"
 
-#: ../lib/preferences/photosource.py:19
+#: ../lib/preferences/photosource.py:20
 msgid "Argument"
 msgstr "引数"
 
-#: ../lib/preferences/photosource.py:20
+#: ../lib/preferences/photosource.py:21
 msgid "Weight"
 msgstr "重み"
 
-#: ../lib/preferences/photosource.py:121
+#: ../lib/preferences/photosource.py:199
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
@@ -620,27 +625,27 @@ msgstr "ロード中..."
 msgid "Open this photo"
 msgstr "写真を開く"
 
-#: ../lib/image/actor/trash.py:26
+#: ../lib/image/actor/trash.py:33
 msgid "Move to trash"
 msgstr "ゴミ箱に移動する"
 
-#: ../lib/image/actor/trash.py:57
+#: ../lib/image/actor/trash.py:64
 msgid "Ban this photo"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/image/actor/trash.py:76
+#: ../lib/image/actor/trash.py:86
 msgid "Move this photo to the trash?"
 msgstr "この写真をゴミ箱に移動しますか?"
 
-#: ../lib/image/actor/trash.py:77
+#: ../lib/image/actor/trash.py:87
 msgid "This photo will be moved to the trash."
 msgstr "この写真をゴミ箱に移動します。"
 
-#: ../lib/image/actor/trash.py:91
+#: ../lib/image/actor/trash.py:102
 msgid "Ban this photo?"
 msgstr "ブラックリストに追加しますか?"
 
-#: ../lib/image/actor/trash.py:92
+#: ../lib/image/actor/trash.py:103
 msgid "This photo will be add to the black list."
 msgstr "この写真をブラックリストに追加し、今後表示しないようにします。"
 
@@ -840,20 +845,20 @@ msgstr "この写真をカタログから削除しますか?"
 msgid "This photo will be removed from the %s catalog."
 msgstr "この写真を %s のカタログから削除します。"
 
-#: ../lib/plugins/fspot/__init__.py:98
+#: ../lib/plugins/fspot/__init__.py:100
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:104
+#: ../lib/plugins/fspot/__init__.py:106
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:104
+#: ../lib/plugins/fspot/__init__.py:106
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/fspot/__init__.py:172 ../lib/plugins/shotwell.py:133
+#: ../lib/plugins/fspot/__init__.py:174 ../lib/plugins/shotwell.py:136
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
@@ -911,20 +916,30 @@ msgstr "Folder"
 msgid "Local Folder"
 msgstr "ローカルフォルダ"
 
-#: ../lib/plugins/shotwell.py:39
+#: ../lib/plugins/shotwell.py:40
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
 
-#: ../lib/plugins/shotwell.py:44
+#: ../lib/plugins/shotwell.py:45
 msgid "Set rating as rejected"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/plugins/shotwell.py:45
+#: ../lib/plugins/shotwell.py:46
 msgid "Set rating as rejected?"
 msgstr "ブラックリストに追加しますか?"
 
-#: ../lib/plugins/shotwell.py:46
+#: ../lib/plugins/shotwell.py:47
 msgid ""
 "The rating of this photo will be set as rejected.  Gnome photo frame will "
 "skip rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
+
+#: ../lib/plugins/shotwell.py:138
+msgid "_Description:"
+msgstr "説明(_D):"
+
+#~ msgid "Enable ban icon"
+#~ msgstr "禁止アイコンを有効にする"
+
+#~ msgid "If true, a ban icon will be shown on photos from shotwell."
+#~ msgstr "TRUEにすると、Shotwell の写真上に禁止アイコンを表示します。"
