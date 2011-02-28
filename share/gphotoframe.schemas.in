@@ -398,6 +398,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/shotwell/use_description</key>
+      <applyto>/apps/gphotoframe/plugins/shotwell/use_description</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable description field</short>
+        <long>If true, description (identifier) field will be enabled on photo source dialog.  Users can use the field freely.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/recents/preferences</key>
       <applyto>/apps/gphotoframe/recents/preferences</applyto>
       <owner>gphotoframe</owner>

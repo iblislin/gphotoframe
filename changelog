@@ -1,5 +1,7 @@
 2011-02-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/shotwell.py: Added a description field on shotwell photo
+	  source dialog.
 	* preferences/__init__.py: Added checking for double instances of
 	  preferences.
 	* photosource.py: Fixed a cursor lost problem.
