@@ -9,6 +9,7 @@
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
+    <signal name="hide" handler="on_preferences_hide"/>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>

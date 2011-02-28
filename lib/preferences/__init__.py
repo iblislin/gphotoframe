@@ -16,8 +16,13 @@ class Preferences(object):
     def __init__(self, photolist):
         self.photolist = photolist
         self.conf = GConf()
+        self.is_show = False
 
     def start(self, widget):
+        if self.is_show is True:
+            self.prefs.present()
+            return
+
         self.gui = gui = gtk.Builder()
         gui.add_from_file(os.path.join(SHARED_DATA_DIR, 'preferences.ui'))
         self.prefs = gui.get_object('preferences')
@@ -49,10 +54,12 @@ class Preferences(object):
         if recent:
             gui.get_object('notebook1').set_current_page(recent)
         self.prefs.show_all()
+        self.is_show = True
 
         dic = {
             "on_close_button"              : self._close_cb,
             "on_help_button"               : self._help_cb,
+            "on_preferences_hide"          : self._on_hide_cb,
             "on_spinbutton1_value_changed" : self._interval_changed_cb,
             "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
             "on_spinbutton_w_value_changed" : self._width_changed_cb,
@@ -96,6 +103,9 @@ class Preferences(object):
         self.photolist.save_gconf()
         self.plugin_liststore.save_gconf()
         self.prefs.destroy()
+
+    def _on_hide_cb(self, *args):
+        self.is_show = False
 
     def _help_cb(self, widget):
         gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
