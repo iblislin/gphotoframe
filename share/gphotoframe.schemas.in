@@ -386,18 +386,6 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/plugins/shotwell/ban_icon_enabled</key>
-      <applyto>/apps/gphotoframe/plugins/shotwell/ban_icon_enabled</applyto>
-      <owner>gphotoframe</owner>
-      <type>bool</type>
-      <default>false</default>
-      <locale name="C">
-        <short>Enable ban icon</short>
-        <long>If true, a ban icon will be shown on photos from shotwell.</long>
-      </locale>
-    </schema>
-
-    <schema>
       <key>/schemas/apps/gphotoframe/plugins/shotwell/use_description</key>
       <applyto>/apps/gphotoframe/plugins/shotwell/use_description</applyto>
       <owner>gphotoframe</owner>
