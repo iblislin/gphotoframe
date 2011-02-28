@@ -1,5 +1,7 @@
 2011-02-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences/__init__.py: Added checking for double instances of
+	  preferences.
 	* photosource.py: Fixed a cursor lost problem.
 	* liststore.py (PhotoListStore._show_photo_cb): Added checking for
 	  recursion depth.
