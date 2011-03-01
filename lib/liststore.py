@@ -36,7 +36,7 @@ class PhotoListStore(gtk.ListStore):
 
     def append(self, d, iter=None, delay=0):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
-            return
+            return delay
 
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
