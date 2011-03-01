@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-28 19:26+0900\n"
-"PO-Revision-Date: 2011-02-28 19:29+0900\n"
+"PO-Revision-Date: 2011-02-28 23:55+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -910,7 +910,7 @@ msgstr "廃墟にたたずむ時計たちの写真"
 
 #: ../lib/plugins/folder.py:26
 msgid "Folder"
-msgstr "Folder"
+msgstr "フォルダ"
 
 #: ../lib/plugins/folder.py:28
 msgid "Local Folder"
