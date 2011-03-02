@@ -37,6 +37,7 @@ class FacebookPhotoList(base.PhotoList):
     def prepare(self):
         #url = 'https://graph.facebook.com/%s/photos' % self.argument
         url = 'https://graph.facebook.com/%s/albums' % self.argument
+        url += self._get_access_token()
 
         if self.albums:
             self._select_album()
@@ -58,6 +59,8 @@ class FacebookPhotoList(base.PhotoList):
         # print album_id, album_name
 
         url = 'https://graph.facebook.com/%s/photos' % album_id
+        url += self._get_access_token()
+
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(self._set_photo_cb, album_name)
@@ -65,6 +68,10 @@ class FacebookPhotoList(base.PhotoList):
         del self.albums[album_id]
         if not self.albums:
             self.prepare()
+
+    def _get_access_token(self):
+        token = self.conf.get_string('plugins/facebook/access_token')
+        return '?access_token=%s' % token if token else ''
 
     def _set_photo_cb(self, data, album_name=None):
         d = json.loads(data)
@@ -92,7 +99,8 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
     def _label(self):
         #return [_('User'), _('Album')]
-        return [_('User'),]
+        #return [_('User'),]
+        return []
 
 class FacebookIcon(WebIconImage):
 
