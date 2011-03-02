@@ -1,0 +1,60 @@
+GNOME Photo Frame - A Photo Frame Gadget for the GNOME Desktop.
+
+* About
+
+It shows pictures from:
+
+- Local folders
+- F-Spot database
+- Shotwell database
+- Flickr API
+- Tumblr API
+- Picasa Web Album API
+- Haikyo Clock
+- RSS
+
+* Installation
+
+** Depends
+
+- Python: 2.6 or later
+- PyGTK: 2.16 or later
+- Twisted: twisted.internet & twisted.web
+- PyXDG: except v.0.16 which has a bug
+- Python-Distutils-Extra: for installation
+- gnome-doc-utils: for help documentation
+- pkg-config: for help documentation
+
+** Recommends
+
+- feedparser: for RSS plugin
+- gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
+- python-clutter-gtk
+- python-libproxy: for Gnome Proxy Settings
+
+** Suggests
+
+- python-numpy: for RSS plugin
+- python-dbus: for checking session idle status
+- jQuery: for photo history html
+
+** Installation
+
+You can install with the setup script.
+
+  sudo python ./setup.py install --force
+  sudo gconf-schemas --register gphotoframe.schemas
+
+Or, you can launch without installation. (Some functions are restricted.)
+
+  ./gphotoframe
+
+* Contact
+
+Web: http://code.google.com/p/gphotoframe/
+E-mail: y-endo@ceres.dti.ne.jp
+Twitter: yendo0206
+
+Local variables:
+mode: outline
+end:
