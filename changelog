@@ -1,3 +1,7 @@
+2011-03-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/facebook.py: Added test support for Facebook.
+
 2011-02-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* share/gphotoframe.schemas.in: Removed an obsolete gconf key:
