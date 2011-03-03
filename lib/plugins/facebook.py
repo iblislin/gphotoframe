@@ -6,7 +6,13 @@
 
 import json
 import random
+import urllib
+import re
 from gettext import gettext as _
+
+import gobject
+import gtk
+import webkit
 
 from base import *
 from picasa import PhotoSourcePicasaUI
@@ -14,7 +20,8 @@ from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.iconimage import WebIconImage
 
 def info():
-    return [FacebookPlugin, FacebookPhotoList, PhotoSourceFacebookUI]
+    return [FacebookPlugin, FacebookPhotoList, PhotoSourceFacebookUI, 
+            PluginFacebookDialog]
 
 
 class FacebookPlugin(base.PluginBase):
@@ -107,3 +114,66 @@ class FacebookIcon(WebIconImage):
     def __init__(self):
         self.icon_name = 'facebook.png'
         self.icon_url = 'http://www.facebook.com/favicon.ico'
+
+class PluginFacebookDialog(ui.PluginDialog):
+
+    def _set_ui(self):
+        self.dialog = self.gui.get_object('plugin_netauth_dialog')
+        self.label  = self.gui.get_object('label_netauth')
+        self.button_p = self.gui.get_object('button_netauth_p')
+        self.button_n = self.gui.get_object('button_netauth_n')
+
+        self.vbox = self.gui.get_object('dialog-vbox5')
+        self.vbox.remove(self.label)
+
+        self.dialog.set_resizable(True)
+        self.dialog.resize(640, 480)
+
+        self.p_id = self.n_id = None
+
+        self.sw = FacebookWebKitScrolledWindow()
+        self.sw.connect("token-acquired", self._result)
+        self.vbox.add(self.sw)
+
+    def _result(self, w, token):
+        self.vbox.remove(self.sw)
+        self.vbox.add(self.label)
+        self.token = token
+
+    def _read_conf(self):
+        self.user_name = self.conf.get_string('plugins/facebook/user_name')
+        self.access_token = self.conf.get_string('plugins/facebook/access_token')
+
+    def _write_conf(self):
+        self.conf.set_string('plugins/facebook/access_token', self.token)
+
+class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
+
+    def __init__(self):
+        super(FacebookWebKitScrolledWindow, self).__init__()
+        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+
+        values = { 'client_id': 157351184320900,
+                   'redirect_uri': 'http://www.facebook.com/connect/login_success.html',
+                   'response_type': 'token',
+                   'scope': 'user_photos,friends_photos,read_stream' }
+        uri = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(values)
+
+        w = webkit.WebView()
+        w.load_uri(uri)
+        w.connect("document-load-finished", self._get_token)
+
+        self.add(w)
+        self.show_all()
+
+    def _get_token(self, w, e):
+        url = w.get_property('uri')
+        re_token = re.compile('.*access_token=(.*)&.*')
+        
+        if re_token.search(url):
+            token = re_token.sub("\\1", url)
+            self.emit("token-acquired", token)
+
+gobject.signal_new("token-acquired", FacebookWebKitScrolledWindow,
+                   gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT,))
