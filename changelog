@@ -1,3 +1,7 @@
+2011-03-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/facebook.py: Added support for Facebook Authentication.
+
 2011-03-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/facebook.py: Added support for Facebook Album.
