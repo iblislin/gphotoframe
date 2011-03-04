@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-28 19:26+0900\n"
-"PO-Revision-Date: 2011-02-28 23:55+0900\n"
+"POT-Creation-Date: 2011-03-05 00:31+0900\n"
+"PO-Revision-Date: 2011-03-05 00:31+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -772,7 +772,7 @@ msgstr "タグ(_T):"
 #: ../lib/plugins/flickr/authdialog.py:25
 #, python-format
 msgid "You are connected to Flickr.com as %s."
-msgstr "Flickr.com にアカウント %s でログインしています"
+msgstr "Flickr.com にアカウント %s でログインしています。"
 
 #: ../lib/plugins/flickr/authdialog.py:26
 msgid "_Switch User"
@@ -861,6 +861,36 @@ msgstr "期間"
 #: ../lib/plugins/fspot/__init__.py:174 ../lib/plugins/shotwell.py:136
 msgid "_Tag:"
 msgstr "タグ(_T):"
+
+#: ../lib/plugins/facebook.py:33
+msgid "Social Network Service"
+msgstr "ソーシャル・ネットワーク・サービス"
+
+#: ../lib/plugins/facebook.py:147
+#, python-format
+msgid "You are logged into Facebook as %s."
+msgstr "Facebook にアカウント %s でログインしています。"
+
+#: ../lib/plugins/facebook.py:148
+msgid "_Logout"
+msgstr "ログアウト(_L)"
+
+#: ../lib/plugins/facebook.py:151
+msgid ""
+"You are not logged into Facebook.  If you would like to redo the "
+"authentication, you have to restart GNOME Photo Frame."
+msgstr ""
+"Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
+"起動する必要があります。"
+
+#: ../lib/plugins/facebook.py:203
+#, python-format
+msgid ""
+"You are logged into Facebook as %s.  If you would like to redo the "
+"authentication, you have to restart GNOME Photo Frame."
+msgstr ""
+"Facebook にアカウント %s でログインしています。認証をやり直す場合は、GNOME 写"
+"真フレームを再起動する必要があります。"
 
 #: ../lib/plugins/picasa.py:28
 msgid "Picasa Web"

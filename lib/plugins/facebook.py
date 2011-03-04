@@ -145,10 +145,10 @@ class PluginFacebookDialog(PluginFlickrDialog):
 
     def _logged_dialog(self):
         text = _('You are logged into Facebook as %s.') % self.full_name
-        self._set_dialog(text, '_Logout', gtk.STOCK_OK, self._logout_cb, self._quit_cb)
+        self._set_dialog(text, _('_Logout'), gtk.STOCK_OK, self._logout_cb, self._quit_cb)
 
     def _is_accessed_dialog(self):
-        text = ( 'You are not logged into Facebook.  '
+        text = _('You are not logged into Facebook.  '
                  'If you would like to redo the authentication, '
                  'you have to restart GNOME Photo Frame.')
         self._set_dialog(text, gtk.STOCK_CANCEL, gtk.STOCK_OK, self._cancel_cb, self._quit_cb)
@@ -200,9 +200,9 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.id = d['id']
         PluginFacebookDialog.is_accessed = True
 
-        text = _( 'You are logged into Facebook as %s.  ' 
-                  'If you would like to redo the authentication, '
-                  'you have to restart GNOME Photo Frame.')
+        text = _('You are logged into Facebook as %s.  ' 
+                 'If you would like to redo the authentication, '
+                 'you have to restart GNOME Photo Frame.')
         self.label.set_text(text % self.full_name)
 
         self.vbox.remove(self.sw)
