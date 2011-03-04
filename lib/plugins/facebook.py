@@ -16,6 +16,7 @@ import webkit
 
 from base import *
 from picasa import PhotoSourcePicasaUI
+from flickr.authdialog import PluginFlickrDialog
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.iconimage import WebIconImage
 
@@ -115,7 +116,9 @@ class FacebookIcon(WebIconImage):
         self.icon_name = 'facebook.png'
         self.icon_url = 'http://www.facebook.com/favicon.ico'
 
-class PluginFacebookDialog(ui.PluginDialog):
+class PluginFacebookDialog(PluginFlickrDialog):
+
+    is_accessed = False
 
     def __del__(self):
         """A black magic for avoiding unintended GC for sub instances."""
@@ -124,8 +127,12 @@ class PluginFacebookDialog(ui.PluginDialog):
     def run(self):
         self._read_conf()
 
+        print PluginFacebookDialog.is_accessed
+
         if self.token:
-            self._logged__dialog()
+            self._logged_dialog()
+        elif PluginFacebookDialog.is_accessed:
+            self._is_accessed_dialog()
         else:
             self._facebook_auth_dialog()
 
@@ -133,13 +140,20 @@ class PluginFacebookDialog(ui.PluginDialog):
 
     def _facebook_auth_dialog(self):
         self._set_webkit_ui()
-        self._set_button(None, None, self._cancel_cb, self._quit_cb)
+        self._set_dialog('', gtk.STOCK_CANCEL, gtk.STOCK_OK, self._cancel_cb, self._quit_cb)
         self.button_n.set_sensitive(False)
 
-    def _logged__dialog(self):
-        self.label.set_text('You are logged into Facebook as %s.  ' 
-                            % self.full_name)
-        self._set_button('_Logout', None, self._logout_cb, self._quit_cb)
+    def _logged_dialog(self):
+        text = _('You are logged into Facebook as %s.') % self.full_name
+        self._set_dialog(text, '_Logout', gtk.STOCK_OK, self._logout_cb, self._quit_cb)
+
+    def _is_accessed_dialog(self):
+        text = ( 'You are not logged into Facebook.  '
+                 'If you would like to redo the authentication, '
+                 'you have to restart GNOME Photo Frame.')
+        self._set_dialog(text, gtk.STOCK_CANCEL, gtk.STOCK_OK, self._cancel_cb, self._quit_cb)
+        self.button_p.set_sensitive(False)
+        self.button_n.set_sensitive(True)
 
     def _cancel_cb(self, *args):
         self.dialog.destroy()
@@ -152,20 +166,6 @@ class PluginFacebookDialog(ui.PluginDialog):
         self.full_name = self.token = ""
         self._quit_cb()
 
-    def _set_button(self, p_label, n_label, p_cb, n_cb):
-        if p_label:
-            self.button_p.set_label(p_label)
-
-        if n_label:
-            self.button_n.set_label(n_label)
-
-        if self.p_id:
-            self.button_p.disconnect(self.p_id)
-            self.button_n.disconnect(self.n_id)
-
-        self.p_id = self.button_p.connect('clicked', p_cb)
-        self.n_id = self.button_n.connect('clicked', n_cb)
-
     def _set_ui(self):
         self.dialog = self.gui.get_object('plugin_netauth_dialog')
         self.label  = self.gui.get_object('label_netauth')
@@ -174,12 +174,12 @@ class PluginFacebookDialog(ui.PluginDialog):
         self.button_p = self.gui.get_object('button_netauth_p')
         self.button_n = self.gui.get_object('button_netauth_n')
 
-        self.dialog.set_resizable(True)
         self.p_id = self.n_id = None
 
     def _set_webkit_ui(self, *args):
-        self.dialog.resize(1024, 768)
         self.dialog.set_gravity(gtk.gdk.GRAVITY_CENTER)
+        self.dialog.set_resizable(True)
+        self.dialog.resize(1024, 768)
 
         self.sw = FacebookWebKitScrolledWindow()
         self.sw.connect("token-acquired", self._get_access_token_cb)
@@ -198,10 +198,12 @@ class PluginFacebookDialog(ui.PluginDialog):
         d = json.loads(data)
         self.full_name = d['name']
         self.id = d['id']
+        PluginFacebookDialog.is_accessed = True
 
-        self.label.set_text('You are logged into Facebook as %s.  ' 
-            'If you would like to re-login, you have to restart GNOME Photo Frame.'
-                            % self.full_name)
+        text = _( 'You are logged into Facebook as %s.  ' 
+                  'If you would like to redo the authentication, '
+                  'you have to restart GNOME Photo Frame.')
+        self.label.set_text(text % self.full_name)
 
         self.vbox.remove(self.sw)
         self.vbox.add(self.label)
