@@ -131,43 +131,40 @@ class PluginFacebookDialog(ui.PluginDialog):
 
         self.dialog.show()
 
-
     def _facebook_auth_dialog(self):
-        self._webkit()
-
-        if self.n_id:
-            self.button_p.disconnect(self.p_id)
-            self.button_n.disconnect(self.n_id)
-
-        self.p_id = self.button_p.connect('clicked', self._cancel_cb)
-        self.n_id = self.button_n.connect('clicked', self._quit_cb)
+        self._set_webkit_ui()
+        self._set_button(None, None, self._cancel_cb, self._quit_cb)
         self.button_n.set_sensitive(False)
 
     def _logged__dialog(self):
         self.label.set_text('You are logged into Facebook as %s.  ' 
                             % self.full_name)
-        self.button_p.set_label('_Logout')
+        self._set_button('_Logout', None, self._logout_cb, self._quit_cb)
+
+    def _cancel_cb(self, *args):
+        self.dialog.destroy()
+
+    def _quit_cb(self, *args):
+        self._write_conf()
+        self.dialog.destroy()
+
+    def _logout_cb(self, *args):
+        self.full_name = self.token = ""
+        self._quit_cb()
+
+    def _set_button(self, p_label, n_label, p_cb, n_cb):
+        if p_label:
+            self.button_p.set_label(p_label)
+
+        if n_label:
+            self.button_n.set_label(n_label)
 
         if self.p_id:
             self.button_p.disconnect(self.p_id)
             self.button_n.disconnect(self.n_id)
 
-        self.p_id = self.button_p.connect('clicked', self._logout_cb)
-        self.n_id = self.button_n.connect('clicked', self._quit_cb)
-
-    def _cancel_cb(self, w):
-        self.dialog.destroy()
-
-    def _quit_cb(self, w):
-        self._write_conf()
-        self.dialog.destroy()
-
-    def _logout_cb(self, w):
-        self.full_name = ""
-        self.token = ""
-
-        self._write_conf()
-        self.dialog.destroy()
+        self.p_id = self.button_p.connect('clicked', p_cb)
+        self.n_id = self.button_n.connect('clicked', n_cb)
 
     def _set_ui(self):
         self.dialog = self.gui.get_object('plugin_netauth_dialog')
@@ -180,16 +177,16 @@ class PluginFacebookDialog(ui.PluginDialog):
         self.dialog.set_resizable(True)
         self.p_id = self.n_id = None
 
-    def _webkit(self, *args):
-        self.dialog.resize(640, 480)
+    def _set_webkit_ui(self, *args):
+        self.dialog.resize(1024, 768)
+        self.dialog.set_gravity(gtk.gdk.GRAVITY_CENTER)
+
         self.sw = FacebookWebKitScrolledWindow()
         self.sw.connect("token-acquired", self._get_access_token_cb)
         self.vbox.remove(self.label)
         self.vbox.add(self.sw)
 
     def _get_access_token_cb(self, w, token):
-        self.vbox.remove(self.sw)
-        self.vbox.add(self.label)
         self.token = token
 
         url = 'https://graph.facebook.com/me?access_token=%s' % token
@@ -203,8 +200,12 @@ class PluginFacebookDialog(ui.PluginDialog):
         self.id = d['id']
 
         self.label.set_text('You are logged into Facebook as %s.  ' 
-            'If you would like to Relogin, you need to restart Gnome Photo Frame.'
+            'If you would like to re-login, you have to restart GNOME Photo Frame.'
                             % self.full_name)
+
+        self.vbox.remove(self.sw)
+        self.vbox.add(self.label)
+        self.dialog.resize(300, 100)
 
         self.button_p.set_sensitive(False)
         self.button_n.set_sensitive(True)
@@ -224,7 +225,8 @@ class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
         self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         values = { 'client_id': 157351184320900,
-                   'redirect_uri': 'http://www.facebook.com/connect/login_success.html',
+                   'redirect_uri': 
+                   'http://www.facebook.com/connect/login_success.html',
                    'response_type': 'token',
                    'scope': 'user_photos,friends_photos,read_stream,user_about_me' }
         uri = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(values)
