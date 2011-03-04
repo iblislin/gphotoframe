@@ -117,34 +117,104 @@ class FacebookIcon(WebIconImage):
 
 class PluginFacebookDialog(ui.PluginDialog):
 
+    def __del__(self):
+        """A black magic for avoiding unintended GC for sub instances."""
+        pass
+
+    def run(self):
+        self._read_conf()
+
+        if self.token:
+            self._logged__dialog()
+        else:
+            self._facebook_auth_dialog()
+
+        self.dialog.show()
+
+
+    def _facebook_auth_dialog(self):
+        self._webkit()
+
+        if self.n_id:
+            self.button_p.disconnect(self.p_id)
+            self.button_n.disconnect(self.n_id)
+
+        self.p_id = self.button_p.connect('clicked', self._cancel_cb)
+        self.n_id = self.button_n.connect('clicked', self._quit_cb)
+        self.button_n.set_sensitive(False)
+
+    def _logged__dialog(self):
+        self.label.set_text('You are logged into Facebook as %s.  ' 
+                            % self.full_name)
+        self.button_p.set_label('_Logout')
+
+        if self.p_id:
+            self.button_p.disconnect(self.p_id)
+            self.button_n.disconnect(self.n_id)
+
+        self.p_id = self.button_p.connect('clicked', self._logout_cb)
+        self.n_id = self.button_n.connect('clicked', self._quit_cb)
+
+    def _cancel_cb(self, w):
+        self.dialog.destroy()
+
+    def _quit_cb(self, w):
+        self._write_conf()
+        self.dialog.destroy()
+
+    def _logout_cb(self, w):
+        self.full_name = ""
+        self.token = ""
+
+        self._write_conf()
+        self.dialog.destroy()
+
     def _set_ui(self):
         self.dialog = self.gui.get_object('plugin_netauth_dialog')
         self.label  = self.gui.get_object('label_netauth')
+        self.vbox = self.gui.get_object('dialog-vbox5')
+
         self.button_p = self.gui.get_object('button_netauth_p')
         self.button_n = self.gui.get_object('button_netauth_n')
 
-        self.vbox = self.gui.get_object('dialog-vbox5')
-        self.vbox.remove(self.label)
-
         self.dialog.set_resizable(True)
-        self.dialog.resize(640, 480)
-
         self.p_id = self.n_id = None
 
+    def _webkit(self, *args):
+        self.dialog.resize(640, 480)
         self.sw = FacebookWebKitScrolledWindow()
-        self.sw.connect("token-acquired", self._result)
+        self.sw.connect("token-acquired", self._get_access_token_cb)
+        self.vbox.remove(self.label)
         self.vbox.add(self.sw)
 
-    def _result(self, w, token):
+    def _get_access_token_cb(self, w, token):
         self.vbox.remove(self.sw)
         self.vbox.add(self.label)
         self.token = token
 
+        url = 'https://graph.facebook.com/me?access_token=%s' % token
+        urlget = UrlGetWithAutoProxy(url)
+        d = urlget.getPage(url)
+        d.addCallback(self._get_userinfo_cb)
+
+    def _get_userinfo_cb(self, data):
+        d = json.loads(data)
+        self.full_name = d['name']
+        self.id = d['id']
+
+        self.label.set_text('You are logged into Facebook as %s.  ' 
+            'If you would like to Relogin, you need to restart Gnome Photo Frame.'
+                            % self.full_name)
+
+        self.button_p.set_sensitive(False)
+        self.button_n.set_sensitive(True)
+
     def _read_conf(self):
-        self.user_name = self.conf.get_string('plugins/facebook/user_name')
-        self.access_token = self.conf.get_string('plugins/facebook/access_token')
+        self.full_name = self.conf.get_string('plugins/facebook/full_name')
+        self.token = self.conf.get_string('plugins/facebook/access_token')
 
     def _write_conf(self):
+        self.conf.set_string('plugins/facebook/full_name', self.full_name)
         self.conf.set_string('plugins/facebook/access_token', self.token)
 
 class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
@@ -156,7 +226,7 @@ class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
         values = { 'client_id': 157351184320900,
                    'redirect_uri': 'http://www.facebook.com/connect/login_success.html',
                    'response_type': 'token',
-                   'scope': 'user_photos,friends_photos,read_stream' }
+                   'scope': 'user_photos,friends_photos,read_stream,user_about_me' }
         uri = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(values)
 
         w = webkit.WebView()
