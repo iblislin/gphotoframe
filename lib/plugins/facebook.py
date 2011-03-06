@@ -44,7 +44,7 @@ class FacebookPhotoList(base.PhotoList):
         self.albums = FacebookAlbums(self._set_photo_cb, self.prepare, self.token)
 
     def prepare(self):
-        if self.target == 'Albums':
+        if self.target == _('Albums'):
             self.albums.start(self.argument)
         else:
             if self.target == _('Wall'):

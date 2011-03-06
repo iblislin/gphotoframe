@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-05 00:31+0900\n"
-"PO-Revision-Date: 2011-03-05 00:31+0900\n"
+"POT-Creation-Date: 2011-03-06 23:28+0900\n"
+"PO-Revision-Date: 2011-03-06 23:28+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -748,8 +748,8 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/picasa.py:188
-#: ../lib/plugins/tumblr.py:125
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook.py:136
+#: ../lib/plugins/picasa.py:188 ../lib/plugins/tumblr.py:125
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -769,16 +769,16 @@ msgstr "URL に含まれるグループ名か NSID を入力します"
 msgid "_Tags:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/flickr/authdialog.py:25
+#: ../lib/plugins/flickr/authdialog.py:26
 #, python-format
 msgid "You are connected to Flickr.com as %s."
 msgstr "Flickr.com にアカウント %s でログインしています。"
 
-#: ../lib/plugins/flickr/authdialog.py:26
+#: ../lib/plugins/flickr/authdialog.py:27
 msgid "_Switch User"
 msgstr "アカウントの変更"
 
-#: ../lib/plugins/flickr/authdialog.py:34
+#: ../lib/plugins/flickr/authdialog.py:35
 msgid ""
 "Gnome Photo Frame needs your authorization in order to view private photos "
 "or to add photos to favorites list on your Flickr.com account. Press the "
@@ -789,12 +789,12 @@ msgstr ""
 "への登録を行うためにはあなたの認証が必要です。\"認証\" ボタンをクリックして"
 "ウェブブラウザを開き、そちらで Gnome 写真フレームを認証してください。"
 
-#: ../lib/plugins/flickr/authdialog.py:39
+#: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
 msgstr "認証(_A)"
 
 #. getfrob -> open browser
-#: ../lib/plugins/flickr/authdialog.py:47
+#: ../lib/plugins/flickr/authdialog.py:48
 msgid ""
 "Return to this dialog after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
@@ -802,7 +802,7 @@ msgstr ""
 "Flickr.com での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完"
 "了する\" ボタンをクリックしてください。"
 
-#: ../lib/plugins/flickr/authdialog.py:50
+#: ../lib/plugins/flickr/authdialog.py:51
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
@@ -866,16 +866,30 @@ msgstr "タグ(_T):"
 msgid "Social Network Service"
 msgstr "ソーシャル・ネットワーク・サービス"
 
-#: ../lib/plugins/facebook.py:147
+#: ../lib/plugins/facebook.py:50 ../lib/plugins/facebook.py:136
+#: ../lib/plugins/facebook.py:142
+msgid "Wall"
+msgstr "ウォール"
+
+#: ../lib/plugins/facebook.py:83 ../lib/plugins/facebook.py:136
+#: ../lib/plugins/facebook.py:142
+msgid "Albums"
+msgstr "アルバム"
+
+#: ../lib/plugins/facebook.py:138 ../lib/plugins/facebook.py:142
+msgid "News Feed"
+msgstr "ニュースフィード"
+
+#: ../lib/plugins/facebook.py:176
 #, python-format
 msgid "You are logged into Facebook as %s."
 msgstr "Facebook にアカウント %s でログインしています。"
 
-#: ../lib/plugins/facebook.py:148
+#: ../lib/plugins/facebook.py:177
 msgid "_Logout"
 msgstr "ログアウト(_L)"
 
-#: ../lib/plugins/facebook.py:151
+#: ../lib/plugins/facebook.py:180
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GNOME Photo Frame."
@@ -883,7 +897,7 @@ msgstr ""
 "Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
 "起動する必要があります。"
 
-#: ../lib/plugins/facebook.py:203
+#: ../lib/plugins/facebook.py:219
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
