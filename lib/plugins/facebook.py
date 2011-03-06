@@ -127,8 +127,6 @@ class PluginFacebookDialog(PluginFlickrDialog):
     def run(self):
         self._read_conf()
 
-        print PluginFacebookDialog.is_accessed
-
         if self.token:
             self._logged_dialog()
         elif PluginFacebookDialog.is_accessed:
@@ -140,23 +138,20 @@ class PluginFacebookDialog(PluginFlickrDialog):
 
     def _facebook_auth_dialog(self):
         self._set_webkit_ui()
-        self._set_dialog('', gtk.STOCK_CANCEL, gtk.STOCK_OK, self._cancel_cb, self._quit_cb)
+        self._set_dialog('', None, None, self._cancel_cb, self._quit_cb)
         self.button_n.set_sensitive(False)
 
     def _logged_dialog(self):
         text = _('You are logged into Facebook as %s.') % self.full_name
-        self._set_dialog(text, _('_Logout'), gtk.STOCK_OK, self._logout_cb, self._quit_cb)
+        self._set_dialog(text, _('_Logout'), None, self._logout_cb, self._quit_cb)
 
     def _is_accessed_dialog(self):
         text = _('You are not logged into Facebook.  '
                  'If you would like to redo the authentication, '
                  'you have to restart GNOME Photo Frame.')
-        self._set_dialog(text, gtk.STOCK_CANCEL, gtk.STOCK_OK, self._cancel_cb, self._quit_cb)
+        self._set_dialog(text, None, None, self._cancel_cb, self._quit_cb)
         self.button_p.set_sensitive(False)
         self.button_n.set_sensitive(True)
-
-    def _cancel_cb(self, *args):
-        self.dialog.destroy()
 
     def _quit_cb(self, *args):
         self._write_conf()
@@ -165,16 +160,6 @@ class PluginFacebookDialog(PluginFlickrDialog):
     def _logout_cb(self, *args):
         self.full_name = self.token = ""
         self._quit_cb()
-
-    def _set_ui(self):
-        self.dialog = self.gui.get_object('plugin_netauth_dialog')
-        self.label  = self.gui.get_object('label_netauth')
-        self.vbox = self.gui.get_object('dialog-vbox5')
-
-        self.button_p = self.gui.get_object('button_netauth_p')
-        self.button_n = self.gui.get_object('button_netauth_n')
-
-        self.p_id = self.n_id = None
 
     def _set_webkit_ui(self, *args):
         self.dialog.set_gravity(gtk.gdk.GRAVITY_CENTER)

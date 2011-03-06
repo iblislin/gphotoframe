@@ -15,11 +15,12 @@ class PluginFlickrDialog(PluginDialog):
     def _set_ui(self):
         self.dialog = self.gui.get_object('plugin_netauth_dialog')
         self.label  = self.gui.get_object('label_netauth')
+        self.vbox = self.gui.get_object('dialog-vbox5')
+
         self.button_p = self.gui.get_object('button_netauth_p')
         self.button_n = self.gui.get_object('button_netauth_n')
 
         self.p_id = self.n_id = None
-        self.auth_obj = FlickrAuth(API_KEY, SECRET, 'write')
 
     def _set_confirm_dialog(self, *args):
         text = _("You are connected to Flickr.com as %s.") % self.user_name
@@ -70,8 +71,10 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
     def _set_dialog(self, text, p_label, n_label, p_cb, n_cb):
 
         self.label.set_text(text)
-        self.button_p.set_label(p_label)
-        self.button_n.set_label(n_label)
+        if p_label:
+            self.button_p.set_label(p_label)
+        if n_label:
+            self.button_n.set_label(n_label)
 
         if self.p_id:
             self.button_p.disconnect(self.p_id)
@@ -90,6 +93,7 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
 
     def run(self):
         self._read_conf()
+        self.auth_obj = FlickrAuth(API_KEY, SECRET, 'write')
 
         if self.auth_token:
             self._set_confirm_dialog()
