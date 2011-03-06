@@ -43,16 +43,28 @@ class FacebookPhotoList(base.PhotoList):
         self.albums = {}
 
     def prepare(self):
-        #url = 'https://graph.facebook.com/%s/photos' % self.argument
-        url = 'https://graph.facebook.com/%s/albums' % self.argument
-        url += self._get_access_token()
+        print self.target
+        if self.target == _('Albums'):
+            url = 'https://graph.facebook.com/%s/albums' % self.argument
+        elif self.target == _('Wall'):
+            url = 'https://graph.facebook.com/%s/feed' % self.argument
+        else:
+            url = 'https://graph.facebook.com/me/home'
 
-        if self.albums:
-            self._select_album()
+        url += self._get_access_token()
+        print url
+
+        if self.target == 'Albums':
+            if self.albums:
+                self._select_album()
+            else:
+                urlget = UrlGetWithAutoProxy(url)
+                d = urlget.getPage(url)
+                d.addCallback(self._get_albumlist_cb)
         else:
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
-            d.addCallback(self._get_albumlist_cb)
+            d.addCallback(self._set_photo_cb)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
@@ -85,9 +97,14 @@ class FacebookPhotoList(base.PhotoList):
         d = json.loads(data)
 
         for entry in d['data']:
+            type = entry.get('type')
+            if type is not None and type != 'photo':
+                continue
+
+            url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
             data = {'info'       : FacebookPlugin,
-                    'url'        : str(entry['source']),
-                    'id'         : int(entry['id']),
+                    'url'        : url,
+                    'id'         : entry['id'],
                     'owner_name' : entry['from']['name'],
                     'title'      : entry.get('name') or album_name,
                     'page_url'   : str(entry['link']),
@@ -99,16 +116,21 @@ class FacebookPhotoList(base.PhotoList):
     def get_photo(self, cb):
         super(FacebookPhotoList, self).get_photo(cb)
 
-        self.photos.remove(self.photo)
-        if not self.photos:
-            self._select_album()
+        if self.target == _('Albums'):
+            self.photos.remove(self.photo)
+            if not self.photos:
+                self._select_album()
 
 class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
+    def _check_argument_sensitive_for(self, target):
+        all_label = {_('Wall'): _('_User:'), _('Albums'): _('_User:')}
+        label = all_label.get(target)
+        state = False if target == _('News Feed') else True
+        return label, state
+
     def _label(self):
-        #return [_('User'), _('Album')]
-        #return [_('User'),]
-        return []
+        return [_('News Feed'), _('Wall'), _('Albums')]
 
 class FacebookIcon(WebIconImage):
 
