@@ -103,7 +103,6 @@ class FacebookAlbums(object):
             self.select_album()
         else:
             url = 'https://graph.facebook.com/%s/albums%s' % (argument, self.token)
-            print url
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
             d.addCallback(self._get_albumlist_cb)
@@ -118,7 +117,7 @@ class FacebookAlbums(object):
     def select_album(self):
         album_id = random.choice(self.albums.keys())
         album_name = self.albums.get(album_id)
-        print album_id, album_name
+        # print album_id, album_name
 
         url = 'https://graph.facebook.com/%s/photos' % album_id
         url += self.token
