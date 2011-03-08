@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-08 22:06+0900\n"
-"PO-Revision-Date: 2011-03-08 22:07+0900\n"
+"POT-Creation-Date: 2011-03-08 23:52+0900\n"
+"PO-Revision-Date: 2011-03-08 23:53+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -375,7 +375,7 @@ msgstr ""
 msgid "All"
 msgstr "すべて"
 
-#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:7
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:8
 msgid "General"
 msgstr "全般"
 
@@ -488,43 +488,47 @@ msgstr "<b>プラグイン</b>"
 msgid "Always on _Visible Workspace"
 msgstr "すべてのワークスペースに配置する(_V)"
 
-#: ../share/preferences.ui.h:8
+#: ../share/preferences.ui.h:7
+msgid "Au_thentication"
+msgstr "認証(_T)"
+
+#: ../share/preferences.ui.h:9
 msgid "In _Full Screen Mode:"
 msgstr "フルスクリーン表示時(_F):"
 
-#: ../share/preferences.ui.h:9
+#: ../share/preferences.ui.h:10
 msgid "In _Window Mode:"
 msgstr "ウィンドウ表示時(_W)"
 
-#: ../share/preferences.ui.h:10
+#: ../share/preferences.ui.h:11
 msgid "Photo Frame Preferences"
 msgstr "写真フレームの設定"
 
-#: ../share/preferences.ui.h:11
+#: ../share/preferences.ui.h:12
 msgid "Photos"
 msgstr "写真"
 
-#: ../share/preferences.ui.h:12
+#: ../share/preferences.ui.h:13
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: ../share/preferences.ui.h:13
+#: ../share/preferences.ui.h:14
 msgid "Wi_dth:"
 msgstr "幅(_D):"
 
-#: ../share/preferences.ui.h:14
+#: ../share/preferences.ui.h:15
 msgid "_Auto Start"
 msgstr "ログイン時に自動起動する(_A)"
 
-#: ../share/preferences.ui.h:15
+#: ../share/preferences.ui.h:16
 msgid "_Height:"
 msgstr "高さ(_H):"
 
-#: ../share/preferences.ui.h:16
+#: ../share/preferences.ui.h:17
 msgid "pixels"
 msgstr "ピクセル"
 
-#: ../share/preferences.ui.h:17
+#: ../share/preferences.ui.h:18
 msgid "seconds"
 msgstr "秒"
 

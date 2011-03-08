@@ -393,11 +393,12 @@
                                 <property name="layout_style">end</property>
                                 <child>
                                   <object class="GtkButton" id="button6">
-                                    <property name="label">gtk-preferences</property>
+                                    <property name="label" translatable="yes">Au_thentication</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="use_stock">True</property>
+                                    <property name="image">auth_image</property>
+                                    <property name="use_underline">True</property>
                                     <signal name="clicked" handler="on_button6_clicked"/>
                                   </object>
                                   <packing>
@@ -662,5 +663,9 @@
     <property name="lower">1</property>
     <property name="upper">100</property>
     <property name="step_increment">1</property>
+  </object>
+  <object class="GtkImage" id="auth_image">
+    <property name="visible">True</property>
+    <property name="stock">gtk-dialog-authentication</property>
   </object>
 </interface>
