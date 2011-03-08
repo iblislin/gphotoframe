@@ -25,6 +25,7 @@ class FlickrPlugin(base.PluginBase):
         self.name = 'Flickr'
         self.icon = FlickrIcon
         self.exif = FlickrEXIF
+        self.auth = 'plugins/flickr/user_name'
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.flickr.com/',

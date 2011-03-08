@@ -27,6 +27,7 @@ class PicasaPlugin(base.PluginBase):
     def __init__(self):
         self.name = _('Picasa Web')
         self.icon = PicasaIcon
+        self.auth = 'plugins/picasa/user_id'
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',

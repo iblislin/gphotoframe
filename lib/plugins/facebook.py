@@ -32,6 +32,7 @@ class FacebookPlugin(base.PluginBase):
     def __init__(self):
         self.name = 'Facebook'
         self.icon = FacebookIcon
+        self.auth = 'plugins/facebook/full_name'
         self.info = { 'comments': _('Social Network Service'),
                       'copyright': 'Copyright © 2011 Yoshizimi Endo',
                       'website': 'http://www.facebook.com/',

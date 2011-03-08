@@ -53,7 +53,8 @@ for k in sorted(token_base):
 class PluginListStore(gtk.ListStore):
 
     def __init__(self):
-        super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str, object)
+        super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str, str, 
+                                              object)
 
         self.conf = GConf()
         disabled_list = self._load_gconf()
@@ -61,11 +62,12 @@ class PluginListStore(gtk.ListStore):
         for name, cls in sorted(PLUGIN_INFO_TOKEN.items()):
             available = name not in disabled_list
             obj = cls()
-            list = [available, obj.get_icon_pixbuf(), name, obj]
+            auth = obj.get_auth_status()
+            list = [available, obj.get_icon_pixbuf(), name, auth, obj]
             self.append(list)
 
     def available_list(self):
-        list = [p[2] for p in self if p[0] and p[3].is_available()]
+        list = [p[2] for p in self if p[0] and p[4].is_available()]
         return sorted(list)
 
     def toggle(self, cell, row):
