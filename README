@@ -29,6 +29,7 @@ It shows pictures from:
 
 - feedparser: for RSS plugin
 - gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
+- python-webkit: for Facebook plugin
 - python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings
 

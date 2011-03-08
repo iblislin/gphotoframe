@@ -57,7 +57,7 @@ class FacebookPhotoList(base.PhotoList):
         d = urlget.getPage(url)
         d.addCallback(self._set_photo_cb)
 
-    def _set_photo_cb(self, data, album_name=None):
+    def _set_photo_cb(self, data):
         d = json.loads(data)
 
         for entry in d['data']:
@@ -142,7 +142,7 @@ class FacebookAlbumsAPI(FacebookAPI):
     def _select_album(self):
         album_id = random.choice(self.albums.keys())
         self.album_name = self.albums.get(album_id)
-        print album_id, self.album_name
+        # print album_id, self.album_name
 
         url = 'https://graph.facebook.com/%s/photos' % album_id
         self.photolist.prepare_cb(url)
