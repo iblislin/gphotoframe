@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.1\n"
-"POT-Creation-Date: 2011-01-26 09:03+0900\n"
-"PO-Revision-Date: 2011-01-26 09:03+0900\n"
+"POT-Creation-Date: 2011-03-08 19:44+0900\n"
+"PO-Revision-Date: 2011-03-08 19:45+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -39,8 +39,8 @@ msgstr "ユーザーズガイド"
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/gphotoframe.xml:177(None)
 msgid ""
-"@@image: 'figures/gphotoframe_fig2.png'; md5=271391ff0ab65ad411a618683fdf2e16"
-msgstr "ok"
+"@@image: 'figures/gphotoframe.png'; md5=271391ff0ab65ad411a618683fdf2e16"
+msgstr "@@image: 'figures/gphotoframe.png'; md5=271391ff0ab65ad411a618683fdf2e16"
 
 #: C/gphotoframe.xml:18(title)
 msgid "<application>GNOME Photo Frame</application> Application Manual"

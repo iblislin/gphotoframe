@@ -174,7 +174,7 @@
       <screenshot>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/gphotoframe_fig2.png" format="PNG"></imagedata>
+            <imagedata fileref="figures/gphotoframe.png" format="PNG"></imagedata>
           </imageobject>
           <textobject>
             <phrase>Shows the photo frame with tooltip and icons</phrase>
