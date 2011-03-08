@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 23:28+0900\n"
-"PO-Revision-Date: 2011-03-06 23:28+0900\n"
+"POT-Creation-Date: 2011-03-08 22:06+0900\n"
+"PO-Revision-Date: 2011-03-08 22:07+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -592,7 +592,7 @@ msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
 #. TRANSLATORS: %s is the name of the Plugin
-#: ../lib/preferences/plugin.py:91
+#: ../lib/preferences/plugin.py:94
 #, python-format
 msgid "%s Plugin"
 msgstr "%s プラグイン"
@@ -697,6 +697,10 @@ msgstr "フラッシュ"
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
+#: ../lib/plugins/base/base.py:32
+msgid "Not Authenticated"
+msgstr "未認証"
+
 #: ../lib/plugins/base/ui.py:97
 msgid "Options"
 msgstr "オプション"
@@ -748,8 +752,8 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook.py:136
-#: ../lib/plugins/picasa.py:188 ../lib/plugins/tumblr.py:125
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook.py:166
+#: ../lib/plugins/picasa.py:189 ../lib/plugins/tumblr.py:126
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -806,24 +810,24 @@ msgstr ""
 msgid "_Complete Authorization"
 msgstr "認証を完了する(_C)"
 
-#: ../lib/plugins/flickr/__init__.py:28 ../lib/plugins/picasa.py:30
+#: ../lib/plugins/flickr/__init__.py:29 ../lib/plugins/picasa.py:31
 msgid "Photo Share Service"
 msgstr "写真共有サービス"
 
-#: ../lib/plugins/flickr/__init__.py:66
+#: ../lib/plugins/flickr/__init__.py:67
 #, python-format
 msgid "Flickr: %s is invalid target."
 msgstr "Flickr: %s は不正なターゲットです。"
 
-#: ../lib/plugins/flickr/__init__.py:76
+#: ../lib/plugins/flickr/__init__.py:77
 msgid "Flickr: invalid nsid API url."
 msgstr "Flickr: 不正な NSID API URL です。"
 
-#: ../lib/plugins/flickr/__init__.py:86
+#: ../lib/plugins/flickr/__init__.py:87
 msgid "flickr: can not find, "
 msgstr "Flickr: 以下が見つかりません。"
 
-#: ../lib/plugins/flickr/__init__.py:104
+#: ../lib/plugins/flickr/__init__.py:105
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr "Flickr API エラー (%s): %s"
@@ -862,34 +866,35 @@ msgstr "期間"
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/facebook.py:33
+#: ../lib/plugins/facebook.py:36
 msgid "Social Network Service"
 msgstr "ソーシャル・ネットワーク・サービス"
 
-#: ../lib/plugins/facebook.py:50 ../lib/plugins/facebook.py:136
-#: ../lib/plugins/facebook.py:142
-msgid "Wall"
-msgstr "ウォール"
-
-#: ../lib/plugins/facebook.py:83 ../lib/plugins/facebook.py:136
-#: ../lib/plugins/facebook.py:142
+#: ../lib/plugins/facebook.py:47 ../lib/plugins/facebook.py:166
+#: ../lib/plugins/facebook.py:172
 msgid "Albums"
 msgstr "アルバム"
 
-#: ../lib/plugins/facebook.py:138 ../lib/plugins/facebook.py:142
+#: ../lib/plugins/facebook.py:48 ../lib/plugins/facebook.py:166
+#: ../lib/plugins/facebook.py:172
+msgid "Wall"
+msgstr "ウォール"
+
+#: ../lib/plugins/facebook.py:49 ../lib/plugins/facebook.py:168
+#: ../lib/plugins/facebook.py:172
 msgid "News Feed"
 msgstr "ニュースフィード"
 
-#: ../lib/plugins/facebook.py:176
+#: ../lib/plugins/facebook.py:206
 #, python-format
 msgid "You are logged into Facebook as %s."
 msgstr "Facebook にアカウント %s でログインしています。"
 
-#: ../lib/plugins/facebook.py:177
+#: ../lib/plugins/facebook.py:207
 msgid "_Logout"
 msgstr "ログアウト(_L)"
 
-#: ../lib/plugins/facebook.py:180
+#: ../lib/plugins/facebook.py:210
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GNOME Photo Frame."
@@ -897,7 +902,7 @@ msgstr ""
 "Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
 "起動する必要があります。"
 
-#: ../lib/plugins/facebook.py:219
+#: ../lib/plugins/facebook.py:250
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
@@ -910,24 +915,24 @@ msgstr ""
 msgid "Picasa Web"
 msgstr "Picasa Web"
 
-#: ../lib/plugins/picasa.py:56 ../lib/plugins/tumblr.py:52
+#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr.py:53
 msgid "Certification Error"
 msgstr "認証エラーです"
 
-#: ../lib/plugins/picasa.py:188
+#: ../lib/plugins/picasa.py:189
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
-#: ../lib/plugins/tumblr.py:29
+#: ../lib/plugins/tumblr.py:30
 msgid "Share Anything"
 msgstr "Share Anything"
 
-#: ../lib/plugins/tumblr.py:63
+#: ../lib/plugins/tumblr.py:64
 #, python-format
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
-#: ../lib/plugins/tumblr.py:148
+#: ../lib/plugins/tumblr.py:149
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 

@@ -267,6 +267,8 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.conf.set_string('plugins/facebook/full_name', self.full_name)
         self.conf.set_string('plugins/facebook/access_token', self.token)
 
+        self._update_auth_status() # in plugin treeview
+
 class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
 
     def __init__(self):

@@ -112,6 +112,7 @@ class PluginDialog(object):
         self.gui = gtk.Builder()
         self.gui.add_from_file(constants.UI_FILE)
         self.conf = GConf()
+        self.model_iter = model_iter
 
         self._set_ui()
         self.dialog.set_transient_for(parent)
@@ -127,5 +128,9 @@ class PluginDialog(object):
         if response_id == gtk.RESPONSE_OK:
             self._write_conf()
 
+        self._update_auth_status()
         self.dialog.destroy()
         return response_id, {}
+
+    def _update_auth_status(self):
+        self.model_iter[3] = self.model_iter[4].get_auth_status()
