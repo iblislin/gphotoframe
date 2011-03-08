@@ -8,6 +8,8 @@ import json
 import random
 import urllib
 import re
+import time
+import sys
 from gettext import gettext as _
 
 import gobject
@@ -63,14 +65,25 @@ class FacebookPhotoList(base.PhotoList):
             if type is not None and type != 'photo':
                 continue
 
+            album_name = self.api.get_album_name()
             url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
+
             data = {'info'       : FacebookPlugin,
+                    # 'target'     : (self.target, ''),
                     'url'        : url,
                     'id'         : entry['id'],
                     'owner_name' : entry['from']['name'],
                     'title'      : entry.get('name') or album_name,
                     'page_url'   : str(entry['link']),
                     'trash'      : trash.Ban(self.photolist)}
+
+            try:
+                format = '%Y-%m-%dT%H:%M:%S+0000'
+                date = time.mktime(time.strptime(entry['created_time'], format))
+            except:
+                print sys.exc_info()[1]
+            finally:
+                data['date_taken'] = int(date)
 
             photo = base.Photo(data)
             self.photos.append(photo)
@@ -89,7 +102,10 @@ class FacebookAPI(object):
         self.photolist = photolist
         self.albums = {}
 
-    def update(photo):
+    def update(self, photo):
+        pass
+
+    def get_album_name(self):
         pass
 
 class FacebookWallAPI(FacebookAPI):
@@ -125,8 +141,8 @@ class FacebookAlbumsAPI(FacebookAPI):
 
     def _select_album(self):
         album_id = random.choice(self.albums.keys())
-        album_name = self.albums.get(album_id)
-        print album_id, album_name
+        self.album_name = self.albums.get(album_id)
+        print album_id, self.album_name
 
         url = 'https://graph.facebook.com/%s/photos' % album_id
         self.photolist.prepare_cb(url)
@@ -134,6 +150,9 @@ class FacebookAlbumsAPI(FacebookAPI):
         del self.albums[album_id]
         if not self.albums:
             self.photolist.prepare()
+
+    def get_album_name(self):
+        return self.album_name
 
     def update(self, photo):
         self.photolist.photos.remove(photo)
