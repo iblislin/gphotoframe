@@ -195,10 +195,11 @@ class PluginFacebookDialog(PluginFlickrDialog):
     def _set_webkit_ui(self, *args):
         self.dialog.set_gravity(gtk.gdk.GRAVITY_CENTER)
         self.dialog.set_resizable(True)
-        self.dialog.resize(1024, 768)
+        self.dialog.resize(640, 480)
 
         self.sw = FacebookWebKitScrolledWindow()
         self.sw.connect("token-acquired", self._get_access_token_cb)
+        self.sw.connect("error-occurred", self._cancel_cb)
         self.vbox.remove(self.label)
         self.vbox.add(self.sw)
 
@@ -246,7 +247,8 @@ class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
                    'redirect_uri': 
                    'http://www.facebook.com/connect/login_success.html',
                    'response_type': 'token',
-                   'scope': 'user_photos,friends_photos,read_stream,user_about_me' }
+                   'scope': 'user_photos,friends_photos,read_stream,offline_access',
+                   'display': 'popup'}
         uri = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(values)
 
         w = webkit.WebView()
@@ -259,11 +261,17 @@ class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
     def _get_token(self, w, e):
         url = w.get_property('uri')
         re_token = re.compile('.*access_token=(.*)&.*')
-        
+        error_url = 'http://www.facebook.com/connect/login_success.html?error'
+
         if re_token.search(url):
             token = re_token.sub("\\1", url)
             self.emit("token-acquired", token)
+        elif url.startswith(error_url):
+            self.emit("error-occurred", None)
 
 gobject.signal_new("token-acquired", FacebookWebKitScrolledWindow,
+                   gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT,))
+gobject.signal_new("error-occurred", FacebookWebKitScrolledWindow,
                    gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
                    (gobject.TYPE_PYOBJECT,))
