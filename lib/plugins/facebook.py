@@ -40,22 +40,20 @@ class FacebookPhotoList(base.PhotoList):
     def __init__(self, target, argument, weight, options, photolist):
         super(FacebookPhotoList, self).__init__(
             target, argument, weight, options, photolist)
-        self.token = self._get_access_token()
-        self.albums = FacebookAlbums(self._set_photo_cb, self.prepare, self.token)
+
+        api_class = {_('Albums'): FacebookAlbumsAPI,
+                     _('Wall'): FacebookWallAPI,
+                     _('News Feed'): FacebookHomeAPI}
+        self.api = api_class[target](self)
 
     def prepare(self):
-        if self.target == _('Albums'):
-            self.albums.start(self.argument)
-        else:
-            if self.target == _('Wall'):
-                url = 'https://graph.facebook.com/%s/feed' % self.argument
-            else:
-                url = 'https://graph.facebook.com/me/home'
-                
-            url += self.token
-            urlget = UrlGetWithAutoProxy(url)
-            d = urlget.getPage(url)
-            d.addCallback(self._set_photo_cb)
+        self.api.access(self.argument)
+
+    def prepare_cb(self, url):
+        url += self._get_access_token()
+        urlget = UrlGetWithAutoProxy(url)
+        d = urlget.getPage(url)
+        d.addCallback(self._set_photo_cb)
 
     def _set_photo_cb(self, data, album_name=None):
         d = json.loads(data)
@@ -79,30 +77,41 @@ class FacebookPhotoList(base.PhotoList):
 
     def get_photo(self, cb):
         super(FacebookPhotoList, self).get_photo(cb)
-
-        if self.target == _('Albums'):
-            self.photos.remove(self.photo)
-            if not self.photos:
-                self.albums.select_album()
+        self.api.update(self.photo)
 
     def _get_access_token(self):
         token = self.conf.get_string('plugins/facebook/access_token')
         return '?access_token=%s' % token if token else ''
 
-class FacebookAlbums(object):
+class FacebookAPI(object):
 
-    def __init__(self, set_photo_cb, prepare_cb, token):
+    def __init__(self, photolist):
+        self.photolist = photolist
         self.albums = {}
-        self.token = token
 
-        self._set_photo_cb = set_photo_cb
-        self._prepare_photolist_cb = prepare_cb
+    def update(photo):
+        pass
 
-    def start(self, argument):
+class FacebookWallAPI(FacebookAPI):
+
+    def access(self, argument):
+        url = 'https://graph.facebook.com/%s/feed' % argument
+        self.photolist.prepare_cb(url)
+
+class FacebookHomeAPI(FacebookAPI):
+
+    def access(self, argument):
+        url = 'https://graph.facebook.com/me/home'
+        self.photolist.prepare_cb(url)
+
+class FacebookAlbumsAPI(FacebookAPI):
+
+    def access(self, argument):
         if self.albums:
-            self.select_album()
+            self._select_album()
         else:
-            url = 'https://graph.facebook.com/%s/albums%s' % (argument, self.token)
+            token = self.photolist._get_access_token()
+            url = 'https://graph.facebook.com/%s/albums%s' % (argument, token)
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
             d.addCallback(self._get_albumlist_cb)
@@ -112,23 +121,24 @@ class FacebookAlbums(object):
 
         for entry in d['data']:
             self.albums[ int(entry['id']) ] = entry.get('name')
-        self.select_album()
+        self._select_album()
 
-    def select_album(self):
+    def _select_album(self):
         album_id = random.choice(self.albums.keys())
         album_name = self.albums.get(album_id)
-        # print album_id, album_name
+        print album_id, album_name
 
         url = 'https://graph.facebook.com/%s/photos' % album_id
-        url += self.token
-
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._set_photo_cb, album_name)
+        self.photolist.prepare_cb(url)
 
         del self.albums[album_id]
         if not self.albums:
-            self._prepare_photolist_cb()
+            self.photolist.prepare()
+
+    def update(self, photo):
+        self.photolist.photos.remove(photo)
+        if not self.photolist.photos:
+            self._select_album()
 
 class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
