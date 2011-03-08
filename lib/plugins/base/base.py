@@ -1,6 +1,7 @@
 import os
 import re
 from urlparse import urlparse
+from gettext import gettext as _
 
 import gtk
 import random
@@ -24,6 +25,13 @@ class PluginBase(object):
     def get_icon_pixbuf(self):
         pixbuf = self.icon().get_pixbuf()
         return pixbuf
+
+    def get_auth_status(self):
+        if hasattr(self, 'auth'):
+            auth = GConf().get_string(self.auth)
+            return auth if auth else _('Not authenticated')
+        else:
+            return None
 
 class PhotoList(object):
     """Photo Factory"""

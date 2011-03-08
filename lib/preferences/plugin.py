@@ -36,6 +36,9 @@ class PluginTreeView(PreferencesTreeView):
         # plugin name
         self._add_text_column("Description", 2)
 
+        # authentication
+        self._add_text_column("Authentication", 3)
+
         # plugin about dialog
         self.about_dialog = PluginAboutDialog(self.gui, parent)
 

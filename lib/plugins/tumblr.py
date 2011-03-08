@@ -26,6 +26,7 @@ class TumblrPlugin(base.PluginBase):
     def __init__(self):
         self.name = 'Tumblr'
         self.icon = TumblrIcon
+        self.auth = 'plugins/tumblr/user_id'
         self.info = { 'comments': _('Share Anything'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.tumblr.com/',
