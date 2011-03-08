@@ -111,3 +111,4 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
     def _write_conf(self, dic):
         for key, value in dic.iteritems():
             self.conf.set_string('plugins/flickr/%s' % key, value)
+        self._update_auth_status() # in plugin treeview

@@ -29,7 +29,7 @@ class PluginBase(object):
     def get_auth_status(self):
         if hasattr(self, 'auth'):
             auth = GConf().get_string(self.auth)
-            return auth if auth else _('Not authenticated')
+            return auth if auth else _('Not Authenticated')
         else:
             return None
 
