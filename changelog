@@ -1,3 +1,8 @@
+2011-03-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* share/extra/flickrfavlist.py: Included an extra script for
+	  flickr fav list.
+
 2011-03-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences/plugin.py: Added support for auth info on the Plugin
