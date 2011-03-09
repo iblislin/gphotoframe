@@ -13,7 +13,7 @@ class PluginTreeView(PreferencesTreeView):
     def __init__(self, gui, widget, liststore, parent):
         super(PluginTreeView, self).__init__(gui, widget, liststore, parent)
 
-        self.treeview.set_property("headers-visible", False)
+        #self.treeview.set_property("headers-visible", False)
         #self.set_property("rules-hint", True)
         #self.set_reorderable(True)
 
@@ -21,23 +21,15 @@ class PluginTreeView(PreferencesTreeView):
         cell_enabled = gtk.CellRendererToggle()
         cell_enabled.set_property("activatable", True)
         cell_enabled.connect('toggled', self.liststore.toggle)
-        self.column_enabled = gtk.TreeViewColumn("Enabled", cell_enabled, active=0)
+        self.column_enabled = gtk.TreeViewColumn("", cell_enabled, active=0)
         self.column_enabled.set_sort_column_id(0)
         self.treeview.append_column(self.column_enabled)
 
-        # icon
-        cell_icon = gtk.CellRendererPixbuf()
-        self.column_icon = gtk.TreeViewColumn("Icon", cell_icon)
-        self.column_icon.set_max_width(36)
-        self.treeview.append_column(self.column_icon)
-        self.column_icon.set_attributes(cell_icon, pixbuf=1)
-        self.column_icon.set_sort_column_id(1)
-
-        # plugin name
-        self._add_text_column("Description", 2)
+        # plugin name with icon
+        self._add_icon_text_column(_("Name"), 1)
 
         # authentication
-        self._add_text_column("Authentication", 3)
+        self._add_text_column(_("Authentication"), 3)
 
         # plugin about dialog
         self.about_dialog = PluginAboutDialog(self.gui, parent)

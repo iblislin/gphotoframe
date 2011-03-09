@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-08 23:52+0900\n"
-"PO-Revision-Date: 2011-03-08 23:53+0900\n"
+"POT-Creation-Date: 2011-03-09 01:58+0900\n"
+"PO-Revision-Date: 2011-03-09 01:58+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -595,8 +595,18 @@ msgstr "重み"
 msgid "The photo source should be ignored if the weight is 0."
 msgstr "0 を指定するとこの写真ソースは無視されます"
 
+#. plugin name with icon
+#: ../lib/preferences/plugin.py:29
+msgid "Name"
+msgstr "名前"
+
+#. authentication
+#: ../lib/preferences/plugin.py:32
+msgid "Authentication"
+msgstr "認証"
+
 #. TRANSLATORS: %s is the name of the Plugin
-#: ../lib/preferences/plugin.py:94
+#: ../lib/preferences/plugin.py:86
 #, python-format
 msgid "%s Plugin"
 msgstr "%s プラグイン"
