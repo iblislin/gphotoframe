@@ -146,16 +146,16 @@ class PicasaPhotoList(base.PhotoList):
 
         url_base = "http://picasaweb.google.com/data/feed/api"
         api = {
-            'Album' : '/user/%s/albumid/%s?kind=photo' % ( argument, option),
-            'Community Search' : '/all?kind=photo&q=%s' % argument,
-            'Featured' : '/featured?',
-            'User' : '/user/%s/?kind=%s' % ( argument, 'photo'),
+            _('Album') : '/user/%s/albumid/%s?kind=photo' % ( argument, option),
+            _('Community Search') : '/all?kind=photo&q=%s' % argument,
+            _('Featured') : '/featured?',
+            _('User') : '/user/%s/?kind=%s' % ( argument, 'photo'),
             # 'contacts' : '/user/%s/contacts?kind=%s' % ( argumrnt, 'user'),
             # 'photo' : "/user/%s/albumid/%s/photoid/%s?kind=kinds",
             }
         url = url_base + api[target] + '&alt=json'
 
-        max_result = 100000 if target == 'User' else 0
+        max_result = 100000 if target == _('User') else 0
         if max_result:
             url += '&max-results=%s' % max_result
 
@@ -186,13 +186,13 @@ class PhotoSourcePicasaUI(ui.PhotoSourceUI):
         self._set_sensitive_ok_button(self.gui.get_object('entry1'), not state)
 
     def _check_argument_sensitive_for(self, target):
-        all_label = {'User': _('_User:'), 'Community Search': _('_Keyword:')}
+        all_label = {_('User'): _('_User:'), _('Community Search'): _('_Keyword:')}
         label = all_label.get(target)
-        state = False if target == 'Featured' else True
+        state = False if target == _('Featured') else True
         return label, state
 
     def _label(self):
-        return ['User', 'Community Search', 'Featured']
+        return [_('User'), _('Community Search'), _('Featured')]
 
 class PluginPicasaDialog(ui.PluginDialog):
 
