@@ -29,7 +29,7 @@ class PluginTreeView(PreferencesTreeView):
         self._add_icon_text_column(_("Name"), 1)
 
         # authentication
-        self._add_text_column(_("Authentication"), 3)
+        self._add_text_column(_("Account"), 3)
 
         # plugin about dialog
         self.about_dialog = PluginAboutDialog(self.gui, parent)
