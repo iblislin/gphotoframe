@@ -1,5 +1,6 @@
 2011-03-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* picasa.py, tumblr.py: More translation.
 	* share/extra/flickrfavlist.py: Included an extra script for
 	  flickr fav list.
 

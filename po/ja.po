@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 01:58+0900\n"
-"PO-Revision-Date: 2011-03-09 01:58+0900\n"
+"POT-Creation-Date: 2011-03-09 17:38+0900\n"
+"PO-Revision-Date: 2011-03-09 17:41+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -602,8 +602,8 @@ msgstr "名前"
 
 #. authentication
 #: ../lib/preferences/plugin.py:32
-msgid "Authentication"
-msgstr "認証"
+msgid "Account"
+msgstr "アカウント"
 
 #. TRANSLATORS: %s is the name of the Plugin
 #: ../lib/preferences/plugin.py:86
@@ -933,13 +933,45 @@ msgstr "Picasa Web"
 msgid "Certification Error"
 msgstr "認証エラーです"
 
+#: ../lib/plugins/picasa.py:149
+msgid "Album"
+msgstr "アルバム"
+
+#: ../lib/plugins/picasa.py:150 ../lib/plugins/picasa.py:189
+#: ../lib/plugins/picasa.py:195
+msgid "Community Search"
+msgstr "コミュニティ写真の検索"
+
+#: ../lib/plugins/picasa.py:151 ../lib/plugins/picasa.py:191
+#: ../lib/plugins/picasa.py:195
+msgid "Featured"
+msgstr "注目の写真"
+
+#: ../lib/plugins/picasa.py:152 ../lib/plugins/picasa.py:158
+#: ../lib/plugins/picasa.py:189 ../lib/plugins/picasa.py:195
+#: ../lib/plugins/tumblr.py:52 ../lib/plugins/tumblr.py:58
+#: ../lib/plugins/tumblr.py:76 ../lib/plugins/tumblr.py:96
+#: ../lib/plugins/tumblr.py:126 ../lib/plugins/tumblr.py:128
+#: ../lib/plugins/tumblr.py:133 ../lib/plugins/tumblr.py:135
+msgid "User"
+msgstr "ユーザ"
+
 #: ../lib/plugins/picasa.py:189
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
 #: ../lib/plugins/tumblr.py:30
 msgid "Share Anything"
-msgstr "Share Anything"
+msgstr "何でも共有"
+
+#. user_id
+#: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:133
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:133
+msgid "Likes"
+msgstr "スキな投稿"
 
 #: ../lib/plugins/tumblr.py:64
 #, python-format
@@ -1000,9 +1032,3 @@ msgstr "この写真の評価を「対象外」に設定し、今後表示しな
 #: ../lib/plugins/shotwell.py:138
 msgid "_Description:"
 msgstr "説明(_D):"
-
-#~ msgid "Enable ban icon"
-#~ msgstr "禁止アイコンを有効にする"
-
-#~ msgid "If true, a ban icon will be shown on photos from shotwell."
-#~ msgstr "TRUEにすると、Shotwell の写真上に禁止アイコンを表示します。"

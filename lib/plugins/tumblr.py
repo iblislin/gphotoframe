@@ -49,16 +49,17 @@ class TumblrPhotoList(base.PhotoList):
         if identity:
             self.email = identity[0]
             self.password = identity[1]
-        elif (self.target != 'User'):
+        elif self.target != _('User'):
             print _("Certification Error")
             return
 
         values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
 
-        if self.target == 'User':
+        if self.target == _('User'):
             url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
-        elif self.target == 'Dashboard' or self.target == 'Likes':
-            url = 'http://www.tumblr.com/api/%s/?' % self.target.lower()
+        elif self.target == _('Dashboard') or self.target == _('Likes'):
+            target = 'dashboard' if self.target == _('Dashboard') else 'likes'
+            url = 'http://www.tumblr.com/api/%s/?' % target
             values.update( {'email': self.email, 'password': self.password} )
         else:
             print _("Tumblr Error: Invalid Target, %s") % self.target
@@ -73,7 +74,7 @@ class TumblrPhotoList(base.PhotoList):
         tree = etree.fromstring(data)
         re_nl = re.compile('\n+')
 
-        if self.target == 'User':
+        if self.target == _('User'):
             meta = tree.find('tumblelog')
             owner = meta.attrib['name']
             title = meta.attrib['title']
@@ -93,7 +94,7 @@ class TumblrPhotoList(base.PhotoList):
             url_m = photo['photo-url-500']
             url_l = photo['photo-url-1280']
 
-            if self.target != 'User':
+            if self.target != _('User'):
                 owner = post.attrib['tumblelog']
 
             caption = photo.get('photo-caption')
@@ -123,16 +124,16 @@ class TumblrPhotoList(base.PhotoList):
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
     def _check_argument_sensitive_for(self, target):
-        all_label = {'User': _('_User:')}
+        all_label = {_('User'): _('_User:')}
         label = all_label.get(target)
-        state = True if target == 'User' else False
+        state = True if target == _('User') else False
         return label, state
 
     def _label(self):
         if GConf().get_string('plugins/tumblr/user_id'):
-            label = ['Dashboard', 'Likes', 'User']
+            label = [_('Dashboard'), _('Likes'), _('User')]
         else:
-            label = ['User']
+            label = [_('User')]
 
         return label
 
