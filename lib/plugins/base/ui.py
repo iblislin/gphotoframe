@@ -13,6 +13,7 @@ class PhotoSourceUI(object):
         self.gui = gui
         self.table = gui.get_object('table4')
         self.data = data
+        self.conf = GConf()
 
         if PhotoSourceUI.old_target_widget in self.table.get_children():
             self.table.remove(PhotoSourceUI.old_target_widget)
@@ -92,6 +93,7 @@ class PhotoSourceOptionsUI(object):
 
     def __init__(self, gui, data):
         self.gui = gui
+        self.conf = GConf()
 
         note = self.gui.get_object('notebook2')
         label = gtk.Label(_('Options'))

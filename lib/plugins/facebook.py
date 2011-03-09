@@ -169,7 +169,10 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
         return label, state
 
     def _label(self):
-        return [_('News Feed'), _('Wall'), _('Albums')]
+        labels = [_('Albums'), _('News Feed'), _('Wall')]
+        if not self.conf.get_string('plugins/'):
+            labels.remove(_('News Feed'))
+        return labels
 
 class FacebookIcon(WebIconImage):
 
