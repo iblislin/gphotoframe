@@ -1,6 +1,5 @@
 from gettext import gettext as _
 
-from ...utils.config import GConf
 from ..base.ui import PhotoSourceUI, PhotoSourceOptionsUI
 from api import FlickrFactoryAPI
 
@@ -46,7 +45,7 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         keys.sort()
         label = [api for api in keys]
 
-        if not GConf().get_string('plugins/flickr/nsid'):
+        if not self.conf.get_string('plugins/flickr/nsid'):
             label.remove(_('Your Groups'))
 
         return label
@@ -79,5 +78,5 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         self.checkbutton_flickr_id.set_sensitive(state)
 
     def _check_authorized(self):
-        return GConf().get_string('plugins/flickr/nsid')
+        return self.conf.get_string('plugins/flickr/nsid')
 
