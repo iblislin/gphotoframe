@@ -147,13 +147,19 @@ class PhotoImagePixbuf(object):
         return pixbuf
 
     def _file_size_is_ok(self, filename, photo):
-        min = self.conf.get_int('filter/min_file_size', 0)
+        min = self.conf.get_float('filter/min_file_size_kb', 0) * 1024
+        max = self.conf.get_float('filter/max_file_size_mb', 0) * 1024 ** 2
         size = os.path.getsize(filename)
 
+        url = photo.get('url')
+
         if min > 0 and size < min:
-            print "Skip a small file size image (%s bytes)." % size
+            print "Skip a small image (%.2f KB): %s" % (size / 1024, url)
             return False
-        elif photo.get('url').find('static.flickr.com') > 0 and size < 3000:
+        elif max > 0 and size > max:
+            print "Skip a large image (%.2f MB): %s" % (size / 1024**2, url)
+            return False
+        elif url.find('static.flickr.com') > 0 and size < 3000:
             # ad-hoc for avoiding flickr no image.
             # print "Obsolete URL: %s" % photo.get('url')
             return False

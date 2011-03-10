@@ -218,14 +218,26 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gphotoframe/filter/min_file_size</key>
-      <applyto>/apps/gphotoframe/filter/min_file_size</applyto>
+      <key>/schemas/apps/gphotoframe/filter/min_file_size_kb</key>
+      <applyto>/apps/gphotoframe/filter/min_file_size_kb</applyto>
       <owner>gphotoframe</owner>
-      <type>int</type>
+      <type>float</type>
       <default>0</default>
       <locale name="C">
-        <short>Minimum image file size in bytes</short>
-        <long>Minimum image file size in bytes.  When this value is less than 0, image file size filter is disabled.</long>
+        <short>Minimum image file size in KByte</short>
+        <long>Minimum image file size in KByte.  When this value is 0 or less, this image file size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/max_file_size_mb</key>
+      <applyto>/apps/gphotoframe/filter/max_file_size_mb</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Maximum image file size in MByte</short>
+        <long>Maximum image file size in MByte.  When this value is 0 or less, this image file size filter is disabled.</long>
       </locale>
     </schema>
 

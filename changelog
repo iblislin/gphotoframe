@@ -1,3 +1,8 @@
+2011-03-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/gtkimage.py: Added new gconf key 'filter/max_file_size_mb'
+	  (issue #87).
+
 2011-03-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* picasa.py, tumblr.py: More translation.
