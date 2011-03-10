@@ -170,7 +170,7 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
     def _label(self):
         labels = [_('Albums'), _('News Feed'), _('Wall')]
-        if not self.conf.get_string('plugins/'):
+        if not self.conf.get_string('plugins/facebook/access_token'):
             labels.remove(_('News Feed'))
         return labels
 
