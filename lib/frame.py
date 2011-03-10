@@ -184,10 +184,12 @@ class PhotoFrame(object):
 #            return True
         self.photoimage.on_leave_cb(widget, event)
 
-        x, y = widget.get_position()
-        w, h = widget.get_size()
-        self.conf.set_int( 'root_x', x + w / 2)
-        self.conf.set_int( 'root_y', y + h / 2)
+        if not self.conf.get_bool('window_fix'):
+            x, y = widget.get_position()
+            w, h = widget.get_size()
+            self.conf.set_int( 'root_x', x + w / 2)
+            self.conf.set_int( 'root_y', y + h / 2)
+
         return False
 
     def _change_window_fix_cb(self, client, id, entry, data):
