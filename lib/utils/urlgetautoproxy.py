@@ -21,11 +21,12 @@ class AutoProxy(object):
 class UrlGetWithAutoProxy(UrlGetWithProxy):
 
     def __init__(self, url):
+        self.url = url
         proxy_url = AutoProxy().get_proxy(url)
         super(UrlGetWithAutoProxy, self).__init__(proxy_url)
 
-    def catch_error(self, error, url):
-        print "Failure: %s: %s" % (error.getErrorMessage(), url)
+    def catch_error(self, error):
+        print "Failure: %s: %s" % (error.getErrorMessage(), self.url)
 
 if __name__ == "__main__":
     pac = ParseProxyPac()

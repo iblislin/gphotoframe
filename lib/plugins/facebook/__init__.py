@@ -49,7 +49,7 @@ class FacebookPhotoList(base.PhotoList):
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(self._set_photo_cb)
-        d.addErrback(urlget.catch_error, url)
+        d.addErrback(urlget.catch_error)
 
     def _set_photo_cb(self, data):
         d = json.loads(data)
