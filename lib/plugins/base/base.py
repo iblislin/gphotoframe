@@ -73,7 +73,7 @@ class PhotoList(object):
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.downloadPage(url, self.photo['filename'], headers=self.headers)
         d.addCallback(cb, self.photo)
-        d.addErrback(self._catch_error)
+        d.addErrback(urlget.catch_error)
 
     def _random_choice(self):
         return random.choice(self.photos)
@@ -86,7 +86,7 @@ class PhotoList(object):
         d = urlget.getPage(url)
         cb = cb_arg or self._prepare_cb
         d.addCallback(cb)
-        d.addErrback(self._catch_error)
+        d.addErrback(urlget.catch_error)
 
     def _start_timer(self, min=60):
         if min < 10:
@@ -98,9 +98,6 @@ class PhotoList(object):
         self._timer = glib.timeout_add_seconds(interval, self.prepare)
 
         return False
-
-    def _catch_error(self, error):
-        print error, self
 
 class Photo(dict):
 

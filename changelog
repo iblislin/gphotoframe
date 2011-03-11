@@ -1,5 +1,7 @@
 2011-03-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* utils/urlgetautoproxy.py (UrlGetWithAutoProxy): Added new method 
+	  'catch_error'.
 	* po/it.po: Updated Italian translation.  Thanks Cristian Marchi!
 
 2011-03-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

@@ -78,6 +78,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(self._get_userinfo_cb)
+        d.addErrback(urlget.catch_error)
 
     def _get_userinfo_cb(self, data):
         d = json.loads(data)
