@@ -237,6 +237,7 @@ class FlickrEXIF(object):
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(self._parse_flickr_exif)
+        d.addErrback(urlget.catch_error)
 
         return d
 

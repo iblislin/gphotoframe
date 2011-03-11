@@ -57,6 +57,7 @@ class GeoCoderBase(object):
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(cb, photo)
+        d.addErrback(urlget.catch_error)
 
 class FindsjpGeonamesGeoCoder(GeoCoderBase):
     """

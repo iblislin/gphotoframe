@@ -24,6 +24,9 @@ class UrlGetWithAutoProxy(UrlGetWithProxy):
         proxy_url = AutoProxy().get_proxy(url)
         super(UrlGetWithAutoProxy, self).__init__(proxy_url)
 
+    def catch_error(self, error, url):
+        print "Failure: %s: %s" % (error.getErrorMessage(), url)
+
 if __name__ == "__main__":
     pac = ParseProxyPac()
     print pac.get_proxy("http://master/")

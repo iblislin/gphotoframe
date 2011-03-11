@@ -72,6 +72,7 @@ class PicasaPhotoList(base.PhotoList):
                            postdata = urllib.urlencode(arg),
                            headers = content_type)
         d.addCallback(self._get_feed_cb)
+        d.addErrback(client.catch_error)
 
     def _get_feed_cb(self, raw_token):
         "Get a Photo Feed from Google with Auth Token."
@@ -85,6 +86,7 @@ class PicasaPhotoList(base.PhotoList):
         client = UrlGetWithAutoProxy(url)
         d = client.getPage(url, headers = auth_header)
         d.addCallback(self._set_photo_cb)
+        d.addErrback(client.catch_error)
 
     def _set_photo_cb(self, photos):
         "Set Photo Entries from JSON Data."

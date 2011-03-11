@@ -56,6 +56,7 @@ class FacebookAlbumsAPI(FacebookAPI):
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
             d.addCallback(self._get_albumlist_cb)
+            d.addErrback(urlget.catch_error)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)

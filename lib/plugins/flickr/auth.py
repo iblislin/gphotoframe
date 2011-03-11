@@ -107,6 +107,7 @@ class FlickrAuth(object):
         client = UrlGetWithAutoProxy(url)
         d = client.getPage(url)
         d.addCallback(cb)
+        d.addErrback(client.catch_error)
         return d
 
 if __name__ == "__main__":

@@ -46,6 +46,7 @@ class HaikyoPhotoList(base.PhotoList):
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
         d.addCallback(self._prepare_cb)
+        d.addErrback(urlget.catch_error)
 
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
