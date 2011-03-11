@@ -1,5 +1,7 @@
 2011-03-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* utils/checkinstalled.py: Added checking if the application
+	  softwares are installed.
 	* utils/urlgetautoproxy.py (UrlGetWithAutoProxy): Added new method 
 	  'catch_error'.
 	* po/it.po: Updated Italian translation.  Thanks Cristian Marchi!

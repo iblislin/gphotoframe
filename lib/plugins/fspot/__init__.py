@@ -12,11 +12,13 @@ from string import Template
 
 from ..base import *
 from ...utils.iconimage import IconImage
+from ...utils.checkinstalled import check_installed_in_path
 from sqldb import FSpotDB, FSpotPhotoSQL, FSpotPhotoTags
 from rating import RateList
 
 def info():
-    return [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
+    class_obj = [FSpotPlugin, FSpotPhotoList, PhotoSourceFspotUI]
+    return class_obj if check_installed_in_path('f-spot') else None
 
 
 class FSpotPlugin(base.PluginBase):
