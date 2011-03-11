@@ -30,7 +30,7 @@ for item in os.listdir(plugin_dir) + os.listdir(PLUGIN_HOME):
         print _("Can't import %s plugin: %s.") % (module_name, value)
     else:
         for function in inspect.getmembers(module, inspect.isfunction):
-            if 'info' in function:
+            if 'info' in function and module.info():
                 token_base.append(module.info())
 
 PLUGIN_INFO_TOKEN = {}

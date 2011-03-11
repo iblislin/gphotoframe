@@ -4,6 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-03-11 Version 0.1.7
 # 2011-02-22 Version 0.1.6
 # 2011-02-17 Version 0.1.5
 # 2011-02-11 Version 0.1.4
@@ -22,13 +23,15 @@ from gettext import gettext as _
 from ..utils.sqldb import SqliteDB
 from ..utils.iconimage import LocalIconImage
 from ..utils.config import GConf
+from ..utils.checkinstalled import check_installed_in_path
 from base import *
 from fspot.__init__ import *
 from fspot.rating import RateList
 from fspot.sqldb import FSpotPhotoSQL
 
 def info():
-    return [ShotwellPlugin, ShotwellPhotoList, PhotoSourceShotwellUI]
+    class_obj = [ShotwellPlugin, ShotwellPhotoList, PhotoSourceShotwellUI]
+    return class_obj if check_installed_in_path('shotwell') else None
 
 
 class ShotwellPlugin(FSpotPlugin):
