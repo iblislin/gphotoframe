@@ -159,7 +159,7 @@ class PhotoImagePixbuf(object):
         elif max > 0 and size > max:
             print "Skip a large image (%.2f MB): %s" % (size / 1024**2, url)
             return False
-        elif url.find('static.flickr.com') > 0 and size < 3000:
+        elif url.find('static.flickr.com') > 0 and size < 4000:
             # ad-hoc for avoiding flickr no image.
             # print "Obsolete URL: %s" % photo.get('url')
             return False
