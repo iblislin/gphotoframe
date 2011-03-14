@@ -20,9 +20,13 @@ from twisted.internet import reactor
 if os.access(
     abspath(join(dirname(__file__), 'lib/liststore.py')), os.R_OK):
     from lib.liststore import PhotoListStore
+    from lib.defaultsource import set_default_photo_source
 else:
     from gphotoframe.liststore import PhotoListStore
+    from gphotoframe.defaultsource import set_default_photo_source
 
 if __name__ == '__main__':
+    set_default_photo_source()
+
     PhotoListStore()
     reactor.run()
