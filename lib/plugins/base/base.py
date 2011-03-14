@@ -11,7 +11,7 @@ from ... import constants
 from ...utils.config import GConf
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ...utils.gnomescreensaver import is_screensaver_mode
-from ...dbus.networkstate import NetworkState
+from ...dbus.networkstatecustom import NetworkStateCustom
 from parseexif import ParseEXIF
 
 
@@ -51,7 +51,7 @@ class PhotoList(object):
         self.photos = []
         self.headers = None
 
-        self.nm_state = NetworkState()
+        self.nm_state = NetworkStateCustom()
 
     def prepare(self):
         pass
