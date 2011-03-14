@@ -1,5 +1,7 @@
 2011-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* defaultsource.py: Set default photo sources at the first launch
+	  time.
 	* dbus/networkstatecustom.py: Added new gconf key 'use_conn'.
 	* dbus/networkstate.py: Added checking for the networking state.
 
