@@ -5,7 +5,7 @@ try:
 except ImportError, error:
     print error
 
-from gnomescreensaver import is_screensaver_mode
+from ..utils.gnomescreensaver import is_screensaver_mode
 
 
 class SessionIdle(object):
