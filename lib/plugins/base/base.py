@@ -11,6 +11,7 @@ from ... import constants
 from ...utils.config import GConf
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ...utils.gnomescreensaver import is_screensaver_mode
+from ...dbus.networkstate import NetworkState
 from parseexif import ParseEXIF
 
 
@@ -50,12 +51,20 @@ class PhotoList(object):
         self.photos = []
         self.headers = None
 
+        self.nm_state = NetworkState()
+
     def prepare(self):
         pass
 
     def exit(self):
         pass
 
+    def is_available(self):
+        result = True if self.photos and self.weight > 0 and \
+            self.nm_state.check() else False
+        #print self.target, result
+        return result
+ 
     def get_photo(self, cb):
         self.photo = self._random_choice()
 
@@ -82,11 +91,15 @@ class PhotoList(object):
         pass
 
     def _get_url_with_twisted(self, url, cb_arg=None):
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        cb = cb_arg or self._prepare_cb
-        d.addCallback(cb)
-        d.addErrback(urlget.catch_error)
+        if self.nm_state.check():
+            urlget = UrlGetWithAutoProxy(url)
+            d = urlget.getPage(url)
+            cb = cb_arg or self._prepare_cb
+            d.addCallback(cb)
+            d.addErrback(urlget.catch_error)
+            return True
+        else:
+            return False
 
     def _start_timer(self, min=60):
         if min < 10:
@@ -98,6 +111,14 @@ class PhotoList(object):
         self._timer = glib.timeout_add_seconds(interval, self.prepare)
 
         return False
+
+class LocalPhotoList(PhotoList):
+    """Photo List for Local Photo Source"""
+
+    def is_available(self):
+        result = True if self.photos and self.weight > 0 else False
+        # print self.target, result
+        return result
 
 class Photo(dict):
 

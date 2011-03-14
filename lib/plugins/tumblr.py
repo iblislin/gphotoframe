@@ -66,8 +66,9 @@ class TumblrPhotoList(base.PhotoList):
             return
 
         # print url
-        self._get_url_with_twisted(url + urllib.urlencode(values))
-        interval_min = self.conf.get_int('plugins/tumblr/interval', 30)
+        result = self._get_url_with_twisted(url + urllib.urlencode(values))
+        interval_min = self.conf.get_int('plugins/tumblr/interval', 30) \
+             if result else 5
         self._start_timer(interval_min)
 
     def _prepare_cb(self, data):

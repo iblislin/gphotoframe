@@ -94,8 +94,8 @@ class FlickrPhotoList(base.PhotoList):
         url = self.api.get_url(argument, page)
         if not url: return
 
-        self._get_url_with_twisted(url)
-        interval_min = self.api.get_interval()
+        result = self._get_url_with_twisted(url)
+        interval_min = self.api.get_interval() if result else 5
         self._start_timer(interval_min)
 
     def _prepare_cb(self, data):

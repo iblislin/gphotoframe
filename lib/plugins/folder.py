@@ -29,7 +29,7 @@ class DirPlugin(base.PluginBase):
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
-class DirPhotoList(base.PhotoList):
+class DirPhotoList(base.LocalPhotoList):
 
     def prepare(self):
         self.re_image = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)

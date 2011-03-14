@@ -41,9 +41,10 @@ class RSSPhotoList(base.PhotoList):
         self.photos = {}
 
         url = self.argument
-        self._get_url_with_twisted(url)
+        result = self._get_url_with_twisted(url)
 
-        interval_min = self.conf.get_int('plugins/rss/interval', 60)
+        interval_min = self.conf.get_int('plugins/rss/interval', 60) \
+             if result else 5
         self._start_timer(interval_min)
 
     def _random_choice(self):
