@@ -62,6 +62,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/use_conn</key>
+      <applyto>/apps/gphotoframe/use_conn</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Connection managers should be used</short>
+        <long>Whether connectivity managers should be used for checking network connectivity.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/interval_fullscreen</key>
       <applyto>/apps/gphotoframe/interval_fullscreen</applyto>
       <owner>gphotoframe</owner>
