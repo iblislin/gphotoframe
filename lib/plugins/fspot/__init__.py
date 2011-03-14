@@ -45,7 +45,7 @@ class FSpotPlugin(base.PluginBase):
         else:
             return False
 
-class FSpotPhotoList(base.PhotoList):
+class FSpotPhotoList(base.LocalPhotoList):
 
     delay_for_prepare = False
 

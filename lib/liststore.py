@@ -97,7 +97,7 @@ class PhotoListStore(gtk.ListStore):
             return True
 
         # liststore object
-        target_list = [ x[6] for x in self if x[6].photos and x[6].weight > 0 ]
+        target_list = [ x[6] for x in self if x[6].is_available() ]
         if target_list:
             target = WeightedRandom(target_list)
             target().get_photo(self._show_photo_cb)
@@ -115,6 +115,7 @@ class PhotoListStore(gtk.ListStore):
         elif self.photoframe.set_photo(photo):
             self.queue.append(photo)
         elif self.recursion_depth < 10: # check recursion depth
+            print "oops!: %s" % photo
             self.recursion_depth += 1
             self._change_photo()
 

@@ -7,6 +7,7 @@
 #   廃墟時計 by Maripo GODA
 #   http://www.madin.jp/haikyo/
 #
+# 2011-03-13 Version 0.4
 # 2011-02-01 Version 0.3
 # 2011-01-14 Version 0.2.1
 # 2010-09-19 Version 0.2
@@ -43,10 +44,9 @@ class HaikyoPhotoList(base.PhotoList):
 
     def prepare(self):
         url = 'http://www.madin.jp/haikyo/list.xml'
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._prepare_cb)
-        d.addErrback(urlget.catch_error)
+        result = self._get_url_with_twisted(url)
+        interval_min = 360 if result else 5
+        self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
@@ -71,14 +71,21 @@ class HaikyoPhotoList(base.PhotoList):
             photo = base.Photo(data)
             self.photos.append(photo)
 
-    def _random_choice(self):
+    def is_available(self):
         (h, m) = time.localtime(time.time())[3:5]
         if h > 12: h -= 12
 
-        photos = [photo for photo in self.photos 
-                  if photo['hour'] == str(h) and photo['min'] == str(m)]
+        self.this_time_photos = [
+            photo for photo in self.photos 
+            if photo['hour'] == str(h) and photo['min'] == str(m)]
 
-        return random.choice(photos) if photos else None
+        result = True if self.this_time_photos and self.weight > 0 and \
+            self.nm_state.check() else False
+
+        return result
+
+    def _random_choice(self):
+        return random.choice(self.this_time_photos)
 
     def _unescape(self, text):
         return re.sub(r'\\(.)', r'\1', text) if text else text or ''
