@@ -11,7 +11,7 @@ from history import HistoryFactory
 from history.history import HistoryDB
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
-from utils.idlecheck import SessionIdle
+from dbus.idlecheck import SessionIdle
 
 
 class PhotoListStore(gtk.ListStore):
