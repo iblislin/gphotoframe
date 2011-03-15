@@ -1,3 +1,8 @@
+2011-03-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/bigpicture.py: Added new unofficial plugin for 'The Big
+	  Picture'.
+
 2011-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* defaultsource.py: Set default photo sources at the first launch
