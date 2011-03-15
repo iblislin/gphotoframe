@@ -120,9 +120,11 @@ class PhotoListStore(gtk.ListStore):
             self._change_photo()
 
     def _load_gconf(self, delay=0):
+        weight = self.conf.get_int('default_weight', 3)
+
         for dir in self.conf.all_dirs('sources'):
             data = { 'target' : '', 'argument' : '',
-                     'weight' : 1, 'options' : {} }
+                     'weight' : weight, 'options' : {} }
 
             for entry in self.conf.all_entries(dir):
                 value = self.conf.get_value(entry)
