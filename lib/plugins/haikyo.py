@@ -20,7 +20,6 @@ from xml.etree import ElementTree as etree
 from gettext import gettext as _
 
 from base import *
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ..utils.iconimage import WebIconImage
 
 
@@ -45,7 +44,7 @@ class HaikyoPhotoList(base.PhotoList):
     def prepare(self):
         url = 'http://www.madin.jp/haikyo/list.xml'
         result = self._get_url_with_twisted(url)
-        interval_min = 360 if result else 5
+        interval_min = 600 if result else 5
         self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
