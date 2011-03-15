@@ -13,12 +13,18 @@
 # 2011-03-15 Version 0.1
 
 import re
+
 import feedparser
 from lxml.html import fromstring
 
-from base import *
-from ..utils.iconimage import WebIconImage
-from haikyo import PhotoSourceHaikyoUI
+try:
+    from base import *
+    from ..utils.iconimage import WebIconImage
+    from haikyo import PhotoSourceHaikyoUI
+except:
+    from gphotoframe.plugins.base import *
+    from gphotoframe.utils.iconimage import WebIconImage
+    from gphotoframe.plugins.haikyo import PhotoSourceHaikyoUI
 
 def info():
     return [BigPicturePlugin, BigPicturePhotoList, PhotoSourceHaikyoUI]
