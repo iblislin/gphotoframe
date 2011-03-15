@@ -12,27 +12,24 @@ def set_default_photo_source():
 
     conf = GConf()
 
-    not_first_time = HAS_DATA_DIR
+    first_time = not HAS_DATA_DIR
     has_source = conf.all_dirs('sources')
 
-    # print not_first_time, has_source
-    if not_first_time or has_source:
-        print "not set default!"
-        return
+    if first_time and not has_source:
 
-    monitor_w, monitor_h = get_geometry_first_monitor()
-    if monitor_w > 800 and monitor_h > 600:
-        conf.set_int('root_x', monitor_w - 225)
-        conf.set_int('root_y', 200)
+        monitor_w, monitor_h = get_geometry_first_monitor()
+        if monitor_w > 800 and monitor_h > 600:
+            conf.set_int('root_x', monitor_w - 225)
+            conf.set_int('root_y', 200)
 
-    folder = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
-    source = {_('Flickr'): _('Interestingness'),
-              _('Folder'): folder,}
+        folder = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
+        source = {_('Flickr'): _('Interestingness'),
+                  _('Folder'): folder,}
 
-    for i, data in enumerate(source.items()):
-        conf.set_string('sources/%s/source' % i, data[0])
-        conf.set_string('sources/%s/target' % i, data[1])
-        conf.set_bool('sources/%s/subfolders' % i, False)
+        for i, data in enumerate(source.items()):
+            conf.set_string('sources/%s/source' % i, data[0])
+            conf.set_string('sources/%s/target' % i, data[1])
+            conf.set_bool('sources/%s/subfolders' % i, False)
 
 def get_geometry_first_monitor():
     screen = gtk.gdk.screen_get_default()
