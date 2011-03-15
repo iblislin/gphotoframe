@@ -1,3 +1,8 @@
+2011-03-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* facebook/authdialog.py: Added a 'Loading...' label on the 
+	  webkit UI.
+
 2011-03-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* defaultsource.py: Set default photo sources at the first launch

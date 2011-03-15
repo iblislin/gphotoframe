@@ -37,7 +37,8 @@ class PluginFacebookDialog(PluginFlickrDialog):
 
     def _facebook_auth_dialog(self):
         self._set_webkit_ui()
-        self._set_dialog('', None, None, self._cancel_cb, self._quit_cb)
+        text = _('Loading...')
+        self._set_dialog(text, None, None, self._cancel_cb, self._quit_cb)
         self.button_n.set_sensitive(False)
 
     def _logged_dialog(self):
@@ -66,8 +67,12 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.dialog.resize(640, 480)
 
         self.sw = FacebookWebKitScrolledWindow()
+        self.sw.connect("login-started", self._set_webkit_ui_cb)
         self.sw.connect("token-acquired", self._get_access_token_cb)
         self.sw.connect("error-occurred", self._cancel_cb)
+        #self.spinner = gtk.Spinner()
+
+    def _set_webkit_ui_cb(self, w, e):
         self.vbox.remove(self.label)
         self.vbox.add(self.sw)
 
@@ -124,25 +129,26 @@ class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
 
         w = webkit.WebView()
         w.load_uri(uri)
-        w.connect("document-load-finished", self._get_token)
+        w.connect("document-load-finished", self._get_document_cb)
 
         self.add(w)
         self.show_all()
 
-    def _get_token(self, w, e):
+    def _get_document_cb(self, w, e):
         url = w.get_property('uri')
         re_token = re.compile('.*access_token=(.*)&.*')
+        login_url = 'https://www.facebook.com/login.php?'
         error_url = 'http://www.facebook.com/connect/login_success.html?error'
 
-        if re_token.search(url):
+        if url.startswith(login_url):
+            self.emit("login-started", None)
+        elif re_token.search(url):
             token = re_token.sub("\\1", url)
             self.emit("token-acquired", token)
         elif url.startswith(error_url):
             self.emit("error-occurred", None)
 
-gobject.signal_new("token-acquired", FacebookWebKitScrolledWindow,
-                   gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-gobject.signal_new("error-occurred", FacebookWebKitScrolledWindow,
-                   gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
+for signal in ["login-started", "token-acquired", "error-occurred"]:
+    gobject.signal_new(signal, FacebookWebKitScrolledWindow,
+                       gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
+                       (gobject.TYPE_PYOBJECT,))
