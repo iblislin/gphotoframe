@@ -4,9 +4,10 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# It requires gphotoframe 1.2 or later.  Put this file to the user
+# It requires gphotoframe 1.3 or later.  Put this file to the user
 # plguins directory (~/.config/gphotoframe/plugins/).
 #
+# 2011-03-15 Version 1.6
 # 2011-02-17 Version 1.5.2
 # 2010-12-28 Version 1.5.1
 # 2010-11-24 Version 1.5
@@ -42,6 +43,8 @@ class BijinPlugin(base.PluginBase):
 
 class BijinPhotoList(base.PhotoList):
 
+    delay_for_prepare = False
+
     def prepare(self):
         self.photos = ['dummy']
         self.tokei = BijinTokeiList()
@@ -57,7 +60,6 @@ class BijinPhotoList(base.PhotoList):
 
         data = {
             'info': BijinPlugin,
-            'icon': BijinIcon,
             'url': '%s/%02d%02d.jpg' % (pic_url, h, m),
             'title': '%02d:%02d (%s)' % (h, m, tokei),
             'owner_name': 'bijin-tokei',
