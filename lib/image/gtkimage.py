@@ -224,8 +224,7 @@ class PhotoImageFullScreen(PhotoImageGtk):
         screen = gtk.gdk.screen_get_default()
         display_num = screen.get_monitor_at_window(self.window.window)
         geometry = screen.get_monitor_geometry(display_num)
-        max_w, max_h = geometry.width, geometry.height
-        return max_w, max_h
+        return geometry.width, geometry.height
 
     def _set_tips(self, photo):
         self.tooltip.update_text() # Erase Tooltip
