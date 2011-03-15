@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-10 15:33+0900\n"
-"PO-Revision-Date: 2011-03-10 15:34+0900\n"
+"POT-Creation-Date: 2011-03-15 13:57+0900\n"
+"PO-Revision-Date: 2011-03-15 13:59+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -78,10 +78,14 @@ msgid "Auth token"
 msgstr "認証トークン"
 
 #: ../share/gphotoframe.schemas.in.h:11
+msgid "Connection managers should be used"
+msgstr "接続マネージャの利用"
+
+#: ../share/gphotoframe.schemas.in.h:12
 msgid "Date format"
 msgstr "日時の形式"
 
-#: ../share/gphotoframe.schemas.in.h:12
+#: ../share/gphotoframe.schemas.in.h:13
 msgid ""
 "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
 "left-bottom."
@@ -89,47 +93,47 @@ msgstr ""
 "アイコンの位置を指定します。0: 左上、1: 右上、2: 右下、3: 左下、を数値で指定"
 "します。"
 
-#: ../share/gphotoframe.schemas.in.h:13
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "Disable Clutter library support"
 msgstr "Clutter ライブラリのサポートを無効化"
 
-#: ../share/gphotoframe.schemas.in.h:14
+#: ../share/gphotoframe.schemas.in.h:15
 msgid "E-mail adress as user ID"
 msgstr "ユーザ ID として E-mail アドレスを指定します。"
 
-#: ../share/gphotoframe.schemas.in.h:15
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Enable description field"
 msgstr "説明フィールドを有効にする"
 
-#: ../share/gphotoframe.schemas.in.h:16
+#: ../share/gphotoframe.schemas.in.h:17
 msgid "Enable fullscreen mode animations"
 msgstr "フルスクリーン時のアニメーションを有効にする"
 
-#: ../share/gphotoframe.schemas.in.h:17
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Enable icon animations"
 msgstr "アイコンのアニメーションを有効にする"
 
-#: ../share/gphotoframe.schemas.in.h:18
+#: ../share/gphotoframe.schemas.in.h:19
 msgid "Fav icon position"
 msgstr "お気に入りアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:19
+#: ../share/gphotoframe.schemas.in.h:20
 msgid "Fix the photo frame on the root window"
 msgstr "写真フレームをデスクトップに固定します"
 
-#: ../share/gphotoframe.schemas.in.h:20
+#: ../share/gphotoframe.schemas.in.h:21
 msgid "Flickr user ID"
 msgstr "Flickr ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:21
+#: ../share/gphotoframe.schemas.in.h:22
 msgid "Geo icon position"
 msgstr "地図アイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:22
+#: ../share/gphotoframe.schemas.in.h:23
 msgid "Google account user ID"
 msgstr "Google アカウントのユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:23
+#: ../share/gphotoframe.schemas.in.h:24
 msgid ""
 "If the RSS feed includes multiple RSS feeds, this value is used as the "
 "standard deviation for random weight of each RSS feed. When this value is "
@@ -140,7 +144,7 @@ msgstr ""
 "フィードのランダム重み付けの標準偏差として利用されます。この値が 0 未満の場合"
 "は、各フィードに含まれる画像数がそのまま各フィードの重みとなります。"
 
-#: ../share/gphotoframe.schemas.in.h:24
+#: ../share/gphotoframe.schemas.in.h:25
 msgid ""
 "If true, changing of photo image in fullscreen mode will be animated. The "
 "program needs to be restarted to take effect the change of the setting."
@@ -148,7 +152,7 @@ msgstr ""
 "TRUEにすると、フルスクリーン時に写真を変更する際にアニメーションを行います。"
 "なお、この設定を反映させるためにはプログラムの再スタートが必要です。"
 
-#: ../share/gphotoframe.schemas.in.h:25
+#: ../share/gphotoframe.schemas.in.h:26
 msgid ""
 "If true, description (identifier) field will be enabled on photo source "
 "dialog. Users can use the field freely."
@@ -156,7 +160,7 @@ msgstr ""
 "TRUEにすると、写真ソースダイアログで説明 (識別子) フィールドを有効にします。"
 "このフィールドはユーザが識別のために自由に利用できます。"
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:27
 msgid ""
 "If true, hiding and un-hiding of icons will be animated. The program needs "
 "to be restarted to take effect the change of the setting."
@@ -164,56 +168,60 @@ msgstr ""
 "TRUEにすると、アイコンの表示と消去の際にアニメーションを行います。なお、この"
 "設定を反映させるためにはプログラムの再スタートが必要です。"
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "If true, icons will be shown on screensaver."
 msgstr "TRUEにすると、スクリーンセーバー上でアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:29
 msgid "If true, image filename suffixes (jpe?g|png|gif|bmp) are shown."
 msgstr ""
 "TRUEにすると、画像ファイル名のサフィックス (jpe?g|png|gif|bmp) を表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:29
+#: ../share/gphotoframe.schemas.in.h:30
 msgid "Interval seconds in full screen mode"
 msgstr "フルスクリーン表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:30
+#: ../share/gphotoframe.schemas.in.h:31
 msgid "Interval seconds in window mode"
 msgstr "ウィンドウ表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "Max aspect ratio for Photo"
 msgstr "表示する写真の最大アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:33
 msgid "Maximum image file size in MByte"
 msgstr "表示する写真の最大ファイルサイズ (MB)"
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:34
 msgid ""
 "Maximum image file size in MByte. When this value is 0 or less, this image "
 "file size filter is disabled."
-msgstr "表示する写真の最大ファイルサイズを MB 単位で指定します。0 以下の値を指定した場合、サイズフィルターは無効になります。"
+msgstr ""
+"表示する写真の最大ファイルサイズを MB 単位で指定します。0 以下の値を指定した"
+"場合、サイズフィルターは無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:35
 msgid "Minimum aspect ratio for Photo"
 msgstr "表示する写真の最小アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "Minimum image file size in KByte"
 msgstr "表示する写真の最小ファイルサイズ (KB)"
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:37
 msgid ""
 "Minimum image file size in KByte. When this value is 0 or less, this image "
 "file size filter is disabled."
-msgstr "表示する写真の最小ファイルサイズを KB 単位で指定します。0 以下の値を指定した場合、サイズフィルターは無効になります。"
+msgstr ""
+"表示する写真の最小ファイルサイズを KB 単位で指定します。0 以下の値を指定した"
+"場合、サイズフィルターは無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:38
 msgid "Minimum image height"
 msgstr "表示する写真の最小高"
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:39
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
@@ -221,11 +229,11 @@ msgstr ""
 "表示する写真の最小高を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Minimum image width"
 msgstr "表示する写真の最小幅"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:41
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
@@ -233,71 +241,71 @@ msgstr ""
 "表示する写真の最小幅を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Minimum rate of latest photos"
 msgstr "最新の写真を表示する最小の割合"
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "Photo image max height"
 msgstr "写真の最大表示高"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "RSS reload interval minutes"
 msgstr "RSS を再読込する間隔 (分)"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:55
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:58
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
@@ -305,7 +313,7 @@ msgstr ""
 "Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
 "この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:59
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -313,19 +321,19 @@ msgstr ""
 "TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
 "レーム上にあるときのみアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:60
 msgid "Show icons on screensaver"
 msgstr "スクリーンセーバー上でのアイコンの表示"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "Source icon position"
 msgstr "ソースアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:63
 msgid ""
 "The Flickr plugin gets photos from latest to oldest via API with a page "
 "number. This value specifies the minimum percentage of showing photos of 1st "
@@ -335,43 +343,51 @@ msgstr ""
 "得します。この値で最初のページ (最新の写真) を表示するパーセンテージを指定し"
 "ます。"
 
-#: ../share/gphotoframe.schemas.in.h:63
+#: ../share/gphotoframe.schemas.in.h:64
 msgid "The field sets the number of photo cache files."
 msgstr "画像ファイルのキャッシュ数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:65
 msgid "The field sets the number of recent photo menu items."
 msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:65
+#: ../share/gphotoframe.schemas.in.h:66
 msgid "The number of photo cache files"
 msgstr "画像ファイルのキャッシュ数"
 
-#: ../share/gphotoframe.schemas.in.h:66
+#: ../share/gphotoframe.schemas.in.h:67
 msgid "The number of recent photo menu items"
 msgstr "「最近表示した写真」メニューのアイテム数"
 
-#: ../share/gphotoframe.schemas.in.h:67
+#: ../share/gphotoframe.schemas.in.h:68
 msgid "Trash icon position"
 msgstr "ゴミ箱アイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:68
+#: ../share/gphotoframe.schemas.in.h:69
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:69
+#: ../share/gphotoframe.schemas.in.h:70
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:70
+#: ../share/gphotoframe.schemas.in.h:71
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:71
+#: ../share/gphotoframe.schemas.in.h:72
+msgid ""
+"Whether connectivity managers should be used for checking network "
+"connectivity."
+msgstr ""
+"接続マネージャを利用して、ネットワークの接続状況を確認するかどうかを指定しま"
+"す。"
+
+#: ../share/gphotoframe.schemas.in.h:73
 msgid "Whether to show filename suffix"
 msgstr "ファイル名のサフィックスの表示"
 
-#: ../share/gphotoframe.schemas.in.h:72
+#: ../share/gphotoframe.schemas.in.h:74
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -379,7 +395,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:100
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:102
 msgid "All"
 msgstr "すべて"
 
@@ -456,7 +472,7 @@ msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
 #: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:57
-#: ../lib/plugins/haikyo.py:87
+#: ../lib/plugins/haikyo.py:95
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -719,7 +735,7 @@ msgstr "フラッシュ"
 msgid "Flash Bias"
 msgstr "フラッシュ補正"
 
-#: ../lib/plugins/base/base.py:32
+#: ../lib/plugins/base/base.py:33
 msgid "Not Authenticated"
 msgstr "未認証"
 
@@ -774,8 +790,8 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook.py:166
-#: ../lib/plugins/picasa.py:189 ../lib/plugins/tumblr.py:127
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:96
+#: ../lib/plugins/picasa.py:191 ../lib/plugins/tumblr.py:128
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -854,69 +870,70 @@ msgstr "Flickr: 以下が見つかりません。"
 msgid "Flickr API Error (%s): %s"
 msgstr "Flickr API エラー (%s): %s"
 
-#: ../lib/plugins/fspot/__init__.py:28
+#: ../lib/plugins/fspot/__init__.py:30
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot 写真マネージャ"
 
-#: ../lib/plugins/fspot/__init__.py:33
+#: ../lib/plugins/fspot/__init__.py:35
 msgid "Remove from catalog"
 msgstr "カタログから削除する"
 
-#: ../lib/plugins/fspot/__init__.py:34
+#: ../lib/plugins/fspot/__init__.py:36
 msgid "Remove this photo from the catalog?"
 msgstr "この写真をカタログから削除しますか?"
 
-#: ../lib/plugins/fspot/__init__.py:35
+#: ../lib/plugins/fspot/__init__.py:37
 #, python-format
 msgid "This photo will be removed from the %s catalog."
 msgstr "この写真を %s のカタログから削除します。"
 
-#: ../lib/plugins/fspot/__init__.py:100
+#: ../lib/plugins/fspot/__init__.py:102
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:106
+#: ../lib/plugins/fspot/__init__.py:108
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:106
+#: ../lib/plugins/fspot/__init__.py:108
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/fspot/__init__.py:174 ../lib/plugins/shotwell.py:136
+#: ../lib/plugins/fspot/__init__.py:176 ../lib/plugins/shotwell.py:139
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/facebook.py:36
+#: ../lib/plugins/facebook/__init__.py:30
 msgid "Social Network Service"
 msgstr "ソーシャル・ネットワーク・サービス"
 
-#: ../lib/plugins/facebook.py:47 ../lib/plugins/facebook.py:166
-#: ../lib/plugins/facebook.py:172
-msgid "Albums"
-msgstr "アルバム"
-
-#: ../lib/plugins/facebook.py:48 ../lib/plugins/facebook.py:166
-#: ../lib/plugins/facebook.py:172
+#: ../lib/plugins/facebook/__init__.py:96
+#: ../lib/plugins/facebook/__init__.py:102 ../lib/plugins/facebook/api.py:18
 msgid "Wall"
 msgstr "ウォール"
 
-#: ../lib/plugins/facebook.py:49 ../lib/plugins/facebook.py:168
-#: ../lib/plugins/facebook.py:172 ../lib/plugins/facebook.py:174
+#: ../lib/plugins/facebook/__init__.py:96
+#: ../lib/plugins/facebook/__init__.py:102 ../lib/plugins/facebook/api.py:17
+msgid "Albums"
+msgstr "アルバム"
+
+#: ../lib/plugins/facebook/__init__.py:98
+#: ../lib/plugins/facebook/__init__.py:102
+#: ../lib/plugins/facebook/__init__.py:104 ../lib/plugins/facebook/api.py:19
 msgid "News Feed"
 msgstr "ニュースフィード"
 
-#: ../lib/plugins/facebook.py:209
+#: ../lib/plugins/facebook/authdialog.py:44
 #, python-format
 msgid "You are logged into Facebook as %s."
 msgstr "Facebook にアカウント %s でログインしています。"
 
-#: ../lib/plugins/facebook.py:210
+#: ../lib/plugins/facebook/authdialog.py:45
 msgid "_Logout"
 msgstr "ログアウト(_L)"
 
-#: ../lib/plugins/facebook.py:213
+#: ../lib/plugins/facebook/authdialog.py:48
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GNOME Photo Frame."
@@ -924,7 +941,7 @@ msgstr ""
 "Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
 "起動する必要があります。"
 
-#: ../lib/plugins/facebook.py:253
+#: ../lib/plugins/facebook/authdialog.py:89
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
@@ -941,30 +958,30 @@ msgstr "Picasa Web"
 msgid "Certification Error"
 msgstr "認証エラーです"
 
-#: ../lib/plugins/picasa.py:149
+#: ../lib/plugins/picasa.py:151
 msgid "Album"
 msgstr "アルバム"
 
-#: ../lib/plugins/picasa.py:150 ../lib/plugins/picasa.py:189
-#: ../lib/plugins/picasa.py:195
+#: ../lib/plugins/picasa.py:152 ../lib/plugins/picasa.py:191
+#: ../lib/plugins/picasa.py:197
 msgid "Community Search"
 msgstr "コミュニティ写真の検索"
 
-#: ../lib/plugins/picasa.py:151 ../lib/plugins/picasa.py:191
-#: ../lib/plugins/picasa.py:195
+#: ../lib/plugins/picasa.py:153 ../lib/plugins/picasa.py:193
+#: ../lib/plugins/picasa.py:197
 msgid "Featured"
 msgstr "注目の写真"
 
-#: ../lib/plugins/picasa.py:152 ../lib/plugins/picasa.py:158
-#: ../lib/plugins/picasa.py:189 ../lib/plugins/picasa.py:195
+#: ../lib/plugins/picasa.py:154 ../lib/plugins/picasa.py:160
+#: ../lib/plugins/picasa.py:191 ../lib/plugins/picasa.py:197
 #: ../lib/plugins/tumblr.py:52 ../lib/plugins/tumblr.py:58
-#: ../lib/plugins/tumblr.py:77 ../lib/plugins/tumblr.py:97
-#: ../lib/plugins/tumblr.py:127 ../lib/plugins/tumblr.py:129
-#: ../lib/plugins/tumblr.py:134 ../lib/plugins/tumblr.py:136
+#: ../lib/plugins/tumblr.py:78 ../lib/plugins/tumblr.py:98
+#: ../lib/plugins/tumblr.py:128 ../lib/plugins/tumblr.py:130
+#: ../lib/plugins/tumblr.py:135 ../lib/plugins/tumblr.py:137
 msgid "User"
 msgstr "ユーザ"
 
-#: ../lib/plugins/picasa.py:189
+#: ../lib/plugins/picasa.py:191
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -974,11 +991,11 @@ msgstr "何でも共有"
 
 #. user_id
 #: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:61
-#: ../lib/plugins/tumblr.py:134
+#: ../lib/plugins/tumblr.py:135
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:134
+#: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:135
 msgid "Likes"
 msgstr "スキな投稿"
 
@@ -987,7 +1004,7 @@ msgstr "スキな投稿"
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
-#: ../lib/plugins/tumblr.py:150
+#: ../lib/plugins/tumblr.py:151
 msgid "_E-mail:"
 msgstr "E-mail(_E):"
 
@@ -995,20 +1012,20 @@ msgstr "E-mail(_E):"
 msgid "RSS and Atom Feeds"
 msgstr "RSS や Atom フィード"
 
-#: ../lib/plugins/rss.py:134
+#: ../lib/plugins/rss.py:135
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:137
+#: ../lib/plugins/rss.py:138
 msgid "_URL:"
 msgstr "URL(_U):"
 
-#: ../lib/plugins/haikyo.py:33
+#: ../lib/plugins/haikyo.py:34
 msgid "Ruins Clock"
 msgstr "廃墟時計"
 
-#: ../lib/plugins/haikyo.py:35
+#: ../lib/plugins/haikyo.py:36
 msgid "Haikyo Clock"
 msgstr "廃墟にたたずむ時計たちの写真"
 
@@ -1020,24 +1037,24 @@ msgstr "フォルダ"
 msgid "Local Folder"
 msgstr "ローカルフォルダ"
 
-#: ../lib/plugins/shotwell.py:40
+#: ../lib/plugins/shotwell.py:43
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
 
-#: ../lib/plugins/shotwell.py:45
+#: ../lib/plugins/shotwell.py:48
 msgid "Set rating as rejected"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/plugins/shotwell.py:46
+#: ../lib/plugins/shotwell.py:49
 msgid "Set rating as rejected?"
 msgstr "ブラックリストに追加しますか?"
 
-#: ../lib/plugins/shotwell.py:47
+#: ../lib/plugins/shotwell.py:50
 msgid ""
 "The rating of this photo will be set as rejected.  Gnome photo frame will "
 "skip rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
 
-#: ../lib/plugins/shotwell.py:138
+#: ../lib/plugins/shotwell.py:141
 msgid "_Description:"
 msgstr "説明(_D):"
