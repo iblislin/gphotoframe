@@ -10,9 +10,12 @@
 #   The Big Picture
 #   http://www.boston.com/bigpicture/
 #
+# 2011-03-17 Version 0.2
 # 2011-03-15 Version 0.1
 
 import re
+import gzip
+import StringIO
 
 import feedparser
 from lxml.html import fromstring
@@ -57,6 +60,13 @@ class BigPicturePhotoList(base.PhotoList):
         self._get_url_with_twisted(self.page_url, self._html_cb)
 
     def _html_cb(self, html):
+        try:
+            io_obj = StringIO.StringIO(html)
+            html = gzip.GzipFile(fileobj=io_obj).read()
+            print "gzip!"
+        except IOError as error:
+            pass # print error
+
         etree = fromstring(html)
         re_num = re.compile('.*/bp([0-9]+).jpg')
 
