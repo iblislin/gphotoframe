@@ -83,7 +83,7 @@ class PhotoListStore(gtk.ListStore):
 
         if updated is False:
             interval = 3
-            print "skip!"
+            # print "skip!"
         elif frame.is_fullscreen() or frame.is_screensaver():
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
