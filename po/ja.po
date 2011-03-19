@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-15 13:57+0900\n"
-"PO-Revision-Date: 2011-03-15 13:59+0900\n"
+"POT-Creation-Date: 2011-03-19 22:05+0900\n"
+"PO-Revision-Date: 2011-03-19 22:07+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -178,22 +178,30 @@ msgstr ""
 "TRUEにすると、画像ファイル名のサフィックス (jpe?g|png|gif|bmp) を表示します。"
 
 #: ../share/gphotoframe.schemas.in.h:30
+msgid ""
+"If true, the photo frame must be kept below other windows. When you change "
+"this value, you need to restart gphotoframe."
+msgstr ""
+"TRUE にすると、写真フレームは他のウインドウの背面に置かれます。この値を変更し"
+"た場合、GNOME 写真フレームを再起動する必要があります。"
+
+#: ../share/gphotoframe.schemas.in.h:31
 msgid "Interval seconds in full screen mode"
 msgstr "フルスクリーン表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:31
+#: ../share/gphotoframe.schemas.in.h:32
 msgid "Interval seconds in window mode"
 msgstr "ウィンドウ表示時の表示間隔 (秒)"
 
-#: ../share/gphotoframe.schemas.in.h:32
+#: ../share/gphotoframe.schemas.in.h:33
 msgid "Max aspect ratio for Photo"
 msgstr "表示する写真の最大アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "Maximum image file size in MByte"
 msgstr "表示する写真の最大ファイルサイズ (MB)"
 
-#: ../share/gphotoframe.schemas.in.h:34
+#: ../share/gphotoframe.schemas.in.h:35
 msgid ""
 "Maximum image file size in MByte. When this value is 0 or less, this image "
 "file size filter is disabled."
@@ -201,15 +209,15 @@ msgstr ""
 "表示する写真の最大ファイルサイズを MB 単位で指定します。0 以下の値を指定した"
 "場合、サイズフィルターは無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:35
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "Minimum aspect ratio for Photo"
 msgstr "表示する写真の最小アスペクト率"
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "Minimum image file size in KByte"
 msgstr "表示する写真の最小ファイルサイズ (KB)"
 
-#: ../share/gphotoframe.schemas.in.h:37
+#: ../share/gphotoframe.schemas.in.h:38
 msgid ""
 "Minimum image file size in KByte. When this value is 0 or less, this image "
 "file size filter is disabled."
@@ -217,11 +225,11 @@ msgstr ""
 "表示する写真の最小ファイルサイズを KB 単位で指定します。0 以下の値を指定した"
 "場合、サイズフィルターは無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:38
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Minimum image height"
 msgstr "表示する写真の最小高"
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:40
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
@@ -229,11 +237,11 @@ msgstr ""
 "表示する写真の最小高を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Minimum image width"
 msgstr "表示する写真の最小幅"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:42
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
@@ -241,71 +249,75 @@ msgstr ""
 "表示する写真の最小幅を指定します。0 以下の値を指定した場合、サイズフィルター"
 "は無効になります。"
 
-#: ../share/gphotoframe.schemas.in.h:42
+#: ../share/gphotoframe.schemas.in.h:43
 msgid "Minimum rate of latest photos"
 msgstr "最新の写真を表示する最小の割合"
 
-#: ../share/gphotoframe.schemas.in.h:43
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:45
+msgid "Photo frame \"keep-below\" mode"
+msgstr "写真フレームを最後面へ"
+
+#: ../share/gphotoframe.schemas.in.h:46
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:45
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:46
+#: ../share/gphotoframe.schemas.in.h:48
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:47
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:48
+#: ../share/gphotoframe.schemas.in.h:50
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:49
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:50
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Photo image max height"
 msgstr "写真の最大表示高"
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "Photo image max width"
 msgstr "写真の最大表示幅"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:55
 msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "RSS reload interval minutes"
 msgstr "RSS を再読込する間隔 (分)"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:60
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
@@ -313,7 +325,7 @@ msgstr ""
 "Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
 "この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:61
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -321,19 +333,19 @@ msgstr ""
 "TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
 "レーム上にあるときのみアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "Show icons on screensaver"
 msgstr "スクリーンセーバー上でのアイコンの表示"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:63
 msgid "Source icon position"
 msgstr "ソースアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:64
 msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
-#: ../share/gphotoframe.schemas.in.h:63
+#: ../share/gphotoframe.schemas.in.h:65
 msgid ""
 "The Flickr plugin gets photos from latest to oldest via API with a page "
 "number. This value specifies the minimum percentage of showing photos of 1st "
@@ -343,39 +355,39 @@ msgstr ""
 "得します。この値で最初のページ (最新の写真) を表示するパーセンテージを指定し"
 "ます。"
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:66
 msgid "The field sets the number of photo cache files."
 msgstr "画像ファイルのキャッシュ数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:65
+#: ../share/gphotoframe.schemas.in.h:67
 msgid "The field sets the number of recent photo menu items."
 msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:66
+#: ../share/gphotoframe.schemas.in.h:68
 msgid "The number of photo cache files"
 msgstr "画像ファイルのキャッシュ数"
 
-#: ../share/gphotoframe.schemas.in.h:67
+#: ../share/gphotoframe.schemas.in.h:69
 msgid "The number of recent photo menu items"
 msgstr "「最近表示した写真」メニューのアイテム数"
 
-#: ../share/gphotoframe.schemas.in.h:68
+#: ../share/gphotoframe.schemas.in.h:70
 msgid "Trash icon position"
 msgstr "ゴミ箱アイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:69
+#: ../share/gphotoframe.schemas.in.h:71
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:70
+#: ../share/gphotoframe.schemas.in.h:72
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:71
+#: ../share/gphotoframe.schemas.in.h:73
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:72
+#: ../share/gphotoframe.schemas.in.h:74
 msgid ""
 "Whether connectivity managers should be used for checking network "
 "connectivity."
@@ -383,11 +395,11 @@ msgstr ""
 "接続マネージャを利用して、ネットワークの接続状況を確認するかどうかを指定しま"
 "す。"
 
-#: ../share/gphotoframe.schemas.in.h:73
+#: ../share/gphotoframe.schemas.in.h:75
 msgid "Whether to show filename suffix"
 msgstr "ファイル名のサフィックスの表示"
 
-#: ../share/gphotoframe.schemas.in.h:74
+#: ../share/gphotoframe.schemas.in.h:76
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -472,7 +484,7 @@ msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
 #: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:57
-#: ../lib/plugins/haikyo.py:95
+#: ../lib/plugins/haikyo.py:94
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
@@ -655,7 +667,7 @@ msgstr "地図を開く"
 msgid "Querying..."
 msgstr "問い合わせ中..."
 
-#: ../lib/image/actor/info.py:91
+#: ../lib/image/actor/info.py:91 ../lib/plugins/facebook/authdialog.py:40
 msgid "Loading..."
 msgstr "ロード中..."
 
@@ -924,16 +936,16 @@ msgstr "アルバム"
 msgid "News Feed"
 msgstr "ニュースフィード"
 
-#: ../lib/plugins/facebook/authdialog.py:44
+#: ../lib/plugins/facebook/authdialog.py:45
 #, python-format
 msgid "You are logged into Facebook as %s."
 msgstr "Facebook にアカウント %s でログインしています。"
 
-#: ../lib/plugins/facebook/authdialog.py:45
+#: ../lib/plugins/facebook/authdialog.py:46
 msgid "_Logout"
 msgstr "ログアウト(_L)"
 
-#: ../lib/plugins/facebook/authdialog.py:48
+#: ../lib/plugins/facebook/authdialog.py:49
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GNOME Photo Frame."
@@ -941,7 +953,7 @@ msgstr ""
 "Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
 "起動する必要があります。"
 
-#: ../lib/plugins/facebook/authdialog.py:89
+#: ../lib/plugins/facebook/authdialog.py:94
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
@@ -1021,11 +1033,11 @@ msgstr "タイトル(_T):"
 msgid "_URL:"
 msgstr "URL(_U):"
 
-#: ../lib/plugins/haikyo.py:34
+#: ../lib/plugins/haikyo.py:33
 msgid "Ruins Clock"
 msgstr "廃墟時計"
 
-#: ../lib/plugins/haikyo.py:36
+#: ../lib/plugins/haikyo.py:35
 msgid "Haikyo Clock"
 msgstr "廃墟にたたずむ時計たちの写真"
 
