@@ -123,9 +123,11 @@ class PhotoFrame(object):
         self.popup_menu = PopUpMenu(self.photolist, self)
 
     def _set_window_state(self):
-        if self.conf.get_bool('window_fix'):
+        is_bool = self.conf.get_bool
+        if is_bool('window_fix'):
             self.window.set_type_hint(self.fixed_window_hint)
-        self.window.set_keep_below(True)
+        if is_bool('window_keep_below', True) or is_bool('window_fix'):
+            self.window.set_keep_below(True)
 
     def _set_accelerator(self):
         accel_group = gtk.AccelGroup()
@@ -204,7 +206,10 @@ class PhotoFrame(object):
         self.window.hide()
         self.window.set_type_hint(hint)
         self.window.show()
-        self.window.set_keep_below(True)
+
+        is_below = True if self.conf.get_bool('window_fix') \
+            else self.conf.get_bool('window_keep_below', True)
+        self.window.set_keep_below(is_below)
 
         if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
             border = self.photoimage.window_border

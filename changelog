@@ -1,8 +1,9 @@
 2011-03-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* frame.py (PhotoFrame._check_button_cb): Opens a photo with 1st
-	  mouse button double clicking (issue #91).
-
+	* frame.py (PhotoFrame): Opens a photo with 1st mouse button
+	  double clicking (issue #91).  Added new gconf key
+	  'window_keep_below' (issue #90).
+	
 2011-03-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.3-b1 release.

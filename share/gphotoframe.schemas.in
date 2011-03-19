@@ -158,6 +158,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/window_keep_below</key>
+      <applyto>/apps/gphotoframe/window_keep_below</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Photo frame "keep-below" mode</short>
+        <long>If true, the photo frame must be kept below other windows.  When you change this value, you need to restart gphotoframe.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/format/date_format</key>
       <applyto>/apps/gphotoframe/format/date_format</applyto>
       <owner>gphotoframe</owner>
