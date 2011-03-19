@@ -165,8 +165,11 @@ class PhotoFrame(object):
     def _check_button_cb(self, widget, event):
         if event.button == 1:
             if not self.photoimage.check_actor(widget, event):
-                widget.begin_move_drag(
-                    event.button, int(event.x_root), int(event.y_root), event.time)
+                if event.type == gtk.gdk._2BUTTON_PRESS:
+                    self.popup_menu.open_photo()
+                else:
+                    x, y = int(event.x_root), int(event.y_root)
+                    widget.begin_move_drag(event.button, x, y, event.time)
         elif event.button == 2:
             pass
         elif event.button == 3:
