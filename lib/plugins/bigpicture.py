@@ -63,7 +63,6 @@ class BigPicturePhotoList(base.PhotoList):
         try:
             io_obj = StringIO.StringIO(html)
             html = gzip.GzipFile(fileobj=io_obj).read()
-            print "gzip!"
         except IOError as error:
             pass # print error
 
