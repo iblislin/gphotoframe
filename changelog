@@ -1,3 +1,8 @@
+2011-03-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* facebook/api.py: Added FacebookHomeAlbumAPI for a option
+	  'Include other photos in the same album'.
+
 2011-03-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* frame.py (PhotoFrame): Opens a photo with 1st mouse button
