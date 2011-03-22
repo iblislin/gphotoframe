@@ -15,6 +15,7 @@ from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 from ...utils.iconimage import WebIconImage
 from api import FacebookAPIfactory
 from authdialog import PluginFacebookDialog
+from ..folder import PhotoSourceOptionsDirUI
 
 def info():
     return [FacebookPlugin, FacebookPhotoList, PhotoSourceFacebookUI, 
@@ -113,20 +114,11 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFacebookUI(self.gui, self.data)
 
-class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
+class PhotoSourceOptionsFacebookUI(PhotoSourceOptionsDirUI):
 
-    def get_value(self):
-        state = self.gui.get_object('checkbutton_dir').get_active()
-        return {'album' : state}
-
-    def _set_ui(self):
-        self.child = self.gui.get_object('folder_vbox')
-        self.gui.get_object('checkbutton_dir').set_label(
-            _('_Include other photos in the same album'))
-
-    def _set_default(self):
-        state = self.options.get('album', False)
-        self.gui.get_object('checkbutton_dir').set_active(state)
+    def _set_ui_text(self):
+        self.label_text = _('_Include other photos in the same album')
+        self.option_key = 'album'
 
 class FacebookIcon(WebIconImage):
 
