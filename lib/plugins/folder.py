@@ -142,6 +142,8 @@ class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
         self.child = self.gui.get_object('folder_vbox')
+        self.gui.get_object('checkbutton_dir').set_label(
+            _('_Include subfolders'))
 
     def _set_default(self):
         state = self.options.get('subfolders', True)
