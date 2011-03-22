@@ -34,6 +34,8 @@ class FacebookPlugin(base.PluginBase):
 
 class FacebookPhotoList(base.PhotoList):
 
+    # delay_for_prepare = False
+
     def __init__(self, target, argument, weight, options, photolist):
         super(FacebookPhotoList, self).__init__(
             target, argument, weight, options, photolist)
@@ -42,7 +44,8 @@ class FacebookPhotoList(base.PhotoList):
         self.api = factory.create(target, self)
 
     def prepare(self):
-        self.api.access(self.argument)
+        if self.api:
+            self.api.access(self.argument)
 
     def prepare_cb(self, url):
         url += self._get_access_token()
@@ -92,6 +95,9 @@ class FacebookPhotoList(base.PhotoList):
 
 class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
+    def get_options(self):
+        return self.options_ui.get_value()
+
     def _check_argument_sensitive_for(self, target):
         all_label = {_('Wall'): _('_User:'), _('Albums'): _('_User:')}
         label = all_label.get(target)
@@ -103,6 +109,24 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
         if not self.conf.get_string('plugins/facebook/access_token'):
             labels.remove(_('News Feed'))
         return labels
+
+    def _make_options_ui(self):
+        self.options_ui = PhotoSourceOptionsFacebookUI(self.gui, self.data)
+
+class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
+
+    def get_value(self):
+        state = self.gui.get_object('checkbutton_dir').get_active()
+        return {'album' : state}
+
+    def _set_ui(self):
+        self.child = self.gui.get_object('folder_vbox')
+        self.gui.get_object('checkbutton_dir').set_label(
+            _('_Include other photos in the same album'))
+
+    def _set_default(self):
+        state = self.options.get('album', False)
+        self.gui.get_object('checkbutton_dir').set_active(state)
 
 class FacebookIcon(WebIconImage):
 

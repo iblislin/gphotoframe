@@ -4,6 +4,7 @@
 # Copyright (c) 2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
+import re
 import json
 import random
 from gettext import gettext as _
@@ -14,11 +15,18 @@ from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 class FacebookAPIfactory(object):
 
     def create(self, target, photolist):
-        api = {_('Albums'): FacebookAlbumsAPI,
-               _('Wall'): FacebookWallAPI,
-               _('News Feed'): FacebookHomeAPI}
+        api = {_('Albums'): [FacebookAlbumsAPI, FacebookAlbumsAPI],
+               _('Wall'): [FacebookWallAPI, FacebookWallAPI],
+               _('News Feed'): [FacebookHomeAPI, FacebookHomeAlbumAPI]}
 
-        obj  = api[target](photolist)
+        option = 1 if photolist.options.get('album') else 0
+
+        if api.get(target):
+            obj = api[target][option](photolist)
+        else:
+            print "Facebook: %s is invalid target." % target
+            obj = None
+
         return obj
 
 class FacebookAPI(object):
@@ -66,15 +74,15 @@ class FacebookAlbumsAPI(FacebookAPI):
         self._select_album()
 
     def _select_album(self):
-        album_id = random.choice(self.albums.keys())
-        self.album_name = self.albums.get(album_id)
-        # print album_id, self.album_name
+        if self.albums:
+            album_id = random.choice(self.albums.keys())
+            self.album_name = self.albums.get(album_id)
+            # print album_id, self.album_name
 
-        url = 'https://graph.facebook.com/%s/photos' % album_id
-        self.photolist.prepare_cb(url)
-
-        del self.albums[album_id]
-        if not self.albums:
+            url = 'https://graph.facebook.com/%s/photos' % album_id
+            self.photolist.prepare_cb(url)
+            del self.albums[album_id]
+        else:
             self.photolist.prepare()
 
     def get_album_name(self):
@@ -84,3 +92,36 @@ class FacebookAlbumsAPI(FacebookAPI):
         self.photolist.photos.remove(photo)
         if not self.photolist.photos:
             self._select_album()
+
+class FacebookHomeAlbumAPI(FacebookAlbumsAPI):
+
+    def access(self, argument):
+        url = 'https://graph.facebook.com/me/home'
+
+        if self.albums:
+            self._select_album()
+        else:
+            url += self.photolist._get_access_token()
+
+            urlget = UrlGetWithAutoProxy(url)
+            d = urlget.getPage(url)
+            d.addCallback(self._get_albumlist_cb)
+            d.addErrback(urlget.catch_error)
+
+    def _get_albumlist_cb(self, data):
+        d = json.loads(data)
+
+        re_aid = re.compile("http://www.facebook.com/photo.php?.*=a.([0-9]+)\\..*")
+
+        for entry in d['data']:
+            type = entry.get('type')
+            if type is not None and type != 'photo':
+                continue
+
+            url = entry['link']
+            aid = re_aid.sub('\\1', url)
+
+            self.albums[ int(aid) ] = entry.get('name')
+
+        print self.albums
+        self._select_album()
