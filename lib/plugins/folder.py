@@ -136,18 +136,23 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
 
 class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
 
-    def get_value(self):
-        state = self.gui.get_object('checkbutton_dir').get_active()
-        return {'subfolders' : state}
-
     def _set_ui(self):
         self.child = self.gui.get_object('folder_vbox')
-        self.gui.get_object('checkbutton_dir').set_label(
-            _('_Include subfolders'))
+        self.checkbutton = self.gui.get_object('checkbutton_dir')
+        self._set_ui_text()
+
+    def _set_ui_text(self):
+        self.label_text = _('_Include subfolders')
+        self.option_key = 'subfolders'
 
     def _set_default(self):
-        state = self.options.get('subfolders', True)
-        self.gui.get_object('checkbutton_dir').set_active(state)
+        state = self.options.get(self.option_key, True)
+        self.checkbutton.set_label(self.label_text)
+        self.checkbutton.set_active(state)
+
+    def get_value(self):
+        state = self.checkbutton.get_active()
+        return {self.option_key : state}
 
 class FolderIcon(IconImage):
 
