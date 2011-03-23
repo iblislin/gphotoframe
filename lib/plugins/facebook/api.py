@@ -56,11 +56,15 @@ class FacebookHomeAPI(FacebookAPI):
 class FacebookAlbumsAPI(FacebookAPI):
 
     def access(self, argument):
+        url = 'https://graph.facebook.com/%s/albums' % argument
+        self._access_url(url)
+
+    def _access_url(self, url):
         if self.albums:
             self._select_album()
         else:
-            token = self.photolist._get_access_token()
-            url = 'https://graph.facebook.com/%s/albums%s' % (argument, token)
+            print url
+            url += self.photolist._get_access_token()
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
             d.addCallback(self._get_albumlist_cb)
@@ -82,8 +86,6 @@ class FacebookAlbumsAPI(FacebookAPI):
             url = 'https://graph.facebook.com/%s/photos' % album_id
             self.photolist.prepare_cb(url)
             del self.albums[album_id]
-        else:
-            self.photolist.prepare()
 
     def get_album_name(self):
         return self.album_name
@@ -91,22 +93,13 @@ class FacebookAlbumsAPI(FacebookAPI):
     def update(self, photo):
         self.photolist.photos.remove(photo)
         if not self.photolist.photos:
-            self._select_album()
+            self.access(self.photolist.argument)
 
 class FacebookHomeAlbumAPI(FacebookAlbumsAPI):
 
     def access(self, argument):
         url = 'https://graph.facebook.com/me/home'
-
-        if self.albums:
-            self._select_album()
-        else:
-            url += self.photolist._get_access_token()
-
-            urlget = UrlGetWithAutoProxy(url)
-            d = urlget.getPage(url)
-            d.addCallback(self._get_albumlist_cb)
-            d.addErrback(urlget.catch_error)
+        self._access_url(url)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
