@@ -35,6 +35,7 @@ class FacebookAPI(object):
         self.photolist = photolist
         self.albums = {}
         self._set_url(photolist.argument)
+        self.interval = True
 
     def access(self):
         self.photolist.prepare_cb(self.url)
@@ -42,23 +43,20 @@ class FacebookAPI(object):
     def _set_url(self, argument):
         pass
 
+    def get_interval(self):
+        return 60
+
     def update(self, photo):
         pass
 
     def get_album_name(self):
         pass
 
-class FacebookWallAPI(FacebookAPI):
-
-    def _set_url(self, argument):
-        self.url = 'https://graph.facebook.com/%s/feed' % argument
-
-class FacebookHomeAPI(FacebookAPI):
-
-    def _set_url(self, argument):
-        self.url = 'https://graph.facebook.com/me/home'
-
 class FacebookAlbumsAPI(FacebookAPI):
+
+    def __init__(self, photolist):
+        super(FacebookAlbumsAPI, self).__init__(photolist)
+        self.interval = False
 
     def _set_url(self, argument):
         self.url = 'https://graph.facebook.com/%s/albums' % argument
@@ -67,6 +65,7 @@ class FacebookAlbumsAPI(FacebookAPI):
         if self.albums:
             self._select_album()
         else:
+            print self.url
             url = self.url + self.photolist._get_access_token()
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
@@ -98,10 +97,15 @@ class FacebookAlbumsAPI(FacebookAPI):
         if not self.photolist.photos:
             self.access()
 
-class FacebookHomeAlbumAPI(FacebookAlbumsAPI):
+class FacebookHomeAPI(FacebookAPI):
 
     def _set_url(self, argument):
         self.url = 'https://graph.facebook.com/me/home'
+
+    def get_interval(self):
+        return 30
+
+class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
@@ -118,8 +122,16 @@ class FacebookHomeAlbumAPI(FacebookAlbumsAPI):
 
             self.albums[ int(aid) ] = entry.get('name')
 
-        print self.albums
+        # print self.albums
         self._select_album()
+
+class FacebookWallAPI(FacebookAPI):
+
+    def _set_url(self, argument):
+        self.url = 'https://graph.facebook.com/%s/feed' % argument
+
+    def get_interval(self):
+        return 45
 
 class FacebookWallAlbumAPI(FacebookWallAPI, FacebookHomeAlbumAPI):
     pass
