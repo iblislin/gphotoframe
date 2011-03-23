@@ -111,6 +111,13 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
             labels.remove(_('News Feed'))
         return labels
 
+    def _widget_cb(self, widget):
+        super(PhotoSourceFacebookUI, self)._widget_cb(widget)
+
+        target = widget.get_active_text()
+        state = bool(target != _('Albums'))
+        self.gui.get_object('checkbutton_dir').set_sensitive(state)
+
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFacebookUI(self.gui, self.data)
 
