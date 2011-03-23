@@ -16,7 +16,7 @@ class FacebookAPIfactory(object):
 
     def create(self, target, photolist):
         api = {_('Albums'): [FacebookAlbumsAPI, FacebookAlbumsAPI],
-               _('Wall'): [FacebookWallAPI, FacebookWallAPI],
+               _('Wall'): [FacebookWallAPI, FacebookWallAlbumAPI],
                _('News Feed'): [FacebookHomeAPI, FacebookHomeAlbumAPI]}
 
         option = 1 if photolist.options.get('album') else 0
@@ -34,6 +34,13 @@ class FacebookAPI(object):
     def __init__(self, photolist):
         self.photolist = photolist
         self.albums = {}
+        self._set_url(photolist.argument)
+
+    def access(self):
+        self.photolist.prepare_cb(self.url)
+
+    def _set_url(self, argument):
+        pass
 
     def update(self, photo):
         pass
@@ -43,28 +50,24 @@ class FacebookAPI(object):
 
 class FacebookWallAPI(FacebookAPI):
 
-    def access(self, argument):
-        url = 'https://graph.facebook.com/%s/feed' % argument
-        self.photolist.prepare_cb(url)
+    def _set_url(self, argument):
+        self.url = 'https://graph.facebook.com/%s/feed' % argument
 
 class FacebookHomeAPI(FacebookAPI):
 
-    def access(self, argument):
-        url = 'https://graph.facebook.com/me/home'
-        self.photolist.prepare_cb(url)
+    def _set_url(self, argument):
+        self.url = 'https://graph.facebook.com/me/home'
 
 class FacebookAlbumsAPI(FacebookAPI):
 
-    def access(self, argument):
-        url = 'https://graph.facebook.com/%s/albums' % argument
-        self._access_url(url)
+    def _set_url(self, argument):
+        self.url = 'https://graph.facebook.com/%s/albums' % argument
 
-    def _access_url(self, url):
+    def access(self):
         if self.albums:
             self._select_album()
         else:
-            print url
-            url += self.photolist._get_access_token()
+            url = self.url + self.photolist._get_access_token()
             urlget = UrlGetWithAutoProxy(url)
             d = urlget.getPage(url)
             d.addCallback(self._get_albumlist_cb)
@@ -93,13 +96,12 @@ class FacebookAlbumsAPI(FacebookAPI):
     def update(self, photo):
         self.photolist.photos.remove(photo)
         if not self.photolist.photos:
-            self.access(self.photolist.argument)
+            self.access()
 
 class FacebookHomeAlbumAPI(FacebookAlbumsAPI):
 
-    def access(self, argument):
-        url = 'https://graph.facebook.com/me/home'
-        self._access_url(url)
+    def _set_url(self, argument):
+        self.url = 'https://graph.facebook.com/me/home'
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
@@ -118,3 +120,6 @@ class FacebookHomeAlbumAPI(FacebookAlbumsAPI):
 
         print self.albums
         self._select_album()
+
+class FacebookWallAlbumAPI(FacebookWallAPI, FacebookHomeAlbumAPI):
+    pass
