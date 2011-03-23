@@ -46,7 +46,7 @@ class FacebookPhotoList(base.PhotoList):
 
     def prepare(self):
         if self.api:
-            self.api.access(self.argument)
+            self.api.access()
 
     def prepare_cb(self, url):
         url += self._get_access_token()
@@ -119,6 +119,7 @@ class PhotoSourceOptionsFacebookUI(PhotoSourceOptionsDirUI):
     def _set_ui_text(self):
         self.label_text = _('_Include other photos in the same album')
         self.option_key = 'album'
+        self.checkbutton_default = False
 
 class FacebookIcon(WebIconImage):
 

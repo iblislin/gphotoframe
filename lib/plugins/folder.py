@@ -144,9 +144,10 @@ class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
     def _set_ui_text(self):
         self.label_text = _('_Include subfolders')
         self.option_key = 'subfolders'
+        self.checkbutton_default = True
 
     def _set_default(self):
-        state = self.options.get(self.option_key, True)
+        state = self.options.get(self.option_key, self.checkbutton_default)
         self.checkbutton.set_label(self.label_text)
         self.checkbutton.set_active(state)
 
