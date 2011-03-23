@@ -62,24 +62,27 @@ class FacebookAlbumsAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/%s/albums' % argument
 
     def access(self):
-        if self.albums:
-            self._select_album()
-        else:
-            print self.url
-            url = self.url + self.photolist._get_access_token()
-            urlget = UrlGetWithAutoProxy(url)
-            d = urlget.getPage(url)
-            d.addCallback(self._get_albumlist_cb)
-            d.addErrback(urlget.catch_error)
+        print self.url
+        url = self.url + self.photolist._get_access_token()
+        urlget = UrlGetWithAutoProxy(url)
+        d = urlget.getPage(url)
+        d.addCallback(self._get_albumlist_cb)
+        d.addErrback(urlget.catch_error)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
+        self.total_photo_nums = 0
 
+        # print d
         for entry in d['data']:
-            self.albums[ int(entry['id']) ] = entry.get('name')
+            count = entry.get('count')
+            if count:
+                self.albums[ int(entry['id']) ] = entry.get('name')
+                self.total_photo_nums += count
+        print self.albums, self.total_photo_nums
         self._select_album()
 
-    def _select_album(self):
+    def _select_album(self, update=False):
         if self.albums:
             album_id = random.choice(self.albums.keys())
             self.album_name = self.albums.get(album_id)
@@ -88,6 +91,8 @@ class FacebookAlbumsAPI(FacebookAPI):
             url = 'https://graph.facebook.com/%s/photos' % album_id
             self.photolist.prepare_cb(url)
             del self.albums[album_id]
+        elif update:
+            self.access()
 
     def get_album_name(self):
         return self.album_name
@@ -95,7 +100,7 @@ class FacebookAlbumsAPI(FacebookAPI):
     def update(self, photo):
         self.photolist.photos.remove(photo)
         if not self.photolist.photos:
-            self.access()
+            self._select_album(update=True)
 
 class FacebookHomeAPI(FacebookAPI):
 
