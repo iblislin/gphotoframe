@@ -9,6 +9,8 @@ import json
 import random
 from gettext import gettext as _
 
+import glib
+
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
 
 
@@ -35,7 +37,6 @@ class FacebookAPI(object):
         self.photolist = photolist
         self.albums = {}
         self._set_url(photolist.argument)
-        self.interval = True
 
     def access(self):
         self.photolist.prepare_cb(self.url)
@@ -46,23 +47,12 @@ class FacebookAPI(object):
     def get_interval(self):
         return 60
 
-    def update(self, photo):
-        pass
-
-    def get_album_name(self):
-        pass
-
 class FacebookAlbumsAPI(FacebookAPI):
-
-    def __init__(self, photolist):
-        super(FacebookAlbumsAPI, self).__init__(photolist)
-        self.interval = False
 
     def _set_url(self, argument):
         self.url = 'https://graph.facebook.com/%s/albums' % argument
 
     def access(self):
-        print self.url
         url = self.url + self.photolist._get_access_token()
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
@@ -71,36 +61,26 @@ class FacebookAlbumsAPI(FacebookAPI):
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
-        self.total_photo_nums = 0
+        total_photo_nums = 0
 
         # print d
         for entry in d['data']:
             count = entry.get('count')
             if count:
                 self.albums[ int(entry['id']) ] = entry.get('name')
-                self.total_photo_nums += count
-        print self.albums, self.total_photo_nums
-        self._select_album()
+                total_photo_nums += count
+                print entry['id'], entry.get('name'), count
 
-    def _select_album(self, update=False):
-        if self.albums:
-            album_id = random.choice(self.albums.keys())
-            self.album_name = self.albums.get(album_id)
-            # print album_id, self.album_name
+        self._get_all_albums()
 
-            url = 'https://graph.facebook.com/%s/photos' % album_id
-            self.photolist.prepare_cb(url)
-            del self.albums[album_id]
-        elif update:
-            self.access()
-
-    def get_album_name(self):
-        return self.album_name
-
-    def update(self, photo):
-        self.photolist.photos.remove(photo)
-        if not self.photolist.photos:
-            self._select_album(update=True)
+    def _get_all_albums(self, update=False):
+        n = 0
+        for i, album in enumerate(self.albums.items()):
+            id, name = album
+            url = 'https://graph.facebook.com/%s/photos' % id
+            glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
+            n += 1
+        print n
 
 class FacebookHomeAPI(FacebookAPI):
 
@@ -128,7 +108,7 @@ class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
             self.albums[ int(aid) ] = entry.get('name')
 
         # print self.albums
-        self._select_album()
+        self._get_all_albums()
 
 class FacebookWallAPI(FacebookAPI):
 
