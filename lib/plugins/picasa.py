@@ -183,9 +183,11 @@ class PhotoSourcePicasaUI(ui.PhotoSourceUI):
         target = widget.get_active_text()
 
         label, state = self._check_argument_sensitive_for(target)
-
         self._set_argument_sensitive(label=label, state=state)
-        self._set_sensitive_ok_button(self.gui.get_object('entry1'), not state)
+
+        argument_entry = self.gui.get_object('entry1')
+        state = True if argument_entry.get_text() else not state
+        self._set_sensitive_ok_button(argument_entry, state)
 
     def _check_argument_sensitive_for(self, target):
         all_label = {_('User'): _('_User:'), _('Community Search'): _('_Keyword:')}
