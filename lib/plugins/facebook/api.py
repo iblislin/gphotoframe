@@ -69,7 +69,7 @@ class FacebookAlbumsAPI(FacebookAPI):
             if count:
                 self.albums[ int(entry['id']) ] = entry.get('name')
                 total_photo_nums += count
-                print entry['id'], entry.get('name'), count
+                # print entry['id'], entry.get('name'), count
 
         self._get_all_albums()
 
@@ -80,7 +80,7 @@ class FacebookAlbumsAPI(FacebookAPI):
             url = 'https://graph.facebook.com/%s/photos' % id
             glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
             n += 1
-        print n
+        # print n
 
 class FacebookHomeAPI(FacebookAPI):
 
