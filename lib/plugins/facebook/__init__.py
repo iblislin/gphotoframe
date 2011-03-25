@@ -51,14 +51,14 @@ class FacebookPhotoList(base.PhotoList):
         interval_min = self.api.get_interval()
         self._start_timer(interval_min)
 
-    def prepare_cb(self, url):
+    def prepare_cb(self, url, album_name=None):
         url += self._get_access_token()
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
-        d.addCallback(self._set_photo_cb)
+        d.addCallback(self._set_photo_cb, album_name)
         d.addErrback(urlget.catch_error)
 
-    def _set_photo_cb(self, data):
+    def _set_photo_cb(self, data, album_name):
         d = json.loads(data)
 
         for entry in d['data']:
@@ -66,7 +66,6 @@ class FacebookPhotoList(base.PhotoList):
             if type is not None and type != 'photo':
                 continue
 
-            album_name = self.api.get_album_name()
             url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
 
             data = {'info'       : FacebookPlugin,
@@ -88,10 +87,6 @@ class FacebookPhotoList(base.PhotoList):
 
             photo = base.Photo(data)
             self.photos.append(photo)
-
-    def get_photo(self, cb):
-        super(FacebookPhotoList, self).get_photo(cb)
-        self.api.update(self.photo)
 
     def _get_access_token(self):
         token = self.conf.get_string('plugins/facebook/access_token')

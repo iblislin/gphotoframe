@@ -1,3 +1,7 @@
+2011-03-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* facebook/*: Improved implementation for Album API.
+
 2011-03-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* facebook/api.py: Added FacebookHomeAlbumAPI for a option
