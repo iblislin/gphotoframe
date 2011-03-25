@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-19 22:05+0900\n"
-"PO-Revision-Date: 2011-03-19 22:07+0900\n"
+"POT-Creation-Date: 2011-03-25 12:08+0900\n"
+"PO-Revision-Date: 2011-03-25 12:11+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -463,7 +463,7 @@ msgstr "最新の写真のみ表示する(_L)"
 msgid "_Argument:"
 msgstr "引数(_A):"
 
-#: ../share/gphotoframe.ui.h:15
+#: ../share/gphotoframe.ui.h:15 ../lib/plugins/folder.py:145
 msgid "_Include subfolders"
 msgstr "サブフォルダを含める(_I)"
 
@@ -802,7 +802,7 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:96
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:102
 #: ../lib/plugins/picasa.py:191 ../lib/plugins/tumblr.py:128
 msgid "_User:"
 msgstr "ユーザ(_U):"
@@ -916,25 +916,30 @@ msgstr "期間"
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/facebook/__init__.py:30
+#: ../lib/plugins/facebook/__init__.py:31
 msgid "Social Network Service"
 msgstr "ソーシャル・ネットワーク・サービス"
 
-#: ../lib/plugins/facebook/__init__.py:96
-#: ../lib/plugins/facebook/__init__.py:102 ../lib/plugins/facebook/api.py:18
+#: ../lib/plugins/facebook/__init__.py:102
+#: ../lib/plugins/facebook/__init__.py:108 ../lib/plugins/facebook/api.py:21
 msgid "Wall"
 msgstr "ウォール"
 
-#: ../lib/plugins/facebook/__init__.py:96
-#: ../lib/plugins/facebook/__init__.py:102 ../lib/plugins/facebook/api.py:17
+#: ../lib/plugins/facebook/__init__.py:102
+#: ../lib/plugins/facebook/__init__.py:108
+#: ../lib/plugins/facebook/__init__.py:117 ../lib/plugins/facebook/api.py:20
 msgid "Albums"
 msgstr "アルバム"
 
-#: ../lib/plugins/facebook/__init__.py:98
-#: ../lib/plugins/facebook/__init__.py:102
-#: ../lib/plugins/facebook/__init__.py:104 ../lib/plugins/facebook/api.py:19
+#: ../lib/plugins/facebook/__init__.py:104
+#: ../lib/plugins/facebook/__init__.py:108
+#: ../lib/plugins/facebook/__init__.py:110 ../lib/plugins/facebook/api.py:22
 msgid "News Feed"
 msgstr "ニュースフィード"
+
+#: ../lib/plugins/facebook/__init__.py:126
+msgid "_Include other photos in the same album"
+msgstr "同じアルバムのすべての写真を表示する(_I)"
 
 #: ../lib/plugins/facebook/authdialog.py:45
 #, python-format
