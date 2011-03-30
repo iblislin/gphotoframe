@@ -266,6 +266,42 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/interval_default</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/interval_default</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>Default API reload interval minutes</short>
+        <long>Default API reload interval minutes</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/interval_newsfeed</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/interval_newsfeed</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>API reload interval minutes for News Feed</short>
+        <long>API reload interval minutes for News Feed</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/interval_wall</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/interval_wall</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>45</default>
+      <locale name="C">
+        <short>API reload interval minutes for Wall</short>
+        <long>API reload interval minutes for Wall</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/flickr/interval</key>
       <applyto>/apps/gphotoframe/plugins/flickr/interval</applyto>
       <owner>gphotoframe</owner>
