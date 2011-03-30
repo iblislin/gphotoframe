@@ -12,6 +12,7 @@ from gettext import gettext as _
 import glib
 
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.config import GConf
 
 
 class FacebookAPIfactory(object):
@@ -36,6 +37,7 @@ class FacebookAPI(object):
     def __init__(self, photolist):
         self.photolist = photolist
         self.albums = {}
+        self.conf = GConf()
         self._set_url(photolist.argument)
 
     def access(self):
@@ -45,7 +47,7 @@ class FacebookAPI(object):
         pass
 
     def get_interval(self):
-        return 60
+        return self.conf.get_int('plugins/facebook/interval_default', 60)
 
 class FacebookAlbumsAPI(FacebookAPI):
 
@@ -88,7 +90,7 @@ class FacebookHomeAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/me/home'
 
     def get_interval(self):
-        return 30
+        return self.conf.get_int('plugins/facebook/interval_newsfeed', 30)
 
 class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
 
@@ -116,7 +118,7 @@ class FacebookWallAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/%s/feed' % argument
 
     def get_interval(self):
-        return 45
+        return self.conf.get_int('plugins/facebook/interval_wall', 45)
 
 class FacebookWallAlbumAPI(FacebookWallAPI, FacebookHomeAlbumAPI):
     pass
