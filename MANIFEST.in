@@ -3,6 +3,7 @@ include COPYING
 include GPL
 include gphotoframe-screensaver
 recursive-include share/ *.ui *.in *.png *.svg
+recursive-include share/extra *.py
 recursive-include share/history *.html *.css *.js
 recursive-include po/ *.in *.po
 recursive-include help/ *.in *.py *.po *.png *.xcf
