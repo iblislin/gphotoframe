@@ -1,3 +1,7 @@
+2011-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.3-b2 release.
+
 2011-03-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* facebook/*: Improved implementation for Album API.
