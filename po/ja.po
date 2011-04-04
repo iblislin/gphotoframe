@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-31 00:07+0900\n"
-"PO-Revision-Date: 2011-03-31 00:08+0900\n"
+"PO-Revision-Date: 2011-04-04 09:19+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -1026,7 +1026,7 @@ msgstr "ダッシュボード"
 
 #: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:135
 msgid "Likes"
-msgstr "スキな投稿"
+msgstr "スキ"
 
 #: ../lib/plugins/tumblr.py:65
 #, python-format
