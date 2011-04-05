@@ -140,6 +140,10 @@ class Photo(dict):
         else:
             return True
 
+    def is_local_file(self):
+        url = urlparse(self['url'])
+        return url.scheme == 'file'
+
     def fav(self, new_rate):
         if self.get('fav'):
             fav_obj = self['fav']
