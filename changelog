@@ -1,6 +1,6 @@
 2011-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* actor/share.py: Added a 'share' icon.
+	* actor/share.py: Added support for 'Share'.
 
 2011-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

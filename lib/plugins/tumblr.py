@@ -157,6 +157,53 @@ class TumblrFav(FlickrFav):
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
 
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
+
+class TumblrShare(object):
+
+    def __init__(self, photo):
+        self.photo = photo
+        self.conf = GConf()
+
+    def add(self):
+        self.username = self.conf.get_string('plugins/tumblr/user_id')
+        if self.username:
+            key = Keyring('Tumblr', protocol='http')
+            key.get_passwd_async(self.username, self._auth_cb)
+
+    def _auth_cb(self, identity):
+        if identity:
+            email = identity[0]
+            password = identity[1]
+        else:
+            return
+
+        photo = self.photo
+        url = photo.get('url_o') or photo.get('url_l') or photo.get('url')
+        page_url = photo.get('page_url') or url
+        title = photo.get('title')
+        author = photo.get('owner_name')
+
+        caption = '%s (by <a href="%s">%s</a>)' % (title, page_url, author) 
+
+        values = {
+            'email': email,
+            'password': password,
+            'type' : 'photo',
+
+            'source': url,
+            'caption': caption,
+            'click-through-url': page_url,
+            }
+
+        url = "http://www.tumblr.com/api/write"
+        content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
+
+        client = UrlGetWithAutoProxy(url)
+        d = client.getPage(url, method='POST',
+                           postdata = urllib.urlencode(values),
+                           headers = content_type )
+
 class TumblrIcon(WebIconImage):
 
     def __init__(self):
