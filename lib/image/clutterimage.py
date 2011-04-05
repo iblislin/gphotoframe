@@ -35,8 +35,9 @@ class PhotoImageClutter(PhotoImage):
                  info.ActorInfoIcon(self.stage, self.tooltip),
                  trash.ActorTrashIcon(self.stage, self.tooltip),
                  trash.ActorRemoveCatalogIcon(self.stage, self.tooltip),
+                 favicon.ActorFavIcon(self.stage, self.tooltip), 
                  share.ActorShareIcon(self.stage, self.tooltip),
-                 favicon.ActorFavIcon(self.stage, self.tooltip), ]
+                 ]
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
