@@ -16,6 +16,7 @@ from flickr import FlickrFav
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
+from ..utils.urlgetautoproxy import urlpost_with_autoproxy
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -157,8 +158,6 @@ class TumblrFav(FlickrFav):
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
 
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
-
 class TumblrShare(object):
 
     def __init__(self, photo):
@@ -197,12 +196,7 @@ class TumblrShare(object):
             }
 
         url = "http://www.tumblr.com/api/write"
-        content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
-
-        client = UrlGetWithAutoProxy(url)
-        d = client.getPage(url, method='POST',
-                           postdata = urllib.urlencode(values),
-                           headers = content_type )
+        urlpost_with_autoproxy(url, values)
 
 class TumblrIcon(WebIconImage):
 
