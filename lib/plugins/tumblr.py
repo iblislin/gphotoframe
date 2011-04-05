@@ -160,20 +160,16 @@ class TumblrFav(FlickrFav):
 
 class TumblrShare(object):
 
-    def __init__(self, photo):
+    def add(self, photo):
         self.photo = photo
-        self.conf = GConf()
-
-    def add(self):
-        self.username = self.conf.get_string('plugins/tumblr/user_id')
-        if self.username:
+        username = GConf().get_string('plugins/tumblr/user_id')
+        if username:
             key = Keyring('Tumblr', protocol='http')
-            key.get_passwd_async(self.username, self._auth_cb)
+            key.get_passwd_async(username, self._auth_cb)
 
     def _auth_cb(self, identity):
         if identity:
-            email = identity[0]
-            password = identity[1]
+            email, password = identity
         else:
             return
 

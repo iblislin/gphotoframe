@@ -41,8 +41,7 @@ class ActorFavIcon(ActorIcon):
     def set_icon(self, photoimage, x_offset, y_offset):
         # dupricate ActorInfoIcon
         photo = photoimage.photo
-        self.icon_offset = -22 if photo and not photo.is_local_file() \
-            else 0
+        self.icon_offset = -22 if photo and photo.can_share() else 0
         super(ActorFavIcon, self).set_icon(photoimage, x_offset, y_offset)
 
         if self._is_hidden():
