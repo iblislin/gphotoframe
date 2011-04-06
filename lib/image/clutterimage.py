@@ -30,14 +30,15 @@ class PhotoImageClutter(PhotoImage):
         self.trash_actors = self.actors[3:5]
 
     def _get_actors(self):
-        return [ source.ActorSourceIcon(self.stage, self.tooltip),
-                 info.ActorGeoIcon(self.stage, self.tooltip),
-                 info.ActorInfoIcon(self.stage, self.tooltip),
-                 trash.ActorTrashIcon(self.stage, self.tooltip),
-                 trash.ActorRemoveCatalogIcon(self.stage, self.tooltip),
-                 favicon.ActorFavIcon(self.stage, self.tooltip), 
-                 share.ActorShareIcon(self.stage, self.tooltip),
-                 ]
+        actor_class = [ source.ActorSourceIcon,
+                        info.ActorGeoIcon,
+                        info.ActorInfoIcon,
+                        trash.ActorTrashIcon,
+                        trash.ActorRemoveCatalogIcon,
+                        favicon.ActorFavIcon,
+                        share.ActorShareIcon, ]
+
+        return  [cls(self.stage, self.tooltip) for cls in actor_class]
 
     def _get_border_color(self):
         return self.conf.get_string('border_color') or '#edeceb'
