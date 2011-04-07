@@ -1,3 +1,7 @@
+2011-04-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/base.py (IconTexture): Fixed actor reactives.
+	
 2011-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actor/share.py: Added a confirmation dialog.
