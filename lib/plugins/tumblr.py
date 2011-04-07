@@ -119,7 +119,7 @@ class TumblrPhotoList(base.PhotoList):
                             'password'  : self.password,
                             'post-id'   : post.attrib['id'],
                             'reblog-key': post.attrib['reblog-key']}
-                data['fav'] = TumblrFav(self.target == 'Likes', like_arg)
+                data['fav'] = TumblrFav(post.attrib.get('liked'), like_arg)
 
             photo = base.Photo(data)
             self.photos.append(photo)
