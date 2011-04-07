@@ -75,6 +75,7 @@ class TumblrPhotoList(base.PhotoList):
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
         re_nl = re.compile('\n+')
+        my_tumblelog = self.conf.get_string('plugins/tumblr/user_name')
 
         if self.target == _('User'):
             meta = tree.find('tumblelog')
@@ -113,7 +114,7 @@ class TumblrPhotoList(base.PhotoList):
             if url_m != url_l:
                 data['url_l'] = url_l
 
-            if hasattr(self, 'email'):
+            if hasattr(self, 'email') and my_tumblelog != owner:
                 like_arg = {'email'     : self.email,
                             'password'  : self.password,
                             'post-id'   : post.attrib['id'],

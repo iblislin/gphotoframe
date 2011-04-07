@@ -1,5 +1,6 @@
 2011-04-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/tumblr.py: Checks user own posts.
 	* preferences/__init__.py: Saves the geometry of preferences
 	  window.
 	* actor/base.py (IconTexture): Fixed actor reactives.
