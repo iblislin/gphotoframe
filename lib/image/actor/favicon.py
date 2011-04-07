@@ -8,15 +8,15 @@ class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, tooltip, num=5):
         super(ActorFavIcon, self).__init__()
-        self.icon = [ IconTexture(stage) for i in xrange(num)]
+        self._sub_icons = [ IconTexture(stage) for i in xrange(num)]
 
-        for num, icon in enumerate(self.icon):
+        for num, icon in enumerate(self._sub_icons):
             icon.number = num
             icon.connect('enter-event', self._enter_cb, tooltip)
             icon.connect('leave-event', self._leave_cb, tooltip)
             icon.connect('button-press-event', self._button_press_event_cb)
 
-    def show(self, force=False):
+    def show(self, is_force=False):
         if self._is_hidden():
             return
 
@@ -29,13 +29,13 @@ class ActorFavIcon(ActorIcon):
             num = 1
 
         for i in xrange(num):
-            self.icon[i].show()
+            self._sub_icons[i].show()
 
-    def hide(self, force=False):
-        mouse_on = self.photoimage.check_mouse_on_window() \
+    def hide(self, is_force=False):
+        is_mouse_on = self.photoimage.check_mouse_on_window() \
             if hasattr(self, 'photoimage') else False
-        if (self.show_always or mouse_on) and not force : return
-        for icon in self.icon:
+        if (self.is_shown_always or is_mouse_on) and not is_force : return
+        for icon in self._sub_icons:
             icon.hide()
 
     def set_icon(self, photoimage, x_offset, y_offset):
@@ -60,16 +60,16 @@ class ActorFavIcon(ActorIcon):
     def _change_icon(self):
         direction = -1 if 0 < self.position < 3 else 1
 
-        for i, icon in enumerate(self.icon):
+        for i, icon in enumerate(self._sub_icons):
             state = self.photo['fav'].fav <= i
             pixbuf = self.icon_image.get_pixbuf(state)
             space = int(pixbuf.get_width() * 1.3)
             icon.change(pixbuf, self.x + i * direction * space, self.y)
 
-            mouse_on = self.photoimage.check_mouse_on_window()
+            is_mouse_on = self.photoimage.check_mouse_on_window()
             if type(self.photo['fav'].fav) is bool and i > 0:
                 icon.hide()
-            elif self.show_always or mouse_on:
+            elif self.is_shown_always or is_mouse_on:
                 icon.show()
 
     def _get_ui_data(self):

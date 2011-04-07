@@ -15,11 +15,11 @@ class ActorGeoIcon(ActorSourceIcon):
         super(ActorGeoIcon, self).__init__(stage, tooltip)
         self.geo = GeoCoderFactory().create(self._enter_cb, tooltip)
 
-    def show(self, force=False):
+    def show(self, is_force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
 
         if self._check_photo():
-            super(ActorGeoIcon, self).show(force)
+            super(ActorGeoIcon, self).show(is_force)
         else:
             super(ActorGeoIcon, self).hide(True)
 
