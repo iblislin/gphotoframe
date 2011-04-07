@@ -49,22 +49,22 @@ class IconTexture(Texture):
     def __init__(self, stage):
         super(IconTexture, self).__init__(stage)
         self.conf = GConf()
-        self.animation = self.conf.get_bool('ui/animate_icons', True)
+        self.has_animation = self.conf.get_bool('ui/animate_icons', True)
 
-        if self.animation:
+        if self.has_animation:
             self.set_opacity(0)
 
     def show(self):
         super(IconTexture, self).show()
         super(IconTexture, self).set_reactive(True)
 
-        if self.animation and not self.get_opacity():
+        if self.has_animation and not self.get_opacity():
             self.timeline.fade_in()
 
     def hide(self):
         super(IconTexture, self).set_reactive(False)
 
-        if not self.animation:
+        if not self.has_animation:
             super(IconTexture, self).hide()
         elif self.get_opacity():
             self.timeline.fade_out()
@@ -113,15 +113,15 @@ class ActorIcon(object):
         always_key = 'ui/%s/always_show' % ui
         position_key = 'ui/%s/position' % ui
 
-        self.show_always = self.conf.get_bool(always_key, state)
+        self.is_shown_always = self.conf.get_bool(always_key, state)
         self.position = self.conf.get_int(position_key, position)
 
         self.conf.set_notify_add(always_key, self._change_ui_always_show_cb)
         self.conf.set_notify_add(position_key, self._change_ui_position_cb)
 
     def _change_ui_always_show_cb(self, client, id, entry, data):
-        self.show_always = entry.value.get_bool()
-        self.show() if self.show_always else self.hide()
+        self.is_shown_always = entry.value.get_bool()
+        self.show() if self.is_shown_always else self.hide()
 
     def _change_ui_position_cb(self, client, id, entry, data):
         self.position = entry.value.get_int()

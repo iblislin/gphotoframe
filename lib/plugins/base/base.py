@@ -165,10 +165,10 @@ class Photo(dict):
         return False
 
     def get_title(self):
-        with_suffix = self.conf.get_bool('format/show_filename_suffix', True)
+        has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
         title = self['title'] or ''
 
-        if not with_suffix:
+        if not has_suffix:
             re_img = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)        
             if re_img.search(title):
                 title, suffix = os.path.splitext(title)
