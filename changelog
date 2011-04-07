@@ -1,5 +1,7 @@
 2011-04-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences/__init__.py: Saves the geometry of preferences
+	  window.
 	* actor/base.py (IconTexture): Fixed actor reactives.
 	
 2011-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
