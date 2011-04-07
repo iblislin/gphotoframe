@@ -56,11 +56,14 @@ class IconTexture(Texture):
 
     def show(self):
         super(IconTexture, self).show()
+        super(IconTexture, self).set_reactive(True)
 
         if self.animation and not self.get_opacity():
             self.timeline.fade_in()
 
     def hide(self):
+        super(IconTexture, self).set_reactive(False)
+
         if not self.animation:
             super(IconTexture, self).hide()
         elif self.get_opacity():
