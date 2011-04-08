@@ -16,7 +16,7 @@ from flickr import FlickrFav
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
-from ..utils.urlgetautoproxy import urlpost_with_autoproxy
+from ..utils.urlgetautoproxy import urlpost_with_autoproxy, UrlGetWithAutoProxy
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -51,6 +51,14 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
     def prepare(self):
         self.photos = []
         super(TumblrPhotoList, self).access()
+
+        # only in v.1.4
+        userid = self.conf.get_string('plugins/tumblr/user_id')
+        username = self.conf.get_string('plugins/tumblr/user_name')
+        if userid and not username:
+            print "yes"
+            auth = TumblrAuthenticate()
+            auth.access()
 
     def _auth_cb(self, identity):
         if identity:
@@ -162,7 +170,8 @@ class PluginTumblrDialog(PluginPicasaDialog):
 
     def _update_auth_status(self, email, password):
         super(PluginTumblrDialog, self)._update_auth_status(email, password)
-        print email, password
+        auth = TumblrAuthenticate()
+        auth.access()
 
 class TumblrFav(FlickrFav):
 
@@ -203,6 +212,33 @@ class TumblrShare(TumblrAccessBase):
 
         url = "http://www.tumblr.com/api/write"
         urlpost_with_autoproxy(url, values)
+
+class TumblrAuthenticate(TumblrAccessBase):
+
+    def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+        else:
+            return
+
+        url = "http://www.tumblr.com/api/authenticate?"
+        values = {'email': email, 'password': password}
+        self._url_get(url, values)
+
+    def _url_get(self, url, values):
+        url += urllib.urlencode(values)
+        urlget = UrlGetWithAutoProxy(url)
+        d = urlget.getPage(url)
+        d.addCallback(self._access_cb)
+        d.addErrback(urlget.catch_error)
+
+    def _access_cb(self, data):
+        tree = etree.fromstring(data)
+
+        for tumblelog in tree.findall('tumblelog'):
+            if tumblelog.attrib.get('is-primary'):
+                name = tumblelog.attrib.get('name')
+                GConf().set_string('plugins/tumblr/user_name', name)
 
 class TumblrIcon(WebIconImage):
 
