@@ -54,7 +54,7 @@ class TumblrPhotoList(base.PhotoList):
             print _("Certification Error")
             return
 
-        values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
+        values = {'type': 'photo', 'filter': 'text', 'num': 50}
 
         if self.target == _('User'):
             url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
@@ -135,7 +135,7 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
         return label, state
 
     def _label(self):
-        if GConf().get_string('plugins/tumblr/user_id'):
+        if self.conf.get_string('plugins/tumblr/user_id'):
             label = [_('Dashboard'), _('Likes'), _('User')]
         else:
             label = [_('User')]
@@ -153,6 +153,10 @@ class PluginTumblrDialog(PluginPicasaDialog):
         super(PluginTumblrDialog, self)._set_ui()
         user_label = self.gui.get_object('label_auth1')
         user_label.set_text_with_mnemonic(_('_E-mail:'))
+
+    def _update_auth_status(self, email, password):
+        super(PluginTumblrDialog, self)._update_auth_status(email, password)
+        print email, password
 
 class TumblrFav(FlickrFav):
 

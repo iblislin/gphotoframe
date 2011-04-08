@@ -224,8 +224,6 @@ class PluginPicasaDialog(ui.PluginDialog):
         else:
             self.dialog.destroy()
 
-        self._update_auth_status() # in plugin treeview
-
     def _write_conf(self):
         user_id = self.entry3.get_text()
         self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
@@ -235,6 +233,8 @@ class PluginPicasaDialog(ui.PluginDialog):
             self.key.set_passwd_async(user_id, new_passwd, self._destroy_cb)
         else:
             self._destroy_cb()
+
+        self._update_auth_status(user_id, new_passwd) # in plugin treeview
 
     def _destroy_cb(self, *args):
         self.dialog.destroy()
