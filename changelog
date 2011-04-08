@@ -1,3 +1,7 @@
+2011-04-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/tumblr.py: Added support for TumblrAuthenticate.
+
 2011-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* po/it.po: Updated Italian translation.  Thanks Cristian Marchi!
@@ -5,8 +9,7 @@
 2011-04-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/tumblr.py: Checks user own posts.
-	* preferences/__init__.py: Saves the geometry of preferences
-	  window.
+	* preferences/__init__.py: Saves the geometry of preferences window.
 	* actor/base.py (IconTexture): Fixed actor reactives.
 
 2011-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
