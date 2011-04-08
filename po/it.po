@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-08 11:50+0900\n"
+"POT-Creation-Date: 2011-04-08 12:00+0900\n"
 "PO-Revision-Date: 2011-04-07 20:45+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: italian <cri.penta@gmail.com>\n"
@@ -673,16 +673,16 @@ msgid "%s Plugin"
 msgstr "Plugin \"%s\""
 
 # tooltip
-#: ../lib/image/actor/favicon.py:86
+#: ../lib/image/actor/favicon.py:89
 msgid "Add to faves"
 msgstr "Aggiunge la foto alle favorite"
 
 # tooltip
-#: ../lib/image/actor/favicon.py:87
+#: ../lib/image/actor/favicon.py:90
 msgid "Remove from faves"
 msgstr "Rimuove dalle favorite"
 
-#: ../lib/image/actor/favicon.py:87
+#: ../lib/image/actor/favicon.py:90
 msgid "Rate this photo"
 msgstr "Vota questa foto"
 
@@ -703,6 +703,18 @@ msgstr "Caricamento..."
 #: ../lib/image/actor/source.py:54
 msgid "Open this photo"
 msgstr "Apre questa foto"
+
+#: ../lib/image/actor/share.py:22
+msgid "Share on Tumblr"
+msgstr "Condividi su Tumblr"
+
+#: ../lib/image/actor/share.py:27
+msgid "Share this photo on Tumblr?"
+msgstr "Condividere questa foto su Tumblr?"
+
+#: ../lib/image/actor/share.py:28
+msgid "This photo will be shared on Tumblr."
+msgstr "Questa foto verrà condivisa su Tumblr."
 
 #: ../lib/image/actor/trash.py:33
 msgid "Move to trash"
@@ -813,7 +825,7 @@ msgstr "Favorite"
 msgid "Group Pool"
 msgstr "Pool di un gruppo"
 
-#: ../lib/plugins/flickr/api.py:18
+#: ../lib/plugins/flickr/api.py:18 ../lib/defaultsource.py:26
 msgid "Interestingness"
 msgstr "Interessanti"
 
@@ -835,7 +847,7 @@ msgstr "I propri gruppi"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
 #: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/picasa.py:193 ../lib/plugins/tumblr.py:128
+#: ../lib/plugins/picasa.py:187 ../lib/plugins/tumblr.py:132
 msgid "_User:"
 msgstr "_Utente:"
 
@@ -1005,58 +1017,57 @@ msgstr ""
 msgid "Picasa Web"
 msgstr "Picasa Web"
 
-#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr.py:53
+#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr.py:54
 msgid "Certification Error"
 msgstr "Errore di certificazione"
 
-#: ../lib/plugins/picasa.py:151
+#: ../lib/plugins/picasa.py:145
 msgid "Album"
 msgstr "Album"
 
-#: ../lib/plugins/picasa.py:152 ../lib/plugins/picasa.py:193
-#: ../lib/plugins/picasa.py:199
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:187
+#: ../lib/plugins/picasa.py:193
 msgid "Community Search"
 msgstr "Ricerca comunitaria"
 
-#: ../lib/plugins/picasa.py:153 ../lib/plugins/picasa.py:195
-#: ../lib/plugins/picasa.py:199
+#: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:189
+#: ../lib/plugins/picasa.py:193
 msgid "Featured"
 msgstr "In primo piano"
 
-#: ../lib/plugins/picasa.py:154 ../lib/plugins/picasa.py:160
-#: ../lib/plugins/picasa.py:193 ../lib/plugins/picasa.py:199
-#: ../lib/plugins/tumblr.py:52 ../lib/plugins/tumblr.py:58
-#: ../lib/plugins/tumblr.py:78 ../lib/plugins/tumblr.py:98
-#: ../lib/plugins/tumblr.py:128 ../lib/plugins/tumblr.py:130
-#: ../lib/plugins/tumblr.py:135 ../lib/plugins/tumblr.py:137
+#: ../lib/plugins/picasa.py:148 ../lib/plugins/picasa.py:154
+#: ../lib/plugins/picasa.py:187 ../lib/plugins/picasa.py:193
+#: ../lib/plugins/tumblr.py:53 ../lib/plugins/tumblr.py:59
+#: ../lib/plugins/tumblr.py:80 ../lib/plugins/tumblr.py:100
+#: ../lib/plugins/tumblr.py:132 ../lib/plugins/tumblr.py:134
+#: ../lib/plugins/tumblr.py:139 ../lib/plugins/tumblr.py:141
 msgid "User"
 msgstr "Utente"
 
-#: ../lib/plugins/picasa.py:193
+#: ../lib/plugins/picasa.py:187
 msgid "_Keyword:"
 msgstr "_Parola chiave:"
 
-#: ../lib/plugins/tumblr.py:30
+#: ../lib/plugins/tumblr.py:31
 msgid "Share Anything"
 msgstr "Condividi qualsiasi cosa"
 
 #. user_id
-#: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:61
-#: ../lib/plugins/tumblr.py:135
+#: ../lib/plugins/tumblr.py:61 ../lib/plugins/tumblr.py:62
+#: ../lib/plugins/tumblr.py:139
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: ../lib/plugins/tumblr.py:60 ../lib/plugins/tumblr.py:120
-#: ../lib/plugins/tumblr.py:135
+#: ../lib/plugins/tumblr.py:61 ../lib/plugins/tumblr.py:139
 msgid "Likes"
 msgstr "Mi piace"
 
-#: ../lib/plugins/tumblr.py:65
+#: ../lib/plugins/tumblr.py:66
 #, python-format
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Errore di Tumbler: obiettivo non valido, %s"
 
-#: ../lib/plugins/tumblr.py:151
+#: ../lib/plugins/tumblr.py:155
 msgid "_E-mail:"
 msgstr "_E-mail:"
 
@@ -1081,7 +1092,7 @@ msgstr "Orologi in rovina"
 msgid "Haikyo Clock"
 msgstr "Orologio Haikyo"
 
-#: ../lib/plugins/folder.py:26
+#: ../lib/plugins/folder.py:26 ../lib/defaultsource.py:27
 msgid "Folder"
 msgstr "Cartella"
 
@@ -1112,15 +1123,6 @@ msgstr ""
 #: ../lib/plugins/shotwell.py:141
 msgid "_Description:"
 msgstr "_Descrizione"
-
-#~ msgid "Share on Tumblr"
-#~ msgstr "Condividi su Tumblr"
-
-#~ msgid "Share this photo on Tumblr?"
-#~ msgstr "Condividere questa foto su Tumblr?"
-
-#~ msgid "This photo will be shared on Tumblr."
-#~ msgstr "Questa foto verrà condivisa su Tumblr."
 
 #~ msgid "Enable ban icon"
 #~ msgstr "Abilita l'icona di esclusione"
