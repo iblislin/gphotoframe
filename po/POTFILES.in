@@ -11,6 +11,7 @@ lib/preferences/plugin.py
 lib/image/actor/favicon.py
 lib/image/actor/info.py
 lib/image/actor/source.py
+lib/image/actor/share.py
 lib/image/actor/trash.py
 lib/image/tooltip.py
 lib/plugins/base/base.py
@@ -31,3 +32,4 @@ lib/plugins/rss.py
 lib/plugins/haikyo.py
 lib/plugins/folder.py
 lib/plugins/shotwell.py
+lib/defaultsource.py

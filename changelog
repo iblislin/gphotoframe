@@ -2,6 +2,21 @@
 
 	* po/it.po: Updated Italian translation.  Thanks Cristian Marchi!
 
+2011-04-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/tumblr.py: Checks user own posts.
+	* preferences/__init__.py: Saves the geometry of preferences
+	  window.
+	* actor/base.py (IconTexture): Fixed actor reactives.
+
+2011-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/share.py: Added a confirmation dialog.
+
+2011-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/share.py: Added support for 'Share'.
+
 2011-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.3-b2 release.
