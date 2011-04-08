@@ -33,20 +33,26 @@ class TumblrPlugin(base.PluginBase):
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-class TumblrPhotoList(base.PhotoList):
+class TumblrAccessBase(object):
 
-    def prepare(self):
-        self.photos = []
-
-        self.username = self.conf.get_string('plugins/tumblr/user_id')
-        if self.username:
+    def access(self):
+        username = GConf().get_string('plugins/tumblr/user_id')
+        if username:
             key = Keyring('Tumblr', protocol='http')
-            key.get_passwd_async(self.username, self._auth_cb)
+            key.get_passwd_async(username, self._auth_cb)
         else:
             self._auth_cb(None)
 
     def _auth_cb(self, identity):
+        pass
 
+class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
+
+    def prepare(self):
+        self.photos = []
+        super(TumblrPhotoList, self).access()
+
+    def _auth_cb(self, identity):
         if identity:
             self.email = identity[0]
             self.password = identity[1]
@@ -165,14 +171,11 @@ class TumblrFav(FlickrFav):
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
 
-class TumblrShare(object):
+class TumblrShare(TumblrAccessBase):
 
     def add(self, photo):
         self.photo = photo
-        username = GConf().get_string('plugins/tumblr/user_id')
-        if username:
-            key = Keyring('Tumblr', protocol='http')
-            key.get_passwd_async(username, self._auth_cb)
+        super(TumblrShare, self).access()
 
     def _auth_cb(self, identity):
         if identity:
