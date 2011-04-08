@@ -295,7 +295,6 @@
                 <property name="label" translatable="yes">_User ID:</property>
                 <property name="use_underline">True</property>
                 <property name="mnemonic_widget">entry3</property>
-                <property name="angle">0.040000000000000001</property>
               </object>
               <packing>
                 <property name="x_options">GTK_FILL</property>
