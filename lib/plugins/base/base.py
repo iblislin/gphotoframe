@@ -134,11 +134,20 @@ class Photo(dict):
         gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def can_open(self):
-        url = urlparse(self['url'])
-        if url.scheme == 'file' and not os.path.exists(self['filename']):
+        if self.is_local_file() and not os.path.exists(self['filename']):
             return False
         else:
             return True
+
+    def is_local_file(self):
+        url = urlparse(self['url'])
+        return url.scheme == 'file'
+
+    def can_share(self):
+        return not self.is_local_file() and \
+            self['info']().name != 'Tumblr' and \
+            self.conf.get_string('plugins/tumblr/user_id') and \
+            self.conf.get_bool('plugins/tumblr/can_share', False)
 
     def fav(self, new_rate):
         if self.get('fav'):
@@ -156,10 +165,10 @@ class Photo(dict):
         return False
 
     def get_title(self):
-        with_suffix = self.conf.get_bool('format/show_filename_suffix', True)
+        has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
         title = self['title'] or ''
 
-        if not with_suffix:
+        if not has_suffix:
             re_img = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)        
             if re_img.search(title):
                 title, suffix = os.path.splitext(title)

@@ -16,6 +16,7 @@ from flickr import FlickrFav
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
+from ..utils.urlgetautoproxy import urlpost_with_autoproxy
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -74,6 +75,7 @@ class TumblrPhotoList(base.PhotoList):
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
         re_nl = re.compile('\n+')
+        my_tumblelog = self.conf.get_string('plugins/tumblr/user_name')
 
         if self.target == _('User'):
             meta = tree.find('tumblelog')
@@ -112,12 +114,14 @@ class TumblrPhotoList(base.PhotoList):
             if url_m != url_l:
                 data['url_l'] = url_l
 
-            if hasattr(self, 'email'):
+            if hasattr(self, 'email') and my_tumblelog != owner:
                 like_arg = {'email'     : self.email,
                             'password'  : self.password,
                             'post-id'   : post.attrib['id'],
                             'reblog-key': post.attrib['reblog-key']}
-                data['fav'] = TumblrFav(self.target == _('Likes'), like_arg)
+
+                is_liked = bool(post.attrib.get('liked'))
+                data['fav'] = TumblrFav(is_liked, like_arg)
 
             photo = base.Photo(data)
             self.photos.append(photo)
@@ -156,6 +160,42 @@ class TumblrFav(FlickrFav):
         api = 'unlike' if self.fav else 'like'
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
+
+class TumblrShare(object):
+
+    def add(self, photo):
+        self.photo = photo
+        username = GConf().get_string('plugins/tumblr/user_id')
+        if username:
+            key = Keyring('Tumblr', protocol='http')
+            key.get_passwd_async(username, self._auth_cb)
+
+    def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+        else:
+            return
+
+        photo = self.photo
+        url = photo.get('url_o') or photo.get('url_l') or photo.get('url')
+        page_url = photo.get('page_url') or url
+        title = photo.get('title')
+        author = photo.get('owner_name')
+
+        caption = '%s (by <a href="%s">%s</a>)' % (title, page_url, author) 
+
+        values = {
+            'email': email,
+            'password': password,
+            'type' : 'photo',
+
+            'source': url,
+            'caption': caption,
+            'click-through-url': page_url,
+            }
+
+        url = "http://www.tumblr.com/api/write"
+        urlpost_with_autoproxy(url, values)
 
 class TumblrIcon(WebIconImage):
 

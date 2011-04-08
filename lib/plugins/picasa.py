@@ -12,7 +12,7 @@ import gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ..utils.urlgetautoproxy import UrlGetWithAutoProxy, urlpost_with_autoproxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
@@ -65,14 +65,8 @@ class PicasaPhotoList(base.PhotoList):
                'Passwd' : identity[1],
                'service': 'lh2',
                'source' : source}
-        content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-        client = UrlGetWithAutoProxy(url)
-        d = client.getPage(url, method='POST',
-                           postdata = urllib.urlencode(arg),
-                           headers = content_type)
-        d.addCallback(self._get_feed_cb)
-        d.addErrback(client.catch_error)
+        urlpost_with_autoproxy(url, arg, self._get_feed_cb)
 
     def _get_feed_cb(self, raw_token):
         "Get a Photo Feed from Google with Auth Token."
