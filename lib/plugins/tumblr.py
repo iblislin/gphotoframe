@@ -190,6 +190,12 @@ class TumblrFav(FlickrFav):
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
 
+class TumblrShareFactory(object):
+
+    def create(self, photo):
+        cls = TumblrReblog if photo['info']().name == 'Tumblr' else TumblrShare
+        return cls()
+
 class TumblrShare(TumblrAccessBase):
 
     def add(self, photo):
@@ -222,6 +228,13 @@ class TumblrShare(TumblrAccessBase):
 
         url = "http://www.tumblr.com/api/write"
         urlpost_with_autoproxy(url, values)
+
+    def get_tooltip(self):
+        return _("Share on Tumblr")
+
+    def get_dialog_messages(self):
+        return [ _("Share this photo on Tumblr?"),
+                 _("This photo will be shared on Tumblr.") ]
 
 class TumblrAuthenticate(TumblrAccessBase):
 
@@ -267,6 +280,13 @@ class TumblrReblog(TumblrShare):
                   }
 
         urlpost_with_autoproxy(url, values)
+
+    def get_tooltip(self):
+        return _("Reblog")
+
+    def get_dialog_messages(self):
+        return [ _("Reblog this photo?"),
+                 _("This photo will be rebloged on Tumblr.") ]
 
 class TumblrDelete(TumblrShare):
 

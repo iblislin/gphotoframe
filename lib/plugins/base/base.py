@@ -144,10 +144,13 @@ class Photo(dict):
         return url.scheme == 'file'
 
     def can_share(self):
+        owner = self.get('owner_name')
+        tumblelog = self.conf.get_string('plugins/tumblr/user_name')
+
         return not self.is_local_file() and \
-            self['info']().name != 'Tumblr' and \
             self.conf.get_string('plugins/tumblr/user_id') and \
-            self.conf.get_bool('plugins/tumblr/can_share', False)
+            self.conf.get_bool('plugins/tumblr/can_share', False) and \
+            (owner and owner != tumblelog)
 
     def fav(self, new_rate):
         if self.get('fav'):
