@@ -1,5 +1,5 @@
 from ...utils.iconimage import IconImage
-from ...plugins.tumblr import TumblrShareFactory
+from ...plugins.tumblr.api import TumblrShareFactory
 from trash import ActorTrashIcon, TrashDialog
 
 class ActorShareIcon(ActorTrashIcon):

@@ -10,13 +10,12 @@ from xml.etree import ElementTree as etree
 
 from gettext import gettext as _
 
-from base import *
-from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
-from flickr import FlickrFav
-from ..utils.keyring import Keyring
-from ..utils.iconimage import WebIconImage
-from ..utils.config import GConf
-from ..utils.urlgetautoproxy import urlpost_with_autoproxy, UrlGetWithAutoProxy
+from api import TumblrAccessBase, TumblrDelete, TumblrAuthenticate
+from ui import PhotoSourceTumblrUI, PluginTumblrDialog
+from ..base import *
+from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
+from ..flickr import FlickrFav
+from ...utils.iconimage import WebIconImage
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -40,24 +39,6 @@ class TumblrPlugin(base.PluginBase):
         return None if photo.can_share() else [
             _('Removed this photo from Tumblr?'),
             _('This photo will be removed from Tumblr.') ]
-
-class TumblrAccessBase(object):
-
-    def access(self):
-        username = GConf().get_string('plugins/tumblr/user_id')
-        if username:
-            key = Keyring('Tumblr', protocol='http')
-            key.get_passwd_async(username, self._auth_cb)
-        else:
-            self._auth_cb(None)
-
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-            self.access_with(email, password)
-
-    def access_with(self, email, password):
-        pass
 
 class TumblrPhoto(base.Photo):
 
@@ -186,129 +167,8 @@ class TumblrTrash(trash.Ban):
             api = TumblrDelete()
             api.add(photo)
 
-class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
-
-    def _check_argument_sensitive_for(self, target):
-        all_label = {_('User'): _('_User:')}
-        label = all_label.get(target)
-        state = True if target == _('User') else False
-        return label, state
-
-    def _label(self):
-        if self.conf.get_string('plugins/tumblr/user_id'):
-            label = [_('Dashboard'), _('Likes'), _('User')]
-        else:
-            label = [_('User')]
-
-        return label
-
-class PluginTumblrDialog(PluginPicasaDialog):
-
-    def __init__(self, parent, model_iter=None):
-        super(PluginTumblrDialog, self).__init__(parent, model_iter)
-        self.api = 'tumblr'
-        self.key_server = 'Tumblr'
-
-    def _set_ui(self):
-        super(PluginTumblrDialog, self)._set_ui()
-        user_label = self.gui.get_object('label_auth1')
-        user_label.set_text_with_mnemonic(_('_E-mail:'))
-
-    def _update_auth_status(self, email, password):
-        super(PluginTumblrDialog, self)._update_auth_status(email, password)
-        auth = TumblrAuthenticate()
-        auth.access()
-
 class TumblrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'tumblr.gif'
         self.icon_url = 'http://assets.tumblr.com/images/favicon.gif'
-
-class TumblrShareFactory(object):
-
-    def create(self, photo):
-        cls = TumblrReblog if photo['info']().name == 'Tumblr' else TumblrShare
-        return cls()
-
-class TumblrShare(TumblrAccessBase):
-
-    def add(self, photo):
-        self.photo = photo
-        super(TumblrShare, self).access()
-
-    def access_with(self, email, password):
-        photo = self.photo
-        url = photo.get('url_o') or photo.get('url_l') or photo.get('url')
-        page_url = photo.get('page_url') or url
-        title = photo.get('title')
-        author = photo.get('owner_name')
-
-        caption = '%s (by <a href="%s">%s</a>)' % (title, page_url, author) 
-
-        values = {'email': email,
-                  'password': password,
-                  'type' : 'photo',
-
-                  'source': url,
-                  'caption': caption,
-                  'click-through-url': page_url,}
-
-        url = "http://www.tumblr.com/api/write"
-        urlpost_with_autoproxy(url, values)
-
-    def get_tooltip(self):
-        return _("Share on Tumblr")
-
-    def get_dialog_messages(self):
-        return [ _("Share this photo on Tumblr?"),
-                 _("This photo will be shared on Tumblr.") ]
-
-class TumblrReblog(TumblrShare):
-
-    def access_with(self, email, password):
-        url = "http://www.tumblr.com/api/reblog"
-        values = {'email': email, 
-                  'password': password,
-                  'post-id': self.photo['id'],
-                  'reblog-key': self.photo['reblog-key'],}
-
-        urlpost_with_autoproxy(url, values)
-
-    def get_tooltip(self):
-        return _("Reblog")
-
-    def get_dialog_messages(self):
-        return [ _("Reblog this photo?"),
-                 _("This photo will be rebloged on Tumblr.") ]
-
-class TumblrDelete(TumblrShare):
-
-    def access_with(self, email, password):
-        url = "http://www.tumblr.com/api/delete"
-        values = {'email': email, 
-                  'password': password,
-                  'post-id': self.photo['id'],}
-
-        urlpost_with_autoproxy(url, values)
-
-class TumblrAuthenticate(TumblrAccessBase):
-
-    def access_with(self, email, password):
-        url = "http://www.tumblr.com/api/authenticate?"
-        values = {'email': email, 'password': password}
-
-        url += urllib.urlencode(values)
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._access_cb)
-        d.addErrback(urlget.catch_error)
-
-    def _access_cb(self, data):
-        tree = etree.fromstring(data)
-
-        for tumblelog in tree.findall('tumblelog'):
-            if tumblelog.attrib.get('is-primary'):
-                name = tumblelog.attrib.get('name')
-                GConf().set_string('plugins/tumblr/user_name', name)
-                break
