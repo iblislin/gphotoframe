@@ -69,7 +69,6 @@ class TrashDialog(object):
         self.is_show = False
 
     def run(self, photo, title=""):
-        self.photo = photo
         self._set_variable(photo)
         self.is_show = True
 
@@ -78,27 +77,27 @@ class TrashDialog(object):
             gtk.BUTTONS_YES_NO, self.text[0])
         dialog.set_title(title)
         dialog.format_secondary_text(self.text[1])
-        dialog.connect('response', self._response_cb)
+        dialog.connect('response', self._response_cb, photo)
         dialog.show()
 
     def _set_variable(self, photo):
         self.text = [ _("Move this photo to the trash?"),
                       _("This photo will be moved to the trash.") ]
-        self.delete_method = self.photo['trash'].delete_from_disk
+        self.command_method = photo['trash'].delete_from_disk
 
-    def _response_cb(self, widget, response):
+    def _response_cb(self, widget, response, photo):
         if response == gtk.RESPONSE_YES:
-            self.delete_method(self.photo)
+            self.command_method(photo)
         widget.destroy()
         self.is_show = False
 
 class RemoveCatalogDialog(TrashDialog):
 
     def _set_variable(self, photo):
-        self.text = self.photo.get('info')().get_ban_messages(photo)
+        self.text = photo.get('info')().get_ban_messages(photo)
 
         if not self.text:
             self.text = [ _("Ban this photo?"), 
                           _("This photo will be add to the black list.") ]
 
-        self.delete_method = self.photo['trash'].delete_from_catalog
+        self.command_method = photo['trash'].delete_from_catalog

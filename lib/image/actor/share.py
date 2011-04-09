@@ -25,4 +25,4 @@ class ShareDialog(TrashDialog):
     def _set_variable(self, photo):
         share = TumblrShareFactory().create(photo)
         self.text = share.get_dialog_messages()
-        self.delete_method = share.add
+        self.command_method = share.add
