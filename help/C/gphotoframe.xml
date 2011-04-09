@@ -2,8 +2,8 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY appname "GNOME Photo Frame">
-  <!ENTITY appversion "1.2">
-  <!ENTITY manrevision "1.2">]>
+  <!ENTITY appversion "1.3">
+  <!ENTITY manrevision "1.3">]>
   
   <!-- Information about the entities.
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -57,6 +57,15 @@
     <revhistory>
       <revision>
         <revnumber>&appname; Manual V&manrevision;</revnumber>
+        <date>2011-04-09</date>
+        <revdescription>
+          <para role="author">Cristian Marchi
+          <email>cri.penta@gmail.com</email></para>
+        </revdescription>
+      </revision>
+
+      <revision>
+        <revnumber>&appname; Manual V1.2</revnumber>
         <date>2011-01-22</date>
         <revdescription>
           <para role="author">Cristian Marchi
@@ -118,7 +127,7 @@
     </para>
     <para>
     As the <application>&appname;</application> application is started and the 
-    <link linkend="gphotoframe-photo-frame">photo frame</link> displayed, you could start to add
+    <link linkend="gphotoframe-photo-frame">photo frame</link> displayed, you can start to add
     sources. Do this in the following way:
     </para>
 
@@ -209,7 +218,7 @@
         <listitem>
            <para>This icon is located in the upper left corner of the 
            photo frame. If you are <link linkend="gphotoframe-onlinelog">logged in</link>
-           with your userID to an internet service like <emphasis>Flickr</emphasis>, you could add an image
+           with your userID to an internet service like <emphasis>Flickr</emphasis>, you can add an image
            to your&rsquo;s profile favorites with a click on this icon.
            The icon will then light up indicating that
            the image has been added to your favorites.</para>
@@ -271,7 +280,7 @@
   <sect1 id="gphotoframe-mainmenu">
   <title><application>&appname;</application> Application Menu</title>
     <para>
-    The <application>&appname;</application> menu could be opened with a right click
+    The <application>&appname;</application> menu can be opened with a right click
     inside the photo frame.
     </para>
     <para>
@@ -389,7 +398,7 @@
       <listitem>
         <para><guilabel>Maximum Display Size</guilabel></para>
         <para>
-        The maximum display size of the displayed image could be set in the <guilabel>width</guilabel>
+        The maximum display size of the displayed image can be set in the <guilabel>width</guilabel>
         and <guilabel>height</guilabel> fields.
         </para>
         <note>
@@ -451,6 +460,14 @@
       </listitem>
       <listitem>
         <para>
+        <guilabel>Facebook</guilabel> &mdash; shows in <application>&appname;</application> 
+        the images coming from your <emphasis>Facebook</emphasis> account. You can choose contents
+        coming either from yours or a friend's <guilabel>Album</guilabel> or <guilabel>Wall</guilabel>, 
+        or the <guilabel>News Feeds</guilabel> you subscribed with your account.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
         <guilabel>Flickr</guilabel> &mdash; display the contents from the popular
         photo sharing service. This plugin is highly customizable as you can look for
         photos by specifying a tag, a group, a user or by
@@ -459,7 +476,7 @@
       </listitem>
       <listitem>
         <para>
-        <guilabel>Folder</guilabel> &mdash; with this plugin you could add as a source for
+        <guilabel>Folder</guilabel> &mdash; with this plugin you can add as a source for
         content a folder that contains image files on your computer.
         </para>
       </listitem>
@@ -543,6 +560,11 @@
         To modify the settings for an existing source, highlight it&rsquo;s name with a click in the list
         and press the <guibutton>Preferences</guibutton> button to open the settings dialog.
         </para>
+        <tip>
+          <para>
+          You can also double click on the source&rsquo;s name to open the configuration dialog.
+          </para>
+        </tip>
       </sect3>
 
    </sect2>
@@ -596,7 +618,8 @@
         <term><emphasis role="bold">Remove from catalog</emphasis></term>
           <listitem>
             <para>
-              To remove from catalog a displayed image coming from a <application>F-spot</application> database, 
+              To remove from catalog a displayed image coming from a <application>F-spot</application> or
+              <application>Shotwell</application> database, 
               click on the minus sign in the lower left of the photo frame. 
               A dialog will appear to confirm the operation.
             </para>
@@ -609,7 +632,7 @@
             <para>
               To ban a photo coming from an online source (<emphasis>Flickr</emphasis>, 
               <emphasis>Tumbler</emphasis> etc...), press the minus icon
-              that appears in the bottom left when hovering over the displayed photo.
+              that appears in the bottom left of the frame when hovering over the displayed photo.
             </para>
           </listitem>
       </varlistentry>
@@ -625,7 +648,7 @@
   </para>
   <para>
   When <application>&appname;</application> is connected with your data to an online service,
-  you could add displayed contents to your favorites, vote images and display photos
+  you can add displayed contents to your favorites, vote images and display photos
   from your account.
   </para>
   <para>
@@ -645,7 +668,8 @@
     </listitem>
     <listitem>
       <para>
-      Insert the information requested (user ID, e-mail address, password etc...).
+      Fill in the requested information (<guilabel>Password</guilabel>, <guilabel>User ID</guilabel>
+      or <guilabel>E-mail</guilabel>).
       </para>
     </listitem>
     <listitem>
