@@ -1,7 +1,7 @@
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
-from ...plugins.tumblr import TumblrShare
+from ...plugins.tumblr import TumblrShareFactory
 from trash import ActorTrashIcon, TrashDialog
 
 class ActorShareIcon(ActorTrashIcon):
@@ -19,12 +19,12 @@ class ActorShareIcon(ActorTrashIcon):
         self._set_ui_options('share', False, 0)
 
     def _enter_cb(self, w, e, tooltip):
-        tooltip.update_text(_("Share on Tumblr"))
+        self.api = TumblrShareFactory().create(self.photo)
+        tooltip.update_text(self.api.get_tooltip())
 
 class ShareDialog(TrashDialog):
 
     def _set_variable(self, photo):
-        self.text = [ _("Share this photo on Tumblr?"),
-                      _("This photo will be shared on Tumblr.") ]
-        share = TumblrShare()
+        share = TumblrShareFactory().create(photo)
+        self.text = share.get_dialog_messages()
         self.delete_method = share.add
