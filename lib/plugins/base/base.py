@@ -34,6 +34,12 @@ class PluginBase(object):
         else:
             return None
 
+    def get_ban_messages(self, photo):
+        return None
+
+    def get_ban_icon_tip(self, photo):
+        return None
+
 class PhotoList(object):
     """Photo Factory"""
 
