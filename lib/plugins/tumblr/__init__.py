@@ -33,11 +33,11 @@ class TumblrPlugin(base.PluginBase):
                       'authors': ['Yoshizimi Endo'], }
 
     def get_ban_icon_tip(self, photo):
-        return None if photo.can_share() else _('Removed from Tumblr')
+        return None if photo.can_share() else _('Remove from Tumblr')
 
     def get_ban_messages(self, photo):
         return None if photo.can_share() else [
-            _('Removed this photo from Tumblr?'),
+            _('Remove this photo from Tumblr?'),
             _('This photo will be removed from Tumblr.') ]
 
 class TumblrPhoto(base.Photo):
