@@ -150,6 +150,13 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             photo = TumblrPhoto(data)
             self.photos.append(photo)
 
+class TumblrFav(FlickrFav):
+
+    def _get_url(self):
+        api = 'unlike' if self.fav else 'like'
+        url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
+        return url
+
 class TumblrTrash(trash.Ban):
 
     def check_delete_from_disk(self, filename):
@@ -192,12 +199,11 @@ class PluginTumblrDialog(PluginPicasaDialog):
         auth = TumblrAuthenticate()
         auth.access()
 
-class TumblrFav(FlickrFav):
+class TumblrIcon(WebIconImage):
 
-    def _get_url(self):
-        api = 'unlike' if self.fav else 'like'
-        url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
-        return url
+    def __init__(self):
+        self.icon_name = 'tumblr.gif'
+        self.icon_url = 'http://assets.tumblr.com/images/favicon.gif'
 
 class TumblrShareFactory(object):
 
@@ -245,6 +251,44 @@ class TumblrShare(TumblrAccessBase):
         return [ _("Share this photo on Tumblr?"),
                  _("This photo will be shared on Tumblr.") ]
 
+class TumblrReblog(TumblrShare):
+
+    def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+        else:
+            return
+
+        url = "http://www.tumblr.com/api/reblog?"
+        values = {'email': email, 
+                  'password': password,
+                  'post-id': self.photo['id'],
+                  'reblog-key': self.photo['reblog-key'], }
+
+        urlpost_with_autoproxy(url, values)
+
+    def get_tooltip(self):
+        return _("Reblog")
+
+    def get_dialog_messages(self):
+        return [ _("Reblog this photo?"),
+                 _("This photo will be rebloged on Tumblr.") ]
+
+class TumblrDelete(TumblrShare):
+
+    def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+        else:
+            return
+
+        url = "http://www.tumblr.com/api/delete?"
+        values = {'email': email, 
+                  'password': password,
+                  'post-id': self.photo['id'],}
+
+        urlpost_with_autoproxy(url, values)
+
 class TumblrAuthenticate(TumblrAccessBase):
 
     def _auth_cb(self, identity):
@@ -271,50 +315,4 @@ class TumblrAuthenticate(TumblrAccessBase):
             if tumblelog.attrib.get('is-primary'):
                 name = tumblelog.attrib.get('name')
                 GConf().set_string('plugins/tumblr/user_name', name)
-
-class TumblrReblog(TumblrShare):
-
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-        else:
-            return
-
-        url = "http://www.tumblr.com/api/reblog?"
-        values = {'email': email, 
-                  'password': password,
-                  'post-id': self.photo['id'],
-                  'reblog-key': self.photo['reblog-key'],
-                  #'comment': a,
-                  }
-
-        urlpost_with_autoproxy(url, values)
-
-    def get_tooltip(self):
-        return _("Reblog")
-
-    def get_dialog_messages(self):
-        return [ _("Reblog this photo?"),
-                 _("This photo will be rebloged on Tumblr.") ]
-
-class TumblrDelete(TumblrShare):
-
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-        else:
-            return
-
-        url = "http://www.tumblr.com/api/delete?"
-        values = {'email': email, 
-                  'password': password,
-                  'post-id': self.photo['id'],
-                  }
-
-        urlpost_with_autoproxy(url, values)
-
-class TumblrIcon(WebIconImage):
-
-    def __init__(self):
-        self.icon_name = 'tumblr.gif'
-        self.icon_url = 'http://assets.tumblr.com/images/favicon.gif'
+                break
