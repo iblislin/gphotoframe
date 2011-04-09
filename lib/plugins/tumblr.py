@@ -131,6 +131,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
             caption = photo.get('photo-caption')
             entry_title = re_nl.sub('\n', caption) if caption else None
+            is_liked = bool(post.attrib.get('liked'))
 
             data = {'info'       : TumblrPlugin,
                     'url'        : url_m,
@@ -139,18 +140,17 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
-                    'trash'      : TumblrTrash(self.photolist)}
+                    'trash'      : TumblrTrash(self.photolist, is_liked)}
 
             if url_m != url_l:
                 data['url_l'] = url_l
 
-            if hasattr(self, 'email') and my_tumblelog != owner:
+            if hasattr(self, 'email') and (my_tumblelog != owner or is_liked):
                 like_arg = {'email'     : self.email,
                             'password'  : self.password,
                             'post-id'   : post.attrib['id'],
                             'reblog-key': post.attrib['reblog-key']}
 
-                is_liked = bool(post.attrib.get('liked'))
                 data['fav'] = TumblrFav(is_liked, like_arg)
 
             photo = TumblrPhoto(data)
@@ -165,6 +165,13 @@ class TumblrFav(FlickrFav):
 
 class TumblrTrash(trash.Ban):
 
+    def __init__(self, photolist=None, is_liked=False):
+        super(TumblrTrash, self).__init__(photolist)
+        self.is_liked = is_liked
+
+    def check_delete_from_catalog(self):
+        return not bool(self.is_liked)
+
     def delete_from_catalog(self, photo):
         if photo.can_share():
             #print "ban!"
@@ -172,7 +179,7 @@ class TumblrTrash(trash.Ban):
         else:
             #print "remove from tumblr!"
             api = TumblrDelete()
-            api.access(photo)
+            api.add(photo)
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
@@ -267,7 +274,7 @@ class TumblrReblog(TumblrShare):
         else:
             return
 
-        url = "http://www.tumblr.com/api/reblog?"
+        url = "http://www.tumblr.com/api/reblog"
         values = {'email': email, 
                   'password': password,
                   'post-id': self.photo['id'],
@@ -290,7 +297,7 @@ class TumblrDelete(TumblrShare):
         else:
             return
 
-        url = "http://www.tumblr.com/api/delete?"
+        url = "http://www.tumblr.com/api/delete"
         values = {'email': email, 
                   'password': password,
                   'post-id': self.photo['id'],}
