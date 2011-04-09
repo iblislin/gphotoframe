@@ -1,5 +1,3 @@
-from gettext import gettext as _
-
 from ...utils.iconimage import IconImage
 from ...plugins.tumblr import TumblrShareFactory
 from trash import ActorTrashIcon, TrashDialog
