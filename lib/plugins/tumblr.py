@@ -120,6 +120,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             data = {'info'       : TumblrPlugin,
                     'url'        : url_m,
                     'id'         : post.attrib['id'],
+                    'reblog-key' : post.attrib['reblog-key'],
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
@@ -139,6 +140,15 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
             photo = base.Photo(data)
             self.photos.append(photo)
+
+class TumblrTrash(trash.Ban):
+
+    def check_delete_from_disk(self, filename):
+        return True
+
+    def delete_from_disk(self, photo):
+        api = TumblrDelete()
+        api.access(photo)
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
@@ -239,6 +249,40 @@ class TumblrAuthenticate(TumblrAccessBase):
             if tumblelog.attrib.get('is-primary'):
                 name = tumblelog.attrib.get('name')
                 GConf().set_string('plugins/tumblr/user_name', name)
+
+class TumblrReblog(TumblrShare):
+
+    def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+        else:
+            return
+
+        url = "http://www.tumblr.com/api/reblog?"
+        values = {'email': email, 
+                  'password': password,
+                  'post-id': self.photo['id'],
+                  'reblog-key': self.photo['reblog-key'],
+                  #'comment': a,
+                  }
+
+        urlpost_with_autoproxy(url, values)
+
+class TumblrDelete(TumblrShare):
+
+    def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+        else:
+            return
+
+        url = "http://www.tumblr.com/api/delete?"
+        values = {'email': email, 
+                  'password': password,
+                  'post-id': self.photo['id'],
+                  }
+
+        urlpost_with_autoproxy(url, values)
 
 class TumblrIcon(WebIconImage):
 

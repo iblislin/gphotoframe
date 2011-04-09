@@ -1,6 +1,7 @@
 2011-04-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* plugins/tumblr.py: Added support for TumblrAuthenticate.
+	* plugins/tumblr.py: Added support for TumblrAuthenticate,
+	  TumblrReblog, TumblrDelete and TumblrTrash.
 
 2011-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
