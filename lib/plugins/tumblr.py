@@ -52,6 +52,11 @@ class TumblrAccessBase(object):
             self._auth_cb(None)
 
     def _auth_cb(self, identity):
+        if identity:
+            email, password = identity
+            self.access_with(email, password)
+
+    def access_with(self, email, password):
         pass
 
 class TumblrPhoto(base.Photo):
@@ -232,12 +237,7 @@ class TumblrShare(TumblrAccessBase):
         self.photo = photo
         super(TumblrShare, self).access()
 
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-        else:
-            return
-
+    def access_with(self, email, password):
         photo = self.photo
         url = photo.get('url_o') or photo.get('url_l') or photo.get('url')
         page_url = photo.get('page_url') or url
@@ -246,15 +246,13 @@ class TumblrShare(TumblrAccessBase):
 
         caption = '%s (by <a href="%s">%s</a>)' % (title, page_url, author) 
 
-        values = {
-            'email': email,
-            'password': password,
-            'type' : 'photo',
+        values = {'email': email,
+                  'password': password,
+                  'type' : 'photo',
 
-            'source': url,
-            'caption': caption,
-            'click-through-url': page_url,
-            }
+                  'source': url,
+                  'caption': caption,
+                  'click-through-url': page_url,}
 
         url = "http://www.tumblr.com/api/write"
         urlpost_with_autoproxy(url, values)
@@ -268,17 +266,12 @@ class TumblrShare(TumblrAccessBase):
 
 class TumblrReblog(TumblrShare):
 
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-        else:
-            return
-
+    def access_with(self, email, password):
         url = "http://www.tumblr.com/api/reblog"
         values = {'email': email, 
                   'password': password,
                   'post-id': self.photo['id'],
-                  'reblog-key': self.photo['reblog-key'], }
+                  'reblog-key': self.photo['reblog-key'],}
 
         urlpost_with_autoproxy(url, values)
 
@@ -291,12 +284,7 @@ class TumblrReblog(TumblrShare):
 
 class TumblrDelete(TumblrShare):
 
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-        else:
-            return
-
+    def access_with(self, email, password):
         url = "http://www.tumblr.com/api/delete"
         values = {'email': email, 
                   'password': password,
@@ -306,17 +294,10 @@ class TumblrDelete(TumblrShare):
 
 class TumblrAuthenticate(TumblrAccessBase):
 
-    def _auth_cb(self, identity):
-        if identity:
-            email, password = identity
-        else:
-            return
-
+    def access_with(self, email, password):
         url = "http://www.tumblr.com/api/authenticate?"
         values = {'email': email, 'password': password}
-        self._url_get(url, values)
 
-    def _url_get(self, url, values):
         url += urllib.urlencode(values)
         urlget = UrlGetWithAutoProxy(url)
         d = urlget.getPage(url)
