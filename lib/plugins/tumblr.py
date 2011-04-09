@@ -46,6 +46,15 @@ class TumblrAccessBase(object):
     def _auth_cb(self, identity):
         pass
 
+class TumblrPhoto(base.Photo):
+
+    def can_share(self):
+        owner = self.get('owner_name')
+        tumblelog = self.conf.get_string('plugins/tumblr/user_name')
+        can_share = super(TumblrPhoto, self).can_share()
+
+        return can_share and (owner and owner != tumblelog)
+
 class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
     def prepare(self):
@@ -138,7 +147,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
                 is_liked = bool(post.attrib.get('liked'))
                 data['fav'] = TumblrFav(is_liked, like_arg)
 
-            photo = base.Photo(data)
+            photo = TumblrPhoto(data)
             self.photos.append(photo)
 
 class TumblrTrash(trash.Ban):
