@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-09 17:13+0900\n"
-"PO-Revision-Date: 2011-04-09 16:24+0900\n"
+"POT-Creation-Date: 2011-04-09 22:19+0900\n"
+"PO-Revision-Date: 2011-04-09 22:19+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -419,7 +419,7 @@ msgstr ""
 "日時の形式を strftime() で利用される記述子を用いて指定します。詳細については "
 "strftime() のマニュアルを参照してください。"
 
-#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:102
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:105
 msgid "All"
 msgstr "すべて"
 
@@ -691,23 +691,23 @@ msgstr "写真を開く"
 msgid "Move to trash"
 msgstr "ゴミ箱に移動する"
 
-#: ../lib/image/actor/trash.py:64
+#: ../lib/image/actor/trash.py:63
 msgid "Ban this photo"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/image/actor/trash.py:86
+#: ../lib/image/actor/trash.py:84
 msgid "Move this photo to the trash?"
 msgstr "この写真をゴミ箱に移動しますか?"
 
-#: ../lib/image/actor/trash.py:87
+#: ../lib/image/actor/trash.py:85
 msgid "This photo will be moved to the trash."
 msgstr "この写真をゴミ箱に移動します。"
 
-#: ../lib/image/actor/trash.py:102
+#: ../lib/image/actor/trash.py:100
 msgid "Ban this photo?"
 msgstr "この写真をブラックリストに追加しますか?"
 
-#: ../lib/image/actor/trash.py:103
+#: ../lib/image/actor/trash.py:101
 msgid "This photo will be add to the black list."
 msgstr "この写真をブラックリストに追加し、今後表示しないようにします。"
 
@@ -815,7 +815,7 @@ msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
 #: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/picasa.py:187 ../lib/plugins/tumblr.py:172
+#: ../lib/plugins/picasa.py:187 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -898,33 +898,33 @@ msgstr "Flickr API エラー (%s): %s"
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot 写真マネージャ"
 
-#: ../lib/plugins/fspot/__init__.py:35
+#: ../lib/plugins/fspot/__init__.py:36
 msgid "Remove from catalog"
 msgstr "カタログから削除する"
 
-#: ../lib/plugins/fspot/__init__.py:36
+#: ../lib/plugins/fspot/__init__.py:39
 msgid "Remove this photo from the catalog?"
 msgstr "この写真をカタログから削除しますか?"
 
-#: ../lib/plugins/fspot/__init__.py:37
+#: ../lib/plugins/fspot/__init__.py:40
 #, python-format
 msgid "This photo will be removed from the %s catalog."
 msgstr "この写真を %s のカタログから削除します。"
 
-#: ../lib/plugins/fspot/__init__.py:102
+#: ../lib/plugins/fspot/__init__.py:105
 #, python-format
 msgid "Last %s days"
 msgstr "過去 %s 日間"
 
-#: ../lib/plugins/fspot/__init__.py:108
+#: ../lib/plugins/fspot/__init__.py:111
 msgid "Rate"
 msgstr "評価"
 
-#: ../lib/plugins/fspot/__init__.py:108
+#: ../lib/plugins/fspot/__init__.py:111
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/fspot/__init__.py:176 ../lib/plugins/shotwell.py:139
+#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:141
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
@@ -983,7 +983,7 @@ msgstr ""
 msgid "Picasa Web"
 msgstr "Picasa Web"
 
-#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr.py:77
+#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr/__init__.py:69
 msgid "Certification Error"
 msgstr "認証エラーです"
 
@@ -1003,10 +1003,10 @@ msgstr "注目の写真"
 
 #: ../lib/plugins/picasa.py:148 ../lib/plugins/picasa.py:154
 #: ../lib/plugins/picasa.py:187 ../lib/plugins/picasa.py:193
-#: ../lib/plugins/tumblr.py:76 ../lib/plugins/tumblr.py:82
-#: ../lib/plugins/tumblr.py:103 ../lib/plugins/tumblr.py:123
-#: ../lib/plugins/tumblr.py:172 ../lib/plugins/tumblr.py:174
-#: ../lib/plugins/tumblr.py:179 ../lib/plugins/tumblr.py:181
+#: ../lib/plugins/tumblr/__init__.py:68 ../lib/plugins/tumblr/__init__.py:74
+#: ../lib/plugins/tumblr/__init__.py:95 ../lib/plugins/tumblr/__init__.py:115
+#: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
+#: ../lib/plugins/tumblr/ui.py:23 ../lib/plugins/tumblr/ui.py:25
 msgid "User"
 msgstr "ユーザ"
 
@@ -1014,52 +1014,64 @@ msgstr "ユーザ"
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
-#: ../lib/plugins/tumblr.py:31
+#: ../lib/plugins/tumblr/__init__.py:30
 msgid "Share Anything"
 msgstr "何でも共有"
 
+#: ../lib/plugins/tumblr/__init__.py:36
+msgid "Remove from Tumblr"
+msgstr "Tumblr から削除する"
+
+#: ../lib/plugins/tumblr/__init__.py:40
+msgid "Remove this photo from Tumblr?"
+msgstr "この写真を Tumblr から削除しますか?"
+
+#: ../lib/plugins/tumblr/__init__.py:41
+msgid "This photo will be removed from Tumblr."
+msgstr "この Tumblr の写真を削除します。"
+
 #. user_id
-#: ../lib/plugins/tumblr.py:84 ../lib/plugins/tumblr.py:85
-#: ../lib/plugins/tumblr.py:179
+#: ../lib/plugins/tumblr/__init__.py:76 ../lib/plugins/tumblr/__init__.py:77
+#: ../lib/plugins/tumblr/ui.py:23
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: ../lib/plugins/tumblr.py:84 ../lib/plugins/tumblr.py:179
+#: ../lib/plugins/tumblr/__init__.py:76 ../lib/plugins/tumblr/ui.py:23
 msgid "Likes"
 msgstr "スキ"
 
-#: ../lib/plugins/tumblr.py:89
+#: ../lib/plugins/tumblr/__init__.py:81
 #, python-format
 msgid "Tumblr Error: Invalid Target, %s"
 msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
-#: ../lib/plugins/tumblr.py:195
-msgid "_E-mail:"
-msgstr "E-mail(_E):"
-
-#: ../lib/plugins/tumblr.py:248
+#: ../lib/plugins/tumblr/api.py:67
 msgid "Share on Tumblr"
 msgstr "Tumblr で共有する"
 
-#: ../lib/plugins/tumblr.py:251
+#: ../lib/plugins/tumblr/api.py:70
 msgid "Share this photo on Tumblr?"
 msgstr "この写真を Tumblr で共有しますか?"
 
-#: ../lib/plugins/tumblr.py:252
+#: ../lib/plugins/tumblr/api.py:71
 msgid "This photo will be shared on Tumblr."
 msgstr "この写真を Tumblr で共有します。"
 
-#: ../lib/plugins/tumblr.py:271
+#: ../lib/plugins/tumblr/api.py:85
 msgid "Reblog"
 msgstr "リブログする"
 
-#: ../lib/plugins/tumblr.py:274
+#: ../lib/plugins/tumblr/api.py:88
 msgid "Reblog this photo?"
 msgstr "この写真をリブログしますか?"
 
-#: ../lib/plugins/tumblr.py:275
+#: ../lib/plugins/tumblr/api.py:89
 msgid "This photo will be rebloged on Tumblr."
 msgstr "この Tumblr の写真をリブログします。"
+
+#: ../lib/plugins/tumblr/ui.py:39
+msgid "_E-mail:"
+msgstr "E-mail(_E):"
 
 #: ../lib/plugins/rss.py:34
 msgid "RSS and Atom Feeds"
@@ -1094,20 +1106,20 @@ msgstr "ローカルフォルダ"
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
 
-#: ../lib/plugins/shotwell.py:48
+#: ../lib/plugins/shotwell.py:49
 msgid "Set rating as rejected"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/plugins/shotwell.py:49
+#: ../lib/plugins/shotwell.py:52
 msgid "Set rating as rejected?"
 msgstr "ブラックリストに追加しますか?"
 
-#: ../lib/plugins/shotwell.py:50
+#: ../lib/plugins/shotwell.py:53
 msgid ""
 "The rating of this photo will be set as rejected.  Gnome photo frame will "
 "skip rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
 
-#: ../lib/plugins/shotwell.py:141
+#: ../lib/plugins/shotwell.py:143
 msgid "_Description:"
 msgstr "説明(_D):"
