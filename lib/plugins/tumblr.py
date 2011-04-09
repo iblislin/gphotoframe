@@ -33,6 +33,14 @@ class TumblrPlugin(base.PluginBase):
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
+    def get_ban_icon_tip(self, photo):
+        return None if photo.can_share() else _('Removed from Tumblr')
+
+    def get_ban_messages(self, photo):
+        return None if photo.can_share() else [
+            _('Removed this photo from Tumblr?'),
+            _('This photo will be removed from Tumblr.') ]
+
 class TumblrAccessBase(object):
 
     def access(self):
@@ -65,14 +73,12 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
         userid = self.conf.get_string('plugins/tumblr/user_id')
         username = self.conf.get_string('plugins/tumblr/user_name')
         if userid and not username:
-            print "yes"
             auth = TumblrAuthenticate()
             auth.access()
 
     def _auth_cb(self, identity):
         if identity:
-            self.email = identity[0]
-            self.password = identity[1]
+            self.email, self.password = identity
         elif self.target != _('User'):
             print _("Certification Error")
             return
@@ -133,7 +139,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
-                    'trash'      : trash.Ban(self.photolist)}
+                    'trash'      : TumblrTrash(self.photolist)}
 
             if url_m != url_l:
                 data['url_l'] = url_l
@@ -159,12 +165,14 @@ class TumblrFav(FlickrFav):
 
 class TumblrTrash(trash.Ban):
 
-    def check_delete_from_disk(self, filename):
-        return True
-
-    def delete_from_disk(self, photo):
-        api = TumblrDelete()
-        api.access(photo)
+    def delete_from_catalog(self, photo):
+        if photo.can_share():
+            #print "ban!"
+            super(TumblrTrash, self).delete_from_catalog(photo)
+        else:
+            #print "remove from tumblr!"
+            api = TumblrDelete()
+            api.access(photo)
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 

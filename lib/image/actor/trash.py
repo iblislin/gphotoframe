@@ -58,9 +58,8 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         self._set_ui_options('trash', False, 3)
 
     def _enter_cb(self, w, e, tooltip):
-        if hasattr(self.photo.get('info')(), 'ban_icon_tip'):
-             tip = self.photo.get('info')().ban_icon_tip
-        else:
+        tip = self.photo.get('info')().get_ban_icon_tip(self.photo)
+        if not tip:
             tip = _("Ban this photo")
         tooltip.update_text(tip)
 
@@ -96,9 +95,9 @@ class TrashDialog(object):
 class RemoveCatalogDialog(TrashDialog):
 
     def _set_variable(self, photo):
-        if hasattr(self.photo.get('info')(), 'ban_messages'):
-            self.text = self.photo.get('info')().ban_messages
-        else:
+        self.text = self.photo.get('info')().get_ban_messages(photo)
+
+        if not self.text:
             self.text = [ _("Ban this photo?"), 
                           _("This photo will be add to the black list.") ]
 

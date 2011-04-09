@@ -32,10 +32,13 @@ class FSpotPlugin(base.PluginBase):
                       'website': 'http://f-spot.org/',
                       'authors': ['Yoshizimi Endo'], }
 
-        self.ban_icon_tip = _("Remove from catalog")
-        self.ban_messages = [ _("Remove this photo from the catalog?"),
-                              _("This photo will be removed from the %s "
-                                "catalog.") % self.name ]
+    def get_ban_icon_tip(self, photo):
+        return _("Remove from catalog")
+
+    def get_ban_messages(self, photo):
+        return [ _("Remove this photo from the catalog?"),
+                 _("This photo will be removed from the %s "
+                   "catalog.") % self.name ]
 
     def is_available(self):
         db = self.db_class()

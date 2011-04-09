@@ -45,11 +45,13 @@ class ShotwellPlugin(FSpotPlugin):
                       'website': 'http://yorba.org/shotwell/',
                       'authors': ['Yoshizimi Endo'], }
 
-        self.ban_icon_tip = _('Set rating as rejected')
-        self.ban_messages = [ _('Set rating as rejected?'),
-                              _('The rating of this photo will be set as '
-                                'rejected.  Gnome photo frame will skip '
-                                'rejected photos.') ]
+    def get_ban_icon_tip(self, photo):
+        return _('Set rating as rejected')
+
+    def get_ban_messages(self, photo):
+        return [ _('Set rating as rejected?'),
+                 _('The rating of this photo will be set as rejected.  '
+                   'Gnome photo frame will skip rejected photos.') ]
 
 class ShotwellPhotoList(FSpotPhotoList):
 
