@@ -14,7 +14,7 @@ import gtk
 import webkit
 
 from ..flickr.authdialog import PluginFlickrDialog
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import urlget_with_autoproxy
 
 class PluginFacebookDialog(PluginFlickrDialog):
 
@@ -80,10 +80,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.token = token
 
         url = 'https://graph.facebook.com/me?access_token=%s' % token
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._get_userinfo_cb)
-        d.addErrback(urlget.catch_error)
+        urlget_with_autoproxy(url, cb=self._get_userinfo_cb)
 
     def _get_userinfo_cb(self, data):
         d = json.loads(data)

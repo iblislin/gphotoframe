@@ -11,7 +11,7 @@ from gettext import gettext as _
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.iconimage import WebIconImage
 from api import FacebookAPIfactory
 from authdialog import PluginFacebookDialog
@@ -53,10 +53,9 @@ class FacebookPhotoList(base.PhotoList):
 
     def prepare_cb(self, url, album_name=None):
         url += self._get_access_token()
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
+
+        d = urlget_with_autoproxy(url)
         d.addCallback(self._set_photo_cb, album_name)
-        d.addErrback(urlget.catch_error)
 
     def _set_photo_cb(self, data, album_name):
         d = json.loads(data)
