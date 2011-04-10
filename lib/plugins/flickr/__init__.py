@@ -137,6 +137,7 @@ class FlickrPhotoList(base.PhotoList):
                     'title'      : s['title'],
                     'page_url'   : page_url,
                     'date_taken' : date,
+                    'is_private' : not bool(s['ispublic']),
                     'trash'      : trash.Ban(self.photolist)}
 
             geo = [s['latitude'], s['longitude']]

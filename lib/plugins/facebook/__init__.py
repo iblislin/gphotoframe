@@ -74,6 +74,7 @@ class FacebookPhotoList(base.PhotoList):
                     'owner_name' : entry['from']['name'],
                     'title'      : entry.get('name') or album_name,
                     'page_url'   : str(entry['link']),
+                    'is_private' : True,
                     'trash'      : trash.Ban(self.photolist)}
 
             try:

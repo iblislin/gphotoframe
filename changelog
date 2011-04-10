@@ -1,5 +1,6 @@
 2011-04-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/*: Doesn't share private photo.
 	* utils/urlgetautoproxy.py: Added urlget_with_autoproxy.
 	* help/ja/ja.po: Updated Japanese translation.
 	* help/C/gphotoframe.xml, */it.po: Updated help documentation and
