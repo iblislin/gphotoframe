@@ -9,7 +9,7 @@ import glib
 
 from ... import constants
 from ...utils.config import GConf
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import UrlGetWithAutoProxy, urlget_with_autoproxy
 from ...utils.gnomescreensaver import is_screensaver_mode
 from ...dbus.networkstatecustom import NetworkStateCustom
 from parseexif import ParseEXIF
@@ -98,11 +98,8 @@ class PhotoList(object):
 
     def _get_url_with_twisted(self, url, cb_arg=None):
         if self.nm_state.check():
-            urlget = UrlGetWithAutoProxy(url)
-            d = urlget.getPage(url)
             cb = cb_arg or self._prepare_cb
-            d.addCallback(cb)
-            d.addErrback(urlget.catch_error)
+            d = urlget_with_autoproxy(url, cb=cb)
             return True
         else:
             return False

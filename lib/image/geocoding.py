@@ -3,7 +3,7 @@ import json
 import locale
 import pprint
 
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ..utils.urlgetautoproxy import urlget_with_autoproxy
 
 
 class GeoCoderFactory(object):
@@ -54,10 +54,9 @@ class GeoCoderBase(object):
         lat, lon = self.geo
         url = self.geocoding.get_url(lat, lon)
         self.old_url = url
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
+
+        d = urlget_with_autoproxy(url)
         d.addCallback(cb, photo)
-        d.addErrback(urlget.catch_error)
 
 class FindsjpGeonamesGeoCoder(GeoCoderBase):
     """

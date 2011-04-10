@@ -12,7 +12,7 @@ import gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy, urlpost_with_autoproxy
+from ..utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
@@ -77,10 +77,7 @@ class PicasaPhotoList(base.PhotoList):
         url = self._get_feed_url(self.target, self.argument)
         # print url
 
-        client = UrlGetWithAutoProxy(url)
-        d = client.getPage(url, headers = auth_header)
-        d.addCallback(self._set_photo_cb)
-        d.addErrback(client.catch_error)
+        urlget_with_autoproxy(url, cb=self._set_photo_cb, headers=auth_header)
 
     def _set_photo_cb(self, photos):
         "Set Photo Entries from JSON Data."

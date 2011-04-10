@@ -11,7 +11,7 @@ from gettext import gettext as _
 
 from ...utils.keyring import Keyring
 from ...utils.config import GConf
-from ...utils.urlgetautoproxy import urlpost_with_autoproxy, UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 
 class TumblrAccessBase(object):
 
@@ -103,12 +103,7 @@ class TumblrAuthenticate(TumblrAccessBase):
     def access_with(self, email, password):
         url = "http://www.tumblr.com/api/authenticate?"
         values = {'email': email, 'password': password}
-
-        url += urllib.urlencode(values)
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._access_cb)
-        d.addErrback(urlget.catch_error)
+        urlget_with_autoproxy(url, values, self._access_cb)
 
     def _access_cb(self, data):
         tree = etree.fromstring(data)
