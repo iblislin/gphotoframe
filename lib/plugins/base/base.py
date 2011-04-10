@@ -148,8 +148,9 @@ class Photo(dict):
 
     def can_share(self):
         return not self.is_local_file() and \
+            not self.get('is_private') and \
             self.conf.get_string('plugins/tumblr/user_id') and \
-            self.conf.get_bool('plugins/tumblr/can_share', False)
+            self.conf.get_bool('plugins/tumblr/can_share', True)
 
     def fav(self, new_rate):
         if self.get('fav'):

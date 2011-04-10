@@ -126,6 +126,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
+                    'is_private' : bool(post.attrib.get('private')),
                     'trash'      : TumblrTrash(self.photolist, is_liked)}
 
             if url_m != url_l:
