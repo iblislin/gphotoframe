@@ -140,12 +140,10 @@ class PhotoListStore(gtk.ListStore):
                         data['options'][key] = value
 
             if 'source' in data:
-                # delay = self.append(data, delay=delay)
                 source_list.append(data)
 
-        # source_list.sort(cmp=lambda x,y: cmp(x["source"], y["source"]))
+        source_list.sort(cmp=lambda x,y: cmp(x['source'], y['source']))
         for entry in source_list:
-            # print entry['source']
             delay = self.append(entry, delay=delay)
 
     def save_gconf(self):
