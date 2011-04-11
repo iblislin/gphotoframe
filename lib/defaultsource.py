@@ -23,7 +23,7 @@ def set_default_photo_source():
             conf.set_int('root_y', 200)
 
         folder = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
-        source = {_('Flickr'): _('Interestingness'),
+        source = {'Flickr': _('Interestingness'),
                   _('Folder'): folder,}
 
         for i, data in enumerate(source.items()):

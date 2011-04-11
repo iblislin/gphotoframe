@@ -10,12 +10,12 @@ from xml.etree import ElementTree as etree
 
 from gettext import gettext as _
 
-from base import *
-from picasa import PhotoSourcePicasaUI, PluginPicasaDialog
-from flickr import FlickrFav
-from ..utils.keyring import Keyring
-from ..utils.iconimage import WebIconImage
-from ..utils.config import GConf
+from api import TumblrAccessBase, TumblrDelete, TumblrAuthenticate
+from ui import PhotoSourceTumblrUI, PluginTumblrDialog
+from ..base import *
+from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
+from ..flickr import FlickrFav
+from ...utils.iconimage import WebIconImage
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -32,28 +32,44 @@ class TumblrPlugin(base.PluginBase):
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
-class TumblrPhotoList(base.PhotoList):
+    def get_ban_icon_tip(self, photo):
+        return None if photo.can_share() else _('Remove from Tumblr')
+
+    def get_ban_messages(self, photo):
+        return None if photo.can_share() else [
+            _('Remove this photo from Tumblr?'),
+            _('This photo will be removed from Tumblr.') ]
+
+class TumblrPhoto(base.Photo):
+
+    def can_share(self):
+        owner = self.get('owner_name')
+        tumblelog = self.conf.get_string('plugins/tumblr/user_name')
+        can_share = super(TumblrPhoto, self).can_share()
+
+        return can_share and (owner and owner != tumblelog)
+
+class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
     def prepare(self):
         self.photos = []
+        super(TumblrPhotoList, self).access()
 
-        self.username = self.conf.get_string('plugins/tumblr/user_id')
-        if self.username:
-            key = Keyring('Tumblr', protocol='http')
-            key.get_passwd_async(self.username, self._auth_cb)
-        else:
-            self._auth_cb(None)
+        # only in v.1.4
+        userid = self.conf.get_string('plugins/tumblr/user_id')
+        username = self.conf.get_string('plugins/tumblr/user_name')
+        if userid and not username:
+            auth = TumblrAuthenticate()
+            auth.access()
 
     def _auth_cb(self, identity):
-
         if identity:
-            self.email = identity[0]
-            self.password = identity[1]
+            self.email, self.password = identity
         elif self.target != _('User'):
             print _("Certification Error")
             return
 
-        values = {'type' : 'photo', 'filter' : 'text', 'num' : 50}
+        values = {'type': 'photo', 'filter': 'text', 'num': 50}
 
         if self.target == _('User'):
             url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
@@ -74,6 +90,7 @@ class TumblrPhotoList(base.PhotoList):
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
         re_nl = re.compile('\n+')
+        my_tumblelog = self.conf.get_string('plugins/tumblr/user_name')
 
         if self.target == _('User'):
             meta = tree.find('tumblelog')
@@ -100,55 +117,31 @@ class TumblrPhotoList(base.PhotoList):
 
             caption = photo.get('photo-caption')
             entry_title = re_nl.sub('\n', caption) if caption else None
+            is_liked = bool(post.attrib.get('liked'))
 
             data = {'info'       : TumblrPlugin,
                     'url'        : url_m,
                     'id'         : post.attrib['id'],
+                    'reblog-key' : post.attrib['reblog-key'],
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : post.attrib['url'],
-                    'trash'      : trash.Ban(self.photolist)}
+                    'is_private' : bool(post.attrib.get('private')),
+                    'trash'      : TumblrTrash(self.photolist, is_liked)}
 
             if url_m != url_l:
                 data['url_l'] = url_l
 
-            if hasattr(self, 'email'):
+            if hasattr(self, 'email') and (my_tumblelog != owner or is_liked):
                 like_arg = {'email'     : self.email,
                             'password'  : self.password,
                             'post-id'   : post.attrib['id'],
                             'reblog-key': post.attrib['reblog-key']}
-                data['fav'] = TumblrFav(self.target == _('Likes'), like_arg)
 
-            photo = base.Photo(data)
+                data['fav'] = TumblrFav(is_liked, like_arg)
+
+            photo = TumblrPhoto(data)
             self.photos.append(photo)
-
-class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
-
-    def _check_argument_sensitive_for(self, target):
-        all_label = {_('User'): _('_User:')}
-        label = all_label.get(target)
-        state = True if target == _('User') else False
-        return label, state
-
-    def _label(self):
-        if GConf().get_string('plugins/tumblr/user_id'):
-            label = [_('Dashboard'), _('Likes'), _('User')]
-        else:
-            label = [_('User')]
-
-        return label
-
-class PluginTumblrDialog(PluginPicasaDialog):
-
-    def __init__(self, parent, model_iter=None):
-        super(PluginTumblrDialog, self).__init__(parent, model_iter)
-        self.api = 'tumblr'
-        self.key_server = 'Tumblr'
-
-    def _set_ui(self):
-        super(PluginTumblrDialog, self)._set_ui()
-        user_label = self.gui.get_object('label_auth1')
-        user_label.set_text_with_mnemonic(_('_E-mail:'))
 
 class TumblrFav(FlickrFav):
 
@@ -156,6 +149,24 @@ class TumblrFav(FlickrFav):
         api = 'unlike' if self.fav else 'like'
         url = "http://www.tumblr.com/api/%s?" % api + urllib.urlencode(self.arg)
         return url
+
+class TumblrTrash(trash.Ban):
+
+    def __init__(self, photolist=None, is_liked=False):
+        super(TumblrTrash, self).__init__(photolist)
+        self.is_liked = is_liked
+
+    def check_delete_from_catalog(self):
+        return not bool(self.is_liked)
+
+    def delete_from_catalog(self, photo):
+        if photo.can_share():
+            #print "ban!"
+            super(TumblrTrash, self).delete_from_catalog(photo)
+        else:
+            #print "remove from tumblr!"
+            api = TumblrDelete()
+            api.add(photo)
 
 class TumblrIcon(WebIconImage):
 

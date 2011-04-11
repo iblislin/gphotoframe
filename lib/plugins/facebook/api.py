@@ -11,7 +11,7 @@ from gettext import gettext as _
 
 import glib
 
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.config import GConf
 
 
@@ -56,10 +56,7 @@ class FacebookAlbumsAPI(FacebookAPI):
 
     def access(self):
         url = self.url + self.photolist._get_access_token()
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._get_albumlist_cb)
-        d.addErrback(urlget.catch_error)
+        urlget_with_autoproxy(url, cb=self._get_albumlist_cb)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)

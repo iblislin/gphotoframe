@@ -9,7 +9,7 @@ import glib
 
 from ... import constants
 from ...utils.config import GConf
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import UrlGetWithAutoProxy, urlget_with_autoproxy
 from ...utils.gnomescreensaver import is_screensaver_mode
 from ...dbus.networkstatecustom import NetworkStateCustom
 from parseexif import ParseEXIF
@@ -33,6 +33,12 @@ class PluginBase(object):
             return auth if auth else _('Not Authenticated')
         else:
             return None
+
+    def get_ban_messages(self, photo):
+        return None
+
+    def get_ban_icon_tip(self, photo):
+        return None
 
 class PhotoList(object):
     """Photo Factory"""
@@ -92,11 +98,8 @@ class PhotoList(object):
 
     def _get_url_with_twisted(self, url, cb_arg=None):
         if self.nm_state.check():
-            urlget = UrlGetWithAutoProxy(url)
-            d = urlget.getPage(url)
             cb = cb_arg or self._prepare_cb
-            d.addCallback(cb)
-            d.addErrback(urlget.catch_error)
+            d = urlget_with_autoproxy(url, cb=cb)
             return True
         else:
             return False
@@ -134,11 +137,20 @@ class Photo(dict):
         gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def can_open(self):
-        url = urlparse(self['url'])
-        if url.scheme == 'file' and not os.path.exists(self['filename']):
+        if self.is_local_file() and not os.path.exists(self['filename']):
             return False
         else:
             return True
+
+    def is_local_file(self):
+        url = urlparse(self['url'])
+        return url.scheme == 'file'
+
+    def can_share(self):
+        return not self.is_local_file() and \
+            not self.get('is_private') and \
+            self.conf.get_string('plugins/tumblr/user_id') and \
+            self.conf.get_bool('plugins/tumblr/can_share', True)
 
     def fav(self, new_rate):
         if self.get('fav'):
@@ -156,10 +168,10 @@ class Photo(dict):
         return False
 
     def get_title(self):
-        with_suffix = self.conf.get_bool('format/show_filename_suffix', True)
+        has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
         title = self['title'] or ''
 
-        if not with_suffix:
+        if not has_suffix:
             re_img = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)        
             if re_img.search(title):
                 title, suffix = os.path.splitext(title)

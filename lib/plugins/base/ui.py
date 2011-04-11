@@ -130,9 +130,6 @@ class PluginDialog(object):
         if response_id == gtk.RESPONSE_OK:
             self._write_conf()
 
-        self._update_auth_status()
         self.dialog.destroy()
         return response_id, {}
 
-    def _update_auth_status(self):
-        self.model_iter[3] = self.model_iter[4].get_auth_status()

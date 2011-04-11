@@ -11,7 +11,7 @@ from gettext import gettext as _
 
 from ..base import *
 from ...utils.iconimage import WebIconImage
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from api import *
 from authdialog import *
 from ui import PhotoSourceFlickrUI
@@ -137,6 +137,7 @@ class FlickrPhotoList(base.PhotoList):
                     'title'      : s['title'],
                     'page_url'   : page_url,
                     'date_taken' : date,
+                    'is_private' : not bool(s['ispublic']),
                     'trash'      : trash.Ban(self.photolist)}
 
             geo = [s['latitude'], s['longitude']]
@@ -189,8 +190,7 @@ class FlickrFav(object):
 
     def change_fav(self, rate_dummy):
         url = self._get_url()
-        self.urlget = UrlGetWithAutoProxy(url)
-        d = self.urlget.getPage(url)
+        urlget_with_autoproxy(url)
         self.fav = not self.fav
 
     def _get_url(self):
@@ -234,11 +234,7 @@ class FlickrEXIF(object):
         api = FlickrExifAPI()
         url = api.get_url(photo['id'])
 
-        urlget = UrlGetWithAutoProxy(url)
-        d = urlget.getPage(url)
-        d.addCallback(self._parse_flickr_exif)
-        d.addErrback(urlget.catch_error)
-
+        d = urlget_with_autoproxy(url, cb=self._parse_flickr_exif)
         return d
 
     def _parse_flickr_exif(self, data):

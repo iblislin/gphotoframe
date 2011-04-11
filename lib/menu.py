@@ -49,8 +49,8 @@ class PopUpMenu(object):
         accessible = photo.can_open() if photo else False
         self.set_open_menu_sensitive(accessible)
 
-        fullscreen = self.conf.get_bool('fullscreen')
-        self.gui.get_object('menuitem8').set_active(fullscreen)
+        is_fullscreen = self.conf.get_bool('fullscreen')
+        self.gui.get_object('menuitem8').set_active(is_fullscreen)
 
         menu = self.gui.get_object('menu')
         menu.popup(None, None, None, event.button, event.time)

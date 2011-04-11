@@ -12,7 +12,7 @@ import gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
-from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ..utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
 from ..utils.config import GConf
@@ -65,14 +65,8 @@ class PicasaPhotoList(base.PhotoList):
                'Passwd' : identity[1],
                'service': 'lh2',
                'source' : source}
-        content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-        client = UrlGetWithAutoProxy(url)
-        d = client.getPage(url, method='POST',
-                           postdata = urllib.urlencode(arg),
-                           headers = content_type)
-        d.addCallback(self._get_feed_cb)
-        d.addErrback(client.catch_error)
+        urlpost_with_autoproxy(url, arg, self._get_feed_cb)
 
     def _get_feed_cb(self, raw_token):
         "Get a Photo Feed from Google with Auth Token."
@@ -83,10 +77,7 @@ class PicasaPhotoList(base.PhotoList):
         url = self._get_feed_url(self.target, self.argument)
         # print url
 
-        client = UrlGetWithAutoProxy(url)
-        d = client.getPage(url, headers = auth_header)
-        d.addCallback(self._set_photo_cb)
-        d.addErrback(client.catch_error)
+        urlget_with_autoproxy(url, cb=self._set_photo_cb, headers=auth_header)
 
     def _set_photo_cb(self, photos):
         "Set Photo Entries from JSON Data."
@@ -105,6 +96,7 @@ class PicasaPhotoList(base.PhotoList):
                     'title'      : entry['title']['$t'],
                     'summary'    : entry['summary']['$t'],
                     'page_url'   : entry['link'][1]['href'],
+                    'is_private' : entry['gphoto$access']['$t'] != 'public',
                     'trash'      : trash.Ban(self.photolist)}
 
             # exif
@@ -230,8 +222,6 @@ class PluginPicasaDialog(ui.PluginDialog):
         else:
             self.dialog.destroy()
 
-        self._update_auth_status() # in plugin treeview
-
     def _write_conf(self):
         user_id = self.entry3.get_text()
         self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
@@ -241,6 +231,8 @@ class PluginPicasaDialog(ui.PluginDialog):
             self.key.set_passwd_async(user_id, new_passwd, self._destroy_cb)
         else:
             self._destroy_cb()
+
+        self._update_auth_status(user_id, new_passwd) # in plugin treeview
 
     def _destroy_cb(self, *args):
         self.dialog.destroy()

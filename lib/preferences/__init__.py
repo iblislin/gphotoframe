@@ -28,6 +28,10 @@ class Preferences(object):
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
+        width = self.conf.get_int('prefs_width', -1)
+        height = self.conf.get_int('prefs_height', -1)
+        self.prefs.set_default_size(width, height)
+
         self._set_spinbutton_value('spinbutton1', 'interval', 30)
         self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
         self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
@@ -99,6 +103,10 @@ class Preferences(object):
     def _close_cb(self, widget):
         page = self.notebook.get_current_page()
         self.conf.set_int('recents/preferences', page)
+
+        width, height = self.prefs.get_size()
+        self.conf.set_int('prefs_width', width)
+        self.conf.set_int('prefs_height', height)
 
         self.photolist.save_gconf()
         self.plugin_liststore.save_gconf()
