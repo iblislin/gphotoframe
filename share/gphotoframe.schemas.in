@@ -110,6 +110,30 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/prefs_height</key>
+      <applyto>/apps/gphotoframe/prefs_height</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Preferences height</short>
+        <long>Preferences height</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/prefs_width</key>
+      <applyto>/apps/gphotoframe/prefs_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Preferences width</short>
+        <long>Preferences width</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/root_x</key>
       <applyto>/apps/gphotoframe/root_x</applyto>
       <owner>gphotoframe</owner>
@@ -262,6 +286,30 @@
       <locale name="C">
         <short>Maximum image file size in MByte</short>
         <long>Maximum image file size in MByte.  When this value is 0 or less, this image file size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/access_token</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/access_token</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Auth token</short>
+        <long>Auth token</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/full_name</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/full_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User full name</short>
+        <long>User full name</long>
       </locale>
     </schema>
 
@@ -430,6 +478,18 @@
       <locale name="C">
         <short>User ID</short>
         <long>E-mail adress as user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/blog_name</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/blog_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Tumblr blog name</short>
+        <long>Tumblr blog name</long>
       </locale>
     </schema>
 

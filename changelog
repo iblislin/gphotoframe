@@ -1,5 +1,6 @@
 2011-04-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* gphotoframe.schemas.in: Updated schemas.
 	* shotwell.py: Added support for new shotwell tag database scheme.
 	* liststore.py: Added sorting photo sources.
 
