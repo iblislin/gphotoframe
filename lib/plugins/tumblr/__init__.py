@@ -44,7 +44,7 @@ class TumblrPhoto(base.Photo):
 
     def can_share(self):
         owner = self.get('owner_name')
-        tumblelog = self.conf.get_string('plugins/tumblr/user_name')
+        tumblelog = self.conf.get_string('plugins/tumblr/blog_name')
         can_share = super(TumblrPhoto, self).can_share()
 
         return can_share and (owner and owner != tumblelog)
@@ -57,8 +57,8 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
         # only in v.1.4
         userid = self.conf.get_string('plugins/tumblr/user_id')
-        username = self.conf.get_string('plugins/tumblr/user_name')
-        if userid and not username:
+        blog_name = self.conf.get_string('plugins/tumblr/blog_name')
+        if userid and not blog_name:
             auth = TumblrAuthenticate()
             auth.access()
 
@@ -90,7 +90,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
         re_nl = re.compile('\n+')
-        my_tumblelog = self.conf.get_string('plugins/tumblr/user_name')
+        my_tumblelog = self.conf.get_string('plugins/tumblr/blog_name')
 
         if self.target == _('User'):
             meta = tree.find('tumblelog')
