@@ -1,16 +1,38 @@
 2011-04-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* shotwell.py: Added support for new shotwell tag database scheme.
+	* liststore.py: Added sorting photo sources.
 
 2011-04-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/*: Doesn't share private photo.
+	* utils/urlgetautoproxy.py: Added urlget_with_autoproxy.
 	* help/ja/ja.po: Updated Japanese translation.
 	* help/C/gphotoframe.xml, */it.po: Updated help documentation and
 	  Italian translation.  Thanks Cristian Marchi!
 
+2011-04-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/tumblr.py: Added support for TumblrAuthenticate,
+	  TumblrReblog, TumblrDelete and TumblrTrash.
+
 2011-04-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* po/it.po: Updated Italian translation.  Thanks Cristian Marchi!
+
+2011-04-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/tumblr.py: Checks user own posts.
+	* preferences/__init__.py: Saves the geometry of preferences window.
+	* actor/base.py (IconTexture): Fixed actor reactives.
+
+2011-04-06  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/share.py: Added a confirmation dialog.
+
+2011-04-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/share.py: Added support for 'Share'.
 
 2011-03-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

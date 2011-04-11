@@ -7,7 +7,7 @@ import urllib
 import xml.etree.ElementTree as etree
 
 import gtk
-from ...utils.urlgetautoproxy import UrlGetWithAutoProxy
+from ...utils.urlgetautoproxy import urlget_with_autoproxy
 
 def add_api_sig(values, secret):
     """Add api_sig to given arguments dictionary"""
@@ -38,8 +38,7 @@ class FlickrAuth(object):
 
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
-
-        self._get_url(url, self._get_token)
+        urlget_with_autoproxy(url, cb=self._get_token)
 
     def _get_token(self, data):
         """Open browser for authorization"""
@@ -68,7 +67,7 @@ class FlickrAuth(object):
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
 
-        d = self._get_url(url, self.parse_token)
+        d = urlget_with_autoproxy(url, cb=self.parse_token)
         d.addCallback(cb)
 
     def parse_token(self, xml):
@@ -98,17 +97,7 @@ class FlickrAuth(object):
 
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
-
-        self._get_url(url, _check_cb)
-
-    def _get_url(self, url, cb, cb_plus=None):
-        """Get URL with twisted"""
-
-        client = UrlGetWithAutoProxy(url)
-        d = client.getPage(url)
-        d.addCallback(cb)
-        d.addErrback(client.catch_error)
-        return d
+        urlget_with_autoproxy(url, cb=_check_cb)
 
 if __name__ == "__main__":
     from twisted.internet import defer, reactor

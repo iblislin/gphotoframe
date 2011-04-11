@@ -121,6 +121,7 @@ class PhotoListStore(gtk.ListStore):
 
     def _load_gconf(self, delay=0):
         weight = self.conf.get_int('default_weight', 3)
+        source_list = []
 
         for dir in self.conf.all_dirs('sources'):
             data = { 'target' : '', 'argument' : '',
@@ -139,7 +140,13 @@ class PhotoListStore(gtk.ListStore):
                         data['options'][key] = value
 
             if 'source' in data:
-                delay = self.append(data, delay=delay)
+                # delay = self.append(data, delay=delay)
+                source_list.append(data)
+
+        # source_list.sort(cmp=lambda x,y: cmp(x["source"], y["source"]))
+        for entry in source_list:
+            # print entry['source']
+            delay = self.append(entry, delay=delay)
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')

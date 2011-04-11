@@ -1,3 +1,5 @@
+import urllib
+
 try:
     import libproxy
 except ImportError:
@@ -27,6 +29,31 @@ class UrlGetWithAutoProxy(UrlGetWithProxy):
 
     def catch_error(self, error):
         print "Failure: %s: %s" % (error.getErrorMessage(), self.url)
+
+def urlget_with_autoproxy(url, arg=None, cb=None, **kargs):
+    if arg:
+        url += urllib.urlencode(arg)
+    client = UrlGetWithAutoProxy(url)
+    d = client.getPage(url, **kargs)
+    if cb:
+        d.addCallback(cb)
+    d.addErrback(client.catch_error)
+
+    return d
+
+def urlpost_with_autoproxy(url, arg, cb=None):
+
+    client = UrlGetWithAutoProxy(url)
+    content_type = {'Content-Type' : 'application/x-www-form-urlencoded'}
+
+    d = client.getPage(url, method='POST',
+                       postdata = urllib.urlencode(arg),
+                       headers = content_type)
+    if cb:
+        d.addCallback(cb)
+    d.addErrback(client.catch_error)
+
+    return d
 
 if __name__ == "__main__":
     pac = ParseProxyPac()

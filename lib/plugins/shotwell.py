@@ -4,6 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-04-10 Version 0.1.7.1
 # 2011-03-11 Version 0.1.7
 # 2011-02-22 Version 0.1.6
 # 2011-02-17 Version 0.1.5
@@ -45,11 +46,13 @@ class ShotwellPlugin(FSpotPlugin):
                       'website': 'http://yorba.org/shotwell/',
                       'authors': ['Yoshizimi Endo'], }
 
-        self.ban_icon_tip = _('Set rating as rejected')
-        self.ban_messages = [ _('Set rating as rejected?'),
-                              _('The rating of this photo will be set as '
-                                'rejected.  Gnome photo frame will skip '
-                                'rejected photos.') ]
+    def get_ban_icon_tip(self, photo):
+        return _('Set rating as rejected')
+
+    def get_ban_messages(self, photo):
+        return [ _('Set rating as rejected?'),
+                 _('The rating of this photo will be set as rejected.  '
+                   'Gnome photo frame will skip rejected photos.') ]
 
 class ShotwellPhotoList(FSpotPhotoList):
 
@@ -116,21 +119,8 @@ class ShotwellTrash(FSpotTrash):
                 "DELETE FROM BackingPhotoTable WHERE id=$version;", 
                 "UPDATE PhotoTable SET editable_id=-1 WHERE id=$id;" ]
 
-        # cache delete
-        # self._delete_thumbnail(photo)
-
         db = ShotwellDB()
         return db, sql_templates
-
-    def _delete_thumbnail(self, photo):
-        id = photo.get('id')
-        cache_path = os.path.join(os.environ['HOME'], '.shotwell/thumbs')
-        cache_file = "thumb%016x.jpg" % id
-
-        for size in ['thumbs128', 'thumbs360']:
-            fullpath = os.path.join(cache_path, size, cache_file)
-            if os.access(fullpath, os.W_OK):
-                os.remove(fullpath)
 
 class PhotoSourceShotwellUI(ui.PhotoSourceUI):
 
