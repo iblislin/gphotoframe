@@ -111,5 +111,5 @@ class TumblrAuthenticate(TumblrAccessBase):
         for tumblelog in tree.findall('tumblelog'):
             if tumblelog.attrib.get('is-primary'):
                 name = tumblelog.attrib.get('name')
-                GConf().set_string('plugins/tumblr/user_name', name)
+                GConf().set_string('plugins/tumblr/blog_name', name)
                 break
