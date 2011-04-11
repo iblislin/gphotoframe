@@ -188,10 +188,18 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
 
         sql = 'SELECT photo_id_list FROM TagTable WHERE name="%s"' % str(self.target)
         db = ShotwellDB()
-        photo_id_list = db.fetchone(sql)
+        photo_id_raw = db.fetchone(sql)
         db.close()
 
-        tag = "WHERE id IN (%s)" % photo_id_list.rstrip(',')
+        # db design
+        # http://lists.yorba.org/pipermail/shotwell/2011-January/001577.html
+
+        photo_id_list = photo_id_raw.split(',')
+        photo_id_list = [x if x.find('thumb') < 0 else
+                         str(int(x.replace('thumb', ''), 16))
+                         for x in photo_id_list if x and x.find('video') < 0]
+
+        tag = "WHERE id IN (%s)" % ','.join(photo_id_list)
         return [default, tag]
 
 class ShotwellPhotoTagList(list):

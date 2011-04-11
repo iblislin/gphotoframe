@@ -1,3 +1,7 @@
+2011-04-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* shotwell.py: Added support for new shotwell tag database scheme.
+
 2011-04-10  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* help/ja/ja.po: Updated Japanese translation.
