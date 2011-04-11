@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-09 22:19+0900\n"
-"PO-Revision-Date: 2011-04-09 22:19+0900\n"
+"POT-Creation-Date: 2011-04-11 23:24+0900\n"
+"PO-Revision-Date: 2011-04-11 23:24+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -314,22 +314,30 @@ msgid "Photo source default weight"
 msgstr "写真ソースのデフォルトの重み"
 
 #: ../share/gphotoframe.schemas.in.h:59
+msgid "Preferences height"
+msgstr "設定ウインドウの高さ"
+
+#: ../share/gphotoframe.schemas.in.h:60
+msgid "Preferences width"
+msgstr "設定ウインドウの幅"
+
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "RSS reload interval minutes"
 msgstr "RSS を再読込する間隔 (分)"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
 msgstr "RSS を再読込する間隔を分で指定します。10 分以上を指定してください。"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:63
 msgid "Recent opend preferences page number"
 msgstr "設定画面で最後に開かれたペイン"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:64
 msgid "Recent selected photo source"
 msgstr "最後に選択された写真ソース"
 
-#: ../share/gphotoframe.schemas.in.h:63
+#: ../share/gphotoframe.schemas.in.h:65
 msgid ""
 "Set this to true if you have problems with Clutter library support. When you "
 "change this value, you need to restart gphotoframe."
@@ -337,7 +345,7 @@ msgstr ""
 "Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
 "この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:66
 msgid ""
 "Set to \"true\" to always show the icon. Set to \"false\" to only show the "
 "icon when the mouse pointer is over the photo frame."
@@ -345,19 +353,19 @@ msgstr ""
 "TRUE にすると常にアイコンを表示します。FALSE にするとマウスポインタが写真フ"
 "レーム上にあるときのみアイコンを表示します。"
 
-#: ../share/gphotoframe.schemas.in.h:65
+#: ../share/gphotoframe.schemas.in.h:67
 msgid "Show icons on screensaver"
 msgstr "スクリーンセーバー上でのアイコンの表示"
 
-#: ../share/gphotoframe.schemas.in.h:66
+#: ../share/gphotoframe.schemas.in.h:68
 msgid "Source icon position"
 msgstr "ソースアイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:67
+#: ../share/gphotoframe.schemas.in.h:69
 msgid "Standard deviation of RSS feed random weights"
 msgstr "RSS フィードのランダム重み付けの標準偏差"
 
-#: ../share/gphotoframe.schemas.in.h:68
+#: ../share/gphotoframe.schemas.in.h:70
 msgid ""
 "The Flickr plugin gets photos from latest to oldest via API with a page "
 "number. This value specifies the minimum percentage of showing photos of 1st "
@@ -367,39 +375,43 @@ msgstr ""
 "得します。この値で最初のページ (最新の写真) を表示するパーセンテージを指定し"
 "ます。"
 
-#: ../share/gphotoframe.schemas.in.h:69
+#: ../share/gphotoframe.schemas.in.h:71
 msgid "The field sets the number of photo cache files."
 msgstr "画像ファイルのキャッシュ数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:70
+#: ../share/gphotoframe.schemas.in.h:72
 msgid "The field sets the number of recent photo menu items."
 msgstr "「最近表示した写真」メニューのアイテム数を設定します。"
 
-#: ../share/gphotoframe.schemas.in.h:71
+#: ../share/gphotoframe.schemas.in.h:73
 msgid "The number of photo cache files"
 msgstr "画像ファイルのキャッシュ数"
 
-#: ../share/gphotoframe.schemas.in.h:72
+#: ../share/gphotoframe.schemas.in.h:74
 msgid "The number of recent photo menu items"
 msgstr "「最近表示した写真」メニューのアイテム数"
 
-#: ../share/gphotoframe.schemas.in.h:73
+#: ../share/gphotoframe.schemas.in.h:75
 msgid "Trash icon position"
 msgstr "ゴミ箱アイコンの位置"
 
-#: ../share/gphotoframe.schemas.in.h:74
+#: ../share/gphotoframe.schemas.in.h:76
+msgid "Tumblr blog name"
+msgstr "Tumblr ブログ名"
+
+#: ../share/gphotoframe.schemas.in.h:77
 msgid "User ID"
 msgstr "ユーザ ID"
 
-#: ../share/gphotoframe.schemas.in.h:75
+#: ../share/gphotoframe.schemas.in.h:78
 msgid "User full name"
 msgstr "ユーザのフルネーム"
 
-#: ../share/gphotoframe.schemas.in.h:76
+#: ../share/gphotoframe.schemas.in.h:79
 msgid "User name"
 msgstr "ユーザ名"
 
-#: ../share/gphotoframe.schemas.in.h:77
+#: ../share/gphotoframe.schemas.in.h:80
 msgid ""
 "Whether connectivity managers should be used for checking network "
 "connectivity."
@@ -407,11 +419,11 @@ msgstr ""
 "接続マネージャを利用して、ネットワークの接続状況を確認するかどうかを指定しま"
 "す。"
 
-#: ../share/gphotoframe.schemas.in.h:78
+#: ../share/gphotoframe.schemas.in.h:81
 msgid "Whether to show filename suffix"
 msgstr "ファイル名のサフィックスの表示"
 
-#: ../share/gphotoframe.schemas.in.h:79
+#: ../share/gphotoframe.schemas.in.h:82
 msgid ""
 "You can use conversion specifiers understood by strftime() to obtain a "
 "specific format. See the strftime() manual for more information."
@@ -815,7 +827,7 @@ msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
 #: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/picasa.py:187 ../lib/plugins/tumblr/ui.py:16
+#: ../lib/plugins/picasa.py:185 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -924,7 +936,7 @@ msgstr "評価"
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:141
+#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:129
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
@@ -970,7 +982,7 @@ msgstr ""
 "Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
 "起動する必要があります。"
 
-#: ../lib/plugins/facebook/authdialog.py:94
+#: ../lib/plugins/facebook/authdialog.py:91
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
@@ -987,22 +999,22 @@ msgstr "Picasa Web"
 msgid "Certification Error"
 msgstr "認証エラーです"
 
-#: ../lib/plugins/picasa.py:145
+#: ../lib/plugins/picasa.py:143
 msgid "Album"
 msgstr "アルバム"
 
-#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:187
-#: ../lib/plugins/picasa.py:193
+#: ../lib/plugins/picasa.py:144 ../lib/plugins/picasa.py:185
+#: ../lib/plugins/picasa.py:191
 msgid "Community Search"
 msgstr "コミュニティ写真の検索"
 
-#: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:189
-#: ../lib/plugins/picasa.py:193
+#: ../lib/plugins/picasa.py:145 ../lib/plugins/picasa.py:187
+#: ../lib/plugins/picasa.py:191
 msgid "Featured"
 msgstr "注目の写真"
 
-#: ../lib/plugins/picasa.py:148 ../lib/plugins/picasa.py:154
-#: ../lib/plugins/picasa.py:187 ../lib/plugins/picasa.py:193
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:152
+#: ../lib/plugins/picasa.py:185 ../lib/plugins/picasa.py:191
 #: ../lib/plugins/tumblr/__init__.py:68 ../lib/plugins/tumblr/__init__.py:74
 #: ../lib/plugins/tumblr/__init__.py:95 ../lib/plugins/tumblr/__init__.py:115
 #: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
@@ -1010,7 +1022,7 @@ msgstr "注目の写真"
 msgid "User"
 msgstr "ユーザ"
 
-#: ../lib/plugins/picasa.py:187
+#: ../lib/plugins/picasa.py:185
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -1102,24 +1114,24 @@ msgstr "フォルダ"
 msgid "Local Folder"
 msgstr "ローカルフォルダ"
 
-#: ../lib/plugins/shotwell.py:43
+#: ../lib/plugins/shotwell.py:44
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
 
-#: ../lib/plugins/shotwell.py:49
+#: ../lib/plugins/shotwell.py:50
 msgid "Set rating as rejected"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/plugins/shotwell.py:52
+#: ../lib/plugins/shotwell.py:53
 msgid "Set rating as rejected?"
 msgstr "ブラックリストに追加しますか?"
 
-#: ../lib/plugins/shotwell.py:53
+#: ../lib/plugins/shotwell.py:54
 msgid ""
 "The rating of this photo will be set as rejected.  Gnome photo frame will "
 "skip rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
 
-#: ../lib/plugins/shotwell.py:143
+#: ../lib/plugins/shotwell.py:131
 msgid "_Description:"
 msgstr "説明(_D):"
