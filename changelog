@@ -1,3 +1,8 @@
+2011-04-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/tumblr/__init__.py: Added new gconf keys:
+	  disable_delete_post and enable_ban_liked.
+
 2011-04-11  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.schemas.in: Updated schemas.

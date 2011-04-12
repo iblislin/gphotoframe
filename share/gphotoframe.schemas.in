@@ -494,6 +494,30 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/disable_delete_post</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/disable_delete_post</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Disable delete posts</short>
+        <long>If true, disable delete posts.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/enable_ban_liked</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/enable_ban_liked</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable ban icon for liked posts</short>
+        <long>If true, enable ban icon for liked posts.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/rss/interval</key>
       <applyto>/apps/gphotoframe/plugins/rss/interval</applyto>
       <owner>gphotoframe</owner>
