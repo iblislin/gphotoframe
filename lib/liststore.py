@@ -142,7 +142,7 @@ class PhotoListStore(gtk.ListStore):
             if 'source' in data:
                 source_list.append(data)
 
-        source_list.sort(cmp=lambda x,y: cmp(x['source'], y['source']))
+        source_list.sort(cmp=lambda x,y: cmp(y['weight'], x['weight']))
         for entry in source_list:
             delay = self.append(entry, delay=delay)
 

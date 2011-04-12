@@ -15,10 +15,16 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.plugin_liststore = plugin_liststore
 
         # liststore order
-        self._add_icon_text_column(_("Source"), 0)
-        self._add_text_column(_("Target"), 2, 150)
-        self._add_text_column(_("Argument"), 3, 100)
-        self._add_text_column(_("Weight"), 4)
+        columns = [self._add_icon_text_column(_("Source"), 0),
+                   self._add_text_column(_("Target"), 2, 150),
+                   self._add_text_column(_("Argument"), 3, 100),
+                   self._add_text_column(_("Weight"), 4)]
+
+        for col in columns:
+            if col.get_sort_indicator(): # check if the filed was clicked
+                break
+        else:
+            columns[0].clicked() # sort by 'source' column
 
     def get_signal_dic(self):
         dic = {

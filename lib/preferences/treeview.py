@@ -30,6 +30,7 @@ class PreferencesTreeView(object):
             column.set_expand(expand)
             column.set_fixed_width(size)
         self.treeview.append_column(column)
+        return column
 
     def _add_icon_text_column(self, title, id, size=None, expand=True):
         column = gtk.TreeViewColumn(title)
@@ -46,6 +47,7 @@ class PreferencesTreeView(object):
         column.set_sort_column_id(id+1)
 
         self.treeview.append_column(column)
+        return column
 
     def _cursor_changed_cb(self, widget):
         if self.treeview.get_selection().get_selected()[1] != None:

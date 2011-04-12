@@ -1,3 +1,7 @@
+2011-04-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/photosource.py: Added sort by 'source' column.
+
 2011-04-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* plugins/tumblr/__init__.py: Added new gconf keys:
