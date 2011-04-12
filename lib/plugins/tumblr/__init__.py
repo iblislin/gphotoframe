@@ -16,6 +16,7 @@ from ..base import *
 from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
 from ..flickr import FlickrFav
 from ...utils.iconimage import WebIconImage
+from ...utils.config import GConf
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -33,10 +34,10 @@ class TumblrPlugin(base.PluginBase):
                       'authors': ['Yoshizimi Endo'], }
 
     def get_ban_icon_tip(self, photo):
-        return None if photo.can_share() else _('Remove from Tumblr')
+        return None if photo.is_enable_ban() else _('Remove from Tumblr')
 
     def get_ban_messages(self, photo):
-        return None if photo.can_share() else [
+        return None if photo.is_enable_ban() else [
             _('Remove this photo from Tumblr?'),
             _('This photo will be removed from Tumblr.') ]
 
@@ -48,6 +49,10 @@ class TumblrPhoto(base.Photo):
         can_share = super(TumblrPhoto, self).can_share()
 
         return can_share and (owner and owner != tumblelog)
+
+    def is_enable_ban(self):
+        return self.can_share() or \
+            self.conf.get_bool('plugins/tumblr/disable_delete_post', False)
 
 class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
@@ -157,10 +162,11 @@ class TumblrTrash(trash.Ban):
         self.is_liked = is_liked
 
     def check_delete_from_catalog(self):
-        return not bool(self.is_liked)
+        return not bool(self.is_liked) or \
+            GConf().get_bool('plugins/tumblr/enable_ban_liked', False)
 
     def delete_from_catalog(self, photo):
-        if photo.can_share():
+        if photo.is_enable_ban():
             #print "ban!"
             super(TumblrTrash, self).delete_from_catalog(photo)
         else:
