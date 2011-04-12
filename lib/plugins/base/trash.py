@@ -10,7 +10,7 @@ class Trash(object):
 
     def __init__(self, photolist=None):
         self.photolist = photolist
-        self.conf = GConf()
+        # self.conf = GConf() # FIXME: obsolete?
 
     def check_delete_from_disk(self, filename):
         path = os.path.split(filename)[0]
