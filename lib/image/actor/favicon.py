@@ -8,13 +8,8 @@ class ActorFavIcon(ActorIcon):
 
     def __init__(self, stage, tooltip, num=5):
         super(ActorFavIcon, self).__init__()
-        self._sub_icons = [ IconTexture(stage) for i in xrange(num)]
-
-        for num, icon in enumerate(self._sub_icons):
-            icon.number = num
-            icon.connect('enter-event', self._enter_cb, tooltip)
-            icon.connect('leave-event', self._leave_cb, tooltip)
-            icon.connect('button-press-event', self._button_press_event_cb)
+        self._sub_icons = [ActorSubFavIcon(i, stage, self, tooltip) 
+                           for i in xrange(num)]
 
     def show(self, is_force=False):
         if self._is_hidden():
@@ -46,9 +41,8 @@ class ActorFavIcon(ActorIcon):
 
         if self._is_hidden():
             self.hide(True)
-            return
-
-        self._change_icon()
+        else:
+            self._change_icon()
 
     def _is_hidden(self):
         photo = getattr(self, 'photo', {}) or {}
@@ -75,26 +69,29 @@ class ActorFavIcon(ActorIcon):
     def _get_ui_data(self):
         self._set_ui_options('fav', False, 0)
 
-    def _button_press_event_cb(self, w, e):
-        self.photo.fav(w.number + 1)
-        self._change_icon()
+class ActorSubFavIcon(IconTexture):
 
-    def _enter_cb(self, w, e, tooltip):
-        try: # FIXME
-            status = self.photo['fav'].fav
-        except (KeyError, TypeError):
-            return
+    def __init__(self, num, stage, icon_group, tooltip):
+        super(ActorSubFavIcon, self).__init__(stage)
 
-        if w.number > 0 and isinstance(status, bool): return
+        self.num = num
+        self.icon_group = icon_group
+        self.tooltip = tooltip
+
+        self.connect('button-press-event', self._button_press_event_cb)
+        self.connect('enter-event', self._enter_cb)
+        self.connect('leave-event', self._leave_cb)
+
+    def _button_press_event_cb(self, widget, e):
+        widget.icon_group.photo.fav(widget.num + 1)
+        widget.icon_group._change_icon()
+
+    def _enter_cb(self, widget, e):
+        status = widget.icon_group.photo['fav'].fav
+
         tip = _("Add to faves") if status is False else \
             _("Remove from faves") if status is True else _("Rate this photo")
-        tooltip.update_text(tip)
+        widget.tooltip.update_text(tip)
 
-    def _leave_cb(self, w, e, tooltip):
-        try: # FIXME
-            status = self.photo['fav'].fav
-        except (KeyError, TypeError):
-            return
-
-        if w.number > 0 and isinstance(status, bool): return
-        tooltip.update_photo(self.photo)
+    def _leave_cb(self, widget, e):
+        widget.tooltip.update_photo(widget.icon_group.photo)
