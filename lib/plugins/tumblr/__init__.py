@@ -80,6 +80,8 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
         elif self.target == _('Dashboard') or self.target == _('Likes'):
             target = 'dashboard' if self.target == _('Dashboard') else 'likes'
+            if self.target == _('Dashboard'):
+                values['likes'] = 1
             url = 'http://www.tumblr.com/api/%s/?' % target
             values.update( {'email': self.email, 'password': self.password} )
         else:
