@@ -45,7 +45,7 @@ class PhotoListStore(gtk.ListStore):
         list = [ pixbuf, d['source'],
                  d['target'], d['argument'], d['weight'], d['options'], obj ]
 
-        self.insert_before(iter, list)
+        new_iter = self.insert_before(iter, list)
 
         # print d['source'], obj.delay_for_prepare, delay
         if obj.delay_for_prepare:
@@ -54,7 +54,7 @@ class PhotoListStore(gtk.ListStore):
         else:
             obj.prepare()
 
-        return delay
+        return new_iter, delay
 
     def remove(self, iter):
         self.get_value(iter, 6).exit() # liststore object
@@ -144,7 +144,7 @@ class PhotoListStore(gtk.ListStore):
 
         source_list.sort(cmp=lambda x,y: cmp(y['weight'], x['weight']))
         for entry in source_list:
-            delay = self.append(entry, delay=delay)
+            iter, delay = self.append(entry, delay=delay)
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')
