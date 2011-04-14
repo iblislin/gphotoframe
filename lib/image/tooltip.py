@@ -54,7 +54,8 @@ class ToolTip(object):
                 tip += _("by %s") % escape(owner) + "\n"
             if target:
                 target = [x.rstrip(' ').lstrip(' ') for x in target]
-                text = '/'.join(target) if target[1] else target[0]
+                text = ( '/'.join(target) if target[1] and 
+                         target[1] != escape(owner) else target[0] )
                 tip += "%s\n" % escape(text)
             if location and self.conf.get_bool('format/location_on_tooltip'):
                 tip += "%s\n" % escape(location)

@@ -127,6 +127,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             is_liked = bool(post.attrib.get('liked'))
 
             data = {'info'       : TumblrPlugin,
+                    'target'     : (self.target, ''),
                     'url'        : url_m,
                     'id'         : post.attrib['id'],
                     'reblog-key' : post.attrib['reblog-key'],
