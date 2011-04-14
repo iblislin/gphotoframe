@@ -89,6 +89,7 @@ class PicasaPhotoList(base.PhotoList):
                 if entry.get('author') else self.argument
 
             data = {'info'       : PicasaPlugin,
+                    'target'     : (self.target, self.argument),
                     'url'        : str(entry['content']['src']),
                     'owner_name' : owner_name,
                     'owner'      : owner_name,

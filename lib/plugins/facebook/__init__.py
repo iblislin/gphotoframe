@@ -68,7 +68,7 @@ class FacebookPhotoList(base.PhotoList):
             url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
 
             data = {'info'       : FacebookPlugin,
-                    # 'target'     : (self.target, ''),
+                    'target'     : (self.target, ''),
                     'url'        : url,
                     'id'         : entry['id'],
                     'owner_name' : entry['from']['name'],

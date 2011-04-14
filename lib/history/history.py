@@ -20,7 +20,9 @@ class History(object):
         target = photo.get('target') or ''
         if target:
             target = [x.rstrip(' ').lstrip(' ') for x in target]
-            target = '/'.join(target) if target[1] else target[0]
+            target = ( '/'.join(target) 
+                       if target[1] and target[1] != photo.get('owner_name') 
+                       else target[0] )
 
         date = photo.get('date_taken') or 0
         if isinstance(date, unicode):
