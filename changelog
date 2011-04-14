@@ -1,5 +1,7 @@
 2011-04-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences/photosource.py, liststore.py: Fixed a cursor
+	  position on the photo source treeview.
 	* image/tooltip.py: Added some argument to tooltips.
 
 2011-04-13  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

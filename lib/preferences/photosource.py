@@ -70,7 +70,8 @@ class PhotoSourceTreeView(PreferencesTreeView):
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == gtk.RESPONSE_OK:
-            self.liststore.append(v)
+            new_iter, delay = self.liststore.append(v)
+            self._set_coursor_to(new_iter)
 
     def _prefs_button_cb(self, widget):
         treeselection = self.treeview.get_selection()
@@ -80,10 +81,9 @@ class PhotoSourceTreeView(PreferencesTreeView):
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == gtk.RESPONSE_OK:
-            row = self.treeview.get_cursor()[0][0]
-            self.liststore.append(v, iter)
+            new_iter, delay = self.liststore.append(v, iter)
             self.liststore.remove(iter)
-            self.treeview.set_cursor(row)
+            self._set_coursor_to(new_iter)
 
     def _delete_button_cb(self, widget):
         treeselection = self.treeview.get_selection()
@@ -92,6 +92,10 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.liststore.remove(iter)
         self._set_button_sensitive(False)
 
+    def _set_coursor_to(self, iter):
+        model = self.treeview.get_model()
+        row = model.get_path(iter)
+        self.treeview.set_cursor(row)
 
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""
