@@ -36,12 +36,11 @@ class PhotoListStore(gtk.ListStore):
 
     def append(self, d, iter=None, delay=0):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
-            return delay
+            return None, delay
 
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
         pixbuf = plugins.PLUGIN_INFO_TOKEN[d['source']]().get_icon_pixbuf()
-
         list = [ pixbuf, d['source'],
                  d['target'], d['argument'], d['weight'], d['options'], obj ]
 
@@ -139,8 +138,7 @@ class PhotoListStore(gtk.ListStore):
                     else:
                         data['options'][key] = value
 
-            if 'source' in data:
-                source_list.append(data)
+            source_list.append(data)
 
         source_list.sort(cmp=lambda x,y: cmp(y['weight'], x['weight']))
         for entry in source_list:
