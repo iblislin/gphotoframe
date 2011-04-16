@@ -1,3 +1,7 @@
+2011-04-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.3 release.
+
 2011-04-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* preferences/photosource.py, liststore.py: Fixed a cursor
