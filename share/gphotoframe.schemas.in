@@ -722,6 +722,30 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/ui/share/always_show</key>
+      <applyto>/apps/gphotoframe/ui/share/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the share icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/share/position</key>
+      <applyto>/apps/gphotoframe/ui/share/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Share icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/ui/trash/always_show</key>
       <applyto>/apps/gphotoframe/ui/trash/always_show</applyto>
       <owner>gphotoframe</owner>
