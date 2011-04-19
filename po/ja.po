@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-18 14:42+0900\n"
-"PO-Revision-Date: 2011-04-18 14:42+0900\n"
+"POT-Creation-Date: 2011-04-19 09:08+0900\n"
+"PO-Revision-Date: 2011-04-19 09:08+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -915,20 +915,21 @@ msgstr "認証を完了する(_C)"
 msgid "Photo Share Service"
 msgstr "写真共有サービス"
 
-#: ../lib/plugins/flickr/__init__.py:67
+#: ../lib/plugins/flickr/__init__.py:67 ../lib/plugins/facebook/api.py:30
+#: ../lib/plugins/tumblr/__init__.py:88
 #, python-format
-msgid "Flickr: %s is invalid target."
-msgstr "Flickr: %s は不正なターゲットです。"
+msgid "%(source)s: %(target)s is invalid target."
+msgstr "%(source)s: %(target)s は不正なターゲットです。"
 
-#: ../lib/plugins/flickr/__init__.py:77
+#: ../lib/plugins/flickr/__init__.py:78
 msgid "Flickr: invalid nsid API url."
 msgstr "Flickr: 不正な NSID API URL です。"
 
-#: ../lib/plugins/flickr/__init__.py:87
+#: ../lib/plugins/flickr/__init__.py:88
 msgid "flickr: can not find, "
 msgstr "Flickr: 以下が見つかりません。"
 
-#: ../lib/plugins/flickr/__init__.py:105
+#: ../lib/plugins/flickr/__init__.py:106
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr "Flickr API エラー (%s): %s"
@@ -1043,7 +1044,7 @@ msgstr "注目の写真"
 #: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:153
 #: ../lib/plugins/picasa.py:186 ../lib/plugins/picasa.py:192
 #: ../lib/plugins/tumblr/__init__.py:73 ../lib/plugins/tumblr/__init__.py:79
-#: ../lib/plugins/tumblr/__init__.py:102 ../lib/plugins/tumblr/__init__.py:122
+#: ../lib/plugins/tumblr/__init__.py:103 ../lib/plugins/tumblr/__init__.py:123
 #: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
 #: ../lib/plugins/tumblr/ui.py:23 ../lib/plugins/tumblr/ui.py:25
 msgid "User"
@@ -1078,11 +1079,6 @@ msgstr "ダッシュボード"
 #: ../lib/plugins/tumblr/__init__.py:81 ../lib/plugins/tumblr/ui.py:23
 msgid "Likes"
 msgstr "スキ"
-
-#: ../lib/plugins/tumblr/__init__.py:88
-#, python-format
-msgid "Tumblr Error: Invalid Target, %s"
-msgstr "Tumblr エラー: %s は不正なターゲットです。"
 
 #: ../lib/plugins/tumblr/api.py:67
 msgid "Share on Tumblr"

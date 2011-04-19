@@ -27,7 +27,8 @@ class FacebookAPIfactory(object):
         if api.get(target):
             obj = api[target][option](photolist)
         else:
-            print "Facebook: %s is invalid target." % target
+            print (_("%(source)s: %(target)s is invalid target.") % 
+                   {'source': 'Facebook', 'target': target})
             obj = None
 
         return obj

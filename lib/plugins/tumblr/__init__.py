@@ -85,7 +85,8 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             url = 'http://www.tumblr.com/api/%s/?' % target
             values.update( {'email': self.email, 'password': self.password} )
         else:
-            print _("Tumblr Error: Invalid Target, %s") % self.target
+            print ( _("%(source)s: %(target)s is invalid target.") % 
+                    {'source': 'Tumblr', 'target': self.target} )
             return
 
         # print url
