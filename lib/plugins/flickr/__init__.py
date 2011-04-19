@@ -64,7 +64,8 @@ class FlickrPhotoList(base.PhotoList):
         factory = FlickrFactoryAPI()
         api_list = factory.api
         if not self.target in api_list:
-            print _("Flickr: %s is invalid target.") % self.target
+            print ( _("%(source)s: %(target)s is invalid target.") % 
+                    {'source': 'Flickr', 'target': self.target} )
             return
 
         self.api = factory.create(self.target, self.argument)
