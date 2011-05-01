@@ -1,0 +1,1159 @@
+# Ukrainian translations for gphotoframe package.
+# Copyright (C) 2009-2011 Yoshizumi Endo
+# This file is distributed under the same license as the gphotoframe package.
+# Sergiy Gavrylov <sergiovana@bigmir.net>, 2011
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNOME Photo Frame\n"
+"Report-Msgid-Bugs-To: http://code.google.com/p/gphotoframe/issues\n"
+"POT-Creation-Date: 2011-04-24 23:25+0900\n"
+"PO-Revision-Date: 2011-04-30 16:55+0000\n"
+"Last-Translator: Sergiy_Gavrylov <sergiovana@bigmir.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: ../share/gphotoframe.desktop.in.h:1
+msgid "Image Viewer"
+msgstr "Перегляд зображень"
+
+#: ../share/gphotoframe.desktop.in.h:2
+#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history/html.py:39
+msgid "Photo Frame"
+msgstr "Photo Frame"
+
+#: ../share/gphotoframe.desktop.in.h:3
+msgid "Show photos on Desktop"
+msgstr "Показ фото на стільниці"
+
+#: ../share/gphotoframe-screensaver.desktop.in.h:1
+msgid "Display a slideshow from your Photo Frame"
+msgstr "Показує слайд-шоу з програми «Photo Frame»"
+
+#: ../share/gphotoframe.schemas.in.h:1
+msgid "API reload interval minutes"
+msgstr "Інтервал оновлення API у хвилинах"
+
+#: ../share/gphotoframe.schemas.in.h:2
+msgid "API reload interval minutes for News Feed"
+msgstr "Інтервал оновлення API у хв. для «Новин»"
+
+#: ../share/gphotoframe.schemas.in.h:3
+msgid "API reload interval minutes for Wall"
+msgstr "Інтервал оновлення API у хв. для «Стіни»"
+
+#: ../share/gphotoframe.schemas.in.h:4
+msgid "API reload interval minutes for meta groups"
+msgstr "Інтервал оновлення API у хв. для мета-груп"
+
+#: ../share/gphotoframe.schemas.in.h:5
+msgid ""
+"API reload interval minutes for meta groups (Your Groups or The Commons). It"
+" should be greater than 10 minutes."
+msgstr ""
+"Інтервал оновлення API у хв. для мета-груп (ваших або загальних). Має бути "
+"не менше 10 хвилин."
+
+#: ../share/gphotoframe.schemas.in.h:6
+msgid "API reload interval minutes. It should be greater than 10 minutes."
+msgstr "Інтервал оновлення API у хв. Має бути не менше 10 хвилин."
+
+#: ../share/gphotoframe.schemas.in.h:7
+msgid "Always on Visible Workspace"
+msgstr "Завжди на видимій робочій області"
+
+#: ../share/gphotoframe.schemas.in.h:8
+msgid "Always show the fav icon"
+msgstr "Завжди показувати значок улюблених"
+
+#: ../share/gphotoframe.schemas.in.h:9
+msgid "Always show the geo icon"
+msgstr "Завжди показувати значок адреси"
+
+#: ../share/gphotoframe.schemas.in.h:10
+msgid "Always show the share icon"
+msgstr "Завжди показувати значок «поділитись»"
+
+#: ../share/gphotoframe.schemas.in.h:11
+msgid "Always show the source icon"
+msgstr "Завжди показувати значок джерела"
+
+#: ../share/gphotoframe.schemas.in.h:12
+msgid "Always show the trash icon"
+msgstr "Завжди показувати значок смітника"
+
+#: ../share/gphotoframe.schemas.in.h:13
+msgid "Auth token"
+msgstr "Маркер авторизації"
+
+#: ../share/gphotoframe.schemas.in.h:14
+msgid "Connection managers should be used"
+msgstr "Використовуватиметься менеджерами з'єднання"
+
+#: ../share/gphotoframe.schemas.in.h:15
+msgid "Date format"
+msgstr "Формат дати"
+
+#: ../share/gphotoframe.schemas.in.h:16
+msgid "Default API reload interval minutes"
+msgstr "Типовий інтервал оновлення API у хвилинах"
+
+#: ../share/gphotoframe.schemas.in.h:17
+msgid ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3:"
+" left-bottom."
+msgstr ""
+"Визначає розташування значка: 0 - ліворуч зверху, 1 - праворуч зверху, 2 - "
+"праворуч знизу, 3 - ліворуч знизу."
+
+#: ../share/gphotoframe.schemas.in.h:18
+msgid "Disable Clutter library support"
+msgstr "Вимкнути підтримку бібліотеки Clutter"
+
+#: ../share/gphotoframe.schemas.in.h:19
+msgid "Disable delete posts"
+msgstr "Вимкнути вилучення дописів"
+
+#: ../share/gphotoframe.schemas.in.h:20
+msgid "E-mail adress as user ID"
+msgstr "Адреса ел. пошти, як ID користувача"
+
+#: ../share/gphotoframe.schemas.in.h:21
+msgid "Enable ban icon for liked posts"
+msgstr "Активувати значок заборони для схожих дописів"
+
+#: ../share/gphotoframe.schemas.in.h:22
+msgid "Enable description field"
+msgstr "Активувати поле опису"
+
+#: ../share/gphotoframe.schemas.in.h:23
+msgid "Enable fullscreen mode animations"
+msgstr "Активувати анімації у повноекранному режимі"
+
+#: ../share/gphotoframe.schemas.in.h:24
+msgid "Enable icon animations"
+msgstr "Активувати анімації значків"
+
+#: ../share/gphotoframe.schemas.in.h:25
+msgid "Fav icon position"
+msgstr "Розташування значка улюблених"
+
+#: ../share/gphotoframe.schemas.in.h:26
+msgid "Fix the photo frame on the root window"
+msgstr "Зафіксувати рамку фото у головному вікні"
+
+#: ../share/gphotoframe.schemas.in.h:27
+msgid "Flickr user ID"
+msgstr "ID користувача Flickr"
+
+#: ../share/gphotoframe.schemas.in.h:28
+msgid "Geo icon position"
+msgstr "Розташування значка адреси"
+
+#: ../share/gphotoframe.schemas.in.h:29
+msgid "Google account user ID"
+msgstr "ID облікового запису користувача Google"
+
+#: ../share/gphotoframe.schemas.in.h:30
+msgid ""
+"If the RSS feed includes multiple RSS feeds, this value is used as the "
+"standard deviation for random weight of each RSS feed. When this value is "
+"less than 0, the each weight is the number of total image included in each "
+"RSS feed."
+msgstr ""
+"Якщо RSS-канал містить кілька стрічок — це значення використовується як "
+"середньоквадратичне відхилення випадкового значення для кожної стрічки. Якщо"
+" це значення менше 0 — кожне значення означає загальну кількість зображень в"
+" кожній стрічці."
+
+#: ../share/gphotoframe.schemas.in.h:31
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+"Якщо так, зміна зображень в повноекранному режимі буде анімована. Щоб зміни "
+"вступили в силу, програму потрібно перезапустити."
+
+#: ../share/gphotoframe.schemas.in.h:32
+msgid ""
+"If true, description (identifier) field will be enabled on photo source "
+"dialog. Users can use the field freely."
+msgstr ""
+"Якщо так, поле опису (ідентифікатор) в діалозі джерела буде активоване. "
+"Користувачі можуть використовувати це поле вільно."
+
+#: ../share/gphotoframe.schemas.in.h:33
+msgid "If true, disable delete posts."
+msgstr "Якщо так, вилучення дописів блокується."
+
+#: ../share/gphotoframe.schemas.in.h:34
+msgid "If true, enable ban icon for liked posts."
+msgstr "Якщо так, активується значок блокування схожих дописів."
+
+#: ../share/gphotoframe.schemas.in.h:35
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+"Якщо так, показ та приховування значків буде анімоване. Щоб зміни вступили в"
+" силу, програму потрібно перезапустити."
+
+#: ../share/gphotoframe.schemas.in.h:36
+msgid "If true, icons will be shown on screensaver."
+msgstr "Якщо так, значки будуть показуватись в зберігачі екрана."
+
+#: ../share/gphotoframe.schemas.in.h:37
+msgid "If true, image filename suffixes (jpe?g|png|gif|bmp) are shown."
+msgstr ""
+"Якщо так, будуть показуватись розширення (jpe?g|png|gif|bmp) файлів "
+"зображень."
+
+#: ../share/gphotoframe.schemas.in.h:38
+msgid ""
+"If true, the photo frame must be kept below other windows. When you change "
+"this value, you need to restart gphotoframe."
+msgstr ""
+"Якщо так, зображення залишатиметься під іншими вікнами. Якщо ви змінили це "
+"значення, перезавантажте програму."
+
+#: ../share/gphotoframe.schemas.in.h:39
+msgid "Interval seconds in full screen mode"
+msgstr "Інтервал в секундах у повноекранному режимі"
+
+#: ../share/gphotoframe.schemas.in.h:40
+msgid "Interval seconds in window mode"
+msgstr "Інтервал в секундах у режимі вікна"
+
+#: ../share/gphotoframe.schemas.in.h:41
+msgid "Max aspect ratio for Photo"
+msgstr "Макс. співвідношення розмірів фото"
+
+#: ../share/gphotoframe.schemas.in.h:42
+msgid "Maximum image file size in MByte"
+msgstr "Макс. розмір файла зображення в мегабайтах"
+
+#: ../share/gphotoframe.schemas.in.h:43
+msgid ""
+"Maximum image file size in MByte. When this value is 0 or less, this image "
+"file size filter is disabled."
+msgstr ""
+"Макс. розмір файла зображення в мегабайтах. Фільтр вимкнений, якщо значення "
+"0 або менше."
+
+#: ../share/gphotoframe.schemas.in.h:44
+msgid "Minimum aspect ratio for Photo"
+msgstr "Мінім. співвідношення розмірів фото"
+
+#: ../share/gphotoframe.schemas.in.h:45
+msgid "Minimum image file size in KByte"
+msgstr "Мінім. розмір файла зображення в мегабайтах"
+
+#: ../share/gphotoframe.schemas.in.h:46
+msgid ""
+"Minimum image file size in KByte. When this value is 0 or less, this image "
+"file size filter is disabled."
+msgstr ""
+"Мінім. розмір файла зображення в мегабайтах. Фільтр вимкнений, якщо значення"
+" 0 або менше."
+
+#: ../share/gphotoframe.schemas.in.h:47
+msgid "Minimum image height"
+msgstr "Мінім. висота зображення"
+
+#: ../share/gphotoframe.schemas.in.h:48
+msgid ""
+"Minimum image height. When this value is less than 0, image size filter is "
+"disabled."
+msgstr "Мінім. висота зображення. Фільтр вимкнений, якщо значення менше 0."
+
+#: ../share/gphotoframe.schemas.in.h:49
+msgid "Minimum image width"
+msgstr "Мінім. ширина зображення"
+
+#: ../share/gphotoframe.schemas.in.h:50
+msgid ""
+"Minimum image width. When this value is less than 0, image size filter is "
+"disabled."
+msgstr "Мінім. ширина зображення. Фільтр вимкнений, якщо значення менше 0."
+
+#: ../share/gphotoframe.schemas.in.h:51
+msgid "Minimum rate of latest photos"
+msgstr "Мінімальна оцінка останніх фото"
+
+#: ../share/gphotoframe.schemas.in.h:52
+msgid "NSID"
+msgstr "NSID"
+
+#: ../share/gphotoframe.schemas.in.h:53
+msgid "Photo frame \"keep-below\" mode"
+msgstr "Режим Photo frame «під усім»"
+
+#: ../share/gphotoframe.schemas.in.h:54
+msgid "Photo frame X position"
+msgstr "Координата X Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:55
+msgid "Photo frame Y position"
+msgstr "Координата Y Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:56
+msgid "Photo frame border color"
+msgstr "Колір облямівки Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:57
+msgid "Photo frame border width"
+msgstr "Ширина облямівки Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:58
+msgid "Photo frame fix mode"
+msgstr "Режим фіксації Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:59
+msgid "Photo frame full screen mode"
+msgstr "Повноекранний режим Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:60
+msgid "Photo frame sticky mode"
+msgstr "«Липкий» режим Photo frame"
+
+#: ../share/gphotoframe.schemas.in.h:61
+msgid "Photo image max height"
+msgstr "Макс. висота зображення"
+
+#: ../share/gphotoframe.schemas.in.h:62
+msgid "Photo image max width"
+msgstr "Макс. ширина зображення"
+
+#: ../share/gphotoframe.schemas.in.h:63
+msgid "Photo source default weight"
+msgstr "Типовий об'єм джерела фото"
+
+#: ../share/gphotoframe.schemas.in.h:64
+msgid "Preferences height"
+msgstr "Параметри висоти"
+
+#: ../share/gphotoframe.schemas.in.h:65
+msgid "Preferences width"
+msgstr "Параметри ширини"
+
+#: ../share/gphotoframe.schemas.in.h:66
+msgid "RSS reload interval minutes"
+msgstr "Інтервал оновлення RSS у хвилинах"
+
+#: ../share/gphotoframe.schemas.in.h:67
+msgid "RSS reload interval minutes. It should be greater than 10 minutes."
+msgstr "Інтервал оновлення RSS у хвилинах. Має бути більше 10 хвилин."
+
+#: ../share/gphotoframe.schemas.in.h:68
+msgid "Recent opend preferences page number"
+msgstr "Кількість недавно відкритих сторінок параметрів"
+
+#: ../share/gphotoframe.schemas.in.h:69
+msgid "Recent selected photo source"
+msgstr "Недавно вибране джерело фото"
+
+#: ../share/gphotoframe.schemas.in.h:70
+msgid ""
+"Set this to true if you have problems with Clutter library support. When you"
+" change this value, you need to restart gphotoframe."
+msgstr ""
+"Якщо виникли проблеми з підтримкою бібліотеки Clutter, встановіть значення "
+"«true». Після зміни, потрібно перезавантажити gphotoframe."
+
+#: ../share/gphotoframe.schemas.in.h:71
+msgid ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
+msgstr ""
+"Встановіть значення «true», щоб завжди показувати значок, значення «false», "
+"щоб показувати значок під час наведення вказівника миші на фото."
+
+#: ../share/gphotoframe.schemas.in.h:72
+msgid "Share icon position"
+msgstr "Розташування значка «поділитись»"
+
+#: ../share/gphotoframe.schemas.in.h:73
+msgid "Show icons on screensaver"
+msgstr "Показувати значки в зберігачі екрана"
+
+#: ../share/gphotoframe.schemas.in.h:74
+msgid "Source icon position"
+msgstr "Розташування значка джерела"
+
+#: ../share/gphotoframe.schemas.in.h:75
+msgid "Standard deviation of RSS feed random weights"
+msgstr "Середньоквадратичне відхилення випадкових значень стрічки RSS"
+
+#: ../share/gphotoframe.schemas.in.h:76
+msgid ""
+"The Flickr plugin gets photos from latest to oldest via API with a page "
+"number. This value specifies the minimum percentage of showing photos of 1st"
+" page (latest photos)"
+msgstr ""
+"Модуль Flickr отримує фото, від найновіших до найстаріших, через API номера "
+"сторінки. Це значення вказує мінімальний відсоток показуваних фото з першої "
+"сторінки (найновіші фото)"
+
+#: ../share/gphotoframe.schemas.in.h:77
+msgid "The field sets the number of photo cache files."
+msgstr "Значення в цьому полі вказує кількість фото в кеші."
+
+#: ../share/gphotoframe.schemas.in.h:78
+msgid "The field sets the number of recent photo menu items."
+msgstr "Значення в цьому полі вказує кількість недавніх фото в меню."
+
+#: ../share/gphotoframe.schemas.in.h:79
+msgid "The number of photo cache files"
+msgstr "Кількість фото в кеші"
+
+#: ../share/gphotoframe.schemas.in.h:80
+msgid "The number of recent photo menu items"
+msgstr "Кількість недавніх фото в меню"
+
+#: ../share/gphotoframe.schemas.in.h:81
+msgid "Trash icon position"
+msgstr "Розташування значка смітника"
+
+#: ../share/gphotoframe.schemas.in.h:82
+msgid "Tumblr blog name"
+msgstr "Назва блогу Tumblr"
+
+#: ../share/gphotoframe.schemas.in.h:83
+msgid "User ID"
+msgstr "ID користувача"
+
+#: ../share/gphotoframe.schemas.in.h:84
+msgid "User full name"
+msgstr "Повне ім'я користувача"
+
+#: ../share/gphotoframe.schemas.in.h:85
+msgid "User name"
+msgstr "Ім'я користувача"
+
+#: ../share/gphotoframe.schemas.in.h:86
+msgid ""
+"Whether connectivity managers should be used for checking network "
+"connectivity."
+msgstr ""
+"Чи потрібно використовувати менеджери з'єднання для перевірки мережевого "
+"з'єднання."
+
+#: ../share/gphotoframe.schemas.in.h:87
+msgid "Whether to show filename suffix"
+msgstr "Чи показувати розширення файла"
+
+#: ../share/gphotoframe.schemas.in.h:88
+msgid ""
+"You can use conversion specifiers understood by strftime() to obtain a "
+"specific format. See the strftime() manual for more information."
+msgstr ""
+"Ви можете використовувати специфікатор перетворення у розумінні strftime() "
+"для отримання певного формату. Детальніше дивіться в довідці з strftime()."
+
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:105
+msgid "All"
+msgstr "Все"
+
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:8
+msgid "General"
+msgstr "Загальне"
+
+#: ../share/gphotoframe.ui.h:3
+msgid "Last 180 days"
+msgstr "Останні 180 днів"
+
+#: ../share/gphotoframe.ui.h:4
+msgid "Last 30 days"
+msgstr "Останні 30 днів"
+
+#: ../share/gphotoframe.ui.h:5
+msgid "Last 360 days"
+msgstr "Останні 360 днів"
+
+#: ../share/gphotoframe.ui.h:6
+msgid "Last 7 days"
+msgstr "Останні 7 днів"
+
+#: ../share/gphotoframe.ui.h:7
+msgid "Last 90 days"
+msgstr "Останні 90 днів"
+
+#: ../share/gphotoframe.ui.h:8
+msgid "Ma_x Rate:"
+msgstr "М_акс. оцінка:"
+
+#: ../share/gphotoframe.ui.h:9
+msgid "Mi_n Rate:"
+msgstr "М_інім. оцінка:"
+
+#: ../share/gphotoframe.ui.h:10
+msgid "Photo Frame for GNOME Desktop"
+msgstr "Програма Photo Frame для середовища GNOME"
+
+#: ../share/gphotoframe.ui.h:11
+msgid "Photo Source"
+msgstr "Джерело фото"
+
+#: ../share/gphotoframe.ui.h:12
+msgid "Rate _Weight:"
+msgstr "_Значення оцінки:"
+
+#: ../share/gphotoframe.ui.h:13
+msgid "Show only _latest photos"
+msgstr "Показувати лише _найновіші фото"
+
+#: ../share/gphotoframe.ui.h:14 ../lib/plugins/base/ui.py:63
+msgid "_Argument:"
+msgstr "_Аргумент:"
+
+#: ../share/gphotoframe.ui.h:15 ../lib/plugins/folder.py:145
+msgid "_Include subfolders"
+msgstr "_Включно з під-теками"
+
+#: ../share/gphotoframe.ui.h:16
+msgid "_Password:"
+msgstr "_Пароль:"
+
+#: ../share/gphotoframe.ui.h:17
+msgid "_Period:"
+msgstr "_Термін:"
+
+#: ../share/gphotoframe.ui.h:18
+msgid "_Source:"
+msgstr "Д_жерело:"
+
+#: ../share/gphotoframe.ui.h:19
+msgid "_Specified other people's ID"
+msgstr "_Указаний ID інших людей"
+
+#: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:57
+#: ../lib/plugins/haikyo.py:94
+msgid "_Target:"
+msgstr "_Об'єкт:"
+
+#: ../share/gphotoframe.ui.h:21
+msgid "_User ID:"
+msgstr "ID _користувача:"
+
+#: ../share/gphotoframe.ui.h:22
+msgid "_Weight:"
+msgstr "_Значення:"
+
+#: ../share/gphotoframe.ui.h:23
+msgid "translator-credits"
+msgstr "Sergiy Gavrylov <sergiovana@bigmir.net>, 2011."
+
+#: ../share/preferences.ui.h:1
+msgid "<b>Desktop</b>"
+msgstr "<b>Стільниця</b>"
+
+#: ../share/preferences.ui.h:2
+msgid "<b>Interval</b>"
+msgstr "<b>Інтервал</b>"
+
+#: ../share/preferences.ui.h:3
+msgid "<b>Maximum Display Size</b>"
+msgstr "<b>Макс. розмір показу</b>"
+
+#: ../share/preferences.ui.h:4
+msgid "<b>Photo Sources</b>"
+msgstr "<b>Джерела фото</b>"
+
+#: ../share/preferences.ui.h:5
+msgid "<b>Plugins</b>"
+msgstr "<b>Модулі</b>"
+
+#: ../share/preferences.ui.h:6
+msgid "Always on _Visible Workspace"
+msgstr "Зав_жди на видимій робочій області"
+
+#: ../share/preferences.ui.h:7
+msgid "Au_thentication"
+msgstr "_Аутентифікація"
+
+#: ../share/preferences.ui.h:9
+msgid "In _Full Screen Mode:"
+msgstr "В _повноекранному режимі:"
+
+#: ../share/preferences.ui.h:10
+msgid "In _Window Mode:"
+msgstr "В режимі _вікна:"
+
+#: ../share/preferences.ui.h:11
+msgid "Photo Frame Preferences"
+msgstr "Параметри «Photo Frame»"
+
+#: ../share/preferences.ui.h:12
+msgid "Photos"
+msgstr "Фото"
+
+#: ../share/preferences.ui.h:13
+msgid "Plugins"
+msgstr "Модулі"
+
+#: ../share/preferences.ui.h:14
+msgid "Wi_dth:"
+msgstr "_Ширина:"
+
+#: ../share/preferences.ui.h:15
+msgid "_Auto Start"
+msgstr "Ав_тозапуск"
+
+#: ../share/preferences.ui.h:16
+msgid "_Height:"
+msgstr "_Висота:"
+
+#: ../share/preferences.ui.h:17
+msgid "pixels"
+msgstr "пікселів"
+
+#: ../share/preferences.ui.h:18
+msgid "seconds"
+msgstr "секунд"
+
+#: ../share/menu.ui.h:1
+msgid "Fi_x Photo Frame"
+msgstr "Зафі_ксувати Photo Frame"
+
+#: ../share/menu.ui.h:2
+msgid "Open _Recent"
+msgstr "Відкрити _недавні"
+
+#: ../share/menu.ui.h:3
+msgid "_Full Screen"
+msgstr "_На весь екран"
+
+#: ../share/menu.ui.h:4
+msgid "_Next Photo"
+msgstr "_Наступне фото"
+
+#: ../lib/menu.py:112 ../lib/history/html.py:92 ../lib/image/actor/info.py:38
+msgid "Untitled"
+msgstr "Без назви"
+
+#: ../lib/menu.py:132
+msgid "Show _History"
+msgstr "Показати і_сторію"
+
+#: ../lib/menu.py:146
+msgid "GNOME Photo Frame"
+msgstr "GNOME Photo Frame"
+
+#: ../lib/history/html.py:32
+msgid "Screen Saver"
+msgstr "Зберігач екрана"
+
+#: ../lib/history/html.py:35
+msgid "Gnome Photo Frame History"
+msgstr "Історія Gnome Photo Frame"
+
+#. TRANSLATORS: %s is the name of the author of the photo
+#: ../lib/history/html.py:95 ../lib/image/tooltip.py:54
+#, python-format
+msgid "by %s"
+msgstr "зробив %s"
+
+#. liststore order
+#: ../lib/preferences/photosource.py:18
+msgid "Source"
+msgstr "Джерело"
+
+#: ../lib/preferences/photosource.py:19
+msgid "Target"
+msgstr "Об'єкт"
+
+#: ../lib/preferences/photosource.py:20
+msgid "Argument"
+msgstr "Аргумент"
+
+#: ../lib/preferences/photosource.py:21
+msgid "Weight"
+msgstr "Значення"
+
+#: ../lib/preferences/photosource.py:209
+msgid "The photo source should be ignored if the weight is 0."
+msgstr "Джерело фото може бути проігноровано, якщо значення — 0."
+
+#. plugin name with icon
+#: ../lib/preferences/plugin.py:29
+msgid "Name"
+msgstr "Ім'я"
+
+#. authentication
+#: ../lib/preferences/plugin.py:32
+msgid "Account"
+msgstr "Обліковий запис"
+
+#. TRANSLATORS: %s is the name of the Plugin
+#: ../lib/preferences/plugin.py:86
+#, python-format
+msgid "%s Plugin"
+msgstr "Модуль %s"
+
+#: ../lib/image/actor/favicon.py:92
+msgid "Add to faves"
+msgstr "Додати до улюблених"
+
+#: ../lib/image/actor/favicon.py:93
+msgid "Remove from faves"
+msgstr "Вилучити з улюблених"
+
+#: ../lib/image/actor/favicon.py:93
+msgid "Rate this photo"
+msgstr "Оцінити це фото"
+
+#: ../lib/image/actor/info.py:52
+msgid "Open the map"
+msgstr "Відкрити мапу"
+
+#: ../lib/image/actor/info.py:56
+msgid "Querying..."
+msgstr "Виконується запит..."
+
+#: ../lib/image/actor/info.py:91 ../lib/plugins/facebook/authdialog.py:40
+msgid "Loading..."
+msgstr "Завантаження..."
+
+#: ../lib/image/actor/source.py:54
+msgid "Open this photo"
+msgstr "Відкрити це фото"
+
+#: ../lib/image/actor/trash.py:33
+msgid "Move to trash"
+msgstr "Перемістити у смітник"
+
+#: ../lib/image/actor/trash.py:63
+msgid "Ban this photo"
+msgstr "Банітувати це фото"
+
+#: ../lib/image/actor/trash.py:84
+msgid "Move this photo to the trash?"
+msgstr "Перемістити це фото у смітник?"
+
+#: ../lib/image/actor/trash.py:85
+msgid "This photo will be moved to the trash."
+msgstr "Це фото буде переміщено у смітник."
+
+#: ../lib/image/actor/trash.py:100
+msgid "Ban this photo?"
+msgstr "Банітувати це фото?"
+
+#: ../lib/image/actor/trash.py:101
+msgid "This photo will be add to the black list."
+msgstr "Це фото буде додане до чорного списку."
+
+#: ../lib/image/tooltip.py:84
+msgid "Maker"
+msgstr "Виробник"
+
+#: ../lib/image/tooltip.py:85
+msgid "Model"
+msgstr "Модель"
+
+#: ../lib/image/tooltip.py:86
+msgid "Date"
+msgstr "Дата"
+
+#: ../lib/image/tooltip.py:87
+msgid "Focal Length"
+msgstr "Фокусна відстань"
+
+#: ../lib/image/tooltip.py:87
+msgid "mm"
+msgstr "мм"
+
+#: ../lib/image/tooltip.py:88
+msgid "Exposure"
+msgstr "Експозиція"
+
+#: ../lib/image/tooltip.py:88
+msgid "sec"
+msgstr "сек."
+
+#: ../lib/image/tooltip.py:89
+msgid "Aperture"
+msgstr "Діафрагма"
+
+#: ../lib/image/tooltip.py:90
+msgid "ISO"
+msgstr "ISO"
+
+#: ../lib/image/tooltip.py:91
+msgid "Exposure Bias"
+msgstr "Зміщення експозиції"
+
+#: ../lib/image/tooltip.py:92
+msgid "Flash"
+msgstr "Flash"
+
+#: ../lib/image/tooltip.py:93
+msgid "Flash Bias"
+msgstr "Баланс Flash"
+
+#: ../lib/plugins/base/base.py:33
+msgid "Not Authenticated"
+msgstr "Не автентифіковано"
+
+#: ../lib/plugins/base/ui.py:99
+msgid "Options"
+msgstr "Параметри"
+
+#: ../lib/plugins/base/trash.py:58
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "Не вдалось перемістити файл у смітник, вилучити його остаточно?"
+
+#: ../lib/plugins/base/trash.py:60
+#, python-format
+msgid "The file \"%s\" cannot be moved to the trash. "
+msgstr "Файл «%s» не вдалось перемістити у смітник."
+
+#: ../lib/plugins/__init__.py:30
+#, python-format
+msgid "Can't import %s plugin: %s."
+msgstr "Не вдалось імпортувати модуль «%s»: %s."
+
+#: ../lib/plugins/flickr/api.py:15
+msgid "Contacts Photos"
+msgstr "Фото контактів"
+
+#: ../lib/plugins/flickr/api.py:16
+msgid "Favorites"
+msgstr "Улюблені"
+
+#: ../lib/plugins/flickr/api.py:17
+msgid "Group Pool"
+msgstr "Об'єднання груп"
+
+#: ../lib/plugins/flickr/api.py:18 ../lib/defaultsource.py:26
+msgid "Interestingness"
+msgstr "Цікавинки"
+
+#: ../lib/plugins/flickr/api.py:19
+msgid "People Photos"
+msgstr "Фото людей"
+
+#: ../lib/plugins/flickr/api.py:20
+msgid "Photo Search"
+msgstr "Пошук фото"
+
+#: ../lib/plugins/flickr/api.py:21
+msgid "The Commons"
+msgstr "Загальні"
+
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/ui.py:49
+msgid "Your Groups"
+msgstr "Ваші групи"
+
+#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/picasa.py:186 ../lib/plugins/tumblr/ui.py:16
+msgid "_User:"
+msgstr "_Користувач:"
+
+#: ../lib/plugins/flickr/api.py:72
+msgid "Enter NSID or User Name in the URL"
+msgstr "Введіть в URL NSID або ім'я користувача"
+
+#: ../lib/plugins/flickr/api.py:217
+msgid "_Group:"
+msgstr "_Група:"
+
+#: ../lib/plugins/flickr/api.py:221
+msgid "Enter NSID or Group Name in the URL"
+msgstr "Введіть NSID або назву групи в URL"
+
+#: ../lib/plugins/flickr/api.py:311
+msgid "_Tags:"
+msgstr "_Теґи:"
+
+#: ../lib/plugins/flickr/authdialog.py:26
+#, python-format
+msgid "You are connected to Flickr.com as %s."
+msgstr "Ви під'єднані до Flickr.com як %s."
+
+#: ../lib/plugins/flickr/authdialog.py:27
+msgid "_Switch User"
+msgstr "_Змінити користувача"
+
+#: ../lib/plugins/flickr/authdialog.py:35
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+"Щоб переглядати особисті фото та додавати фото до улюблених у своєму "
+"обліковому записі Flickr.com, потрібно авторизувати Gnome Photo Frame. "
+"Натисніть кнопку «Авторизувати», щоб надати Gnome Photo Frame права доступу."
+" "
+
+#: ../lib/plugins/flickr/authdialog.py:40
+msgid "_Authorize"
+msgstr "_Авторизувати"
+
+#. getfrob -> open browser
+#: ../lib/plugins/flickr/authdialog.py:48
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"Поверніться до цього діалогу після процесу авторизації на Flickr.com та "
+"натисніть внизу кнопку «Завершити авторизацію»"
+
+#: ../lib/plugins/flickr/authdialog.py:51
+msgid "_Complete Authorization"
+msgstr "_Завершити авторизацію"
+
+#: ../lib/plugins/flickr/__init__.py:29 ../lib/plugins/picasa.py:31
+msgid "Photo Share Service"
+msgstr "Служба спільних фото"
+
+#: ../lib/plugins/flickr/__init__.py:67 ../lib/plugins/facebook/api.py:30
+#: ../lib/plugins/tumblr/__init__.py:88
+#, python-format
+msgid "%(source)s: %(target)s is invalid target."
+msgstr "%(source)s: %(target)s — помилкове призначення."
+
+#: ../lib/plugins/flickr/__init__.py:78
+msgid "Flickr: invalid nsid API url."
+msgstr "Flickr: помилкова адреса nsid API."
+
+#: ../lib/plugins/flickr/__init__.py:88
+msgid "flickr: can not find, "
+msgstr "flickr: не вдалось знайти, "
+
+#: ../lib/plugins/flickr/__init__.py:106
+#, python-format
+msgid "Flickr API Error (%s): %s"
+msgstr "Помилка API Flickr (%s): %s"
+
+#: ../lib/plugins/fspot/__init__.py:30
+msgid "F-Spot Photo Manager"
+msgstr "Менеджер фото F-Spot"
+
+#: ../lib/plugins/fspot/__init__.py:36
+msgid "Remove from catalog"
+msgstr "Вилучити з каталогу"
+
+#: ../lib/plugins/fspot/__init__.py:39
+msgid "Remove this photo from the catalog?"
+msgstr "Вилучити це фото з каталогу?"
+
+#: ../lib/plugins/fspot/__init__.py:40
+#, python-format
+msgid "This photo will be removed from the %s catalog."
+msgstr "Це фото буде вилучене з каталогу %s."
+
+#: ../lib/plugins/fspot/__init__.py:105
+#, python-format
+msgid "Last %s days"
+msgstr "Останні %s днів"
+
+#: ../lib/plugins/fspot/__init__.py:111
+msgid "Rate"
+msgstr "Оцінка"
+
+#: ../lib/plugins/fspot/__init__.py:111
+msgid "Period"
+msgstr "Термін"
+
+#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:129
+msgid "_Tag:"
+msgstr "_Теґ:"
+
+#: ../lib/plugins/facebook/__init__.py:31
+msgid "Social Network Service"
+msgstr "Служба соціальних мереж"
+
+#: ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/facebook/__init__.py:107 ../lib/plugins/facebook/api.py:22
+msgid "Wall"
+msgstr "Стіна"
+
+#: ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/facebook/__init__.py:107
+#: ../lib/plugins/facebook/__init__.py:116 ../lib/plugins/facebook/api.py:21
+msgid "Albums"
+msgstr "Альбоми"
+
+#: ../lib/plugins/facebook/__init__.py:103
+#: ../lib/plugins/facebook/__init__.py:107
+#: ../lib/plugins/facebook/__init__.py:109 ../lib/plugins/facebook/api.py:23
+msgid "News Feed"
+msgstr "Стрічка новин"
+
+#: ../lib/plugins/facebook/__init__.py:125
+msgid "_Include other photos in the same album"
+msgstr "_Додавати інші фото в цей альбом"
+
+#: ../lib/plugins/facebook/authdialog.py:45
+#, python-format
+msgid "You are logged into Facebook as %s."
+msgstr "Ви увійшли до Facebook як «%s»."
+
+#: ../lib/plugins/facebook/authdialog.py:46
+msgid "_Logout"
+msgstr "_Вийти"
+
+#: ../lib/plugins/facebook/authdialog.py:49
+msgid ""
+"You are not logged into Facebook.  If you would like to redo the "
+"authentication, you have to restart GNOME Photo Frame."
+msgstr ""
+"Ви увійшли до Facebook.  Якщо хочете повторити автентифікацію, перезапустіть"
+" GNOME Photo Frame."
+
+#: ../lib/plugins/facebook/authdialog.py:91
+#, python-format
+msgid ""
+"You are logged into Facebook as %s.  If you would like to redo the "
+"authentication, you have to restart GNOME Photo Frame."
+msgstr ""
+"Ви увійшли до Facebook як «%s». Якщо хочете повторити автентифікацію, "
+"перезапустіть GNOME Photo Frame."
+
+#: ../lib/plugins/picasa.py:28
+msgid "Picasa Web"
+msgstr "Picasa Web"
+
+#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr/__init__.py:74
+msgid "Certification Error"
+msgstr "Помилка сертифікації"
+
+#: ../lib/plugins/picasa.py:144
+msgid "Album"
+msgstr "Альбом"
+
+#: ../lib/plugins/picasa.py:145 ../lib/plugins/picasa.py:186
+#: ../lib/plugins/picasa.py:192
+msgid "Community Search"
+msgstr "Пошук у спільноті"
+
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:188
+#: ../lib/plugins/picasa.py:192
+msgid "Featured"
+msgstr "Популярні"
+
+#: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:153
+#: ../lib/plugins/picasa.py:186 ../lib/plugins/picasa.py:192
+#: ../lib/plugins/tumblr/__init__.py:73 ../lib/plugins/tumblr/__init__.py:79
+#: ../lib/plugins/tumblr/__init__.py:103 ../lib/plugins/tumblr/__init__.py:123
+#: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
+#: ../lib/plugins/tumblr/ui.py:23 ../lib/plugins/tumblr/ui.py:25
+msgid "User"
+msgstr "Користувач"
+
+#: ../lib/plugins/picasa.py:186
+msgid "_Keyword:"
+msgstr "К_лючове слово:"
+
+#: ../lib/plugins/tumblr/__init__.py:31
+msgid "Share Anything"
+msgstr "Поділитись всім"
+
+#: ../lib/plugins/tumblr/__init__.py:37
+msgid "Remove from Tumblr"
+msgstr "Вилучити з Tumblr"
+
+#: ../lib/plugins/tumblr/__init__.py:41
+msgid "Remove this photo from Tumblr?"
+msgstr "Вилучити це фото з Tumblr?"
+
+#: ../lib/plugins/tumblr/__init__.py:42
+msgid "This photo will be removed from Tumblr."
+msgstr "Це фото буде вилучене з Tumblr."
+
+#. user_id
+#: ../lib/plugins/tumblr/__init__.py:81 ../lib/plugins/tumblr/__init__.py:82
+#: ../lib/plugins/tumblr/__init__.py:83 ../lib/plugins/tumblr/ui.py:23
+msgid "Dashboard"
+msgstr "Інформаційна панель"
+
+#: ../lib/plugins/tumblr/__init__.py:81 ../lib/plugins/tumblr/ui.py:23
+msgid "Likes"
+msgstr "Подобається"
+
+#: ../lib/plugins/tumblr/api.py:67
+msgid "Share on Tumblr"
+msgstr "Поділитись у Tumblr"
+
+#: ../lib/plugins/tumblr/api.py:70
+msgid "Share this photo on Tumblr?"
+msgstr "Поділитись цим фото у Tumblr?"
+
+#: ../lib/plugins/tumblr/api.py:71
+msgid "This photo will be shared on Tumblr."
+msgstr "Це фото буде спільним у Tumblr."
+
+#: ../lib/plugins/tumblr/api.py:85
+msgid "Reblog"
+msgstr "Переблоґ"
+
+#: ../lib/plugins/tumblr/api.py:88
+msgid "Reblog this photo?"
+msgstr "Переблоґувати це фото?"
+
+#: ../lib/plugins/tumblr/api.py:89
+msgid "This photo will be rebloged on Tumblr."
+msgstr "Це фото буде переблоґоване у Tumblr."
+
+#: ../lib/plugins/tumblr/ui.py:39
+msgid "_E-mail:"
+msgstr "Ел._пошта:"
+
+#: ../lib/plugins/rss.py:34
+msgid "RSS and Atom Feeds"
+msgstr "RSS та Atom Feeds"
+
+#: ../lib/plugins/rss.py:135
+msgid "_Title:"
+msgstr "_Назва:"
+
+#. argument widget
+#: ../lib/plugins/rss.py:138
+msgid "_URL:"
+msgstr "_URL:"
+
+#: ../lib/plugins/haikyo.py:33
+msgid "Ruins Clock"
+msgstr "Годинник Ruins"
+
+#: ../lib/plugins/haikyo.py:35
+msgid "Haikyo Clock"
+msgstr "Годинник Haikyo"
+
+#: ../lib/plugins/folder.py:26 ../lib/defaultsource.py:27
+msgid "Folder"
+msgstr "Тека"
+
+#: ../lib/plugins/folder.py:28
+msgid "Local Folder"
+msgstr "Локальна тека"
+
+#: ../lib/plugins/shotwell.py:44
+msgid "Shotwell Photo Manager"
+msgstr "Менеджер фото Shotwell"
+
+#: ../lib/plugins/shotwell.py:50
+msgid "Set rating as rejected"
+msgstr "Встановити оцінку, як відхилену"
+
+#: ../lib/plugins/shotwell.py:53
+msgid "Set rating as rejected?"
+msgstr "Встановити оцінку, як відхилену?"
+
+#: ../lib/plugins/shotwell.py:54
+msgid ""
+"The rating of this photo will be set as rejected.  Gnome photo frame will "
+"skip rejected photos."
+msgstr ""
+"Оцінка цього фото була відхилена. GNOME Photo Frame ігноруватиме оцінку "
+"таких фото."
+
+#: ../lib/plugins/shotwell.py:131
+msgid "_Description:"
+msgstr "_Опис:"
