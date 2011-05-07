@@ -1,3 +1,8 @@
+2011-05-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/folder.py (PhotoSourceOptionsDirUI): Fixed a chckbutton
+	  sensitiveness.
+
 2011-05-01  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* uk.po: Added Ukrainian translation.  Thanks Sergiy Gavrylov!
