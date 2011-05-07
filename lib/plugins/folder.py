@@ -150,6 +150,7 @@ class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
         state = self.options.get(self.option_key, self.checkbutton_default)
         self.checkbutton.set_label(self.label_text)
         self.checkbutton.set_active(state)
+        self.checkbutton.set_sensitive(True)
 
     def get_value(self):
         state = self.checkbutton.get_active()
