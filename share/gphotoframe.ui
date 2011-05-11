@@ -539,6 +539,20 @@
         <property name="position">0</property>
       </packing>
     </child>
+    <child>
+      <object class="GtkCheckButton" id="checkbutton_hidden">
+        <property name="label" translatable="yes">_Exclude hidden files and folders</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="use_underline">True</property>
+        <property name="draw_indicator">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
   </object>
   <object class="GtkDialog" id="plugin_netauth_dialog">
     <property name="border_width">5</property>
