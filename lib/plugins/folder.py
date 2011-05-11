@@ -33,6 +33,7 @@ class DirPhotoList(base.LocalPhotoList):
 
     def prepare(self):
         self.re_image = re.compile(r'\.(jpe?g|png|gif|bmp)$', re.IGNORECASE)
+        self.re_hidden = re.compile(r'/\.')
         self._inotify()
         d = threads.deferToThread(self._prepare_cb)
 
@@ -63,7 +64,11 @@ class DirPhotoList(base.LocalPhotoList):
     def _set_photo(self, fullpath):
         filename = os.path.split(fullpath)[1]
 
-        if self.re_image.search(filename):
+        is_valid_file = self.re_image.search(filename)
+        if self.options.get('exclude_hidden'):
+            is_valid_file = is_valid_file and not self.re_hidden.search(fullpath)
+        
+        if is_valid_file:
             data = { 'info'     : DirPlugin,
                      'url'      : 'file://' + fullpath,
                      'filename' : fullpath,
@@ -71,6 +76,8 @@ class DirPhotoList(base.LocalPhotoList):
                      'trash'    : trash.Trash(self.photolist) }
             photo = base.Photo(data)
             self.photos.append(photo)
+        # else: # fixme
+        #     print "exclude: ", fullpath
 
     def _inotify(self):
         self.inotify = inotify = Inotify()
@@ -125,23 +132,22 @@ class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
         self.child = self.gui.get_object('folder_vbox')
-        self.checkbutton = self.gui.get_object('checkbutton_dir')
-        self._set_ui_text()
-
-    def _set_ui_text(self):
-        self.label_text = _('_Include subfolders')
-        self.option_key = 'subfolders'
-        self.checkbutton_default = True
+        self.checkbutton_sub = self.gui.get_object('checkbutton_dir')
+        self.checkbutton_hidden = self.gui.get_object('checkbutton_hidden')
 
     def _set_default(self):
-        state = self.options.get(self.option_key, self.checkbutton_default)
-        self.checkbutton.set_label(self.label_text)
-        self.checkbutton.set_active(state)
-        self.checkbutton.set_sensitive(True)
+        state = self.options.get('subfolders', True)
+        self.checkbutton_sub.set_active(state)
+        self.checkbutton_sub.set_sensitive(True)
+
+        state = self.options.get('exclude_hidden', False)
+        self.checkbutton_hidden.set_active(state)
+        self.checkbutton_hidden.set_sensitive(True)
 
     def get_value(self):
-        state = self.checkbutton.get_active()
-        return {self.option_key : state}
+        subfolders = self.checkbutton_sub.get_active()
+        hidden = self.checkbutton_hidden.get_active()
+        return {'subfolders': subfolders, 'exclude_hidden': hidden}
 
 class FolderIcon(IconImage):
 
