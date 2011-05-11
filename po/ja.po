@@ -1,14 +1,14 @@
 # Japanese translations for gphotoframe package.
-# Copyright (C) 2009-2010 Yoshizumi Endo
+# Copyright (C) 2009-2011 Yoshizumi Endo
 # This file is distributed under the same license as the gphotoframe package.
-# Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2009-2010.
+# Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2009-2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-19 09:08+0900\n"
-"PO-Revision-Date: 2011-04-19 09:08+0900\n"
+"POT-Creation-Date: 2011-05-11 23:19+0900\n"
+"PO-Revision-Date: 2011-05-11 23:25+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -514,40 +514,44 @@ msgstr "最新の写真のみ表示する(_L)"
 msgid "_Argument:"
 msgstr "引数(_A):"
 
-#: ../share/gphotoframe.ui.h:15 ../lib/plugins/folder.py:145
+#: ../share/gphotoframe.ui.h:15
+msgid "_Exclude hidden files and folders"
+msgstr "隠しファイル・フォルダを除外する(_E)"
+
+#: ../share/gphotoframe.ui.h:16
 msgid "_Include subfolders"
 msgstr "サブフォルダを含める(_I)"
 
-#: ../share/gphotoframe.ui.h:16
+#: ../share/gphotoframe.ui.h:17
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../share/gphotoframe.ui.h:17
+#: ../share/gphotoframe.ui.h:18
 msgid "_Period:"
 msgstr "期間(_P):"
 
-#: ../share/gphotoframe.ui.h:18
+#: ../share/gphotoframe.ui.h:19
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.ui.h:19
+#: ../share/gphotoframe.ui.h:20
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:57
+#: ../share/gphotoframe.ui.h:21 ../lib/plugins/base/ui.py:57
 #: ../lib/plugins/haikyo.py:94
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.ui.h:21
+#: ../share/gphotoframe.ui.h:22
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../share/gphotoframe.ui.h:22
+#: ../share/gphotoframe.ui.h:23
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../share/gphotoframe.ui.h:23
+#: ../share/gphotoframe.ui.h:24
 msgid "translator-credits"
 msgstr "Yoshizumi Endo <y-endo@ceres.dti.ne.jp>"
 
