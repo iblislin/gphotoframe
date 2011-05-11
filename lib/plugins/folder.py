@@ -46,14 +46,10 @@ class DirPhotoList(base.LocalPhotoList):
         cb(None, self.photo)
 
     def _prepare_cb(self):
-        path = self.target
+        walk = os.walk(self.target) # target = path
+        paths = walk if self.options.get('subfolders') else [walk.next()]
 
-        if self.options.get('subfolders'):
-            for root, dirs, files in os.walk(path):
-                self._set_photo_from_dirs(root, files)
-                self.inotify.add_dir(root)
-        else:
-            root, dirs, files = os.walk(path).next()
+        for root, dirs, files in paths:
             self._set_photo_from_dirs(root, files)
             self.inotify.add_dir(root)
 
@@ -61,40 +57,31 @@ class DirPhotoList(base.LocalPhotoList):
 
     def _set_photo_from_dirs(self, root, files):
         for filename in files:
-            if self.re_image.search(filename):
-                fullpath = os.path.join(root, filename)
-                self._set_photo(fullpath, filename)
+            fullpath = os.path.join(root, filename)
+            self._set_photo(fullpath)
 
-    def _set_photo(self, fullpath, filename=None):
-        if filename is None:
-            filename = os.path.split(fullpath)[1]
+    def _set_photo(self, fullpath):
+        filename = os.path.split(fullpath)[1]
 
-        data = { 'info'     : DirPlugin,
-                 'url'      : 'file://' + fullpath,
-                 'filename' : fullpath,
-                 'title'    : filename,
-                 'trash'    : trash.Trash(self.photolist) }
-        photo = base.Photo(data)
-        self.photos.append(photo)
+        if self.re_image.search(filename):
+            data = { 'info'     : DirPlugin,
+                     'url'      : 'file://' + fullpath,
+                     'filename' : fullpath,
+                     'title'    : filename,
+                     'trash'    : trash.Trash(self.photolist) }
+            photo = base.Photo(data)
+            self.photos.append(photo)
 
     def _inotify(self):
         self.inotify = inotify = Inotify()
         inotify.recursive = self.options.get('subfolders')
 
-        inotify.add_cb('add_file', self._add_file)
+        inotify.add_cb('add_file', self._set_photo)
         inotify.add_cb('del_file', self._del_file)
         inotify.add_cb('add_dir', self._add_dir)
         inotify.add_cb('del_dir', self._del_dir)
 
-    def _add_file(self, fullpath):
-        # print "add!", fullpath
-
-        if self.re_image.search(fullpath):
-            self._set_photo(fullpath)
-
     def _del_file(self, fullpath):
-        # print "del!", fullpath
-
         for i, photo in enumerate(self.photos):
             if photo['filename'] == fullpath:
                 self.photos.pop(i)
