@@ -46,6 +46,7 @@ class ToolTip(object):
             target = photo.get('target')
             date = photo.get('date_taken')
             location = photo.get_location(short=True)
+            model = photo.get('exif').get('model') if photo.get('exif') else None
 
             if title:
                 tip += "<big>%s</big>\n" % escape(title)
@@ -59,6 +60,8 @@ class ToolTip(object):
                 tip += "%s\n" % escape(text)
             if location and self.conf.get_bool('format/location_on_tooltip'):
                 tip += "%s\n" % escape(location)
+            if model and self.conf.get_bool('format/model_on_tooltip'):
+                tip += "%s\n" % escape(model)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)
 
