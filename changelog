@@ -1,3 +1,7 @@
+2011-05-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* facebook/__init__.py: Fixed a bug.
+
 2011-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.4-b1 release.
