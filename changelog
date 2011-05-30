@@ -1,5 +1,6 @@
 2011-05-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.4-b2 release.
 	* liststore.py (RecentQueue.pop): Improved obsolete cache files
 	  removing.
 
