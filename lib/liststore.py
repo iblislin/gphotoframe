@@ -187,10 +187,16 @@ class RecentQueue(list):
 
     def pop(self, num):
         pop_photo = super(RecentQueue, self).pop(num)
-        filename = pop_photo['filename']
-        if filename.startswith(CACHE_DIR) and os.access(filename, os.R_OK):
-            os.remove(filename)
 
+        url = pop_photo['url']
+        cache_filename = url.replace('/', '_')
+        thumb_filename = 'thumb_' + cache_filename
+
+        for path in [cache_filename, thumb_filename]:
+            cache_fullpath = os.path.join(CACHE_DIR, path)
+            if os.access(cache_fullpath, os.R_OK):
+                os.remove(cache_fullpath)
+        
     def menu_item(self):
         num = self.conf.get_int('recents/queue_menu_number', 6) * -1
         return self[num:]
