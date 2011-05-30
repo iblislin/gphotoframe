@@ -1,3 +1,8 @@
+2011-05-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py (RecentQueue.pop): Improved obsolete cache files
+	  removing.
+
 2011-05-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* facebook/__init__.py: Fixed a bug.
