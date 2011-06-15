@@ -202,10 +202,13 @@ class RecentQueue(list):
         return self[num:]
 
     def clear_cache(self):
-        recents = [i['filename'] for i in self.menu_item()]
-        for filename in glob.iglob(os.path.join(CACHE_DIR, '*')):
-            if filename not in recents:
-                os.remove(filename)
+        cache_files = [i['url'].replace('/', '_') for i in self.menu_item()]
+        thumb_files = ['thumb_' + file for file in cache_files]
+
+        for fullpath in glob.iglob(os.path.join(CACHE_DIR, '*')):
+            filename = os.path.basename(fullpath)
+            if filename not in cache_files + thumb_files:
+                os.remove(fullpath)
 
 class BlackList(object):
 

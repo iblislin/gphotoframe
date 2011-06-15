@@ -1,3 +1,7 @@
+2011-06-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Improved obsolete cache thumbnails removing.
+
 2011-06-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.xcf: Updated a help image.
