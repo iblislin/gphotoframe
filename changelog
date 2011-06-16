@@ -1,3 +1,8 @@
+2011-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/EXIF.py (EXIF_header.decode_maker_note): Fixed a Canon
+	  maker note error.
+
 2011-06-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* liststore.py: Improved obsolete cache thumbnails removing.
