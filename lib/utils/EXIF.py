@@ -4,7 +4,7 @@
 # Library to extract EXIF information from digital camera image files
 # http://sourceforge.net/projects/exif-py/
 #
-# VERSION 1.1.0
+# VERSION 1.1.0.1 (Fixed by yendo0206@gmail.com 2011/06/15)
 #
 # To use this library call with:
 #    f = open(path_name, 'rb')
@@ -1567,7 +1567,9 @@ class EXIF_header:
                           dict=MAKERNOTE_CANON_TAGS)
             for i in (('MakerNote Tag 0x0001', MAKERNOTE_CANON_TAG_0x001),
                       ('MakerNote Tag 0x0004', MAKERNOTE_CANON_TAG_0x004)):
-                self.canon_decode_tag(self.tags[i[0]].values, i[1])
+                # Fixed by yendo0206@gmail.com
+                if i[0] in self.tags:
+                    self.canon_decode_tag(self.tags[i[0]].values, i[1])
             return
 
 
