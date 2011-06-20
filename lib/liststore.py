@@ -8,6 +8,7 @@ import plugins
 from constants import CACHE_DIR
 from frame import PhotoFrameFactory
 from history import HistoryFactory
+from history.history import History
 from history.history import HistoryDB
 from utils.config import GConf
 from utils.wrandom import WeightedRandom
@@ -168,6 +169,7 @@ class RecentQueue(list):
     def __init__(self):
         super(RecentQueue, self).__init__()
         self.conf = GConf()
+        self.clear_cache()
         self.history = HistoryFactory().create()
 
     def append(self, photo):
@@ -202,12 +204,17 @@ class RecentQueue(list):
         return self[num:]
 
     def clear_cache(self):
-        cache_files = [i['url'].replace('/', '_') for i in self.menu_item()]
-        thumb_files = ['thumb_' + file for file in cache_files]
+        cache_files = []
+
+        for table in ['photoframe', 'screensaver']:
+            recents = History(table).get(10)
+            cache_files += [photo[1].replace('/', '_') for photo in recents]
+
+        all_caches = cache_files + ['thumb_' + file for file in cache_files]
 
         for fullpath in glob.iglob(os.path.join(CACHE_DIR, '*')):
             filename = os.path.basename(fullpath)
-            if filename not in cache_files + thumb_files:
+            if filename not in all_caches:
                 os.remove(fullpath)
 
 class BlackList(object):
