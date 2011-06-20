@@ -1,3 +1,8 @@
+2011-06-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py (RecentQueue.clear_cache): Improved obsolete cache
+	  files removing.
+
 2011-06-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* utils/EXIF.py (EXIF_header.decode_maker_note): Fixed a Canon
