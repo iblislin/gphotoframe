@@ -1,3 +1,7 @@
+2011-06-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* it.po: Updated Italian translation.  Thanks Cristian Marchi!
+
 2011-06-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* liststore.py (RecentQueue.clear_cache): Improved obsolete cache
