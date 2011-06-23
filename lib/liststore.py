@@ -223,5 +223,6 @@ class BlackList(object):
         self.con = HistoryDB('ban')
 
     def check_banned_for(self, url):
+        url = url.replace("'", "''")
         sql = "SELECT count(*) FROM ban WHERE url='%s';" % url
         return self.con.fetchone(sql)
