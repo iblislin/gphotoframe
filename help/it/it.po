@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe help 1.1\n"
-"POT-Creation-Date: 2011-04-09 16:11+0200\n"
-"PO-Revision-Date: 2011-04-09 16:12+0100\n"
+"POT-Creation-Date: 2011-06-22 20:50+0200\n"
+"PO-Revision-Date: 2011-06-22 20:50+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -16,9 +16,9 @@ msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/gphotoframe.xml:186(None)
-msgid "@@image: 'figures/gphotoframe.png'; md5=271391ff0ab65ad411a618683fdf2e16"
-msgstr "@@image: 'figures/gphotoframe.png'; md5=271391ff0ab65ad411a618683fdf2e16"
+#: C/gphotoframe.xml:195(None)
+msgid "@@image: 'figures/gphotoframe.png'; md5=2027e768aa7f2e6a66671a14494d3b66"
+msgstr "@@image: 'figures/gphotoframe.png'; md5=2027e768aa7f2e6a66671a14494d3b66"
 
 #: C/gphotoframe.xml:18(title)
 msgid "<application>GNOME Photo Frame</application> Application Manual"
@@ -61,586 +61,603 @@ msgid "Permission is granted to copy, distribute and/or modify this document und
 msgstr "È garantito il permesso di copiare, distribuire, modificare questo documento nei termini della GNU Free Documentation License (GFDL), versione 1.1 o qualsiasi versione successiva pubblicata dalla Free Software Foundation senza Invariant Sections, testi di Front-Cover e testi di Back-Cover. È possibile reperire una copia della licenza GFDL a <ulink type=\"help\" url=\"ghelp:fdl\">questo indirizzo</ulink> oppure nel file COPYING-DOCS distribuito con questo manuale."
 
 #: C/gphotoframe.xml:59(revnumber)
-msgid "GNOME Photo Frame Manual V1.3"
-msgstr "Manuale V1.3 della cornice fotografica di GNOME"
+msgid "GNOME Photo Frame Manual V1.4"
+msgstr "Manuale V1.4 della cornice fotografica di GNOME"
 
 #: C/gphotoframe.xml:60(date)
-msgid "2011-04-09"
-msgstr "09-04-2011"
+msgid "2011-06-22"
+msgstr "22-06-2011"
 
 #: C/gphotoframe.xml:62(para)
 #: C/gphotoframe.xml:71(para)
 #: C/gphotoframe.xml:80(para)
 #: C/gphotoframe.xml:89(para)
+#: C/gphotoframe.xml:98(para)
 msgid "Cristian Marchi <email>cri.penta@gmail.com</email>"
 msgstr "Cristian Marchi <email>cri.penta@gmail.com</email>"
 
 #: C/gphotoframe.xml:68(revnumber)
+msgid "GNOME Photo Frame Manual V1.3"
+msgstr "Manuale V1.3 della cornice fotografica di GNOME"
+
+#: C/gphotoframe.xml:69(date)
+msgid "2011-04-09"
+msgstr "09-04-2011"
+
+#: C/gphotoframe.xml:77(revnumber)
 msgid "GNOME Photo Frame Manual V1.2"
 msgstr "Manuale V1.2 della cornice fotografica di GNOME"
 
-#: C/gphotoframe.xml:69(date)
+#: C/gphotoframe.xml:78(date)
 msgid "2011-01-22"
 msgstr "22-01-2011"
 
-#: C/gphotoframe.xml:77(revnumber)
+#: C/gphotoframe.xml:86(revnumber)
 msgid "GNOME Photo Frame Manual V1.1.1"
 msgstr "Manuale V1.1.1 della cornice fotografica di GNOME"
 
-#: C/gphotoframe.xml:78(date)
+#: C/gphotoframe.xml:87(date)
 msgid "2010-11-04"
 msgstr "03-10-2010"
 
-#: C/gphotoframe.xml:86(revnumber)
+#: C/gphotoframe.xml:95(revnumber)
 msgid "GNOME Photo Frame Manual V1.1"
 msgstr "Manuale V1.1 della cornice fotografica di GNOME"
 
-#: C/gphotoframe.xml:87(date)
+#: C/gphotoframe.xml:96(date)
 msgid "2010-10-03"
 msgstr "03-10-2010"
 
-#: C/gphotoframe.xml:95(releaseinfo)
-msgid "This manual describes version 1.3 of GNOME Photo Frame."
-msgstr "Questo manuale descrive la versione 1.3 della cornice fotografica di GNOME"
+#: C/gphotoframe.xml:104(releaseinfo)
+msgid "This manual describes version 1.4 of GNOME Photo Frame."
+msgstr "Questo manuale descrive la versione 1.4 della cornice fotografica di GNOME"
 
-#: C/gphotoframe.xml:100(title)
+#: C/gphotoframe.xml:109(title)
 msgid "Introduction"
 msgstr "Introduzione"
 
-#: C/gphotoframe.xml:101(para)
+#: C/gphotoframe.xml:110(para)
 msgid "<application>GNOME Photo Frame</application> is an image viewer application for your GNOME desktop."
 msgstr "La <application>cornice fotografica di GNOME</application> è un&rsquo;applicazione per la visualizzazione delle immagini per il proprio ambiente GNOME."
 
-#: C/gphotoframe.xml:106(para)
+#: C/gphotoframe.xml:115(para)
 msgid "The <application>GNOME Photo Frame</application> application is able to show a frame on your desktop in which are displayed images and photos gathered from user specified local and online sources."
 msgstr "L&rsquo;applicazione <application>cornice fotografica di GNOME</application> è in grado di visualizzare una cornice sulla propria scrivania in cui vengono mostrate immagini e fotografie provenienti da fonti locali o online specificate dall&rsquo;utente."
 
-#: C/gphotoframe.xml:112(para)
+#: C/gphotoframe.xml:121(para)
 msgid "This manual describes how to set up and use the <application>GNOME Photo Frame</application> application."
 msgstr "Questo manuale descrive come impostare e utilizzare l&rsquo;applicazione <application>cornice fotografica di GNOME</application>."
 
-#: C/gphotoframe.xml:118(title)
+#: C/gphotoframe.xml:127(title)
 msgid "Starting <application>GNOME Photo Frame</application>"
 msgstr "Avviare la <application>cornice fotografica di GNOME</application>"
 
-#: C/gphotoframe.xml:119(para)
+#: C/gphotoframe.xml:128(para)
 msgid "To start <application>GNOME Photo Frame</application> select the <menuchoice><guimenu>Applications</guimenu><guisubmenu>Graphics</guisubmenu><guimenuitem>Photo Frame</guimenuitem></menuchoice> entry from the main menu."
 msgstr "Per avviare la <application>cornice fotografica di GNOME</application> selezionare la voce <menuchoice><guimenu>Applicazioni</guimenu><guisubmenu>Grafica</guisubmenu><guimenuitem>Photo Frame</guimenuitem></menuchoice> dal menu principale."
 
-#: C/gphotoframe.xml:124(para)
+#: C/gphotoframe.xml:133(para)
 msgid "Alternatively start <application>GNOME Photo Frame</application> from the shell with the <command>gphotoframe</command> command."
 msgstr "In alternativa è possibile avviare la <application>cornice fotografica di GNOME</application> dal terminale con il comando <command>gphotoframe</command>"
 
-#: C/gphotoframe.xml:128(para)
+#: C/gphotoframe.xml:137(para)
 msgid "As the <application>GNOME Photo Frame</application> application is started and the <link linkend=\"gphotoframe-photo-frame\">photo frame</link> displayed, you can start to add sources. Do this in the following way:"
 msgstr "Non appena l&rsquo;applicazione <application>cornice fotografica di GNOME</application> è avviata e la <link linkend=\"gphotoframe-photo-frame\">cornice fotografica</link> visualizzata, è possibile iniziare ad aggiungere delle fonti. Per farlo, procedere nel seguente modo:"
 
-#: C/gphotoframe.xml:136(para)
+#: C/gphotoframe.xml:145(para)
 msgid "Right-click on the photo frame and select <guilabel>Preferences</guilabel> from the <link linkend=\"gphotoframe-mainmenu\"><application>GNOME Photo Frame</application> main menu</link>."
 msgstr "Fare clic con il tasto destro del mouse nella cornice fotografica e selezionare <guilabel>Preferenze</guilabel> dal <link linkend=\"gphotoframe-mainmenu\">menu principale della <application>cornice fotografica di GNOME</application></link>."
 
-#: C/gphotoframe.xml:142(para)
+#: C/gphotoframe.xml:151(para)
 msgid "Select the <link linkend=\"pref-photos\"><guilabel>Photos</guilabel></link> tab and press the <guibutton>New</guibutton> button."
 msgstr "Selezionare la scheda <link linkend=\"pref-photos\"><guilabel>Fotografie</guilabel></link> e premere il pulsante <guibutton>Nuovo</guibutton>."
 
-#: C/gphotoframe.xml:148(para)
+#: C/gphotoframe.xml:157(para)
 msgid "In the dialog that will open, select one of the <link linkend=\"pref-plugins\">many sources</link>. Adjust as desired the options and apply the changes with the <guibutton>Ok</guibutton> button."
 msgstr "Nella schermata che verrà aperta, selezionare una tra le <link linkend=\"pref-plugins\">varie fonti</link>, impostare le opzioni secondo le proprie preferenze, poi premere <guibutton>Ok</guibutton>."
 
-#: C/gphotoframe.xml:154(para)
+#: C/gphotoframe.xml:163(para)
 msgid "Go back to the photo frame by closing the <guilabel>Preferences</guilabel> dialog with the <guibutton>Close</guibutton> button."
 msgstr "Ritornare alla cornice fotografica chiudendo la schermata delle <guilabel>Preferenze</guilabel> con il pulsante <guibutton>Chiudi</guibutton>."
 
-#: C/gphotoframe.xml:162(para)
+#: C/gphotoframe.xml:171(para)
 msgid "Some sources may require an active internet connection in order to display images."
 msgstr "Alcune fonti necessitano di una connessione internet attiva per poter visualizzare le immagini."
 
-#: C/gphotoframe.xml:169(title)
+#: C/gphotoframe.xml:178(title)
 msgid "Photo Frame"
 msgstr "Cornice fotografica"
 
-#: C/gphotoframe.xml:170(para)
+#: C/gphotoframe.xml:179(para)
 msgid "The photo frame is the main window of <application>GNOME Photo Frame</application>."
 msgstr "La cornice fotografica è la finestra principale della <application>cornice fotografica di GNOME</application>."
 
-#: C/gphotoframe.xml:173(para)
+#: C/gphotoframe.xml:182(para)
 msgid "When an image or photo is diplayed, hovering on it with the mouse pointer will make some icons and a tooltip appears as showed in <xref linkend=\"gphotoframe-fig2\"/>. The tooltip shows some basic informations about the content as the author name, the image title and the date taken."
 msgstr "Quando è visualizzata una fotografia, fermando il puntatore del mouse su di essa verranno visualizzati un suggerimento e delle icone come mostrato in <xref linkend=\"gphotoframe-fig2\"/>. Il suggerimento contiene alcune informazioni di base sul contenuto come il nome dell&rsquo;autore, il titolo dell&rsquo;immagine e la data di scatto."
 
-#: C/gphotoframe.xml:182(title)
+#: C/gphotoframe.xml:191(title)
 msgid "The Photo Frame"
 msgstr "La cornice fotografica"
 
-#: C/gphotoframe.xml:189(phrase)
+#: C/gphotoframe.xml:198(phrase)
 msgid "Shows the photo frame with tooltip and icons"
 msgstr "Mostra la cornice fotografica con il suggerimento e le icone"
 
-#: C/gphotoframe.xml:192(para)
+#: C/gphotoframe.xml:201(para)
 msgid "The tooltip and the icons showed on the photo frame if the source is <emphasis>Flickr</emphasis> photo sharing website"
 msgstr "Il suggerimento e le icone mostrate nella cornice fotografica se la fonte è il sito di condivisione di fotografie <emphasis>flickr</emphasis>"
 
-#: C/gphotoframe.xml:202(title)
+#: C/gphotoframe.xml:211(title)
 msgid "Clutter library support"
 msgstr "Supporto alla libreria Clutter"
 
-#: C/gphotoframe.xml:203(para)
+#: C/gphotoframe.xml:212(para)
 msgid "Without the <application>Clutter library</application> support, these icons will not be displayed. You will see only the tooltip."
 msgstr "Senza il supporto alla libreria <application>Clutter</application>, queste icone non verranno visualizzate. Verrà mostrato solamente il suggerimento."
 
-#: C/gphotoframe.xml:209(para)
+#: C/gphotoframe.xml:218(para)
 msgid "The number and type of icons displayed on the frame corners depends on the content&rsquo;s source. They can be:"
 msgstr "Il numero e il tipo di icone visualizzate agli angoli della cornice fotografica dipende dal tipo di fonte per il contenuto. Le icone possono essere:"
 
-#: C/gphotoframe.xml:217(guiicon)
+#: C/gphotoframe.xml:226(guiicon)
 msgid "fav-icon"
 msgstr "Icona delle favorite"
 
-#: C/gphotoframe.xml:219(para)
+#: C/gphotoframe.xml:228(para)
 msgid "This icon is located in the upper left corner of the photo frame. If you are <link linkend=\"gphotoframe-onlinelog\">logged in</link> with your userID to an internet service like <emphasis>Flickr</emphasis>, you can add an image to your&rsquo;s profile favorites with a click on this icon. The icon will then light up indicating that the image has been added to your favorites."
 msgstr "Questa icona è visualizzata nell&rsquo;angolo superiore sinistro della cornice fotografica. Se si è <link linkend=\"gphotoframe-onlinelog\">connessi</link> con il proprio ID utente a un servizio online quale <emphasis>flickr</emphasis>, sarà possibile aggiungere un&rsquo;immagine alle proprie favorite facendo clic su questa icona. L&rsquo;icona si illuminerà a indicare che l&rsquo;immagine è stata aggiunta alle favorite."
 
-#: C/gphotoframe.xml:225(para)
+#: C/gphotoframe.xml:234(para)
 msgid "Click again on that icon and the image will be removed from your favorites."
 msgstr "Fare di nuovo clic sull&rsquo;immagine per rimuoverla dalle favorite."
 
-#: C/gphotoframe.xml:226(para)
+#: C/gphotoframe.xml:235(para)
 msgid "If the contents comes from photo manager applications (such as <application> F-Spot</application> or <application>Shotwell</application> database), there will be a row of five icons so that you can assign a personal vote to the content displayed with a click on them."
 msgstr "Se il contenuto proviene da una applicazione per la gestione delle fotografie (quale <application> F-Spot</application> o <application>Shotwell</application>), sarà presente una riga di cinque icone in modo che sia possibile assegnare al contenuto un voto facendovi clic sopra."
 
-#: C/gphotoframe.xml:234(guiicon)
+#: C/gphotoframe.xml:243(guiicon)
 msgid "geo-icon"
 msgstr "Icona geografica"
 
-#: C/gphotoframe.xml:236(para)
+#: C/gphotoframe.xml:245(para)
 msgid "This is the earth shaped icon that appears on the bottom right of the frame if GPS (Global Positioning System) data are available for the content currently displayed. Click on the icon to open the default web browser in which the content&rsquo;s geographical position will be displayed in google maps."
 msgstr "È un&rsquo;icona a forma di mondo che viene visualizzata nell&rsquo;angolo in basso a destra della cornice fotografica se sono disponibili i dati GPS (Global Positioning System) relativi al contenuto mostrato. Fare clic sull&rsquo;icona e il browser web predefinito verrà aperto per visualizzare la posizione geografica del contenuto nel servizio mappe di google."
 
-#: C/gphotoframe.xml:245(guiicon)
+#: C/gphotoframe.xml:254(guiicon)
 msgid "info-icon"
 msgstr "Icona delle informazioni"
 
-#: C/gphotoframe.xml:247(para)
+#: C/gphotoframe.xml:256(para)
 msgid "This icon is located on the bottom right of the frame and depict a camera. If you hover the mouse on it, a tooltip will be displayed containing all the image&rsquo; metadata (if available) such as camera model and maker, shutter speed, aperture, etc..."
 msgstr "Questa icona a forma di fotocamera è posizionata nell&rsquo;angolo in basso a destra della cornice fotografica. Se il puntatore del mouse viene fermato su di essa, verrà visualizzato un suggerimento contenente le informazioni (se disponibili) relative al produttore della fotocamera, al modello, alla velocità di esposizione, all&rsquo;apertura ecc..."
 
-#: C/gphotoframe.xml:255(guiicon)
+#: C/gphotoframe.xml:264(guiicon)
 msgid "source-icon"
 msgstr "Icona della fonte"
 
-#: C/gphotoframe.xml:257(para)
+#: C/gphotoframe.xml:266(para)
 msgid "This icon is displayed in the upper right corner of the frame and shows the symbol of the service from where the content is retrieved. With a click on the icon, the source will open in your system&rsquo;s default web browser (if the content comes from an online service), and in your system&rsquo;s default image viewer (if the content is local)."
 msgstr "Questa icona è visualizzata nell&rsquo;angolo superiore destro della cornice fotografica e mostra il simbolo del servizio da cui proviene il contenuto. Facendo clic sull&rsquo;icona, la fonte verrà aperta nel browser web predefinito se si tratta di un servizio online, e nel visualizzatore di immagini predefinito se il contenuto è locale."
 
-#: C/gphotoframe.xml:267(guiicon)
+#: C/gphotoframe.xml:276(guiicon)
+msgid "share-icon"
+msgstr "Icona di condivisione"
+
+#: C/gphotoframe.xml:278(para)
+msgid "This icon is displayed in the upper left corner of the frame. With a click on it you can share the displayed image in your preferred blogging or social network platform (like facebook or Tumblr)."
+msgstr "Questa icona è visualizzata nell'angolo superiore sinistro della cornice fotografica. Con un clic su di essa è possibile condividere l'immagine visualizzata sulla piattaforma di bloggin sul social network preferiti (come facebook o tumblr)"
+
+#: C/gphotoframe.xml:285(guiicon)
 msgid "ban, trash and remove from catalog icons"
 msgstr "Icone di esclusione, di rimozione dal catalogo e di eliminazione"
 
-#: C/gphotoframe.xml:269(para)
+#: C/gphotoframe.xml:287(para)
 msgid "These icons are displayed in the lower left corner of the frame and allows you to <link linkend=\"gphotoframe-removeimage\">ban, move to the trash or remove from <application>Shotwell</application> or <application>F-Spot</application> catalog</link> the displayed image."
 msgstr "Queste icone sono visualizzate nell&rsquo;angolo inferiore sinistro della cornice e permettono di <link linkend=\"gphotoframe-removeimage\">escludere, spostare nel cestino o rimuovere dal catalogo di <application>Shotwell</application> o <application>F-Spot</application></link> l&rsquo;immagine visualizzata."
 
-#: C/gphotoframe.xml:281(title)
+#: C/gphotoframe.xml:299(title)
 msgid "<application>GNOME Photo Frame</application> Application Menu"
 msgstr "Menu dell&rsquo;applicazione <application>cornice fotografica di GNOME</application>"
 
-#: C/gphotoframe.xml:282(para)
+#: C/gphotoframe.xml:300(para)
 msgid "The <application>GNOME Photo Frame</application> menu can be opened with a right click inside the photo frame."
 msgstr "Il menu della <application>cornice fotografica di GNOME</application> può essere aperto con un clic del tasto destro del mouse all&rsquo;interno della cornice fotografica."
 
-#: C/gphotoframe.xml:286(para)
+#: C/gphotoframe.xml:304(para)
 msgid "In the menu there are the following entries:"
 msgstr "Nel menu sono presenti le seguenti voci:"
 
-#: C/gphotoframe.xml:294(keycap)
-#: C/gphotoframe.xml:363(keycap)
+#: C/gphotoframe.xml:312(keycap)
+#: C/gphotoframe.xml:381(keycap)
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: C/gphotoframe.xml:294(keycap)
+#: C/gphotoframe.xml:312(keycap)
 msgid "O"
 msgstr "O"
 
-#: C/gphotoframe.xml:296(guimenuitem)
+#: C/gphotoframe.xml:314(guimenuitem)
 msgid "Open"
 msgstr "Apri"
 
-#: C/gphotoframe.xml:299(para)
+#: C/gphotoframe.xml:317(para)
 msgid "Opens the displayed image in a web browser (if the image comes from an online service) or in the default image viewer (if the image comes from the local machine)."
 msgstr "Apre l&rsquo;immagine visualizzata in un browser web (se l&rsquo;immagine proviene da un servizio online) o nel visualizzatore di immagini predefinito (se l&rsquo;immagine proviene da una posizione sul computer locale)."
 
-#: C/gphotoframe.xml:306(guimenuitem)
+#: C/gphotoframe.xml:324(guimenuitem)
 msgid "Open Recent"
 msgstr "Apri recenti"
 
-#: C/gphotoframe.xml:307(para)
+#: C/gphotoframe.xml:325(para)
 msgid "Shows a list of names of recently displayed images and allow the user to open a webpage that displays the <link linkend=\"gphotoframe-history\">images history</link>."
 msgstr "Mostra un elenco delle immagini visualizzate recentemente e permette all&rsquo;utente di aprire una pagina web in cui è visualizzata la <link linkend=\"gphotoframe-history\">cronologia delle immagini</link>."
 
-#: C/gphotoframe.xml:311(guimenuitem)
+#: C/gphotoframe.xml:329(guimenuitem)
 msgid "Next Photo"
 msgstr "Foto successiva"
 
-#: C/gphotoframe.xml:312(para)
+#: C/gphotoframe.xml:330(para)
 msgid "Jump to the next image in the queue."
 msgstr "Salta all&rsquo;immagine successiva nella coda."
 
-#: C/gphotoframe.xml:318(keycap)
+#: C/gphotoframe.xml:336(keycap)
 msgid "F11"
 msgstr "F11"
 
-#: C/gphotoframe.xml:320(guimenuitem)
+#: C/gphotoframe.xml:338(guimenuitem)
 msgid "Full Screen"
 msgstr "Schermo intero"
 
-#: C/gphotoframe.xml:323(para)
+#: C/gphotoframe.xml:341(para)
 msgid "Toggle the fullscreen visualization of <application>GNOME Photo Frame</application>."
 msgstr "Abilita o disabilita la visualizzazione a schermo intero della <application>cornice fotografica di GNOME</application>."
 
-#: C/gphotoframe.xml:329(guimenuitem)
+#: C/gphotoframe.xml:347(guimenuitem)
 msgid "Fix photo frame"
 msgstr "Fissa la cornice fotografica"
 
-#: C/gphotoframe.xml:330(para)
+#: C/gphotoframe.xml:348(para)
 msgid "When this option is activated, the photo frame can not be dragged wih the mouse and it&rsquo;s shape is not displayed in the pager."
 msgstr "Quando questa opzione è attivata, la cornice fotografica non può essere trascinata con il mouse e la sua sagoma non viene visualizzata nel selettore di spazi di lavoro."
 
-#: C/gphotoframe.xml:336(para)
+#: C/gphotoframe.xml:354(para)
 msgid "When <application>GNOME Photo Frame</application> is in fix mode, all shortcut keys are invalid."
 msgstr "Quando la <application>cornice fotografica di GNOME</application> è in modalità fissa, tutte le scorciatoie da tastiera sono inibite."
 
-#: C/gphotoframe.xml:342(guimenuitem)
+#: C/gphotoframe.xml:360(guimenuitem)
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: C/gphotoframe.xml:343(para)
+#: C/gphotoframe.xml:361(para)
 msgid "Opens the <guilabel>Preferences</guilabel> dialog: see <xref linkend=\"gphotoframe-preferences\"/> for detailed informations."
 msgstr "Apre la schermata delle <guilabel>preferenze</guilabel>: consultare la <xref linkend=\"gphotoframe-preferences\"/> per informazioni dettagliate."
 
-#: C/gphotoframe.xml:349(guimenuitem)
+#: C/gphotoframe.xml:367(guimenuitem)
 msgid "About"
 msgstr "Informazioni"
 
-#: C/gphotoframe.xml:350(para)
+#: C/gphotoframe.xml:368(para)
 msgid "Shows the application&rsquo;s developers and contributors informations as well as the version number."
 msgstr "Mostra le informazioni sugli sviluppatori dell&rsquo;applicazione e il numero di versione."
 
-#: C/gphotoframe.xml:356(guimenuitem)
+#: C/gphotoframe.xml:374(guimenuitem)
 msgid "Help"
 msgstr "Aiuto"
 
-#: C/gphotoframe.xml:357(para)
+#: C/gphotoframe.xml:375(para)
 msgid "Opens this manual."
 msgstr "Opens this manual."
 
-#: C/gphotoframe.xml:363(keycap)
+#: C/gphotoframe.xml:381(keycap)
 msgid "Q"
 msgstr "Q"
 
-#: C/gphotoframe.xml:365(guimenuitem)
+#: C/gphotoframe.xml:383(guimenuitem)
 msgid "Quit"
 msgstr "Esci"
 
-#: C/gphotoframe.xml:368(para)
+#: C/gphotoframe.xml:386(para)
 msgid "Terminates the <application>GNOME Photo Frame</application> application."
 msgstr "Termina l&rsquo;esecuzione della <application>cornice fotografica di GNOME</application>."
 
-#: C/gphotoframe.xml:374(title)
+#: C/gphotoframe.xml:392(title)
 msgid "Setting the Preferences"
 msgstr "Impostare le preferenze"
 
-#: C/gphotoframe.xml:375(para)
+#: C/gphotoframe.xml:393(para)
 msgid "The <guilabel>Preferences</guilabel> dialog is accessible with a right click inside the photo frame and selecting <guimenuitem>Preferences </guimenuitem> from the menu."
 msgstr "La schermata delle <guilabel>Preferenze</guilabel> è accessibile facendo clic con il tasto destro del mouse nella cornice fotografica e selezionando dal menu la voce <guimenuitem>Preferenze</guimenuitem>."
 
-#: C/gphotoframe.xml:379(para)
+#: C/gphotoframe.xml:397(para)
 msgid "In the <guilabel>Preferences</guilabel> dialog there are three tabs."
 msgstr "Nella schermata delle <guilabel>Preferenze</guilabel> sono disponibili tre schede."
 
-#: C/gphotoframe.xml:384(title)
+#: C/gphotoframe.xml:402(title)
 msgid "General tab"
 msgstr "Scheda \"Generali\""
 
-#: C/gphotoframe.xml:385(para)
+#: C/gphotoframe.xml:403(para)
 msgid "In the <guilabel>General</guilabel> tab you can set some general options for <application>GNOME Photo Frame</application>."
 msgstr " Nella scheda <guilabel>Generali</guilabel> è possibile configurare alcune impostazioni generali della <application>cornice fotografica di GNOME</application>."
 
-#: C/gphotoframe.xml:389(para)
+#: C/gphotoframe.xml:407(para)
 msgid "The <guilabel>General</guilabel> tab is composed of three subsections:"
 msgstr "La scheda <guilabel>Generali</guilabel> è composta da tre sezioni:"
 
-#: C/gphotoframe.xml:392(guilabel)
+#: C/gphotoframe.xml:410(guilabel)
 msgid "Interval"
 msgstr "Intervallo"
 
-#: C/gphotoframe.xml:393(para)
+#: C/gphotoframe.xml:411(para)
 msgid "Sets the visualization time, in seconds, of an image for the <guilabel>window mode</guilabel> and for the <guilabel>full screen mode</guilabel>."
 msgstr "Imposta il tempo di visualizzazione, in secondi, di un&rsquo;immagine per la <guilabel>modalità a finestra</guilabel> e per la <guilabel>modalità a schermo intero</guilabel>."
 
-#: C/gphotoframe.xml:399(guilabel)
+#: C/gphotoframe.xml:417(guilabel)
 msgid "Maximum Display Size"
 msgstr "Dimensione massima di visualizzazione"
 
-#: C/gphotoframe.xml:400(para)
+#: C/gphotoframe.xml:418(para)
 msgid "The maximum display size of the displayed image can be set in the <guilabel>width</guilabel> and <guilabel>height</guilabel> fields."
 msgstr "La dimensione massima di visualizzazione per l&rsquo;immagine mostrata può essere impostata nei campi <guilabel>larghezza</guilabel> e <guilabel>altezza</guilabel>."
 
-#: C/gphotoframe.xml:405(title)
+#: C/gphotoframe.xml:423(title)
 msgid "Image resizing"
 msgstr "Ridimensionamento delle immagini"
 
-#: C/gphotoframe.xml:406(para)
+#: C/gphotoframe.xml:424(para)
 msgid "The original image is always resized (not cropped). In particular, the image is scaled down so that it&rsquo;s smallest dimension (<guilabel>width</guilabel> or <guilabel>height</guilabel>) fits the value set in the <guilabel>General</guilabel> tab."
 msgstr "L&rsquo;immagine originale è sempre ridimensionata (non ritagliata). In particolare l&rsquo;immagine è scalata in maniera tale che la sua dimensione minore (<guilabel>larghezza</guilabel> o <guilabel>altezza</guilabel>) corrisponda al valore impostato nella scheda <guilabel>Generali</guilabel>"
 
-#: C/gphotoframe.xml:414(guilabel)
+#: C/gphotoframe.xml:432(guilabel)
 msgid "Desktop"
 msgstr "Scrivania"
 
-#: C/gphotoframe.xml:415(para)
+#: C/gphotoframe.xml:433(para)
 msgid "Enable the <guilabel>Visible on All Workspaces</guilabel> option to make <application>GNOME Photo Frame</application> visible on all workspaces."
 msgstr "Abilitare l&rsquo;opzione <guilabel>Visibile in tutti gli spazi di lavoro</guilabel> per rendere la <application>cornice fotografica di GNOME</application> visibile in tutti gli spazi di lavoro. "
 
-#: C/gphotoframe.xml:419(para)
+#: C/gphotoframe.xml:437(para)
 msgid "Check the <guilabel>Auto Start</guilabel> option to load automatically <application>GNOME Photo Frame</application> on next system&rsquo;s startup."
 msgstr "Abilitare l&rsquo; opzione <guilabel>Avvio automatico</guilabel> per caricare automaticamente la <application>cornice fotografica di GNOME</application> al prossimo avvio del sistema."
 
-#: C/gphotoframe.xml:427(para)
+#: C/gphotoframe.xml:445(para)
 msgid "The appearence and behavior of <application>GNOME Photo Frame</application> can be further customized by changing some <application>gconf</application> parameters. For example if you want to change the frame color to black, run the following command in a terminal window:"
 msgstr "L&rsquo;aspetto e il comportamento della <application>cornice fotografica di GNOME</application> può essere ulteriormente personalizzato cambiando i parametri di <application>gconf</application>. Per esempio, per cambiare il colore della cornice in nero, eseguire il seguente comando in uan finestra del terminale:"
 
-#: C/gphotoframe.xml:430(command)
+#: C/gphotoframe.xml:448(command)
 msgid "gconftool-2 --type str --set /apps/gphotoframe/border_color \"black\""
 msgstr "gconftool-2 --type str --set /apps/gphotoframe/border_color \"black\""
 
-#: C/gphotoframe.xml:431(para)
+#: C/gphotoframe.xml:449(para)
 msgid "If you want to make the frame wider than the default value, run the following command in a terminal window:"
 msgstr "Per rendere la cornice più larga rispetto al valore predefinito, eseguire il seguente comando in una finestra del terminale:"
 
-#: C/gphotoframe.xml:432(command)
+#: C/gphotoframe.xml:450(command)
 msgid "gconftool-2 --type int --set /apps/gphotoframe/border_width 12"
 msgstr "gconftool-2 --type int --set /apps/gphotoframe/border_width 12"
 
-#: C/gphotoframe.xml:437(title)
+#: C/gphotoframe.xml:455(title)
 msgid "Plugins tab"
 msgstr "Scheda \"Plugin\""
 
-#: C/gphotoframe.xml:438(para)
+#: C/gphotoframe.xml:456(para)
 msgid "This tab shows the list of plugins currently installed on your system."
 msgstr "Questa scheda mostra un elenco dei plugin attualmente installati nel proprio sistema."
 
-#: C/gphotoframe.xml:439(para)
+#: C/gphotoframe.xml:457(para)
 msgid "The <emphasis>plugins</emphasis> extends the capability of <application>GNOME Photo Frame</application> by making possible to get more contents from various internet services as well as locally from your computer."
 msgstr "I <emphasis>plugin</emphasis> estendono le capacità della <application>cornice fotografica di GNOME</application> permettendole di recuperare contenuti da vari servizi internet ma anche dal computer locale."
 
-#: C/gphotoframe.xml:444(para)
+#: C/gphotoframe.xml:462(para)
 msgid "<guilabel>Plugins</guilabel> can be enabled or disabled with a click on the check box on the left of the plugin&rsquo;s name. With a click on the <guibutton>About</guibutton> button in the bottom right when a plugin row is highlighted, will display a dialog containing some information regarding the selected plugin."
 msgstr "I <guilabel>Plugin</guilabel> possono essere abilitati o disabilitati con un clic nel riquadro a sinistra del nome. Premendo il pulsante <guibutton>Informazioni</guibutton> nella parte inferiore destra quando un plugin è evidenziato, verrà visualizzata una finestra contenente le informazioni riguardanti il plugin selezionato."
 
-#: C/gphotoframe.xml:451(para)
+#: C/gphotoframe.xml:469(para)
 msgid "<application>GNOME Photo Frame</application> ships with the following pre-installed plugins:"
 msgstr "La <application>cornice fotografica di GNOME</application> è fornita con i seguenti plugin già installati:"
 
-#: C/gphotoframe.xml:456(para)
+#: C/gphotoframe.xml:474(para)
 msgid "<guilabel>F-Spot</guilabel>&mdash; shows in <application>GNOME Photo Frame</application> the images in your <application>F-Spot</application> database."
 msgstr "<guilabel>F-Spot</guilabel>: mostra nella <application>cornice fotografica di GNOME</application> le immagini del proprio database di <application>F-Spot</application>."
 
-#: C/gphotoframe.xml:462(para)
+#: C/gphotoframe.xml:480(para)
 msgid "<guilabel>Facebook</guilabel>&mdash; shows in <application>GNOME Photo Frame</application> the images coming from your <emphasis>Facebook</emphasis> account. You can choose contents coming either from yours or a friend's <guilabel>Album</guilabel> or <guilabel>Wall</guilabel>, or the <guilabel>News Feeds</guilabel> you subscribed with your account."
 msgstr "<guilabel>Facebook</guilabel>&mdash; mostra in <application>GNOME Photo Frame</application> le immagini provenienti dal proprio account di <emphasis>Facebook</emphasis>. È possibile scegliere il contenuto proveniente dal proprio <guilabel>Album</guilabel> (o <guilabel>Bacheca</guilabel>) o da quelli di un proprio amico, ma anche i <guilabel>Feed</guilabel> sottoscritti con il proprio account."
 
-#: C/gphotoframe.xml:470(para)
+#: C/gphotoframe.xml:488(para)
 msgid "<guilabel>Flickr</guilabel>&mdash; display the contents from the popular photo sharing service. This plugin is highly customizable as you can look for photos by specifying a tag, a group, a user or by showing the most interesting or the latest content."
 msgstr "<guilabel>flickr</guilabel>: visualizza il contenuto proveniente dal popolare sito di condivisione di fotografie. Questo plugin è altamente personalizzabile dato che è possibile cercare fotografie specificando un tag, un gruppo, un utente o mostrare i contenuti più interessanti o recenti."
 
-#: C/gphotoframe.xml:478(para)
+#: C/gphotoframe.xml:496(para)
 msgid "<guilabel>Folder</guilabel>&mdash; with this plugin you can add as a source for content a folder that contains image files on your computer."
 msgstr "<guilabel>Cartella</guilabel>: con questo plugin è possibile aggiungere, come fonte per il contenuto, una cartella sul computer locale che contiene file di immagine."
 
-#: C/gphotoframe.xml:484(para)
+#: C/gphotoframe.xml:502(para)
 msgid "<guilabel>Picasa Web</guilabel>&mdash; display the contents from the google photo hosting service."
 msgstr "<guilabel>Picasa Web</guilabel>: visualizza il contenuto dal servizio di hosting di immagini di google."
 
-#: C/gphotoframe.xml:490(para)
+#: C/gphotoframe.xml:508(para)
 msgid "<guilabel>RSS and Atom feed</guilabel>&mdash; shows images from a RSS or Atom feed."
 msgstr "<guilabel>RSS and Atom feed</guilabel>: visualizza le immagini di un feed RSS o Atom."
 
-#: C/gphotoframe.xml:495(para)
+#: C/gphotoframe.xml:513(para)
 msgid "<guilabel>Ruins clock</guilabel>&mdash; gather images of old and abandoned clocks from Haikyo Clock website."
 msgstr "<guilabel>Orologi in rovina</guilabel>: ottiene le immagini di orologi vecchi e abbandonati dal sito web Haikyo Clock."
 
-#: C/gphotoframe.xml:501(para)
+#: C/gphotoframe.xml:519(para)
 msgid "<guilabel>Shotwell</guilabel>&mdash; shows in <application>GNOME Photo Frame</application> the images in your <application>Shotwell</application> database."
 msgstr "<guilabel>Shotwell</interface>: visualizza nella <application>cornice fotografica di GNOME</application> le immagini presenti nel proprio database di <application>Shotwell</application>."
 
-#: C/gphotoframe.xml:507(para)
+#: C/gphotoframe.xml:525(para)
 msgid "<guilabel>Tumblr</guilabel>&mdash; shows images from the <quote>share anything</quote> online service."
 msgstr "<interface>tumblr</interface>: visualizza le immagini dal servizio online per la <quote>condivisione di qualsiasi cosa</quote>."
 
-#: C/gphotoframe.xml:517(title)
+#: C/gphotoframe.xml:535(title)
 msgid "Photos tab"
 msgstr "Scheda \"Fotografie\""
 
-#: C/gphotoframe.xml:518(para)
+#: C/gphotoframe.xml:536(para)
 msgid "From the <guilabel>Photos</guilabel> tab you can manage (<link linkend=\"add-source\">Add</link>, <link linkend=\"delete-source\">Delete</link> or <link linkend=\"edit-source\">Edit</link>) the content&rsquo;s sources."
 msgstr "Nella scheda <guilabel>Fotografie</guilabel> è possibile gestire (<link linkend=\"add-source\">Aggiungere</link>, <link linkend=\"delete-source\">Eliminare</link> o <link linkend=\"edit-source\">Modificare</link>) le fonti del contenuto."
 
-#: C/gphotoframe.xml:524(title)
+#: C/gphotoframe.xml:542(title)
 msgid "Adding a source"
 msgstr "Aggiungere una fonte"
 
-#: C/gphotoframe.xml:525(para)
+#: C/gphotoframe.xml:543(para)
 msgid "To add a source of contents to <application>GNOME Photo Frame</application>, click the <guibutton>New</guibutton> button."
 msgstr "Per aggiungere una fonte di contenuto alla <application>cornice fotografica di GNOME</application>, premere il pulsante <guibutton>Nuovo</guibutton>."
 
-#: C/gphotoframe.xml:529(para)
+#: C/gphotoframe.xml:547(para)
 msgid "In the dialog that will appear, select a source from the pop-up list. Depending on the type of source selected (folder, <application>F-Spot</application> or <application>Shotwell</application> database, internet sharing services as <emphasis>Flickr</emphasis>, <emphasis>Tumblr</emphasis> or <emphasis>Picasa</emphasis>) different settings are available. Configure them to your liking and then press <guibutton>Ok</guibutton>. A new source will be added to the list and the new content will start to be displayed on the photo frame."
 msgstr "Nella schermata che comparirà, selezionare una fonte dalla lista a comparsa. A seconda del tipo di fonte selezionata (cartella, database di <application>F-Spot</application> o <application>Shotwell</application>, servizio di condivisione internet come <emphasis>flickr</emphasis>, <emphasis>tumblr</emphasis> o <emphasis>Picasa</emphasis>) sono disponibili diverse impostazioni. Configurarle secondo le proprie preferenze e premere <guibutton>Ok</guibutton>. Verrà aggiunta una nuova fonte all&rsquo;elenco e il contenuto inizierà a essere visualizzato nella cornice fotografica."
 
-#: C/gphotoframe.xml:538(para)
+#: C/gphotoframe.xml:556(para)
 msgid "If you want to add more sources just repeat this process."
 msgstr "Per aggiungere altre fonti ripetere il procedimento appena descritto."
 
-#: C/gphotoframe.xml:542(title)
+#: C/gphotoframe.xml:560(title)
 msgid "Weight"
 msgstr "Peso"
 
-#: C/gphotoframe.xml:543(para)
+#: C/gphotoframe.xml:561(para)
 msgid "One of the most important setting if you have more than one source, is <guilabel>weight</guilabel>: the content from the source with the highest weight will be displayed more frequently."
 msgstr "Una delle impostazioni più importanti se si configura più di una fonte, è il <guilabel>peso</guilabel>: il contenuto proveniente dalla fonte con il peso maggiore viene visualizzato con maggiore frequenza."
 
-#: C/gphotoframe.xml:551(title)
+#: C/gphotoframe.xml:569(title)
 msgid "Deleting a source"
 msgstr "Eliminare una fonte"
 
-#: C/gphotoframe.xml:552(para)
+#: C/gphotoframe.xml:570(para)
 msgid "To remove a source just highlight the relative row in the list and press the <guibutton>Delete</guibutton> button."
 msgstr "Per rimuovere una fonte, selezionarla nell&rsquo;elenco e premere il pulsante <guibutton>Elimina</guibutton>."
 
-#: C/gphotoframe.xml:558(title)
+#: C/gphotoframe.xml:576(title)
 msgid "Editing a source"
 msgstr "Modificare una fonte"
 
-#: C/gphotoframe.xml:559(para)
+#: C/gphotoframe.xml:577(para)
 msgid "To modify the settings for an existing source, highlight it&rsquo;s name with a click in the list and press the <guibutton>Preferences</guibutton> button to open the settings dialog."
 msgstr "Per modificare le impostazioni di una fonte esistente, selezionarla con un clic nell&rsquo;elenco e premere il pulsante <guibutton>Preferenze</guibutton> per aprire la schermata delle impostazioni."
 
-#: C/gphotoframe.xml:564(para)
+#: C/gphotoframe.xml:582(para)
 msgid "You can also double click on the source&rsquo;s name to open the configuration dialog."
 msgstr "La finestra di configurazione può essere aperta anche facendo doppio clic sul nome della fonte."
 
-#: C/gphotoframe.xml:575(title)
+#: C/gphotoframe.xml:593(title)
 msgid "Showing the images history"
 msgstr "Mostrare la cronologia delle immagini"
 
-#: C/gphotoframe.xml:585(para)
+#: C/gphotoframe.xml:603(para)
 msgid "Click on any image to open it directly in the source."
 msgstr "Fare clic su un&rsquo;immagine per aprirla direttamente nella fonte."
 
-#: C/gphotoframe.xml:576(para)
+#: C/gphotoframe.xml:594(para)
 msgid "<application>GNOME Photo Frame</application> allows you to see the history of displayed images in a web browser. Select <menuchoice><guimenu>Open Recent</guimenu><guimenuitem>Show History</guimenuitem></menuchoice> from the <application>GNOME Photo Frame</application><link linkend=\"gphotoframe-mainmenu\">Application Menu</link>. A web page will be opened in your default web browser that shows the latest ten images displayed, sorted in appearence order (from latest to oldest). For every image, you can see many information as the <emphasis>title</emphasis>, the <emphasis>source</emphasis>, the <emphasis>author&rsquo;s name</emphasis> and the <emphasis>date</emphasis> taken. <placeholder-1/>"
 msgstr "La <application>cornice fotografica di GNOME</application> permette di visualizzare in una pagina web la cronologia delle immagini mostrate. Selezionare <menuchoice><guimenu>Apri recente</guimenu><guimenuitem>Mostra cronologia</guimenuitem></menuchoice> dal <link linkend=\"gphotoframe-mainmenu\">menu dell&rsquo;applicazione</link> della <application>Cornice fotografica di GNOME</application> . Verrà aperta una pagina web nel browser predefinito con le dieci immagini visualizzate più di recente, in ordine di apparizione (dalla più recente alla più vecchia). Per ogni immagine vengono inoltre fornite diverse informazioni quali il <emphasis>titolo</emphasis>, la <emphasis>fonte</emphasis>, il <emphasis>nome dell&rsquo;autore</emphasis> e la <emphasis>data di scatto</emphasis>. <placeholder-1/>"
 
-#: C/gphotoframe.xml:593(title)
+#: C/gphotoframe.xml:611(title)
 msgid "Removing a displayed image"
 msgstr "Rimuovere un&rsquo;immagine visualizzata"
 
-#: C/gphotoframe.xml:594(para)
+#: C/gphotoframe.xml:612(para)
 msgid "Removing a displayed image is accomplished by clicking on the icons that appears in the bottom left of the <application>GNOME Photo Frame</application> window when hovering over a displayed photo."
 msgstr "La rimozione di un&rsquo;immagine visualizzata avviene facendo clic sulle icone che appaiono nell&rsquo;angolo inferiore sinistro della <application>Cornice fotografica di GNOME</application> quando il puntatore viene bloccato su un&rsquo;immagine visualizzata."
 
-#: C/gphotoframe.xml:600(emphasis)
+#: C/gphotoframe.xml:618(emphasis)
 msgid "Move to the trash"
 msgstr "Spostare nel cestino"
 
-#: C/gphotoframe.xml:602(para)
+#: C/gphotoframe.xml:620(para)
 msgid "To move to the trash a displayed image, click on the trash shaped icon in the lower left of the photo frame. A dialog will appear to confirm the operation."
 msgstr "Per spostare nel cestino un&rsquo;immagine visualizzata, fare clic sull&rsquo;icona a forma di cestino mostrata nell&rsquo;angolo inferiore sinistro della cornice fotografica. Verrà aperta una finestra per confermare l&rsquo;operazione."
 
-#: C/gphotoframe.xml:608(para)
+#: C/gphotoframe.xml:626(para)
 msgid "This icon is showed only if the displayed image comes from a local source such as a local folder or a <application>F-spot</application> or <application>Shotwell</application> database."
 msgstr "Questa icona è visualizzata solamente se l&rsquo;immagine proviene da una fonte locale quale una cartella locale o un database di <application>F-spot</application> o <application>Shotwell</application>."
 
-#: C/gphotoframe.xml:618(emphasis)
+#: C/gphotoframe.xml:636(emphasis)
 msgid "Remove from catalog"
 msgstr "Rimuovere dal catalogo"
 
-#: C/gphotoframe.xml:620(para)
+#: C/gphotoframe.xml:638(para)
 msgid "To remove from catalog a displayed image coming from a <application>F-spot</application> or <application>Shotwell</application> database, click on the minus sign in the lower left of the photo frame. A dialog will appear to confirm the operation."
 msgstr "Per rimuovere dal catalogo un&rsquo;immagine visualizzata proveniente da un database di <application>F-spot</application> o di <application>Shotwell</application>, fare clic sull&rsquo;icona a forma di segno meno mostrata nell&rsquo;angolo inferiore sinistro della cornice fotografica. Verrà aperta una finestra per confermare l&rsquo;operazione."
 
-#: C/gphotoframe.xml:630(emphasis)
+#: C/gphotoframe.xml:648(emphasis)
 msgid "Ban"
 msgstr "Escludere"
 
-#: C/gphotoframe.xml:632(para)
+#: C/gphotoframe.xml:650(para)
 msgid "To ban a photo coming from an online source (<emphasis>Flickr</emphasis>, <emphasis>Tumbler</emphasis> etc...), press the minus icon that appears in the bottom left of the frame when hovering over the displayed photo."
 msgstr "Per bandire una foto proveniente da una fonte online (<emphasis>Flickr</emphasis>, <emphasis>Tumbler</emphasis> ecc...), premere l&rsquo;icona a forma di segno meno che appare nell&rsquo;angolo inferiore sinistro quando il puntatore è fermo su un&rsquo;immagine visualizzata."
 
-#: C/gphotoframe.xml:644(title)
+#: C/gphotoframe.xml:662(title)
 msgid "Logging to an Online Service"
 msgstr "Connettersi a un servizio online"
 
-#: C/gphotoframe.xml:645(para)
+#: C/gphotoframe.xml:663(para)
 msgid "In <application>GNOME Photo Frame</application> is possible to get logged in to an online service listed in the <link linkend=\"pref-plugins\">Plugins tab</link> if you have an account."
 msgstr "Nella <application>cornice fotografica di GNOME</application> è possibile connettersi a un servizio online tra quelli elencati nella <link linkend=\"pref-plugins\">scheda dei Plugin</link> se si possiede un account."
 
-#: C/gphotoframe.xml:649(para)
+#: C/gphotoframe.xml:667(para)
 msgid "When <application>GNOME Photo Frame</application> is connected with your data to an online service, you can add displayed contents to your favorites, vote images and display photos from your account."
 msgstr "Quando la <application>cornice fotografica di GNOME</application> è connessa con le proprie credenziali al servizio online, è possibile aggiungere il contenuto visualizzato ai propri favoriti, votare le immagini e visualizzare le fotografie dal proprio account."
 
-#: C/gphotoframe.xml:654(para)
+#: C/gphotoframe.xml:672(para)
 msgid "To do so, follow these steps:"
 msgstr "Per farlo, seguire questi passi:"
 
-#: C/gphotoframe.xml:659(para)
+#: C/gphotoframe.xml:677(para)
 msgid "Go to the <link linkend=\"pref-plugins\">Plugins tab</link> and highlight the row of the online service plugin you want to get logged in."
 msgstr "Andare nella <link linkend=\"pref-plugins\">scheda dei Plugin</link> e selezionare la riga del servizio online a cui connettersi."
 
-#: C/gphotoframe.xml:665(para)
+#: C/gphotoframe.xml:683(para)
 msgid "Press the <guibutton>Preferences</guibutton> button to open the login dialog."
 msgstr "Premere il pulsante <guibutton>Preferenze</guibutton> per aprire la schermata di connessione."
 
-#: C/gphotoframe.xml:670(para)
+#: C/gphotoframe.xml:688(para)
 msgid "Fill in the requested information (<guilabel>Password</guilabel>, <guilabel>User ID</guilabel> or <guilabel>E-mail</guilabel>)."
 msgstr "Inserire i dati richiesti (  <guilabel>Password</guilabel>, <guilabel>ID utente</guilabel> o <guilabel>E-mail</guilabel>)."
 
-#: C/gphotoframe.xml:676(para)
+#: C/gphotoframe.xml:694(para)
 msgid "Press <guibutton>Ok</guibutton> and follow the instructions provided by the dialog."
 msgstr "Premere <guibutton>Ok</guibutton> e seguire le istruzioni fornite a video."
 
-#: C/gphotoframe.xml:685(para)
+#: C/gphotoframe.xml:703(para)
 msgid "Depending on the service you are logging in, a web browser window might be opened so that you can give <application>GNOME Photo Frame</application> the required permissions through the online service&rsquo;s webpages. When you terminate this task, go back to <application>GNOME Photo Frame</application> and follow the instructions in the dialog."
 msgstr "A seconda del servizio a cui ci sta connettendo, potrebbe venir aperto il browser web predefinito in modo che sia possibile fornire alla <application>cornice fotografica di GNOME</application> i necessari permessi attraverso le pagine internet del servizio. Al termine di questa operazione, tornare alla <application>cornice fotografica di GNOME</application> e seguire le istruzioni visualizzate."
 
-#: C/gphotoframe.xml:696(title)
+#: C/gphotoframe.xml:714(title)
 msgid "Using <application>GNOME Photo Frame</application> as Screensaver"
 msgstr "Usare la <application>cornice fotografica di GNOME</application> come salvaschermo"
 
-#: C/gphotoframe.xml:697(para)
+#: C/gphotoframe.xml:715(para)
 msgid "<application>GNOME Photo Frame</application> can also be used as screensaver."
 msgstr "La <application>cornice fotografica di GNOME</application> può anche essere utilizzata come salvaschermo."
 
-#: C/gphotoframe.xml:698(para)
+#: C/gphotoframe.xml:716(para)
 msgid "The screensaver should be configured automatically at installation time."
 msgstr "Il salvaschermo dovrebbe essere configurato automaticamente al momento dell&rsquo;installazione."
 
-#: C/gphotoframe.xml:700(para)
+#: C/gphotoframe.xml:718(para)
 msgid "Open the application that manages the screensavers in your system and you should see an entry named <guilabel>Photo Frame</guilabel>. Select it and that&rsquo;s all. The next time the screensaver will starts, the <link linkend=\"pref-photos\"> sources preferences</link> will be read as configured from the main window of <application>GNOME Photo Frame</application> and consequently will display the contents."
 msgstr "Aprire l&rsquo;applicazione che gestisce il salvaschermo nel proprio sistema e selezionare la voce denominata <guilabel>Photo Frame</guilabel>. Al prossimo avvio del salvaschermo verranno lette le <link linkend=\"pref-photos\">preferenze delle fonti</link> impostate dalla finestra principale della <application>cornice fotografica di GNOME</application> e verrà di conseguenza mostrato il contenuto."
 
-#: C/gphotoframe.xml:710(title)
+#: C/gphotoframe.xml:728(title)
 msgid "About <application>GNOME Photo Frame</application>"
 msgstr "Informazioni sulla <application>cornice fotografica di GNOME</application>"
 
-#: C/gphotoframe.xml:711(para)
+#: C/gphotoframe.xml:729(para)
 msgid "<application>GNOME Photo Frame</application> was written by Yoshizumi Endo <email>y-endo@ceres.dti.ne.jp</email>. To find more information about <application>GNOME Photo Frame</application>, please visit the <ulink url=\"http://code.google.com/p/gphotoframe/\" type=\"http\"><application>GNOME Photo Frame</application> Web page</ulink>."
 msgstr "L&rsquo;applicazione <application>cornice fotografica di GNOME</application> è scritta da Yoshizumi Endo (<email>y-endo@ceres.dti.ne.jp</email>). Per avere maggiori informazioni sulla <application>cornice fotografica di GNOME</application>, visitare la <ulink url=\"http://code.google.com/p/gphotoframe/\" type=\"http\">pagina web della <application>cornice fotografica di GNOME</application></ulink>."
 
-#: C/gphotoframe.xml:719(para)
+#: C/gphotoframe.xml:737(para)
 msgid "To report a bug or make a suggestion regarding this application or this manual, open a new issue in the <ulink url=\"http://code.google.com/p/gphotoframe/issues/list\" type=\"http\"><application>GNOME Photo Frame</application> issues page</ulink>."
 msgstr "Per segnalare un problema o proporre delle migliorie relativamente all&rsquo;applicazione o a questo manuale, aprire una nuova discussione nella <ulink url=\"http://code.google.com/p/gphotoframe/issues/list\" type=\"http\">pagina delle discussioni sulla <application>cornice fotografica di GNOME</application></ulink>."
 
-#: C/gphotoframe.xml:726(para)
+#: C/gphotoframe.xml:744(para)
 msgid "This program is distributed under the terms of the GNU General Public license version 3 as published by the Free Software Foundation. A <ulink url=\"ghelp:gpl\" type=\"help\">copy of this license</ulink> is included with this documentation; another can be found in the file GPL included with the source code of this program."
 msgstr "Questo programmo è distribuito nei termini della licenza GNU General Public License versione 3 come pubblicata dalla Free Software Foundation. Una <ulink url=\"ghelp:gpl\" type=\"help\">copia di questa licenza</ulink> è inclusa con questa documentazione; un&rsquo;altra può essere trovata nel file GPL incluso nel codice sorgente di questo programma."
 
