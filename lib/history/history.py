@@ -14,7 +14,9 @@ class History(object):
         # check the previous entry
         sql = "SELECT id, url FROM %s ORDER BY id DESC LIMIT 1;" % self.table
         max_id, prev_photo_url = self.con.fetchone_raw(sql) or (0, None)
-        if prev_photo_url == photo.get('url'):
+        photo_url = photo.get('url').replace("'", "''")
+
+        if prev_photo_url == photo_url:
             return
 
         target = photo.get('target') or ''
@@ -33,7 +35,7 @@ class History(object):
             self.table,
 
             max_id + 1, 
-            photo.get('url'), 
+            photo_url,
             photo.get('page_url') or '', 
 
             self._escape_quote(photo.get_title()),
