@@ -15,16 +15,25 @@ class SqliteDB(object):
             self.db = sqlite3.connect(db_file)
 
     def fetchall(self, sql):
-        data = self.db.execute(sql).fetchall()
-        return data
+        try:
+            data = self.db.execute(sql).fetchall()
+            return data
+        except:
+            print "%s: %s" % (sys.exc_info()[1], sql)
 
     def fetchone_raw(self, sql):
-        data = self.db.execute(sql).fetchone()
-        return data
+        try:
+            data = self.db.execute(sql).fetchone()
+            return data
+        except:
+            print "%s: %s" % (sys.exc_info()[1], sql)
 
     def fetchone(self, sql):
-        data = self.db.execute(sql).fetchone()[0]
-        return data
+        try:
+            data = self.db.execute(sql).fetchone()[0]
+            return data
+        except:
+            print "%s: %s" % (sys.exc_info()[1], sql)
 
     def execute(self, sql):
         data = self.db.execute(sql)

@@ -1,5 +1,6 @@
 2011-06-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* utils/sqldb.py: Added debug messages for SQL.
 	* help/C/gphotoframe.xml: Updated a help documentation.  
 	  Thanks Cristian Marchi!
 
