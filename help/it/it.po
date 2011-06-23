@@ -245,8 +245,8 @@ msgid "share-icon"
 msgstr "Icona di condivisione"
 
 #: C/gphotoframe.xml:278(para)
-msgid "This icon is displayed in the upper left corner of the frame. With a click on it you can share the displayed image in your preferred blogging or social network platform (like facebook or Tumblr)."
-msgstr "Questa icona è visualizzata nell'angolo superiore sinistro della cornice fotografica. Con un clic su di essa è possibile condividere l'immagine visualizzata sulla piattaforma di bloggin sul social network preferiti (come facebook o tumblr)"
+msgid "This icon is displayed in the upper left corner of the frame. With a click on it you can share the displayed image in your preferred blogging or social network platform (like Tumblr)."
+msgstr "Questa icona è visualizzata nell'angolo superiore sinistro della cornice fotografica. Con un clic su di essa è possibile condividere l'immagine visualizzata sulla piattaforma di bloggin sul social network preferiti (come tumblr)"
 
 #: C/gphotoframe.xml:285(guiicon)
 msgid "ban, trash and remove from catalog icons"
