@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-27 21:01+0200\n"
+"POT-Creation-Date: 2011-05-11 23:19+0900\n"
 "PO-Revision-Date: 2011-06-27 20:41+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: italian <cri.penta@gmail.com>\n"
@@ -669,7 +669,7 @@ msgid "Gnome Photo Frame History"
 msgstr "Cronologia della cornice fotografica di GNOME"
 
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/history/html.py:95 ../lib/image/tooltip.py:55
+#: ../lib/history/html.py:95 ../lib/image/tooltip.py:54
 #, python-format
 msgid "by %s"
 msgstr "di %s"
@@ -770,51 +770,51 @@ msgstr "Rimuovere questa foto?"
 msgid "This photo will be add to the black list."
 msgstr "Questa foto verrà aggiunta alla black-list."
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:84
 msgid "Maker"
 msgstr "Produttore"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:85
 msgid "Model"
 msgstr "Modello"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:86
 msgid "Date"
 msgstr "Data"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:87
 msgid "Focal Length"
 msgstr "Lunghezza focale"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:87
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:91
+#: ../lib/image/tooltip.py:88
 msgid "Exposure"
 msgstr "Esposizione"
 
-#: ../lib/image/tooltip.py:91
+#: ../lib/image/tooltip.py:88
 msgid "sec"
 msgstr "sec"
 
-#: ../lib/image/tooltip.py:92
+#: ../lib/image/tooltip.py:89
 msgid "Aperture"
 msgstr "Apertura"
 
-#: ../lib/image/tooltip.py:93
+#: ../lib/image/tooltip.py:90
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:94
+#: ../lib/image/tooltip.py:91
 msgid "Exposure Bias"
 msgstr "Bilanciamento dell'esposizione"
 
-#: ../lib/image/tooltip.py:95
+#: ../lib/image/tooltip.py:92
 msgid "Flash"
 msgstr "Flash"
 
-#: ../lib/image/tooltip.py:96
+#: ../lib/image/tooltip.py:93
 msgid "Flash Bias"
 msgstr "Bilanciamento del flash"
 
@@ -874,7 +874,7 @@ msgid "Your Groups"
 msgstr "I propri gruppi"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:100
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
 #: ../lib/plugins/picasa.py:186 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "_Utente:"
@@ -991,28 +991,28 @@ msgstr "Periodo"
 msgid "_Tag:"
 msgstr "_Tag:"
 
-#: ../lib/plugins/facebook/__init__.py:30
+#: ../lib/plugins/facebook/__init__.py:31
 msgid "Social Network Service"
 msgstr "Servizio di social network"
 
-#: ../lib/plugins/facebook/__init__.py:100
-#: ../lib/plugins/facebook/__init__.py:106 ../lib/plugins/facebook/api.py:22
+#: ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/facebook/__init__.py:107 ../lib/plugins/facebook/api.py:22
 msgid "Wall"
 msgstr "Bacheca"
 
-#: ../lib/plugins/facebook/__init__.py:100
-#: ../lib/plugins/facebook/__init__.py:106
-#: ../lib/plugins/facebook/__init__.py:115 ../lib/plugins/facebook/api.py:21
+#: ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/facebook/__init__.py:107
+#: ../lib/plugins/facebook/__init__.py:116 ../lib/plugins/facebook/api.py:21
 msgid "Albums"
 msgstr "Album"
 
-#: ../lib/plugins/facebook/__init__.py:102
-#: ../lib/plugins/facebook/__init__.py:106
-#: ../lib/plugins/facebook/__init__.py:108 ../lib/plugins/facebook/api.py:23
+#: ../lib/plugins/facebook/__init__.py:103
+#: ../lib/plugins/facebook/__init__.py:107
+#: ../lib/plugins/facebook/__init__.py:109 ../lib/plugins/facebook/api.py:23
 msgid "News Feed"
 msgstr "Feed"
 
-#: ../lib/plugins/facebook/__init__.py:127
+#: ../lib/plugins/facebook/__init__.py:125
 msgid "_Include other photos in the same album"
 msgstr "_Includi le altre foto nello stesso album"
 
