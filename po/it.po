@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-16 16:06+0200\n"
-"PO-Revision-Date: 2011-06-20 21:05+0100\n"
+"POT-Creation-Date: 2011-06-27 21:01+0200\n"
+"PO-Revision-Date: 2011-06-27 20:41+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: italian <cri.penta@gmail.com>\n"
 "Language: \n"
@@ -23,8 +23,7 @@ msgid "Image Viewer"
 msgstr "Visualizzatore di immagini"
 
 #: ../share/gphotoframe.desktop.in.h:2
-#: ../share/gphotoframe-screensaver.desktop.in.h:2
-#: ../lib/history/html.py:39
+#: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history/html.py:39
 msgid "Photo Frame"
 msgstr "Cornice fotografica"
 
@@ -53,12 +52,18 @@ msgid "API reload interval minutes for meta groups"
 msgstr "Intervallo di aggiornamento API in minuti per i meta gruppi"
 
 #: ../share/gphotoframe.schemas.in.h:5
-msgid "API reload interval minutes for meta groups (Your Groups or The Commons). It should be greater than 10 minutes."
-msgstr "Intervallo di aggiornamento API in minuti per i meta gruppi (i propri gruppi o The Commons); dovrebbe essere superiore ai 10 minuti"
+msgid ""
+"API reload interval minutes for meta groups (Your Groups or The Commons). It "
+"should be greater than 10 minutes."
+msgstr ""
+"Intervallo di aggiornamento API in minuti per i meta gruppi (i propri gruppi "
+"o The Commons); dovrebbe essere superiore ai 10 minuti"
 
 #: ../share/gphotoframe.schemas.in.h:6
 msgid "API reload interval minutes. It should be greater than 10 minutes."
-msgstr "Intervallo di aggiornamento API in minuti; dovrebbe essere superiore a 10 minuti"
+msgstr ""
+"Intervallo di aggiornamento API in minuti; dovrebbe essere superiore a 10 "
+"minuti"
 
 #: ../share/gphotoframe.schemas.in.h:7
 msgid "Always on Visible Workspace"
@@ -73,320 +78,400 @@ msgid "Always show the geo icon"
 msgstr "Mostra sempre l'icona per la geo-localizzazione"
 
 #: ../share/gphotoframe.schemas.in.h:10
+msgid "Always show the share icon"
+msgstr "Mostra sempre l'icona di condivisione"
+
+#: ../share/gphotoframe.schemas.in.h:11
 msgid "Always show the source icon"
 msgstr "Mostra sempre l'icona della fonte"
 
-#: ../share/gphotoframe.schemas.in.h:11
+#: ../share/gphotoframe.schemas.in.h:12
 msgid "Always show the trash icon"
 msgstr "Mostra sempre l'icona del cestina"
 
-#: ../share/gphotoframe.schemas.in.h:12
+#: ../share/gphotoframe.schemas.in.h:13
 msgid "Auth token"
 msgstr "Token di autorizz."
 
-#: ../share/gphotoframe.schemas.in.h:13
+#: ../share/gphotoframe.schemas.in.h:14
 msgid "Connection managers should be used"
 msgstr "Dovrebbe essere utilizzo il gestore di connessione"
 
-#: ../share/gphotoframe.schemas.in.h:14
+#: ../share/gphotoframe.schemas.in.h:15
 msgid "Date format"
 msgstr "Formato data"
 
-#: ../share/gphotoframe.schemas.in.h:15
+#: ../share/gphotoframe.schemas.in.h:16
 msgid "Default API reload interval minutes"
 msgstr "Intervallo predefinito di aggiornamento API in minuti"
 
-#: ../share/gphotoframe.schemas.in.h:16
-msgid "Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom."
-msgstr "Determina la posizione dell'icona: 0 sinistra-alto, 1 destra-alto, 2 destra-basso, 3 sinistra-basso"
-
 #: ../share/gphotoframe.schemas.in.h:17
+msgid ""
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
+msgstr ""
+"Determina la posizione dell'icona: 0 sinistra-alto, 1 destra-alto, 2 destra-"
+"basso, 3 sinistra-basso"
+
+#: ../share/gphotoframe.schemas.in.h:18
 msgid "Disable Clutter library support"
 msgstr "Disabilita il supporto alla libreria Clutter"
 
-#: ../share/gphotoframe.schemas.in.h:18
+#: ../share/gphotoframe.schemas.in.h:19
 msgid "Disable delete posts"
 msgstr "DIsabilita i post eliminati"
 
-#: ../share/gphotoframe.schemas.in.h:19
+#: ../share/gphotoframe.schemas.in.h:20
 msgid "E-mail adress as user ID"
 msgstr "Indirizzo e-mail come ID utente"
 
-#: ../share/gphotoframe.schemas.in.h:20
+#: ../share/gphotoframe.schemas.in.h:21
 msgid "Enable ban icon for liked posts"
 msgstr "Abilita l'icona di esclusione per i post che mi piaccioni"
 
-#: ../share/gphotoframe.schemas.in.h:21
+#: ../share/gphotoframe.schemas.in.h:22
 msgid "Enable description field"
 msgstr "Abilita il campo della descrizione"
 
-#: ../share/gphotoframe.schemas.in.h:22
+#: ../share/gphotoframe.schemas.in.h:23
 msgid "Enable fullscreen mode animations"
 msgstr "Abilita le animazioni nella modalità a schermo intero"
 
-#: ../share/gphotoframe.schemas.in.h:23
+#: ../share/gphotoframe.schemas.in.h:24
 msgid "Enable icon animations"
 msgstr "Abilita le animazioni dell'icona"
 
-#: ../share/gphotoframe.schemas.in.h:24
+#: ../share/gphotoframe.schemas.in.h:25
 msgid "Fav icon position"
 msgstr "Posizione dell'icona delle favorite"
 
-#: ../share/gphotoframe.schemas.in.h:25
+#: ../share/gphotoframe.schemas.in.h:26
 msgid "Fix the photo frame on the root window"
 msgstr "Blocca la cornice della foto nella finestra principale"
 
-#: ../share/gphotoframe.schemas.in.h:26
+#: ../share/gphotoframe.schemas.in.h:27
 msgid "Flickr user ID"
 msgstr "ID utente flickr"
 
-#: ../share/gphotoframe.schemas.in.h:27
+#: ../share/gphotoframe.schemas.in.h:28
 msgid "Geo icon position"
 msgstr "Posizione dell'icona della geo-localizzazione"
 
-#: ../share/gphotoframe.schemas.in.h:28
+#: ../share/gphotoframe.schemas.in.h:29
 msgid "Google account user ID"
 msgstr "ID utente Google"
 
-#: ../share/gphotoframe.schemas.in.h:29
-msgid "If the RSS feed includes multiple RSS feeds, this value is used as the standard deviation for random weight of each RSS feed. When this value is less than 0, the each weight is the number of total image included in each RSS feed."
-msgstr "Se il feed RSS contiene più canali, questo valore è utilizzato come deviazione standard per i pesi casuali di ogni feed RSS. Quando il valore è inferiore a 0, il peso è il numero di immagini totali incluse in ogni feed RSS."
-
 #: ../share/gphotoframe.schemas.in.h:30
-msgid "If true, changing of photo image in fullscreen mode will be animated. The program needs to be restarted to take effect the change of the setting."
-msgstr "Se abilitata, la transizione dell'immagine a schermo intero sarà animata. Il programma deve essere riavviato per rendere effettivi i cambiamenti"
+msgid ""
+"If the RSS feed includes multiple RSS feeds, this value is used as the "
+"standard deviation for random weight of each RSS feed. When this value is "
+"less than 0, the each weight is the number of total image included in each "
+"RSS feed."
+msgstr ""
+"Se il feed RSS contiene più canali, questo valore è utilizzato come "
+"deviazione standard per i pesi casuali di ogni feed RSS. Quando il valore è "
+"inferiore a 0, il peso è il numero di immagini totali incluse in ogni feed "
+"RSS."
 
 #: ../share/gphotoframe.schemas.in.h:31
-msgid "If true, description (identifier) field will be enabled on photo source dialog. Users can use the field freely."
-msgstr "Se vero, il campo della descrizione (identificatore) verrà abilitato nella finestra della fonte delle foto. L'utente potrà utilizzare questo campo liberamente."
+msgid ""
+"If true, changing of photo image in fullscreen mode will be animated. The "
+"program needs to be restarted to take effect the change of the setting."
+msgstr ""
+"Se abilitata, la transizione dell'immagine a schermo intero sarà animata. Il "
+"programma deve essere riavviato per rendere effettivi i cambiamenti"
 
 #: ../share/gphotoframe.schemas.in.h:32
+msgid ""
+"If true, description (identifier) field will be enabled on photo source "
+"dialog. Users can use the field freely."
+msgstr ""
+"Se vero, il campo della descrizione (identificatore) verrà abilitato nella "
+"finestra della fonte delle foto. L'utente potrà utilizzare questo campo "
+"liberamente."
+
+#: ../share/gphotoframe.schemas.in.h:33
 msgid "If true, disable delete posts."
 msgstr "Se vera, disabilita i post eliminati."
 
-#: ../share/gphotoframe.schemas.in.h:33
+#: ../share/gphotoframe.schemas.in.h:34
 msgid "If true, enable ban icon for liked posts."
 msgstr "Se vera, abilita l'icona di esclusione per i post che piacciono."
 
-#: ../share/gphotoframe.schemas.in.h:34
-msgid "If true, hiding and un-hiding of icons will be animated. The program needs to be restarted to take effect the change of the setting."
-msgstr "Se abilitata, la scomparsa e la comparsa delle icone sarà animata. Il programma deve essere riavviato per rendere effettivi i cambiamenti"
-
 #: ../share/gphotoframe.schemas.in.h:35
+msgid ""
+"If true, hiding and un-hiding of icons will be animated. The program needs "
+"to be restarted to take effect the change of the setting."
+msgstr ""
+"Se abilitata, la scomparsa e la comparsa delle icone sarà animata. Il "
+"programma deve essere riavviato per rendere effettivi i cambiamenti"
+
+#: ../share/gphotoframe.schemas.in.h:36
 msgid "If true, icons will be shown on screensaver."
 msgstr "Se abilitata, le icone verranno visualizzate nel salvaschermo"
 
-#: ../share/gphotoframe.schemas.in.h:36
+#: ../share/gphotoframe.schemas.in.h:37
 msgid "If true, image filename suffixes (jpe?g|png|gif|bmp) are shown."
 msgstr "Se vero, saranno mostrate le estensioni dei file (jpe?g|png|gif|bmp)."
 
-#: ../share/gphotoframe.schemas.in.h:37
-msgid "If true, the photo frame must be kept below other windows. When you change this value, you need to restart gphotoframe."
-msgstr "Se vero, la cornice fotografica rimane al di sotto delle altre finestre. Quando si cambia questo valore, gphotoframe deve essere riavviato."
-
 #: ../share/gphotoframe.schemas.in.h:38
+msgid ""
+"If true, the photo frame must be kept below other windows. When you change "
+"this value, you need to restart gphotoframe."
+msgstr ""
+"Se vero, la cornice fotografica rimane al di sotto delle altre finestre. "
+"Quando si cambia questo valore, gphotoframe deve essere riavviato."
+
+#: ../share/gphotoframe.schemas.in.h:39
 msgid "Interval seconds in full screen mode"
 msgstr "Intervallo in secondi nella modalità a schermo intero"
 
-#: ../share/gphotoframe.schemas.in.h:39
+#: ../share/gphotoframe.schemas.in.h:40
 msgid "Interval seconds in window mode"
 msgstr "Intervallo in secondi nella modalità a finestra"
 
-#: ../share/gphotoframe.schemas.in.h:40
+#: ../share/gphotoframe.schemas.in.h:41
 msgid "Max aspect ratio for Photo"
 msgstr "Rapporto d'aspetto massimo per le foto"
 
-#: ../share/gphotoframe.schemas.in.h:41
+#: ../share/gphotoframe.schemas.in.h:42
 msgid "Maximum image file size in MByte"
 msgstr "Dimensione massima in Mbyte del file di immagine"
 
-#: ../share/gphotoframe.schemas.in.h:42
-msgid "Maximum image file size in MByte. When this value is 0 or less, this image file size filter is disabled."
-msgstr "Dimensione massima dell'immagine in Mbyte; quando questo valore è uguale o inferiore a 0, il filtro è disabilitato."
-
 #: ../share/gphotoframe.schemas.in.h:43
+msgid ""
+"Maximum image file size in MByte. When this value is 0 or less, this image "
+"file size filter is disabled."
+msgstr ""
+"Dimensione massima dell'immagine in Mbyte; quando questo valore è uguale o "
+"inferiore a 0, il filtro è disabilitato."
+
+#: ../share/gphotoframe.schemas.in.h:44
 msgid "Minimum aspect ratio for Photo"
 msgstr "Rapporto d'aspetto minimo per le foto"
 
-#: ../share/gphotoframe.schemas.in.h:44
+#: ../share/gphotoframe.schemas.in.h:45
 msgid "Minimum image file size in KByte"
 msgstr "Dimensione minima in Kbyte del file di immagine"
 
-#: ../share/gphotoframe.schemas.in.h:45
-msgid "Minimum image file size in KByte. When this value is 0 or less, this image file size filter is disabled."
-msgstr "Dimensione minima dell'immagine in Kbyte; quando questo valore è uguale o inferiore a 0, il filtro è disabilitato."
-
 #: ../share/gphotoframe.schemas.in.h:46
+msgid ""
+"Minimum image file size in KByte. When this value is 0 or less, this image "
+"file size filter is disabled."
+msgstr ""
+"Dimensione minima dell'immagine in Kbyte; quando questo valore è uguale o "
+"inferiore a 0, il filtro è disabilitato."
+
+#: ../share/gphotoframe.schemas.in.h:47
 msgid "Minimum image height"
 msgstr "Altezza minima dell'immagine"
 
-#: ../share/gphotoframe.schemas.in.h:47
-msgid "Minimum image height. When this value is less than 0, image size filter is disabled."
-msgstr "Altezza minima dell'immagine in byte; quando questo valore è inferiore a 0, il filtro è disabilitato"
-
 #: ../share/gphotoframe.schemas.in.h:48
+msgid ""
+"Minimum image height. When this value is less than 0, image size filter is "
+"disabled."
+msgstr ""
+"Altezza minima dell'immagine in byte; quando questo valore è inferiore a 0, "
+"il filtro è disabilitato"
+
+#: ../share/gphotoframe.schemas.in.h:49
 msgid "Minimum image width"
 msgstr "Larghezza minima dell'immagine"
 
-#: ../share/gphotoframe.schemas.in.h:49
-msgid "Minimum image width. When this value is less than 0, image size filter is disabled."
-msgstr "Larghezza minima dell'immagine in byte; quando questo valore è inferiore a 0, il filtro è disabilitato"
-
 #: ../share/gphotoframe.schemas.in.h:50
+msgid ""
+"Minimum image width. When this value is less than 0, image size filter is "
+"disabled."
+msgstr ""
+"Larghezza minima dell'immagine in byte; quando questo valore è inferiore a "
+"0, il filtro è disabilitato"
+
+#: ../share/gphotoframe.schemas.in.h:51
 msgid "Minimum rate of latest photos"
 msgstr "Voto minimo delle foto più recenti"
 
-#: ../share/gphotoframe.schemas.in.h:51
+#: ../share/gphotoframe.schemas.in.h:52
 msgid "NSID"
 msgstr "NSID"
 
-#: ../share/gphotoframe.schemas.in.h:52
+#: ../share/gphotoframe.schemas.in.h:53
 msgid "Photo frame \"keep-below\" mode"
 msgstr "Modalità \"mantieni sotto\" della cornice fotografica"
 
-#: ../share/gphotoframe.schemas.in.h:53
+#: ../share/gphotoframe.schemas.in.h:54
 msgid "Photo frame X position"
 msgstr "Posizione X della cornice della foto"
 
-#: ../share/gphotoframe.schemas.in.h:54
+#: ../share/gphotoframe.schemas.in.h:55
 msgid "Photo frame Y position"
 msgstr "Posizione Y della cornice della foto"
 
-#: ../share/gphotoframe.schemas.in.h:55
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "Photo frame border color"
 msgstr "Colore della cornice della foto"
 
-#: ../share/gphotoframe.schemas.in.h:56
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "Photo frame border width"
 msgstr "Larghezza della cornice della foto"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "Photo frame fix mode"
 msgstr "Modalità fissa della cornice fotografica"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "Photo frame full screen mode"
 msgstr "Modalità a schermo intero della cornice fotografica"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:60
 msgid "Photo frame sticky mode"
 msgstr "Modalità appiccicosa della cornice fotografica"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "Photo image max height"
 msgstr "Altezza massima della foto"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:62
 msgid "Photo image max width"
 msgstr "Larghezza massima della foto"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:63
 msgid "Photo source default weight"
 msgstr "Peso predefinito della fonte della foto"
 
-#: ../share/gphotoframe.schemas.in.h:63
+#: ../share/gphotoframe.schemas.in.h:64
 msgid "Preferences height"
 msgstr "Altezza delle preferenze"
 
-#: ../share/gphotoframe.schemas.in.h:64
+#: ../share/gphotoframe.schemas.in.h:65
 msgid "Preferences width"
 msgstr "Larghezza delle preferenze"
 
-#: ../share/gphotoframe.schemas.in.h:65
+#: ../share/gphotoframe.schemas.in.h:66
 msgid "RSS reload interval minutes"
 msgstr "Intervallo di aggiornamento RSS in minuti"
 
-#: ../share/gphotoframe.schemas.in.h:66
-msgid "RSS reload interval minutes. It should be greater than 10 minutes."
-msgstr "Intervallo di aggiornamento RSS in minuti; dovrebbe essere superiore a 10 minuti"
-
 #: ../share/gphotoframe.schemas.in.h:67
+msgid "RSS reload interval minutes. It should be greater than 10 minutes."
+msgstr ""
+"Intervallo di aggiornamento RSS in minuti; dovrebbe essere superiore a 10 "
+"minuti"
+
+#: ../share/gphotoframe.schemas.in.h:68
 msgid "Recent opend preferences page number"
 msgstr "Numero della pagina delle preferenze aperta di recente"
 
-#: ../share/gphotoframe.schemas.in.h:68
+#: ../share/gphotoframe.schemas.in.h:69
 msgid "Recent selected photo source"
 msgstr "La fonte selezionata di recente"
 
-#: ../share/gphotoframe.schemas.in.h:69
-msgid "Set this to true if you have problems with Clutter library support. When you change this value, you need to restart gphotoframe."
-msgstr "Impostare a \"VERO\" se si riscontrano dei problemi con il supporto alla libreria Clutter. Quando si cambia questo valore, gphotoframe deve essere riavviato."
-
 #: ../share/gphotoframe.schemas.in.h:70
-msgid "Set to \"true\" to always show the icon. Set to \"false\" to only show the icon when the mouse pointer is over the photo frame."
-msgstr "Impostare a \"VERO\" per mostrare sempre l'icona. Impostare a \"FALSO\" per mostrare l'icona quando il puntatore del mouse è sopra alla foto."
+msgid ""
+"Set this to true if you have problems with Clutter library support. When you "
+"change this value, you need to restart gphotoframe."
+msgstr ""
+"Impostare a \"VERO\" se si riscontrano dei problemi con il supporto alla "
+"libreria Clutter. Quando si cambia questo valore, gphotoframe deve essere "
+"riavviato."
 
 #: ../share/gphotoframe.schemas.in.h:71
+msgid ""
+"Set to \"true\" to always show the icon. Set to \"false\" to only show the "
+"icon when the mouse pointer is over the photo frame."
+msgstr ""
+"Impostare a \"VERO\" per mostrare sempre l'icona. Impostare a \"FALSO\" per "
+"mostrare l'icona quando il puntatore del mouse è sopra alla foto."
+
+#: ../share/gphotoframe.schemas.in.h:72
+msgid "Share icon position"
+msgstr "Posizione dell'icona di condivisione"
+
+#: ../share/gphotoframe.schemas.in.h:73
 msgid "Show icons on screensaver"
 msgstr "Mostra le icone nel salvaschermo"
 
-#: ../share/gphotoframe.schemas.in.h:72
+#: ../share/gphotoframe.schemas.in.h:74
 msgid "Source icon position"
 msgstr "Posizione dell'icona della fonte"
 
-#: ../share/gphotoframe.schemas.in.h:73
+#: ../share/gphotoframe.schemas.in.h:75
 msgid "Standard deviation of RSS feed random weights"
 msgstr "Deviazione standard dei pesi casuali dei feed RSS"
 
-#: ../share/gphotoframe.schemas.in.h:74
-msgid "The Flickr plugin gets photos from latest to oldest via API with a page number. This value specifies the minimum percentage of showing photos of 1st page (latest photos)"
-msgstr "Il plugin di flickr ottiene le foto dalle più recenti alle più vecchie attraverso un'API con un numero di pagina. Questo valore indica la percentuale minima per visualizzare le foto della prima pagina (le più recenti)"
+#: ../share/gphotoframe.schemas.in.h:76
+msgid ""
+"The Flickr plugin gets photos from latest to oldest via API with a page "
+"number. This value specifies the minimum percentage of showing photos of 1st "
+"page (latest photos)"
+msgstr ""
+"Il plugin di flickr ottiene le foto dalle più recenti alle più vecchie "
+"attraverso un'API con un numero di pagina. Questo valore indica la "
+"percentuale minima per visualizzare le foto della prima pagina (le più "
+"recenti)"
 
-#: ../share/gphotoframe.schemas.in.h:75
+#: ../share/gphotoframe.schemas.in.h:77
 msgid "The field sets the number of photo cache files."
 msgstr "Questo campo imposta il numero di file di immagine della cache"
 
-#: ../share/gphotoframe.schemas.in.h:76
+#: ../share/gphotoframe.schemas.in.h:78
 msgid "The field sets the number of recent photo menu items."
-msgstr "Il campo imposta il numero di elementi da visualizzare nella voce di menu delle foto recenti"
+msgstr ""
+"Il campo imposta il numero di elementi da visualizzare nella voce di menu "
+"delle foto recenti"
 
-#: ../share/gphotoframe.schemas.in.h:77
+#: ../share/gphotoframe.schemas.in.h:79
 msgid "The number of photo cache files"
 msgstr "Il numero di file per la cache delle foto"
 
-#: ../share/gphotoframe.schemas.in.h:78
+#: ../share/gphotoframe.schemas.in.h:80
 msgid "The number of recent photo menu items"
 msgstr "Il numero di elementi recenti da visualizzare"
 
-#: ../share/gphotoframe.schemas.in.h:79
+#: ../share/gphotoframe.schemas.in.h:81
 msgid "Trash icon position"
 msgstr "Posizione dell'icona del cestino"
 
-#: ../share/gphotoframe.schemas.in.h:80
+#: ../share/gphotoframe.schemas.in.h:82
 msgid "Tumblr blog name"
 msgstr "Nome del blog Tumblr"
 
-#: ../share/gphotoframe.schemas.in.h:81
+#: ../share/gphotoframe.schemas.in.h:83
 msgid "User ID"
 msgstr "ID Utente"
 
-#: ../share/gphotoframe.schemas.in.h:82
+#: ../share/gphotoframe.schemas.in.h:84
 msgid "User full name"
 msgstr "Nome utente completo"
 
-#: ../share/gphotoframe.schemas.in.h:83
+#: ../share/gphotoframe.schemas.in.h:85
 msgid "User name"
 msgstr "Nome utente"
 
-#: ../share/gphotoframe.schemas.in.h:84
-msgid "Whether connectivity managers should be used for checking network connectivity."
-msgstr "Se il gestore della connessione deve essere utilizzato per controllare la connessione di rete."
+#: ../share/gphotoframe.schemas.in.h:86
+msgid ""
+"Whether connectivity managers should be used for checking network "
+"connectivity."
+msgstr ""
+"Se il gestore della connessione deve essere utilizzato per controllare la "
+"connessione di rete."
 
-#: ../share/gphotoframe.schemas.in.h:85
+#: ../share/gphotoframe.schemas.in.h:87
 msgid "Whether to show filename suffix"
 msgstr "Se mostrare l'estensione del file"
 
-#: ../share/gphotoframe.schemas.in.h:86
-msgid "You can use conversion specifiers understood by strftime() to obtain a specific format. See the strftime() manual for more information."
-msgstr "È possibile usare gli specificatori di conversione compresi da strftime() per ottenere uno specifico formato. Consultare il manuale di strftime() per maggiori informazioni."
+#: ../share/gphotoframe.schemas.in.h:88
+msgid ""
+"You can use conversion specifiers understood by strftime() to obtain a "
+"specific format. See the strftime() manual for more information."
+msgstr ""
+"È possibile usare gli specificatori di conversione compresi da strftime() "
+"per ottenere uno specifico formato. Consultare il manuale di strftime() per "
+"maggiori informazioni."
 
-#: ../share/gphotoframe.ui.h:1
-#: ../lib/plugins/fspot/__init__.py:105
+#: ../share/gphotoframe.ui.h:1 ../lib/plugins/fspot/__init__.py:105
 msgid "All"
 msgstr "Tutte"
 
-#: ../share/gphotoframe.ui.h:2
-#: ../share/preferences.ui.h:8
+#: ../share/gphotoframe.ui.h:2 ../share/preferences.ui.h:8
 msgid "General"
 msgstr "Generali"
 
@@ -434,47 +519,48 @@ msgstr "_Peso del voto:"
 msgid "Show only _latest photos"
 msgstr "Mostra solo le immagini più _recenti"
 
-#: ../share/gphotoframe.ui.h:14
-#: ../lib/plugins/base/ui.py:63
+#: ../share/gphotoframe.ui.h:14 ../lib/plugins/base/ui.py:63
 msgid "_Argument:"
 msgstr "_Argomento:"
 
 #: ../share/gphotoframe.ui.h:15
-#: ../lib/plugins/folder.py:145
+msgid "_Exclude hidden files and folders"
+msgstr "_Escludi file nascosti e cartelle"
+
+#: ../share/gphotoframe.ui.h:16
 msgid "_Include subfolders"
 msgstr "Includi le sottocarte_lle"
 
-#: ../share/gphotoframe.ui.h:16
+#: ../share/gphotoframe.ui.h:17
 msgid "_Password:"
 msgstr "Pass_word:"
 
-#: ../share/gphotoframe.ui.h:17
+#: ../share/gphotoframe.ui.h:18
 msgid "_Period:"
 msgstr "Perio_do:"
 
-#: ../share/gphotoframe.ui.h:18
+#: ../share/gphotoframe.ui.h:19
 msgid "_Source:"
 msgstr "_Fonte:"
 
-#: ../share/gphotoframe.ui.h:19
+#: ../share/gphotoframe.ui.h:20
 msgid "_Specified other people's ID"
 msgstr "ID utente _specificato"
 
-#: ../share/gphotoframe.ui.h:20
-#: ../lib/plugins/base/ui.py:57
+#: ../share/gphotoframe.ui.h:21 ../lib/plugins/base/ui.py:57
 #: ../lib/plugins/haikyo.py:94
 msgid "_Target:"
 msgstr "O_biettivo:"
 
-#: ../share/gphotoframe.ui.h:21
+#: ../share/gphotoframe.ui.h:22
 msgid "_User ID:"
 msgstr "ID _utente:"
 
-#: ../share/gphotoframe.ui.h:22
+#: ../share/gphotoframe.ui.h:23
 msgid "_Weight:"
 msgstr "_Peso:"
 
-#: ../share/gphotoframe.ui.h:23
+#: ../share/gphotoframe.ui.h:24
 msgid "translator-credits"
 msgstr "Cristian Marchi <cri.penta@gmail.com>, 2010"
 
@@ -562,9 +648,7 @@ msgstr "Sc_hermo intero"
 msgid "_Next Photo"
 msgstr "Foto _successiva"
 
-#: ../lib/menu.py:112
-#: ../lib/history/html.py:92
-#: ../lib/image/actor/info.py:38
+#: ../lib/menu.py:112 ../lib/history/html.py:92 ../lib/image/actor/info.py:38
 msgid "Untitled"
 msgstr "Senza titolo"
 
@@ -585,8 +669,7 @@ msgid "Gnome Photo Frame History"
 msgstr "Cronologia della cornice fotografica di GNOME"
 
 #. TRANSLATORS: %s is the name of the author of the photo
-#: ../lib/history/html.py:95
-#: ../lib/image/tooltip.py:54
+#: ../lib/history/html.py:95 ../lib/image/tooltip.py:55
 #, python-format
 msgid "by %s"
 msgstr "di %s"
@@ -652,8 +735,7 @@ msgstr "Apre la mappa"
 msgid "Querying..."
 msgstr "Interrogazione in corso..."
 
-#: ../lib/image/actor/info.py:91
-#: ../lib/plugins/facebook/authdialog.py:40
+#: ../lib/image/actor/info.py:91 ../lib/plugins/facebook/authdialog.py:40
 msgid "Loading..."
 msgstr "Caricamento..."
 
@@ -688,51 +770,51 @@ msgstr "Rimuovere questa foto?"
 msgid "This photo will be add to the black list."
 msgstr "Questa foto verrà aggiunta alla black-list."
 
-#: ../lib/image/tooltip.py:84
+#: ../lib/image/tooltip.py:87
 msgid "Maker"
 msgstr "Produttore"
 
-#: ../lib/image/tooltip.py:85
+#: ../lib/image/tooltip.py:88
 msgid "Model"
 msgstr "Modello"
 
-#: ../lib/image/tooltip.py:86
+#: ../lib/image/tooltip.py:89
 msgid "Date"
 msgstr "Data"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:90
 msgid "Focal Length"
 msgstr "Lunghezza focale"
 
-#: ../lib/image/tooltip.py:87
+#: ../lib/image/tooltip.py:90
 msgid "mm"
 msgstr "mm"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:91
 msgid "Exposure"
 msgstr "Esposizione"
 
-#: ../lib/image/tooltip.py:88
+#: ../lib/image/tooltip.py:91
 msgid "sec"
 msgstr "sec"
 
-#: ../lib/image/tooltip.py:89
+#: ../lib/image/tooltip.py:92
 msgid "Aperture"
 msgstr "Apertura"
 
-#: ../lib/image/tooltip.py:90
+#: ../lib/image/tooltip.py:93
 msgid "ISO"
 msgstr "ISO"
 
-#: ../lib/image/tooltip.py:91
+#: ../lib/image/tooltip.py:94
 msgid "Exposure Bias"
 msgstr "Bilanciamento dell'esposizione"
 
-#: ../lib/image/tooltip.py:92
+#: ../lib/image/tooltip.py:95
 msgid "Flash"
 msgstr "Flash"
 
-#: ../lib/image/tooltip.py:93
+#: ../lib/image/tooltip.py:96
 msgid "Flash Bias"
 msgstr "Bilanciamento del flash"
 
@@ -746,7 +828,8 @@ msgstr "Opzioni"
 
 #: ../lib/plugins/base/trash.py:58
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Impossibile spostare l'immagine nel cestino. Cancellarla definitivamente?"
+msgstr ""
+"Impossibile spostare l'immagine nel cestino. Cancellarla definitivamente?"
 
 #: ../lib/plugins/base/trash.py:60
 #, python-format
@@ -770,8 +853,7 @@ msgstr "Favorite"
 msgid "Group Pool"
 msgstr "Pool di un gruppo"
 
-#: ../lib/plugins/flickr/api.py:18
-#: ../lib/defaultsource.py:26
+#: ../lib/plugins/flickr/api.py:18 ../lib/defaultsource.py:26
 msgid "Interestingness"
 msgstr "Interessanti"
 
@@ -787,17 +869,13 @@ msgstr "Ricerca foto"
 msgid "The Commons"
 msgstr "The Commons"
 
-#: ../lib/plugins/flickr/api.py:22
-#: ../lib/plugins/flickr/ui.py:49
+#: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/ui.py:49
 msgid "Your Groups"
 msgstr "I propri gruppi"
 
-#: ../lib/plugins/flickr/api.py:68
-#: ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/picasa.py:186
-#: ../lib/plugins/tumblr/ui.py:16
+#: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:100
+#: ../lib/plugins/picasa.py:186 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "_Utente:"
 
@@ -827,8 +905,17 @@ msgid "_Switch User"
 msgstr "_Cambia utente"
 
 #: ../lib/plugins/flickr/authdialog.py:35
-msgid "Gnome Photo Frame needs your authorization in order to view private photos or to add photos to favorites list on your Flickr.com account. Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame the authorization. "
-msgstr "La cornice fotografica di Gnome necessita dell'autorizzazione per poter visualizzare le proprie foto private o per poter aggiungere le immagini alla lista delle favorite sul proprio account flickr.com. Premere il pulsante «Autorizza» per aprire un browser web e assegnare alla cornice fotografica di Gnome le necessarie autorizzazioni."
+msgid ""
+"Gnome Photo Frame needs your authorization in order to view private photos "
+"or to add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"authorization. "
+msgstr ""
+"La cornice fotografica di Gnome necessita dell'autorizzazione per poter "
+"visualizzare le proprie foto private o per poter aggiungere le immagini alla "
+"lista delle favorite sul proprio account flickr.com. Premere il pulsante "
+"«Autorizza» per aprire un browser web e assegnare alla cornice fotografica "
+"di Gnome le necessarie autorizzazioni."
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -836,32 +923,36 @@ msgstr "_Autorizza"
 
 #. getfrob -> open browser
 #: ../lib/plugins/flickr/authdialog.py:48
-msgid "Return to this dialog after you have finished the authorization process on Flickr.com and click the \"Complete Authorization\" button below"
-msgstr "Tornare a questa schermata una volta terminato il processo di autorizzazione su flickr.com e fare clic sul pulsante «Completa autorizzazione» qui sotto."
+msgid ""
+"Return to this dialog after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"Tornare a questa schermata una volta terminato il processo di autorizzazione "
+"su flickr.com e fare clic sul pulsante «Completa autorizzazione» qui sotto."
 
 #: ../lib/plugins/flickr/authdialog.py:51
 msgid "_Complete Authorization"
 msgstr "_Completa autorizzazione"
 
-#: ../lib/plugins/flickr/__init__.py:29
-#: ../lib/plugins/picasa.py:31
+#: ../lib/plugins/flickr/__init__.py:29 ../lib/plugins/picasa.py:31
 msgid "Photo Share Service"
 msgstr "Servizio di condivisione di foto"
 
-#: ../lib/plugins/flickr/__init__.py:67
+#: ../lib/plugins/flickr/__init__.py:67 ../lib/plugins/facebook/api.py:30
+#: ../lib/plugins/tumblr/__init__.py:88
 #, python-format
-msgid "Flickr: %s is invalid target."
-msgstr "Flickr: \"%s\" non è un obiettivo valido."
+msgid "%(source)s: %(target)s is invalid target."
+msgstr "%(source)s: %(target)s è un obiettivo non valido."
 
-#: ../lib/plugins/flickr/__init__.py:77
+#: ../lib/plugins/flickr/__init__.py:78
 msgid "Flickr: invalid nsid API url."
 msgstr "Flickr: url nsid API non valida"
 
-#: ../lib/plugins/flickr/__init__.py:87
+#: ../lib/plugins/flickr/__init__.py:88
 msgid "flickr: can not find, "
 msgstr "flickr: impossibile trovare,"
 
-#: ../lib/plugins/flickr/__init__.py:105
+#: ../lib/plugins/flickr/__init__.py:106
 #, python-format
 msgid "Flickr API Error (%s): %s"
 msgstr "Errore Flickr API (%s): %s"
@@ -896,36 +987,32 @@ msgstr "Voto"
 msgid "Period"
 msgstr "Periodo"
 
-#: ../lib/plugins/fspot/__init__.py:179
-#: ../lib/plugins/shotwell.py:129
+#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:129
 msgid "_Tag:"
 msgstr "_Tag:"
 
-#: ../lib/plugins/facebook/__init__.py:31
+#: ../lib/plugins/facebook/__init__.py:30
 msgid "Social Network Service"
 msgstr "Servizio di social network"
 
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/api.py:22
+#: ../lib/plugins/facebook/__init__.py:100
+#: ../lib/plugins/facebook/__init__.py:106 ../lib/plugins/facebook/api.py:22
 msgid "Wall"
 msgstr "Bacheca"
 
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/__init__.py:116
-#: ../lib/plugins/facebook/api.py:21
+#: ../lib/plugins/facebook/__init__.py:100
+#: ../lib/plugins/facebook/__init__.py:106
+#: ../lib/plugins/facebook/__init__.py:115 ../lib/plugins/facebook/api.py:21
 msgid "Albums"
 msgstr "Album"
 
-#: ../lib/plugins/facebook/__init__.py:103
-#: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/__init__.py:109
-#: ../lib/plugins/facebook/api.py:23
+#: ../lib/plugins/facebook/__init__.py:102
+#: ../lib/plugins/facebook/__init__.py:106
+#: ../lib/plugins/facebook/__init__.py:108 ../lib/plugins/facebook/api.py:23
 msgid "News Feed"
 msgstr "Feed"
 
-#: ../lib/plugins/facebook/__init__.py:125
+#: ../lib/plugins/facebook/__init__.py:127
 msgid "_Include other photos in the same album"
 msgstr "_Includi le altre foto nello stesso album"
 
@@ -939,20 +1026,27 @@ msgid "_Logout"
 msgstr "_Logout"
 
 #: ../lib/plugins/facebook/authdialog.py:49
-msgid "You are not logged into Facebook.  If you would like to redo the authentication, you have to restart GNOME Photo Frame."
-msgstr "Non si è connessi a Facebook. Per effettuare di nuovo l'autenticazione, occorre riavviare la cornice fotografica di GNOME"
+msgid ""
+"You are not logged into Facebook.  If you would like to redo the "
+"authentication, you have to restart GNOME Photo Frame."
+msgstr ""
+"Non si è connessi a Facebook. Per effettuare di nuovo l'autenticazione, "
+"occorre riavviare la cornice fotografica di GNOME"
 
 #: ../lib/plugins/facebook/authdialog.py:91
 #, python-format
-msgid "You are logged into Facebook as %s.  If you would like to redo the authentication, you have to restart GNOME Photo Frame."
-msgstr "Si è connessi a Facebook come \"%s\". Per effettuare di nuovo la connessione, occorre riavviare la cornice fotografica di GNOME"
+msgid ""
+"You are logged into Facebook as %s.  If you would like to redo the "
+"authentication, you have to restart GNOME Photo Frame."
+msgstr ""
+"Si è connessi a Facebook come \"%s\". Per effettuare di nuovo la "
+"connessione, occorre riavviare la cornice fotografica di GNOME"
 
 #: ../lib/plugins/picasa.py:28
 msgid "Picasa Web"
 msgstr "Picasa Web"
 
-#: ../lib/plugins/picasa.py:57
-#: ../lib/plugins/tumblr/__init__.py:74
+#: ../lib/plugins/picasa.py:57 ../lib/plugins/tumblr/__init__.py:74
 msgid "Certification Error"
 msgstr "Errore di certificazione"
 
@@ -960,30 +1054,22 @@ msgstr "Errore di certificazione"
 msgid "Album"
 msgstr "Album"
 
-#: ../lib/plugins/picasa.py:145
-#: ../lib/plugins/picasa.py:186
+#: ../lib/plugins/picasa.py:145 ../lib/plugins/picasa.py:186
 #: ../lib/plugins/picasa.py:192
 msgid "Community Search"
 msgstr "Ricerca comunitaria"
 
-#: ../lib/plugins/picasa.py:146
-#: ../lib/plugins/picasa.py:188
+#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:188
 #: ../lib/plugins/picasa.py:192
 msgid "Featured"
 msgstr "In primo piano"
 
-#: ../lib/plugins/picasa.py:147
-#: ../lib/plugins/picasa.py:153
-#: ../lib/plugins/picasa.py:186
-#: ../lib/plugins/picasa.py:192
-#: ../lib/plugins/tumblr/__init__.py:73
-#: ../lib/plugins/tumblr/__init__.py:79
-#: ../lib/plugins/tumblr/__init__.py:102
-#: ../lib/plugins/tumblr/__init__.py:122
-#: ../lib/plugins/tumblr/ui.py:16
-#: ../lib/plugins/tumblr/ui.py:18
-#: ../lib/plugins/tumblr/ui.py:23
-#: ../lib/plugins/tumblr/ui.py:25
+#: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:153
+#: ../lib/plugins/picasa.py:186 ../lib/plugins/picasa.py:192
+#: ../lib/plugins/tumblr/__init__.py:73 ../lib/plugins/tumblr/__init__.py:79
+#: ../lib/plugins/tumblr/__init__.py:103 ../lib/plugins/tumblr/__init__.py:123
+#: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
+#: ../lib/plugins/tumblr/ui.py:23 ../lib/plugins/tumblr/ui.py:25
 msgid "User"
 msgstr "Utente"
 
@@ -1008,22 +1094,14 @@ msgid "This photo will be removed from Tumblr."
 msgstr "Questa foto verrà rimossa da Tumblr."
 
 #. user_id
-#: ../lib/plugins/tumblr/__init__.py:81
-#: ../lib/plugins/tumblr/__init__.py:82
-#: ../lib/plugins/tumblr/__init__.py:83
-#: ../lib/plugins/tumblr/ui.py:23
+#: ../lib/plugins/tumblr/__init__.py:81 ../lib/plugins/tumblr/__init__.py:82
+#: ../lib/plugins/tumblr/__init__.py:83 ../lib/plugins/tumblr/ui.py:23
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: ../lib/plugins/tumblr/__init__.py:81
-#: ../lib/plugins/tumblr/ui.py:23
+#: ../lib/plugins/tumblr/__init__.py:81 ../lib/plugins/tumblr/ui.py:23
 msgid "Likes"
 msgstr "Mi piace"
-
-#: ../lib/plugins/tumblr/__init__.py:88
-#, python-format
-msgid "Tumblr Error: Invalid Target, %s"
-msgstr "Errore di Tumbler: obiettivo non valido, %s"
 
 #: ../lib/plugins/tumblr/api.py:67
 msgid "Share on Tumblr"
@@ -1074,8 +1152,7 @@ msgstr "Orologi in rovina"
 msgid "Haikyo Clock"
 msgstr "Orologio Haikyo"
 
-#: ../lib/plugins/folder.py:26
-#: ../lib/defaultsource.py:27
+#: ../lib/plugins/folder.py:26 ../lib/defaultsource.py:27
 msgid "Folder"
 msgstr "Cartella"
 
@@ -1096,17 +1173,24 @@ msgid "Set rating as rejected?"
 msgstr "Impostare il voto a scartata?"
 
 #: ../lib/plugins/shotwell.py:54
-msgid "The rating of this photo will be set as rejected.  Gnome photo frame will skip rejected photos."
-msgstr "Il voto di questa foto verrà impostato a scartata. La cornice fotografica di GNOME salterà le foto scartate."
+msgid ""
+"The rating of this photo will be set as rejected.  Gnome photo frame will "
+"skip rejected photos."
+msgstr ""
+"Il voto di questa foto verrà impostato a scartata. La cornice fotografica di "
+"GNOME salterà le foto scartate."
 
 #: ../lib/plugins/shotwell.py:131
 msgid "_Description:"
-msgstr "_Descrizione"
+msgstr "_Descrizione:"
+
+#~ msgid "Tumblr Error: Invalid Target, %s"
+#~ msgstr "Errore di Tumbler: obiettivo non valido, %s"
 
 #~ msgid "If true, a ban icon will be shown on photos from shotwell."
 #~ msgstr ""
 #~ "Se abilitata, l'icona di esclusione verrà mostrata anche per le foto "
 #~ "provenienti da Shotwell."
+
 #~ msgid "No Title"
 #~ msgstr "Nessun titolo"
-
