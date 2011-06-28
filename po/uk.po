@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Photo Frame\n"
-"Report-Msgid-Bugs-To: http://code.google.com/p/gphotoframe/issues\n"
-"POT-Creation-Date: 2011-04-24 23:25+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-11 23:19+0900\n"
 "PO-Revision-Date: 2011-04-30 16:55+0000\n"
 "Last-Translator: Sergiy_Gavrylov <sergiovana@bigmir.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../share/gphotoframe.desktop.in.h:1
 msgid "Image Viewer"
@@ -52,8 +53,8 @@ msgstr "Інтервал оновлення API у хв. для мета-гру�
 
 #: ../share/gphotoframe.schemas.in.h:5
 msgid ""
-"API reload interval minutes for meta groups (Your Groups or The Commons). It"
-" should be greater than 10 minutes."
+"API reload interval minutes for meta groups (Your Groups or The Commons). It "
+"should be greater than 10 minutes."
 msgstr ""
 "Інтервал оновлення API у хв. для мета-груп (ваших або загальних). Має бути "
 "не менше 10 хвилин."
@@ -104,8 +105,8 @@ msgstr "Типовий інтервал оновлення API у хвилина
 
 #: ../share/gphotoframe.schemas.in.h:17
 msgid ""
-"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3:"
-" left-bottom."
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
 msgstr ""
 "Визначає розташування значка: 0 - ліворуч зверху, 1 - праворуч зверху, 2 - "
 "праворуч знизу, 3 - ліворуч знизу."
@@ -166,9 +167,9 @@ msgid ""
 "RSS feed."
 msgstr ""
 "Якщо RSS-канал містить кілька стрічок — це значення використовується як "
-"середньоквадратичне відхилення випадкового значення для кожної стрічки. Якщо"
-" це значення менше 0 — кожне значення означає загальну кількість зображень в"
-" кожній стрічці."
+"середньоквадратичне відхилення випадкового значення для кожної стрічки. Якщо "
+"це значення менше 0 — кожне значення означає загальну кількість зображень в "
+"кожній стрічці."
 
 #: ../share/gphotoframe.schemas.in.h:31
 msgid ""
@@ -199,8 +200,8 @@ msgid ""
 "If true, hiding and un-hiding of icons will be animated. The program needs "
 "to be restarted to take effect the change of the setting."
 msgstr ""
-"Якщо так, показ та приховування значків буде анімоване. Щоб зміни вступили в"
-" силу, програму потрібно перезапустити."
+"Якщо так, показ та приховування значків буде анімоване. Щоб зміни вступили в "
+"силу, програму потрібно перезапустити."
 
 #: ../share/gphotoframe.schemas.in.h:36
 msgid "If true, icons will be shown on screensaver."
@@ -257,8 +258,8 @@ msgid ""
 "Minimum image file size in KByte. When this value is 0 or less, this image "
 "file size filter is disabled."
 msgstr ""
-"Мінім. розмір файла зображення в мегабайтах. Фільтр вимкнений, якщо значення"
-" 0 або менше."
+"Мінім. розмір файла зображення в мегабайтах. Фільтр вимкнений, якщо значення "
+"0 або менше."
 
 #: ../share/gphotoframe.schemas.in.h:47
 msgid "Minimum image height"
@@ -358,8 +359,8 @@ msgstr "Недавно вибране джерело фото"
 
 #: ../share/gphotoframe.schemas.in.h:70
 msgid ""
-"Set this to true if you have problems with Clutter library support. When you"
-" change this value, you need to restart gphotoframe."
+"Set this to true if you have problems with Clutter library support. When you "
+"change this value, you need to restart gphotoframe."
 msgstr ""
 "Якщо виникли проблеми з підтримкою бібліотеки Clutter, встановіть значення "
 "«true». Після зміни, потрібно перезавантажити gphotoframe."
@@ -391,8 +392,8 @@ msgstr "Середньоквадратичне відхилення випадк
 #: ../share/gphotoframe.schemas.in.h:76
 msgid ""
 "The Flickr plugin gets photos from latest to oldest via API with a page "
-"number. This value specifies the minimum percentage of showing photos of 1st"
-" page (latest photos)"
+"number. This value specifies the minimum percentage of showing photos of 1st "
+"page (latest photos)"
 msgstr ""
 "Модуль Flickr отримує фото, від найновіших до найстаріших, через API номера "
 "сторінки. Це значення вказує мінімальний відсоток показуваних фото з першої "
@@ -510,40 +511,44 @@ msgstr "Показувати лише _найновіші фото"
 msgid "_Argument:"
 msgstr "_Аргумент:"
 
-#: ../share/gphotoframe.ui.h:15 ../lib/plugins/folder.py:145
+#: ../share/gphotoframe.ui.h:15
+msgid "_Exclude hidden files and folders"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:16
 msgid "_Include subfolders"
 msgstr "_Включно з під-теками"
 
-#: ../share/gphotoframe.ui.h:16
+#: ../share/gphotoframe.ui.h:17
 msgid "_Password:"
 msgstr "_Пароль:"
 
-#: ../share/gphotoframe.ui.h:17
+#: ../share/gphotoframe.ui.h:18
 msgid "_Period:"
 msgstr "_Термін:"
 
-#: ../share/gphotoframe.ui.h:18
+#: ../share/gphotoframe.ui.h:19
 msgid "_Source:"
 msgstr "Д_жерело:"
 
-#: ../share/gphotoframe.ui.h:19
+#: ../share/gphotoframe.ui.h:20
 msgid "_Specified other people's ID"
 msgstr "_Указаний ID інших людей"
 
-#: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:57
+#: ../share/gphotoframe.ui.h:21 ../lib/plugins/base/ui.py:57
 #: ../lib/plugins/haikyo.py:94
 msgid "_Target:"
 msgstr "_Об'єкт:"
 
-#: ../share/gphotoframe.ui.h:21
+#: ../share/gphotoframe.ui.h:22
 msgid "_User ID:"
 msgstr "ID _користувача:"
 
-#: ../share/gphotoframe.ui.h:22
+#: ../share/gphotoframe.ui.h:23
 msgid "_Weight:"
 msgstr "_Значення:"
 
-#: ../share/gphotoframe.ui.h:23
+#: ../share/gphotoframe.ui.h:24
 msgid "translator-credits"
 msgstr "Sergiy Gavrylov <sergiovana@bigmir.net>, 2011."
 
@@ -888,8 +893,7 @@ msgid ""
 msgstr ""
 "Щоб переглядати особисті фото та додавати фото до улюблених у своєму "
 "обліковому записі Flickr.com, потрібно авторизувати Gnome Photo Frame. "
-"Натисніть кнопку «Авторизувати», щоб надати Gnome Photo Frame права доступу."
-" "
+"Натисніть кнопку «Авторизувати», щоб надати Gnome Photo Frame права доступу. "
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -1004,8 +1008,8 @@ msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GNOME Photo Frame."
 msgstr ""
-"Ви увійшли до Facebook.  Якщо хочете повторити автентифікацію, перезапустіть"
-" GNOME Photo Frame."
+"Ви увійшли до Facebook.  Якщо хочете повторити автентифікацію, перезапустіть "
+"GNOME Photo Frame."
 
 #: ../lib/plugins/facebook/authdialog.py:91
 #, python-format

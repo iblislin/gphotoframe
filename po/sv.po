@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 18:13+0900\n"
+"POT-Creation-Date: 2011-05-11 23:19+0900\n"
 "PO-Revision-Date: 2011-04-27 18:14+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -477,40 +477,44 @@ msgstr ""
 msgid "_Argument:"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:15 ../lib/plugins/folder.py:145
-msgid "_Include subfolders"
+#: ../share/gphotoframe.ui.h:15
+msgid "_Exclude hidden files and folders"
 msgstr ""
 
 #: ../share/gphotoframe.ui.h:16
+msgid "_Include subfolders"
+msgstr ""
+
+#: ../share/gphotoframe.ui.h:17
 msgid "_Password:"
 msgstr "_Lösenord:"
 
-#: ../share/gphotoframe.ui.h:17
+#: ../share/gphotoframe.ui.h:18
 msgid "_Period:"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:18
+#: ../share/gphotoframe.ui.h:19
 msgid "_Source:"
 msgstr "_Källa:"
 
-#: ../share/gphotoframe.ui.h:19
+#: ../share/gphotoframe.ui.h:20
 msgid "_Specified other people's ID"
 msgstr ""
 
-#: ../share/gphotoframe.ui.h:20 ../lib/plugins/base/ui.py:57
+#: ../share/gphotoframe.ui.h:21 ../lib/plugins/base/ui.py:57
 #: ../lib/plugins/haikyo.py:94
 msgid "_Target:"
 msgstr "_Mål:"
 
-#: ../share/gphotoframe.ui.h:21
+#: ../share/gphotoframe.ui.h:22
 msgid "_User ID:"
 msgstr "A_nvändar-id:"
 
-#: ../share/gphotoframe.ui.h:22
+#: ../share/gphotoframe.ui.h:23
 msgid "_Weight:"
 msgstr "_Vikt:"
 
-#: ../share/gphotoframe.ui.h:23
+#: ../share/gphotoframe.ui.h:24
 msgid "translator-credits"
 msgstr "Daniel Nylander <po@danielnylander.se>"
 
