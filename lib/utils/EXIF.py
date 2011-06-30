@@ -4,7 +4,7 @@
 # Library to extract EXIF information from digital camera image files
 # http://sourceforge.net/projects/exif-py/
 #
-# VERSION 1.1.0.1 (Fixed by yendo0206@gmail.com 2011/06/15)
+# VERSION 1.1.0.2 (Fixed by yendo0206@gmail.com 2011/06/29)
 #
 # To use this library call with:
 #    f = open(path_name, 'rb')
@@ -647,6 +647,11 @@ MAKERNOTE_NIKON_OLDER_TAGS = {
 
 # decode Olympus SpecialMode tag in MakerNote
 def olympus_special_mode(v):
+
+    # Fixed by yendo0206@gmail.com
+    if len(v) < 3:
+        return
+
     a={
         0: 'Normal',
         1: 'Unknown',
