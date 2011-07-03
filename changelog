@@ -1,3 +1,7 @@
+2011-07-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.4 release.
+
 2011-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* base/ui.py, flickr/authdialog.py: Fixed a bug.
