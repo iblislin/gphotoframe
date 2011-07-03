@@ -112,7 +112,3 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         for key, value in dic.iteritems():
             self.conf.set_string('plugins/flickr/%s' % key, value)
         self._update_auth_status(dic['user_name']) # in plugin treeview
-
-    def _update_auth_status(self, username, password=None):
-        # self.model_iter[3] = self.model_iter[4].get_auth_status()
-        self.model_iter[3] = username
