@@ -123,6 +123,10 @@ class PluginDialog(object):
     def _set_ui(self):
         self.dialog = self.gui.get_object('plugin_dialog')
 
+    def _update_auth_status(self, username, password=None):
+        self.model_iter[3] = self.model_iter[4].get_auth_status()
+        #self.model_iter[3] = username
+
     def run(self):
         self._read_conf()
 

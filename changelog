@@ -1,3 +1,7 @@
+2011-06-30  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* base/ui.py, flickr/authdialog.py: Fixed a bug.
+
 2011-06-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* utils/EXIF.py (olympus_special_mode): Fixed an Olympus maker
