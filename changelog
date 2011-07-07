@@ -1,3 +1,7 @@
+2011-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr/__init__.py: Added support for a direct link to Flickr.
+
 2011-07-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.4 release.

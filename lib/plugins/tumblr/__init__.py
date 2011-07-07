@@ -126,15 +126,17 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             caption = photo.get('photo-caption')
             entry_title = re_nl.sub('\n', caption) if caption else None
             is_liked = bool(post.attrib.get('liked'))
+            target_detail, page_url = self._check_flickr_link(
+                post.attrib['url'], photo.get('photo-link-url'))
 
             data = {'info'       : TumblrPlugin,
-                    'target'     : (self.target, ''),
+                    'target'     : (self.target, target_detail),
                     'url'        : url_m,
                     'id'         : post.attrib['id'],
                     'reblog-key' : post.attrib['reblog-key'],
                     'owner_name' : owner,
                     'title'      : entry_title,
-                    'page_url'   : post.attrib['url'],
+                    'page_url'   : page_url,
                     'is_private' : bool(post.attrib.get('private')),
                     'trash'      : TumblrTrash(self.photolist, is_liked)}
 
@@ -151,6 +153,19 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
             photo = TumblrPhoto(data)
             self.photos.append(photo)
+
+    def _check_flickr_link(self, page_url, photo_link_url, target_detail = ''):
+
+        if photo_link_url and photo_link_url.find('flickr.com') > 0 \
+                and self.conf.get_bool('plugins/tumblr/enable_flickr_link') :
+
+            target_detail = 'Flickr'
+
+            url_sep = photo_link_url.find('/in/')
+            page_url = photo_link_url[:url_sep + 1] if url_sep > 0 \
+                else photo_link_url
+
+        return target_detail, page_url 
 
 class TumblrFav(FlickrFav):
 
