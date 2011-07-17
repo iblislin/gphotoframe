@@ -1,3 +1,8 @@
+2011-07-16  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/iconimage.py: Fixed an icon scale bug. (from revision
+	  4e061d148d)
+
 2010-05-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe.schemas.in: Fixed the default value of 'ui/geo/position'.
