@@ -68,13 +68,13 @@ class ShotwellPhotoList(FSpotPhotoList):
 
     def get_photo(self, cb):
         rate = self.rate_list.get_random_weight()
-        columns = 'id, filename, editable_id, title'
+        columns = 'id, filename, editable_id, title, width, height, orientation'
         sql = self.sql.get_statement(columns, rate.name)
         sql += ' ORDER BY random() LIMIT 1;'
 
         photo = self.db.fetchall(sql)
         if not photo: return False
-        id, filename, version, title = photo[0]
+        id, filename, version, title, width, height, orientation = photo[0]
 
         if version != -1:
             sql = "SELECT filepath FROM BackingPhotoTable WHERE id=%s" % version
@@ -88,6 +88,8 @@ class ShotwellPhotoList(FSpotPhotoList):
                  'id' : id,
                  'version' : version,
                  'fav' : ShotwellFav(rate.name, id, self.rate_list),
+                 'size' : (width, height),
+                 'orientation' : orientation,
                  'trash': ShotwellTrash(self.photolist) }
 
         self.photo = base.MyPhoto(data)

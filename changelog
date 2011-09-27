@@ -1,3 +1,9 @@
+2011-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/gtkimage.py: Improved loading speed for large image files
+	  which has geometry info.  (Added support for
+	  gtk.gdk.pixbuf_new_from_file_at_size.)
+	
 2011-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* tumblr/__init__.py: Added support for a direct link to Flickr.
