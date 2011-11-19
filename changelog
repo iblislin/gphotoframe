@@ -1,3 +1,13 @@
+<<<<<<< local
+2011-11-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* frame.py: Added new gconf key 'gravity' for a workaround for
+	  a Xfwm bug (Issue #97).  Xfwm does not support GDK_GRAVITY
+	  correctly.  The frame window gravity needs be set to
+	  GDK_GRAVITY_NORTH_WEST forcelly.
+
+=======
+>>>>>>> other
 2011-07-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.4 release.

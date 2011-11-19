@@ -42,8 +42,14 @@ class PhotoFrame(object):
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
         self.conf.set_notify_add('border_color', self._set_border_color)
 
+        # a workaround for Xfwm bug (Issue #97)
+        gravity = gtk.gdk.GRAVITY_NORTH_WEST \
+            if self.conf.get_string('gravity') == 'NORTH_WEST' \
+            else gtk.gdk.GRAVITY_CENTER
+
         self.window = gui.get_object('window')
-        self.window.set_gravity(gtk.gdk.GRAVITY_CENTER)
+        self.window.set_gravity(gravity)
+
         if self.conf.get_bool('window_sticky'):
             self.window.stick()
         self._set_window_state()
@@ -192,8 +198,13 @@ class PhotoFrame(object):
         if not self.conf.get_bool('window_fix'):
             x, y = widget.get_position()
             w, h = widget.get_size()
-            self.conf.set_int( 'root_x', x + w / 2)
-            self.conf.set_int( 'root_y', y + h / 2)
+
+            if self.window.get_gravity() == gtk.gdk.GRAVITY_CENTER:
+                x += w / 2
+                y += h / 2
+
+            self.conf.set_int( 'root_x', x)
+            self.conf.set_int( 'root_y', y)
 
         return False
 
@@ -212,10 +223,16 @@ class PhotoFrame(object):
         self.window.set_keep_below(is_below)
 
         if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
-            border = self.photoimage.window_border
-            x = self.conf.get_int('root_x') - self.photoimage.w / 2
-            y = self.conf.get_int('root_y') - self.photoimage.h / 2
-            self.window.move(int(x - border), int(y - border))
+            if self.window.get_gravity() == gtk.gdk.GRAVITY_CENTER:
+                border = self.photoimage.window_border
+                x = self.conf.get_int('root_x') - self.photoimage.w / 2
+                y = self.conf.get_int('root_y') - self.photoimage.h / 2
+                self.window.move(int(x - border), int(y - border))
+            else:
+                # a workaround for Xfwm bug (Issue #97)
+                x = self.conf.get_int('root_x')
+                y = self.conf.get_int('root_y')
+                self.window.move(int(x), int(y))
 
     def _change_fullscreen_cb(self, client, id, entry, data):
         if entry.value.get_bool():
