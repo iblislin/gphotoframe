@@ -1,4 +1,7 @@
-<<<<<<< local
+2011-11-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* fr.po: Added French translation.  Thanks MathieuMD!
+
 2011-11-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* frame.py: Added new gconf key 'gravity' for a workaround for
@@ -6,8 +9,6 @@
 	  correctly.  The frame window gravity needs be set to
 	  GDK_GRAVITY_NORTH_WEST forcelly.
 
-=======
->>>>>>> other
 2011-07-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.4 release.
