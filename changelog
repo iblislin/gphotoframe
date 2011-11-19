@@ -1,9 +1,16 @@
+2011-11-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* frame.py: Added new gconf key 'gravity' for a workaround for
+	  a Xfwm bug (Issue #97).  Xfwm does not support GDK_GRAVITY
+	  correctly.  The frame window gravity needs be set to
+	  GDK_GRAVITY_NORTH_WEST forcelly.
+	
 2011-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/gtkimage.py: Improved loading speed for large image files
 	  which has geometry info.  (Added support for
 	  gtk.gdk.pixbuf_new_from_file_at_size.)
-	
+
 2011-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* tumblr/__init__.py: Added support for a direct link to Flickr.
