@@ -158,6 +158,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/gravity</key>
+      <applyto>/apps/gphotoframe/gravity</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default>CENTER</default>
+      <locale name="C">
+        <short>Photo frame Window Gravity</short>
+        <long>Defines the reference point of the window.  Possible values are "CENTER" and "NORTH_WEST"</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/window_fix</key>
       <applyto>/apps/gphotoframe/window_fix</applyto>
       <owner>gphotoframe</owner>
