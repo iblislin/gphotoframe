@@ -63,24 +63,35 @@ class FacebookAlbumsAPI(FacebookAPI):
         d = json.loads(data)
         total_photo_nums = 0
 
+        is_album_select = self.photolist.options.get('select_album')
+        album_list = self.photolist.options.get('album_list') or []
+
+        self.photolist.all_albums = []
+        
         # print d
         for entry in d['data']:
             count = entry.get('count')
+            id = int(entry['id'])
+            name = entry.get('name')
+
+            self.photolist.all_albums.append([id, name])
+
             if count:
-                self.albums[ int(entry['id']) ] = entry.get('name')
+                if is_album_select and id not in album_list:
+                    continue
+
+                self.albums[id] = name
                 total_photo_nums += count
                 # print entry['id'], entry.get('name'), count
 
         self._get_all_albums()
 
     def _get_all_albums(self, update=False):
-        n = 0
+
         for i, album in enumerate(self.albums.items()):
             id, name = album
             url = 'https://graph.facebook.com/%s/photos' % id
             glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
-            n += 1
-        # print n
 
 class FacebookHomeAPI(FacebookAPI):
 
