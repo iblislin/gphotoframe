@@ -1,7 +1,12 @@
+2011-11-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/facebook/, gphotoframe.ui: Started implementation for
+	  Facebook album selection (issue #98).
+
 2011-11-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* frame.py: Added new gconf key 'gravity' for a workaround for
-	  a Xfwm bug (Issue #97).  Xfwm does not support GDK_GRAVITY
+	  a Xfwm bug (issue #97).  Xfwm does not support GDK_GRAVITY
 	  correctly.  The frame window gravity needs be set to
 	  GDK_GRAVITY_NORTH_WEST forcelly.
 	

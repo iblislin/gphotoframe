@@ -8,6 +8,7 @@ import json
 import time
 import sys
 from gettext import gettext as _
+import gtk
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
@@ -121,21 +122,54 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
-        self.child = self.gui.get_object('folder_vbox')
-        self.gui.get_object('checkbutton_hidden').hide()
+        self.child = self.gui.get_object('facebook_vbox')
+        self.checkbutton_album = self.gui.get_object('checkbutton_all_album')
+        self.checkbutton_select = self.gui.get_object('checkbutton_select_album')
 
-        label_text = _('_Include other photos in the same album')
-        self.checkbutton_album = self.gui.get_object('checkbutton_dir')
-        self.checkbutton_album.set_label(label_text)
+        self.liststore = FacebookAlbumListStore()
+        self.treeview = self.gui.get_object('facebook_album_treeview')
+        self.treeview.set_model(self.liststore)
+
+        cell = self.gui.get_object('fb_cellrenderertoggle')
+        cell.connect('toggled', self.liststore.toggle_cb)
 
     def _set_default(self):
-        state = self.options.get('album', True)
-        self.checkbutton_album.set_active(state)
+
+        has_album_list = self.data and hasattr(self.data[6], 'all_albums')
+        if has_album_list:
+            for id, name in self.data[6].all_albums: # col 6 is liststore obj.
+                self.liststore.append([False, name, id])
+
+        is_all_album = self.options.get('album', True)
+        self.checkbutton_album.set_active(is_all_album)
         self.checkbutton_album.set_sensitive(True)
+
+        enable_select = self.options.get('select_album', True)
+        self.checkbutton_select.set_active(enable_select)
+        self.checkbutton_select.set_sensitive(True)
+
+        self.treeview.set_sensitive(enable_select and has_album_list)
 
     def get_value(self):
         album = self.checkbutton_album.get_active()
+
+        album_id_list = []
+        for row in self.liststore:
+            if row[0]:
+                album_id_list.append(row[2])
+        print album_id_list
         return {'album': album}
+
+class FacebookAlbumListStore(gtk.ListStore):
+    
+    def __init__(self):
+        super(FacebookAlbumListStore, self).__init__(bool, str, str)
+
+        # self.append([True, "TEST", "12345"])
+
+    def toggle_cb(self, cell, row):
+        self[row][0] = not self[row][0]
+        print self[row][1]
 
 class FacebookIcon(WebIconImage):
 
