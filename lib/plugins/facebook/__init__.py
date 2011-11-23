@@ -126,7 +126,7 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
         self.checkbutton_album = self.gui.get_object('checkbutton_all_album')
         self.checkbutton_select = self.gui.get_object('checkbutton_select_album')
 
-        self.liststore = FacebookAlbumListStore()
+        self.liststore = FacebookAlbumListStore(self.data)
         self.treeview = self.gui.get_object('facebook_album_treeview')
         self.treeview.set_model(self.liststore)
 
@@ -134,11 +134,6 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
         cell.connect('toggled', self.liststore.toggle_cb)
 
     def _set_default(self):
-
-        has_album_list = self.data and hasattr(self.data[6], 'all_albums')
-        if has_album_list:
-            for id, name in self.data[6].all_albums: # col 6 is liststore obj.
-                self.liststore.append([False, name, id])
 
         is_all_album = self.options.get('album', True)
         self.checkbutton_album.set_active(is_all_album)
@@ -148,24 +143,35 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
         self.checkbutton_select.set_active(enable_select)
         self.checkbutton_select.set_sensitive(True)
 
-        self.treeview.set_sensitive(enable_select and has_album_list)
+        print bool(enable_select and self.liststore.has_album_list)
+        self.treeview.set_sensitive(
+            bool(enable_select and self.liststore.has_album_list))
 
     def get_value(self):
         album = self.checkbutton_album.get_active()
-
-        album_id_list = []
-        for row in self.liststore:
-            if row[0]:
-                album_id_list.append(row[2])
+        album_id_list = self.liststore.get_active_albums()
         print album_id_list
+
+        # return {'album': album, 'album_id_list': album_id_list}
         return {'album': album}
 
 class FacebookAlbumListStore(gtk.ListStore):
     
-    def __init__(self):
+    def __init__(self, data):
         super(FacebookAlbumListStore, self).__init__(bool, str, str)
+        self.has_album_list = data and hasattr(data[6], 'all_albums')
 
-        # self.append([True, "TEST", "12345"])
+        if data and self.has_album_list:
+            enable_id_list = data[5].get('album_id_list') or []
+            for id, name in data[6].all_albums: # col 6 is liststore obj.
+                self.append([str(id) in enable_id_list, name, id])
+
+    def get_active_albums(self):
+        album_id_list = []
+        for row in self:
+            if row[0]:
+                album_id_list.append(row[2])
+        return album_id_list
 
     def toggle_cb(self, cell, row):
         self[row][0] = not self[row][0]
