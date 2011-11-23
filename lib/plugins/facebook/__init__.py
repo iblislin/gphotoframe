@@ -164,7 +164,7 @@ class FacebookAlbumListStore(gtk.ListStore):
         if data and self.has_album_list:
             enable_id_list = data[5].get('album_id_list') or []
             for id, name in data[6].all_albums: # col 6 is liststore obj.
-                self.append([str(id) in enable_id_list, name, id])
+                self.append([id in enable_id_list, name, id])
 
     def get_active_albums(self):
         album_id_list = []
