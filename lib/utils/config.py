@@ -82,7 +82,9 @@ class GConf(object):
     def get_value(self, entry):
         value = entry.get_value()
 
-        if value.type is gconf.VALUE_LIST:
+        if value is None:
+            result = None
+        elif value.type is gconf.VALUE_LIST:
             result = [self._get_value_type(x) for x in value.get_list()]
         else:
             result = self._get_value_type(value)
