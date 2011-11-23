@@ -37,7 +37,6 @@ class FacebookAPI(object):
 
     def __init__(self, photolist):
         self.photolist = photolist
-        self.albums = {}
         self.conf = GConf()
         self._set_url(photolist.argument)
 
@@ -67,6 +66,7 @@ class FacebookAlbumsAPI(FacebookAPI):
         album_list = self.photolist.options.get('album_id_list') or []
 
         self.photolist.all_albums = []
+        albums = {}
         
         # print d
         for entry in d['data']:
@@ -80,15 +80,15 @@ class FacebookAlbumsAPI(FacebookAPI):
                 if is_album_select and id not in album_list:
                     continue
 
-                self.albums[id] = name
+                albums[id] = name
                 total_photo_nums += count
                 # print entry['id'], entry.get('name'), count
 
-        self._get_all_albums()
+        self._get_all_albums(albums)
 
-    def _get_all_albums(self, update=False):
+    def _get_all_albums(self, albums):
 
-        for i, album in enumerate(self.albums.items()):
+        for i, album in enumerate(albums.items()):
             id, name = album
             url = 'https://graph.facebook.com/%s/photos' % str(id)
             glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
@@ -105,7 +105,7 @@ class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
-
+        albums = {}
         re_aid = re.compile("http://www.facebook.com/photo.php?.*=a.([0-9]+)\\..*")
 
         for entry in d['data']:
@@ -116,10 +116,10 @@ class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
             url = entry['link']
             aid = re_aid.sub('\\1', url)
 
-            self.albums[ int(aid) ] = entry.get('name')
+            albums[aid] = entry.get('name')
 
         # print self.albums
-        self._get_all_albums()
+        self._get_all_albums(albums)
 
 class FacebookWallAPI(FacebookAPI):
 
