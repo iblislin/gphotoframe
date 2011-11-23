@@ -64,7 +64,7 @@ class FacebookAlbumsAPI(FacebookAPI):
         total_photo_nums = 0
 
         is_album_select = self.photolist.options.get('select_album')
-        album_list = self.photolist.options.get('album_list') or []
+        album_list = self.photolist.options.get('album_id_list') or []
 
         self.photolist.all_albums = []
         
@@ -77,7 +77,7 @@ class FacebookAlbumsAPI(FacebookAPI):
             self.photolist.all_albums.append([id, name])
 
             if count:
-                if is_album_select and id not in album_list:
+                if is_album_select and str(id) not in album_list:
                     continue
 
                 self.albums[id] = name

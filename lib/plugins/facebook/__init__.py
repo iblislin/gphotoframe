@@ -143,17 +143,17 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
         self.checkbutton_select.set_active(enable_select)
         self.checkbutton_select.set_sensitive(True)
 
-        print bool(enable_select and self.liststore.has_album_list)
         self.treeview.set_sensitive(
             bool(enable_select and self.liststore.has_album_list))
 
     def get_value(self):
         album = self.checkbutton_album.get_active()
+        select_album = self.checkbutton_select.get_active()
         album_id_list = self.liststore.get_active_albums()
-        print album_id_list
 
-        # return {'album': album, 'album_id_list': album_id_list}
-        return {'album': album}
+        return {'album': album, 
+                'select_album': select_album, 
+                'album_id_list': album_id_list}
 
 class FacebookAlbumListStore(gtk.ListStore):
     
