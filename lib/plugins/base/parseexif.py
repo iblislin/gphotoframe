@@ -43,6 +43,24 @@ class ParseEXIF(object):
 
         return exif
 
+    def get_size(self):
+        w = self.tags.get('EXIF ExifImageWidth')
+        h = self.tags.get('EXIF ExifImageLength')
+
+        if w and h:
+            return int(w.printable), int(h.printable)
+        else:
+            return []
+
+    def get_orientation(self):
+        if self.tags.get('Image Orientation'):
+            list = self.tags.get('Image Orientation').values
+            orientation = list[0]
+        else:
+            orientation = 1
+
+        return orientation
+
     def get_geo(self):
         lat_array = self.tags.get('GPS GPSLatitude')
         lon_array = self.tags.get('GPS GPSLongitude')
