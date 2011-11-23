@@ -113,8 +113,14 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
         super(PhotoSourceFacebookUI, self)._widget_cb(widget)
 
         target = widget.get_active_text()
-        state = bool(target != _('Albums'))
-        self.gui.get_object('checkbutton_dir').set_sensitive(state)
+        is_albums = bool(target == _('Albums'))
+
+        self.gui.get_object('checkbutton_all_album').set_sensitive(not is_albums)
+        checkbutton_select = self.gui.get_object('checkbutton_select_album')
+        checkbutton_select.set_sensitive(is_albums)
+
+        state = bool(is_albums and checkbutton_select.get_active())
+        self.gui.get_object('facebook_album_treeview').set_sensitive(state)
 
     def _make_options_ui(self):
         self.options_ui = PhotoSourceOptionsFacebookUI(self.gui, self.data)
@@ -125,6 +131,7 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
         self.child = self.gui.get_object('facebook_vbox')
         self.checkbutton_album = self.gui.get_object('checkbutton_all_album')
         self.checkbutton_select = self.gui.get_object('checkbutton_select_album')
+        self.checkbutton_select.connect('toggled', self._select_toggle_cb)
 
         self.liststore = FacebookAlbumListStore(self.data)
         self.treeview = self.gui.get_object('facebook_album_treeview')
@@ -133,13 +140,16 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
         cell = self.gui.get_object('fb_cellrenderertoggle')
         cell.connect('toggled', self.liststore.toggle_cb)
 
-    def _set_default(self):
+    def _select_toggle_cb(self, widget):
+        state = self.checkbutton_select.get_active()
+        self.treeview.set_sensitive(state)
 
+    def _set_default(self):
         is_all_album = self.options.get('album', True)
         self.checkbutton_album.set_active(is_all_album)
         self.checkbutton_album.set_sensitive(True)
 
-        enable_select = self.options.get('select_album', True)
+        enable_select = self.options.get('select_album', False)
         self.checkbutton_select.set_active(enable_select)
         self.checkbutton_select.set_sensitive(True)
 
