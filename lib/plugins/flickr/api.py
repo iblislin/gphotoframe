@@ -50,7 +50,7 @@ class FlickrAPI(object):
                    'format'  : 'json',
                    'extras'  : ('description,date_taken,owner_name,'
                                 'original_format,media,geo,'
-                                'url_z,url_l,url_o'),
+                                'url_z,url_l,url_o,o_dims'),
                    'page'    : page,
                    'per_page': per_page,
                    'nojsoncallback' : '1' }

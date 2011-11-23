@@ -205,6 +205,13 @@ class Photo(dict):
             exif = tags.get_exif()
             if exif: self['exif'] = exif
 
+        orientation = tags.get_orientation()
+        if orientation: self['orientation'] = orientation
+
+        size = tags.get_size()
+        if size: self['size'] = size
+        #print type(size), size
+
         geo = tags.get_geo()
         if geo: self['geo'] = geo
 

@@ -92,18 +92,38 @@ class PhotoImagePixbuf(object):
         try:
             filename = photo['filename']
             if not self._file_size_is_ok(filename, photo): return False
-            pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+
+            photo.get_exif()
+            orientation = photo.get('orientation')
+            rotation = self._get_orientation(orientation)
+
+            if 'size' in photo:
+                org_w, org_h = photo['size']
+                w, h = self._get_scale(org_w, org_h, rotation)
+                # print org_w, org_h, w, h, " ", photo
+                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(filename, w, h)
+            else:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+
         except (glib.GError, OSError), err_info:
             print err_info
             return False
 
-        pixbuf = self._rotate(pixbuf)
+        rotation = self._get_orientation(pixbuf.get_option('orientation') or 1)
+
+        # scale
+        if 'size' not in photo:
+            org_w, org_h = pixbuf.get_width(), pixbuf.get_height()
+            w, h = self._get_scale(org_w, org_h, rotation)
+            pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
+
+        # rotate
+        pixbuf = pixbuf.rotate_simple(rotation)
 
         if not self._aspect_ratio_is_ok(pixbuf): return False
         if not self._image_size_is_ok(pixbuf): return False
 
-        pixbuf = self._scale(pixbuf)
-        photo.get_exif()
+        # photo.get_exif()
 
         if self.max_src_size > 800:
             url = photo.get('url')
@@ -114,25 +134,28 @@ class PhotoImagePixbuf(object):
         self.data = pixbuf
         return True
 
-    def _rotate(self, pixbuf):
-        orientation = pixbuf.get_option('orientation') or 1
+    def _get_orientation(self, orientation=1):
+        if not orientation:
+            orientation = 1
+        orientation = int(orientation)
 
-        if orientation == '6':
+        if orientation == 6:
             rotate = 270
-        elif orientation == '8':
+        elif orientation == 8:
             rotate = 90
         else:
             rotate = 0
 
-        pixbuf = pixbuf.rotate_simple(rotate)
-        return pixbuf
+        # print "a", orientation, rotate
 
-    def _scale(self, pixbuf):
+        return rotate
+
+    def _get_scale(self, src_w, src_h, rotation=0):
         max_w = self.max_w
         max_h = self.max_h
 
-        src_w = pixbuf.get_width()
-        src_h = pixbuf.get_height()
+        if rotation:
+            max_w, max_h = max_h, max_w
 
         if src_w / max_w > src_h / max_h:
             ratio = max_w / src_w
@@ -143,8 +166,7 @@ class PhotoImagePixbuf(object):
         h = int( src_h * ratio + 0.4 )
 
         self.max_src_size = src_w if src_w > src_h else src_h
-        pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
-        return pixbuf
+        return w, h
 
     def _file_size_is_ok(self, filename, photo):
         min = self.conf.get_float('filter/min_file_size_kb', 0) * 1024

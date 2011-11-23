@@ -74,12 +74,24 @@ class GConf(object):
             self.set_int(key, value)
         elif isinstance(value, bool):
             self.set_bool(key, value)
+        elif isinstance(value, list):
+            self.set_list(key, value)
         else:
             self.set_string(key, value)
 
     def get_value(self, entry):
         value = entry.get_value()
 
+        if value is None:
+            result = None
+        elif value.type is gconf.VALUE_LIST:
+            result = [self._get_value_type(x) for x in value.get_list()]
+        else:
+            result = self._get_value_type(value)
+
+        return result
+
+    def _get_value_type(self, value):
         result = None if value is None \
             else value.get_int() if value.type is gconf.VALUE_INT \
             else value.get_bool() if value.type is gconf.VALUE_BOOL \
