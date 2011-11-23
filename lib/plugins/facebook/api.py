@@ -71,13 +71,13 @@ class FacebookAlbumsAPI(FacebookAPI):
         # print d
         for entry in d['data']:
             count = entry.get('count')
-            id = int(entry['id'])
+            id = entry['id']
             name = entry.get('name')
 
             self.photolist.all_albums.append([id, name])
 
             if count:
-                if is_album_select and str(id) not in album_list:
+                if is_album_select and id not in album_list:
                     continue
 
                 self.albums[id] = name
@@ -90,7 +90,7 @@ class FacebookAlbumsAPI(FacebookAPI):
 
         for i, album in enumerate(self.albums.items()):
             id, name = album
-            url = 'https://graph.facebook.com/%s/photos' % id
+            url = 'https://graph.facebook.com/%s/photos' % str(id)
             glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
 
 class FacebookHomeAPI(FacebookAPI):
