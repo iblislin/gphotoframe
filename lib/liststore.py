@@ -42,8 +42,9 @@ class PhotoListStore(Gtk.ListStore):
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
         pixbuf = plugins.PLUGIN_INFO_TOKEN[d['source']]().get_icon_pixbuf()
+        # FIXME
         list = [ pixbuf, d['source'],
-                 d['target'], d['argument'], d['weight'], d['options'], obj ]
+                 d['target'], d['argument'], int(d['weight']), d['options'], obj ]
 
         new_iter = self.insert_before(iter, list)
 

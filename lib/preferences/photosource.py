@@ -95,7 +95,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
     def _set_coursor_to(self, iter):
         model = self.treeview.get_model()
         row = model.get_path(iter)
-        self.treeview.set_cursor(row)
+        self.treeview.set_cursor(row, None, False)
 
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""
