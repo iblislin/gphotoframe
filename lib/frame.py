@@ -1,7 +1,7 @@
 from __future__ import division
 
 import glib
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 import constants
 from image import *
@@ -12,7 +12,8 @@ from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
 GConf().set_bool('fullscreen', False)
 
 from utils.iconimage import IconImage
-Gtk.window_set_default_icon(IconImage('gphotoframe').get_pixbuf())
+# FIXME
+# Gtk.window_set_default_icon(IconImage('gphotoframe').get_pixbuf())
 
 class PhotoFrameFactory(object):
 
@@ -42,10 +43,11 @@ class PhotoFrame(object):
         self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
         self.conf.set_notify_add('border_color', self._set_border_color)
 
+
         # a workaround for Xfwm bug (Issue #97)
-        gravity = Gdk.GRAVITY_NORTH_WEST \
+        gravity = Gdk.Gravity.NORTH_WEST \
             if self.conf.get_string('gravity') == 'NORTH_WEST' \
-            else Gdk.GRAVITY_CENTER
+            else Gdk.Gravity.CENTER
 
         self.window = gui.get_object('window')
         self.window.set_gravity(gravity)
@@ -131,7 +133,7 @@ class PhotoFrame(object):
     def _set_window_state(self):
         is_bool = self.conf.get_bool
         if is_bool('window_fix'):
-            self.set_type_hint(self.fixed_window_hint)
+            self.window.set_type_hint(self.fixed_window_hint)
         if is_bool('window_keep_below', True) or is_bool('window_fix'):
             self.window.set_keep_below(True)
 
@@ -173,7 +175,7 @@ class PhotoFrame(object):
     def _check_button_cb(self, widget, event):
         if event.button == 1:
             if not self.photoimage.check_actor(widget, event):
-                if event.type == Gdk._2BUTTON_PRESS:
+                if event.type == Gdk.EventType._2BUTTON_PRESS:
                     self.popup_menu.open_photo()
                 else:
                     x, y = int(event.x_root), int(event.y_root)
@@ -186,8 +188,8 @@ class PhotoFrame(object):
             self.photolist.next_photo()
 
     def _window_state_cb(self, widget, event):
-        if event.changed_mask & Gdk.WINDOW_STATE_ICONIFIED:
-            state = event.new_window_state & Gdk.WINDOW_STATE_ICONIFIED
+        if event.changed_mask & Gdk.WindowState.ICONIFIED:
+            state = event.new_window_state & Gdk.WindowState.ICONIFIED
             self.set_skip_taskbar_hint(not state)
 
     def _save_geometry_cb(self, widget, event):
@@ -199,7 +201,7 @@ class PhotoFrame(object):
             x, y = widget.get_position()
             w, h = widget.get_size()
 
-            if self.window.get_gravity() == Gdk.GRAVITY_CENTER:
+            if self.window.get_gravity() == Gdk.Gravity.CENTER:
                 x += w / 2
                 y += h / 2
 
@@ -215,7 +217,7 @@ class PhotoFrame(object):
         if hint == self.window.get_type_hint(): return
 
         self.window.hide()
-        self.set_type_hint(hint)
+        self.window.set_type_hint(hint)
         self.window.show()
 
         is_below = True if self.conf.get_bool('window_fix') \
@@ -223,7 +225,7 @@ class PhotoFrame(object):
         self.window.set_keep_below(is_below)
 
         if hint == Gdk.WindowTypeHint.NORMAL:
-            if self.window.get_gravity() == Gdk.GRAVITY_CENTER:
+            if self.window.get_gravity() == Gdk.Gravity.CENTER:
                 border = self.photoimage.window_border
                 x = self.conf.get_int('root_x') - self.photoimage.w / 2
                 y = self.conf.get_int('root_y') - self.photoimage.h / 2

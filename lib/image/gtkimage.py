@@ -4,7 +4,7 @@ import os
 from xml.sax.saxutils import escape
 
 import glib
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from ..utils.config import GConf
 from tooltip import ToolTip
@@ -44,8 +44,8 @@ class PhotoImage(object):
         return False
 
     def check_mouse_on_window(self):
-        window, x, y = Gdk.window_at_pointer() or [None, None, None]
-        result = window is self.image.window
+        window, x, y = Gdk.Window.at_pointer() or [None, None, None]
+        result = window is self.image.get_window()
         return result
 
     def has_trash_dialog(self):
@@ -85,7 +85,10 @@ class PhotoImagePixbuf(object):
 
     def set(self, photo):
         if not photo:
-            pixbuf = self._no_image()
+            # FIXME
+            # pixbuf = self._no_image()
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(
+                "/usr/share/backgrounds/space-01.jpg")
             self.data = pixbuf
             return True
 
