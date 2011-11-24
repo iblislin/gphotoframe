@@ -1,0 +1,32 @@
+#!/usr/bin/python
+#
+# gphotoframe - Photo Frame for the GNOME Desktop.
+#
+# Copyright (c) 2009-2011, Yoshizumi Endo.
+# Licence: GPL3
+
+import os
+import platform
+from os.path import join, abspath, dirname
+
+from twisted.internet import gtk2reactor, glib2reactor
+dist, ver = platform.dist()[:2]
+greactor = glib2reactor if dist == 'Ubuntu' and float(ver) >= 10.10 \
+    else gtk2reactor
+greactor.install()
+
+from twisted.internet import reactor
+
+if os.access(
+    abspath(join(dirname(__file__), 'lib/liststore.py')), os.R_OK):
+    from lib.liststore import PhotoListStore
+    from lib.defaultsource import set_default_photo_source
+else:
+    from gphotoframe.liststore import PhotoListStore
+    from gphotoframe.defaultsource import set_default_photo_source
+
+if __name__ == '__main__':
+    set_default_photo_source()
+
+    PhotoListStore()
+    reactor.run()
