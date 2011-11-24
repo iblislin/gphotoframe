@@ -4,7 +4,7 @@ import inspect
 from os.path import join, abspath, dirname, isdir
 from gettext import gettext as _
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GdkPixbuf
 
 from base import *
 from ..utils.config import GConf

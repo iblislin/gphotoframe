@@ -100,7 +100,7 @@ class PhotoSourceOptionsUI(object):
         label = Gtk.Label(label=_('Options'))
 
         self._set_ui()
-        note.append_page(self.get_child(), tab_label=label)
+        note.append_page(self.child, tab_label=label)
 
         self.options = data[5] if data else {} # liststore options
         self._set_default()
