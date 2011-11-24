@@ -145,9 +145,6 @@ class AboutDialog(object):
         about = gui.get_object('aboutdialog')
         about.set_name(_('GNOME Photo Frame'))
         about.set_property('version', constants.VERSION)
-        Gtk.about_dialog_set_url_hook(self._open_url)
+
         about.run()
         about.destroy()
-
-    def _open_url(self, about, url):
-        Gtk.show_uri(None, url, Gdk.CURRENT_TIME)

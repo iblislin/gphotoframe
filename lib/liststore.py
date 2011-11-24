@@ -1,7 +1,7 @@
 import os
 import glob
 
-from gi.repository import Gtk, GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, GObject
 import glib
 
 import plugins
@@ -88,6 +88,8 @@ class PhotoListStore(Gtk.ListStore):
             interval = self.conf.get_int('interval_fullscreen', 10)
         else:
             interval = self.conf.get_int('interval', 30)
+
+        interval =60 # FIXME
 
         self._timer = glib.timeout_add_seconds(interval, self._start_timer)
         return False
