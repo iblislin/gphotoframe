@@ -128,7 +128,7 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
-        self.get_child() = self.gui.get_object('facebook_vbox')
+        self.child = self.gui.get_object('facebook_vbox')
         self.checkbutton_album = self.gui.get_object('checkbutton_all_album')
         self.checkbutton_select = self.gui.get_object('checkbutton_select_album')
         self.checkbutton_select.connect('toggled', self._select_toggle_cb)
