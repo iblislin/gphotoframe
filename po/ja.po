@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-20 03:17+0900\n"
-"PO-Revision-Date: 2011-11-21 11:29+0900\n"
+"POT-Creation-Date: 2011-11-24 00:02+0900\n"
+"PO-Revision-Date: 2011-11-24 00:03+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -306,36 +306,36 @@ msgid "Photo frame \"keep-below\" mode"
 msgstr "写真フレームを最後面へ"
 
 #: ../share/gphotoframe.schemas.in.h:55
-msgid "Photo frame Window Gravity"
-msgstr "写真フレームのグラヴィティー"
-
-#: ../share/gphotoframe.schemas.in.h:56
 msgid "Photo frame X position"
 msgstr "写真フレームの X 座標"
 
-#: ../share/gphotoframe.schemas.in.h:57
+#: ../share/gphotoframe.schemas.in.h:56
 msgid "Photo frame Y position"
 msgstr "写真フレームの Y 座標"
 
-#: ../share/gphotoframe.schemas.in.h:58
+#: ../share/gphotoframe.schemas.in.h:57
 msgid "Photo frame border color"
 msgstr "写真フレームのボーダー色"
 
-#: ../share/gphotoframe.schemas.in.h:59
+#: ../share/gphotoframe.schemas.in.h:58
 msgid "Photo frame border width"
 msgstr "写真フレームのボーダーの幅"
 
-#: ../share/gphotoframe.schemas.in.h:60
+#: ../share/gphotoframe.schemas.in.h:59
 msgid "Photo frame fix mode"
 msgstr "写真フレームの固定モード"
 
-#: ../share/gphotoframe.schemas.in.h:61
+#: ../share/gphotoframe.schemas.in.h:60
 msgid "Photo frame full screen mode"
 msgstr "写真フレームのフルスクリーン表示"
 
-#: ../share/gphotoframe.schemas.in.h:62
+#: ../share/gphotoframe.schemas.in.h:61
 msgid "Photo frame sticky mode"
 msgstr "写真フレームのスティッキーモード"
+
+#: ../share/gphotoframe.schemas.in.h:62
+msgid "Photo frame window gravity"
+msgstr "写真フレームのグラヴィティー"
 
 #: ../share/gphotoframe.schemas.in.h:63
 msgid "Photo image max height"
@@ -532,39 +532,47 @@ msgid "_Exclude hidden files and folders"
 msgstr "隠しファイル・フォルダを除外する(_E)"
 
 #: ../share/gphotoframe.ui.h:16
+msgid "_Include other photos in the same album"
+msgstr "同じアルバムのすべての写真を表示する(_I)"
+
+#: ../share/gphotoframe.ui.h:17
 msgid "_Include subfolders"
 msgstr "サブフォルダを含める(_I)"
 
-#: ../share/gphotoframe.ui.h:17
+#: ../share/gphotoframe.ui.h:18
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../share/gphotoframe.ui.h:18
+#: ../share/gphotoframe.ui.h:19
 msgid "_Period:"
 msgstr "期間(_P):"
 
-#: ../share/gphotoframe.ui.h:19
+#: ../share/gphotoframe.ui.h:20
+msgid "_Select albums"
+msgstr "表示するアルバムを選択する(_S)"
+
+#: ../share/gphotoframe.ui.h:21
 msgid "_Source:"
 msgstr "ソース(_S):"
 
-#: ../share/gphotoframe.ui.h:20
+#: ../share/gphotoframe.ui.h:22
 msgid "_Specified other people's ID"
 msgstr "他のユーザの ID を指定する(_S)"
 
-#: ../share/gphotoframe.ui.h:21 ../lib/plugins/base/ui.py:57
+#: ../share/gphotoframe.ui.h:23 ../lib/plugins/base/ui.py:57
 #: ../lib/plugins/haikyo.py:94
 msgid "_Target:"
 msgstr "ターゲット(_T):"
 
-#: ../share/gphotoframe.ui.h:22
+#: ../share/gphotoframe.ui.h:24
 msgid "_User ID:"
 msgstr "ユーザ ID(_U):"
 
-#: ../share/gphotoframe.ui.h:23
+#: ../share/gphotoframe.ui.h:25
 msgid "_Weight:"
 msgstr "重み(_W):"
 
-#: ../share/gphotoframe.ui.h:24
+#: ../share/gphotoframe.ui.h:26
 msgid "translator-credits"
 msgstr "Yoshizumi Endo <y-endo@ceres.dti.ne.jp>"
 
@@ -819,7 +827,7 @@ msgstr "フラッシュ補正"
 msgid "Not Authenticated"
 msgstr "未認証"
 
-#: ../lib/plugins/base/ui.py:99
+#: ../lib/plugins/base/ui.py:100
 msgid "Options"
 msgstr "オプション"
 
@@ -870,7 +878,7 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:100
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
 #: ../lib/plugins/picasa.py:186 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "ユーザ(_U):"
@@ -981,34 +989,30 @@ msgstr "評価"
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:129
+#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:131
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
-#: ../lib/plugins/facebook/__init__.py:30
+#: ../lib/plugins/facebook/__init__.py:31
 msgid "Social Network Service"
 msgstr "ソーシャル・ネットワーク・サービス"
 
-#: ../lib/plugins/facebook/__init__.py:100
-#: ../lib/plugins/facebook/__init__.py:106 ../lib/plugins/facebook/api.py:22
+#: ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/facebook/__init__.py:107 ../lib/plugins/facebook/api.py:22
 msgid "Wall"
 msgstr "ウォール"
 
-#: ../lib/plugins/facebook/__init__.py:100
-#: ../lib/plugins/facebook/__init__.py:106
-#: ../lib/plugins/facebook/__init__.py:115 ../lib/plugins/facebook/api.py:21
+#: ../lib/plugins/facebook/__init__.py:101
+#: ../lib/plugins/facebook/__init__.py:107
+#: ../lib/plugins/facebook/__init__.py:116 ../lib/plugins/facebook/api.py:21
 msgid "Albums"
 msgstr "アルバム"
 
-#: ../lib/plugins/facebook/__init__.py:102
-#: ../lib/plugins/facebook/__init__.py:106
-#: ../lib/plugins/facebook/__init__.py:108 ../lib/plugins/facebook/api.py:23
+#: ../lib/plugins/facebook/__init__.py:103
+#: ../lib/plugins/facebook/__init__.py:107
+#: ../lib/plugins/facebook/__init__.py:109 ../lib/plugins/facebook/api.py:23
 msgid "News Feed"
 msgstr "ニュースフィード"
-
-#: ../lib/plugins/facebook/__init__.py:127
-msgid "_Include other photos in the same album"
-msgstr "同じアルバムのすべての写真を表示する(_I)"
 
 #: ../lib/plugins/facebook/authdialog.py:45
 #, python-format
@@ -1172,6 +1176,6 @@ msgid ""
 "skip rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
 
-#: ../lib/plugins/shotwell.py:131
+#: ../lib/plugins/shotwell.py:133
 msgid "_Description:"
 msgstr "説明(_D):"
