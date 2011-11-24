@@ -205,7 +205,7 @@ class PhotoSourceOptionsFspotUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
         self.rate_weight_widget = self.gui.get_object('spinbutton_fs1')
-        self.get_child() = self.gui.get_object('fspot_table')
+        self.child = self.gui.get_object('fspot_table')
 
     def _set_default(self):
         rate_min = self.options.get('rate_min', 0)

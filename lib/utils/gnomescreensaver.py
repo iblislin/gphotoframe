@@ -26,7 +26,7 @@ class GsThemeWindow(Gtk.Window):
 
         self.window.set_user_data(self)
         x, y, self.w, self.h, depth = self.window.get_geometry()
-        self.size_allocate((x=x, y=y, width=self.w, height=self.h))
+        self.size_allocate(Gdk.Rectangle(x=x, y=y, width=self.w, height=self.h))
         self.set_default_size(self.w, self.h)
 
         self.set_flags(self.flags() | Gtk.REALIZED)

@@ -131,7 +131,7 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
 class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
-        self.get_child() = self.gui.get_object('folder_vbox')
+        self.child = self.gui.get_object('folder_vbox')
         self.checkbutton_sub = self.gui.get_object('checkbutton_dir')
         self.checkbutton_hidden = self.gui.get_object('checkbutton_hidden')
 

@@ -1,6 +1,6 @@
 import os
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GdkPixbuf
 
 from ..constants import SHARED_DATA_DIR, CACHE_HOME
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
