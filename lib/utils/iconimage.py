@@ -1,6 +1,6 @@
 import os
 
-import gtk
+from gi.repository import Gtk
 
 from ..constants import SHARED_DATA_DIR, CACHE_HOME
 from ..utils.urlgetautoproxy import UrlGetWithAutoProxy
@@ -15,14 +15,14 @@ class IconImage(object):
         self.size = size
         pixbuf = self.get_pixbuf()
 
-        image = gtk.Image()
+        image = Gtk.Image()
         image.set_from_pixbuf(pixbuf)
         return image
 
     def get_pixbuf(self, grayscale=False, size=16):
         self.size = size
         file = self._get_icon_file()
-        pixbuf = gtk.gdk.pixbuf_new_from_file_at_scale(file, size, size, True)
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(file, size, size, True)
 
         if grayscale:
             pixbuf = self._set_grayscale(pixbuf)
@@ -30,7 +30,7 @@ class IconImage(object):
         return pixbuf
 
     def _get_icon_file(self):
-        theme = gtk.icon_theme_get_default()
+        theme = Gtk.IconTheme.get_default()
         info = theme.lookup_icon(self.icon_name, self.size, 0) or \
             theme.lookup_icon('image-x-generic', self.size, 0)
         return info.get_filename()

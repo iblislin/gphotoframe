@@ -10,7 +10,7 @@ import random
 from gettext import gettext as _
 
 from twisted.internet import threads
-import gtk
+from gi.repository import Gtk
 import glib
 
 from base import *
@@ -113,8 +113,8 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
         return self.options_ui.get_value()
 
     def _build_target_widget(self):
-        self.target_widget = gtk.FileChooserButton("button")
-        self.target_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
+        self.target_widget = Gtk.FileChooserButton("button")
+        self.target_widget.set_action(Gtk.FileChooserAction.SELECT_FOLDER)
         self._set_target_sensitive(state=True)
 
     def _set_target_default(self):
@@ -131,7 +131,7 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
 class PhotoSourceOptionsDirUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
-        self.child = self.gui.get_object('folder_vbox')
+        self.get_child() = self.gui.get_object('folder_vbox')
         self.checkbutton_sub = self.gui.get_object('checkbutton_dir')
         self.checkbutton_hidden = self.gui.get_object('checkbutton_hidden')
 

@@ -1,7 +1,7 @@
 from __future__ import division
 
 import glib
-import gtk
+from gi.repository import Gtk
 
 import constants
 from image import *
@@ -12,7 +12,7 @@ from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
 GConf().set_bool('fullscreen', False)
 
 from utils.iconimage import IconImage
-gtk.window_set_default_icon(IconImage('gphotoframe').get_pixbuf())
+Gtk.window_set_default_icon(IconImage('gphotoframe').get_pixbuf())
 
 class PhotoFrameFactory(object):
 
@@ -31,9 +31,9 @@ class PhotoFrame(object):
     def __init__(self, photolist):
 
         self.photolist = photolist
-        self.fixed_window_hint = gtk.gdk.WINDOW_TYPE_HINT_DOCK
+        self.fixed_window_hint = Gdk.WindowTypeHint.DOCK
 
-        gui = gtk.Builder()
+        gui = Gtk.Builder()
         gui.add_objects_from_file(constants.UI_FILE, ["window"])
 
         self.conf = GConf()
@@ -43,9 +43,9 @@ class PhotoFrame(object):
         self.conf.set_notify_add('border_color', self._set_border_color)
 
         # a workaround for Xfwm bug (Issue #97)
-        gravity = gtk.gdk.GRAVITY_NORTH_WEST \
+        gravity = Gdk.GRAVITY_NORTH_WEST \
             if self.conf.get_string('gravity') == 'NORTH_WEST' \
-            else gtk.gdk.GRAVITY_CENTER
+            else Gdk.GRAVITY_CENTER
 
         self.window = gui.get_object('window')
         self.window.set_gravity(gravity)
@@ -110,7 +110,7 @@ class PhotoFrame(object):
         self.window.get_position()
 
     def _set_event_box(self):
-        self.ebox = gtk.EventBox()
+        self.ebox = Gtk.EventBox()
         self.ebox.add(self.photoimage.image)
         self.ebox.show()
         self.window.add(self.ebox)
@@ -120,7 +120,7 @@ class PhotoFrame(object):
     def _set_border_color(self, *args):
         color = self.conf.get_string('border_color')
         if color:
-            self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
+            self.ebox.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(color))
 
     def _set_photoimage(self):
         self.photoimage = PhotoImageFactory().create(self)
@@ -131,18 +131,18 @@ class PhotoFrame(object):
     def _set_window_state(self):
         is_bool = self.conf.get_bool
         if is_bool('window_fix'):
-            self.window.set_type_hint(self.fixed_window_hint)
+            self.set_type_hint(self.fixed_window_hint)
         if is_bool('window_keep_below', True) or is_bool('window_fix'):
             self.window.set_keep_below(True)
 
     def _set_accelerator(self):
-        accel_group = gtk.AccelGroup()
+        accel_group = Gtk.AccelGroup()
         ac_set = [[ "<gph>/quit", "<control>q", self.popup_menu.quit ],
                   [ "<gph>/open", "<control>o", self.popup_menu.open_photo ],
                   [ "<gph>/fullscreen", "F11", self._toggle_fullscreen ]]
         for ac in ac_set:
-            key, mod = gtk.accelerator_parse(ac[1])
-            gtk.accel_map_add_entry(ac[0], key, mod)
+            key, mod = Gtk.accelerator_parse(ac[1])
+            Gtk.AccelMap.add_entry(ac[0], key, mod)
             accel_group.connect_by_path(ac[0], ac[2])
 
         self.window.add_accel_group(accel_group)
@@ -173,7 +173,7 @@ class PhotoFrame(object):
     def _check_button_cb(self, widget, event):
         if event.button == 1:
             if not self.photoimage.check_actor(widget, event):
-                if event.type == gtk.gdk._2BUTTON_PRESS:
+                if event.type == Gdk._2BUTTON_PRESS:
                     self.popup_menu.open_photo()
                 else:
                     x, y = int(event.x_root), int(event.y_root)
@@ -186,9 +186,9 @@ class PhotoFrame(object):
             self.photolist.next_photo()
 
     def _window_state_cb(self, widget, event):
-        if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
-            state = event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED
-            self.window.set_skip_taskbar_hint(not state)
+        if event.changed_mask & Gdk.WINDOW_STATE_ICONIFIED:
+            state = event.new_window_state & Gdk.WINDOW_STATE_ICONIFIED
+            self.set_skip_taskbar_hint(not state)
 
     def _save_geometry_cb(self, widget, event):
 #        if event.mode != 2:
@@ -199,7 +199,7 @@ class PhotoFrame(object):
             x, y = widget.get_position()
             w, h = widget.get_size()
 
-            if self.window.get_gravity() == gtk.gdk.GRAVITY_CENTER:
+            if self.window.get_gravity() == Gdk.GRAVITY_CENTER:
                 x += w / 2
                 y += h / 2
 
@@ -210,20 +210,20 @@ class PhotoFrame(object):
 
     def _change_window_fix_cb(self, client, id, entry, data):
         hint = self.fixed_window_hint \
-            if entry.value.get_bool() else gtk.gdk.WINDOW_TYPE_HINT_NORMAL
+            if entry.value.get_bool() else Gdk.WindowTypeHint.NORMAL
 
         if hint == self.window.get_type_hint(): return
 
         self.window.hide()
-        self.window.set_type_hint(hint)
+        self.set_type_hint(hint)
         self.window.show()
 
         is_below = True if self.conf.get_bool('window_fix') \
             else self.conf.get_bool('window_keep_below', True)
         self.window.set_keep_below(is_below)
 
-        if hint == gtk.gdk.WINDOW_TYPE_HINT_NORMAL:
-            if self.window.get_gravity() == gtk.gdk.GRAVITY_CENTER:
+        if hint == Gdk.WindowTypeHint.NORMAL:
+            if self.window.get_gravity() == Gdk.GRAVITY_CENTER:
                 border = self.photoimage.window_border
                 x = self.conf.get_int('root_x') - self.photoimage.w / 2
                 y = self.conf.get_int('root_y') - self.photoimage.h / 2
@@ -249,11 +249,11 @@ class PhotoFrame(object):
 class PhotoFrameFullScreen(PhotoFrame):
 
     def _set_window_state(self):
-        self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+        self.window.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse("black"))
         self.window.fullscreen()
 
     def _set_border_color(self):
-        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("black"))
+        self.ebox.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse("black"))
 
     def _set_photoimage(self):
         self.photoimage = PhotoImageFullScreenFactory().create(self)
@@ -288,7 +288,7 @@ class PhotoFrameFullScreen(PhotoFrame):
             self.window.destroy()
 
     def _keypress_cb(self, widget, event):
-        if event.keyval == gtk.keysyms.Escape:
+        if event.keyval == Gdk.KEY_Escape:
             self.conf.set_bool('fullscreen', False)
 
 class PhotoFrameScreenSaver(PhotoFrame):
@@ -334,7 +334,7 @@ class FullScreenUI(object):
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):
-            glib.source_remove(self._timer)
+            GObject.source_remove(self._timer)
 
 class Cursor(object):
     def __init__(self):
@@ -350,8 +350,8 @@ class Cursor(object):
             widget.set_tooltip_markup(None)
 
             self._is_show = False
-            pixmap = gtk.gdk.Pixmap(None, 1, 1, 1)
-            color = gtk.gdk.Color()
-            cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 0, 0)
+            pixmap = Gdk.Pixmap(None, 1, 1, 1)
+            color = Gdk.Color()
+            cursor = Gdk.Cursor.new(pixmap, pixmap, color, color, 0, 0)
             widget.window.set_cursor(cursor)
             return False

@@ -2,7 +2,7 @@ import os
 from gettext import gettext as _
 
 import glib
-import gtk
+from gi.repository import Gtk
 
 from utils.config import GConf
 from constants import HAS_DATA_DIR
@@ -32,7 +32,7 @@ def set_default_photo_source():
             conf.set_bool('sources/%s/subfolders' % i, False)
 
 def get_geometry_first_monitor():
-    screen = gtk.gdk.screen_get_default()
+    screen = Gdk.Screen.get_default()
     display_num = screen.get_monitor_at_point(0, 0)
     geometry = screen.get_monitor_geometry(display_num)
     return geometry.width, geometry.height

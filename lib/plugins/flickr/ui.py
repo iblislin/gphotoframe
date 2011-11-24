@@ -61,7 +61,7 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         return {'other_id': other_id, 'only_latest_roll': latest}
 
     def _set_ui(self):
-        self.child = self.gui.get_object('flickr_vbox')
+        self.get_child() = self.gui.get_object('flickr_vbox')
         self.checkbutton_flickr_id = self.gui.get_object('checkbutton_flickr_id')
         self.checkbutton_latest = self.gui.get_object('checkbutton_latest_roll')
 

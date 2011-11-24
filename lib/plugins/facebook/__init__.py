@@ -8,7 +8,7 @@ import json
 import time
 import sys
 from gettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
@@ -128,7 +128,7 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
-        self.child = self.gui.get_object('facebook_vbox')
+        self.get_child() = self.gui.get_object('facebook_vbox')
         self.checkbutton_album = self.gui.get_object('checkbutton_all_album')
         self.checkbutton_select = self.gui.get_object('checkbutton_select_album')
         self.checkbutton_select.connect('toggled', self._select_toggle_cb)
@@ -165,7 +165,7 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
                 'select_album': select_album, 
                 'album_id_list': album_id_list}
 
-class FacebookAlbumListStore(gtk.ListStore):
+class FacebookAlbumListStore(Gtk.ListStore):
     
     def __init__(self, data):
         super(FacebookAlbumListStore, self).__init__(bool, str, str)

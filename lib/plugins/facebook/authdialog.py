@@ -9,9 +9,9 @@ import urllib
 import re
 from gettext import gettext as _
 
-import gobject
-import gtk
-import webkit
+from gi.repository import GObject
+from gi.repository import Gtk
+from gi.repository import WebKit
 
 from ..flickr.authdialog import PluginFlickrDialog
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
@@ -62,7 +62,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self._quit_cb()
 
     def _set_webkit_ui(self, *args):
-        self.dialog.set_gravity(gtk.gdk.GRAVITY_CENTER)
+        self.dialog.set_gravity(Gdk.GRAVITY_CENTER)
         self.dialog.set_resizable(True)
         self.dialog.resize(640, 480)
 
@@ -70,7 +70,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.sw.connect("login-started", self._set_webkit_ui_cb)
         self.sw.connect("token-acquired", self._get_access_token_cb)
         self.sw.connect("error-occurred", self._cancel_cb)
-        #self.spinner = gtk.Spinner()
+        #self.spinner = Gtk.Spinner()
 
     def _set_webkit_ui_cb(self, w, e):
         self.vbox.remove(self.label)
@@ -110,11 +110,11 @@ class PluginFacebookDialog(PluginFlickrDialog):
 
         self._update_auth_status(self.full_name) # in plugin treeview
 
-class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
+class FacebookWebKitScrolledWindow(Gtk.ScrolledWindow):
 
     def __init__(self):
         super(FacebookWebKitScrolledWindow, self).__init__()
-        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
 
         values = { 'client_id': 157351184320900,
                    'redirect_uri': 
@@ -146,6 +146,6 @@ class FacebookWebKitScrolledWindow(gtk.ScrolledWindow):
             self.emit("error-occurred", None)
 
 for signal in ["login-started", "token-acquired", "error-occurred"]:
-    gobject.signal_new(signal, FacebookWebKitScrolledWindow,
-                       gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE,
-                       (gobject.TYPE_PYOBJECT,))
+    GObject.signal_new(signal, FacebookWebKitScrolledWindow,
+                       GObject.SignalFlags.RUN_LAST, None,
+                       (GObject.TYPE_PYOBJECT,))

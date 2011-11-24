@@ -3,7 +3,7 @@ import re
 from urlparse import urlparse
 from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk
 import random
 import glib
 
@@ -134,7 +134,7 @@ class Photo(dict):
     def open(self, *args):
         url = self.get('page_url') or self.get('url')
         url = url.replace("'", "%27")
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, url, Gdk.CURRENT_TIME)
 
     def can_open(self):
         if self.is_local_file() and not os.path.exists(self['filename']):

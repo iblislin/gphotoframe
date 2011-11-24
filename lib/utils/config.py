@@ -1,4 +1,4 @@
-import gconf
+from gi.repository import GConf
 
 class GConf(object):
     """Gconf Wrapper"""
@@ -12,62 +12,62 @@ class GConf(object):
     def __init__(self):
         if not hasattr(self, "dir"):
             self.dir = "/apps/gphotoframe/"
-            self.gconf = gconf.client_get_default()
-            self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
+            self.gconf = GConf.Client.get_default()
+            self.GConf.add_dir(self.dir[:-1], GConf.ClientPreloadType.PRELOAD_NONE)
 
     def set_notify_add(self, key, cb):
-        self.gconf.notify_add(self.dir + key, cb)
+        self.GConf.notify_add(self.dir + key, cb)
 
     def set_int(self, key, val):
-        return self.gconf.set_int(self.dir + key, int(val))
+        return self.GConf.set_int(self.dir + key, int(val))
 
     def get_int(self, key, default=None):
         path = self.dir + key
-        val = default if self.gconf.get(path) is None \
-            else self.gconf.get_int(path)
+        val = default if self.GConf.get(path) is None \
+            else self.GConf.get_int(path)
         return val
 
     def set_float(self, key, val):
-        return self.gconf.set_float(self.dir + key, float(val))
+        return self.GConf.set_float(self.dir + key, float(val))
 
     def get_float(self, key, default=None):
         path = self.dir + key
-        val = default if self.gconf.get(path) is None \
-            else self.gconf.get_float(path)
+        val = default if self.GConf.get(path) is None \
+            else self.GConf.get_float(path)
         return val
 
     def set_string(self, key, val):
-        return self.gconf.set_string(self.dir + key, val)
+        return self.GConf.set_string(self.dir + key, val)
 
     def get_string(self, key):
-        val = self.gconf.get_string(self.dir + key)
+        val = self.GConf.get_string(self.dir + key)
         return val
 
     def set_bool(self, key, val):
-        return self.gconf.set_bool(self.dir + key, val)
+        return self.GConf.set_bool(self.dir + key, val)
 
     def get_bool(self, key, default=None):
         path = self.dir + key
-        val = default if self.gconf.get(path) is None \
-            else self.gconf.get_bool(path)
+        val = default if self.GConf.get(path) is None \
+            else self.GConf.get_bool(path)
         return val
 
-    def set_list(self, key, val, type=gconf.VALUE_STRING):
-        return self.gconf.set_list(self.dir + key, type, val)
+    def set_list(self, key, val, type=GConf.ValueType.STRING):
+        return self.GConf.set_list(self.dir + key, type, val)
 
-    def get_list(self, key, type=gconf.VALUE_STRING):
-        val = self.gconf.get_list(self.dir + key, type)
+    def get_list(self, key, type=GConf.ValueType.STRING):
+        val = self.GConf.get_list(self.dir + key, type)
         return val
 
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key,
-                                   gconf.UNSET_INCLUDING_SCHEMA_NAMES)
+        self.GConf.recursive_unset(self.dir + key,
+                                   GConf.UNSET_INCLUDING_SCHEMA_NAMES)
 
     def all_entries(self, key):
-        return self.gconf.all_entries(key)
+        return self.GConf.all_entries(key)
 
     def all_dirs(self, key):
-        return self.gconf.all_dirs(self.dir + key)
+        return self.GConf.all_dirs(self.dir + key)
 
     def set_value(self, key, value):
         if isinstance(value, int):
@@ -84,7 +84,7 @@ class GConf(object):
 
         if value is None:
             result = None
-        elif value.type is gconf.VALUE_LIST:
+        elif value.type is GConf.ValueType.LIST:
             result = [self._get_value_type(x) for x in value.get_list()]
         else:
             result = self._get_value_type(value)
@@ -93,9 +93,9 @@ class GConf(object):
 
     def _get_value_type(self, value):
         result = None if value is None \
-            else value.get_int() if value.type is gconf.VALUE_INT \
-            else value.get_bool() if value.type is gconf.VALUE_BOOL \
-            else value.get_float() if value.type is gconf.VALUE_FLOAT \
+            else value.get_int() if value.type is GConf.ValueType.INT \
+            else value.get_bool() if value.type is GConf.ValueType.BOOL \
+            else value.get_float() if value.type is GConf.ValueType.FLOAT \
             else value.get_string()
 
         return result

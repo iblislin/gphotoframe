@@ -1,5 +1,5 @@
 import os
-import gio
+from gi.repository import Gio
 
 
 class Inotify(object):
@@ -14,7 +14,7 @@ class Inotify(object):
 #        del self.monitor
 
     def add_dir(self, folder):
-        self.monitor[folder] = gio.File(folder).monitor_directory()
+        self.monitor[folder] = Gio.File(folder).monitor_directory()
         self.monitor[folder].connect("changed", self._file_changed_cb)
 
     def del_dir(self, folder):
@@ -29,16 +29,16 @@ class Inotify(object):
         if self._check_own_monitor(monitor, file_name):
             return
 
-        if (event == gio.FILE_MONITOR_EVENT_CREATED and
+        if (event == Gio.FileMonitorEvent.CREATED and
             os.path.exists(file_name)):
             file_type = file.query_info("standard::type").get_file_type()
-            if file_type == gio.FILE_TYPE_DIRECTORY:
+            if file_type == Gio.FileType.DIRECTORY:
                 if self.recursive:
                     self.add_dir(file_name)
                 self._cb_add_dir(file_name)
             else:
                 self._cb_add_file(file_name)
-        elif event == gio.FILE_MONITOR_EVENT_DELETED:
+        elif event == Gio.FileMonitorEvent.DELETED:
             if file_name in self.monitor:
                 self.del_dir(file_name)
                 self._cb_del_dir(file_name)
@@ -83,7 +83,7 @@ class Inotify(object):
         print file_name, "del dir"
 
 if __name__ == "__main__":
-    import gtk
+    from gi.repository import Gtk
     i = Inotify()
     i.add_dir('/tmp/')
-    gtk.main()
+    Gtk.main()

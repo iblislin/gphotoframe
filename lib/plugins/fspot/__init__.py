@@ -6,7 +6,7 @@
 
 import urllib
 
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 from string import Template
 
@@ -165,7 +165,7 @@ class PhotoSourceFspotUI(ui.PhotoSourceUI):
         self.options_ui = PhotoSourceOptionsFspotUI(self.gui, self.data)
 
     def _build_target_widget(self):
-        self.treestore = gtk.TreeStore(str)
+        self.treestore = Gtk.TreeStore(str)
         iter_db = {}
         self.tree_list = {}
 
@@ -174,11 +174,11 @@ class PhotoSourceFspotUI(ui.PhotoSourceUI):
             iter_db[item[0]] = self.treestore.append(iter, [ item[1] ])
             self.tree_list[str(item[1])] = iter_db[item[0]]
 
-        self.target_widget = gtk.ComboBox(model=self.treestore)
+        self.target_widget = Gtk.ComboBox(model=self.treestore)
         self.target_widget.set_active(0)
         self._set_target_sensitive(_("_Tag:"), True)
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.target_widget.pack_start(cell, True)
         self.target_widget.add_attribute(cell, 'text', 0)
 
@@ -205,7 +205,7 @@ class PhotoSourceOptionsFspotUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
         self.rate_weight_widget = self.gui.get_object('spinbutton_fs1')
-        self.child = self.gui.get_object('fspot_table')
+        self.get_child() = self.gui.get_object('fspot_table')
 
     def _set_default(self):
         rate_min = self.options.get('rate_min', 0)

@@ -6,12 +6,12 @@ try:
 except ImportError:
     from ...utils.nullobject import Null
     cluttergtk = Null()
-    cluttergtk.Texture = Null()
+    clutterGtk.Texture = Null()
 
 from ..animation import FadeAnimationTimeline
 from ...utils.config import GConf
 
-class Texture(cluttergtk.Texture):
+class Texture(clutterGtk.Texture):
 
     def __init__(self, stage):
         super(Texture, self).__init__()

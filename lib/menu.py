@@ -1,7 +1,7 @@
 import os
 
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 from twisted.internet import reactor
 from gettext import gettext as _
 
@@ -15,7 +15,7 @@ class PopUpMenu(object):
 
     def __init__(self, photolist, photoframe):
 
-        self.gui = gtk.Builder()
+        self.gui = Gtk.Builder()
         self.gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'menu.ui'))
         self.is_show = False
 
@@ -64,21 +64,21 @@ class PopUpMenu(object):
         self.photoimage.photo.open()
 
     def open_help(self, widget):
-        gtk.show_uri(None, 'ghelp:gphotoframe', gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, 'ghelp:gphotoframe', Gdk.CURRENT_TIME)
 
     def set_recent_menu(self):
         recent = self.gui.get_object('menuitem10')
         if recent.get_submenu(): recent.get_submenu().popdown()
         recent.remove_submenu()
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         recents = self.photolist.queue.menu_item()
         for photo in recents:
             item = RecentMenuItem(photo)
             menu.prepend(item)
 
         # history menuitem
-        sep = gtk.SeparatorMenuItem()
+        sep = Gtk.SeparatorMenuItem()
         history = HistoryMenuItem()
         for item in [sep, history]:
             menu.append(item)
@@ -106,7 +106,7 @@ class PopUpMenuFullScreen(PopUpMenu):
         super(PopUpMenuFullScreen, self).__init__(photolist, photoframe)
         self.gui.get_object('menuitem6').set_sensitive(False)
 
-class RecentMenuItem(gtk.ImageMenuItem):
+class RecentMenuItem(Gtk.ImageMenuItem):
 
     def __init__(self, photo):
         title = photo.get_title() or "(%s)" % _('Untitled')
@@ -117,7 +117,7 @@ class RecentMenuItem(gtk.ImageMenuItem):
         label = self.get_child()
         label.set_use_underline(False)
         label.set_max_width_chars(20)
-        label.set_property('ellipsize', pango.ELLIPSIZE_END)
+        label.set_property('ellipsize', Pango.EllipsizeMode.END)
 
         icon = photo.get_icon() or IconImage()
         icon_img = icon.get_image()
@@ -126,7 +126,7 @@ class RecentMenuItem(gtk.ImageMenuItem):
         self.set_always_show_image(True)
         self.connect('activate', photo.open)
 
-class HistoryMenuItem(gtk.MenuItem):
+class HistoryMenuItem(Gtk.MenuItem):
 
     def __init__(self):
         title = _("Show _History")
@@ -140,14 +140,14 @@ class HistoryMenuItem(gtk.MenuItem):
 class AboutDialog(object):
 
     def start(self, *args):
-        gui = gtk.Builder()
+        gui = Gtk.Builder()
         gui.add_from_file(constants.UI_FILE)
         about = gui.get_object('aboutdialog')
         about.set_name(_('GNOME Photo Frame'))
         about.set_property('version', constants.VERSION)
-        gtk.about_dialog_set_url_hook(self._open_url)
+        Gtk.about_dialog_set_url_hook(self._open_url)
         about.run()
         about.destroy()
 
     def _open_url(self, about, url):
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, url, Gdk.CURRENT_TIME)
