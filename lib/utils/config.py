@@ -54,7 +54,9 @@ class GConf(object):
         return val
 
     def set_list(self, key, val, type=GCF.ValueType.STRING):
-        return self.gconf.set_list(self.dir + key, type, val)
+        # FIXME
+        # return self.gconf.set_list(self.dir + key, type, val)
+        pass
 
     def get_list(self, key, type=GCF.ValueType.STRING):
         # FIXME
@@ -63,8 +65,7 @@ class GConf(object):
 #        return val
 
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key,
-                                   GCF.UNSET_INCLUDING_SCHEMA_NAMES)
+        self.gconf.recursive_unset(self.dir + key, GCF.UnsetFlags.NAMES)
 
     def all_entries(self, key):
         # FIXME
@@ -80,7 +81,9 @@ class GConf(object):
         elif isinstance(value, bool):
             self.set_bool(key, value)
         elif isinstance(value, list):
-            self.set_list(key, value)
+            pass
+            # FIXME
+            # self.set_list(key, value)
         else:
             self.set_string(key, value)
 
