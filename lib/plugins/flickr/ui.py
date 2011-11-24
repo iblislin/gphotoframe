@@ -17,9 +17,6 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
 
     def _widget_cb(self, widget):
         target = widget.get_active_text()
-        # FIXME
-        # print widget.get_active(), widget, widget.get_active_text()
-        target = 'Interestingness'
         api = FlickrFactoryAPI().create(target)
 
         checkbutton = self.gui.get_object('checkbutton_flickr_id')

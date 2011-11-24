@@ -42,7 +42,7 @@ class PhotoSourceUI(object):
         pass
 
     def _build_target_widget(self):
-        self.target_widget = Gtk.ComboBoxText()
+        self.target_widget = Gtk.ComboBoxText.new()
         for text in self._label():
             self.target_widget.append_text(text)
         self.target_widget.set_active(0)
