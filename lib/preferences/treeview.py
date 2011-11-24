@@ -36,11 +36,13 @@ class PreferencesTreeView(object):
         column = Gtk.TreeViewColumn(title)
 
         renderer = Gtk.CellRendererPixbuf()
-        column.pack_start(renderer, False, True, 0)
+        # column.pack_start(renderer, False, True, 0)
+        column.pack_start(renderer, True)
         column.add_attribute(renderer, 'pixbuf', id)
 
         renderer = Gtk.CellRendererText()
-        column.pack_start(renderer, False, True, 0)
+        # column.pack_start(renderer, False, True, 0)
+        column.pack_start(renderer, True)
         column.add_attribute(renderer, 'text', id+1)
 
         column.set_resizable(True)

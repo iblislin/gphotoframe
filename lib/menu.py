@@ -53,7 +53,7 @@ class PopUpMenu(object):
         self.gui.get_object('menuitem8').set_active(is_fullscreen)
 
         menu = self.gui.get_object('menu')
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
         self.is_show = True
 
     def quit(self, *args):
@@ -69,7 +69,7 @@ class PopUpMenu(object):
     def set_recent_menu(self):
         recent = self.gui.get_object('menuitem10')
         if recent.get_submenu(): recent.get_submenu().popdown()
-        recent.remove_submenu()
+        recent.set_submenu(None)
 
         menu = Gtk.Menu()
         recents = self.photolist.queue.menu_item()

@@ -146,11 +146,11 @@ class SourceComboBox(object):
             liststore.insert_before(None, list)
 
         renderer = Gtk.CellRendererPixbuf()
-        widget.pack_start(renderer, False, True, 0)
+        widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'pixbuf', 0)
 
         renderer = Gtk.CellRendererText()
-        widget.pack_start(renderer, False, True, 0)
+        widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'text', 1)
 
         recent = GConf().get_string('recents/source')

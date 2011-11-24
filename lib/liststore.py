@@ -1,7 +1,7 @@
 import os
 import glob
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GdkPixbuf
 import glib
 
 import plugins
