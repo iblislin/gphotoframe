@@ -19,13 +19,9 @@ class FadeAnimationTimeline(object):
 class FadeAnimation(object):
 
     def __init__(self, actor, time=300, start=0, end=255):
-
-        # FIXME
-        # self.timeline = Clutter.Timeline(time)
-        # self.alpha = Clutter.Alpha(self.timeline, Clutter.AnimationMode.EASE_OUT_SINE)
-
-        self.timeline = Clutter.Timeline()
-        self.alpha = Clutter.Alpha()
+        self.timeline = Clutter.Timeline.new(time)
+        self.alpha = Clutter.Alpha.new_full(self.timeline, 
+                                       Clutter.AnimationMode.EASE_OUT_SINE)
 
         self.behaviour = Clutter.BehaviourOpacity(
             alpha=self.alpha, opacity_start=start, opacity_end=end)
