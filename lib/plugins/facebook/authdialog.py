@@ -9,9 +9,7 @@ import urllib
 import re
 from gettext import gettext as _
 
-from gi.repository import GObject
-from gi.repository import Gtk
-from gi.repository import WebKit
+from gi.repository import GObject, Gtk, Gdk, WebKit
 
 from ..flickr.authdialog import PluginFlickrDialog
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
@@ -62,7 +60,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self._quit_cb()
 
     def _set_webkit_ui(self, *args):
-        self.dialog.set_gravity(Gdk.GRAVITY_CENTER)
+        self.dialog.set_gravity(Gdk.Gravity.CENTER)
         self.dialog.set_resizable(True)
         self.dialog.resize(640, 480)
 
@@ -124,7 +122,7 @@ class FacebookWebKitScrolledWindow(Gtk.ScrolledWindow):
                    'display': 'popup'}
         uri = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(values)
 
-        w = webkit.WebView()
+        w = WebKit.WebView.new()
         w.load_uri(uri)
         w.connect("document-load-finished", self._get_document_cb)
 
