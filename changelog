@@ -1,6 +1,7 @@
 2011-11-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* utils/config.py: Use old gconf package. New one has bugs.
+	* gtkimage.py (PhotoImagePixbuf._no_image): Dropped GtkDrawable.
 
 2011-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

@@ -85,10 +85,7 @@ class PhotoImagePixbuf(object):
 
     def set(self, photo):
         if not photo:
-            # FIXME
-            # pixbuf = self._no_image()
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(
-                "/usr/share/backgrounds/space-01.jpg")
+            pixbuf = self._no_image()
             self.data = pixbuf
             return True
 
@@ -228,19 +225,11 @@ class PhotoImagePixbuf(object):
             return True
 
     def _no_image(self):
-        gdk_window = self.window.window
         w = int(self.max_w)
         h = int(self.max_h)
 
-        pixmap = Gdk.Pixmap(gdk_window, w, h, -1)
-        colormap = Gdk.colormap_get_system()
-        gc = Gdk.Drawable.new_gc(pixmap)
-        gc.set_foreground(colormap.alloc_color(0, 0, 0))
-        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
-
-        pixbuf = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, False, 8, w, h)
-        pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
-
+        pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, False, 8 , w, h)
+        pixbuf.fill(0x00000000)
         return pixbuf
 
 class PhotoImageFullScreen(PhotoImageGtk):
