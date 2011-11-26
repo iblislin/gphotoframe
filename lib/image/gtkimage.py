@@ -129,7 +129,7 @@ class PhotoImagePixbuf(object):
             url = photo.get('url')
             path = 'thumb_' + url.replace('/', '_')
             filename = os.path.join(CACHE_DIR, path)
-            pixbuf.save(filename, "jpeg")
+            pixbuf.savev(filename, "jpeg", [], [])
 
         self.data = pixbuf
         return True
