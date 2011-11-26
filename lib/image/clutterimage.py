@@ -1,8 +1,7 @@
 from __future__ import division
 
 try:
-    import cluttergtk
-    import clutter
+    from gi.repository import Clutter, GtkClutter
 except ImportError:
     from ..utils.nullobject import Null
     cluttergtk = Null()
@@ -17,10 +16,17 @@ class PhotoImageClutter(PhotoImage):
     def __init__(self, photoframe):
         super(PhotoImageClutter, self).__init__(photoframe)
 
-        self.image = self.embed = clutterGtk.Embed()
+        # FIXME
+        Clutter.init(None)
+        
+        self.image = self.embed = GtkClutter.Embed.new()
         self.stage = self.embed.get_stage()
         color = self._get_border_color()
-        self.stage.set_color(clutter.color_from_string(color))
+
+        clutter_color = Clutter.Color()
+        clutter_color.from_string(color)
+
+        self.stage.set_color(clutter_color)
         self.embed.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(color))
         self.embed.show()
 
@@ -74,7 +80,7 @@ class PhotoImageClutter(PhotoImage):
 
     def check_actor(self, stage, event):
         x, y = int(event.x), int(event.y)
-        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, x, y)
+        actor = self.stage.get_actor_at_pos(Clutter.PickMode.ALL, x, y)
         result = (actor != self.photo_image)
         return result
 

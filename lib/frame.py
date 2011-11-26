@@ -112,7 +112,7 @@ class PhotoFrame(object):
         self.window.get_position()
 
     def _set_event_box(self):
-        self.ebox = Gtk.EventBox()
+        self.ebox = Gtk.EventBox.new()
         self.ebox.add(self.photoimage.image)
         self.ebox.show()
         self.window.add(self.ebox)
