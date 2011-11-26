@@ -236,7 +236,7 @@ class PhotoImageFullScreen(PhotoImageGtk):
 
     def _get_max_display_size(self):
         screen = Gdk.Screen.get_default()
-        display_num = screen.get_monitor_at_window(self.window.window)
+        display_num = screen.get_monitor_at_window(self.window.get_window())
         geometry = screen.get_monitor_geometry(display_num)
         return geometry.width, geometry.height
 

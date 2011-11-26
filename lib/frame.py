@@ -1,7 +1,7 @@
 from __future__ import division
 
 import glib
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GObject
 
 import constants
 from image import *
@@ -99,7 +99,7 @@ class PhotoFrame(object):
         return self.fullframe if self.is_fullscreen() else self
 
     def is_fullscreen(self):
-        return hasattr(self, "fullframe") and self.fullframe.window.window
+        return hasattr(self, "fullframe") and self.fullframe.window.get_window()
 
     def is_screensaver(self):
         return hasattr(self, 'screensaver')
@@ -348,15 +348,13 @@ class Cursor(object):
     def show(self, widget):
         if not self._is_show:
             self._is_show = True
-            widget.window.set_cursor(None)
+            widget.get_window().set_cursor(None)
 
     def hide(self, widget):
         if self._is_show:
             widget.set_tooltip_markup(None)
 
             self._is_show = False
-            pixmap = Gdk.Pixmap(None, 1, 1, 1)
-            color = Gdk.Color()
-            cursor = Gdk.Cursor.new(pixmap, pixmap, color, color, 0, 0)
-            widget.window.set_cursor(cursor)
+            cursor = Gdk.Cursor.new(Gdk.CursorType.BLANK_CURSOR)
+            widget.get_window().set_cursor(cursor)
             return False
