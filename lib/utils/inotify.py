@@ -14,8 +14,10 @@ class Inotify(object):
 #        del self.monitor
 
     def add_dir(self, folder):
-        self.monitor[folder] = Gio.File(folder).monitor_directory()
-        self.monitor[folder].connect("changed", self._file_changed_cb)
+        # FIXME
+        # self.monitor[folder] = Gio.File.new_for_path(folder).monitor_directory(0, None)
+        # self.monitor[folder].connect("changed", self._file_changed_cb)
+        pass
 
     def del_dir(self, folder):
         if dir in self.monitor:
