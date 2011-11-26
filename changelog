@@ -2,6 +2,12 @@
 
 	* utils/config.py: Use old gconf package. New one has bugs.
 
+2011-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotofame: Renamed symbols from PyGTK 2 to PyGI GTK 3 with
+	  pygi-convert.sh.
+	* utils/gtk3reactor: Added new module for GTK 3.
+
 2011-11-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* config.py: Added support for gconf.VALUE_LIST.
