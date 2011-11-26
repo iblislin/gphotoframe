@@ -150,6 +150,9 @@ class PhotoFrame(object):
         self.window.add_accel_group(accel_group)
 
     def _get_signal_dic(self):
+        # FIXME: Why "query-tooltip" is not enable?
+        self.window.connect("query-tooltip", self.photoimage.tooltip.query_tooltip_cb)
+
         dic = {
             "on_window_button_press_event" : self._check_button_cb,
             "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
