@@ -3,7 +3,7 @@ import re
 from urlparse import urlparse
 from gettext import gettext as _
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import random
 import glib
 

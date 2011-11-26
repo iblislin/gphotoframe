@@ -1,17 +1,16 @@
 from __future__ import division
 
 try:
-    import cluttergtk
-    import clutter
+    from gi.repository import Clutter, GtkClutter
 except ImportError:
     from ...utils.nullobject import Null
-    cluttergtk = Null()
-    cluttergtk.Texture = Null()
+    GtkClutter = Null()
+    GtkClutter.Texture = Null()
 
 from ..animation import FadeAnimationTimeline
 from ...utils.config import GConf
 
-class Texture(cluttergtk.Texture):
+class Texture(GtkClutter.Texture):
 
     def __init__(self, stage):
         super(Texture, self).__init__()
@@ -19,7 +18,7 @@ class Texture(cluttergtk.Texture):
 
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
-        stage.add(self)
+        stage.add_actor(self)
 
         self._set_animation_timeline()
 
@@ -36,13 +35,18 @@ class Texture(cluttergtk.Texture):
     def _set_texture_from_pixbuf(self, texture, pixbuf):
         bpp = 4 if pixbuf.props.has_alpha else 3
 
-        texture.set_from_rgb_data(
-            pixbuf.get_pixels(),
-            pixbuf.props.has_alpha,
-            pixbuf.props.width,
-            pixbuf.props.height,
-            pixbuf.props.rowstride,
-            bpp, 0)
+        # FIXME
+        tmp_file = '/tmp/a.jpg'
+        pixbuf.savev(tmp_file, 'jpeg', [], [])
+        texture.set_from_file(tmp_file)
+
+#         texture.set_from_rgb_data(
+#             pixbuf.get_pixels(),
+#             pixbuf.props.has_alpha,
+#             pixbuf.props.width,
+#             pixbuf.props.height,
+#             pixbuf.props.rowstride,
+#             bpp)
 
 class IconTexture(Texture):
 
