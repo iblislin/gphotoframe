@@ -1,4 +1,4 @@
-from gi.repository import GConf as GCF
+import gconf
 
 class GConf(object):
     """Gconf Wrapper"""
@@ -12,12 +12,11 @@ class GConf(object):
     def __init__(self):
         if not hasattr(self, "dir"):
             self.dir = "/apps/gphotoframe/"
-            self.gconf = GCF.Client.get_default()
-            self.gconf.add_dir(self.dir[:-1], GCF.ClientPreloadType.PRELOAD_NONE)
+            self.gconf = gconf.client_get_default()
+            self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
 
     def set_notify_add(self, key, cb):
-        # FIXME
-        pass #self.gconf.notify_add(self.dir + key, cb, None)
+        self.gconf.notify_add(self.dir + key, cb)
 
     def set_int(self, key, val):
         return self.gconf.set_int(self.dir + key, int(val))
@@ -53,24 +52,19 @@ class GConf(object):
             else self.gconf.get_bool(path)
         return val
 
-    def set_list(self, key, val, type=GCF.ValueType.STRING):
-        # FIXME
-        # return self.gconf.set_list(self.dir + key, type, val)
-        pass
+    def set_list(self, key, val, type=gconf.VALUE_STRING):
+        return self.gconf.set_list(self.dir + key, type, val)
 
-    def get_list(self, key, type=GCF.ValueType.STRING):
-        # FIXME
-        return []
-#        val = self.gconf.get_list(self.dir + key, type)
-#        return val
+    def get_list(self, key, type=gconf.VALUE_STRING):
+        val = self.gconf.get_list(self.dir + key, type)
+        return val
 
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key, GCF.UnsetFlags.NAMES)
+        self.gconf.recursive_unset(self.dir + key,
+                                   gconf.UNSET_INCLUDING_SCHEMA_NAMES)
 
     def all_entries(self, key):
-        # FIXME
-        return []
-#        return self.gconf.all_entries(key)
+        return self.gconf.all_entries(key)
 
     def all_dirs(self, key):
         return self.gconf.all_dirs(self.dir + key)
@@ -81,9 +75,7 @@ class GConf(object):
         elif isinstance(value, bool):
             self.set_bool(key, value)
         elif isinstance(value, list):
-            pass
-            # FIXME
-            # self.set_list(key, value)
+            self.set_list(key, value)
         else:
             self.set_string(key, value)
 
@@ -92,7 +84,7 @@ class GConf(object):
 
         if value is None:
             result = None
-        elif value.type is GCF.ValueType.LIST:
+        elif value.type is gconf.VALUE_LIST:
             result = [self._get_value_type(x) for x in value.get_list()]
         else:
             result = self._get_value_type(value)
@@ -101,9 +93,9 @@ class GConf(object):
 
     def _get_value_type(self, value):
         result = None if value is None \
-            else value.get_int() if value.type is GCF.ValueType.INT \
-            else value.get_bool() if value.type is GCF.ValueType.BOOL \
-            else value.get_float() if value.type is GCF.ValueType.FLOAT \
+            else value.get_int() if value.type is gconf.VALUE_INT \
+            else value.get_bool() if value.type is gconf.VALUE_BOOL \
+            else value.get_float() if value.type is gconf.VALUE_FLOAT \
             else value.get_string()
 
         return result
