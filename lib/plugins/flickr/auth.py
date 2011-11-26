@@ -6,7 +6,7 @@ import hashlib
 import urllib
 import xml.etree.ElementTree as etree
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 
 def add_api_sig(values, secret):
