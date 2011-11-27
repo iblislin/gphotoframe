@@ -93,6 +93,7 @@ class PhotoSourceOptionsUI(object):
 
     def __init__(self, gui, data):
         self.gui = gui
+        self.data = data
         self.conf = GConf()
 
         note = self.gui.get_object('notebook2')
