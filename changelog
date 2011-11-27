@@ -1,17 +1,31 @@
 2011-11-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
-
 	* NEWS: 1.4.1 release.
 
-2011-11-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+2011-11-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* config.py: Added support for gconf.VALUE_LIST.
+	* plugins/facebook/, gphotoframe.ui: Started implementation for
+	  Facebook album selection (issue #98).
+
+2011-11-20  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 	* fr.po: Added French translation.  Thanks MathieuMD!
 
 2011-11-19  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* frame.py: Added new gconf key 'gravity' for a workaround for
-	  a Xfwm bug (Issue #97).  Xfwm does not support GDK_GRAVITY
+	  a Xfwm bug (issue #97).  Xfwm does not support GDK_GRAVITY
 	  correctly.  The frame window gravity needs be set to
 	  GDK_GRAVITY_NORTH_WEST forcelly.
+	
+2011-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/gtkimage.py: Improved loading speed for large image files
+	  which has geometry info.  (Added support for
+	  gtk.gdk.pixbuf_new_from_file_at_size.)
+
+2011-07-07  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr/__init__.py: Added support for a direct link to Flickr.
 
 2011-07-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 

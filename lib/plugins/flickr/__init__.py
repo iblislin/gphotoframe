@@ -145,6 +145,8 @@ class FlickrPhotoList(base.PhotoList):
             if geo != [0, 0]:
                 data['geo'] = geo
 
+            if 'o_width' in s and 'o_height' in s:
+                data['size'] = (int(s['o_width']), int(s['o_height']))
             if self.api.get_auth_token():
                 state = (self.target == 'Favorites' and not self.argument)
                 data['fav'] = FlickrFav(state, {'id': s['id']})
