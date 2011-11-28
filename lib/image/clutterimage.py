@@ -29,6 +29,9 @@ class PhotoImageClutter(PhotoImage):
         self.actors = self._get_actors()
         self.trash_actors = self.actors[3:5]
 
+        self.map = map.Map(self.stage, self)
+        self.actors[1].set_map(self.map) # geo icon
+
     def _get_actors(self):
         actor_class = [ source.ActorSourceIcon,
                         info.ActorGeoIcon,
@@ -69,7 +72,7 @@ class PhotoImageClutter(PhotoImage):
             actor.show(True)
 
     def on_leave_cb(self, w, e):
-        for actor in self.actors:
+        for actor in self.actors + [self.map]:
             actor.hide()
 
     def check_actor(self, stage, event):

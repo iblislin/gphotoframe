@@ -1,3 +1,8 @@
+2011-11-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actor/map.py: Added support for Map on image with
+	  libchamplain.
+
 2011-11-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.4.1 release.
