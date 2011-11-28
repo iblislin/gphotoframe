@@ -1,8 +1,7 @@
 import os
 from gettext import gettext as _
 
-import glib
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk, GLib
 
 from utils.config import GConf
 from constants import HAS_DATA_DIR
@@ -22,7 +21,7 @@ def set_default_photo_source():
             conf.set_int('root_x', monitor_w - 225)
             conf.set_int('root_y', 200)
 
-        folder = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
+        folder = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
         source = {'Flickr': _('Interestingness'),
                   _('Folder'): folder,}
 

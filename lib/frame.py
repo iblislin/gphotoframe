@@ -1,7 +1,6 @@
 from __future__ import division
 
-import glib
-from gi.repository import Gtk, Gdk, GObject
+from gi.repository import Gtk, Gdk, GObject, GLib
 
 import constants
 from image import *
@@ -335,7 +334,7 @@ class FullScreenUI(object):
         self.cursor.hide(widget)
 
     def start_timer_cb(self, widget, event):
-        self._timer = glib.timeout_add_seconds(5, self.hide_cb, widget, event)
+        self._timer = GLib.timeout_add_seconds(5, self.hide_cb, widget, event)
 
     def stop_timer_cb(self, *args):
         if hasattr(self, "_timer"):

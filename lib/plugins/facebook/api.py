@@ -9,7 +9,7 @@ import json
 import random
 from gettext import gettext as _
 
-import glib
+from gi.reository import GLib
 
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.config import GConf
@@ -91,7 +91,7 @@ class FacebookAlbumsAPI(FacebookAPI):
         for i, album in enumerate(albums.items()):
             id, name = album
             url = 'https://graph.facebook.com/%s/photos' % str(id)
-            glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
+            GLib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
 
 class FacebookHomeAPI(FacebookAPI):
 
