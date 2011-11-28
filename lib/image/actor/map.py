@@ -9,6 +9,8 @@ class Map(object):
         self.image = image
 
         self.view = champlain.View()
+        self.rectangle = clutter.Rectangle(
+            clutter.color_from_string("black"))
 
         layer = champlain.Layer()
         self.view.add_layer(layer)
@@ -16,14 +18,17 @@ class Map(object):
         self.marker = champlain.marker_new_from_file(
             "/usr/share/icons/gnome/24x24/emblems/emblem-generic.png")
         # self.marker = champlain.marker_new_with_image("")
-
-        self.timeline = FadeAnimationTimeline(self.view)
-
         layer.add(self.marker)
-        stage.add(self.view)
 
+        stage.add(self.rectangle)
+        self.rectangle.show()
+        self.rectangle.set_opacity(100)
+        self.timeline2 = FadeAnimationTimeline(self.rectangle, end=200)
+
+        stage.add(self.view)
         self.view.show()
         self.view.set_opacity(0)
+        self.timeline = FadeAnimationTimeline(self.view)
 
     def show(self, photo):
         lat, lon = photo['geo']
@@ -38,9 +43,13 @@ class Map(object):
         x, y = self.image._get_image_position()
         self.view.set_position(x, y)
         self.view.set_size(self.image.w, self.image.h)
+        self.rectangle.set_position(x, y)
+        self.rectangle.set_size(self.image.w, self.image.h)
 
         self.timeline.fade_in()
+        self.timeline2.fade_in()
 
     def hide(self):
         if self.view.get_opacity() != 0:
             self.timeline.fade_out()
+            self.timeline2.fade_out()
