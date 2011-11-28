@@ -1,7 +1,18 @@
-import champlain
-import clutter
+try:
+    import champlain
+    import clutter
+except ImportError:
+    from ...utils.nullobject import Null
+    champlain = Null()
+    clutter = Null()
 
 from ..animation import FadeAnimationTimeline
+
+class MapFactory(object):
+
+    def create(self, stage, image):
+        obj = Map(stage, image) if champlain else Null()
+        return obj
 
 class Map(object):
 

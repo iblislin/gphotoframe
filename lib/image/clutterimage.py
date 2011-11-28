@@ -26,7 +26,7 @@ class PhotoImageClutter(PhotoImage):
 
         self.photo_image = base.Texture(self.stage)
         self.photo_image.show()
-        self.map = map.Map(self.stage, self)
+        self.map = map.MapFactory().create(self.stage, self)
 
         self.actors = self._get_actors()
         self.actors[1].set_map(self.map) # geo icon
