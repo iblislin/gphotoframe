@@ -34,6 +34,7 @@ It shows pictures from:
 - python-webkit: for Facebook plugin
 - python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings
+- python-champlain: for Photo Map
 
 ** Suggests
 
