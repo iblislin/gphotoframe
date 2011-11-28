@@ -3,9 +3,8 @@ import re
 from urlparse import urlparse
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GLib
 import random
-import glib
 
 from ... import constants
 from ...utils.config import GConf
@@ -111,7 +110,7 @@ class PhotoList(object):
 
         delay = min * 60 / 20 # 5%
         interval = min * 60 + random.randint(delay*-1, delay)
-        self._timer = glib.timeout_add_seconds(interval, self.prepare)
+        self._timer = GLib.timeout_add_seconds(interval, self.prepare)
 
         return False
 

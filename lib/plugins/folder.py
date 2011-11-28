@@ -10,8 +10,7 @@ import random
 from gettext import gettext as _
 
 from twisted.internet import threads
-from gi.repository import Gtk
-import glib
+from gi.repository import Gtk, GLib
 
 from base import *
 from ..utils.inotify import Inotify
@@ -119,7 +118,7 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
 
     def _set_target_default(self):
         try:
-            default = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
+            default = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
         except:
             default = os.environ['HOME']
         folder = self.data[2] if self.data else default # liststore target

@@ -1,8 +1,7 @@
 import os
 import glob
 
-from gi.repository import Gtk, GdkPixbuf, GObject
-import glib
+from gi.repository import Gtk, GdkPixbuf, GObject, GLib
 
 import plugins
 from constants import CACHE_DIR
@@ -50,7 +49,7 @@ class PhotoListStore(Gtk.ListStore):
 
         # print d['source'], obj.delay_for_prepare, delay
         if obj.delay_for_prepare:
-            glib.timeout_add_seconds(delay, obj.prepare)
+            GLib.timeout_add_seconds(delay, obj.prepare)
             delay += 5
         else:
             obj.prepare()
@@ -90,7 +89,7 @@ class PhotoListStore(Gtk.ListStore):
         else:
             interval = self.conf.get_int('interval', 30)
 
-        self._timer = glib.timeout_add_seconds(interval, self._start_timer)
+        self._timer = GLib.timeout_add_seconds(interval, self._start_timer)
         return False
 
     def _change_photo(self):

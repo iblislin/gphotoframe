@@ -3,7 +3,6 @@ from __future__ import division
 import os
 from xml.sax.saxutils import escape
 
-import glib
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from ..utils.config import GConf
