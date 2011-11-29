@@ -3,7 +3,7 @@ from __future__ import division
 import os
 from xml.sax.saxutils import escape
 
-from gi.repository import Gtk, Gdk, GdkPixbuf
+from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 
 from ..utils.config import GConf
 from tooltip import ToolTip
