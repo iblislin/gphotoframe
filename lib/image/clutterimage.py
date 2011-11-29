@@ -16,8 +16,7 @@ class PhotoImageClutter(PhotoImage):
     def __init__(self, photoframe):
         super(PhotoImageClutter, self).__init__(photoframe)
 
-        # FIXME
-        Clutter.init(None)
+        GtkClutter.init(None)
         
         self.image = self.embed = GtkClutter.Embed.new()
         self.stage = self.embed.get_stage()
