@@ -24,14 +24,11 @@ class Map(object):
         self.rectangle = clutter.Rectangle(
             clutter.color_from_string("black"))
 
-        self.thumb = Texture()
-        self.thumb.show()
+        self.thumb = ThumbnailTexture()
 
         layer = champlain.Layer()
         self.view.add_layer(layer)
 
-#        self.marker = champlain.marker_new_from_file(
-#            "/usr/share/icons/gnome/24x24/emblems/emblem-generic.png")
         self.marker = champlain.Marker()
         self.marker.set_image(self.thumb)
         layer.add(self.marker)
@@ -52,9 +49,7 @@ class Map(object):
         self.marker.set_position(lat, lon)
         self.marker.set_text("")
 
-        self.thumb.set_size(90, 60)
-        pixbuf = self.image.pixbuf.data
-        self.thumb._set_texture_from_pixbuf(pixbuf)
+        self.thumb.change(self.image.pixbuf.data, 90, 60)
 
         zoom = 12 if photo.is_my_photo() else 5
         self.view.set_zoom_level(zoom)
@@ -72,3 +67,13 @@ class Map(object):
         if self.view.get_opacity() != 0:
             self.timeline.fade_out()
             self.timeline2.fade_out()
+
+class ThumbnailTexture(Texture):
+
+    def __init__(self):
+        super(ThumbnailTexture, self).__init__()
+        self.show()
+
+    def change(self, pixbuf, w, h):
+        self.set_size(w, h)
+        self._set_texture_from_pixbuf(pixbuf)
