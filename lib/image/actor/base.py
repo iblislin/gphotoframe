@@ -1,17 +1,16 @@
 from __future__ import division
 
 try:
-    import cluttergtk
-    import clutter
+    from gi.repository import Clutter, GtkClutter
 except ImportError:
     from ...utils.nullobject import Null
-    cluttergtk = Null()
-    cluttergtk.Texture = Null()
+    GtkClutter = Null()
+    GtkClutter.Texture = Null()
 
 from ..animation import FadeAnimationTimeline
 from ...utils.config import GConf
 
-class Texture(cluttergtk.Texture):
+class Texture(GtkClutter.Texture):
 
     def __init__(self, stage=None):
         super(Texture, self).__init__()
@@ -37,13 +36,18 @@ class Texture(cluttergtk.Texture):
     def _set_texture_from_pixbuf(self, pixbuf):
         bpp = 4 if pixbuf.props.has_alpha else 3
 
-        self.set_from_rgb_data(
-            pixbuf.get_pixels(),
-            pixbuf.props.has_alpha,
-            pixbuf.props.width,
-            pixbuf.props.height,
-            pixbuf.props.rowstride,
-            bpp, 0)
+        # FIXME
+        tmp_file = '/tmp/a.jpg'
+        pixbuf.savev(tmp_file, 'jpeg', [], [])
+        self.set_from_file(tmp_file)
+
+#         self.set_from_rgb_data(
+#             pixbuf.get_pixels(),
+#             pixbuf.props.has_alpha,
+#             pixbuf.props.width,
+#             pixbuf.props.height,
+#             pixbuf.props.rowstride,
+#             bpp)
 
 class IconTexture(Texture):
 

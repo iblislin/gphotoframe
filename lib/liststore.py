@@ -1,8 +1,7 @@
 import os
 import glob
 
-import gtk
-import glib
+from gi.repository import Gtk, GdkPixbuf, GObject, GLib
 
 import plugins
 from constants import CACHE_DIR
@@ -15,7 +14,7 @@ from utils.wrandom import WeightedRandom
 from dbus.idlecheck import SessionIdle
 
 
-class PhotoListStore(gtk.ListStore):
+class PhotoListStore(Gtk.ListStore):
     """ListStore for Photo sources.
 
     0,    1,      2,        3,      4,       5,      6
@@ -24,7 +23,7 @@ class PhotoListStore(gtk.ListStore):
 
     def __init__(self):
         super(PhotoListStore, self).__init__(
-            gtk.gdk.Pixbuf, str, str, str, int, object, object)
+            GdkPixbuf.Pixbuf, str, str, str, int, object, object)
 
         self.conf = GConf()
         self._load_gconf()
@@ -42,14 +41,15 @@ class PhotoListStore(gtk.ListStore):
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
         pixbuf = plugins.PLUGIN_INFO_TOKEN[d['source']]().get_icon_pixbuf()
+        # FIXME
         list = [ pixbuf, d['source'],
-                 d['target'], d['argument'], d['weight'], d['options'], obj ]
+                 d['target'], d['argument'], int(d['weight']), d['options'], obj ]
 
         new_iter = self.insert_before(iter, list)
 
         # print d['source'], obj.delay_for_prepare, delay
         if obj.delay_for_prepare:
-            glib.timeout_add_seconds(delay, obj.prepare)
+            GLib.timeout_add_seconds(delay, obj.prepare)
             delay += 5
         else:
             obj.prepare()
@@ -61,14 +61,14 @@ class PhotoListStore(gtk.ListStore):
         super(PhotoListStore, self).remove(iter)
 
     def next_photo(self, *args):
-        glib.source_remove(self._timer)
+        GObject.source_remove(self._timer)
         self._start_timer(change='force')
 
     def delete_photo(self, url):
         self.queue.remove(url)
         self.photoframe.remove_photo(url)
 
-        glib.source_remove(self._timer)
+        GObject.source_remove(self._timer)
         self._start_timer(False)
 
     def _start_timer(self, change=True):
@@ -89,7 +89,7 @@ class PhotoListStore(gtk.ListStore):
         else:
             interval = self.conf.get_int('interval', 30)
 
-        self._timer = glib.timeout_add_seconds(interval, self._start_timer)
+        self._timer = GLib.timeout_add_seconds(interval, self._start_timer)
         return False
 
     def _change_photo(self):

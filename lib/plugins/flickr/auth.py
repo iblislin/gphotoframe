@@ -6,7 +6,7 @@ import hashlib
 import urllib
 import xml.etree.ElementTree as etree
 
-import gtk
+from gi.repository import Gtk, Gdk
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 
 def add_api_sig(values, secret):
@@ -54,7 +54,7 @@ class FlickrAuth(object):
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
 
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, url, Gdk.CURRENT_TIME)
 
     def get_auth_token(self, cb):
         """Get token with flickr.auth.getToken"""

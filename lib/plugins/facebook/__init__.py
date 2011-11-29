@@ -8,7 +8,7 @@ import json
 import time
 import sys
 from gettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
@@ -165,7 +165,7 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
                 'select_album': select_album, 
                 'album_id_list': album_id_list}
 
-class FacebookAlbumListStore(gtk.ListStore):
+class FacebookAlbumListStore(Gtk.ListStore):
     
     def __init__(self, data):
         super(FacebookAlbumListStore, self).__init__(bool, str, str)

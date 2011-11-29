@@ -3,7 +3,7 @@
 import os
 import sys
 
-import gio
+from gi.repository import Gio
 
 
 class GioTrash(object):
@@ -18,16 +18,16 @@ class GioTrash(object):
     def move(self):
         self.is_trashed = False
 
-        file = gio.File(self.filename)
+        file = Gio.File(self.filename)
         access = file.query_info('access::*') 
         can_trash = access.get_attribute_boolean('access::can-trash')
 
         try:
             if can_trash:
                 self.is_trashed = file.trash()
-        except gio.Error, error:
+        except Gio.Error, error:
             print error
-            if error.code == gio.ERROR_NOT_SUPPORTED:
+            if error.code == Gio.ERROR_NOT_SUPPORTED:
                 print "not supported."
         except:
             print sys.exc_info()[1]

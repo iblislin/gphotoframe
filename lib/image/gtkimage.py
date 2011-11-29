@@ -3,8 +3,7 @@ from __future__ import division
 import os
 from xml.sax.saxutils import escape
 
-import glib
-import gtk
+from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from ..utils.config import GConf
 from tooltip import ToolTip
@@ -44,8 +43,8 @@ class PhotoImage(object):
         return False
 
     def check_mouse_on_window(self):
-        window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
-        result = window is self.image.window
+        window, x, y = Gdk.Window.at_pointer() or [None, None, None]
+        result = window is self.image.get_window()
         return result
 
     def has_trash_dialog(self):
@@ -64,7 +63,7 @@ class PhotoImageGtk(PhotoImage):
     def __init__(self, photoframe):
         super(PhotoImageGtk, self).__init__(photoframe)
 
-        self.image = gtk.Image()
+        self.image = Gtk.Image()
         self.image.show()
 
     def _set_photo_image(self, pixbuf):
@@ -102,11 +101,11 @@ class PhotoImagePixbuf(object):
                 w, h = self.get_scale(org_w, org_h, 
                                       self.max_w, self.max_h, rotation)
                 # print org_w, org_h, w, h, " ", photo
-                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(filename, w, h)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, w, h)
             else:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
 
-        except (glib.GError, OSError), err_info:
+        except (GObject.GError, OSError), err_info:
             print err_info
             return False
 
@@ -117,7 +116,7 @@ class PhotoImagePixbuf(object):
             org_w, org_h = pixbuf.get_width(), pixbuf.get_height()
             w, h = self.get_scale(org_w, org_h, 
                                   self.max_w, self.max_h, rotation)
-            pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
+            pixbuf = pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.BILINEAR)
 
         # rotate
         pixbuf = pixbuf.rotate_simple(rotation)
@@ -131,7 +130,7 @@ class PhotoImagePixbuf(object):
             url = photo.get('url')
             path = 'thumb_' + url.replace('/', '_')
             filename = os.path.join(CACHE_DIR, path)
-            pixbuf.save(filename, "jpeg")
+            pixbuf.savev(filename, "jpeg", [], [])
 
         self.data = pixbuf
         return True
@@ -224,26 +223,18 @@ class PhotoImagePixbuf(object):
             return True
 
     def _no_image(self):
-        gdk_window = self.window.window
         w = int(self.max_w)
         h = int(self.max_h)
 
-        pixmap = gtk.gdk.Pixmap(gdk_window, w, h, -1)
-        colormap = gtk.gdk.colormap_get_system()
-        gc = gtk.gdk.Drawable.new_gc(pixmap)
-        gc.set_foreground(colormap.alloc_color(0, 0, 0))
-        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
-
-        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
-
+        pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, False, 8 , w, h)
+        pixbuf.fill(0x00000000)
         return pixbuf
 
 class PhotoImageFullScreen(PhotoImageGtk):
 
     def _get_max_display_size(self):
-        screen = gtk.gdk.screen_get_default()
-        display_num = screen.get_monitor_at_window(self.window.window)
+        screen = Gdk.Screen.get_default()
+        display_num = screen.get_monitor_at_window(self.window.get_window())
         geometry = screen.get_monitor_geometry(display_num)
         return geometry.width, geometry.height
 

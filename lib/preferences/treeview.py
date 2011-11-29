@@ -1,7 +1,7 @@
 import os
 
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Pango
 
 from ..utils.config import GConf
 
@@ -20,27 +20,29 @@ class PreferencesTreeView(object):
         self._set_button_sensitive(False)
 
     def _add_text_column(self, title, id, size=None, expand=True):
-        cell = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(title, cell, text=id)
+        cell = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(title, cell, text=id)
         column.set_resizable(True)
         column.set_sort_column_id(id)
         if size:
-            cell.set_property('ellipsize', pango.ELLIPSIZE_END)
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            cell.set_property('ellipsize', Pango.EllipsizeMode.END)
+            column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             column.set_expand(expand)
             column.set_fixed_width(size)
         self.treeview.append_column(column)
         return column
 
     def _add_icon_text_column(self, title, id, size=None, expand=True):
-        column = gtk.TreeViewColumn(title)
+        column = Gtk.TreeViewColumn(title)
 
-        renderer = gtk.CellRendererPixbuf()
-        column.pack_start(renderer, expand=False)
+        renderer = Gtk.CellRendererPixbuf()
+        # column.pack_start(renderer, False, True, 0)
+        column.pack_start(renderer, True)
         column.add_attribute(renderer, 'pixbuf', id)
 
-        renderer = gtk.CellRendererText()
-        column.pack_start(renderer, expand=False)
+        renderer = Gtk.CellRendererText()
+        # column.pack_start(renderer, False, True, 0)
+        column.pack_start(renderer, True)
         column.add_attribute(renderer, 'text', id+1)
 
         column.set_resizable(True)

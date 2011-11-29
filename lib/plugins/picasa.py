@@ -8,7 +8,7 @@ from gettext import gettext as _
 import urllib
 import json
 
-import gtk
+from gi.repository import Gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
@@ -218,7 +218,7 @@ class PluginPicasaDialog(ui.PluginDialog):
             self.entry4.set_text(self.passwd)
 
         response_id = self.dialog.run()
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             self._write_conf()
         else:
             self.dialog.destroy()

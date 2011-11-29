@@ -14,7 +14,7 @@ try:
 except ImportError:
     pass
 
-import gtk
+from gi.repository import Gtk
 import feedparser
 from gettext import gettext as _
 
@@ -131,7 +131,7 @@ class PhotoSourceRSSUI(ui.PhotoSourceUI):
 
     def _build_target_widget(self):
         # target widget
-        self.target_widget = gtk.Entry()
+        self.target_widget = Gtk.Entry()
         self._set_target_sensitive(_('_Title:'), True)
 
         # argument widget
