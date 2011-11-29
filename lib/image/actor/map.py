@@ -6,6 +6,7 @@ except ImportError:
     champlain = Null()
     clutter = Null()
 
+from base import Texture
 from ..animation import FadeAnimationTimeline
 
 class MapFactory(object):
@@ -23,12 +24,16 @@ class Map(object):
         self.rectangle = clutter.Rectangle(
             clutter.color_from_string("black"))
 
+        self.thumb = Texture()
+        self.thumb.show()
+
         layer = champlain.Layer()
         self.view.add_layer(layer)
 
-        self.marker = champlain.marker_new_from_file(
-            "/usr/share/icons/gnome/24x24/emblems/emblem-generic.png")
-        # self.marker = champlain.marker_new_with_image("")
+#        self.marker = champlain.marker_new_from_file(
+#            "/usr/share/icons/gnome/24x24/emblems/emblem-generic.png")
+        self.marker = champlain.Marker()
+        self.marker.set_image(self.thumb)
         layer.add(self.marker)
 
         stage.add(self.rectangle)
@@ -45,8 +50,11 @@ class Map(object):
         lat, lon = photo['geo']
         self.view.center_on(lat, lon)
         self.marker.set_position(lat, lon)
-        # self.marker.set_text("New York")
-        # self.marker.set_image(photo['filename'])
+        self.marker.set_text("")
+
+        self.thumb.set_size(90, 60)
+        pixbuf = self.image.pixbuf.data
+        self.thumb._set_texture_from_pixbuf(self.thumb, pixbuf)
 
         zoom = 12 if photo.is_my_photo() else 5
         self.view.set_zoom_level(zoom)

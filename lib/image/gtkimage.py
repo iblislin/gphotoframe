@@ -23,13 +23,13 @@ class PhotoImage(object):
             self.photo = photo
 
         width, height = self._get_max_display_size()
-        pixbuf = PhotoImagePixbuf(self.window, width, height)
+        self.pixbuf = PhotoImagePixbuf(self.window, width, height)
 
-        if pixbuf.set(self.photo) is False:
+        if self.pixbuf.set(self.photo) is False:
             return False
 
         self._set_tips(self.photo)
-        self._set_photo_image(pixbuf.data)
+        self._set_photo_image(self.pixbuf.data)
         self.window_border = self.conf.get_int('border_width', 5)
 
         return True

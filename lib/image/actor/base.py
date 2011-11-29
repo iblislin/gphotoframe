@@ -13,13 +13,14 @@ from ...utils.config import GConf
 
 class Texture(cluttergtk.Texture):
 
-    def __init__(self, stage):
+    def __init__(self, stage=None):
         super(Texture, self).__init__()
         super(Texture, self).hide() # FIXME?
 
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
-        stage.add(self)
+        if stage:
+            stage.add(self)
 
         self._set_animation_timeline()
 
