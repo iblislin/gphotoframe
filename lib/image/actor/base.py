@@ -19,7 +19,7 @@ class Texture(GtkClutter.Texture):
         self.set_reactive(True)
         self.connect('button-press-event', self._on_button_press_cb)
         if stage:
-            stage.add(self)
+            stage.add_actor(self)
 
         self._set_animation_timeline()
 
