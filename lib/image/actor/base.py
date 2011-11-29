@@ -25,7 +25,7 @@ class Texture(cluttergtk.Texture):
         self._set_animation_timeline()
 
     def change(self, pixbuf, x, y):
-        self._set_texture_from_pixbuf(self, pixbuf)
+        self._set_texture_from_pixbuf(pixbuf)
         self.set_position(x, y)
 
     def _set_animation_timeline(self):
@@ -34,10 +34,10 @@ class Texture(cluttergtk.Texture):
     def _on_button_press_cb(self, actor, event):
         pass
 
-    def _set_texture_from_pixbuf(self, texture, pixbuf):
+    def _set_texture_from_pixbuf(self, pixbuf):
         bpp = 4 if pixbuf.props.has_alpha else 3
 
-        texture.set_from_rgb_data(
+        self.set_from_rgb_data(
             pixbuf.get_pixels(),
             pixbuf.props.has_alpha,
             pixbuf.props.width,

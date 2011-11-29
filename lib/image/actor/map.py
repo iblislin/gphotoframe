@@ -54,7 +54,7 @@ class Map(object):
 
         self.thumb.set_size(90, 60)
         pixbuf = self.image.pixbuf.data
-        self.thumb._set_texture_from_pixbuf(self.thumb, pixbuf)
+        self.thumb._set_texture_from_pixbuf(pixbuf)
 
         zoom = 12 if photo.is_my_photo() else 5
         self.view.set_zoom_level(zoom)
