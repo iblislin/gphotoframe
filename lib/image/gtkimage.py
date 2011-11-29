@@ -99,7 +99,8 @@ class PhotoImagePixbuf(object):
 
             if 'size' in photo:
                 org_w, org_h = photo['size']
-                w, h = self._get_scale(org_w, org_h, rotation)
+                w, h = self.get_scale(org_w, org_h, 
+                                      self.max_w, self.max_h, rotation)
                 # print org_w, org_h, w, h, " ", photo
                 pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(filename, w, h)
             else:
@@ -114,7 +115,8 @@ class PhotoImagePixbuf(object):
         # scale
         if 'size' not in photo:
             org_w, org_h = pixbuf.get_width(), pixbuf.get_height()
-            w, h = self._get_scale(org_w, org_h, rotation)
+            w, h = self.get_scale(org_w, org_h, 
+                                  self.max_w, self.max_h, rotation)
             pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
 
         # rotate
@@ -150,10 +152,7 @@ class PhotoImagePixbuf(object):
 
         return rotate
 
-    def _get_scale(self, src_w, src_h, rotation=0):
-        max_w = self.max_w
-        max_h = self.max_h
-
+    def get_scale(self, src_w, src_h, max_w, max_h, rotation=0):
         if rotation:
             max_w, max_h = max_h, max_w
 
