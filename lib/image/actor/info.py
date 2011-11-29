@@ -14,6 +14,10 @@ class ActorGeoIcon(ActorSourceIcon):
     def __init__(self, stage, tooltip):
         super(ActorGeoIcon, self).__init__(stage, tooltip)
         self.geo = GeoCoderFactory().create(self._enter_cb, tooltip)
+        self.map = None
+
+    def set_map(self, map):
+        self.map = map
 
     def show(self, is_force=False):
         if not hasattr(self, 'photo') or self.photo == None: return
@@ -48,6 +52,9 @@ class ActorGeoIcon(ActorSourceIcon):
         Gtk.show_uri(None, url, event.time)
 
     def _enter_cb(self, w, e, tooltip):
+        if self.map:
+            self.map.show(self.photo)
+
         if 'location' in self.photo:
             location = self.photo.get_location() or _("Open the map")
             tooltip.update_text(location)

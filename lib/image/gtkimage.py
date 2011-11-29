@@ -22,13 +22,13 @@ class PhotoImage(object):
             self.photo = photo
 
         width, height = self._get_max_display_size()
-        pixbuf = PhotoImagePixbuf(self.window, width, height)
+        self.pixbuf = PhotoImagePixbuf(self.window, width, height)
 
-        if pixbuf.set(self.photo) is False:
+        if self.pixbuf.set(self.photo) is False:
             return False
 
         self._set_tips(self.photo)
-        self._set_photo_image(pixbuf.data)
+        self._set_photo_image(self.pixbuf.data)
         self.window_border = self.conf.get_int('border_width', 5)
 
         return True
@@ -98,7 +98,8 @@ class PhotoImagePixbuf(object):
 
             if 'size' in photo:
                 org_w, org_h = photo['size']
-                w, h = self._get_scale(org_w, org_h, rotation)
+                w, h = self.get_scale(org_w, org_h, 
+                                      self.max_w, self.max_h, rotation)
                 # print org_w, org_h, w, h, " ", photo
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, w, h)
             else:
@@ -113,7 +114,8 @@ class PhotoImagePixbuf(object):
         # scale
         if 'size' not in photo:
             org_w, org_h = pixbuf.get_width(), pixbuf.get_height()
-            w, h = self._get_scale(org_w, org_h, rotation)
+            w, h = self.get_scale(org_w, org_h, 
+                                  self.max_w, self.max_h, rotation)
             pixbuf = pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.BILINEAR)
 
         # rotate
@@ -149,10 +151,7 @@ class PhotoImagePixbuf(object):
 
         return rotate
 
-    def _get_scale(self, src_w, src_h, rotation=0):
-        max_w = self.max_w
-        max_h = self.max_h
-
+    def get_scale(self, src_w, src_h, max_w, max_h, rotation=0):
         if rotation:
             max_w, max_h = max_h, max_w
 
