@@ -78,7 +78,7 @@ class PopUpMenu(object):
             menu.prepend(item)
 
         # history menuitem
-        sep = Gtk.SeparatorMenuItem()
+        sep = Gtk.SeparatorMenuItem.new()
         history = HistoryMenuItem()
         for item in [sep, history]:
             menu.append(item)
