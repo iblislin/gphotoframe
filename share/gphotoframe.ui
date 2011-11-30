@@ -575,6 +575,7 @@
             <property name="label">label</property>
             <property name="wrap">True</property>
             <property name="wrap_mode">word-char</property>
+	    <property name="expand">True</property>
           </object>
           <packing>
             <property name="position">1</property>
