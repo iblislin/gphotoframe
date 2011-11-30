@@ -66,6 +66,7 @@ class PhotoMarker(champlain.Marker):
     def __init__(self):
         super(PhotoMarker, self).__init__()
         self.thumb = ThumbnailTexture()
+        self.thumb.set_size(60, 60)
         self.set_image(self.thumb)
         self.show()
 
