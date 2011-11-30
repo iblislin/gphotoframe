@@ -84,7 +84,7 @@ class PluginAboutDialog(object):
 
 	# TRANSLATORS: %s is the name of the Plugin
         name = _("%s Plugin") % self.plugin.name
-        about.set_name(name)
+        about.set_program_name(name)
 
         for key, value in self.plugin.info.items():
             try:
