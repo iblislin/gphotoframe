@@ -129,11 +129,16 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
 
     def _set_ui(self):
         self.child = self.gui.get_object('facebook_vbox')
+        self.liststore = FacebookAlbumListStore(self.data)
+
         self.checkbutton_album = self.gui.get_object('checkbutton_all_album')
         self.checkbutton_select = self.gui.get_object('checkbutton_select_album')
         self.checkbutton_select.connect('toggled', self._select_toggle_cb)
+        tip = None if self.liststore.has_album_list else \
+            _("To retrieve the album list, "
+              "close this dialog once, please reopen after a while.")
+        self.checkbutton_select.set_tooltip_markup(tip)
 
-        self.liststore = FacebookAlbumListStore(self.data)
         self.treeview = self.gui.get_object('facebook_album_treeview')
         self.treeview.set_model(self.liststore)
 
@@ -142,7 +147,7 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
 
     def _select_toggle_cb(self, widget):
         state = self.checkbutton_select.get_active()
-        self.treeview.set_sensitive(state)
+        self.treeview.set_sensitive(state and self.liststore.has_album_list)
 
     def _set_default(self):
         is_all_album = self.options.get('album', True)
