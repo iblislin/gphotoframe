@@ -9,8 +9,7 @@ import json
 import random
 from gettext import gettext as _
 
-from gi.reository import GLib
-
+from gi.repository import GLib
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.config import GConf
 
