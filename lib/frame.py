@@ -192,7 +192,7 @@ class PhotoFrame(object):
     def _window_state_cb(self, widget, event):
         if event.changed_mask & Gdk.WindowState.ICONIFIED:
             state = event.new_window_state & Gdk.WindowState.ICONIFIED
-            self.set_skip_taskbar_hint(not state)
+            widget.set_skip_taskbar_hint(not state) # FIXME
 
     def _save_geometry_cb(self, widget, event):
 #        if event.mode != 2:
