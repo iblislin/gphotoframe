@@ -123,6 +123,7 @@ class FacebookWebKitScrolledWindow(Gtk.ScrolledWindow):
         uri = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(values)
 
         w = WebKit.WebView.new()
+        w.set_vexpand(True)
         w.load_uri(uri)
         w.connect("document-load-finished", self._get_document_cb)
 
