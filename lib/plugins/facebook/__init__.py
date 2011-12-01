@@ -190,7 +190,6 @@ class FacebookAlbumListStore(gtk.ListStore):
 
     def toggle_cb(self, cell, row):
         self[row][0] = not self[row][0]
-        print self[row][1]
 
 class FacebookIcon(WebIconImage):
 
