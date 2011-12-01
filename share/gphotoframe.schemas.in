@@ -710,6 +710,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/ui/info/always_show</key>
+      <applyto>/apps/gphotoframe/ui/info/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the info icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/ui/fav/always_show</key>
       <applyto>/apps/gphotoframe/ui/fav/always_show</applyto>
       <owner>gphotoframe</owner>
