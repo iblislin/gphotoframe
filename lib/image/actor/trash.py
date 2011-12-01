@@ -45,6 +45,9 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         filename = photo.get('filename')
         return photo['trash'].check_delete_from_disk(filename)
 
+    def _get_position(self):
+        return self.conf.get_int('ui/trash/position', 3)
+
     def _check_photo(self):
         if not 'trash' in self.photo:
             return False
