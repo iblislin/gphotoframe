@@ -7,6 +7,7 @@ class ActorSourceIcon(ActorIcon):
 
     def __init__(self, stage, tooltip):
         super(ActorSourceIcon, self).__init__()
+        self.is_small = False 
 
         self.texture = IconTexture(stage)
         self.texture.connect('button-press-event', self._on_button_press_cb)
@@ -20,14 +21,16 @@ class ActorSourceIcon(ActorIcon):
             self.hide(True)
             return
 
-        if photoimage.w > 80 and photoimage.h > 80: # for small photo image
-            icon_pixbuf = self.icon_image.get_pixbuf()
-            self.texture.change(icon_pixbuf, self.x, self.y)
-            self.show()
+        self.is_small = photoimage.w < 120 or photoimage.h < 60
+        icon_pixbuf = self.icon_image.get_pixbuf()
+        self.texture.change(icon_pixbuf, self.x, self.y)
+        self.show()
 
     def show(self, is_force=False):
         is_mouse_on = self.photoimage.check_mouse_on_window()
-        if (self.is_shown_always or is_force or is_mouse_on) and self.photo and \
+        if self.is_small:
+            self.hide(is_force=True)
+        elif (self.is_shown_always or is_force or is_mouse_on) and self.photo and \
                 not self._check_hide_always():
             self.texture.show()
 
