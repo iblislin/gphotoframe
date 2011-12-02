@@ -35,12 +35,13 @@ class Map(object):
         self.timeline2 = FadeAnimationTimeline(self.rectangle, end=200)
 
         stage.add(self.view)
-        self.view.show()
+        self.view.hide()
         self.view.set_opacity(0)
         self.timeline = FadeAnimationTimeline(self.view)
 
     def show(self, photo):
         lat, lon = photo['geo']
+        self.view.show()
         self.view.center_on(lat, lon)
         self.marker.change(self.image, lat, lon)
 
@@ -57,6 +58,7 @@ class Map(object):
         self.timeline2.fade_in()
 
     def hide(self):
+        self.view.hide()
         if self.view.get_opacity() != 0:
             self.timeline.fade_out()
             self.timeline2.fade_out()

@@ -77,7 +77,7 @@ class PhotoImageClutter(PhotoImage):
 
     def check_actor(self, stage, event):
         x, y = int(event.x), int(event.y)
-        actor = self.stage.get_actor_at_pos(clutter.PICK_ALL, x, y)
+        actor = self.stage.get_actor_at_pos(clutter.PICK_REACTIVE, x, y)
         result = (actor != self.photo_image)
         return result
 
