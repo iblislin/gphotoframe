@@ -9,10 +9,13 @@ import os
 import platform
 from os.path import join, abspath, dirname
 
-from twisted.internet import gtk2reactor, glib2reactor
+from lib.utils import gtk3reactor
+from twisted.internet import glib2reactor
 dist, ver = platform.dist()[:2]
 greactor = glib2reactor if dist == 'Ubuntu' and float(ver) >= 10.10 \
-    else gtk2reactor
+    else gtk3reactor
+
+greactor = gtk3reactor # FIXME
 greactor.install()
 
 from twisted.internet import reactor

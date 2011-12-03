@@ -1,4 +1,4 @@
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
@@ -75,9 +75,9 @@ class TrashDialog(object):
         self._set_variable(photo)
         self.is_show = True
 
-        dialog = gtk.MessageDialog(
-            None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
-            gtk.BUTTONS_YES_NO, self.text[0])
+        dialog = Gtk.MessageDialog(
+            None, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, 
+            Gtk.ButtonsType.YES_NO, self.text[0])
         dialog.set_title(title)
         dialog.format_secondary_text(self.text[1])
         dialog.connect('response', self._response_cb, photo)
@@ -89,7 +89,7 @@ class TrashDialog(object):
         self.command_method = photo['trash'].delete_from_disk
 
     def _response_cb(self, widget, response, photo):
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             self.command_method(photo)
         widget.destroy()
         self.is_show = False

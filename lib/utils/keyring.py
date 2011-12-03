@@ -2,6 +2,8 @@
 
 from twisted.internet import threads
 import gnomekeyring as gkey
+# FIXME
+#from gi.repository import GnomeKeyring as gkey
 
 
 class Keyring(object):

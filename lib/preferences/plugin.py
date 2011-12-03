@@ -1,5 +1,5 @@
 import os
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..plugins import DIALOG_TOKEN, PLUGIN_INFO_TOKEN, PHOTO_TARGET_TOKEN
@@ -18,10 +18,10 @@ class PluginTreeView(PreferencesTreeView):
         #self.set_reorderable(True)
 
         # bool
-        cell_enabled = gtk.CellRendererToggle()
+        cell_enabled = Gtk.CellRendererToggle()
         cell_enabled.set_property("activatable", True)
         cell_enabled.connect('toggled', self.liststore.toggle)
-        self.column_enabled = gtk.TreeViewColumn("", cell_enabled, active=0)
+        self.column_enabled = Gtk.TreeViewColumn("", cell_enabled, active=0)
         self.column_enabled.set_sort_column_id(0)
         self.treeview.append_column(self.column_enabled)
 
@@ -78,13 +78,13 @@ class PluginAboutDialog(object):
         self.gui.get_object('button7').set_sensitive(state)
 
     def run(self, widget):
-        about = gtk.AboutDialog()
+        about = Gtk.AboutDialog()
         about.set_transient_for(self.parent)
         about.set_icon(IconImage('gphotoframe').get_pixbuf())
 
 	# TRANSLATORS: %s is the name of the Plugin
         name = _("%s Plugin") % self.plugin.name
-        about.set_name(name)
+        about.set_program_name(name)
 
         for key, value in self.plugin.info.items():
             try:

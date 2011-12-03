@@ -29,7 +29,7 @@
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
-    <property name="program_name">Gnome Photo Frame</property>
+    <property name="program_name">GNOME Photo Frame</property>
     <property name="copyright">Copyright &#xA9; 2009-2011 Yoshizumi Endo.</property>
     <property name="comments" translatable="yes">Photo Frame for GNOME Desktop</property>
     <property name="website">http://code.google.com/p/gphotoframe/</property>
@@ -575,6 +575,7 @@
             <property name="label">label</property>
             <property name="wrap">True</property>
             <property name="wrap_mode">word-char</property>
+	    <property name="expand">True</property>
           </object>
           <packing>
             <property name="position">1</property>

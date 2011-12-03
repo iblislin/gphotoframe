@@ -1,4 +1,4 @@
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..base.ui import PluginDialog
@@ -25,7 +25,7 @@ class PluginFlickrDialog(PluginDialog):
     def _set_confirm_dialog(self, *args):
         text = _("You are connected to Flickr.com as %s.") % self.user_name
         p_label = _('_Switch User')
-        n_label = gtk.STOCK_OK
+        n_label = Gtk.STOCK_OK
         p_cb = self._set_authorize_dialog
         n_cb = self._cancel_cb
 
@@ -36,7 +36,7 @@ class PluginFlickrDialog(PluginDialog):
 private photos or to add photos to favorites list on your Flickr.com account. \
 Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame \
 the authorization. ")
-        p_label = gtk.STOCK_CANCEL
+        p_label = Gtk.STOCK_CANCEL
         n_label = _('_Authorize')
         p_cb = self._cancel_cb
         n_cb = self._set_complete_dialog
@@ -47,7 +47,7 @@ the authorization. ")
         self.auth_obj._get_frob() # getfrob -> open browser
         text = _("Return to this dialog after you have finished the authorization \
 process on Flickr.com and click the \"Complete Authorization\" button below")
-        p_label = gtk.STOCK_CANCEL
+        p_label = Gtk.STOCK_CANCEL
         n_label = _('_Complete Authorization')
         p_cb = self._clear_conf_cb
         n_cb = self.comp

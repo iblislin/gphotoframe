@@ -1,5 +1,5 @@
 try:
-    import clutter
+    from gi.repository import Clutter
 except ImportError:
     pass
 
@@ -16,12 +16,14 @@ class FadeAnimationTimeline(object):
     def fade_out(self):
         self.timeline_fade_out.start()
 
-class FadeAnimation(clutter.Timeline):
+class FadeAnimation(Clutter.Timeline):
 
-    def __init__(self, actor, time=300, start=0, end=255):
-        super(FadeAnimation, self).__init__(time)
+     def __init__(self, actor, time=300, start=0, end=255):
+         super(FadeAnimation, self).__init__()
+         super(FadeAnimation, self).set_duration(time)
 
-        alpha = clutter.Alpha(self, clutter.EASE_OUT_SINE)
-        self.behaviour = clutter.BehaviourOpacity(
-            alpha=alpha, opacity_start=start, opacity_end=end)
-        self.behaviour.apply(actor)
+         alpha = Clutter.Alpha.new_full(
+             self, Clutter.AnimationMode.EASE_OUT_SINE)
+         self.behaviour = Clutter.BehaviourOpacity(
+             alpha=alpha, opacity_start=start, opacity_end=end)
+         self.behaviour.apply(actor)

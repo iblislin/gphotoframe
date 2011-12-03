@@ -4,7 +4,7 @@ import inspect
 from os.path import join, abspath, dirname, isdir
 from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk, GdkPixbuf
 
 from base import *
 from ..utils.config import GConf
@@ -50,10 +50,10 @@ for k in sorted(token_base):
     if len(k) > 3:
         DIALOG_TOKEN[plugin.name] = k[3]
 
-class PluginListStore(gtk.ListStore):
+class PluginListStore(Gtk.ListStore):
 
     def __init__(self):
-        super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str, str, 
+        super(PluginListStore, self).__init__(bool, GdkPixbuf.Pixbuf, str, str, 
                                               object)
 
         self.conf = GConf()

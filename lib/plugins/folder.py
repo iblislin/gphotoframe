@@ -10,8 +10,7 @@ import random
 from gettext import gettext as _
 
 from twisted.internet import threads
-import gtk
-import glib
+from gi.repository import Gtk, GLib
 
 from base import *
 from ..utils.inotify import Inotify
@@ -113,13 +112,13 @@ class PhotoSourceDirUI(ui.PhotoSourceUI):
         return self.options_ui.get_value()
 
     def _build_target_widget(self):
-        self.target_widget = gtk.FileChooserButton("button")
-        self.target_widget.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
+        self.target_widget = Gtk.FileChooserButton("button")
+        self.target_widget.set_action(Gtk.FileChooserAction.SELECT_FOLDER)
         self._set_target_sensitive(state=True)
 
     def _set_target_default(self):
         try:
-            default = glib.get_user_special_dir(glib.USER_DIRECTORY_PICTURES)
+            default = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
         except:
             default = os.environ['HOME']
         folder = self.data[2] if self.data else default # liststore target

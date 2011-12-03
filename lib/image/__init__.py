@@ -7,7 +7,7 @@ class PhotoImageFactoryBase(object):
         conf = GConf()
         disable_clutter = conf.get_bool('ui/disable_clutter', False)
 
-        cls = self.clutter if cluttergtk and not disable_clutter \
+        cls = self.clutter if GtkClutter and not disable_clutter \
             else self.gtkimage
         return cls(photoframe)
 
