@@ -57,6 +57,7 @@ class MapView(champlain.View):
 
         self.timeline = FadeAnimationTimeline(self)
         self.timeline.timeline_fade_out.connect('completed', self._hide)
+        self.zoom = ZoomLevel(self)
 
         super(MapView, self).hide()
         self.set_opacity(0)
@@ -67,7 +68,7 @@ class MapView(champlain.View):
         lat, lon = photo['geo']
         self.center_on(lat, lon)
 
-        zoom = 12 if photo.is_my_photo() else 5
+        zoom = self.zoom.get(photo)
         self.set_zoom_level(zoom)
 
         x, y = image._get_image_position()
@@ -76,9 +77,10 @@ class MapView(champlain.View):
         self.timeline.fade_in()
 
     def hide(self):
+        self.zoom.set()
         if self.get_opacity() != 0:
             self.timeline.fade_out()
- 
+
     def _hide(self, w):
         super(MapView, self).hide()
 
@@ -103,6 +105,28 @@ class MapShadowRectangle(clutter.Rectangle):
     def hide(self):
         if self.get_opacity() != 0:
             self.timeline.fade_out()
+
+class ZoomLevel(object):
+
+    def __init__(self, view):
+        self.view = view
+
+    def get(self, photo):
+        self.photo = photo
+
+        saved_zoom = self.photo.get('map_zoom')
+        zoom = saved_zoom if saved_zoom else self.get_default_zoom()
+        return zoom
+
+    def set(self):
+        if hasattr(self, 'photo'):
+            zoom = self.get_default_zoom()
+            zoom_now = self.view.get_zoom_level()
+            if zoom_now != zoom:
+                self.photo['map_zoom'] = zoom_now
+
+    def get_default_zoom(self):
+        return 12 if self.photo.is_my_photo() else 5
 
 class PhotoMarker(champlain.Marker):
 
