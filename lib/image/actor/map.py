@@ -56,8 +56,7 @@ class MapView(champlain.View):
             self.set_map_source(source)
 
         self.timeline = FadeAnimationTimeline(self)
-        self.timeline.timeline_fade_out.timeline.connect(
-            'completed', self._hide)
+        self.timeline.timeline_fade_out.connect('completed', self._hide)
 
         super(MapView, self).hide()
         self.set_opacity(0)
