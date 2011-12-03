@@ -230,6 +230,30 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/format/location_on_tooltip</key>
+      <applyto>/apps/gphotoframe/format/location_on_tooltip</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to show locations on tooltip</short>
+        <long>If true, locations are shown on tooltip.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/format/model_on_tooltip</key>
+      <applyto>/apps/gphotoframe/format/model_on_tooltip</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to show camera model names on tooltip</short>
+        <long>If true, camera model name are shown on tooltip.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
       <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
       <owner>gphotoframe</owner>
@@ -526,6 +550,18 @@
       <locale name="C">
         <short>Enable ban icon for liked posts</short>
         <long>If true, enable ban icon for liked posts.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/enable_flickr_link</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/enable_flickr_link</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable direct links to Flickr photos</short>
+        <long>If true, you can open Flickr photos on Flickr not on Tumbr.</long>
       </locale>
     </schema>
 
