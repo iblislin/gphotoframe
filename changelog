@@ -1,3 +1,7 @@
+2011-12-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/actor/map.py: Added new gconf key 'ui/map/source_uri'.
+
 2011-11-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/actor/map.py: Added support for Map on image with
