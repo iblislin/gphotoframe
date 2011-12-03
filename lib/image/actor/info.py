@@ -66,16 +66,24 @@ class ActorInfoIcon(ActorGeoIcon):
 
     def set_icon(self, photoimage, x_offset, y_offset):
         photo = photoimage.photo
+        position = self._get_position()
+
         self.icon_offset = 22 if self._check_other_icon(photo) else 0
-        if self.position == 0 or self.position == 3:
+        if position == 0 or position == 3:
             self.icon_offset *= -1
         super(ActorInfoIcon, self).set_icon(photoimage, x_offset, y_offset)
 
     def _check_other_icon(self, photo):
         return photo and photo.has_geotag() 
 
+    def _get_position(self):
+        return self.conf.get_int('ui/geo/position', 2)
+
     def _check_photo(self):
         return self.photo.get('exif') or self._get_exif_class()
+
+    def _get_ui_data(self):
+        self._set_ui_options('info', False, 2)
 
     def _get_exif_class(self):
         info = self.photo.get('info')

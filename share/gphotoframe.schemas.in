@@ -230,6 +230,30 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/format/location_on_tooltip</key>
+      <applyto>/apps/gphotoframe/format/location_on_tooltip</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to show locations on tooltip</short>
+        <long>If true, locations are shown on tooltip.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/format/model_on_tooltip</key>
+      <applyto>/apps/gphotoframe/format/model_on_tooltip</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to show camera model names on tooltip</short>
+        <long>If true, camera model name are shown on tooltip.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
       <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
       <owner>gphotoframe</owner>
@@ -530,6 +554,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/enable_flickr_link</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/enable_flickr_link</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable direct links to Flickr photos</short>
+        <long>If true, you can open Flickr photos on Flickr not on Tumbr.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/rss/interval</key>
       <applyto>/apps/gphotoframe/plugins/rss/interval</applyto>
       <owner>gphotoframe</owner>
@@ -710,6 +746,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/ui/info/always_show</key>
+      <applyto>/apps/gphotoframe/ui/info/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the info icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/ui/fav/always_show</key>
       <applyto>/apps/gphotoframe/ui/fav/always_show</applyto>
       <owner>gphotoframe</owner>
@@ -778,6 +826,18 @@
       <locale name="C">
         <short>Trash icon position</short>
         <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/map/source_uri</key>
+      <applyto>/apps/gphotoframe/ui/map/source_uri</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Map source URI</short>
+        <long>Defines a URI format used for URI creation when downloading tiles.</long>
       </locale>
     </schema>
 

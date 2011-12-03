@@ -8,6 +8,7 @@ except ImportError:
 
 from base import Texture
 from ..animation import FadeAnimationTimeline
+from ...utils.config import GConf
 
 class MapFactory(object):
 
@@ -20,9 +21,8 @@ class Map(object):
     def __init__(self, stage, image):
         self.image = image
 
-        self.view = champlain.View()
-        self.rectangle = clutter.Rectangle(
-            clutter.color_from_string("black"))
+        self.view = MapView()
+        self.rectangle = MapShadowRectangle()
         self.marker = PhotoMarker()
 
         layer = champlain.Layer()
@@ -30,42 +30,86 @@ class Map(object):
         self.view.add_layer(layer)
 
         stage.add(self.rectangle)
-        self.rectangle.show()
-        self.rectangle.set_opacity(100)
-        self.timeline2 = FadeAnimationTimeline(self.rectangle, end=200)
-
         stage.add(self.view)
-        self.view.show()
-        self.view.set_opacity(0)
-        self.timeline = FadeAnimationTimeline(self.view)
 
     def show(self, photo):
         lat, lon = photo['geo']
-        self.view.center_on(lat, lon)
         self.marker.change(self.image, lat, lon)
 
-        zoom = 12 if photo.is_my_photo() else 5
-        self.view.set_zoom_level(zoom)
-
-        x, y = self.image._get_image_position()
-        self.view.set_position(x, y)
-        self.view.set_size(self.image.w, self.image.h)
-        self.rectangle.set_position(x, y)
-        self.rectangle.set_size(self.image.w, self.image.h)
-
-        self.timeline.fade_in()
-        self.timeline2.fade_in()
+        self.view.show(photo, self.image)
+        self.rectangle.show(photo, self.image)
 
     def hide(self):
-        if self.view.get_opacity() != 0:
+        self.view.hide()
+        self.rectangle.hide()
+
+class MapView(champlain.View):
+
+    def __init__(self):
+        super(MapView, self).__init__()
+
+        uri = GConf().get_string('ui/map/source_uri')
+
+        if uri:
+            source = champlain.NetworkMapSource()
+            source.set_uri_format(uri)
+            self.set_map_source(source)
+
+        self.timeline = FadeAnimationTimeline(self)
+        self.timeline.timeline_fade_out.connect('completed', self._hide)
+
+        super(MapView, self).hide()
+        self.set_opacity(0)
+
+    def show(self, photo, image):
+        super(MapView, self).show()
+
+        lat, lon = photo['geo']
+        self.center_on(lat, lon)
+
+        zoom = 12 if photo.is_my_photo() else 5
+        self.set_zoom_level(zoom)
+
+        x, y = image._get_image_position()
+        self.set_position(x, y)
+        self.set_size(image.w, image.h)
+        self.timeline.fade_in()
+
+    def hide(self):
+        if self.get_opacity() != 0:
             self.timeline.fade_out()
-            self.timeline2.fade_out()
+ 
+    def _hide(self, w):
+        super(MapView, self).hide()
+
+class MapShadowRectangle(clutter.Rectangle):
+
+    def __init__(self):
+        super(MapShadowRectangle, self).__init__(
+            clutter.color_from_string("black"))
+        self.timeline = FadeAnimationTimeline(self, end=200)
+
+        super(MapShadowRectangle, self).show()
+        self.set_opacity(100)
+
+    def show(self, photo, image):
+        super(MapShadowRectangle, self).show()
+
+        x, y = image._get_image_position()
+        self.set_position(x, y)
+        self.set_size(image.w, image.h)
+        self.timeline.fade_in()
+
+    def hide(self):
+        if self.get_opacity() != 0:
+            self.timeline.fade_out()
 
 class PhotoMarker(champlain.Marker):
 
     def __init__(self):
         super(PhotoMarker, self).__init__()
         self.thumb = ThumbnailTexture()
+        self.thumb.set_size(60, 60)
         self.set_image(self.thumb)
         self.show()
 
