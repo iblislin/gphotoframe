@@ -8,6 +8,7 @@ except ImportError:
 
 from base import Texture
 from ..animation import FadeAnimationTimeline
+from ...utils.config import GConf
 
 class MapFactory(object):
 
@@ -20,7 +21,7 @@ class Map(object):
     def __init__(self, stage, image):
         self.image = image
 
-        self.view = champlain.View()
+        self.view = MapView()
         self.rectangle = clutter.Rectangle(
             clutter.color_from_string("black"))
         self.marker = PhotoMarker()
@@ -35,8 +36,6 @@ class Map(object):
         self.timeline2 = FadeAnimationTimeline(self.rectangle, end=200)
 
         stage.add(self.view)
-        self.view.hide()
-        self.view.set_opacity(0)
         self.timeline = FadeAnimationTimeline(self.view)
 
     def show(self, photo):
@@ -62,6 +61,21 @@ class Map(object):
         if self.view.get_opacity() != 0:
             self.timeline.fade_out()
             self.timeline2.fade_out()
+
+class MapView(champlain.View):
+
+    def __init__(self):
+        super(MapView, self).__init__()
+
+        uri = GConf().get_string('ui/map/source_uri')
+
+        if uri:
+            source = champlain.NetworkMapSource()
+            source.set_uri_format(uri)
+            self.set_map_source(source)
+
+        self.hide()
+        self.set_opacity(0)
 
 class PhotoMarker(champlain.Marker):
 

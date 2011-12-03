@@ -829,5 +829,17 @@
       </locale>
     </schema>
 
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/map/source_uri</key>
+      <applyto>/apps/gphotoframe/ui/map/source_uri</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Map source URI</short>
+        <long>Defines a URI format used for URI creation when downloading tiles.</long>
+      </locale>
+    </schema>
+
   </schemalist>
 </gconfschemafile>
