@@ -1,5 +1,5 @@
 import os
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 from ..constants import SHARED_DATA_DIR
 from ..plugins import PluginListStore
