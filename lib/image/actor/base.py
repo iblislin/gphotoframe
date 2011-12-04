@@ -37,8 +37,8 @@ class Texture(GtkClutter.Texture):
         bpp = 4 if pixbuf.props.has_alpha else 3
 
         # FIXME
-        tmp_file = '/tmp/a.jpg'
-        pixbuf.savev(tmp_file, 'jpeg', [], [])
+        tmp_file = '/tmp/gphotoframe_tmp.png'
+        pixbuf.savev(tmp_file, 'png', [], [])
         self.set_from_file(tmp_file)
 
 #         self.set_from_rgb_data(
