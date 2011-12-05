@@ -2,7 +2,6 @@ import os
 import gtk
 from gettext import gettext as _
 
-from ...utils.config import GConf
 from ...utils.trash import GioTrash
 from ...history.history import History
 
@@ -10,7 +9,6 @@ class Trash(object):
 
     def __init__(self, photolist=None):
         self.photolist = photolist
-        # self.conf = GConf() # FIXME: obsolete?
 
     def check_delete_from_disk(self, filename):
         path = os.path.split(filename)[0]
@@ -72,4 +70,3 @@ class ReallyDeleteDialog(object):
             os.remove(self.file)
             self.delete_from_catalog(None)
         widget.destroy()
-
