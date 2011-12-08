@@ -97,7 +97,7 @@ class PhotoImagePixbuf(object):
             orientation = photo.get('orientation')
             rotation = self._get_orientation(orientation)
 
-            if 'size' in photo:
+            if photo.get('size'):
                 org_w, org_h = photo['size']
                 w, h = self.get_scale(org_w, org_h, 
                                       self.max_w, self.max_h, rotation)
