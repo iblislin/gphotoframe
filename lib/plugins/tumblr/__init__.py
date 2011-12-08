@@ -140,6 +140,10 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
                     'is_private' : bool(post.attrib.get('private')),
                     'trash'      : TumblrTrash(self.photolist, is_liked)}
 
+            w, h = post.attrib.get('width'), post.attrib.get('height')
+            if w and h:        
+                data['size'] = int(w), int(h) 
+
             if url_m != url_l:
                 data['url_l'] = url_l
 
