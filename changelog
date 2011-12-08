@@ -1,3 +1,7 @@
+2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* tumblr/__init__.py: Added size attributes.
+
 2011-12-03  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/actor/map.py: Added new gconf key 'ui/map/source_uri'.
