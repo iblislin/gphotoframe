@@ -49,7 +49,7 @@ class PluginTreeView(PreferencesTreeView):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2] if iter else None
 
-        state = True if plugin_type in DIALOG_TOKEN else False
+        state = bool(plugin_type in DIALOG_TOKEN)
         self._set_button_sensitive(state)
         self.about_dialog.check(plugin_type)
 

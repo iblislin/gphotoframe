@@ -10,7 +10,7 @@ class SqliteDB(object):
         if not os.access(db_file, os.R_OK):
             db_file = None
 
-        self.is_accessible = True if db_file else False
+        self.is_accessible = bool(db_file)
         if db_file:
             self.db = sqlite3.connect(db_file)
 

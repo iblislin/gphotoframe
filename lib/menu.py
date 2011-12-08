@@ -83,7 +83,7 @@ class PopUpMenu(object):
         for item in [sep, history]:
             menu.append(item)
 
-        sensitive = True if len(recents) else False
+        sensitive = bool(recents)
         recent.set_submenu(menu)
         recent.set_sensitive(sensitive)
         menu.show_all()

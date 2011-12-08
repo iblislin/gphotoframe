@@ -66,8 +66,7 @@ class PhotoList(object):
         pass
 
     def is_available(self):
-        result = True if self.photos and self.weight > 0 and \
-            self.nm_state.check() else False
+        result = bool(self.photos and self.weight > 0 and self.nm_state.check())
         #print self.target, result
         return result
  
@@ -119,7 +118,7 @@ class LocalPhotoList(PhotoList):
     """Photo List for Local Photo Source"""
 
     def is_available(self):
-        result = True if self.photos and self.weight > 0 else False
+        result = bool(self.photos and self.weight > 0)
         # print self.target, result
         return result
 

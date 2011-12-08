@@ -29,11 +29,11 @@ class AutoStart(object):
             print "Warning: the desktop entry of %s is not found." % app_name
 
     def check_enable(self):
-        state = True if self.load_file else False
+        state = bool(self.load_file)
         return state
 
     def get(self):
-        state = True if self.entry.get(self.key) == 'true' else False
+        state = bool(self.entry.get(self.key) == 'true')
         return state
 
     def set(self, state):
