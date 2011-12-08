@@ -209,8 +209,8 @@ class Photo(dict):
         if orientation: self['orientation'] = orientation
 
         size = tags.get_size()
-        if size: self['size'] = size
-        #print type(size), size
+        if size and not self.get('size'): self['size'] = size
+        # print type(size), size
 
         geo = tags.get_geo()
         if geo: self['geo'] = geo
