@@ -1,5 +1,6 @@
 2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* share/history/history.html: Added the icon to the history.html.
 	* image/gtkimage.py, plugins/base/base.py: Fixed size attribute
 	  problems.
 	* tumblr/__init__.py: Added size attributes.
