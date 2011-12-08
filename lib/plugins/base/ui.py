@@ -86,7 +86,7 @@ class PhotoSourceUI(object):
         entry_widget.connect('changed', self._set_sensitive_ok_button_cb)
 
     def _set_sensitive_ok_button_cb(self, widget):
-       state = True if widget.get_text() else False
+       state = bool(widget.get_text())
        self.gui.get_object('button8').set_sensitive(state)
 
 class PhotoSourceOptionsUI(object):

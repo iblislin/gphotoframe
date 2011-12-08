@@ -78,8 +78,8 @@ class HaikyoPhotoList(base.PhotoList):
             photo for photo in self.photos 
             if photo['hour'] == str(h) and photo['min'] == str(m)]
 
-        result = True if self.this_time_photos and self.weight > 0 and \
-            self.nm_state.check() else False
+        result = bool(self.this_time_photos and self.weight > 0 and \
+                          self.nm_state.check())
 
         return result
 

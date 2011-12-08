@@ -34,7 +34,7 @@ class NetworkState(object):
             print "Exception: %s" % sys.exc_info()[1]
 
     def check(self):
-        state = True if self.get_state() == 3 else False
+        state = bool(self.get_state() == 3)
         return state
 
     def get_state(self):
