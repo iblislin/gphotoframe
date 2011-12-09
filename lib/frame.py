@@ -65,7 +65,7 @@ class PhotoFrame(object):
         gui.connect_signals(dic)
 
     def set_photo(self, photo, change=True):
-        state = True if photo else False
+        state = bool(photo)
 
         if change:
             if not self.photoimage.set_photo(photo): return False
@@ -82,8 +82,8 @@ class PhotoFrame(object):
         return True
 
     def remove_photo(self, url):
-        change = True if self.photoimage.photo and \
-            self.photoimage.photo['url'] == url else False
+        change = bool(self.photoimage.photo and \
+            self.photoimage.photo['url'] == url)
         self.set_photo(None, change)
 
     def check_mouse_on_frame(self):

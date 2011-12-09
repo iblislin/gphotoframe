@@ -15,7 +15,7 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
     def _check_argument_sensitive_for(self, target):
         all_label = {_('User'): _('_User:')}
         label = all_label.get(target)
-        state = True if target == _('User') else False
+        state = bool(target == _('User'))
         return label, state
 
     def _label(self):

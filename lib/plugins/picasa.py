@@ -35,7 +35,7 @@ class PicasaPlugin(base.PluginBase):
 
     def is_available(self):
         username = GConf().get_string('plugins/picasa/user_id')
-        return True if username else False
+        return bool(username)
 
 class PicasaPhotoList(base.PhotoList):
 

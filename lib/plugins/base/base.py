@@ -65,8 +65,7 @@ class PhotoList(object):
         pass
 
     def is_available(self):
-        result = True if self.photos and self.weight > 0 and \
-            self.nm_state.check() else False
+        result = bool(self.photos and self.weight > 0 and self.nm_state.check())
         #print self.target, result
         return result
  
@@ -118,7 +117,7 @@ class LocalPhotoList(PhotoList):
     """Photo List for Local Photo Source"""
 
     def is_available(self):
-        result = True if self.photos and self.weight > 0 else False
+        result = bool(self.photos and self.weight > 0)
         # print self.target, result
         return result
 
@@ -208,8 +207,8 @@ class Photo(dict):
         if orientation: self['orientation'] = orientation
 
         size = tags.get_size()
-        if size: self['size'] = size
-        #print type(size), size
+        if size and not self.get('size'): self['size'] = size
+        # print type(size), size
 
         geo = tags.get_geo()
         if geo: self['geo'] = geo

@@ -70,7 +70,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == Gtk.ResponseType.OK:
-            new_iter, delay = self.liststore.append(v)
+            new_iter = self.liststore.append(v)
             self._set_coursor_to(new_iter)
 
     def _prefs_button_cb(self, widget):
@@ -81,7 +81,8 @@ class PhotoSourceTreeView(PreferencesTreeView):
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
         if response_id == Gtk.ResponseType.OK:
-            new_iter, delay = self.liststore.append(v, iter)
+            new_iter = self.liststore.append(v, iter)
+
             self.liststore.remove(iter)
             self._set_coursor_to(new_iter)
 
