@@ -27,6 +27,7 @@ class PhotoListStore(gtk.ListStore):
             gtk.gdk.Pixbuf, str, str, str, int, object, object)
 
         self.conf = GConf()
+        self._delay_time = 0
         self._load_gconf()
 
         self.queue = RecentQueue()
@@ -35,9 +36,9 @@ class PhotoListStore(gtk.ListStore):
         self.idle = SessionIdle()
         self._start_timer()
 
-    def append(self, d, iter=None, delay=0):
+    def append(self, d, iter=None, is_delay=False):
         if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
-            return None, delay
+            return None
 
         obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
             d['target'], d['argument'], d['weight'], d['options'], self)
@@ -48,13 +49,13 @@ class PhotoListStore(gtk.ListStore):
         new_iter = self.insert_before(iter, list)
 
         # print d['source'], obj.delay_for_prepare, delay
-        if obj.delay_for_prepare:
-            glib.timeout_add_seconds(delay, obj.prepare)
-            delay += 5
+        if is_delay and obj.delay_for_prepare:
+            glib.timeout_add_seconds(self._delay_time, obj.prepare)
+            self._delay_time += 5
         else:
             obj.prepare()
 
-        return new_iter, delay
+        return new_iter
 
     def remove(self, iter):
         self.get_value(iter, 6).exit() # liststore object
@@ -119,7 +120,7 @@ class PhotoListStore(gtk.ListStore):
             self.recursion_depth += 1
             self._change_photo()
 
-    def _load_gconf(self, delay=0):
+    def _load_gconf(self):
         weight = self.conf.get_int('default_weight', 3)
         source_list = []
 
@@ -143,7 +144,7 @@ class PhotoListStore(gtk.ListStore):
 
         source_list.sort(cmp=lambda x,y: cmp(y['weight'], x['weight']))
         for entry in source_list:
-            iter, delay = self.append(entry, delay=delay)
+            self.append(entry, is_delay=True)
 
     def save_gconf(self):
         self.conf.recursive_unset('sources')
