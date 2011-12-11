@@ -1,7 +1,8 @@
 try:
     import clutter
 except ImportError:
-    pass
+    from ..utils.nullobject import Null
+    clutter = Null()
 
 class FadeAnimationTimeline(object):
 

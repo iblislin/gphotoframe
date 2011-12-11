@@ -1,3 +1,7 @@
+2011-12-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* image/animation.py: Fixed a import error.
+
 2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* share/history/history.html: Added the icon to the history.html.
