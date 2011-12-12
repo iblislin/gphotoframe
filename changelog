@@ -1,5 +1,6 @@
 2011-12-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.5-b1 release.
 	* image/animation.py: Fixed a import error.
 
 2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
