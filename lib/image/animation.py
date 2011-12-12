@@ -1,7 +1,8 @@
 try:
     from gi.repository import Clutter
 except ImportError:
-    pass
+    from ..utils.nullobject import Null
+    Clutter = Null()
 
 class FadeAnimationTimeline(object):
 

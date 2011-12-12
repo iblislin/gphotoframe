@@ -4,7 +4,7 @@ try:
     from gi.repository import Clutter, GtkClutter
 except ImportError:
     from ..utils.nullobject import Null
-    cluttergtk = Null()
+    GtkClutter = Null()
 
 from gi.repository import Gtk
 
