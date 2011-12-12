@@ -1,7 +1,7 @@
 from __future__ import division
 import urllib
 
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
@@ -49,7 +49,7 @@ class ActorGeoIcon(ActorSourceIcon):
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
             lat, lon, urllib.quote(title), zoom)
-        gtk.show_uri(None, url, event.time)
+        Gtk.show_uri(None, url, event.get_time())
 
     def _enter_cb(self, w, e, tooltip):
         if self.map:

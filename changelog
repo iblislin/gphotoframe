@@ -1,6 +1,6 @@
 2011-12-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* image/animation.py: Fixed a import error.
+	* image/animation.py: Fixed import errors.
 
 2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -22,6 +22,17 @@
 
 	* NEWS: 1.4.1 release.
 
+2011-11-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/config.py: Use old gconf package. New one has bugs.
+	* gtkimage.py (PhotoImagePixbuf._no_image): Dropped GtkDrawable.
+
+2011-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotofame: Renamed symbols from PyGTK 2 to PyGI GTK 3 with
+	  pygi-convert.sh.
+	* utils/gtk3reactor: Added new module for GTK 3.
+
 2011-11-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* config.py: Added support for gconf.VALUE_LIST.
@@ -38,7 +49,7 @@
 	  a Xfwm bug (issue #97).  Xfwm does not support GDK_GRAVITY
 	  correctly.  The frame window gravity needs be set to
 	  GDK_GRAVITY_NORTH_WEST forcelly.
-	
+
 2011-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/gtkimage.py: Improved loading speed for large image files

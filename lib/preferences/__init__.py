@@ -1,5 +1,5 @@
 import os
-import gtk
+from gi.repository import Gtk, Gdk
 
 from ..constants import SHARED_DATA_DIR
 from ..plugins import PluginListStore
@@ -23,7 +23,7 @@ class Preferences(object):
             self.prefs.present()
             return
 
-        self.gui = gui = gtk.Builder()
+        self.gui = gui = Gtk.Builder()
         gui.add_from_file(os.path.join(SHARED_DATA_DIR, 'preferences.ui'))
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
@@ -116,8 +116,8 @@ class Preferences(object):
         self.is_show = False
 
     def _help_cb(self, widget):
-        gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
-                     gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
+                     Gdk.CURRENT_TIME)
 
     def _set_spinbutton_value(self, widget, key, default_value):
         spinbutton = self.gui.get_object(widget)

@@ -1,7 +1,7 @@
 import os
 from string import Template
 
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
@@ -20,7 +20,7 @@ class HistoryHTML(object):
 
     def show(self):
         self._make()
-        gtk.show_uri(None, 'file://%s' % self.html_file, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, 'file://%s' % self.html_file, Gdk.CURRENT_TIME)
 
     def _make(self):
         template_file = os.path.join(self.template_dir, 'history.html')

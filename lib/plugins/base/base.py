@@ -3,9 +3,8 @@ import re
 from urlparse import urlparse
 from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk, Gdk, GLib
 import random
-import glib
 
 from ... import constants
 from ...utils.config import GConf
@@ -110,7 +109,7 @@ class PhotoList(object):
 
         delay = min * 60 / 20 # 5%
         interval = min * 60 + random.randint(delay*-1, delay)
-        self._timer = glib.timeout_add_seconds(interval, self.prepare)
+        self._timer = GLib.timeout_add_seconds(interval, self.prepare)
 
         return False
 
@@ -133,7 +132,7 @@ class Photo(dict):
     def open(self, *args):
         url = self.get('page_url') or self.get('url')
         url = url.replace("'", "%27")
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, url, Gdk.CURRENT_TIME)
 
     def can_open(self):
         if self.is_local_file() and not os.path.exists(self['filename']):

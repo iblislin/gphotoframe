@@ -1,4 +1,4 @@
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..constants import UI_FILE
@@ -61,7 +61,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.gui.get_object('button5').set_sensitive(state)
 
     def _button_press_cb(self, widget, event):
-        if event.type == gtk.gdk._2BUTTON_PRESS:
+        if event.type == Gdk._2BUTTON_PRESS:
             self._prefs_button_cb(widget)
             return True
 
@@ -69,7 +69,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         photodialog = PhotoSourceDialog(self.parent)
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             new_iter = self.liststore.append(v)
             self._set_coursor_to(new_iter)
 
@@ -80,8 +80,9 @@ class PhotoSourceTreeView(PreferencesTreeView):
         photodialog = PhotoSourceDialog(self.parent, model[iter])
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             new_iter = self.liststore.append(v, iter)
+
             self.liststore.remove(iter)
             self._set_coursor_to(new_iter)
 
@@ -95,13 +96,13 @@ class PhotoSourceTreeView(PreferencesTreeView):
     def _set_coursor_to(self, iter):
         model = self.treeview.get_model()
         row = model.get_path(iter)
-        self.treeview.set_cursor(row)
+        self.treeview.set_cursor(row, None, False)
 
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, parent, data=None):
-        self.gui = gtk.Builder()
+        self.gui = Gtk.Builder()
         self.gui.add_from_file(UI_FILE)
 
         self.conf = GConf()
@@ -127,7 +128,7 @@ class PhotoSourceDialog(object):
               'options' : source_widget.ui.get_options() }
 
         dialog.destroy()
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             self.conf.set_string('recents/source', v['source'])
         return response_id, v
 
@@ -145,12 +146,12 @@ class SourceComboBox(object):
             list = [pixbuf, name]
             liststore.insert_before(None, list)
 
-        renderer = gtk.CellRendererPixbuf()
-        widget.pack_start(renderer, expand=False)
+        renderer = Gtk.CellRendererPixbuf()
+        widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'pixbuf', 0)
 
-        renderer = gtk.CellRendererText()
-        widget.pack_start(renderer, expand=False)
+        renderer = Gtk.CellRendererText()
+        widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'text', 1)
 
         recent = GConf().get_string('recents/source')

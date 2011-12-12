@@ -5,5 +5,7 @@ def get_formatted_datatime(date):
 
     conf = GConf()
     format = conf.get_string('format/date_format') or "%x"
-    return date if isinstance(date, unicode) else \
+
+    result = date if isinstance(date, unicode) else \
         time.strftime(format, time.gmtime(date))
+    return result.decode('utf_8')

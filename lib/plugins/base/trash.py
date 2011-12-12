@@ -1,5 +1,5 @@
 import os
-import gtk
+from gi.repository import Gtk
 from gettext import gettext as _
 
 from ...utils.trash import GioTrash
@@ -57,15 +57,15 @@ class ReallyDeleteDialog(object):
                    "do you want to delete immediately?")
         self.text2 = _("The file \"%s\" cannot be moved to the trash. ") % file
 
-        dialog = gtk.MessageDialog(
-            None, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING, 
-            gtk.BUTTONS_OK_CANCEL, self.text1)
+        dialog = Gtk.MessageDialog(
+            None, Gtk.DialogFlags.MODAL, Gtk.MessageType.WARNING, 
+            Gtk.ButtonsType.OK_CANCEL, self.text1)
         dialog.format_secondary_text(self.text2)
         dialog.connect('response', self._response_cb)
         dialog.show()
 
     def _response_cb(self, widget, response):
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             # print "really delete!!"
             os.remove(self.file)
             self.delete_from_catalog(None)

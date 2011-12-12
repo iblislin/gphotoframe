@@ -194,7 +194,7 @@ class ShotwellPhotoSQL(FSpotPhotoSQL):
         return [default, tag]
 
 class ShotwellPhotoTagList(list):
-    "Shotwell photo tags for gtk.ComboBox"
+    "Shotwell photo tags for Gtk.ComboBox"
 
     def __init__(self):
         self.append('')
