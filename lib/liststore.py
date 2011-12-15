@@ -27,7 +27,10 @@ class PhotoListStore(Gtk.ListStore):
 
         self.conf = GConf()
         self._delay_time = 0
-        self._load_gconf()
+
+        self.save = SaveListStore()
+        for entry in self.save.load():
+            self.append(entry, is_delay=True)
 
         self.queue = RecentQueue()
         self.ban_db = BlackList()
@@ -72,6 +75,9 @@ class PhotoListStore(Gtk.ListStore):
 
         GObject.source_remove(self._timer)
         self._start_timer(False)
+
+    def save_gconf(self):
+        self.save.save(self)
 
     def _start_timer(self, change=True):
         frame = self.photoframe
@@ -121,7 +127,12 @@ class PhotoListStore(Gtk.ListStore):
             self.recursion_depth += 1
             self._change_photo()
 
-    def _load_gconf(self):
+class SaveListStore(object):
+
+    def __init__(self):
+        self.conf = GConf()
+
+    def load(self):
         weight = self.conf.get_int('default_weight', 3)
         source_list = []
 
@@ -144,14 +155,13 @@ class PhotoListStore(Gtk.ListStore):
             source_list.append(data)
 
         source_list.sort(cmp=lambda x,y: cmp(y['weight'], x['weight']))
-        for entry in source_list:
-            self.append(entry, is_delay=True)
+        return source_list
 
-    def save_gconf(self):
+    def save(self, liststore):
         self.conf.recursive_unset('sources')
         data_list = ['source', 'target', 'argument', 'weight']
 
-        for i, row in enumerate(self):
+        for i, row in enumerate(liststore):
             for num, key in enumerate(data_list):
                 value = row[num+1] # liststore except icon.
                 if value is not None:
