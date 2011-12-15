@@ -131,6 +131,7 @@ class HistoryMenuItem(Gtk.MenuItem):
     def __init__(self):
         title = _("Show _History")
         super(HistoryMenuItem, self).__init__(title)
+        self.set_use_underline(True)
         self.connect('activate', self._open)
 
     def _open(self, widget):
