@@ -1,3 +1,7 @@
+2011-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Code refactoring.
+
 2011-12-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/animation.py: Fixed import errors.
@@ -1315,3 +1319,6 @@
 	* gphotoframe (MakePhoto.rotate): EXIF.process_file ->
 	  pixbuf.get_option. Droped depend on EXIF.py
 	* gphotoframe, gphotoframe.glade: Initial import.
+
+	LocalWords:  refactoring
+	
