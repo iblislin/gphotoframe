@@ -201,7 +201,7 @@ class WeightEntry(object):
 
     def __init__(self, gui, photoliststore):
 
-        default_weight = GConf().get_int('default_weight', 3)
+        default_weight = GConf().get_int('default_weight', 5)
         # liststore weight
         weight = photoliststore[4] if photoliststore else default_weight 
         self.widget = gui.get_object('spinbutton3')
