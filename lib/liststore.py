@@ -1,10 +1,11 @@
 import os
 import glob
+import json
 
 from gi.repository import Gtk, GdkPixbuf, GObject, GLib
 
 import plugins
-from constants import CACHE_DIR
+from constants import CACHE_DIR, CONFIG_HOME
 from frame import PhotoFrameFactory
 from history import HistoryFactory
 from history.history import History
@@ -131,26 +132,27 @@ class SaveListStore(object):
 
     def __init__(self):
         self.conf = GConf()
+        self.save_file = os.path.join(CONFIG_HOME, 'photosource.json')
 
     def load(self):
         weight = self.conf.get_int('default_weight', 3)
         source_list = []
 
-        for dir in self.conf.all_dirs('sources'):
+        if not os.path.exists(self.save_file):
+            return source_list
+
+        with open(self.save_file, 'r') as f:
+            entry = json.load(f)           
+
+        for dir in entry:
             data = { 'target' : '', 'argument' : '',
                      'weight' : weight, 'options' : {} }
 
-            for entry in self.conf.all_entries(dir):
-                value = self.conf.get_value(entry)
-
-                if value is not None:
-                    path = entry.get_key()
-                    key = path[ path.rfind('/') + 1: ]
-
-                    if key in ['source', 'target', 'argument', 'weight']:
-                        data[key] = value
-                    else:
-                        data['options'][key] = value
+            for key, value in entry[dir].items():
+                if key in ['source', 'target', 'argument', 'weight']:
+                    data[key] = value
+                else:
+                    data['options'][key] = value
 
             source_list.append(data)
 
@@ -158,23 +160,23 @@ class SaveListStore(object):
         return source_list
 
     def save(self, liststore):
-        self.conf.recursive_unset('sources')
         data_list = ['source', 'target', 'argument', 'weight']
+        save_data = {}
 
         for i, row in enumerate(liststore):
+            save_data[i] = {}
             for num, key in enumerate(data_list):
                 value = row[num+1] # liststore except icon.
                 if value is not None:
-                    self._set_gconf(i, key, value)
+                    save_data[i][key] = value
 
             if row[5]: # liststore options
                 for key, value in row[5].iteritems():
-                    self._set_gconf(i, key, value)
+                    save_data[i][key] = value
                     # print key, value
 
-    def _set_gconf(self, i, key, value):
-        full_key = 'sources/%s/%s' % (i, key)
-        self.conf.set_value(full_key, value)
+        with open(self.save_file, mode='w') as f:
+            json.dump(save_data, f)      
 
 class RecentQueue(list):
 
