@@ -1,3 +1,7 @@
+2011-12-16  Yoshizumi Endo  <yendo@ubuntu>
+
+	* liststore.py: Save the liststore as JSON.
+
 2011-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* liststore.py: Code refactoring.
