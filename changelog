@@ -1,5 +1,6 @@
 2011-12-16  Yoshizumi Endo  <yendo@ubuntu>
 
+	* gphotoframe.schemas.in: Changed default_weight from 3 to 5.
 	* liststore.py: Save the liststore as JSON.
 
 2011-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

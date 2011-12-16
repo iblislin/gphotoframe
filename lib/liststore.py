@@ -135,7 +135,7 @@ class SaveListStore(object):
         self.save_file = os.path.join(CONFIG_HOME, 'photosource.json')
 
     def load(self):
-        weight = self.conf.get_int('default_weight', 3)
+        weight = self.conf.get_int('default_weight', 5)
         source_list = []
 
         if not os.path.exists(self.save_file):
