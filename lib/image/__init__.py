@@ -1,11 +1,13 @@
+from gi.repository import Gio
+
 from clutterimage import *
-from ..utils.config import GConf
+
 
 class PhotoImageFactoryBase(object):
 
     def create(self, photoframe):
-        conf = GConf()
-        disable_clutter = conf.get_bool('ui/disable_clutter', False)
+        conf = Gio.Settings('org.gnome.gphotoframe.ui')
+        disable_clutter = conf.get_boolean('disable-clutter')
 
         cls = self.clutter if GtkClutter and not disable_clutter \
             else self.gtkimage

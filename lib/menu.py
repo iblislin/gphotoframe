@@ -26,7 +26,7 @@ class PopUpMenu(object):
         preferences = Preferences(photolist)
         about = AboutDialog()
 
-        dic = {
+        self.dic = {
             "on_menuitem5_activate" : self.open_photo,
             "on_next_photo"         : self.photolist.next_photo,
             "on_menuitem6_toggled"  : self._fix_window_cb,
@@ -37,12 +37,11 @@ class PopUpMenu(object):
             "on_about" : about.start,
             "on_quit"  : self.quit,
             }
-        self.gui.connect_signals(dic)
 
     def start(self, widget, event):
         self.set_recent_menu()
 
-        if self.conf.get_bool('window_fix'):
+        if self.conf.get_bool('window-fix'):
             self.gui.get_object('menuitem6').set_active(True)
 
         photo = self.photoimage.photo
@@ -51,6 +50,8 @@ class PopUpMenu(object):
 
         is_fullscreen = self.conf.get_bool('fullscreen')
         self.gui.get_object('menuitem8').set_active(is_fullscreen)
+
+        self.gui.connect_signals(self.dic)
 
         menu = self.gui.get_object('menu')
         menu.popup(None, None, None, None, event.button, event.time)
@@ -92,9 +93,10 @@ class PopUpMenu(object):
         self.gui.get_object('menuitem5').set_sensitive(state)
 
     def _fix_window_cb(self, widget):
-        self.conf.set_bool('window_fix', widget.get_active())
+        self.conf.set_bool('window-fix', widget.get_active())
 
     def _full_screen_cb(self, widget, *args):
+        print "tog", widget.get_active()
         self.conf.set_bool('fullscreen', widget.get_active())
 
     def _on_hide_cb(self, *args):

@@ -129,7 +129,8 @@ class PhotoSourceDialog(object):
 
         dialog.destroy()
         if response_id == Gtk.ResponseType.OK:
-            self.conf.set_string('recents/source', v['source'])
+            pass # FIXME
+            # self.conf.set_string('recents/source', v['source'])
         return response_id, v
 
 class SourceComboBox(object):
@@ -154,7 +155,8 @@ class SourceComboBox(object):
         widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'text', 1)
 
-        recent = GConf().get_string('recents/source')
+        # recent = GConf().get_string('recents/source') # FIXME
+        recent = None
         # liststore source
         source_num = source_list.index(photoliststore[1]) if photoliststore \
             else source_list.index(recent) if recent in source_list \
@@ -201,7 +203,7 @@ class WeightEntry(object):
 
     def __init__(self, gui, photoliststore):
 
-        default_weight = GConf().get_int('default_weight', 5)
+        default_weight = GConf().get_int('default-weight', 5)
         # liststore weight
         weight = photoliststore[4] if photoliststore else default_weight 
         self.widget = gui.get_object('spinbutton3')

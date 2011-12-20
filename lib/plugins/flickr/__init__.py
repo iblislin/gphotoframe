@@ -8,6 +8,7 @@ import random
 import time
 import json
 from gettext import gettext as _
+from gi.repository import Gio
 
 from ..base import *
 from ...utils.iconimage import WebIconImage
@@ -25,7 +26,8 @@ class FlickrPlugin(base.PluginBase):
         self.name = 'Flickr'
         self.icon = FlickrIcon
         self.exif = FlickrEXIF
-        self.auth = 'plugins/flickr/user_name'
+        self.auth_path = 'flickr'
+        self.auth_key = 'user_name'
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.flickr.com/',
@@ -39,6 +41,7 @@ class FlickrPhotoList(base.PhotoList):
         self.page_list = FlickrAPIPages(options)
         self.photos_other_page = []
         self.argument_group_name = None
+        self.conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
   
     def _random_choice(self):
         only_latest = self.options.get('only_latest_roll')
@@ -54,7 +57,7 @@ class FlickrPhotoList(base.PhotoList):
         return random.choice(target_list)
 
     def _get_threshold(self):
-        min = self.conf.get_int('plugins/flickr/latest_photos_min_rate', 10)
+        min = self.conf.get_int('latest-photos-min-rate') or 10
         original = 100.0 / self.page_list.pages
         threshold = original if original > min else min
 

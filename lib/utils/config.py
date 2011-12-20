@@ -1,4 +1,5 @@
-import gconf
+#import gconf
+from gi.repository import GLib, Gio
 
 class GConf(object):
     """Gconf Wrapper"""
@@ -11,63 +12,69 @@ class GConf(object):
 
     def __init__(self):
         if not hasattr(self, "dir"):
-            self.dir = "/apps/gphotoframe/"
-            self.gconf = gconf.client_get_default()
-            self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
+            self.dir = "org.gnome.gphotoframe"
+            self.gconf = Gio.Settings.new(self.dir)
+            # self.gconf = gconf.client_get_default()
+            # self.gconf.add_dir(self.dir[:-1], gconf.CLIENT_PRELOAD_NONE)
 
     def set_notify_add(self, key, cb):
-        self.gconf.notify_add(self.dir + key, cb)
+        # self.gconf.notify_add(self.dir + key, cb)
+        # not required, the "changed" signal is emitted automatically
+        pass
 
     def set_int(self, key, val):
-        return self.gconf.set_int(self.dir + key, int(val))
+        return self.gconf.set_int(key, int(val))
 
     def get_int(self, key, default=None):
-        path = self.dir + key
-        val = default if self.gconf.get(path) is None \
+        path = key
+        val = default if self.gconf.get_value(path) is None \
             else self.gconf.get_int(path)
         return val
 
     def set_float(self, key, val):
-        return self.gconf.set_float(self.dir + key, float(val))
+        return self.gconf.set_float(key, float(val))
 
     def get_float(self, key, default=None):
-        path = self.dir + key
-        val = default if self.gconf.get(path) is None \
-            else self.gconf.get_float(path)
+        path = key
+        val = default if self.gconf.get_value(path) is None \
+            else self.gconf.get_double(path)
         return val
 
     def set_string(self, key, val):
-        return self.gconf.set_string(self.dir + key, val)
+        return self.gconf.set_string(key, val)
 
     def get_string(self, key):
-        val = self.gconf.get_string(self.dir + key)
+        val = self.gconf.get_string(key)
         return val
 
     def set_bool(self, key, val):
-        return self.gconf.set_bool(self.dir + key, val)
+        return self.gconf.set_boolean(key, val)
 
     def get_bool(self, key, default=None):
-        path = self.dir + key
-        val = default if self.gconf.get(path) is None \
-            else self.gconf.get_bool(path)
+        path = key
+        val = default if self.gconf.get_value(path) is None \
+            else self.gconf.get_boolean(path)
         return val
 
-    def set_list(self, key, val, type=gconf.VALUE_STRING):
-        return self.gconf.set_list(self.dir + key, type, val)
+#    def set_list(self, key, val, type=GLib.ValueClass.STRING):
+#        return self.gconf.set_list(key, type, val)
 
-    def get_list(self, key, type=gconf.VALUE_STRING):
-        val = self.gconf.get_list(self.dir + key, type)
-        return val
+#    def get_list(self, key, type=GLib.ValueClass.STRING):
+#        val = self.gconf.get_list(key, type)
+#        return val
 
     def recursive_unset(self, key):
-        self.gconf.recursive_unset(self.dir + key,
-                                   gconf.UNSET_INCLUDING_SCHEMA_NAMES)
+        pass
+        #self.gconf.recursive_unset(self.dir + key,
+        #                           gconf.UNSET_INCLUDING_SCHEMA_NAMES)
 
     def all_entries(self, key):
-        return self.gconf.all_entries(key)
+        pass
+        #return self.gconf.all_entries(key)
 
     def all_dirs(self, key):
-        return self.gconf.all_dirs(self.dir + key)
+        pass
+        #return self.gconf.all_dirs(self.dir + key)
 
     def set_value(self, key, value):
         if isinstance(value, int):
@@ -80,25 +87,29 @@ class GConf(object):
             self.set_string(key, value)
 
     def get_value(self, entry):
-        value = entry.get_value()
+        return
 
-        if value is None:
-            result = None
-        elif value.type is gconf.VALUE_LIST:
-            result = [self._get_value_type(x) for x in value.get_list()]
-        else:
-            result = self._get_value_type(value)
-
-        return result
-
+#         value = entry.get_value()
+# 
+#         if value is None:
+#             result = None
+#         elif value.type is gconf.VALUE_LIST:
+#             result = [self._get_value_type(x) for x in value.get_list()]
+#         else:
+#             result = self._get_value_type(value)
+# 
+#         return result
+# 
     def _get_value_type(self, value):
-        result = None if value is None \
-            else value.get_int() if value.type is gconf.VALUE_INT \
-            else value.get_bool() if value.type is gconf.VALUE_BOOL \
-            else value.get_float() if value.type is gconf.VALUE_FLOAT \
-            else value.get_string()
-
-        return result
+        return
+#         result = None if value is None \
+#             else value.get_int() if value.type is gconf.VALUE_INT \
+#             else value.get_bool() if value.type is gconf.VALUE_BOOL \
+#             else value.get_float() if value.type is gconf.VALUE_FLOAT \
+#             else value.get_string()
+# 
+#         return result
+# 
 
 if __name__ == "__main__":
     import unittest

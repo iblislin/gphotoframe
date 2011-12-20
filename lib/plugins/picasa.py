@@ -8,7 +8,7 @@ from gettext import gettext as _
 import urllib
 import json
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 from base import *
 from ..constants import APP_NAME, VERSION
@@ -27,27 +27,30 @@ class PicasaPlugin(base.PluginBase):
     def __init__(self):
         self.name = _('Picasa Web')
         self.icon = PicasaIcon
-        self.auth = 'plugins/picasa/user_id'
+        self.auth_path = 'picasa'
+        self.auth_key = 'user-id'
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',
                       'authors': ['Yoshizimi Endo'], }
 
     def is_available(self):
-        username = GConf().get_string('plugins/picasa/user_id')
+        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.picasa')
+        username = conf.get_string('user-id')
         return bool(username)
 
 class PicasaPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = []
+        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.picasa')
 
-        self.username = self.conf.get_string('plugins/picasa/user_id')
+        self.username = conf.get_string('user-id')
         if self.username:
             key = Keyring('Google Account', protocol='http')
             key.get_passwd_async(self.username, self._google_auth_cb)
 
-            interval_min = self.conf.get_int('plugins/picasa/interval', 60)
+            interval_min = conf.get_int('interval') or 60
             self._start_timer(interval_min)
 
     def _google_auth_cb(self, identity):
@@ -159,7 +162,8 @@ class PicasaPhotoList(base.PhotoList):
 class PicasaPhoto(base.Photo):
 
     def is_my_photo(self):
-        user_name = self.conf.get_string('plugins/picasa/user_id')
+        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.picasa')
+        user_name = conf.get_string('user-id')
         result = user_name and user_name == self['owner_name']
         return result
 
@@ -225,7 +229,8 @@ class PluginPicasaDialog(ui.PluginDialog):
 
     def _write_conf(self):
         user_id = self.entry3.get_text()
-        self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
+        #FIXME
+        #self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
 
         new_passwd = self.entry4.get_text()
         if self.passwd is None or self.passwd != new_passwd:

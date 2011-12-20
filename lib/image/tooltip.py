@@ -2,6 +2,8 @@ import sys
 from xml.sax.saxutils import escape
 
 from gettext import gettext as _
+from gi.repository import Gio
+
 from ..utils.datetimeformat import get_formatted_datatime
 from ..utils.config import GConf
 
@@ -10,7 +12,7 @@ class ToolTip(object):
 
     def __init__(self, widget):
         self.widget = widget
-        self.conf = GConf()
+        self.conf = Gio.Settings.new('org.gnome.gphotoframe.format')
         self.icon = False
         self.photo = None
 
@@ -58,9 +60,9 @@ class ToolTip(object):
                 text = ( '/'.join(target) if target[1] and 
                          target[1] != escape(owner) else target[0] )
                 tip += "%s\n" % escape(text)
-            if location and self.conf.get_bool('format/location_on_tooltip'):
+            if location and self.conf.get_bool('location_on_tooltip'):
                 tip += "%s\n" % escape(location)
-            if model and self.conf.get_bool('format/model_on_tooltip'):
+            if model and self.conf.get_bool('model_on_tooltip'):
                 tip += "%s\n" % escape(model)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)

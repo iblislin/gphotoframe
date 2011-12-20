@@ -94,7 +94,7 @@ class PhotoListStore(Gtk.ListStore):
             interval = 3
             # print "skip!"
         elif frame.is_fullscreen() or frame.is_screensaver():
-            interval = self.conf.get_int('interval_fullscreen', 10)
+            interval = self.conf.get_int('interval-fullscreen', 10)
         else:
             interval = self.conf.get_int('interval', 30)
 
@@ -135,7 +135,7 @@ class SaveListStore(object):
         self.save_file = os.path.join(CONFIG_HOME, 'photosource.json')
 
     def load(self):
-        weight = self.conf.get_int('default_weight', 5)
+        weight = self.conf.get_int('default-weight', 5)
         source_list = []
 
         if not os.path.exists(self.save_file):
@@ -192,7 +192,7 @@ class RecentQueue(list):
 
         # print photo.get('page_url') or photo.get('url')
         self.history.add(photo)
-        num = self.conf.get_int('recents/queue_number', 30)
+        num = 30 # FIXME self.conf.get_int('/recents/queue_number', 30)
         if len(self) > num:
             self.pop(0)
 
@@ -214,7 +214,8 @@ class RecentQueue(list):
                 os.remove(cache_fullpath)
         
     def menu_item(self):
-        num = self.conf.get_int('recents/queue_menu_number', 6) * -1
+#        num = self.conf.get_int('/recents/queue_menu_number', 6) * -1
+        num = 6 * -1 #FIXME
         return self[num:]
 
     def clear_cache(self):

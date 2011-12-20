@@ -28,17 +28,17 @@ class Preferences(object):
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
-        width = self.conf.get_int('prefs_width', -1)
-        height = self.conf.get_int('prefs_height', -1)
+        width = self.conf.get_int('prefs-width', -1)
+        height = self.conf.get_int('prefs-height', -1)
         self.prefs.set_default_size(width, height)
 
         self._set_spinbutton_value('spinbutton1', 'interval', 30)
-        self._set_spinbutton_value('spinbutton2', 'interval_fullscreen', 10)
-        self._set_spinbutton_value('spinbutton_w', 'max_width', 400)
-        self._set_spinbutton_value('spinbutton_h', 'max_height', 300)
+        self._set_spinbutton_value('spinbutton2', 'interval-fullscreen', 10)
+        self._set_spinbutton_value('spinbutton_w', 'max-width', 400)
+        self._set_spinbutton_value('spinbutton_h', 'max-height', 300)
 
         checkbutton1 = gui.get_object('checkbutton1')
-        sticky = self.conf.get_bool('window_sticky', False)
+        sticky = self.conf.get_bool('window-sticky', False)
         checkbutton1.set_active(sticky)
 
         checkbutton2 = gui.get_object('checkbutton2')
@@ -51,10 +51,10 @@ class Preferences(object):
             gui, "treeview1", self.photolist, self.prefs, self.plugin_liststore)
         self.plugins_list = PluginTreeView(
             gui, "treeview2", self.plugin_liststore, self.prefs)
-        if self.conf.get_bool('window_sticky'):
+        if self.conf.get_bool('window-sticky'):
             self.prefs.stick()
 
-        recent = self.conf.get_int('recents/preferences')
+        recent = None # self.conf.get_int('recents/preferences') FIXME
         if recent:
             gui.get_object('notebook1').set_current_page(recent)
         self.prefs.show_all()
@@ -82,19 +82,19 @@ class Preferences(object):
 
     def _interval_fullscreen_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('interval_fullscreen', val)
+        self.conf.set_int('interval-fullscreen', val)
 
     def _width_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('max_width', val)
+        self.conf.set_int('max-width', val)
 
     def _height_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('max_height', val)
+        self.conf.set_int('max-height', val)
 
     def _sticky_toggled_cb(self, widget):
         sticky = widget.get_active()
-        self.conf.set_bool('window_sticky', sticky)
+        self.conf.set_bool('window-sticky', sticky)
 
     def _autostart_toggled_cb(self, widget):
         state = widget.get_active()
@@ -102,11 +102,11 @@ class Preferences(object):
 
     def _close_cb(self, widget):
         page = self.notebook.get_current_page()
-        self.conf.set_int('recents/preferences', page)
+        # self.conf.set_int('recents/preferences', page) # FIXME
 
         width, height = self.prefs.get_size()
-        self.conf.set_int('prefs_width', width)
-        self.conf.set_int('prefs_height', height)
+        self.conf.set_int('prefs-width', width)
+        self.conf.set_int('prefs-height', height)
 
         self.photolist.save_gconf()
         self.plugin_liststore.save_gconf()

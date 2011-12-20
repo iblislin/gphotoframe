@@ -3,7 +3,7 @@ import re
 from urlparse import urlparse
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Gio
 import random
 
 from ... import constants
@@ -28,7 +28,9 @@ class PluginBase(object):
 
     def get_auth_status(self):
         if hasattr(self, 'auth'):
-            auth = GConf().get_string(self.auth)
+            settings = Gio.Settings.new('org.gnome.gphotoframe.plugins.'
+                                        + self.auth_path)
+            auth = settings.get_strings(self.auth_key)
             return auth if auth else _('Not Authenticated')
         else:
             return None
@@ -166,7 +168,9 @@ class Photo(dict):
         return False
 
     def get_title(self):
-        has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
+        # FIXME
+        #has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
+        has_suffix = True
         title = self['title'] or ''
 
         if not has_suffix:

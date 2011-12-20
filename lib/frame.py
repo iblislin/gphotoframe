@@ -1,6 +1,6 @@
 from __future__ import division
 
-from gi.repository import Gtk, Gdk, GObject, GLib
+from gi.repository import Gtk, Gdk, GObject, GLib, Gio
 
 import constants
 from image import *
@@ -36,12 +36,15 @@ class PhotoFrame(object):
         gui = Gtk.Builder()
         gui.add_objects_from_file(constants.UI_FILE, ["window"])
 
-        self.conf = GConf()
-        self.conf.set_notify_add('window_sticky', self._change_sticky_cb)
-        self.conf.set_notify_add('window_fix', self._change_window_fix_cb)
-        self.conf.set_notify_add('fullscreen', self._change_fullscreen_cb)
-        self.conf.set_notify_add('border_color', self._set_border_color)
-
+        self.conf = GConf() # FIXME
+        self.settings = Gio.Settings.new('org.gnome.gphotoframe')
+        self.settings.connect("changed::fullscreen", 
+                              self._change_fullscreen_cb)
+        self.settings.connect("changed::window-sticky", self._change_sticky_cb)
+        self.settings.connect("changed::window-fix", 
+                              self._change_window_fix_cb)
+        self.settings.connect("changed::border-color", 
+                              self._set_border_color)
 
         # a workaround for Xfwm bug (Issue #97)
         gravity = Gdk.Gravity.NORTH_WEST \
@@ -51,7 +54,7 @@ class PhotoFrame(object):
         self.window = gui.get_object('window')
         self.window.set_gravity(gravity)
 
-        if self.conf.get_bool('window_sticky'):
+        if self.conf.get_bool('window-sticky'):
             self.window.stick()
         self._set_window_state()
         self._set_window_position()
@@ -104,8 +107,8 @@ class PhotoFrame(object):
         return hasattr(self, 'screensaver')
 
     def _set_window_position(self):
-        self.window.move(self.conf.get_int('root_x', 0),
-                         self.conf.get_int('root_y', 0))
+        self.window.move(self.conf.get_int('root-x', 0),
+                         self.conf.get_int('root-y', 0))
         self.window.resize(1, 1)
         self.window.show_all()
         self.window.get_position()
@@ -119,7 +122,7 @@ class PhotoFrame(object):
         self._set_border_color()
 
     def _set_border_color(self, *args):
-        color = self.conf.get_string('border_color')
+        color = self.conf.get_string('border-color')
         if color:
             self.ebox.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(color))
 
@@ -131,9 +134,9 @@ class PhotoFrame(object):
 
     def _set_window_state(self):
         is_bool = self.conf.get_bool
-        if is_bool('window_fix'):
+        if is_bool('window-fix'):
             self.window.set_type_hint(self.fixed_window_hint)
-        if is_bool('window_keep_below', True) or is_bool('window_fix'):
+        if is_bool('window-keep-below', True) or is_bool('window-fix'):
             self.window.set_keep_below(True)
 
     def _set_accelerator(self):
@@ -199,7 +202,7 @@ class PhotoFrame(object):
 #            return True
         self.photoimage.on_leave_cb(widget, event)
 
-        if not self.conf.get_bool('window_fix'):
+        if not self.conf.get_bool('window-fix'):
             x, y = widget.get_position()
             w, h = widget.get_size()
 
@@ -207,14 +210,14 @@ class PhotoFrame(object):
                 x += w / 2
                 y += h / 2
 
-            self.conf.set_int( 'root_x', x)
-            self.conf.set_int( 'root_y', y)
+            self.conf.set_int('root-x', x)
+            self.conf.set_int('root-y', y)
 
         return False
 
-    def _change_window_fix_cb(self, client, id, entry, data):
+    def _change_window_fix_cb(self, settings, key):
         hint = self.fixed_window_hint \
-            if entry.value.get_bool() else Gdk.WindowTypeHint.NORMAL
+            if settings.get_boolean(key) else Gdk.WindowTypeHint.NORMAL
 
         if hint == self.window.get_type_hint(): return
 
@@ -222,30 +225,32 @@ class PhotoFrame(object):
         self.window.set_type_hint(hint)
         self.window.show()
 
-        is_below = True if self.conf.get_bool('window_fix') \
-            else self.conf.get_bool('window_keep_below', True)
+        is_below = True if self.conf.get_bool('window-fix') \
+            else self.conf.get_bool('window-keep-below', True)
         self.window.set_keep_below(is_below)
 
         if hint == Gdk.WindowTypeHint.NORMAL:
             if self.window.get_gravity() == Gdk.Gravity.CENTER:
                 border = self.photoimage.window_border
-                x = self.conf.get_int('root_x') - self.photoimage.w / 2
-                y = self.conf.get_int('root_y') - self.photoimage.h / 2
+                x = self.conf.get_int('root-x') - self.photoimage.w / 2
+                y = self.conf.get_int('root-y') - self.photoimage.h / 2
                 self.window.move(int(x - border), int(y - border))
             else:
                 # a workaround for Xfwm bug (Issue #97)
-                x = self.conf.get_int('root_x')
-                y = self.conf.get_int('root_y')
+                x = self.conf.get_int('root-x')
+                y = self.conf.get_int('root-y')
                 self.window.move(int(x), int(y))
 
-    def _change_fullscreen_cb(self, client, id, entry, data):
-        if entry.value.get_bool():
+    def _change_fullscreen_cb(self, settings, key):
+        print settings, key
+        val = settings.get_boolean(key)
+        if val:
             self.fullframe = PhotoFrameFullScreen(self.photolist)
             photo = self.photoimage.photo
             self.fullframe.set_photo(photo)
 
-    def _change_sticky_cb(self, client, id, entry, data):
-        if entry.value.get_bool():
+    def _change_sticky_cb(self, settings, key):
+        if settings.get_boolean(key):
             self.window.stick()
         else:
             self.window.unstick()
@@ -284,11 +289,11 @@ class PhotoFrameFullScreen(PhotoFrame):
     def _save_geometry_cb(self, widget, event):
         self.photoimage.on_leave_cb(widget, event)
 
-    def _change_window_fix_cb(self, client, id, entry, data):
+    def _change_window_fix_cb(self, settings, key):
         pass
 
-    def _change_fullscreen_cb(self, client, id, entry, data):
-        if not entry.value.get_bool():
+    def _change_fullscreen_cb(self, settings, key):
+        if not settings.get_boolean(key):
             self.window.destroy()
 
     def _keypress_cb(self, widget, event):

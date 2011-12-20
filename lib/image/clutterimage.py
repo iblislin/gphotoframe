@@ -49,7 +49,7 @@ class PhotoImageClutter(PhotoImage):
         return  [cls(self.stage, self.tooltip) for cls in actor_class]
 
     def _get_border_color(self):
-        return self.conf.get_string('border_color') or '#edeceb'
+        return self.conf.get_string('border-color') or '#edeceb'
 
     def _set_photo_image(self, pixbuf):
         self.window_border = 0
@@ -66,7 +66,7 @@ class PhotoImageClutter(PhotoImage):
             actor.set_icon(self, x, y)
 
     def _get_image_position(self):
-        border = self.conf.get_int('border_width', 5)
+        border = self.conf.get_int('border-width', 5)
         return border, border
 
     def clear(self):
