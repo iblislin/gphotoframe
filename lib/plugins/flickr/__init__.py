@@ -8,7 +8,6 @@ import random
 import time
 import json
 from gettext import gettext as _
-from gi.repository import Gio
 
 from ..base import *
 from ...settings import SETTINGS_FLICKR
@@ -27,8 +26,7 @@ class FlickrPlugin(base.PluginBase):
         self.name = 'Flickr'
         self.icon = FlickrIcon
         self.exif = FlickrEXIF
-        self.auth_path = 'flickr'
-        self.auth_key = 'user_name'
+        self.auth = [SETTINGS_FLICKR, 'user-name']
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.flickr.com/',

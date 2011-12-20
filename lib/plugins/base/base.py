@@ -29,10 +29,8 @@ class PluginBase(object):
 
     def get_auth_status(self):
         if hasattr(self, 'auth'):
-            # FIXME
-            settings = Gio.Settings.new('org.gnome.gphotoframe.plugins.'
-                                        + self.auth_path)
-            auth = settings.get_strings(self.auth_key)
+            settings, key = self.auth
+            auth = settings.get_string(key)
             return auth if auth else _('Not Authenticated')
         else:
             return None
