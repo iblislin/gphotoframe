@@ -1,4 +1,5 @@
 from gettext import gettext as _
+from gi.repository import Gio
 
 from ..base.ui import PhotoSourceUI, PhotoSourceOptionsUI
 from api import FlickrFactoryAPI
@@ -45,7 +46,8 @@ class PhotoSourceFlickrUI(PhotoSourceUI):
         keys.sort()
         label = [api for api in keys]
 
-        if not self.conf.get_string('plugins/flickr/nsid'):
+        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
+        if not conf.get_string('nsid'):
             label.remove(_('Your Groups'))
 
         return label
@@ -78,5 +80,5 @@ class PhotoSourceOptionsFlickrUI(PhotoSourceOptionsUI):
         self.checkbutton_flickr_id.set_sensitive(state)
 
     def _check_authorized(self):
-        return self.conf.get_string('plugins/flickr/nsid')
-
+        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
+        return conf.get_string('nsid')

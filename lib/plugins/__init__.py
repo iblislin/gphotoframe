@@ -74,8 +74,9 @@ class PluginListStore(Gtk.ListStore):
         self[row][0] = not self[row][0]
 
     def _load_gconf(self):
-        return self.conf.get_list('plugins/disabled')
+        return []
+        #return self.conf.get_list('plugins/disabled') FIXME
 
     def save_gconf(self):
         list = sorted([plugin[2] for plugin in self if not plugin[0]])
-        self.conf.set_list('plugins/disabled', list)
+        # FIXME self.conf.set_list('plugins/disabled', list)

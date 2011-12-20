@@ -8,7 +8,7 @@ import json
 import time
 import sys
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
@@ -27,7 +27,8 @@ class FacebookPlugin(base.PluginBase):
     def __init__(self):
         self.name = 'Facebook'
         self.icon = FacebookIcon
-        self.auth = 'plugins/facebook/full_name'
+        self.auth_path = 'facebook'
+        self.auth_key = 'full_name'
         self.info = { 'comments': _('Social Network Service'),
                       'copyright': 'Copyright © 2011 Yoshizimi Endo',
                       'website': 'http://www.facebook.com/',
@@ -43,6 +44,9 @@ class FacebookPhotoList(base.PhotoList):
 
         factory = FacebookAPIfactory()
         self.api = factory.create(target, self)
+        self.conf = Gio.Settings.new(
+            'org.gnome.gphotoframe.plugins.facebook')
+
 
     def prepare(self):
         if self.api:
@@ -89,7 +93,7 @@ class FacebookPhotoList(base.PhotoList):
             self.photos.append(photo)
 
     def _get_access_token(self):
-        token = self.conf.get_string('plugins/facebook/access_token')
+        token = self.conf.get_string('access-token')
         return '?access_token=%s' % token if token else ''
 
 class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
@@ -105,7 +109,10 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
     def _label(self):
         labels = [_('Albums'), _('News Feed'), _('Wall')]
-        if not self.conf.get_string('plugins/facebook/access_token'):
+
+        conf = Gio.Settings.new(
+            'org.gnome.gphotoframe.plugins.facebook')
+        if not conf.get_string('access-token'):
             labels.remove(_('News Feed'))
         return labels
 

@@ -8,9 +8,10 @@ import urllib
 from xml.etree import ElementTree as etree
 
 from gettext import gettext as _
+from gi.repository import Gio
 
 from ...utils.keyring import Keyring
-from ...utils.config import GConf
+#from ...utils.config import GConf
 from ...utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 
 class TumblrAccessBase(object):

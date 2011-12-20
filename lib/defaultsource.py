@@ -18,8 +18,8 @@ def set_default_photo_source():
 
         monitor_w, monitor_h = get_geometry_first_monitor()
         if monitor_w > 800 and monitor_h > 600:
-            conf.set_int('root_x', monitor_w - 225)
-            conf.set_int('root_y', 200)
+            conf.set_int('root-x', monitor_w - 225)
+            conf.set_int('root-y', 200)
 
         folder = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
         source = {'Flickr': _('Interestingness'),

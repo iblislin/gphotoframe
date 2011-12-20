@@ -8,6 +8,6 @@ class NetworkStateCustom(NetworkState):
         self.conf = GConf()
 
     def check(self):
-        use_conn = self.conf.get_bool('use_conn', False)
+        use_conn = self.conf.get_bool('use-conn', False)
         state = super(NetworkStateCustom, self).check() if use_conn else True
         return state
