@@ -6,12 +6,11 @@ from gi.repository import Gtk, GdkPixbuf, GObject, GLib
 
 import plugins
 from constants import CACHE_DIR, CONFIG_HOME
-from settings import SETTINGS_RECENTS
+from settings import SETTINGS, SETTINGS_RECENTS
 from frame import PhotoFrameFactory
 from history import HistoryFactory
 from history.history import History
 from history.history import HistoryDB
-from utils.config import GConf
 from utils.wrandom import WeightedRandom
 from dbus.idlecheck import SessionIdle
 
@@ -27,7 +26,6 @@ class PhotoListStore(Gtk.ListStore):
         super(PhotoListStore, self).__init__(
             GdkPixbuf.Pixbuf, str, str, str, int, object, object)
 
-        self.conf = GConf()
         self._delay_time = 0
 
         self.save = SaveListStore()
@@ -95,9 +93,9 @@ class PhotoListStore(Gtk.ListStore):
             interval = 3
             # print "skip!"
         elif frame.is_fullscreen() or frame.is_screensaver():
-            interval = self.conf.get_int('interval-fullscreen', 10)
+            interval = SETTINGS.get_int('interval-fullscreen')
         else:
-            interval = self.conf.get_int('interval', 30)
+            interval = SETTINGS.get_int('interval')
 
         self._timer = GLib.timeout_add_seconds(interval, self._start_timer)
         return False
@@ -132,11 +130,11 @@ class PhotoListStore(Gtk.ListStore):
 class SaveListStore(object):
 
     def __init__(self):
-        self.conf = GConf()
+
         self.save_file = os.path.join(CONFIG_HOME, 'photosource.json')
 
     def load(self):
-        weight = self.conf.get_int('default-weight', 5)
+        weight = SETTINGS.get_int('default-weight')
         source_list = []
 
         if not os.path.exists(self.save_file):
@@ -183,7 +181,6 @@ class RecentQueue(list):
 
     def __init__(self):
         super(RecentQueue, self).__init__()
-        self.conf = GConf()
         self.clear_cache()
         self.history = HistoryFactory().create()
 

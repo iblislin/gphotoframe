@@ -6,10 +6,10 @@ import constants
 from image import *
 from settings import SETTINGS
 from menu import PopUpMenu, PopUpMenuFullScreen
-from utils.config import GConf
+from settings import SETTINGS
 from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
 
-GConf().set_bool('fullscreen', False)
+SETTINGS.set_boolean('fullscreen', False)
 
 from utils.iconimage import IconImage
 # FIXME
@@ -37,7 +37,6 @@ class PhotoFrame(object):
         gui = Gtk.Builder()
         gui.add_objects_from_file(constants.UI_FILE, ["window"])
 
-        self.conf = GConf() # FIXME
         SETTINGS.connect("changed::fullscreen", self._change_fullscreen_cb)
         SETTINGS.connect("changed::window-sticky", self._change_sticky_cb)
         SETTINGS.connect("changed::window-fix", self._change_window_fix_cb)
@@ -45,13 +44,13 @@ class PhotoFrame(object):
 
         # a workaround for Xfwm bug (Issue #97)
         gravity = Gdk.Gravity.NORTH_WEST \
-            if self.conf.get_string('gravity') == 'NORTH_WEST' \
+            if SETTINGS.get_string('gravity') == 'NORTH_WEST' \
             else Gdk.Gravity.CENTER
 
         self.window = gui.get_object('window')
         self.window.set_gravity(gravity)
 
-        if self.conf.get_bool('window-sticky'):
+        if SETTINGS.get_boolean('window-sticky'):
             self.window.stick()
         self._set_window_state()
         self._set_window_position()
@@ -104,8 +103,8 @@ class PhotoFrame(object):
         return hasattr(self, 'screensaver')
 
     def _set_window_position(self):
-        self.window.move(self.conf.get_int('root-x', 0),
-                         self.conf.get_int('root-y', 0))
+        self.window.move(SETTINGS.get_int('root-x'),
+                         SETTINGS.get_int('root-y'))
         self.window.resize(1, 1)
         self.window.show_all()
         self.window.get_position()
@@ -119,7 +118,7 @@ class PhotoFrame(object):
         self._set_border_color()
 
     def _set_border_color(self, *args):
-        color = self.conf.get_string('border-color')
+        color = SETTINGS.get_string('border-color')
         if color:
             self.ebox.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(color))
 
@@ -130,10 +129,10 @@ class PhotoFrame(object):
         self.popup_menu = PopUpMenu(self.photolist, self)
 
     def _set_window_state(self):
-        is_bool = self.conf.get_bool
+        is_bool = SETTINGS.get_boolean
         if is_bool('window-fix'):
             self.window.set_type_hint(self.fixed_window_hint)
-        if is_bool('window-keep-below', True) or is_bool('window-fix'):
+        if is_bool('window-keep-below') or is_bool('window-fix'):
             self.window.set_keep_below(True)
 
     def _set_accelerator(self):
@@ -171,8 +170,8 @@ class PhotoFrame(object):
         pass
 
     def _toggle_fullscreen(self, *args):
-        state = not self.conf.get_bool('fullscreen')
-        self.conf.set_bool('fullscreen', state)
+        state = not SETTINGS.get_boolean('fullscreen')
+        SETTINGS.set_boolean('fullscreen', state)
 
     def _check_button_cb(self, widget, event):
         if event.button == 1:
@@ -199,7 +198,7 @@ class PhotoFrame(object):
 #            return True
         self.photoimage.on_leave_cb(widget, event)
 
-        if not self.conf.get_bool('window-fix'):
+        if not SETTINGS.get_boolean('window-fix'):
             x, y = widget.get_position()
             w, h = widget.get_size()
 
@@ -207,8 +206,8 @@ class PhotoFrame(object):
                 x += w / 2
                 y += h / 2
 
-            self.conf.set_int('root-x', x)
-            self.conf.set_int('root-y', y)
+            SETTINGS.set_int('root-x', x)
+            SETTINGS.set_int('root-y', y)
 
         return False
 
@@ -222,20 +221,20 @@ class PhotoFrame(object):
         self.window.set_type_hint(hint)
         self.window.show()
 
-        is_below = True if self.conf.get_bool('window-fix') \
-            else self.conf.get_bool('window-keep-below', True)
+        is_below = True if SETTINGS.get_boolean('window-fix') \
+            else SETTINGS.get_boolean('window-keep-below', True)
         self.window.set_keep_below(is_below)
 
         if hint == Gdk.WindowTypeHint.NORMAL:
             if self.window.get_gravity() == Gdk.Gravity.CENTER:
                 border = self.photoimage.window_border
-                x = self.conf.get_int('root-x') - self.photoimage.w / 2
-                y = self.conf.get_int('root-y') - self.photoimage.h / 2
+                x = SETTINGS.get_int('root-x') - self.photoimage.w / 2
+                y = SETTINGS.get_int('root-y') - self.photoimage.h / 2
                 self.window.move(int(x - border), int(y - border))
             else:
                 # a workaround for Xfwm bug (Issue #97)
-                x = self.conf.get_int('root-x')
-                y = self.conf.get_int('root-y')
+                x = SETTINGS.get_int('root-x')
+                y = SETTINGS.get_int('root-y')
                 self.window.move(int(x), int(y))
 
     def _change_fullscreen_cb(self, settings, key):
@@ -295,7 +294,7 @@ class PhotoFrameFullScreen(PhotoFrame):
 
     def _keypress_cb(self, widget, event):
         if event.keyval == Gdk.KEY_Escape:
-            self.conf.set_bool('fullscreen', False)
+            SETTINGS.set_boolean('fullscreen', False)
 
 class PhotoFrameScreenSaver(PhotoFrame):
 

@@ -2,9 +2,8 @@ import os
 from gi.repository import Gtk, Gdk
 
 from ..constants import SHARED_DATA_DIR
-from ..settings import SETTINGS_RECENTS
+from ..settings import SETTINGS, SETTINGS_RECENTS
 from ..plugins import PluginListStore
-from ..utils.config import GConf
 from ..utils.autostart import AutoStart
 
 from plugin import PluginTreeView
@@ -16,7 +15,6 @@ class Preferences(object):
 
     def __init__(self, photolist):
         self.photolist = photolist
-        self.conf = GConf()
         self.is_show = False
 
     def start(self, widget):
@@ -29,8 +27,8 @@ class Preferences(object):
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
-        width = self.conf.get_int('prefs-width', -1)
-        height = self.conf.get_int('prefs-height', -1)
+        width = SETTINGS.get_int('prefs-width')
+        height = SETTINGS.get_int('prefs-height')
         self.prefs.set_default_size(width, height)
 
         self._set_spinbutton_value('spinbutton1', 'interval', 30)
@@ -39,7 +37,7 @@ class Preferences(object):
         self._set_spinbutton_value('spinbutton_h', 'max-height', 300)
 
         checkbutton1 = gui.get_object('checkbutton1')
-        sticky = self.conf.get_bool('window-sticky', False)
+        sticky = SETTINGS.get_boolean('window-sticky')
         checkbutton1.set_active(sticky)
 
         checkbutton2 = gui.get_object('checkbutton2')
@@ -52,7 +50,7 @@ class Preferences(object):
             gui, "treeview1", self.photolist, self.prefs, self.plugin_liststore)
         self.plugins_list = PluginTreeView(
             gui, "treeview2", self.plugin_liststore, self.prefs)
-        if self.conf.get_bool('window-sticky'):
+        if SETTINGS.get_boolean('window-sticky'):
             self.prefs.stick()
 
         recent = SETTINGS_RECENTS.get_int('preferences')
@@ -79,23 +77,23 @@ class Preferences(object):
 
     def _interval_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('interval', val)
+        SETTINGS.set_int('interval', val)
 
     def _interval_fullscreen_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('interval-fullscreen', val)
+        SETTINGS.set_int('interval-fullscreen', val)
 
     def _width_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('max-width', val)
+        SETTINGS.set_int('max-width', val)
 
     def _height_changed_cb(self, widget):
         val = widget.get_value_as_int()
-        self.conf.set_int('max-height', val)
+        SETTINGS.set_int('max-height', val)
 
     def _sticky_toggled_cb(self, widget):
         sticky = widget.get_active()
-        self.conf.set_bool('window-sticky', sticky)
+        SETTINGS.set_boolean('window-sticky', sticky)
 
     def _autostart_toggled_cb(self, widget):
         state = widget.get_active()
@@ -106,8 +104,8 @@ class Preferences(object):
         SETTINGS_RECENTS.set_int('preferences', page)
 
         width, height = self.prefs.get_size()
-        self.conf.set_int('prefs-width', width)
-        self.conf.set_int('prefs-height', height)
+        SETTINGS.set_int('prefs-width', width)
+        SETTINGS.set_int('prefs-height', height)
 
         self.photolist.save_gconf()
         self.plugin_liststore.save_gconf()
@@ -122,5 +120,5 @@ class Preferences(object):
 
     def _set_spinbutton_value(self, widget, key, default_value):
         spinbutton = self.gui.get_object(widget)
-        value = self.conf.get_int(key, default_value)
+        value = SETTINGS.get_int(key) ## FIXME default_value
         spinbutton.set_value(value)

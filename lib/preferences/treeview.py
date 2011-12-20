@@ -1,16 +1,12 @@
 import os
 
-from gi.repository import Gtk
-from gi.repository import Pango
-
-from ..utils.config import GConf
+from gi.repository import Gtk, Pango
 
 
 class PreferencesTreeView(object):
     """Preferences Tree View"""
 
     def __init__(self, gui, widget, liststore, parent):
-        self.conf = GConf()
         self.gui = gui
         self.parent = parent
         self.liststore = liststore
