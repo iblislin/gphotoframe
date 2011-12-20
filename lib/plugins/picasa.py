@@ -12,6 +12,7 @@ from gi.repository import Gtk, Gio
 
 from base import *
 from ..constants import APP_NAME, VERSION
+from ..settings import SETTINGS_PICASA
 from ..utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
@@ -35,22 +36,19 @@ class PicasaPlugin(base.PluginBase):
                       'authors': ['Yoshizimi Endo'], }
 
     def is_available(self):
-        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.picasa')
-        username = conf.get_string('user-id')
+        username = SETTINGS_PICASA.get_string('user-id')
         return bool(username)
 
 class PicasaPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = []
-        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.picasa')
-
-        self.username = conf.get_string('user-id')
+        self.username = SETTINGS_PICASA.get_string('user-id')
         if self.username:
             key = Keyring('Google Account', protocol='http')
             key.get_passwd_async(self.username, self._google_auth_cb)
 
-            interval_min = conf.get_int('interval') or 60
+            interval_min = SETTINGS_PICASA.get_int('interval') or 60
             self._start_timer(interval_min)
 
     def _google_auth_cb(self, identity):
@@ -162,8 +160,7 @@ class PicasaPhotoList(base.PhotoList):
 class PicasaPhoto(base.Photo):
 
     def is_my_photo(self):
-        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.picasa')
-        user_name = conf.get_string('user-id')
+        user_name = SETTINGS_PICASA.get_string('user-id')
         result = user_name and user_name == self['owner_name']
         return result
 
@@ -203,6 +200,7 @@ class PluginPicasaDialog(ui.PluginDialog):
         self.key_server = 'Google Account'
 
     def run(self):
+        # FIXME
         user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
         self.passwd = None
         self.entry3 = self.gui.get_object('entry3')

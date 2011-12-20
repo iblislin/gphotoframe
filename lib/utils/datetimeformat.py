@@ -1,10 +1,9 @@
 import time
-from gi.repository import Gio
+from ..settings import SETTINGS_FORMAT
 
 def get_formatted_datatime(date):
 
-    conf = Gio.Settings.new('org.gnome.gphotoframe.format')
-    format = conf.get_string('date-format') or "%x"
+    format = SETTINGS_FORMAT.get_string('date-format') or "%x"
 
     result = date if isinstance(date, unicode) else \
         time.strftime(format, time.gmtime(date))

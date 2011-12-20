@@ -8,16 +8,15 @@ import urllib
 from xml.etree import ElementTree as etree
 
 from gettext import gettext as _
-from gi.repository import Gio
 
+from ...settings import SETTINGS_TUMBLR
 from ...utils.keyring import Keyring
-#from ...utils.config import GConf
 from ...utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 
 class TumblrAccessBase(object):
 
     def access(self):
-        username = GConf().get_string('plugins/tumblr/user_id')
+        username = SETTINGS_TUMBLR.get_string('user-id')
         if username:
             key = Keyring('Tumblr', protocol='http')
             key.get_passwd_async(username, self._auth_cb)
@@ -112,5 +111,5 @@ class TumblrAuthenticate(TumblrAccessBase):
         for tumblelog in tree.findall('tumblelog'):
             if tumblelog.attrib.get('is-primary'):
                 name = tumblelog.attrib.get('name')
-                GConf().set_string('plugins/tumblr/blog_name', name)
+                SETTINGS_TUMBLR.set_string('blog-name', name)
                 break

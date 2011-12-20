@@ -4,6 +4,7 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2011-12-20 Version 0.1.7.2
 # 2011-04-10 Version 0.1.7.1
 # 2011-03-11 Version 0.1.7
 # 2011-02-22 Version 0.1.6
@@ -21,6 +22,7 @@ import time
 
 from gettext import gettext as _
 
+from ..settings import SETTINGS_SHOTWELL
 from ..utils.sqldb import SqliteDB
 from ..utils.iconimage import LocalIconImage
 from ..utils.checkinstalled import check_installed_in_path
@@ -128,7 +130,7 @@ class PhotoSourceShotwellUI(ui.PhotoSourceUI):
     def make(self):
         super(PhotoSourceShotwellUI, self).make()
         self._set_target_sensitive(_("_Tag:"), True)
-        state = self.conf.get_bool('plugins/shotwell/use_description', False)
+        state = SETTINGS_SHOTWELL.get_boolean('use-description', False)
         self._set_argument_sensitive(label=_('_Description:'), state=state)
 
     def get_options(self):

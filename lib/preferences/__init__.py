@@ -2,6 +2,7 @@ import os
 from gi.repository import Gtk, Gdk
 
 from ..constants import SHARED_DATA_DIR
+from ..settings import SETTINGS_RECENTS
 from ..plugins import PluginListStore
 from ..utils.config import GConf
 from ..utils.autostart import AutoStart
@@ -54,7 +55,7 @@ class Preferences(object):
         if self.conf.get_bool('window-sticky'):
             self.prefs.stick()
 
-        recent = None # self.conf.get_int('recents/preferences') FIXME
+        recent = SETTINGS_RECENTS.get_int('preferences')
         if recent:
             gui.get_object('notebook1').set_current_page(recent)
         self.prefs.show_all()
@@ -102,7 +103,7 @@ class Preferences(object):
 
     def _close_cb(self, widget):
         page = self.notebook.get_current_page()
-        # self.conf.set_int('recents/preferences', page) # FIXME
+        SETTINGS_RECENTS.set_int('preferences', page)
 
         width, height = self.prefs.get_size()
         self.conf.set_int('prefs-width', width)

@@ -11,6 +11,7 @@ from gettext import gettext as _
 from gi.repository import Gio
 
 from ..base import *
+from ...settings import SETTINGS_FLICKR
 from ...utils.iconimage import WebIconImage
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from api import *
@@ -41,7 +42,6 @@ class FlickrPhotoList(base.PhotoList):
         self.page_list = FlickrAPIPages(options)
         self.photos_other_page = []
         self.argument_group_name = None
-        self.conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
   
     def _random_choice(self):
         only_latest = self.options.get('only_latest_roll')
@@ -57,7 +57,7 @@ class FlickrPhotoList(base.PhotoList):
         return random.choice(target_list)
 
     def _get_threshold(self):
-        min = self.conf.get_int('latest-photos-min-rate') or 10
+        min = SETTINGS_FLICKR.get_int('latest-photos-min-rate') or 10
         original = 100.0 / self.page_list.pages
         threshold = original if original > min else min
 
@@ -181,7 +181,7 @@ class FlickrPhoto(base.Photo):
         return url
 
     def is_my_photo(self):
-        user_name = self.conf.get_string('plugins/flickr/user_name')
+        user_name = SETTINGS_FLICKR.get_string('user-name')
         result = user_name and user_name == self['owner_name']
         return result
 

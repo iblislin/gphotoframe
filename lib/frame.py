@@ -1,9 +1,10 @@
 from __future__ import division
 
-from gi.repository import Gtk, Gdk, GObject, GLib, Gio
+from gi.repository import Gtk, Gdk, GObject, GLib
 
 import constants
 from image import *
+from settings import SETTINGS
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.config import GConf
 from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
@@ -37,14 +38,10 @@ class PhotoFrame(object):
         gui.add_objects_from_file(constants.UI_FILE, ["window"])
 
         self.conf = GConf() # FIXME
-        self.settings = Gio.Settings.new('org.gnome.gphotoframe')
-        self.settings.connect("changed::fullscreen", 
-                              self._change_fullscreen_cb)
-        self.settings.connect("changed::window-sticky", self._change_sticky_cb)
-        self.settings.connect("changed::window-fix", 
-                              self._change_window_fix_cb)
-        self.settings.connect("changed::border-color", 
-                              self._set_border_color)
+        SETTINGS.connect("changed::fullscreen", self._change_fullscreen_cb)
+        SETTINGS.connect("changed::window-sticky", self._change_sticky_cb)
+        SETTINGS.connect("changed::window-fix", self._change_window_fix_cb)
+        SETTINGS.connect("changed::border-color", self._set_border_color)
 
         # a workaround for Xfwm bug (Issue #97)
         gravity = Gdk.Gravity.NORTH_WEST \

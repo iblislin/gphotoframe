@@ -5,14 +5,13 @@ from gettext import gettext as _
 from gi.repository import Gio
 
 from ..utils.datetimeformat import get_formatted_datatime
-from ..utils.config import GConf
+from ..settings import SETTINGS_FORMAT
 
 
 class ToolTip(object):
 
     def __init__(self, widget):
         self.widget = widget
-        self.conf = Gio.Settings.new('org.gnome.gphotoframe.format')
         self.icon = False
         self.photo = None
 
@@ -60,9 +59,9 @@ class ToolTip(object):
                 text = ( '/'.join(target) if target[1] and 
                          target[1] != escape(owner) else target[0] )
                 tip += "%s\n" % escape(text)
-            if location and self.conf.get_bool('location_on_tooltip'):
+            if location and SETTINGS_FORMAT.get_boolean('location-on-tooltip'):
                 tip += "%s\n" % escape(location)
-            if model and self.conf.get_bool('model_on_tooltip'):
+            if model and SETTINGS_FORMAT.get_bool('model-on-tooltip'):
                 tip += "%s\n" % escape(model)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)

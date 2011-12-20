@@ -16,7 +16,7 @@ from ..base import *
 from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
 from ..flickr import FlickrFav
 from ...utils.iconimage import WebIconImage
-from ...utils.config import GConf
+from ...settings import SETTINGS_TUMBLR
 
 def info():
     return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
@@ -46,14 +46,14 @@ class TumblrPhoto(base.Photo):
 
     def can_share(self):
         owner = self.get('owner_name')
-        tumblelog = self.conf.get_string('plugins/tumblr/blog_name')
+        tumblelog = SETTINGS_TUMBLR.get_string('blog-name')
         can_share = super(TumblrPhoto, self).can_share()
 
         return can_share and (owner and owner != tumblelog)
 
     def is_enable_ban(self):
         return self.can_share() or \
-            self.conf.get_bool('plugins/tumblr/disable_delete_post', False)
+            SETTINGS_TUMBLR.get_boolean('disable-delete-post')
 
 class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
@@ -62,8 +62,8 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
         super(TumblrPhotoList, self).access()
 
         # only in v.1.4
-        userid = self.conf.get_string('plugins/tumblr/user_id')
-        blog_name = self.conf.get_string('plugins/tumblr/blog_name')
+        userid = SETTINGS_TUMBLR.get_string('user-id')
+        blog_name = SETTINGS_TUMBLR.get_string('blog-name')
         if userid and not blog_name:
             auth = TumblrAuthenticate()
             auth.access()
@@ -91,15 +91,15 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             return
 
         # print url
-        result = self._get_url_with_twisted(url + urllib.urlencode(values))
-        interval_min = self.conf.get_int('plugins/tumblr/interval', 30) \
+        result = self._get_url_with_twisted(str(url) + urllib.urlencode(values))
+        interval_min = SETTINGS_TUMBLR.get_int('interval') \
              if result else 5
         self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
         tree = etree.fromstring(data)
         re_nl = re.compile('\n+')
-        my_tumblelog = self.conf.get_string('plugins/tumblr/blog_name')
+        my_tumblelog = SETTINGS_TUMBLR.get_string('blog-name')
 
         if self.target == _('User'):
             meta = tree.find('tumblelog')
@@ -162,7 +162,7 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
     def _check_flickr_link(self, page_url, photo_link_url, target_detail = ''):
 
         if photo_link_url and photo_link_url.find('flickr.com') > 0 \
-                and self.conf.get_bool('plugins/tumblr/enable_flickr_link') :
+                and SETTINGS_TUMBLR.get_boolean('enable-flickr-link'):
 
             target_detail = 'Flickr'
 
@@ -187,7 +187,7 @@ class TumblrTrash(trash.Ban):
 
     def check_delete_from_catalog(self):
         return not bool(self.is_liked) or \
-            GConf().get_bool('plugins/tumblr/enable_ban_liked', False)
+            SETTINGS_TUMBLR.get_boolean('enable-ban-liked')
 
     def delete_from_catalog(self, photo):
         if photo.is_enable_ban():

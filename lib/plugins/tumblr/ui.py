@@ -8,7 +8,7 @@ from gettext import gettext as _
 
 from api import TumblrAuthenticate
 from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
-
+from ...settings import SETTINGS_TUMBLR
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
@@ -19,7 +19,7 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
         return label, state
 
     def _label(self):
-        if self.conf.get_string('plugins/tumblr/user_id'):
+        if SETTINGS_TUMBLR.get_string('user-id'):
             label = [_('Dashboard'), _('Likes'), _('User')]
         else:
             label = [_('User')]
