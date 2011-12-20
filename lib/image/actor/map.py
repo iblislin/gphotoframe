@@ -7,7 +7,7 @@ except ImportError:
 
 from base import Texture
 from ..animation import FadeAnimationTimeline
-from ...utils.config import GConf
+from ...settings import SETTINGS_UI_MAP
 
 class MapFactory(object):
 
@@ -47,7 +47,7 @@ class MapView(Champlain.View):
     def __init__(self):
         super(MapView, self).__init__()
 
-        uri = GConf().get_string('ui/map/source_uri')
+        uri = SETTINGS_UI_MAP.get_string('source-uri')
 
         if uri:
             source = Champlain.NetworkMapSource()

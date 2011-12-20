@@ -8,7 +8,7 @@ except ImportError:
     GtkClutter.Texture = Null()
 
 from ..animation import FadeAnimationTimeline
-from ...utils.config import GConf
+from ...settings import SETTINGS_UI
 
 class Texture(GtkClutter.Texture):
 
@@ -53,8 +53,7 @@ class IconTexture(Texture):
 
     def __init__(self, stage):
         super(IconTexture, self).__init__(stage)
-        self.conf = GConf()
-        self.has_animation = self.conf.get_bool('ui/animate_icons', True)
+        self.has_animation = SETTINGS_UI.get_boolean('animate-icons')
 
         if self.has_animation:
             self.set_opacity(0)
@@ -80,7 +79,6 @@ class IconTexture(Texture):
 class ActorIcon(object):
 
     def __init__(self):
-        self.conf = GConf()
         self._get_ui_data()
         self.icon_offset = 0
 
@@ -114,22 +112,20 @@ class ActorIcon(object):
         # print x, y, offset
         return x, y
 
-    def _set_ui_options(self, ui, state=False, position=0):
-        always_key = 'ui/%s/always_show' % ui
-        position_key = 'ui/%s/position' % ui
+    def _set_ui_options(self, settings, position=None):
+        self.is_shown_always = settings.get_boolean('always-show')
+        self.position = position if position else settings.get_int('position')
 
-        self.is_shown_always = self.conf.get_bool(always_key, state)
-        self.position = self.conf.get_int(position_key, position)
+        settings.connect("changed::always-show", 
+                         self._change_ui_always_show_cb)
+        settings.connect("changed::position", self._change_ui_position_cb)
 
-        self.conf.set_notify_add(always_key, self._change_ui_always_show_cb)
-        self.conf.set_notify_add(position_key, self._change_ui_position_cb)
-
-    def _change_ui_always_show_cb(self, client, id, entry, data):
-        self.is_shown_always = entry.value.get_bool()
+    def _change_ui_always_show_cb(self, settings, key):
+        self.is_shown_always = settings.get_boolean(key)
         self.show() if self.is_shown_always else self.hide()
 
-    def _change_ui_position_cb(self, client, id, entry, data):
-        self.position = entry.value.get_int()
+    def _change_ui_position_cb(self, settings, key):
+        self.position = settings.get_int(key)
 
     def _enter_cb(self, w, e, tooltip):
         pass

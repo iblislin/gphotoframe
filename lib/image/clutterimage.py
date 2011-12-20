@@ -10,6 +10,7 @@ from gi.repository import Gtk
 
 from actor import *
 from gtkimage import *
+from ..settings import SETTINGS, SETTINGS_UI
 
 class PhotoImageClutter(PhotoImage):
 
@@ -49,7 +50,7 @@ class PhotoImageClutter(PhotoImage):
         return  [cls(self.stage, self.tooltip) for cls in actor_class]
 
     def _get_border_color(self):
-        return self.conf.get_string('border-color') or '#edeceb'
+        return SETTINGS.get_string('border-color') or '#edeceb'
 
     def _set_photo_image(self, pixbuf):
         self.window_border = 0
@@ -66,7 +67,7 @@ class PhotoImageClutter(PhotoImage):
             actor.set_icon(self, x, y)
 
     def _get_image_position(self):
-        border = self.conf.get_int('border-width', 5)
+        border = SETTINGS.get_int('border-width')
         return border, border
 
     def clear(self):
@@ -100,7 +101,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         self.trash_actors += self.actors2[3:5]
         self.is_first = True # image1 or image2
 
-        self.has_animation = self.conf.get_bool('ui/animate_fullscreen', False)
+        self.has_animation = SETTINGS_UI.get_boolean('animate-fullscreen')
         if self.has_animation:
             self.photo_image.set_opacity(0)
 
@@ -156,7 +157,7 @@ class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen,
 
     def __init__(self, photoframe):
         super(PhotoImageClutterScreenSaver, self).__init__(photoframe)
-        if not self.conf.get_bool('ui/icons_on_screensaver', False):
+        if not SETTINGS_UI.get_boolean('icons-on-screensaver'):
             self.actors = []
 
     def check_mouse_on_window(self):

@@ -7,7 +7,6 @@ from gi.repository import Gtk, Gdk, GLib
 import random
 
 from ... import constants
-from ...utils.config import GConf
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy, urlget_with_autoproxy
 from ...utils.gnomescreensaver import is_screensaver_mode
 from ...dbus.networkstatecustom import NetworkStateCustom
@@ -148,7 +147,7 @@ class Photo(dict):
         return not self.is_local_file() and \
             not self.get('is_private') and \
             SETTINGS_TUMBLR.get_string('user-id') # \
-            # and SETTINGS_TUMBLR.get_bool('can-share')
+            # and SETTINGS_TUMBLR.get_boolean('can-share')
 
     def fav(self, new_rate):
         if self.get('fav'):
