@@ -19,6 +19,7 @@ import feedparser
 from gettext import gettext as _
 
 from base import *
+from settings import SETTINGS_RSS
 from ..utils.iconimage import LocalIconImage
 from ..utils.wrandom import WeightedRandom
 
@@ -43,8 +44,7 @@ class RSSPhotoList(base.PhotoList):
         url = self.argument
         result = self._get_url_with_twisted(url)
 
-        interval_min = self.conf.get_int('plugins/rss/interval', 60) \
-             if result else 5
+        interval_min = SETTINGS_RSS.get_int('interval') if result else 5
         self._start_timer(interval_min)
 
     def _random_choice(self):
@@ -94,7 +94,7 @@ class RSSPhotoList(base.PhotoList):
 
         self.raw_list = []
 
-        goal_std = self.conf.get_int('plugins/rss/standard_deviation', -1)
+        goal_std = SETTINGS_RSS.get_int('standard_deviation')
         num_list = [len(self.photos[i]) for i in self.photos]
 
         try:

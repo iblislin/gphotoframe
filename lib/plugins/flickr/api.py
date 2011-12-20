@@ -1,9 +1,8 @@
 import urllib
 import random
 from gettext import gettext as _
-from gi.repository import Gio
 
-from ...utils.config import GConf
+from ...settings import SETTINGS_FLICKR
 from auth import add_api_sig
 
 API_KEY = '343677ff5aa31f37042513d533293062'
@@ -31,7 +30,6 @@ class FlickrAPI(object):
 
     def __init__(self):
         self.nsid_conversion = True
-        self.conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
         self._set_method()
 
     def _set_method(self):
@@ -74,7 +72,7 @@ class FlickrAPI(object):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
-        user = arg or self.conf.get_string('nsid')
+        user = arg or SETTINGS_FLICKR.get_string('nsid')
         url = api.get_url('http://www.flickr.com/photos/%s/' % user) \
             if user else None
         return url
@@ -89,10 +87,10 @@ class FlickrAPI(object):
         return values
 
     def get_auth_token(self):
-        return self.conf.get_string('auth-token')
+        return SETTINGS_FLICKR.get_string('auth-token')
 
     def get_interval(self):
-        return self.conf.get_int('interval') or 60
+        return SETTINGS_FLICKR.get_int('interval') or 60
 
     def get_page_url(self, owner, id, group=None):
         url = "http://www.flickr.com/photos/%s/%s"
@@ -101,8 +99,7 @@ class FlickrAPI(object):
 class FlickrAuthFactory(object):
 
     def __init__(self):
-        conf = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
-        self.auth_token = conf.get_string('auth-token')
+        self.auth_token = SETTINGS_FLICKR.get_string('auth-token')
         self._set_method()
 
     def create(self, argument):
@@ -203,8 +200,7 @@ class FlickrMetaGroupAPI(object):
         return sensitive, label
 
     def get_interval(self):
-        settings = Gio.Settings.new('org.gnome.gphotoframe.plugins.flickr')
-        return settings.get_int('interval-for-meta-group') or 20
+        return SETTINGS_FLICKR.get_int('interval-for-meta-group') or 20
 
 class FlickrGroupAPI(FlickrAPI):
 
@@ -240,7 +236,7 @@ class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):
 
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrGroupList()
-        user = self.conf.get_string('nsid')
+        user = SETTINGS_FLICKR.get_string('nsid')
         url = api.get_url(user) if user else None
         return url
 

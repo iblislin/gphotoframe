@@ -14,6 +14,7 @@ from ..base import *
 from ..picasa import PhotoSourcePicasaUI
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.iconimage import WebIconImage
+from ...settings import SETTINGS_FACEBOOK
 from api import FacebookAPIfactory
 from authdialog import PluginFacebookDialog
 
@@ -44,9 +45,6 @@ class FacebookPhotoList(base.PhotoList):
 
         factory = FacebookAPIfactory()
         self.api = factory.create(target, self)
-        self.conf = Gio.Settings.new(
-            'org.gnome.gphotoframe.plugins.facebook')
-
 
     def prepare(self):
         if self.api:
@@ -93,7 +91,7 @@ class FacebookPhotoList(base.PhotoList):
             self.photos.append(photo)
 
     def _get_access_token(self):
-        token = self.conf.get_string('access-token')
+        token = SETTINGS_FACEBOOK.get_string('access-token')
         return '?access_token=%s' % token if token else ''
 
 class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
@@ -110,9 +108,7 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
     def _label(self):
         labels = [_('Albums'), _('News Feed'), _('Wall')]
 
-        conf = Gio.Settings.new(
-            'org.gnome.gphotoframe.plugins.facebook')
-        if not conf.get_string('access-token'):
+        if not SETTINGS_FACEBOOK.get_string('access-token'):
             labels.remove(_('News Feed'))
         return labels
 

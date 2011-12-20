@@ -11,6 +11,7 @@ from ...utils.config import GConf
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy, urlget_with_autoproxy
 from ...utils.gnomescreensaver import is_screensaver_mode
 from ...dbus.networkstatecustom import NetworkStateCustom
+from ...settings import SETTINGS, SETTINGS_FORMAT, SETTINGS_TUMBLR
 from parseexif import ParseEXIF
 
 
@@ -28,6 +29,7 @@ class PluginBase(object):
 
     def get_auth_status(self):
         if hasattr(self, 'auth'):
+            # FIXME
             settings = Gio.Settings.new('org.gnome.gphotoframe.plugins.'
                                         + self.auth_path)
             auth = settings.get_strings(self.auth_key)
@@ -149,8 +151,8 @@ class Photo(dict):
     def can_share(self):
         return not self.is_local_file() and \
             not self.get('is_private') and \
-            self.conf.get_string('plugins/tumblr/user_id') and \
-            self.conf.get_bool('plugins/tumblr/can_share', True)
+            SETTINGS_TUMBLR.get_string('user-id') # \
+            # and SETTINGS_TUMBLR.get_bool('can-share')
 
     def fav(self, new_rate):
         if self.get('fav'):
@@ -169,8 +171,7 @@ class Photo(dict):
 
     def get_title(self):
         # FIXME
-        #has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
-        has_suffix = True
+        has_suffix = SETTINGS_FORMAT.get_boolean('show-filename-suffix')
         title = self['title'] or ''
 
         if not has_suffix:
@@ -221,7 +222,7 @@ class Photo(dict):
         if date: self['date_taken'] = date
 
     def _is_fullscreen_mode(self):
-        is_fullscreen = self.conf.get_bool('fullscreen', False)
+        is_fullscreen = SETTINGS.get_boolean('fullscreen')
         return is_fullscreen or is_screensaver_mode()
 
 class MyPhoto(Photo):

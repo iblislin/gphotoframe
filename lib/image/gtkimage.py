@@ -3,11 +3,12 @@ from __future__ import division
 import os
 from xml.sax.saxutils import escape
 
-from gi.repository import Gtk, Gdk, GdkPixbuf, GObject, Gio
+from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 
 from ..utils.config import GConf
 from tooltip import ToolTip
 from ..constants import CACHE_DIR
+from ..settings import SETTINGS_FILTER
 
 class PhotoImage(object):
 
@@ -80,7 +81,6 @@ class PhotoImagePixbuf(object):
         self.window = window
         self.max_w = max_w
         self.max_h = max_h
-        self.conf = Gio.Settings.new('org.gnome.gphotoframe.filter')
 
     def set(self, photo):
         if not photo:
@@ -167,12 +167,8 @@ class PhotoImagePixbuf(object):
         return w, h
 
     def _file_size_is_ok(self, filename, photo):
-#        min = self.conf.get_float('min_file_size_kb', 0) * 1024
-#        max = self.conf.get_float('max_file_size_mb', 0) * 1024 ** 2 
-
-        #FIXME
-        min = self.conf.get_double('min-file-size-kb') * 1024
-        max = self.conf.get_double('max-file-size-mb') * 1024 ** 2
+        min = SETTINGS_FILTER.get_double('min-file-size-kb') * 1024
+        max = SETTINGS_FILTER.get_double('max-file-size-mb') * 1024 ** 2
        
         size = os.path.getsize(filename)
 
@@ -194,8 +190,8 @@ class PhotoImagePixbuf(object):
     def _aspect_ratio_is_ok(self, pixbuf):
         aspect = pixbuf.get_width() / pixbuf.get_height()
 
-        max = self.conf.get_double('aspect-max') or 0
-        min = self.conf.get_double('aspect-min') or 0
+        max = SETTINGS_FILTER.get_double('aspect-max') or 0
+        min = SETTINGS_FILTER.get_double('aspect-min') or 0
 
         # print aspect, max, min
 
@@ -214,8 +210,8 @@ class PhotoImagePixbuf(object):
 
     def _image_size_is_ok(self, pixbuf):
 
-        min_width = self.conf.get_int('min-width') or 0
-        min_height = self.conf.get_int('min-height') or 0
+        min_width = SETTINGS_FILTER.get_int('min-width') or 0
+        min_height = SETTINGS_FILTER.get_int('min-height') or 0
         if min_width <= 0 or min_height <= 0: return True
 
         w, h = pixbuf.get_width(), pixbuf.get_height()

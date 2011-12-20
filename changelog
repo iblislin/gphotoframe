@@ -1,3 +1,7 @@
+2011-12-20  Yoshizumi Endo  <yendo@ubuntu>
+
+	* settings.py: Ported from GConf to GSettings.
+
 2011-12-16  Yoshizumi Endo  <yendo@ubuntu>
 
 	* gphotoframe.schemas.in: Changed default_weight from 3 to 5.

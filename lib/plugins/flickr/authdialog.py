@@ -104,11 +104,11 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         return
 
     def _read_conf(self):
-        self.nsid = self.conf.get_string('plugins/flickr/nsid') # nsid
-        self.user_name = self.conf.get_string('plugins/flickr/user_name')
-        self.auth_token = self.conf.get_string('plugins/flickr/auth_token')
+        self.nsid = SETTINGS_FLICKR.get_string('nsid') # nsid
+        self.user_name = SETTINGS_FLICKR.get_string('user-name')
+        self.auth_token = SETTINGS_FLICKR.get_string('auth-token')
 
     def _write_conf(self, dic):
         for key, value in dic.iteritems():
-            self.conf.set_string('plugins/flickr/%s' % key, value)
+            SETTINGS_FLICKR.set_string('%s' % key, value) #FIXME
         self._update_auth_status(dic['user_name']) # in plugin treeview

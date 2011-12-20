@@ -6,6 +6,7 @@ from gi.repository import Gtk, GdkPixbuf, GObject, GLib
 
 import plugins
 from constants import CACHE_DIR, CONFIG_HOME
+from settings import SETTINGS_RECENTS
 from frame import PhotoFrameFactory
 from history import HistoryFactory
 from history.history import History
@@ -192,7 +193,7 @@ class RecentQueue(list):
 
         # print photo.get('page_url') or photo.get('url')
         self.history.add(photo)
-        num = 30 # FIXME self.conf.get_int('/recents/queue_number', 30)
+        num = SETTINGS_RECENTS.get_int('queue-number')
         if len(self) > num:
             self.pop(0)
 
@@ -214,8 +215,7 @@ class RecentQueue(list):
                 os.remove(cache_fullpath)
         
     def menu_item(self):
-#        num = self.conf.get_int('/recents/queue_menu_number', 6) * -1
-        num = 6 * -1 #FIXME
+        num = SETTINGS_RECENTS.get_int('queue-menu-number') * -1
         return self[num:]
 
     def clear_cache(self):

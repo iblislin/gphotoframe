@@ -13,6 +13,7 @@ from gi.repository import GObject, Gtk, Gdk, WebKit
 
 from ..flickr.authdialog import PluginFlickrDialog
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
+from ...settings import SETTINGS_FACEBOOK
 
 class PluginFacebookDialog(PluginFlickrDialog):
 
@@ -99,12 +100,12 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.button_n.set_sensitive(True)
 
     def _read_conf(self):
-        self.full_name = self.conf.get_string('plugins/facebook/full_name')
-        self.token = self.conf.get_string('plugins/facebook/access_token')
+        self.full_name = SETTINGS_FACEBOOK.get_string('full-name')
+        self.token = SETTINGS_FACEBOOK.get_string('access-token')
 
     def _write_conf(self):
-        self.conf.set_string('plugins/facebook/full_name', self.full_name)
-        self.conf.set_string('plugins/facebook/access_token', self.token)
+        SETTINGS_FACEBOOK.set_string('full-name', self.full_name)
+        SETTINGS_FACEBOOK.set_string('access-token', self.token)
 
         self._update_auth_status(self.full_name) # in plugin treeview
 

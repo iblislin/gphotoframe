@@ -2,6 +2,7 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..constants import UI_FILE
+from ..settings import SETTINGS_RECENTS
 from ..plugins import PHOTO_TARGET_TOKEN, PLUGIN_INFO_TOKEN
 from ..utils.config import GConf
 from treeview import PreferencesTreeView
@@ -129,8 +130,7 @@ class PhotoSourceDialog(object):
 
         dialog.destroy()
         if response_id == Gtk.ResponseType.OK:
-            pass # FIXME
-            # self.conf.set_string('recents/source', v['source'])
+            SETTINGS_RECENTS.set_string('source', v['source'])
         return response_id, v
 
 class SourceComboBox(object):
@@ -155,8 +155,7 @@ class SourceComboBox(object):
         widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'text', 1)
 
-        # recent = GConf().get_string('recents/source') # FIXME
-        recent = None
+        recent = SETTINGS_RECENTS.get_string('source')
         # liststore source
         source_num = source_list.index(photoliststore[1]) if photoliststore \
             else source_list.index(recent) if recent in source_list \

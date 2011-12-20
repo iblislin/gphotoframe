@@ -12,7 +12,7 @@ from gettext import gettext as _
 from gi.repository import GLib
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.config import GConf
-
+from ...settings import SETTINGS_FACEBOOK
 
 class FacebookAPIfactory(object):
 
@@ -46,7 +46,7 @@ class FacebookAPI(object):
         pass
 
     def get_interval(self):
-        return self.conf.get_int('plugins/facebook/interval_default', 60)
+        return SETTINGS_FACEBOOK.get_int('interval-default')
 
 class FacebookAlbumsAPI(FacebookAPI):
 
@@ -98,7 +98,7 @@ class FacebookHomeAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/me/home'
 
     def get_interval(self):
-        return self.conf.get_int('plugins/facebook/interval_newsfeed', 30)
+        return SETTINGS_FACEBOOK.get_int('interval-newsfeed')
 
 class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
 
@@ -126,7 +126,7 @@ class FacebookWallAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/%s/feed' % argument
 
     def get_interval(self):
-        return self.conf.get_int('plugins/facebook/interval_wall', 45)
+        return SETTINGS_FACEBOOK.get_int('interval-wall')
 
 class FacebookWallAlbumAPI(FacebookWallAPI, FacebookHomeAlbumAPI):
     pass
