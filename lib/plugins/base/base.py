@@ -3,7 +3,7 @@ import re
 from urlparse import urlparse
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gdk, GLib, Gio
+from gi.repository import Gtk, Gdk, GLib
 import random
 
 from ... import constants
@@ -53,7 +53,6 @@ class PhotoList(object):
         self.options = options
         self.photolist = photolist
 
-        self.conf = GConf()
         self.total = 0
         self.photos = []
         self.headers = None
@@ -129,7 +128,6 @@ class Photo(dict):
         if init_dic is None:
             init_dic = {}
         self.update(init_dic)
-        self.conf = GConf()
 
     def open(self, *args):
         url = self.get('page_url') or self.get('url')

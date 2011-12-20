@@ -106,7 +106,6 @@ class PhotoSourceDialog(object):
         self.gui = Gtk.Builder()
         self.gui.add_from_file(UI_FILE)
 
-        self.conf = GConf()
         self.parent = parent
         self.data = data
 

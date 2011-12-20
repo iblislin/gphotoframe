@@ -36,7 +36,6 @@ class FacebookAPI(object):
 
     def __init__(self, photolist):
         self.photolist = photolist
-        self.conf = GConf()
         self._set_url(photolist.argument)
 
     def access(self):

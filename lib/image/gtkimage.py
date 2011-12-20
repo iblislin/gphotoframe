@@ -5,17 +5,15 @@ from xml.sax.saxutils import escape
 
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 
-from ..utils.config import GConf
 from tooltip import ToolTip
 from ..constants import CACHE_DIR
-from ..settings import SETTINGS_FILTER
+from ..settings import SETTINGS, SETTINGS_FILTER
 
 class PhotoImage(object):
 
     def __init__(self, photoframe):
         self.window = photoframe.window
         self.photoframe = photoframe
-        self.conf = GConf()
         self.tooltip = ToolTip(self.window)
 
     def set_photo(self, photo=False):
@@ -30,7 +28,7 @@ class PhotoImage(object):
 
         self._set_tips(self.photo)
         self._set_photo_image(self.pixbuf.data)
-        self.window_border = self.conf.get_int('border-width', 5)
+        self.window_border = SETTINGS.get_int('border-width')
 
         return True
 
@@ -52,8 +50,8 @@ class PhotoImage(object):
         return False
 
     def _get_max_display_size(self):
-        width = self.conf.get_int('max-width') or 400
-        height = self.conf.get_int('max-height') or 300
+        width = SETTINGS.get_int('max-width') or 400
+        height = SETTINGS.get_int('max-height') or 300
         return width, height
 
     def _set_tips(self, photo):

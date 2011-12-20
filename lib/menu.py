@@ -8,7 +8,7 @@ from gettext import gettext as _
 import constants
 from preferences import Preferences
 from history.html import HistoryHTML
-from utils.config import GConf
+from settings import SETTINGS
 from utils.iconimage import IconImage
 
 class PopUpMenu(object):
@@ -21,7 +21,6 @@ class PopUpMenu(object):
 
         self.photoimage = photoframe.photoimage
         self.photolist = photolist
-        self.conf = GConf()
 
         preferences = Preferences(photolist)
         about = AboutDialog()
@@ -41,14 +40,14 @@ class PopUpMenu(object):
     def start(self, widget, event):
         self.set_recent_menu()
 
-        if self.conf.get_bool('window-fix'):
+        if SETTINGS.get_boolean('window-fix'):
             self.gui.get_object('menuitem6').set_active(True)
 
         photo = self.photoimage.photo
         accessible = photo.can_open() if photo else False
         self.set_open_menu_sensitive(accessible)
 
-        is_fullscreen = self.conf.get_bool('fullscreen')
+        is_fullscreen = SETTINGS.get_boolean('fullscreen')
         self.gui.get_object('menuitem8').set_active(is_fullscreen)
 
         self.gui.connect_signals(self.dic)
@@ -93,11 +92,11 @@ class PopUpMenu(object):
         self.gui.get_object('menuitem5').set_sensitive(state)
 
     def _fix_window_cb(self, widget):
-        self.conf.set_bool('window-fix', widget.get_active())
+        SETTINGS.set_boolean('window-fix', widget.get_active())
 
     def _full_screen_cb(self, widget, *args):
         print "tog", widget.get_active()
-        self.conf.set_bool('fullscreen', widget.get_active())
+        SETTINGS.set_boolean('fullscreen', widget.get_active())
 
     def _on_hide_cb(self, *args):
         self.is_show = False

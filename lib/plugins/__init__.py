@@ -57,7 +57,6 @@ class PluginListStore(Gtk.ListStore):
         super(PluginListStore, self).__init__(bool, GdkPixbuf.Pixbuf, str, str, 
                                               object)
 
-        self.conf = GConf()
         disabled_list = self._load_gconf()
 
         for name, cls in sorted(PLUGIN_INFO_TOKEN.items()):
