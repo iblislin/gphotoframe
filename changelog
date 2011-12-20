@@ -1,5 +1,6 @@
 2011-12-20  Yoshizumi Endo  <yendo@ubuntu>
 
+	* config.py: Removed an obsolete module.
 	* settings.py: Ported from GConf to GSettings.
 
 2011-12-16  Yoshizumi Endo  <yendo@ubuntu>

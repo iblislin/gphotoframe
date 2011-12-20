@@ -11,7 +11,6 @@ from gettext import gettext as _
 
 from gi.repository import GLib
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
-from ...utils.config import GConf
 from ...settings import SETTINGS_FACEBOOK
 
 class FacebookAPIfactory(object):

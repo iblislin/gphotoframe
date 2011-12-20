@@ -1,4 +1,5 @@
 from ...utils.iconimage import IconImage
+from ...settings import SETTINGS_UI_SHARE
 from ...plugins.tumblr.api import TumblrShareFactory
 from trash import ActorTrashIcon, TrashDialog
 
@@ -14,7 +15,7 @@ class ActorShareIcon(ActorTrashIcon):
         return IconImage('emblem-shared')
 
     def _get_ui_data(self):
-        self._set_ui_options('share', False, 0)
+        self._set_ui_options(SETTINGS_UI_SHARE)
 
     def _enter_cb(self, w, e, tooltip):
         self.api = TumblrShareFactory().create(self.photo)

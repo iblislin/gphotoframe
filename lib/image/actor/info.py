@@ -5,6 +5,7 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
+from ...settings import SETTINGS_UI_GEO, SETTINGS_UI_INFO
 from ..geocoding import GeoCoderFactory
 from source import ActorSourceIcon
 
@@ -34,7 +35,7 @@ class ActorGeoIcon(ActorSourceIcon):
         return IconImage('gnome-globe')
 
     def _get_ui_data(self):
-        self._set_ui_options('geo', False, 2)
+        self._set_ui_options(SETTINGS_UI_GEO)
 
     def _on_button_press_cb(self, actor, event):
         lat, lon = self.photo['geo']
@@ -44,7 +45,7 @@ class ActorGeoIcon(ActorSourceIcon):
             .replace("<", "").replace(">", "")
 
         zoom = 0 if self.photo.is_my_photo() else 6
-        #zoom = self.conf.get_int('ui/geo/zoom_level', 0)
+        #zoom = SETTINGS_UI_GEO.get_int('zoom-level')
         zoom = "&z=%s" % zoom if zoom else ""
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
@@ -77,13 +78,13 @@ class ActorInfoIcon(ActorGeoIcon):
         return photo and photo.has_geotag() 
 
     def _get_position(self):
-        return self.conf.get_int('ui/geo/position', 2)
+        return SETTINGS_UI_GEO.get_int('position')
 
     def _check_photo(self):
         return self.photo.get('exif') or self._get_exif_class()
 
     def _get_ui_data(self):
-        self._set_ui_options('info', False, 2)
+        self._set_ui_options(SETTINGS_UI_GEO, self._get_position)
 
     def _get_exif_class(self):
         info = self.photo.get('info')

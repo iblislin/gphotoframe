@@ -2,7 +2,6 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..base.ui import PluginDialog
-from ...utils.config import GConf
 from auth import FlickrAuth
 from api import API_KEY, SECRET
 

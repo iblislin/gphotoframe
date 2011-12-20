@@ -7,7 +7,6 @@ from gettext import gettext as _
 from gi.repository import Gtk, GdkPixbuf
 
 from base import *
-from ..utils.config import GConf
 from ..constants import PLUGIN_HOME
 from ..settings import SETTINGS_PLUGINS
 

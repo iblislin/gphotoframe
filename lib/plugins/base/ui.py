@@ -2,7 +2,6 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 from ... import constants
-from ...utils.config import GConf
 
 
 class PhotoSourceUI(object):

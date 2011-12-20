@@ -61,7 +61,7 @@ class ToolTip(object):
                 tip += "%s\n" % escape(text)
             if location and SETTINGS_FORMAT.get_boolean('location-on-tooltip'):
                 tip += "%s\n" % escape(location)
-            if model and SETTINGS_FORMAT.get_bool('model-on-tooltip'):
+            if model and SETTINGS_FORMAT.get_boolean('model-on-tooltip'):
                 tip += "%s\n" % escape(model)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)

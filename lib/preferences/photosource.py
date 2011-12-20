@@ -2,9 +2,8 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 from ..constants import UI_FILE
-from ..settings import SETTINGS_RECENTS
+from ..settings import SETTINGS, SETTINGS_RECENTS
 from ..plugins import PHOTO_TARGET_TOKEN, PLUGIN_INFO_TOKEN
-from ..utils.config import GConf
 from treeview import PreferencesTreeView
 
 
@@ -201,7 +200,7 @@ class WeightEntry(object):
 
     def __init__(self, gui, photoliststore):
 
-        default_weight = GConf().get_int('default-weight', 5)
+        default_weight = SETTINGS.get_int('default-weight', 5)
         # liststore weight
         weight = photoliststore[4] if photoliststore else default_weight 
         self.widget = gui.get_object('spinbutton3')
