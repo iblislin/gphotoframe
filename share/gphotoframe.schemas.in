@@ -326,6 +326,19 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gphotoframe/plugins/disabled</key>
+      <applyto>/apps/gphotoframe/plugins/disabled</applyto>
+      <owner>gphotoframe</owner>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[]</default>
+      <locale name="C">
+        <short>Disabled plugins list</short>
+        <long>Disabled plugins list</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gphotoframe/plugins/facebook/access_token</key>
       <applyto>/apps/gphotoframe/plugins/facebook/access_token</applyto>
       <owner>gphotoframe</owner>

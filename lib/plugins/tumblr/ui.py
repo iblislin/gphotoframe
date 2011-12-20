@@ -32,6 +32,7 @@ class PluginTumblrDialog(PluginPicasaDialog):
         super(PluginTumblrDialog, self).__init__(parent, model_iter)
         self.api = 'tumblr'
         self.key_server = 'Tumblr'
+        self.settings = SETTINGS_TUMBLR
 
     def _set_ui(self):
         super(PluginTumblrDialog, self)._set_ui()

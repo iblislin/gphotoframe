@@ -9,6 +9,7 @@ from gi.repository import Gtk, GdkPixbuf
 from base import *
 from ..utils.config import GConf
 from ..constants import PLUGIN_HOME
+from ..settings import SETTINGS_PLUGINS
 
 token_base = []
 
@@ -74,9 +75,8 @@ class PluginListStore(Gtk.ListStore):
         self[row][0] = not self[row][0]
 
     def _load_gconf(self):
-        return []
-        #return self.conf.get_list('plugins/disabled') FIXME
+        return SETTINGS_PLUGINS.get_strv('disabled')
 
     def save_gconf(self):
         list = sorted([plugin[2] for plugin in self if not plugin[0]])
-        # FIXME self.conf.set_list('plugins/disabled', list)
+        SETTINGS_PLUGINS.set_strv('disabled', list)

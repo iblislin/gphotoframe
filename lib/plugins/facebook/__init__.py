@@ -8,7 +8,7 @@ import json
 import time
 import sys
 from gettext import gettext as _
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
@@ -28,8 +28,7 @@ class FacebookPlugin(base.PluginBase):
     def __init__(self):
         self.name = 'Facebook'
         self.icon = FacebookIcon
-        self.auth_path = 'facebook'
-        self.auth_key = 'full_name'
+        self.auth = [SETTINGS_FACEBOOK, 'full-name']
         self.info = { 'comments': _('Social Network Service'),
                       'copyright': 'Copyright © 2011 Yoshizimi Endo',
                       'website': 'http://www.facebook.com/',

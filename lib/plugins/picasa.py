@@ -8,7 +8,7 @@ from gettext import gettext as _
 import urllib
 import json
 
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
@@ -16,7 +16,6 @@ from ..settings import SETTINGS_PICASA
 from ..utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
-from ..utils.config import GConf
 
 def info():
     return [PicasaPlugin, PicasaPhotoList, PhotoSourcePicasaUI,
@@ -28,8 +27,7 @@ class PicasaPlugin(base.PluginBase):
     def __init__(self):
         self.name = _('Picasa Web')
         self.icon = PicasaIcon
-        self.auth_path = 'picasa'
-        self.auth_key = 'user-id'
+        self.auth = [SETTINGS_PICASA, 'user-id']
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',
@@ -196,12 +194,13 @@ class PluginPicasaDialog(ui.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)
-        self.api = 'picasa'
+        self.api = 'picasa' ## FIXME?
         self.key_server = 'Google Account'
+        self.settings = SETTINGS_PICASA
 
     def run(self):
         # FIXME
-        user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
+        user_id = self.settings.get_string('user-id')
         self.passwd = None
         self.entry3 = self.gui.get_object('entry3')
         self.entry4 = self.gui.get_object('entry4')
@@ -227,8 +226,7 @@ class PluginPicasaDialog(ui.PluginDialog):
 
     def _write_conf(self):
         user_id = self.entry3.get_text()
-        #FIXME
-        #self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
+        self.settings.set_string('user-id', user_id)
 
         new_passwd = self.entry4.get_text()
         if self.passwd is None or self.passwd != new_passwd:
