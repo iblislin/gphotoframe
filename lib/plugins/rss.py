@@ -19,7 +19,7 @@ import feedparser
 from gettext import gettext as _
 
 from base import *
-from settings import SETTINGS_RSS
+from ..settings import SETTINGS_RSS
 from ..utils.iconimage import LocalIconImage
 from ..utils.wrandom import WeightedRandom
 
@@ -94,7 +94,7 @@ class RSSPhotoList(base.PhotoList):
 
         self.raw_list = []
 
-        goal_std = SETTINGS_RSS.get_int('standard_deviation')
+        goal_std = SETTINGS_RSS.get_int('standard-deviation')
         num_list = [len(self.photos[i]) for i in self.photos]
 
         try:
