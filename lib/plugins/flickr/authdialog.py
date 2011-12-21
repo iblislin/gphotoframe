@@ -1,6 +1,7 @@
 from gi.repository import Gtk
 from gettext import gettext as _
 
+from ...settings import SETTINGS_FLICKR
 from ..base.ui import PluginDialog
 from auth import FlickrAuth
 from api import API_KEY, SECRET
@@ -61,8 +62,8 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
             return
 
         self.nsid = dic['nsid']
-        self.user_name = dic['user_name']
-        self.auth_token = dic['auth_token']
+        self.user_name = dic['user-name']
+        self.auth_token = dic['auth-token']
         self._write_conf(dic)
 
         self._set_confirm_dialog()
@@ -86,7 +87,7 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         self.dialog.destroy()
 
     def _clear_conf_cb(self, *args):
-        dic = {'auth_token': '', 'nsid': '', 'user_name': '', 'full_name': ''}
+        dic = {'auth-token': '', 'nsid': '', 'user-name': '', 'full-name': ''}
         self._write_conf(dic)
         self.dialog.destroy()
 
@@ -109,5 +110,5 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
 
     def _write_conf(self, dic):
         for key, value in dic.iteritems():
-            SETTINGS_FLICKR.set_string('%s' % key, value) #FIXME
-        self._update_auth_status(dic['user_name']) # in plugin treeview
+            SETTINGS_FLICKR.set_string('%s' % key, value)
+        self._update_auth_status(dic['user-name']) # in plugin treeview
