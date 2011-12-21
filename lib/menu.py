@@ -95,7 +95,6 @@ class PopUpMenu(object):
         SETTINGS.set_boolean('window-fix', widget.get_active())
 
     def _full_screen_cb(self, widget, *args):
-        print "tog", widget.get_active()
         SETTINGS.set_boolean('fullscreen', widget.get_active())
 
     def _on_hide_cb(self, *args):
