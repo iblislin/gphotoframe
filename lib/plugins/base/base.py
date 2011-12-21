@@ -165,7 +165,6 @@ class Photo(dict):
         return False
 
     def get_title(self):
-        # FIXME
         has_suffix = SETTINGS_FORMAT.get_boolean('show-filename-suffix')
         title = self['title'] or ''
 
