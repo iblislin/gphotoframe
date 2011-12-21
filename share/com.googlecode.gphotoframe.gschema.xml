@@ -1,0 +1,413 @@
+<schemalist>
+  <schema id="com.googlecode.gphotoframe" path="/apps/gphotoframe/">
+    <key name="border-color" type="s">
+      <default>''</default>
+      <summary>Photo frame border color</summary>
+      <description>Photo frame border color</description>
+    </key>
+    <key name="border-width" type="i">
+      <default>6</default>
+      <summary>Photo frame border width</summary>
+      <description>Photo frame border width</description>
+    </key>
+    <key name="default-weight" type="i">
+      <default>5</default>
+      <summary>Photo source default weight</summary>
+      <description>Photo source default weight</description>
+    </key>
+    <key name="fullscreen" type="b">
+      <default>false</default>
+      <summary>Photo frame full screen mode</summary>
+      <description>Photo frame full screen mode</description>
+    </key>
+    <key name="interval" type="i">
+      <default>30</default>
+      <summary>Interval seconds in window mode</summary>
+      <description>Interval seconds in window mode</description>
+    </key>
+    <key name="use-conn" type="b">
+      <default>false</default>
+      <summary>Connection managers should be used</summary>
+      <description>Whether connectivity managers should be used for checking network connectivity.</description>
+    </key>
+    <key name="interval-fullscreen" type="i">
+      <default>10</default>
+      <summary>Interval seconds in full screen mode</summary>
+      <description>Interval seconds in full screen mode</description>
+    </key>
+    <key name="max-height" type="i">
+      <default>300</default>
+      <summary>Photo image max height</summary>
+      <description>Photo image max height</description>
+    </key>
+    <key name="max-width" type="i">
+      <default>400</default>
+      <summary>Photo image max width</summary>
+      <description>Photo image max width</description>
+    </key>
+    <key name="prefs-height" type="i">
+      <default>-1</default>
+      <summary>Preferences height</summary>
+      <description>Preferences height</description>
+    </key>
+    <key name="prefs-width" type="i">
+      <default>-1</default>
+      <summary>Preferences width</summary>
+      <description>Preferences width</description>
+    </key>
+    <key name="root-x" type="i">
+      <default>0</default>
+      <summary>Photo frame X position</summary>
+      <description>Photo frame X position</description>
+    </key>
+    <key name="root-y" type="i">
+      <default>0</default>
+      <summary>Photo frame Y position</summary>
+      <description>Photo frame Y position</description>
+    </key>
+    <key name="gravity" type="s">
+      <default>'CENTER'</default>
+      <summary>Photo frame window gravity</summary>
+      <description>Defines the reference point of the window.  Possible values are "CENTER" and "NORTH_WEST"</description>
+    </key>
+    <key name="window-fix" type="b">
+      <default>false</default>
+      <summary>Photo frame fix mode</summary>
+      <description>Fix the photo frame on the root window</description>
+    </key>
+    <key name="window-sticky" type="b">
+      <default>false</default>
+      <summary>Photo frame sticky mode</summary>
+      <description>Always on Visible Workspace</description>
+    </key>
+    <key name="window-keep-below" type="b">
+      <default>true</default>
+      <summary>Photo frame "keep-below" mode</summary>
+      <description>If true, the photo frame must be kept below other windows.  When you change this value, you need to restart gphotoframe.</description>
+    </key>
+    <child name="format" schema="com.googlecode.gphotoframe.format"/>
+    <child name="filter" schema="com.googlecode.gphotoframe.filter"/>
+    <child name="plugins" schema="com.googlecode.gphotoframe.plugins"/>
+    <child name="recents" schema="com.googlecode.gphotoframe.recents"/>
+    <child name="ui" schema="com.googlecode.gphotoframe.ui"/>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.format" path="/apps/gphotoframe/format/">
+    <key name="date-format" type="s">
+      <default>'%x'</default>
+      <summary>Date format</summary>
+      <description>You can use conversion specifiers understood by strftime() to obtain a specific format. See the strftime() manual for more information.</description>
+    </key>
+    <key name="show-filename-suffix" type="b">
+      <default>true</default>
+      <summary>Whether to show filename suffix</summary>
+      <description>If true, image filename suffixes (jpe?g|png|gif|bmp) are shown.</description>
+    </key>
+    <key name="location-on-tooltip" type="b">
+      <default>false</default>
+      <summary>Whether to show locations on tooltip</summary>
+      <description>If true, locations are shown on tooltip.</description>
+    </key>
+    <key name="model-on-tooltip" type="b">
+      <default>false</default>
+      <summary>Whether to show camera model names on tooltip</summary>
+      <description>If true, camera model name are shown on tooltip.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.filter" path="/apps/gphotoframe/filter/">
+    <key name="aspect-max" type="d">
+      <default>0.0</default>
+      <summary>Max aspect ratio for Photo</summary>
+      <description>Max aspect ratio for Photo</description>
+    </key>
+    <key name="aspect-min" type="d">
+      <default>0.0</default>
+      <summary>Minimum aspect ratio for Photo</summary>
+      <description>Minimum aspect ratio for Photo</description>
+    </key>
+    <key name="min-width" type="i">
+      <default>0</default>
+      <summary>Minimum image width</summary>
+      <description>Minimum image width.  When this value is less than 0, image size filter is disabled.</description>
+    </key>
+    <key name="min-height" type="i">
+      <default>0</default>
+      <summary>Minimum image height</summary>
+      <description>Minimum image height.  When this value is less than 0, image size filter is disabled.</description>
+    </key>
+    <key name="min-file-size-kb" type="d">
+      <default>0</default>
+      <summary>Minimum image file size in KByte</summary>
+      <description>Minimum image file size in KByte.  When this value is 0 or less, this image file size filter is disabled.</description>
+    </key>
+    <key name="max-file-size-mb" type="d">
+      <default>0</default>
+      <summary>Maximum image file size in MByte</summary>
+      <description>Maximum image file size in MByte.  When this value is 0 or less, this image file size filter is disabled.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins" path="/apps/gphotoframe/plugins/">
+    <key name="disabled" type="as">
+      <default>[]</default>
+      <summary>Disabled plugins list</summary>
+      <description>Disabled plugins list</description>
+    </key>
+    <child name="facebook" schema="com.googlecode.gphotoframe.plugins.facebook"/>
+    <child name="flickr" schema="com.googlecode.gphotoframe.plugins.flickr"/>
+    <child name="picasa" schema="com.googlecode.gphotoframe.plugins.picasa"/>
+    <child name="tumblr" schema="com.googlecode.gphotoframe.plugins.tumblr"/>
+    <child name="rss" schema="com.googlecode.gphotoframe.plugins.rss"/>
+    <child name="shotwell" schema="com.googlecode.gphotoframe.plugins.shotwell"/>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins.facebook" path="/apps/gphotoframe/plugins/facebook/">
+    <key name="access-token" type="s">
+      <default>''</default>
+      <summary>Auth token</summary>
+      <description>Auth token</description>
+    </key>
+    <key name="full-name" type="s">
+      <default>''</default>
+      <summary>User full name</summary>
+      <description>User full name</description>
+    </key>
+    <key name="interval-default" type="i">
+      <default>60</default>
+      <summary>Default API reload interval minutes</summary>
+      <description>Default API reload interval minutes</description>
+    </key>
+    <key name="interval-newsfeed" type="i">
+      <default>30</default>
+      <summary>API reload interval minutes for News Feed</summary>
+      <description>API reload interval minutes for News Feed</description>
+    </key>
+    <key name="interval-wall" type="i">
+      <default>45</default>
+      <summary>API reload interval minutes for Wall</summary>
+      <description>API reload interval minutes for Wall</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins.flickr" path="/apps/gphotoframe/plugins/flickr/">
+    <key name="interval" type="i">
+      <default>60</default>
+      <summary>API reload interval minutes</summary>
+      <description>API reload interval minutes. It should be greater than 10 minutes.</description>
+    </key>
+    <key name="interval-for-meta-group" type="i">
+      <default>20</default>
+      <summary>API reload interval minutes for meta groups</summary>
+      <description>API reload interval minutes for meta groups (Your Groups or The Commons). It should be greater than 10 minutes.</description>
+    </key>
+    <key name="auth-token" type="s">
+      <default>''</default>
+      <summary>Auth token</summary>
+      <description>Auth token</description>
+    </key>
+    <key name="full-name" type="s">
+      <default>''</default>
+      <summary>User full name</summary>
+      <description>User full name</description>
+    </key>
+    <key name="nsid" type="s">
+      <default>''</default>
+      <summary>NSID</summary>
+      <description>Flickr user ID</description>
+    </key>
+    <key name="user-name" type="s">
+      <default>''</default>
+      <summary>User name</summary>
+      <description>User name</description>
+    </key>
+    <key name="latest-photos-min-rate" type="i">
+      <default>10</default>
+      <summary>Minimum rate of latest photos</summary>
+      <description>The Flickr plugin gets photos from latest to oldest via API with a page number.  This value specifies the minimum percentage of showing photos of 1st page (latest photos)</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins.picasa" path="/apps/gphotoframe/plugins/picasa/">
+    <key name="interval" type="i">
+      <default>60</default>
+      <summary>API reload interval minutes</summary>
+      <description>API reload interval minutes. It should be greater than 10 minutes.</description>
+    </key>
+    <key name="user-id" type="s">
+      <default>''</default>
+      <summary>User ID</summary>
+      <description>Google account user ID</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins.tumblr" path="/apps/gphotoframe/plugins/tumblr/">
+    <key name="interval" type="i">
+      <default>30</default>
+      <summary>API reload interval minutes</summary>
+      <description>API reload interval minutes. It should be greater than 10 minutes.</description>
+    </key>
+    <key name="user-id" type="s">
+      <default>''</default>
+      <summary>User ID</summary>
+      <description>E-mail adress as user ID</description>
+    </key>
+    <key name="blog-name" type="s">
+      <default>''</default>
+      <summary>Tumblr blog name</summary>
+      <description>Tumblr blog name</description>
+    </key>
+    <key name="disable-delete-post" type="b">
+      <default>false</default>
+      <summary>Disable delete posts</summary>
+      <description>If true, disable delete posts.</description>
+    </key>
+    <key name="enable-ban-liked" type="b">
+      <default>false</default>
+      <summary>Enable ban icon for liked posts</summary>
+      <description>If true, enable ban icon for liked posts.</description>
+    </key>
+    <key name="enable-flickr-link" type="b">
+      <default>false</default>
+      <summary>Enable direct links to Flickr photos</summary>
+      <description>If true, you can open Flickr photos on Flickr not on Tumbr.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins.rss" path="/apps/gphotoframe/plugins/rss/">
+    <key name="interval" type="i">
+      <default>60</default>
+      <summary>RSS reload interval minutes</summary>
+      <description>RSS reload interval minutes. It should be greater than 10 minutes.</description>
+    </key>
+    <key name="standard-deviation" type="i">
+      <default>-1</default>
+      <summary>Standard deviation of RSS feed random weights</summary>
+      <description>If the RSS feed includes multiple RSS feeds, this value is used as the standard deviation for random weight of each RSS feed.  When this value is less than 0, the each weight is the number of total image included in each RSS feed.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.plugins.shotwell" path="/apps/gphotoframe/plugins/shotwell/">
+    <key name="use-description" type="b">
+      <default>false</default>
+      <summary>Enable description field</summary>
+      <description>If true, description (identifier) field will be enabled on photo source dialog.  Users can use the field freely.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.recents" path="/apps/gphotoframe/recents/">
+    <key name="preferences" type="i">
+      <default>0</default>
+      <summary>Recent opend preferences page number</summary>
+      <description>Recent opend preferences page number</description>
+    </key>
+    <key name="source" type="s">
+      <default>''</default>
+      <summary>Recent selected photo source</summary>
+      <description>Recent selected photo source</description>
+    </key>
+    <key name="queue-number" type="i">
+      <default>30</default>
+      <summary>The number of photo cache files</summary>
+      <description>The field sets the number of photo cache files.</description>
+    </key>
+    <key name="queue-menu-number" type="i">
+      <default>6</default>
+      <summary>The number of recent photo menu items</summary>
+      <description>The field sets the number of recent photo menu items.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui" path="/apps/gphotoframe/ui/">
+    <key name="disable-clutter" type="b">
+      <default>false</default>
+      <summary>Disable Clutter library support</summary>
+      <description>Set this to true if you have problems with Clutter library support.  When you change this value, you need to restart gphotoframe.</description>
+    </key>
+    <key name="animate-icons" type="b">
+      <default>true</default>
+      <summary>Enable icon animations</summary>
+      <description>If true, hiding and un-hiding of icons will be animated.  The program needs to be restarted to take effect the change of the setting.</description>
+    </key>
+    <key name="animate-fullscreen" type="b">
+      <default>true</default>
+      <summary>Enable fullscreen mode animations</summary>
+      <description>If true, changing of photo image in fullscreen mode will be animated.  The program needs to be restarted to take effect the change of the setting.</description>
+    </key>
+    <key name="icons-on-screensaver" type="b">
+      <default>false</default>
+      <summary>Show icons on screensaver</summary>
+      <description>If true, icons will be shown on screensaver.</description>
+    </key>
+    <child name="source" schema="com.googlecode.gphotoframe.ui.source"/>
+    <child name="geo" schema="com.googlecode.gphotoframe.ui.geo"/>
+    <child name="info" schema="com.googlecode.gphotoframe.ui.info"/>
+    <child name="fav" schema="com.googlecode.gphotoframe.ui.fav"/>
+    <child name="share" schema="com.googlecode.gphotoframe.ui.share"/>
+    <child name="trash" schema="com.googlecode.gphotoframe.ui.trash"/>
+    <child name="map" schema="com.googlecode.gphotoframe.ui.map"/>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.source" path="/apps/gphotoframe/ui/source/">
+    <key name="always-show" type="b">
+      <default>false</default>
+      <summary>Always show the source icon</summary>
+      <description>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</description>
+    </key>
+    <key name="position" type="i">
+      <default>1</default>
+      <summary>Source icon position</summary>
+      <description>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.geo" path="/apps/gphotoframe/ui/geo/">
+    <key name="always-show" type="b">
+      <default>false</default>
+      <summary>Always show the geo icon</summary>
+      <description>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</description>
+    </key>
+    <key name="position" type="i">
+      <default>2</default>
+      <summary>Geo icon position</summary>
+      <description>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.info" path="/apps/gphotoframe/ui/info/">
+    <key name="always-show" type="b">
+      <default>false</default>
+      <summary>Always show the info icon</summary>
+      <description>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.fav" path="/apps/gphotoframe/ui/fav/">
+    <key name="always-show" type="b">
+      <default>false</default>
+      <summary>Always show the fav icon</summary>
+      <description>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</description>
+    </key>
+    <key name="position" type="i">
+      <default>0</default>
+      <summary>Fav icon position</summary>
+      <description>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.share" path="/apps/gphotoframe/ui/share/">
+    <key name="always-show" type="b">
+      <default>false</default>
+      <summary>Always show the share icon</summary>
+      <description>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</description>
+    </key>
+    <key name="position" type="i">
+      <default>0</default>
+      <summary>Share icon position</summary>
+      <description>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.trash" path="/apps/gphotoframe/ui/trash/">
+    <key name="always-show" type="b">
+      <default>false</default>
+      <summary>Always show the trash icon</summary>
+      <description>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</description>
+    </key>
+    <key name="position" type="i">
+      <default>3</default>
+      <summary>Trash icon position</summary>
+      <description>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</description>
+    </key>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.ui.map" path="/apps/gphotoframe/ui/map/">
+    <key name="source-uri" type="s">
+      <default>''</default>
+      <summary>Map source URI</summary>
+      <description>Defines a URI format used for URI creation when downloading tiles.</description>
+    </key>
+  </schema>
+</schemalist>
