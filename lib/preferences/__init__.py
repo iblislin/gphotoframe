@@ -31,10 +31,14 @@ class Preferences(object):
         height = SETTINGS.get_int('prefs-height')
         self.prefs.set_default_size(width, height)
 
-        self._set_spinbutton_value('spinbutton1', 'interval', 30)
-        self._set_spinbutton_value('spinbutton2', 'interval-fullscreen', 10)
-        self._set_spinbutton_value('spinbutton_w', 'max-width', 400)
-        self._set_spinbutton_value('spinbutton_h', 'max-height', 300)
+        parts = [['spinbutton1', 'interval'],
+                 ['spinbutton2', 'interval-fullscreen'],
+                 ['spinbutton_w', 'max-width'],
+                 ['spinbutton_h', 'max-height']]
+
+        for widget, key in parts:
+            spinbutton = self.gui.get_object(widget)
+            spinbutton.set_value(SETTINGS.get_int(key))
 
         checkbutton1 = gui.get_object('checkbutton1')
         sticky = SETTINGS.get_boolean('window-sticky')
@@ -117,8 +121,3 @@ class Preferences(object):
     def _help_cb(self, widget):
         Gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
                      Gdk.CURRENT_TIME)
-
-    def _set_spinbutton_value(self, widget, key, default_value):
-        spinbutton = self.gui.get_object(widget)
-        value = SETTINGS.get_int(key) ## FIXME default_value
-        spinbutton.set_value(value)
