@@ -194,12 +194,10 @@ class PluginPicasaDialog(ui.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)
-        self.api = 'picasa' ## FIXME?
         self.key_server = 'Google Account'
         self.settings = SETTINGS_PICASA
 
     def run(self):
-        # FIXME
         user_id = self.settings.get_string('user-id')
         self.passwd = None
         self.entry3 = self.gui.get_object('entry3')
