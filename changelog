@@ -1,3 +1,8 @@
+2011-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.5-b2 release.
+	* plugins/picasa.py: Picasa feeds have not included exif data.
+
 2011-12-20  Yoshizumi Endo  <yendo@ubuntu>
 
 	* config.py: Removed an obsolete module.
@@ -14,6 +19,8 @@
 
 2011-12-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.5-b1 release.
+	* image/animation.py: Fixed a import error.
 	* image/animation.py: Fixed import errors.
 
 2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>

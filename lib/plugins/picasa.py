@@ -103,6 +103,9 @@ class PicasaPhotoList(base.PhotoList):
             exif = {}
             for key in ['make', 'model', 'focallength', 'exposure', 'fstop', 
                         'iso', 'flash']:
+                if not entry.get('exif$tags'):
+                    continue
+
                 value = entry['exif$tags'].get('exif$%s' % key)
                 if value and value['$t'] != 'false':
                     value = value['$t']
@@ -124,7 +127,7 @@ class PicasaPhotoList(base.PhotoList):
             # geo
             if entry.get('georss$where'):
                 geo_raw = entry['georss$where']['gml$Point']['gml$pos']['$t']
-                data['geo'] = geo_raw.split()
+                data['geo'] = [float(x) for x in geo_raw.split()]
 
             # location
             if entry.get('gphoto$location'):
