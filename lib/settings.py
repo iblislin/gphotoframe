@@ -1,7 +1,7 @@
 from gi.repository import Gio
 
 def get_settings(key=""):
-    base = 'org.gnome.gphotoframe'
+    base = 'com.googlecode.gphotoframe'
     object = Gio.Settings.new(base + key)
     return object
 

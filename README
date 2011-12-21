@@ -44,12 +44,14 @@ It shows pictures from:
 
 ** Installation
 
+The gschema file must be installed.
+
+  sudo cp ./share/com.googlecode.gphotoframe.gschema.xml /usr/share/glib-2.0/schemas
+  sudo sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
 You can install with the setup script.
 
   sudo python ./setup.py install --force
-
-  sudo cp ./share/org.gnome.gphotoframe.gschema.xml /usr/share/glib-2.0/schemas
-  sudo sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
 Or, you can launch without installation. (Some functions are restricted.)
 
