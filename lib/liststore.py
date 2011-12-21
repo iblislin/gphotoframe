@@ -76,7 +76,7 @@ class PhotoListStore(Gtk.ListStore):
         GObject.source_remove(self._timer)
         self._start_timer(False)
 
-    def save_gconf(self):
+    def save_settings(self):
         self.save.save(self)
 
     def _start_timer(self, change=True):

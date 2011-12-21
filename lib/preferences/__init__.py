@@ -107,8 +107,8 @@ class Preferences(object):
         SETTINGS.set_int('prefs-width', width)
         SETTINGS.set_int('prefs-height', height)
 
-        self.photolist.save_gconf()
-        self.plugin_liststore.save_gconf()
+        self.photolist.save_settings()
+        self.plugin_liststore.save_settings()
         self.prefs.destroy()
 
     def _on_hide_cb(self, *args):

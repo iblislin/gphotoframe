@@ -238,7 +238,6 @@ class PhotoFrame(object):
                 self.window.move(int(x), int(y))
 
     def _change_fullscreen_cb(self, settings, key):
-        print settings, key
         val = settings.get_boolean(key)
         if val:
             self.fullframe = PhotoFrameFullScreen(self.photolist)
