@@ -79,10 +79,10 @@ class FlickrAuth(object):
             return None
 
         user_element = element.find('auth/user')
-        dic = {'auth_token': element.find('auth/token').text,
+        dic = {'auth-token': element.find('auth/token').text,
                'nsid'      : user_element.get('nsid'),
-               'user_name' : user_element.get('username'),
-               'full_name' : user_element.get('fullname')}
+               'user-name' : user_element.get('username'),
+               'full-name' : user_element.get('fullname')}
         return dic
 
     def check_token(self, auth_token):
