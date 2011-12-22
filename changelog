@@ -1,5 +1,7 @@
 2011-12-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.5-b3 release.
+	* urlgetautoproxy.py: Improved error handling.
 	* html.py: Added size attributes on icon image tags.
 
 2011-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
