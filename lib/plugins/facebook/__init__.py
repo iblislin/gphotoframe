@@ -48,8 +48,8 @@ class FacebookPhotoList(base.PhotoList):
         if self.api:
             self.api.access()
 
-        interval_min = self.api.get_interval()
-        self._start_timer(interval_min)
+            interval_min = self.api.get_interval()
+            self._start_timer(interval_min)
 
     def prepare_cb(self, url, album_name=None):
         url += self._get_access_token()
