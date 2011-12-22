@@ -1,3 +1,8 @@
+2011-12-22  Yoshizumi Endo  <yendo@sid.tsurukawa.org>
+
+	* history/*, tooltip.py, liststore.py: Fixed many unicode enciding
+	  problems.
+
 2011-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5-b2 release.

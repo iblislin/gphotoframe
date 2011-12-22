@@ -1,7 +1,7 @@
 import os
 from string import Template
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 from gettext import gettext as _
 
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
@@ -89,7 +89,8 @@ class HistoryHTML(object):
                     url = url.replace('%20', '%2520') # for space characters
                     break
 
-            info = '<span class="title">%s</span><br>' % (title or _('Untitled'))
+            info = '<span class="title">%s</span><br>' % (
+                title or _('Untitled').decode('utf-8'))
 
             if owner:
                 info += _('by %s') % owner + '<br>'
@@ -103,9 +104,9 @@ class HistoryHTML(object):
             if date:
                 info += "%s<br>" % get_formatted_datatime(date)
 
-            table_dic = { 'url': url,
-                          'page_url': page_url or org_url,
-                          'info': info }
+            table_dic = { 'url': url.encode('utf-8'),
+                          'page_url': (page_url or org_url).encode('utf-8'),
+                          'info': info.encode('utf-8') }
 
             table += template.safe_substitute(table_dic)
 
