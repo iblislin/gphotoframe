@@ -28,7 +28,9 @@ class UrlGetWithAutoProxy(UrlGetWithProxy):
         super(UrlGetWithAutoProxy, self).__init__(proxy_url)
 
     def catch_error(self, error):
-        print "Failure: %s: %s" % (error.getErrorMessage(), self.url)
+        # print "Failure: %s: %s" % (error.getErrorMessage(), self.url)
+        print error
+        print self.url
 
 def urlget_with_autoproxy(url, arg=None, cb=None, **kargs):
     if arg:
