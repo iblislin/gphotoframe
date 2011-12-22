@@ -149,6 +149,8 @@ class SaveListStore(object):
 
             for key, value in entry[dir].items():
                 if key in ['source', 'target', 'argument', 'weight']:
+                    if isinstance(value, unicode):
+                        value = value.encode('utf-8')
                     data[key] = value
                 else:
                     data['options'][key] = value
@@ -225,7 +227,7 @@ class RecentQueue(list):
         all_caches = cache_files + ['thumb_' + file for file in cache_files]
 
         for fullpath in glob.iglob(os.path.join(CACHE_DIR, '*')):
-            filename = os.path.basename(fullpath)
+            filename = os.path.basename(fullpath).decode('utf-8')
             if filename not in all_caches:
                 os.remove(fullpath)
 
