@@ -63,47 +63,40 @@ class Preferences(object):
         self.prefs.show_all()
         self.is_show = True
 
-        dic = {
-            "on_close_button"              : self._close_cb,
-            "on_help_button"               : self._help_cb,
-            "on_preferences_hide"          : self._on_hide_cb,
-            "on_spinbutton1_value_changed" : self._interval_changed_cb,
-            "on_spinbutton2_value_changed" : self._interval_fullscreen_changed_cb,
-            "on_spinbutton_w_value_changed" : self._width_changed_cb,
-            "on_spinbutton_h_value_changed" : self._height_changed_cb,
-            "checkbutton1_toggled_cb"      : self._sticky_toggled_cb,
-            "checkbutton2_toggled_cb"      : self._autostart_toggled_cb,
-            }
+#        dic.update(self.preference_list.get_signal_dic())
+#        dic.update(self.plugins_list.get_signal_dic())
 
-        dic.update(self.preference_list.get_signal_dic())
-        dic.update(self.plugins_list.get_signal_dic())
-        gui.connect_signals(dic)
+        gui.connect_signals(self)
 
-    def _interval_changed_cb(self, widget):
+    def on_spinbutton1_value_changed(self, widget):
+        "_interval_changed_cb"
         val = widget.get_value_as_int()
         SETTINGS.set_int('interval', val)
 
-    def _interval_fullscreen_changed_cb(self, widget):
+    def on_spinbutton2_value_changed(self, widget):
+        "_interval_fullscreen_changed_cb"
         val = widget.get_value_as_int()
         SETTINGS.set_int('interval-fullscreen', val)
 
-    def _width_changed_cb(self, widget):
+    def on_spinbutton_w_value_changed(self, widget):
         val = widget.get_value_as_int()
         SETTINGS.set_int('max-width', val)
 
-    def _height_changed_cb(self, widget):
+    def on_spinbutton_h_value_changed(self, widget):
         val = widget.get_value_as_int()
         SETTINGS.set_int('max-height', val)
 
-    def _sticky_toggled_cb(self, widget):
+    def checkbutton1_toggled_cb(self, widget):
+        "_sticky_toggled_cb"
         sticky = widget.get_active()
         SETTINGS.set_boolean('window-sticky', sticky)
 
-    def _autostart_toggled_cb(self, widget):
+    def checkbutton2_toggled_cb(self, widget):
+        "_autostart_toggled_cb"
         state = widget.get_active()
         self.auto_start.set(state)
 
-    def _close_cb(self, widget):
+    def on_close_button(self, widget):
         page = self.notebook.get_current_page()
         SETTINGS_RECENTS.set_int('preferences', page)
 
@@ -115,9 +108,44 @@ class Preferences(object):
         self.plugin_liststore.save_settings()
         self.prefs.destroy()
 
-    def _on_hide_cb(self, *args):
+    def on_preferences_hide(self, *args):
         self.is_show = False
 
-    def _help_cb(self, widget):
+    def on_help_button(self, widget):
         Gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
                      Gdk.CURRENT_TIME)
+
+
+
+    def on_treeview2_cursor_changed(self, *args):
+        self.plugins_list.on_treeview2_cursor_changed(*args)
+        
+    def on_button6_clicked(self, *args):
+        self.plugins_list.on_button6_clicked(*args)
+
+    def on_button7_clicked(self, *args):
+        self.plugins_list.on_button7_clicked(*args)
+
+
+
+    def on_button3_clicked(self, *args):
+        self.preference_list.on_button3_clicked(*args)
+
+    def on_button4_clicked(self, *args):
+        self.preference_list.on_button4_clicked(*args)
+
+    def on_button5_clicked(self, *args):
+        self.preference_list.on_button5_clicked(*args)
+
+    def on_treeview1_cursor_changed(self, *args):
+        self.preference_list.on_treeview1_cursor_changed(*args)
+
+    def on_treeview1_query_tooltip(self, *args):
+        self.preference_list.on_treeview1_query_tooltip(*args)
+
+    def on_treeview1_button_press_event(self, *args):
+        self.preference_list.on_treeview1_button_press_event(*args)
+
+    def on_treeview1_query_tooltip(self, *args):
+        self.preference_list.on_treeview1_query_tooltip(*args)
+
