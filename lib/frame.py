@@ -60,8 +60,9 @@ class PhotoFrame(object):
         self._set_popupmenu(self.photolist, self)
         self._set_accelerator()
 
-        dic = self._get_signal_dic()
-        gui.connect_signals(dic)
+        # FIXME: Why "query-tooltip" is not enable?
+        self.window.connect("query-tooltip", self.photoimage.tooltip.query_tooltip_cb)
+        gui.connect_signals(self)
 
     def set_photo(self, photo, change=True):
         state = bool(photo)
@@ -147,33 +148,11 @@ class PhotoFrame(object):
 
         self.window.add_accel_group(accel_group)
 
-    def _get_signal_dic(self):
-        # FIXME: Why "query-tooltip" is not enable?
-        self.window.connect("query-tooltip", self.photoimage.tooltip.query_tooltip_cb)
-
-        dic = {
-            "on_window_button_press_event" : self._check_button_cb,
-            "on_window_enter_notify_event" : self.photoimage.on_enter_cb,
-            "on_window_leave_notify_event" : self._save_geometry_cb,
-            "on_window_window_state_event" : self._window_state_cb,
-            "on_window_query_tooltip" : self.photoimage.tooltip.query_tooltip_cb,
-            # "on_window_destroy" : reactor.stop,
-
-            "on_window_key_press_event" : self._none,
-            "on_window_motion_notify_event" : self._none,
-            "on_window_realize" : self._none,
-            "on_window_destroy" : self._none,
-            }
-        return dic
-
-    def _none(self, *args):
-        pass
-
     def _toggle_fullscreen(self, *args):
         state = not SETTINGS.get_boolean('fullscreen')
         SETTINGS.set_boolean('fullscreen', state)
 
-    def _check_button_cb(self, widget, event):
+    def on_window_button_press_event(self, widget, event):
         if event.button == 1:
             if not self.photoimage.check_actor(widget, event):
                 if event.type == Gdk.EventType._2BUTTON_PRESS:
@@ -188,16 +167,23 @@ class PhotoFrame(object):
         elif event.button == 9:
             self.photolist.next_photo()
 
-    def _window_state_cb(self, widget, event):
+    def on_window_enter_notify_event(self, *args):
+        self.photoimage.on_enter_cb(*args)
+
+    def on_window_window_state_event(self, widget, event):
         if event.changed_mask & Gdk.WindowState.ICONIFIED:
             state = event.new_window_state & Gdk.WindowState.ICONIFIED
             widget.set_skip_taskbar_hint(not state) # FIXME
 
-    def _save_geometry_cb(self, widget, event):
+    def on_window_query_tooltip(self, *args):
+        self.photoimage.tooltip.query_tooltip_cb(*args)
+
+    def on_window_leave_notify_event(self, widget, event):
 #        if event.mode != 2:
 #            return True
         self.photoimage.on_leave_cb(widget, event)
 
+        # save geometry
         if not SETTINGS.get_boolean('window-fix'):
             x, y = widget.get_position()
             w, h = widget.get_size()
@@ -210,6 +196,18 @@ class PhotoFrame(object):
             SETTINGS.set_int('root-y', y)
 
         return False
+
+    def on_window_key_press_event(self, *args):
+        pass
+
+    def on_window_motion_notify_event(self, *args):
+        pass
+
+    def on_window_realize(self, *args):
+        pass
+
+    def on_window_destroy(self, *args):
+        pass
 
     def _change_window_fix_cb(self, settings, key):
         hint = self.fixed_window_hint \
@@ -252,6 +250,10 @@ class PhotoFrame(object):
 
 class PhotoFrameFullScreen(PhotoFrame):
 
+    def __init__(self, photolist):
+        super(PhotoFrameFullScreen, self).__init__(photolist)
+        self.ui = FullScreenUI(self.photoimage, self.window)
+
     def _set_window_state(self):
         self.window.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse("black"))
         self.window.fullscreen()
@@ -264,18 +266,6 @@ class PhotoFrameFullScreen(PhotoFrame):
 
     def _set_popupmenu(self, photolist, frame):
         self.popup_menu = PopUpMenuFullScreen(self.photolist, self)
-
-    def _get_signal_dic(self):
-        self.ui = FullScreenUI(self.photoimage, self.window)
-        dic = super(PhotoFrameFullScreen, self)._get_signal_dic()
-
-        dic.update({
-            "on_window_key_press_event" : self._keypress_cb,
-            "on_window_motion_notify_event" : self.ui.show_cb,
-            "on_window_realize" : self.ui.hide_cb,
-            "on_window_destroy" : self.ui.stop_timer_cb,
-            })
-        return dic
 
     def _check_button_cb(self, widget, event):
         self.ui.show_cb(widget, event)
@@ -291,9 +281,18 @@ class PhotoFrameFullScreen(PhotoFrame):
         if not settings.get_boolean(key):
             self.window.destroy()
 
-    def _keypress_cb(self, widget, event):
+    def on_window_key_press_event(self, widget, event):
         if event.keyval == Gdk.KEY_Escape:
             SETTINGS.set_boolean('fullscreen', False)
+
+    def on_window_motion_notify_event(self, *args): 
+        self.ui.show_cb(*args)
+
+    def on_window_realize(self, *args):
+        self.ui.hide_cb(*args)
+
+    def on_window_destroy(self, *args): 
+        self.ui.stop_timer_cb(*args)
 
 class PhotoFrameScreenSaver(PhotoFrame):
 
