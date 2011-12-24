@@ -47,6 +47,6 @@ class PreferencesTreeView(object):
         self.treeview.append_column(column)
         return column
 
-    def _cursor_changed_cb(self, widget):
+    def on_treeview1_cursor_changed(self, widget):
         if self.treeview.get_selection().get_selected()[1] != None:
             self._set_button_sensitive(True)

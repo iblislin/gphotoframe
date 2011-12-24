@@ -26,18 +26,9 @@ class PhotoSourceTreeView(PreferencesTreeView):
         else:
             columns[0].clicked() # sort by 'source' column
 
-    def get_signal_dic(self):
-        dic = {
-            "on_button3_clicked" : self._new_button_cb,
-            "on_button4_clicked" : self._prefs_button_cb,
-            "on_button5_clicked" : self._delete_button_cb,
-            "on_treeview1_cursor_changed" : self._cursor_changed_cb,
-            "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
-            "on_treeview1_button_press_event" : self._button_press_cb,
-            }
-        return dic
+#        gui.connect_signals(self)
 
-    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+    def on_treeview1_query_tooltip(self, treeview, x, y, keyboard_mode, tooltip):
         nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
         path_tuple = treeview.get_path_at_pos(nx, ny)
 
@@ -60,12 +51,12 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.gui.get_object('button4').set_sensitive(state)
         self.gui.get_object('button5').set_sensitive(state)
 
-    def _button_press_cb(self, widget, event):
+    def on_treeview1_button_press_event(self, widget, event):
         if event.type == Gdk._2BUTTON_PRESS:
-            self._prefs_button_cb(widget)
+            self.on_button4_clicked(widget)
             return True
 
-    def _new_button_cb(self, widget):
+    def on_button3_clicked(self, widget): # _new_button_cb
         photodialog = PhotoSourceDialog(self.parent)
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
@@ -73,7 +64,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
             new_iter = self.liststore.append(v)
             self._set_coursor_to(new_iter)
 
-    def _prefs_button_cb(self, widget):
+    def on_button4_clicked(self, widget): #_prefs_button_cb
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 
@@ -86,7 +77,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
             self.liststore.remove(iter)
             self._set_coursor_to(new_iter)
 
-    def _delete_button_cb(self, widget):
+    def on_button5_clicked(self, widget): # _delete_button_cb
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 

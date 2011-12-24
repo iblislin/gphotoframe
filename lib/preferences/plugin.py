@@ -34,18 +34,10 @@ class PluginTreeView(PreferencesTreeView):
         # plugin about dialog
         self.about_dialog = PluginAboutDialog(self.gui, parent)
 
-    def get_signal_dic(self):
-        dic = {
-            "on_button6_clicked" : self._prefs_button_cb,
-            "on_button7_clicked" : self.about_dialog.run,
-            "on_treeview2_cursor_changed" : self._cursor_changed_cb
-            }
-        return dic
-
     def _set_button_sensitive(self, state):
         self.gui.get_object('button6').set_sensitive(state)
 
-    def _cursor_changed_cb(self, widget):
+    def on_treeview2_cursor_changed(self, widget):
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2] if iter else None
 
@@ -53,7 +45,9 @@ class PluginTreeView(PreferencesTreeView):
         self._set_button_sensitive(state)
         self.about_dialog.check(plugin_type)
 
-    def _prefs_button_cb(self, widget):
+    def on_button6_clicked(self, widget):
+        "_prefs_button_cb"
+
         (model, iter) = self.treeview.get_selection().get_selected()
         plugin_type = model[iter][2]
 
@@ -61,6 +55,10 @@ class PluginTreeView(PreferencesTreeView):
             plugindialog = DIALOG_TOKEN[plugin_type](
                 self.parent, model[iter])
             plugindialog.run()
+
+    def on_button7_clicked(self, widget):
+        self.about_dialog.run(widget)
+
 
 class PluginAboutDialog(object):
 
