@@ -63,9 +63,6 @@ class Preferences(object):
         self.prefs.show_all()
         self.is_show = True
 
-#        dic.update(self.preference_list.get_signal_dic())
-#        dic.update(self.plugins_list.get_signal_dic())
-
         gui.connect_signals(self)
 
     def on_spinbutton1_value_changed(self, widget):
