@@ -22,20 +22,8 @@ class PopUpMenu(object):
         self.photoimage = photoframe.photoimage
         self.photolist = photolist
 
-        preferences = Preferences(photolist)
-        about = AboutDialog()
-
-        self.dic = {
-            "on_menuitem5_activate" : self.open_photo,
-            "on_next_photo"         : self.photolist.next_photo,
-            "on_menuitem6_toggled"  : self._fix_window_cb,
-            "on_menuitem8_toggled"  : self._full_screen_cb,
-            "on_menu_hide"          : self._on_hide_cb,
-            "on_prefs" : preferences.start,
-            "on_help"  : self.open_help,
-            "on_about" : about.start,
-            "on_quit"  : self.quit,
-            }
+        self.preferences = Preferences(photolist)
+        self.about = AboutDialog()
 
     def start(self, widget, event):
         self.set_recent_menu()
@@ -50,21 +38,11 @@ class PopUpMenu(object):
         is_fullscreen = SETTINGS.get_boolean('fullscreen')
         self.gui.get_object('menuitem8').set_active(is_fullscreen)
 
-        self.gui.connect_signals(self.dic)
+        self.gui.connect_signals(self)
 
         menu = self.gui.get_object('menu')
         menu.popup(None, None, None, None, event.button, event.time)
         self.is_show = True
-
-    def quit(self, *args):
-        self.photolist.queue.clear_cache()
-        reactor.stop()
-
-    def open_photo(self, *args):
-        self.photoimage.photo.open()
-
-    def open_help(self, widget):
-        Gtk.show_uri(None, 'ghelp:gphotoframe', Gdk.CURRENT_TIME)
 
     def set_recent_menu(self):
         recent = self.gui.get_object('menuitem10')
@@ -91,13 +69,35 @@ class PopUpMenu(object):
     def set_open_menu_sensitive(self, state):
         self.gui.get_object('menuitem5').set_sensitive(state)
 
-    def _fix_window_cb(self, widget):
-        SETTINGS.set_boolean('window-fix', widget.get_active())
+    def on_menuitem5_activate(self, *args):
+        "open_photo"
+        self.photoimage.photo.open()
 
-    def _full_screen_cb(self, widget, *args):
+    def on_next_photo(self, *args):
+        self.photolist.next_photo(*args)
+
+    def on_menuitem8_toggled(self, widget, *args):
+        "_full_screen_cb"
         SETTINGS.set_boolean('fullscreen', widget.get_active())
 
-    def _on_hide_cb(self, *args):
+    def on_menuitem6_toggled(self, widget):
+        "_fix_window_cb"
+        SETTINGS.set_boolean('window-fix', widget.get_active())
+
+    def on_prefs(self, *args):
+        self.preferences.start(*args)
+
+    def on_help(self, widget):
+        Gtk.show_uri(None, 'ghelp:gphotoframe', Gdk.CURRENT_TIME)
+
+    def on_about(self, *args):
+        self.about.start(*args)
+
+    def on_quit(self, *args):
+        self.photolist.queue.clear_cache()
+        reactor.stop()
+
+    def on_menu_hide(self, *args):
         self.is_show = False
 
 class PopUpMenuFullScreen(PopUpMenu):
