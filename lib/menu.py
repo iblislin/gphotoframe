@@ -1,9 +1,8 @@
 import os
-
-from gi.repository import Gtk, Gdk
-from gi.repository import Pango
-from twisted.internet import reactor
 from gettext import gettext as _
+
+from gi.repository import Gtk, Gdk, Pango
+from twisted.internet import reactor
 
 import constants
 from preferences import Preferences
@@ -17,13 +16,14 @@ class PopUpMenu(object):
 
         self.gui = Gtk.Builder()
         self.gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'menu.ui'))
-        self.is_show = False
 
         self.photoimage = photoframe.photoimage
         self.photolist = photolist
 
         self.preferences = Preferences(photolist)
         self.about = AboutDialog()
+
+        self.is_show = False
 
     def start(self, widget, event):
         self.set_recent_menu()
@@ -45,29 +45,11 @@ class PopUpMenu(object):
         self.is_show = True
 
     def set_recent_menu(self):
-        recent = self.gui.get_object('menuitem10')
-        if recent.get_submenu(): recent.get_submenu().popdown()
-        recent.set_submenu(None)
-
-        menu = Gtk.Menu()
-        recents = self.photolist.queue.menu_item()
-        for photo in recents:
-            item = RecentMenuItem(photo)
-            menu.prepend(item)
-
-        # history menuitem
-        sep = Gtk.SeparatorMenuItem.new()
-        history = HistoryMenuItem()
-        for item in [sep, history]:
-            menu.append(item)
-
-        sensitive = bool(recents)
-        recent.set_submenu(menu)
-        recent.set_sensitive(sensitive)
-        menu.show_all()
+        RecentMenu(self.gui, self.photolist)
 
     def set_open_menu_sensitive(self, state):
         self.gui.get_object('menuitem5').set_sensitive(state)
+
 
     def on_menuitem5_activate(self, *args):
         "open_photo"
@@ -91,7 +73,7 @@ class PopUpMenu(object):
         Gtk.show_uri(None, 'ghelp:gphotoframe', Gdk.CURRENT_TIME)
 
     def on_about(self, *args):
-        self.about.start(*args)
+        self.about.start()
 
     def on_quit(self, *args):
         self.photolist.queue.clear_cache()
@@ -105,6 +87,31 @@ class PopUpMenuFullScreen(PopUpMenu):
     def __init__(self, photolist, photoframe):
         super(PopUpMenuFullScreen, self).__init__(photolist, photoframe)
         self.gui.get_object('menuitem6').set_sensitive(False)
+
+class RecentMenu(object):
+
+    def __init__(self, gui, photolist):
+        recent = gui.get_object('menuitem10')
+        if recent.get_submenu(): 
+            recent.get_submenu().popdown()
+        recent.set_submenu(None)
+
+        menu = Gtk.Menu()
+        recents = photolist.queue.menu_item()
+        for photo in recents:
+            item = RecentMenuItem(photo)
+            menu.prepend(item)
+
+        # history menuitem
+        sep = Gtk.SeparatorMenuItem.new()
+        history = HistoryMenuItem()
+        for item in [sep, history]:
+            menu.append(item)
+
+        sensitive = bool(recents)
+        recent.set_submenu(menu)
+        recent.set_sensitive(sensitive)
+        menu.show_all()
 
 class RecentMenuItem(Gtk.ImageMenuItem):
 
@@ -140,7 +147,7 @@ class HistoryMenuItem(Gtk.MenuItem):
 
 class AboutDialog(object):
 
-    def start(self, *args):
+    def start(self):
         gui = Gtk.Builder()
         gui.add_from_file(constants.UI_FILE)
         about = gui.get_object('aboutdialog')
