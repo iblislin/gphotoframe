@@ -176,7 +176,7 @@ class FacebookAlbumListStore(Gtk.ListStore):
     
     def __init__(self, data):
         super(FacebookAlbumListStore, self).__init__(bool, str, str)
-        self.has_album_list = data and hasattr(data[6], 'all_albums')
+        self.has_album_list = bool(data and hasattr(data[6], 'all_albums'))
 
         if data and self.has_album_list:
             enable_id_list = data[5].get('album_id_list') or []
