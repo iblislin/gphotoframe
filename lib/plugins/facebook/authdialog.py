@@ -40,6 +40,10 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self._set_dialog(text, None, None, self._cancel_cb, self._quit_cb)
         self.button_n.set_sensitive(False)
 
+        self.spinner = self.gui.get_object('spinner_loading')
+        self.vbox.remove(self.label)
+        self.vbox.add(self.spinner)
+
     def _logged_dialog(self):
         text = _('You are logged into Facebook as %s.') % self.full_name
         self._set_dialog(text, _('_Logout'), None, self._logout_cb, self._quit_cb)
@@ -69,10 +73,9 @@ class PluginFacebookDialog(PluginFlickrDialog):
         self.sw.connect("login-started", self._set_webkit_ui_cb)
         self.sw.connect("token-acquired", self._get_access_token_cb)
         self.sw.connect("error-occurred", self._cancel_cb)
-        #self.spinner = Gtk.Spinner()
 
     def _set_webkit_ui_cb(self, w, e):
-        self.vbox.remove(self.label)
+        self.vbox.remove(self.spinner)
         self.vbox.add(self.sw)
 
     def _get_access_token_cb(self, w, token):
