@@ -138,8 +138,8 @@ class PhotoFrame(object):
 
     def _set_accelerator(self):
         accel_group = Gtk.AccelGroup()
-        ac_set = [[ "<gph>/quit", "<control>q", self.popup_menu.quit ],
-                  [ "<gph>/open", "<control>o", self.popup_menu.open_photo ],
+        ac_set = [[ "<gph>/quit", "<control>q", self.popup_menu.on_quit ],
+                  [ "<gph>/open", "<control>o", self.popup_menu.on_menuitem5_activate ],
                   [ "<gph>/fullscreen", "F11", self._toggle_fullscreen ]]
         for ac in ac_set:
             key, mod = Gtk.accelerator_parse(ac[1])
