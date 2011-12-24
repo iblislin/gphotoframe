@@ -51,6 +51,11 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.gui.get_object('button4').set_sensitive(state)
         self.gui.get_object('button5').set_sensitive(state)
 
+    def _set_coursor_to(self, iter):
+        model = self.treeview.get_model()
+        row = model.get_path(iter)
+        self.treeview.set_cursor(row, None, False)
+
     def on_treeview1_button_press_event(self, widget, event):
         if event.type == Gdk._2BUTTON_PRESS:
             self.on_button4_clicked(widget)
@@ -83,11 +88,6 @@ class PhotoSourceTreeView(PreferencesTreeView):
 
         self.liststore.remove(iter)
         self._set_button_sensitive(False)
-
-    def _set_coursor_to(self, iter):
-        model = self.treeview.get_model()
-        row = model.get_path(iter)
-        self.treeview.set_cursor(row, None, False)
 
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""
