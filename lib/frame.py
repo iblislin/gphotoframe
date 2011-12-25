@@ -6,7 +6,6 @@ import constants
 from image import *
 from settings import SETTINGS
 from menu import PopUpMenu, PopUpMenuFullScreen
-from settings import SETTINGS
 from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
 
 SETTINGS.set_boolean('fullscreen', False)
