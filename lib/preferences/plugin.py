@@ -17,19 +17,22 @@ class PluginTreeView(PreferencesTreeView):
         #self.set_property("rules-hint", True)
         #self.set_reorderable(True)
 
-        # bool
-        cell_enabled = Gtk.CellRendererToggle()
-        cell_enabled.set_property("activatable", True)
+#        # bool
+#        cell_enabled = Gtk.CellRendererToggle()
+#        cell_enabled.set_property("activatable", True)
+#        cell_enabled.connect('toggled', self.liststore.toggle)
+#        self.column_enabled = Gtk.TreeViewColumn("", cell_enabled, active=0)
+#        self.column_enabled.set_sort_column_id(0)
+#        self.treeview.append_column(self.column_enabled)
+#
+#        # plugin name with icon
+#        self._add_icon_text_column(_("Name"), 1)
+#
+#        # authentication
+#        self._add_text_column(_("Account"), 3)
+
+        cell_enabled = gui.get_object('cellrenderertoggle1')
         cell_enabled.connect('toggled', self.liststore.toggle)
-        self.column_enabled = Gtk.TreeViewColumn("", cell_enabled, active=0)
-        self.column_enabled.set_sort_column_id(0)
-        self.treeview.append_column(self.column_enabled)
-
-        # plugin name with icon
-        self._add_icon_text_column(_("Name"), 1)
-
-        # authentication
-        self._add_text_column(_("Account"), 3)
 
         # plugin about dialog
         self.about_dialog = PluginAboutDialog(self.gui, parent)
@@ -58,7 +61,6 @@ class PluginTreeView(PreferencesTreeView):
 
     def on_button7_clicked(self, widget):
         self.about_dialog.run(widget)
-
 
 class PluginAboutDialog(object):
 

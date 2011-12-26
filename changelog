@@ -1,3 +1,7 @@
+2011-12-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/plugin.py, preferences.ui: Code refactoring.
+
 2011-12-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* facebook/authdialog.py: Added a loading spinner.
