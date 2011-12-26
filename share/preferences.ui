@@ -362,7 +362,7 @@
                         <property name="top_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkHBox" id="hbox1">
+                          <object class="GtkVBox" id="vbox_plugins">
                             <property name="visible">True</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
@@ -477,7 +477,7 @@
                         <property name="top_padding">6</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkHBox" id="hbox2">
+                          <object class="GtkVBox" id="vbox_photosources">
                             <property name="visible">True</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">10</property>
