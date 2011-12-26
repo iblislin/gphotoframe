@@ -101,6 +101,6 @@ class ToolTip(object):
         for key, name, unit in tag:
             value = exif.get(key)
             if value:
-                tip += "%s: %s%s\n" % (name, value, unit)
+                tip += "%s: %s%s\n" % (name, value, unit) # FIXME unicode
 
         self.update_text(tip.rstrip())

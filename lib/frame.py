@@ -218,8 +218,8 @@ class PhotoFrame(object):
         self.window.set_type_hint(hint)
         self.window.show()
 
-        is_below = True if SETTINGS.get_boolean('window-fix') \
-            else SETTINGS.get_boolean('window-keep-below', True)
+        is_below = SETTINGS.get_boolean('window-fix') or \
+            SETTINGS.get_boolean('window-keep-below')
         self.window.set_keep_below(is_below)
 
         if hint == Gdk.WindowTypeHint.NORMAL:
@@ -235,11 +235,9 @@ class PhotoFrame(object):
                 self.window.move(int(x), int(y))
 
     def _change_fullscreen_cb(self, settings, key):
-        val = settings.get_boolean(key)
-        if val:
+        if settings.get_boolean(key):
             self.fullframe = PhotoFrameFullScreen(self.photolist)
-            photo = self.photoimage.photo
-            self.fullframe.set_photo(photo)
+            self.fullframe.set_photo(self.photoimage.photo)
 
     def _change_sticky_cb(self, settings, key):
         if settings.get_boolean(key):
