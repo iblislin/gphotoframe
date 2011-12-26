@@ -1,18 +1,16 @@
 import os
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gdk, GLib
 
 from settings import SETTINGS
-from constants import HAS_DATA_DIR
+from liststore import SaveListStore
 
 
 def set_default_photo_source():
+    save = SaveListStore()
 
-    first_time = not HAS_DATA_DIR
-    has_source = True # FIXME conf.all_dirs('sources')
-
-    if first_time and not has_source:
+    if not save.has_save_file():
 
         monitor_w, monitor_h = get_geometry_first_monitor()
         if monitor_w > 800 and monitor_h > 600:
@@ -20,14 +18,9 @@ def set_default_photo_source():
             SETTINGS.set_int('root-y', 200)
 
         folder = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
-        source = {'Flickr': _('Interestingness'),
-                  _('Folder'): folder,}
-
-        # FIXME
-        # for i, data in enumerate(source.items()):
-        #     conf.set_string('sources/%s/source' % i, data[0])
-        #     conf.set_string('sources/%s/target' % i, data[1])
-        #     conf.set_bool('sources/%s/subfolders' % i, False)
+        sources = {0: {'source': 'Flickr', 'target': _('Interestingness')},
+                   1: {'source': _('Folder'), 'target': folder}}
+        save.save_to_json(sources)
 
 def get_geometry_first_monitor():
     screen = Gdk.Screen.get_default()

@@ -19,8 +19,6 @@ CACHE_HOME = os.path.join(xdg_cache_home, APP_NAME)
 CONFIG_HOME = os.path.join(xdg_config_home, APP_NAME)
 PLUGIN_HOME = os.path.join(CONFIG_HOME, 'plugins')
 
-HAS_DATA_DIR = os.path.isdir(DATA_HOME) # for defaultsource.py
-
 for dir in [CACHE_DIR, DATA_HOME, CACHE_HOME, CONFIG_HOME, PLUGIN_HOME]:
     if not os.path.isdir(dir):
         os.makedirs(dir, 0700)

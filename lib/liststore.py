@@ -131,13 +131,13 @@ class SaveListStore(object):
 
     def __init__(self):
 
-        self.save_file = os.path.join(CONFIG_HOME, 'photosource.json')
+        self.save_file = os.path.join(CONFIG_HOME, 'photo_sources.json')
 
     def load(self):
         weight = SETTINGS.get_int('default-weight')
         source_list = []
 
-        if not os.path.exists(self.save_file):
+        if not self.has_save_file():
             return source_list
 
         with open(self.save_file, 'r') as f:
@@ -175,9 +175,17 @@ class SaveListStore(object):
                 for key, value in row[5].iteritems():
                     save_data[i][key] = value
                     # print key, value
+        
+        self.save_to_json(save_data)
 
+    def save_to_json(self, save_data):
+        "for defaultsource.py"
         with open(self.save_file, mode='w') as f:
             json.dump(save_data, f)      
+
+    def has_save_file(self):
+        "for defaultsource.py"
+        return os.path.exists(self.save_file)
 
 class RecentQueue(list):
 
