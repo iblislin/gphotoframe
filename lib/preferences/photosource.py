@@ -15,18 +15,15 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.plugin_liststore = plugin_liststore
 
         # liststore order
-        columns = [self._add_icon_text_column(_("Source"), 0),
-                   self._add_text_column(_("Target"), 2, 150),
-                   self._add_text_column(_("Argument"), 3, 100),
-                   self._add_text_column(_("Weight"), 4)]
+        column_names = ['source', 'target', 'argument', 'weight']
+        columns = [ gui.get_object('treeviewcolumn_%s' % x)
+                    for x in column_names]
 
         for col in columns:
             if col.get_sort_indicator(): # check if the filed was clicked
                 break
         else:
             columns[0].clicked() # sort by 'source' column
-
-#        gui.connect_signals(self)
 
     def on_treeview1_query_tooltip(self, treeview, x, y, keyboard_mode, tooltip):
         nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
