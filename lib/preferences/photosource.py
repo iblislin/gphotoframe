@@ -200,4 +200,4 @@ class WeightEntry(object):
             _("The photo source should be ignored if the weight is 0."))
 
     def get_value(self):
-        return self.widget.get_value() 
+        return int(self.widget.get_value())
