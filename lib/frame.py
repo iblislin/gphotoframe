@@ -312,12 +312,13 @@ class FullScreenUI(object):
     def __init__(self, photoimage, window):
         self.photoimage = photoimage
         self.cursor = Cursor()
-        self.is_show = True
 
         self.start_timer_cb(window, None)
 
+    def is_show(self):
+        return self.cursor.is_show
+
     def show_cb(self, widget, event):
-        self.is_show = True
         self.photoimage.on_enter_cb(widget, event)
         self.cursor.show(widget)
 
@@ -325,9 +326,8 @@ class FullScreenUI(object):
         self.start_timer_cb(widget, event)
 
     def hide_cb(self, widget, event):
-        self.is_show = False
+        self.cursor.hide(widget) # the cursor should be hide at first. 
         self.photoimage.on_leave_cb(widget, event)
-        self.cursor.hide(widget)
 
     def start_timer_cb(self, widget, event):
         self._timer = GLib.timeout_add_seconds(5, self.hide_cb, widget, event)
@@ -338,18 +338,18 @@ class FullScreenUI(object):
 
 class Cursor(object):
     def __init__(self):
-        self._is_show = True
+        self.is_show = True
 
     def show(self, widget):
-        if not self._is_show:
-            self._is_show = True
+        if not self.is_show:
+            self.is_show = True
             widget.get_window().set_cursor(None)
 
     def hide(self, widget):
-        if self._is_show:
+        if self.is_show:
             widget.set_tooltip_markup(None)
 
-            self._is_show = False
+            self.is_show = False
             cursor = Gdk.Cursor.new(Gdk.CursorType.BLANK_CURSOR)
             widget.get_window().set_cursor(cursor)
             return False
