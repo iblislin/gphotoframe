@@ -1,5 +1,6 @@
 2011-12-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* dbus/networkstate.py: Migrated to GDBus. 
 	* preferences/*, preferences.ui: Code refactoring.
 
 2011-12-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
