@@ -138,7 +138,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def check_mouse_on_window(self):
         is_mouse_on = super(PhotoImageClutterFullScreen, self).check_mouse_on_window()
-        return is_mouse_on if self.photoframe.ui.is_show else False
+        return is_mouse_on if self.photoframe.ui.is_show() else False
 
     def on_enter_cb(self, w, e):
         for actor in self._get_active_actors():
