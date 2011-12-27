@@ -15,10 +15,9 @@ class Preferences(object):
 
     def __init__(self, photolist):
         self.photolist = photolist
-        self.is_show = False
 
     def start(self, widget):
-        if self.is_show is True:
+        if hasattr(self, 'prefs') and self.prefs.get_visible():
             self.prefs.present()
             return
 
@@ -50,18 +49,18 @@ class Preferences(object):
         checkbutton2.set_active(self.auto_start.get())
 
         self.plugin_liststore = PluginListStore()
-        self.preference_list = PhotoSourceTreeView(
+        self.photosource_tv = PhotoSourceTreeView(
             gui, "treeview1", self.photolist, self.prefs, self.plugin_liststore)
-        self.plugins_list = PluginTreeView(
+        self.plugin_tv = PluginTreeView(
             gui, "treeview2", self.plugin_liststore, self.prefs)
-        if SETTINGS.get_boolean('window-sticky'):
-            self.prefs.stick()
 
         recent = SETTINGS_RECENTS.get_int('preferences')
         if recent:
-            gui.get_object('notebook1').set_current_page(recent)
+            self.notebook.set_current_page(recent)
+
+        if SETTINGS.get_boolean('window-sticky'):
+            self.prefs.stick()
         self.prefs.show_all()
-        self.is_show = True
 
         gui.connect_signals(self)
 
@@ -105,44 +104,41 @@ class Preferences(object):
         self.plugin_liststore.save_settings()
         self.prefs.destroy()
 
-    def on_preferences_hide(self, *args):
-        self.is_show = False
+#    def on_preferences_hide(self, *args):
+#        pass # FIXME: should be deleted
 
     def on_help_button(self, widget):
         Gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
                      Gdk.CURRENT_TIME)
 
 
-
     def on_treeview2_cursor_changed(self, *args):
-        self.plugins_list.on_treeview2_cursor_changed(*args)
+        self.plugin_tv.on_treeview2_cursor_changed(*args)
         
     def on_button6_clicked(self, *args):
-        self.plugins_list.on_button6_clicked(*args)
+        self.plugin_tv.on_button6_clicked(*args)
 
     def on_button7_clicked(self, *args):
-        self.plugins_list.on_button7_clicked(*args)
-
+        self.plugin_tv.on_button7_clicked(*args)
 
 
     def on_button3_clicked(self, *args):
-        self.preference_list.on_button3_clicked(*args)
+        self.photosource_tv.on_button3_clicked(*args)
 
     def on_button4_clicked(self, *args):
-        self.preference_list.on_button4_clicked(*args)
+        self.photosource_tv.on_button4_clicked(*args)
 
     def on_button5_clicked(self, *args):
-        self.preference_list.on_button5_clicked(*args)
+        self.photosource_tv.on_button5_clicked(*args)
 
     def on_treeview1_cursor_changed(self, *args):
-        self.preference_list.on_treeview1_cursor_changed(*args)
+        self.photosource_tv.on_treeview1_cursor_changed(*args)
 
     def on_treeview1_query_tooltip(self, *args):
-        self.preference_list.on_treeview1_query_tooltip(*args)
+        self.photosource_tv.on_treeview1_query_tooltip(*args)
 
     def on_treeview1_button_press_event(self, *args):
-        self.preference_list.on_treeview1_button_press_event(*args)
+        self.photosource_tv.on_treeview1_button_press_event(*args)
 
     def on_treeview1_query_tooltip(self, *args):
-        self.preference_list.on_treeview1_query_tooltip(*args)
-
+        self.photosource_tv.on_treeview1_query_tooltip(*args)
