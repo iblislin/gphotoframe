@@ -33,20 +33,18 @@ NM_DEVICE_STATE_FAILED = 120
 
 import sys
 
-try:
-    import dbus
-except ImportError, error:
-    print error
-
+from gi.repository import Gio
 
 class NetworkState(object):
 
     def __init__(self):
         try:
-            bus = dbus.SystemBus()
-            obj = bus.get_object("org.freedesktop.NetworkManager", 
-                                    "/org/freedesktop/NetworkManager")
-            self.property = dbus.Interface(obj, "org.freedesktop.DBus.Properties")
+            dbus = Gio.bus_get_sync(Gio.BusType.SYSTEM, None)
+            self.proxy = Gio.DBusProxy.new_sync(
+                dbus, Gio.DBusProxyFlags.DO_NOT_AUTO_START, None,
+                'org.freedesktop.NetworkManager',
+                '/org/freedesktop/NetworkManager', 
+                'org.freedesktop.DBus.Properties', None)
         except:
             print "Exception: %s" % sys.exc_info()[1]
 
@@ -58,7 +56,8 @@ class NetworkState(object):
         status = 0
 
         try:
-            status = self.property.Get("org.freedesktop.NetworkManager", "State")
+            status = self.proxy.Get(
+                '(ss)', 'org.freedesktop.NetworkManager', 'State')
         except AttributeError:
             pass
         except:
