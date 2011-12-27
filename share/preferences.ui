@@ -38,7 +38,6 @@
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">gphotoframe</property>
     <property name="type_hint">dialog</property>
-    <signal name="hide" handler="on_preferences_hide" swapped="no"/>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -339,6 +338,7 @@
                             <child>
                               <object class="GtkCheckButton" id="checkbutton1">
                                 <property name="label" translatable="yes">Always on _Visible Workspace</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -357,6 +357,7 @@
                             <child>
                               <object class="GtkCheckButton" id="checkbutton2">
                                 <property name="label" translatable="yes">_Auto Start</property>
+                                <property name="use_action_appearance">False</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -498,6 +499,7 @@
                                 <child>
                                   <object class="GtkButton" id="button6">
                                     <property name="label" translatable="yes">Au_thentication</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -515,6 +517,7 @@
                                 <child>
                                   <object class="GtkButton" id="button7">
                                     <property name="label">gtk-about</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="sensitive">False</property>
                                     <property name="can_focus">True</property>
@@ -707,6 +710,7 @@
                                 <child>
                                   <object class="GtkButton" id="button3">
                                     <property name="label">gtk-new</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -723,6 +727,7 @@
                                 <child>
                                   <object class="GtkButton" id="button4">
                                     <property name="label">gtk-preferences</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -739,6 +744,7 @@
                                 <child>
                                   <object class="GtkButton" id="button5">
                                     <property name="label">gtk-delete</property>
+                                    <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -808,6 +814,7 @@
             <child>
               <object class="GtkButton" id="button_help">
                 <property name="label">gtk-help</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -824,6 +831,7 @@
             <child>
               <object class="GtkButton" id="button_close">
                 <property name="label">gtk-close</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

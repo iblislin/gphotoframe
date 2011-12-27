@@ -64,6 +64,7 @@ class Preferences(object):
 
         gui.connect_signals(self)
 
+
     def on_spinbutton1_value_changed(self, widget):
         "_interval_changed_cb"
         val = widget.get_value_as_int()
@@ -103,9 +104,6 @@ class Preferences(object):
         self.photolist.save_settings()
         self.plugin_liststore.save_settings()
         self.prefs.destroy()
-
-#    def on_preferences_hide(self, *args):
-#        pass # FIXME: should be deleted
 
     def on_help_button(self, widget):
         Gtk.show_uri(None, 'ghelp:gphotoframe?gphotoframe-preferences', 
