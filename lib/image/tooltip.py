@@ -53,12 +53,12 @@ class ToolTip(object):
                 tip += "<big>%s</big>\n" % escape(title)
             if owner:
 		# TRANSLATORS: %s is the name of the author of the photo
-                tip += _("by %s").decode('utf-8') % escape(owner) + "\n"
+                tip += _("by %s") % escape(owner) + "\n"
             if target:
                 target = [x.rstrip(' ').lstrip(' ') for x in target]
                 text = ( '/'.join(target) if target[1] and 
                          target[1] != escape(owner) else target[0] )
-                tip += "%s\n" % escape(text).decode('utf-8')
+                tip += u"%s\n" % escape(text)
             if location and SETTINGS_FORMAT.get_boolean('location-on-tooltip'):
                 tip += "%s\n" % escape(location)
             if model and SETTINGS_FORMAT.get_boolean('model-on-tooltip'):
