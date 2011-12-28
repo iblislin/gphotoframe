@@ -1,3 +1,8 @@
+2011-12-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe: Fixed gtkclutter no reactive problem.
+	* actor/map.py: Fixed_location method.
+
 2011-12-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* keyring.py: Added support for Secret API.
