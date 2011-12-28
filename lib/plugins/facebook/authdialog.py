@@ -93,7 +93,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
         text = _('You are logged into Facebook as %s.  ' 
                  'If you would like to redo the authentication, '
                  'you have to restart GNOME Photo Frame.')
-        self.label.set_text(text % self.full_name.encode('utf-8'))
+        self.label.set_text(text % self.full_name)
 
         self.vbox.remove(self.sw)
         self.vbox.add(self.label)
