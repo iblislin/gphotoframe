@@ -140,7 +140,7 @@ class PhotoMarker(Champlain.Label):
         self.show()
 
     def change(self, image, lat, lon):
-        self.set_position(lat, lon)
+        self.set_location(lat,lon)
         self.set_text("")
         
         w, h = image.pixbuf.get_scale(image.w, image.h, 90, 90)
