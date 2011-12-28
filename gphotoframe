@@ -10,6 +10,15 @@ import platform
 from os.path import join, abspath, dirname
 
 try:
+    from gi.repository import GtkClutter
+    GtkClutter.init([])
+
+    # from gi.repository import GObject
+    # GObject.threads_init()
+except ImportError:
+    pass
+
+try:
     from lib.utils import gtk3reactor
 except ImportError:
     from gphotoframe.utils import gtk3reactor
