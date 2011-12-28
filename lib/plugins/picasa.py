@@ -43,7 +43,7 @@ class PicasaPhotoList(base.PhotoList):
         self.photos = []
         self.username = SETTINGS_PICASA.get_string('user-id')
         if self.username:
-            key = Keyring('Google Account', protocol='http')
+            key = Keyring(server='google.com', protocol='http')
             key.get_passwd_async(self.username, self._google_auth_cb)
 
             interval_min = SETTINGS_PICASA.get_int('interval') or 60
@@ -52,7 +52,7 @@ class PicasaPhotoList(base.PhotoList):
     def _google_auth_cb(self, identity):
         "Get Google Auth Token (ClientLogin)."
 
-        if identity is None:
+        if not identity:
             print _("Certification Error")
             return
 
@@ -197,7 +197,8 @@ class PluginPicasaDialog(ui.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)
-        self.key_server = 'Google Account'
+        self.key_label = 'Google'
+        self.key_server = 'google.com'
         self.settings = SETTINGS_PICASA
 
     def run(self):
@@ -206,7 +207,7 @@ class PluginPicasaDialog(ui.PluginDialog):
         self.entry3 = self.gui.get_object('entry3')
         self.entry4 = self.gui.get_object('entry4')
 
-        self.key = Keyring(self.key_server, protocol='http') ##
+        self.key = Keyring(server=self.key_server, protocol='http')
 
         if user_id != None:
             self.entry3.set_text(user_id)
@@ -231,7 +232,8 @@ class PluginPicasaDialog(ui.PluginDialog):
 
         new_passwd = self.entry4.get_text()
         if self.passwd is None or self.passwd != new_passwd:
-            self.key.set_passwd_async(user_id, new_passwd, self._destroy_cb)
+            self.key.set_passwd_async(
+                user_id, new_passwd, self.key_label, self._destroy_cb)
         else:
             self._destroy_cb()
 
