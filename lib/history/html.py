@@ -45,6 +45,7 @@ class HistoryHTML(object):
 
         template = Template(template_format)
         html = template.safe_substitute(keyword)
+        html = html.encode('utf-8')
 
         with open(self.html_file,'w') as fh:
             fh.write(html)
@@ -89,7 +90,7 @@ class HistoryHTML(object):
                     break
 
             info = '<span class="title">%s</span><br>' % (
-                title or _('Untitled').decode('utf-8'))
+                title or _('Untitled'))
 
             if owner:
                 info += _('by %s') % owner + '<br>'
@@ -103,9 +104,9 @@ class HistoryHTML(object):
             if date:
                 info += "%s<br>" % get_formatted_datatime(date)
 
-            table_dic = { 'url': url.encode('utf-8'),
-                          'page_url': (page_url or org_url).encode('utf-8'),
-                          'info': info.encode('utf-8') }
+            table_dic = { 'url': url,
+                          'page_url': (page_url or org_url),
+                          'info': info }
 
             table += template.safe_substitute(table_dic)
 
