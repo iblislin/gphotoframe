@@ -148,8 +148,6 @@ class SaveListStore(object):
 
             for key, value in entry[dir].items():
                 if key in ['source', 'target', 'argument', 'weight']:
-                    if isinstance(value, unicode):
-                        value = value.encode('utf-8')
                     data[key] = value
                 else:
                     data['options'][key] = value

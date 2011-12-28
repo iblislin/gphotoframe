@@ -7,7 +7,6 @@
 import urllib
 
 from gi.repository import Gtk
-from gettext import gettext as _
 from string import Template
 
 from ..base import *

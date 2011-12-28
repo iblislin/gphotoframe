@@ -1,6 +1,6 @@
 import urllib
 import random
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ...settings import SETTINGS_FLICKR
 from auth import add_api_sig

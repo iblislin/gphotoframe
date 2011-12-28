@@ -7,7 +7,7 @@
 import urllib
 from xml.etree import ElementTree as etree
 
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ...settings import SETTINGS_TUMBLR
 from ...utils.keyring import Keyring

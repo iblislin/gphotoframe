@@ -1,6 +1,6 @@
 import os
 from gi.repository import Gtk
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ..plugins import DIALOG_TOKEN, PLUGIN_INFO_TOKEN, PHOTO_TARGET_TOKEN
 from ..utils.iconimage import IconImage, LocalIconImage

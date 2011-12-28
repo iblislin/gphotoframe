@@ -2,7 +2,6 @@ import os
 from string import Template
 
 from gi.repository import Gtk, Gdk
-from gettext import gettext as _
 
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
 from ..plugins import ICON_LIST

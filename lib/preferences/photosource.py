@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ..constants import UI_FILE
 from ..settings import SETTINGS, SETTINGS_RECENTS
@@ -109,7 +109,7 @@ class PhotoSourceDialog(object):
         response_id = dialog.run()
 
         v = { 'source'  : source_widget.get_active_text(),
-              'target'  : source_widget.ui.get(),
+              'target'  : source_widget.get_target(),
               'argument': argument_widget.get_text(),
               'weight'  : weight_widget.get_value(),
               'options' : source_widget.ui.get_options() }
@@ -141,7 +141,7 @@ class SourceComboBox(object):
         widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'text', 1)
 
-        recent = SETTINGS_RECENTS.get_string('source')
+        recent = SETTINGS_RECENTS.get_string('source').decode('utf-8') #FIXME
         # liststore source
         source_num = source_list.index(photoliststore[1]) if photoliststore \
             else source_list.index(recent) if recent in source_list \
@@ -160,7 +160,7 @@ class SourceComboBox(object):
         return text
 
     def get_target(self):
-        return self.ui.get()
+        return self.ui.get().decode('utf-8') #FIXME
 
     def _change_combobox(self, widget, gui, data=None):
         self.button.set_sensitive(True)

@@ -4,7 +4,6 @@
 # Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
-from gettext import gettext as _
 import urllib
 import json
 
@@ -175,8 +174,7 @@ class PhotoSourcePicasaUI(ui.PhotoSourceUI):
         self.target_widget.connect('changed', self._widget_cb)
 
     def _widget_cb(self, widget):
-        target = widget.get_active_text()
-
+        target = widget.get_active_text().decode('utf-8') # FIXME
         label, state = self._check_argument_sensitive_for(target)
         self._set_argument_sensitive(label=label, state=state)
 

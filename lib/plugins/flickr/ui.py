@@ -1,4 +1,4 @@
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ..base.ui import PhotoSourceUI, PhotoSourceOptionsUI
 from ...settings import SETTINGS_FLICKR

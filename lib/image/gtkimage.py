@@ -55,7 +55,8 @@ class PhotoImage(object):
         return width, height
 
     def _set_tips(self, photo):
-        self.tooltip.update_photo(photo)
+        pass
+        #self.tooltip.update_photo(photo) # FIXME 
 
 class PhotoImageGtk(PhotoImage):
 

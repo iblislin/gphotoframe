@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
 from ...settings import SETTINGS_UI_TRASH

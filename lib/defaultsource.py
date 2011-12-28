@@ -1,5 +1,5 @@
 import os
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from gi.repository import Gdk, GLib
 

@@ -7,7 +7,6 @@
 import json
 import time
 import sys
-from gettext import gettext as _
 from gi.repository import Gtk
 
 from ..base import *
@@ -114,7 +113,7 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
     def _widget_cb(self, widget):
         super(PhotoSourceFacebookUI, self)._widget_cb(widget)
 
-        target = widget.get_active_text()
+        target = widget.get_active_text().decode('utf-8') # FIXME
         is_albums = bool(target == _('Albums'))
 
         self.gui.get_object('checkbutton_all_album').set_sensitive(not is_albums)

@@ -1,7 +1,7 @@
 import sys
 from xml.sax.saxutils import escape
 
-from gettext import gettext as _
+# from gettext import gettext as _
 from gi.repository import Gio
 
 from ..utils.datetimeformat import get_formatted_datatime
