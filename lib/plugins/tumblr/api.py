@@ -18,7 +18,7 @@ class TumblrAccessBase(object):
     def access(self):
         username = SETTINGS_TUMBLR.get_string('user-id')
         if username:
-            key = Keyring('Tumblr', protocol='http')
+            key = Keyring(server='tumblr.com', protocol='http')
             key.get_passwd_async(username, self._auth_cb)
         else:
             self._auth_cb(None)
