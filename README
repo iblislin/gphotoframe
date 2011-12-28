@@ -31,7 +31,6 @@ It shows pictures from:
 ** Recommends
 
 - feedparser: for RSS plugin
-- gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
 - python-libproxy: for Gnome Proxy Settings
 - gir1.2-webkit-3.0: for Facebook plugin
 - gir1.2-gtkclutter-1.0
@@ -46,7 +45,7 @@ It shows pictures from:
 
 The gschema file must be installed.
 
-  sudo cp ./share/com.googlecode.gphotoframe.gschema.xml /usr/share/glib-2.0/schemas
+  sudo cp ./share/com.googlecode.gphotoframe.gschema.xml.in /usr/share/glib-2.0/schemas/com.googlecode.gphotoframe.gschema.xml
   sudo sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
 You can install with the setup script.
