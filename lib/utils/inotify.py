@@ -14,9 +14,8 @@ class Inotify(object):
 #        del self.monitor
 
     def add_dir(self, folder):
-        # FIXME
-        # self.monitor[folder] = Gio.File.new_for_path(folder).monitor_directory(0, None)
-        # self.monitor[folder].connect("changed", self._file_changed_cb)
+        self.monitor[folder] = Gio.File.new_for_path(folder).monitor_directory(0, None)
+        self.monitor[folder].connect("changed", self._file_changed_cb)
         pass
 
     def del_dir(self, folder):
@@ -33,7 +32,9 @@ class Inotify(object):
 
         if (event == Gio.FileMonitorEvent.CREATED and
             os.path.exists(file_name)):
-            file_type = file.query_info("standard::type").get_file_type()
+            file_type = file.query_info("standard::type",
+                                        Gio.FileQueryInfoFlags.NONE,
+                                        None).get_file_type()
             if file_type == Gio.FileType.DIRECTORY:
                 if self.recursive:
                     self.add_dir(file_name)
