@@ -7,7 +7,7 @@
 import json
 import urllib
 import re
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from gi.repository import GObject, Gtk, Gdk, WebKit
 

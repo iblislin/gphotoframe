@@ -1,6 +1,6 @@
 import os
 from gi.repository import Gtk
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ...utils.trash import GioTrash
 from ...history.history import History

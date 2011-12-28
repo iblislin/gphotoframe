@@ -7,7 +7,6 @@
 import random
 import time
 import json
-from gettext import gettext as _
 
 from ..base import *
 from ...settings import SETTINGS_FLICKR

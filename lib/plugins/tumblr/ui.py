@@ -4,7 +4,7 @@
 # Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from api import TumblrAuthenticate
 from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog

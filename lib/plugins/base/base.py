@@ -1,7 +1,7 @@
 import os
 import re
 from urlparse import urlparse
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from gi.repository import Gtk, Gdk, GLib
 import random

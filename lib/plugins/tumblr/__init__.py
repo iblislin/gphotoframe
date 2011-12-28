@@ -8,8 +8,6 @@ import re
 import urllib
 from xml.etree import ElementTree as etree
 
-from gettext import gettext as _
-
 from api import TumblrAccessBase, TumblrDelete, TumblrAuthenticate
 from ui import PhotoSourceTumblrUI, PluginTumblrDialog
 from ..base import *

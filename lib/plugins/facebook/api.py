@@ -7,7 +7,7 @@
 import re
 import json
 import random
-from gettext import gettext as _
+# # from gettext import gettext as _
 
 from gi.repository import GLib
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
@@ -53,7 +53,7 @@ class FacebookAlbumsAPI(FacebookAPI):
 
     def access(self):
         url = self.url + self.photolist._get_access_token()
-        urlget_with_autoproxy(url, cb=self._get_albumlist_cb)
+        urlget_with_autoproxy(str(url), cb=self._get_albumlist_cb)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)

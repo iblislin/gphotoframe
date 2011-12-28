@@ -7,7 +7,6 @@
 import os
 import re
 import random
-from gettext import gettext as _
 
 from twisted.internet import threads
 from gi.repository import Gtk, GLib

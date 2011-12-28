@@ -20,8 +20,6 @@ import hashlib
 import datetime
 import time
 
-from gettext import gettext as _
-
 from ..settings import SETTINGS_SHOTWELL
 from ..utils.sqldb import SqliteDB
 from ..utils.iconimage import LocalIconImage

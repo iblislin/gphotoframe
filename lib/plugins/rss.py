@@ -16,7 +16,6 @@ except ImportError:
 
 from gi.repository import Gtk
 import feedparser
-from gettext import gettext as _
 
 from base import *
 from ..settings import SETTINGS_RSS

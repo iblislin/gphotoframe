@@ -16,7 +16,7 @@ class History(object):
         max_id, prev_photo_url = self.con.fetchone_raw(sql) or (0, None)
         photo_url = photo.get('url').replace("'", "''")
 
-        if prev_photo_url == photo_url.decode('utf-8'):
+        if prev_photo_url == photo_url:
             return
 
         target = photo.get('target') or ''
@@ -35,7 +35,7 @@ class History(object):
             self.table,
 
             max_id + 1, 
-            photo_url.decode('utf-8'),
+            photo_url, #.decode('utf-8'),
             photo.get('page_url') or '', 
 
             self._escape_quote(photo.get_title()),
@@ -43,8 +43,8 @@ class History(object):
 
             date,
 
-            photo.get('info')().name.decode('utf-8') or '',
-            self._escape_quote(target).decode('utf-8'),
+            photo.get('info')().name or '',
+            self._escape_quote(target),
             )
 
         self.con.execute_with_commit(sql)

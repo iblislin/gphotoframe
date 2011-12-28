@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ...settings import SETTINGS_FLICKR
 from ..base.ui import PluginDialog

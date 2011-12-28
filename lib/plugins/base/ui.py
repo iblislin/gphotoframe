@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ... import constants
 
@@ -70,7 +70,7 @@ class PhotoSourceUI(object):
     def _set_target_default(self):
         if self.data:
             try:
-                fr_num = self._label().index(self.data[2]) # liststore target
+                fr_num = self._label().index(self.data[2]) #.encode('utf-8')) # liststore target # FIXME
             except ValueError:
                 fr_num = 0
 

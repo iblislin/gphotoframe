@@ -2,7 +2,7 @@ import os
 import sys
 import inspect
 from os.path import join, abspath, dirname, isdir
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from gi.repository import Gtk, GdkPixbuf
 
@@ -45,7 +45,7 @@ for k in sorted(token_base):
     PLUGIN_INFO_TOKEN[plugin.name] = k[0]
     MAKE_PHOTO_TOKEN[plugin.name] = k[1]
     PHOTO_TARGET_TOKEN[plugin.name] = k[2]
-    ICON_LIST[plugin.name.decode('utf_8')] = plugin.icon
+    ICON_LIST[plugin.name] = plugin.icon
 
     if len(k) > 3:
         DIALOG_TOKEN[plugin.name] = k[3]
