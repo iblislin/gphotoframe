@@ -128,7 +128,7 @@ class PhotoSourceShotwellUI(ui.PhotoSourceUI):
     def make(self):
         super(PhotoSourceShotwellUI, self).make()
         self._set_target_sensitive(_("_Tag:"), True)
-        state = SETTINGS_SHOTWELL.get_boolean('use-description', False)
+        state = SETTINGS_SHOTWELL.get_boolean('use-description')
         self._set_argument_sensitive(label=_('_Description:'), state=state)
 
     def get_options(self):
