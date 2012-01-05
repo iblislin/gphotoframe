@@ -1,3 +1,7 @@
+2012-01-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/map.py: Avoid a problem of Champlain.NetworkTileSource.
+
 2011-12-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe: Fixed gtkclutter no reactive problem.

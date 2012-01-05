@@ -48,11 +48,12 @@ class MapView(Champlain.View):
         super(MapView, self).__init__()
 
         uri = SETTINGS_UI_MAP.get_string('source-uri')
+        uri = "http://tile.openstreetmap.org/#Z#/#X#/#Y#.png"
 
         if uri:
-            source = Champlain.NetworkMapSource()
+            source = Champlain.NetworkTileSource()
             source.set_uri_format(uri)
-            self.set_map_source(source)
+            # self.set_map_source(source)
 
         self.timeline = FadeAnimationTimeline(self)
         self.timeline.timeline_fade_out.connect('completed', self._hide)
