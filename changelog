@@ -1,3 +1,7 @@
+2012-01-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.5-rc1 release.
+
 2011-12-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* facebook/__init__.py (FacebookAlbumListStore): Fixed a bug.
