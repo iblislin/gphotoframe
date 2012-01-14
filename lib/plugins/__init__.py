@@ -66,7 +66,8 @@ class PluginListStore(Gtk.ListStore):
             self.append(list)
 
     def available_list(self):
-        list = [p[2] for p in self if p[0] and p[4].is_available()]
+        list = [p[2].decode('utf-8') for p in self 
+                if p[0] and p[4].is_available()]
         return sorted(list)
 
     def toggle(self, cell, row):
