@@ -1,11 +1,22 @@
+2012-01-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 1.5 release.
+	* facebook/__init__.py (FacebookPhotoList): Ignore some entries
+	  which have not picture URIs.
+
 2012-01-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.5-rc1 release.
 	* actor/map.py: Avoid a problem of Champlain.NetworkTileSource.
 
 2011-12-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* gphotoframe: Fixed gtkclutter no reactive problem.
 	* actor/map.py: Fixed_location method.
+
+2011-12-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* facebook/__init__.py (FacebookAlbumListStore): Fixed a bug.
 
 2011-12-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
