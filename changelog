@@ -1,5 +1,6 @@
 2012-01-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 1.5 release.
 	* facebook/__init__.py (FacebookPhotoList): Ignore some entries
 	  which have not picture URIs.
 
