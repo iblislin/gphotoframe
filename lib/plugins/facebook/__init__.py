@@ -61,10 +61,14 @@ class FacebookPhotoList(base.PhotoList):
         d = json.loads(data)
 
         for entry in d['data']:
+
             type = entry.get('type')
             if type is not None and type != 'photo':
                 continue
 
+            if 'picture' not in entry:
+                continue
+            
             url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
 
             data = {'info'       : FacebookPlugin,
