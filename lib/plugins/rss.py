@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # RSS plugin for GNOME Photo Frame
-# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2012, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import re
@@ -32,7 +32,7 @@ class RSSPlugin(base.PluginBase):
         self.name = 'RSS'
         self.icon = RSSIcon
         self.info = { 'comments': _('RSS and Atom Feeds'),
-                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2012 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
 class RSSPhotoList(base.PhotoList):
@@ -40,7 +40,7 @@ class RSSPhotoList(base.PhotoList):
     def prepare(self):
         self.photos = {}
 
-        url = self.argument
+        url = self.argument.encode('utf-8')
         result = self._get_url_with_twisted(url)
 
         interval_min = SETTINGS_RSS.get_int('interval') if result else 5
