@@ -1,27 +1,33 @@
 from __future__ import division
 
 try:
-    import cluttergtk
-    import clutter
+    from gi.repository import Clutter, GtkClutter
 except ImportError:
     from ..utils.nullobject import Null
-    cluttergtk = Null()
+    GtkClutter = Null()
 
-import gtk
+from gi.repository import Gtk
 
 from actor import *
 from gtkimage import *
+from ..settings import SETTINGS, SETTINGS_UI
 
 class PhotoImageClutter(PhotoImage):
 
     def __init__(self, photoframe):
         super(PhotoImageClutter, self).__init__(photoframe)
 
-        self.image = self.embed = cluttergtk.Embed()
+        GtkClutter.init(None)
+        
+        self.image = self.embed = GtkClutter.Embed.new()
         self.stage = self.embed.get_stage()
         color = self._get_border_color()
-        self.stage.set_color(clutter.color_from_string(color))
-        self.embed.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(color))
+
+        clutter_color = Clutter.Color()
+        clutter_color.from_string(color)
+
+        self.stage.set_color(clutter_color)
+        self.embed.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(color))
         self.embed.show()
 
         self.photo_image = base.Texture(self.stage)
@@ -44,7 +50,7 @@ class PhotoImageClutter(PhotoImage):
         return  [cls(self.stage, self.tooltip) for cls in actor_class]
 
     def _get_border_color(self):
-        return self.conf.get_string('border_color') or '#edeceb'
+        return SETTINGS.get_string('border-color') or '#edeceb'
 
     def _set_photo_image(self, pixbuf):
         self.window_border = 0
@@ -61,7 +67,7 @@ class PhotoImageClutter(PhotoImage):
             actor.set_icon(self, x, y)
 
     def _get_image_position(self):
-        border = self.conf.get_int('border_width', 5)
+        border = SETTINGS.get_int('border-width')
         return border, border
 
     def clear(self):
@@ -77,7 +83,7 @@ class PhotoImageClutter(PhotoImage):
 
     def check_actor(self, stage, event):
         x, y = int(event.x), int(event.y)
-        actor = self.stage.get_actor_at_pos(clutter.PICK_REACTIVE, x, y)
+        actor = self.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, x, y)
         result = (actor != self.photo_image)
         return result
 
@@ -95,7 +101,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
         self.trash_actors += self.actors2[3:5]
         self.is_first = True # image1 or image2
 
-        self.has_animation = self.conf.get_bool('ui/animate_fullscreen', False)
+        self.has_animation = SETTINGS_UI.get_boolean('animate-fullscreen')
         if self.has_animation:
             self.photo_image.set_opacity(0)
 
@@ -132,7 +138,7 @@ class PhotoImageClutterFullScreen(PhotoImageClutter, PhotoImageFullScreen):
 
     def check_mouse_on_window(self):
         is_mouse_on = super(PhotoImageClutterFullScreen, self).check_mouse_on_window()
-        return is_mouse_on if self.photoframe.ui.is_show else False
+        return is_mouse_on if self.photoframe.ui.is_show() else False
 
     def on_enter_cb(self, w, e):
         for actor in self._get_active_actors():
@@ -151,7 +157,7 @@ class PhotoImageClutterScreenSaver(PhotoImageClutterFullScreen,
 
     def __init__(self, photoframe):
         super(PhotoImageClutterScreenSaver, self).__init__(photoframe)
-        if not self.conf.get_bool('ui/icons_on_screensaver', False):
+        if not SETTINGS_UI.get_boolean('icons-on-screensaver'):
             self.actors = []
 
     def check_mouse_on_window(self):

@@ -2,13 +2,13 @@ import os
 import sys
 import inspect
 from os.path import join, abspath, dirname, isdir
-from gettext import gettext as _
+# from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk, GdkPixbuf
 
 from base import *
-from ..utils.config import GConf
 from ..constants import PLUGIN_HOME
+from ..settings import SETTINGS_PLUGINS
 
 token_base = []
 
@@ -45,19 +45,18 @@ for k in sorted(token_base):
     PLUGIN_INFO_TOKEN[plugin.name] = k[0]
     MAKE_PHOTO_TOKEN[plugin.name] = k[1]
     PHOTO_TARGET_TOKEN[plugin.name] = k[2]
-    ICON_LIST[plugin.name.decode('utf_8')] = plugin.icon
+    ICON_LIST[plugin.name] = plugin.icon
 
     if len(k) > 3:
         DIALOG_TOKEN[plugin.name] = k[3]
 
-class PluginListStore(gtk.ListStore):
+class PluginListStore(Gtk.ListStore):
 
     def __init__(self):
-        super(PluginListStore, self).__init__(bool, gtk.gdk.Pixbuf, str, str, 
+        super(PluginListStore, self).__init__(bool, GdkPixbuf.Pixbuf, str, str, 
                                               object)
 
-        self.conf = GConf()
-        disabled_list = self._load_gconf()
+        disabled_list = self._load_settings()
 
         for name, cls in sorted(PLUGIN_INFO_TOKEN.items()):
             available = name not in disabled_list
@@ -73,9 +72,9 @@ class PluginListStore(gtk.ListStore):
     def toggle(self, cell, row):
         self[row][0] = not self[row][0]
 
-    def _load_gconf(self):
-        return self.conf.get_list('plugins/disabled')
+    def _load_settings(self):
+        return SETTINGS_PLUGINS.get_strv('disabled')
 
-    def save_gconf(self):
+    def save_settings(self):
         list = sorted([plugin[2] for plugin in self if not plugin[0]])
-        self.conf.set_list('plugins/disabled', list)
+        SETTINGS_PLUGINS.set_strv('disabled', list)

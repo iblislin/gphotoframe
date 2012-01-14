@@ -7,13 +7,13 @@
 import json
 import time
 import sys
-from gettext import gettext as _
-import gtk
+from gi.repository import Gtk
 
 from ..base import *
 from ..picasa import PhotoSourcePicasaUI
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from ...utils.iconimage import WebIconImage
+from ...settings import SETTINGS_FACEBOOK
 from api import FacebookAPIfactory
 from authdialog import PluginFacebookDialog
 
@@ -27,7 +27,7 @@ class FacebookPlugin(base.PluginBase):
     def __init__(self):
         self.name = 'Facebook'
         self.icon = FacebookIcon
-        self.auth = 'plugins/facebook/full_name'
+        self.auth = [SETTINGS_FACEBOOK, 'full-name']
         self.info = { 'comments': _('Social Network Service'),
                       'copyright': 'Copyright © 2011 Yoshizimi Endo',
                       'website': 'http://www.facebook.com/',
@@ -93,7 +93,7 @@ class FacebookPhotoList(base.PhotoList):
             self.photos.append(photo)
 
     def _get_access_token(self):
-        token = self.conf.get_string('plugins/facebook/access_token')
+        token = SETTINGS_FACEBOOK.get_string('access-token')
         return '?access_token=%s' % token if token else ''
 
 class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
@@ -109,14 +109,15 @@ class PhotoSourceFacebookUI(PhotoSourcePicasaUI):
 
     def _label(self):
         labels = [_('Albums'), _('News Feed'), _('Wall')]
-        if not self.conf.get_string('plugins/facebook/access_token'):
+
+        if not SETTINGS_FACEBOOK.get_string('access-token'):
             labels.remove(_('News Feed'))
         return labels
 
     def _widget_cb(self, widget):
         super(PhotoSourceFacebookUI, self)._widget_cb(widget)
 
-        target = widget.get_active_text()
+        target = widget.get_active_text().decode('utf-8') # FIXME
         is_albums = bool(target == _('Albums'))
 
         self.gui.get_object('checkbutton_all_album').set_sensitive(not is_albums)
@@ -174,7 +175,7 @@ class PhotoSourceOptionsFacebookUI(ui.PhotoSourceOptionsUI):
                 'select_album': select_album, 
                 'album_id_list': album_id_list}
 
-class FacebookAlbumListStore(gtk.ListStore):
+class FacebookAlbumListStore(Gtk.ListStore):
     
     def __init__(self, data):
         super(FacebookAlbumListStore, self).__init__(bool, str, str)

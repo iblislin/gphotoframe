@@ -1,9 +1,9 @@
-import gtk
-from gettext import gettext as _
+from gi.repository import Gtk
+# from gettext import gettext as _
 
 from ..constants import UI_FILE
+from ..settings import SETTINGS, SETTINGS_RECENTS
 from ..plugins import PHOTO_TARGET_TOKEN, PLUGIN_INFO_TOKEN
-from ..utils.config import GConf
 from treeview import PreferencesTreeView
 
 
@@ -15,10 +15,9 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.plugin_liststore = plugin_liststore
 
         # liststore order
-        columns = [self._add_icon_text_column(_("Source"), 0),
-                   self._add_text_column(_("Target"), 2, 150),
-                   self._add_text_column(_("Argument"), 3, 100),
-                   self._add_text_column(_("Weight"), 4)]
+        column_names = ['source', 'target', 'argument', 'weight']
+        columns = [ gui.get_object('treeviewcolumn_%s' % x)
+                    for x in column_names]
 
         for col in columns:
             if col.get_sort_indicator(): # check if the filed was clicked
@@ -26,18 +25,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         else:
             columns[0].clicked() # sort by 'source' column
 
-    def get_signal_dic(self):
-        dic = {
-            "on_button3_clicked" : self._new_button_cb,
-            "on_button4_clicked" : self._prefs_button_cb,
-            "on_button5_clicked" : self._delete_button_cb,
-            "on_treeview1_cursor_changed" : self._cursor_changed_cb,
-            "on_treeview1_query_tooltip"  : self._query_tooltip_cb,
-            "on_treeview1_button_press_event" : self._button_press_cb,
-            }
-        return dic
-
-    def _query_tooltip_cb(self, treeview, x, y, keyboard_mode, tooltip):
+    def on_treeview1_query_tooltip(self, treeview, x, y, keyboard_mode, tooltip):
         nx, ny = treeview.convert_widget_to_bin_window_coords(x, y)
         path_tuple = treeview.get_path_at_pos(nx, ny)
 
@@ -60,51 +48,51 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.gui.get_object('button4').set_sensitive(state)
         self.gui.get_object('button5').set_sensitive(state)
 
-    def _button_press_cb(self, widget, event):
-        if event.type == gtk.gdk._2BUTTON_PRESS:
-            self._prefs_button_cb(widget)
+    def _set_coursor_to(self, iter):
+        model = self.treeview.get_model()
+        row = model.get_path(iter)
+        self.treeview.set_cursor(row, None, False)
+
+    def on_treeview1_button_press_event(self, widget, event):
+        if event.type == Gdk._2BUTTON_PRESS:
+            self.on_button4_clicked(widget)
             return True
 
-    def _new_button_cb(self, widget):
+    def on_button3_clicked(self, widget): # _new_button_cb
         photodialog = PhotoSourceDialog(self.parent)
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             new_iter = self.liststore.append(v)
             self._set_coursor_to(new_iter)
 
-    def _prefs_button_cb(self, widget):
+    def on_button4_clicked(self, widget): #_prefs_button_cb
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 
         photodialog = PhotoSourceDialog(self.parent, model[iter])
         (response_id, v) = photodialog.run(self.plugin_liststore)
 
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             new_iter = self.liststore.append(v, iter)
+
             self.liststore.remove(iter)
             self._set_coursor_to(new_iter)
 
-    def _delete_button_cb(self, widget):
+    def on_button5_clicked(self, widget): # _delete_button_cb
         treeselection = self.treeview.get_selection()
         (model, iter) = treeselection.get_selected()
 
         self.liststore.remove(iter)
         self._set_button_sensitive(False)
 
-    def _set_coursor_to(self, iter):
-        model = self.treeview.get_model()
-        row = model.get_path(iter)
-        self.treeview.set_cursor(row)
-
 class PhotoSourceDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, parent, data=None):
-        self.gui = gtk.Builder()
+        self.gui = Gtk.Builder()
         self.gui.add_from_file(UI_FILE)
 
-        self.conf = GConf()
         self.parent = parent
         self.data = data
 
@@ -121,14 +109,14 @@ class PhotoSourceDialog(object):
         response_id = dialog.run()
 
         v = { 'source'  : source_widget.get_active_text(),
-              'target'  : source_widget.ui.get(),
+              'target'  : source_widget.get_target(),
               'argument': argument_widget.get_text(),
               'weight'  : weight_widget.get_value(),
               'options' : source_widget.ui.get_options() }
 
         dialog.destroy()
-        if response_id == gtk.RESPONSE_OK:
-            self.conf.set_string('recents/source', v['source'])
+        if response_id == Gtk.ResponseType.OK:
+            SETTINGS_RECENTS.set_string('source', v['source'])
         return response_id, v
 
 class SourceComboBox(object):
@@ -145,15 +133,15 @@ class SourceComboBox(object):
             list = [pixbuf, name]
             liststore.insert_before(None, list)
 
-        renderer = gtk.CellRendererPixbuf()
-        widget.pack_start(renderer, expand=False)
+        renderer = Gtk.CellRendererPixbuf()
+        widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'pixbuf', 0)
 
-        renderer = gtk.CellRendererText()
-        widget.pack_start(renderer, expand=False)
+        renderer = Gtk.CellRendererText()
+        widget.pack_start(renderer, False)
         widget.add_attribute(renderer, 'text', 1)
 
-        recent = GConf().get_string('recents/source')
+        recent = SETTINGS_RECENTS.get_string('source').decode('utf-8') #FIXME
         # liststore source
         source_num = source_list.index(photoliststore[1]) if photoliststore \
             else source_list.index(recent) if recent in source_list \
@@ -172,7 +160,7 @@ class SourceComboBox(object):
         return text
 
     def get_target(self):
-        return self.ui.get()
+        return self.ui.get().decode('utf-8') #FIXME
 
     def _change_combobox(self, widget, gui, data=None):
         self.button.set_sensitive(True)
@@ -200,7 +188,7 @@ class WeightEntry(object):
 
     def __init__(self, gui, photoliststore):
 
-        default_weight = GConf().get_int('default_weight', 3)
+        default_weight = SETTINGS.get_int('default-weight')
         # liststore weight
         weight = photoliststore[4] if photoliststore else default_weight 
         self.widget = gui.get_object('spinbutton3')
@@ -209,4 +197,4 @@ class WeightEntry(object):
             _("The photo source should be ignored if the weight is 0."))
 
     def get_value(self):
-        return self.widget.get_value() 
+        return int(self.widget.get_value())

@@ -3,19 +3,17 @@ from __future__ import division
 import os
 from xml.sax.saxutils import escape
 
-import glib
-import gtk
+from gi.repository import Gtk, Gdk, GdkPixbuf, GObject
 
-from ..utils.config import GConf
 from tooltip import ToolTip
 from ..constants import CACHE_DIR
+from ..settings import SETTINGS, SETTINGS_FILTER
 
 class PhotoImage(object):
 
     def __init__(self, photoframe):
         self.window = photoframe.window
         self.photoframe = photoframe
-        self.conf = GConf()
         self.tooltip = ToolTip(self.window)
 
     def set_photo(self, photo=False):
@@ -30,7 +28,7 @@ class PhotoImage(object):
 
         self._set_tips(self.photo)
         self._set_photo_image(self.pixbuf.data)
-        self.window_border = self.conf.get_int('border_width', 5)
+        self.window_border = SETTINGS.get_int('border-width')
 
         return True
 
@@ -44,16 +42,16 @@ class PhotoImage(object):
         return False
 
     def check_mouse_on_window(self):
-        window, x, y = gtk.gdk.window_at_pointer() or [None, None, None]
-        result = window is self.image.window
+        window, x, y = Gdk.Window.at_pointer() or [None, None, None]
+        result = window is self.image.get_window()
         return result
 
     def has_trash_dialog(self):
         return False
 
     def _get_max_display_size(self):
-        width = self.conf.get_int('max_width') or 400
-        height = self.conf.get_int('max_height') or 300
+        width = SETTINGS.get_int('max-width') or 400
+        height = SETTINGS.get_int('max-height') or 300
         return width, height
 
     def _set_tips(self, photo):
@@ -64,7 +62,7 @@ class PhotoImageGtk(PhotoImage):
     def __init__(self, photoframe):
         super(PhotoImageGtk, self).__init__(photoframe)
 
-        self.image = gtk.Image()
+        self.image = Gtk.Image()
         self.image.show()
 
     def _set_photo_image(self, pixbuf):
@@ -81,7 +79,6 @@ class PhotoImagePixbuf(object):
         self.window = window
         self.max_w = max_w
         self.max_h = max_h
-        self.conf = GConf()
 
     def set(self, photo):
         if not photo:
@@ -102,11 +99,11 @@ class PhotoImagePixbuf(object):
                 w, h = self.get_scale(org_w, org_h, 
                                       self.max_w, self.max_h, rotation)
                 # print org_w, org_h, w, h, " ", photo
-                pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(filename, w, h)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(filename, w, h)
             else:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
 
-        except (glib.GError, OSError), err_info:
+        except (GObject.GError, OSError), err_info:
             print err_info
             return False
 
@@ -117,7 +114,7 @@ class PhotoImagePixbuf(object):
             org_w, org_h = pixbuf.get_width(), pixbuf.get_height()
             w, h = self.get_scale(org_w, org_h, 
                                   self.max_w, self.max_h, rotation)
-            pixbuf = pixbuf.scale_simple(w, h, gtk.gdk.INTERP_BILINEAR)
+            pixbuf = pixbuf.scale_simple(w, h, GdkPixbuf.InterpType.BILINEAR)
 
         # rotate
         pixbuf = pixbuf.rotate_simple(rotation)
@@ -131,7 +128,7 @@ class PhotoImagePixbuf(object):
             url = photo.get('url')
             path = 'thumb_' + url.replace('/', '_')
             filename = os.path.join(CACHE_DIR, path)
-            pixbuf.save(filename, "jpeg")
+            pixbuf.savev(filename, "jpeg", [], [])
 
         self.data = pixbuf
         return True
@@ -168,8 +165,9 @@ class PhotoImagePixbuf(object):
         return w, h
 
     def _file_size_is_ok(self, filename, photo):
-        min = self.conf.get_float('filter/min_file_size_kb', 0) * 1024
-        max = self.conf.get_float('filter/max_file_size_mb', 0) * 1024 ** 2
+        min = SETTINGS_FILTER.get_double('min-file-size-kb') * 1024
+        max = SETTINGS_FILTER.get_double('max-file-size-mb') * 1024 ** 2
+       
         size = os.path.getsize(filename)
 
         url = photo.get('url')
@@ -190,8 +188,8 @@ class PhotoImagePixbuf(object):
     def _aspect_ratio_is_ok(self, pixbuf):
         aspect = pixbuf.get_width() / pixbuf.get_height()
 
-        max = self.conf.get_float('filter/aspect_max', 0)
-        min = self.conf.get_float('filter/aspect_min', 0)
+        max = SETTINGS_FILTER.get_double('aspect-max') or 0
+        min = SETTINGS_FILTER.get_double('aspect-min') or 0
 
         # print aspect, max, min
 
@@ -210,8 +208,8 @@ class PhotoImagePixbuf(object):
 
     def _image_size_is_ok(self, pixbuf):
 
-        min_width = self.conf.get_int('filter/min_width', 0)
-        min_height = self.conf.get_int('filter/min_height', 0)
+        min_width = SETTINGS_FILTER.get_int('min-width') or 0
+        min_height = SETTINGS_FILTER.get_int('min-height') or 0
         if min_width <= 0 or min_height <= 0: return True
 
         w, h = pixbuf.get_width(), pixbuf.get_height()
@@ -224,26 +222,18 @@ class PhotoImagePixbuf(object):
             return True
 
     def _no_image(self):
-        gdk_window = self.window.window
         w = int(self.max_w)
         h = int(self.max_h)
 
-        pixmap = gtk.gdk.Pixmap(gdk_window, w, h, -1)
-        colormap = gtk.gdk.colormap_get_system()
-        gc = gtk.gdk.Drawable.new_gc(pixmap)
-        gc.set_foreground(colormap.alloc_color(0, 0, 0))
-        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
-
-        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        pixbuf.get_from_drawable(pixmap, colormap, 0, 0, 0, 0, w, h)
-
+        pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, False, 8 , w, h)
+        pixbuf.fill(0x00000000)
         return pixbuf
 
 class PhotoImageFullScreen(PhotoImageGtk):
 
     def _get_max_display_size(self):
-        screen = gtk.gdk.screen_get_default()
-        display_num = screen.get_monitor_at_window(self.window.window)
+        screen = Gdk.Screen.get_default()
+        display_num = screen.get_monitor_at_window(self.window.get_window())
         geometry = screen.get_monitor_geometry(display_num)
         return geometry.width, geometry.height
 

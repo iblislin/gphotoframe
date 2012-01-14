@@ -35,7 +35,7 @@ class History(object):
             self.table,
 
             max_id + 1, 
-            photo_url,
+            photo_url, #.decode('utf-8'),
             photo.get('page_url') or '', 
 
             self._escape_quote(photo.get_title()),

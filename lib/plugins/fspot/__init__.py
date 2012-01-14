@@ -6,8 +6,7 @@
 
 import urllib
 
-import gtk
-from gettext import gettext as _
+from gi.repository import Gtk
 from string import Template
 
 from ..base import *
@@ -165,7 +164,7 @@ class PhotoSourceFspotUI(ui.PhotoSourceUI):
         self.options_ui = PhotoSourceOptionsFspotUI(self.gui, self.data)
 
     def _build_target_widget(self):
-        self.treestore = gtk.TreeStore(str)
+        self.treestore = Gtk.TreeStore(str)
         iter_db = {}
         self.tree_list = {}
 
@@ -174,11 +173,11 @@ class PhotoSourceFspotUI(ui.PhotoSourceUI):
             iter_db[item[0]] = self.treestore.append(iter, [ item[1] ])
             self.tree_list[str(item[1])] = iter_db[item[0]]
 
-        self.target_widget = gtk.ComboBox(model=self.treestore)
+        self.target_widget = Gtk.ComboBox(model=self.treestore)
         self.target_widget.set_active(0)
         self._set_target_sensitive(_("_Tag:"), True)
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         self.target_widget.pack_start(cell, True)
         self.target_widget.add_attribute(cell, 'text', 0)
 

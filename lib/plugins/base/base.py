@@ -1,17 +1,16 @@
 import os
 import re
 from urlparse import urlparse
-from gettext import gettext as _
+# from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk, Gdk, GLib
 import random
-import glib
 
 from ... import constants
-from ...utils.config import GConf
 from ...utils.urlgetautoproxy import UrlGetWithAutoProxy, urlget_with_autoproxy
 from ...utils.gnomescreensaver import is_screensaver_mode
 from ...dbus.networkstatecustom import NetworkStateCustom
+from ...settings import SETTINGS, SETTINGS_FORMAT, SETTINGS_TUMBLR
 from parseexif import ParseEXIF
 
 
@@ -29,7 +28,8 @@ class PluginBase(object):
 
     def get_auth_status(self):
         if hasattr(self, 'auth'):
-            auth = GConf().get_string(self.auth)
+            settings, key = self.auth
+            auth = settings.get_string(key)
             return auth if auth else _('Not Authenticated')
         else:
             return None
@@ -52,7 +52,6 @@ class PhotoList(object):
         self.options = options
         self.photolist = photolist
 
-        self.conf = GConf()
         self.total = 0
         self.photos = []
         self.headers = None
@@ -110,7 +109,7 @@ class PhotoList(object):
 
         delay = min * 60 / 20 # 5%
         interval = min * 60 + random.randint(delay*-1, delay)
-        self._timer = glib.timeout_add_seconds(interval, self.prepare)
+        self._timer = GLib.timeout_add_seconds(interval, self.prepare)
 
         return False
 
@@ -128,12 +127,11 @@ class Photo(dict):
         if init_dic is None:
             init_dic = {}
         self.update(init_dic)
-        self.conf = GConf()
 
     def open(self, *args):
         url = self.get('page_url') or self.get('url')
         url = url.replace("'", "%27")
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, url, Gdk.CURRENT_TIME)
 
     def can_open(self):
         if self.is_local_file() and not os.path.exists(self['filename']):
@@ -148,8 +146,8 @@ class Photo(dict):
     def can_share(self):
         return not self.is_local_file() and \
             not self.get('is_private') and \
-            self.conf.get_string('plugins/tumblr/user_id') and \
-            self.conf.get_bool('plugins/tumblr/can_share', True)
+            SETTINGS_TUMBLR.get_string('user-id') # \
+            # and SETTINGS_TUMBLR.get_boolean('can-share')
 
     def fav(self, new_rate):
         if self.get('fav'):
@@ -167,7 +165,7 @@ class Photo(dict):
         return False
 
     def get_title(self):
-        has_suffix = self.conf.get_bool('format/show_filename_suffix', True)
+        has_suffix = SETTINGS_FORMAT.get_boolean('show-filename-suffix')
         title = self['title'] or ''
 
         if not has_suffix:
@@ -218,7 +216,7 @@ class Photo(dict):
         if date: self['date_taken'] = date
 
     def _is_fullscreen_mode(self):
-        is_fullscreen = self.conf.get_bool('fullscreen', False)
+        is_fullscreen = SETTINGS.get_boolean('fullscreen')
         return is_fullscreen or is_screensaver_mode()
 
 class MyPhoto(Photo):

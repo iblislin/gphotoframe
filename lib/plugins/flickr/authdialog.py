@@ -1,8 +1,8 @@
-import gtk
-from gettext import gettext as _
+from gi.repository import Gtk
+# from gettext import gettext as _
 
+from ...settings import SETTINGS_FLICKR
 from ..base.ui import PluginDialog
-from ...utils.config import GConf
 from auth import FlickrAuth
 from api import API_KEY, SECRET
 
@@ -25,7 +25,7 @@ class PluginFlickrDialog(PluginDialog):
     def _set_confirm_dialog(self, *args):
         text = _("You are connected to Flickr.com as %s.") % self.user_name
         p_label = _('_Switch User')
-        n_label = gtk.STOCK_OK
+        n_label = Gtk.STOCK_OK
         p_cb = self._set_authorize_dialog
         n_cb = self._cancel_cb
 
@@ -36,7 +36,7 @@ class PluginFlickrDialog(PluginDialog):
 private photos or to add photos to favorites list on your Flickr.com account. \
 Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame \
 the authorization. ")
-        p_label = gtk.STOCK_CANCEL
+        p_label = Gtk.STOCK_CANCEL
         n_label = _('_Authorize')
         p_cb = self._cancel_cb
         n_cb = self._set_complete_dialog
@@ -47,7 +47,7 @@ the authorization. ")
         self.auth_obj._get_frob() # getfrob -> open browser
         text = _("Return to this dialog after you have finished the authorization \
 process on Flickr.com and click the \"Complete Authorization\" button below")
-        p_label = gtk.STOCK_CANCEL
+        p_label = Gtk.STOCK_CANCEL
         n_label = _('_Complete Authorization')
         p_cb = self._clear_conf_cb
         n_cb = self.comp
@@ -62,8 +62,8 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
             return
 
         self.nsid = dic['nsid']
-        self.user_name = dic['user_name']
-        self.auth_token = dic['auth_token']
+        self.user_name = dic['user-name']
+        self.auth_token = dic['auth-token']
         self._write_conf(dic)
 
         self._set_confirm_dialog()
@@ -87,7 +87,7 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         self.dialog.destroy()
 
     def _clear_conf_cb(self, *args):
-        dic = {'auth_token': '', 'nsid': '', 'user_name': '', 'full_name': ''}
+        dic = {'auth-token': '', 'nsid': '', 'user-name': '', 'full-name': ''}
         self._write_conf(dic)
         self.dialog.destroy()
 
@@ -104,11 +104,11 @@ process on Flickr.com and click the \"Complete Authorization\" button below")
         return
 
     def _read_conf(self):
-        self.nsid = self.conf.get_string('plugins/flickr/nsid') # nsid
-        self.user_name = self.conf.get_string('plugins/flickr/user_name')
-        self.auth_token = self.conf.get_string('plugins/flickr/auth_token')
+        self.nsid = SETTINGS_FLICKR.get_string('nsid') # nsid
+        self.user_name = SETTINGS_FLICKR.get_string('user-name')
+        self.auth_token = SETTINGS_FLICKR.get_string('auth-token')
 
     def _write_conf(self, dic):
         for key, value in dic.iteritems():
-            self.conf.set_string('plugins/flickr/%s' % key, value)
-        self._update_auth_status(dic['user_name']) # in plugin treeview
+            SETTINGS_FLICKR.set_string('%s' % key, value)
+        self._update_auth_status(dic['user-name']) # in plugin treeview

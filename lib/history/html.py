@@ -1,8 +1,7 @@
 import os
 from string import Template
 
-import gtk
-from gettext import gettext as _
+from gi.repository import Gtk, Gdk
 
 from ..constants import SHARED_DATA_DIR, CACHE_DIR
 from ..plugins import ICON_LIST
@@ -20,7 +19,7 @@ class HistoryHTML(object):
 
     def show(self):
         self._make()
-        gtk.show_uri(None, 'file://%s' % self.html_file, gtk.gdk.CURRENT_TIME)
+        Gtk.show_uri(None, 'file://%s' % self.html_file, Gdk.CURRENT_TIME)
 
     def _make(self):
         template_file = os.path.join(self.template_dir, 'history.html')
@@ -46,6 +45,7 @@ class HistoryHTML(object):
 
         template = Template(template_format)
         html = template.safe_substitute(keyword)
+        html = html.encode('utf-8')
 
         with open(self.html_file,'w') as fh:
             fh.write(html)
@@ -89,7 +89,8 @@ class HistoryHTML(object):
                     url = url.replace('%20', '%2520') # for space characters
                     break
 
-            info = '<span class="title">%s</span><br>' % (title or _('Untitled'))
+            info = '<span class="title">%s</span><br>' % (
+                title or _('Untitled'))
 
             if owner:
                 info += _('by %s') % owner + '<br>'
@@ -104,7 +105,7 @@ class HistoryHTML(object):
                 info += "%s<br>" % get_formatted_datatime(date)
 
             table_dic = { 'url': url,
-                          'page_url': page_url or org_url,
+                          'page_url': (page_url or org_url),
                           'info': info }
 
             table += template.safe_substitute(table_dic)
