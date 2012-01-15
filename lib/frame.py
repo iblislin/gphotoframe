@@ -155,7 +155,7 @@ class PhotoFrame(object):
         if event.button == 1:
             if not self.photoimage.check_actor(widget, event):
                 if event.type == Gdk.EventType._2BUTTON_PRESS:
-                    self.popup_menu.open_photo()
+                    self.popup_menu.on_menuitem5_activate()
                 else:
                     x, y = int(event.x_root), int(event.y_root)
                     widget.begin_move_drag(event.button, x, y, event.time)
