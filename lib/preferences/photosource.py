@@ -143,7 +143,8 @@ class SourceComboBox(object):
 
         recent = SETTINGS_RECENTS.get_string('source').decode('utf-8') #FIXME
         # liststore source
-        source_num = source_list.index(photoliststore[1]) if photoliststore \
+        source_num = source_list.index(
+            photoliststore[1].decode('utf-8')) if photoliststore \
             else source_list.index(recent) if recent in source_list \
             else 0
         widget.set_active(source_num)
@@ -165,7 +166,7 @@ class SourceComboBox(object):
     def _change_combobox(self, widget, gui, data=None):
         self.button.set_sensitive(True)
 
-        text = self.get_active_text()
+        text = self.get_active_text().decode('utf-8')
         token = PHOTO_TARGET_TOKEN
 
         self.ui = token[text](gui, data)
