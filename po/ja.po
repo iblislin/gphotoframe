@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-03 18:38+0900\n"
-"PO-Revision-Date: 2011-12-03 18:39+0900\n"
+"PO-Revision-Date: 2012-01-30 15:50+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -648,7 +648,7 @@ msgstr "フルスクリーン表示時(_F):"
 
 #: ../share/preferences.ui.h:10
 msgid "In _Window Mode:"
-msgstr "ウィンドウ表示時(_W)"
+msgstr "ウィンドウ表示時(_W):"
 
 #: ../share/preferences.ui.h:11
 msgid "Photo Frame Preferences"
