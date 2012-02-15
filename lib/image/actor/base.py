@@ -10,6 +10,9 @@ except ImportError:
 from ..animation import FadeAnimationTimeline
 from ...settings import SETTINGS_UI
 
+import os  # FIXME (for pixbuf)
+from ...constants import CACHE_DIR # FIXME (for pixbuf)
+
 class Texture(GtkClutter.Texture):
 
     def __init__(self, stage=None):
@@ -37,7 +40,7 @@ class Texture(GtkClutter.Texture):
         bpp = 4 if pixbuf.props.has_alpha else 3
 
         # FIXME
-        tmp_file = '/tmp/gphotoframe_tmp.png'
+        tmp_file = os.path.join(CACHE_DIR, 'gphotoframe_tmp.png')
         pixbuf.savev(tmp_file, 'png', [], [])
         self.set_from_file(tmp_file)
 
