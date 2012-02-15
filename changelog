@@ -1,3 +1,7 @@
+2012-02-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* com.googlecode.gphotoframe.schemas: Added new section 'geometry'.
+
 2012-01-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5 release.

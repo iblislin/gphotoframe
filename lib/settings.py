@@ -8,6 +8,7 @@ def get_settings(key=""):
 SETTINGS = get_settings()
 SETTINGS_FILTER = get_settings('.filter')
 SETTINGS_FORMAT = get_settings('.format')
+SETTINGS_GEOMETRY = get_settings('.geometry')
 SETTINGS_RECENTS = get_settings('.recents')
 
 SETTINGS_PLUGINS = get_settings('.plugins')

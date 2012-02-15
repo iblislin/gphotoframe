@@ -35,6 +35,29 @@
       <summary>Interval seconds in full screen mode</summary>
       <description>Interval seconds in full screen mode</description>
     </key>
+    <key name="window-fix" type="b">
+      <default>false</default>
+      <summary>Photo frame fix mode</summary>
+      <description>Fix the photo frame on the root window</description>
+    </key>
+    <key name="window-sticky" type="b">
+      <default>false</default>
+      <summary>Photo frame sticky mode</summary>
+      <description>Always on Visible Workspace</description>
+    </key>
+    <key name="window-keep-below" type="b">
+      <default>true</default>
+      <summary>Photo frame "keep-below" mode</summary>
+      <description>If true, the photo frame must be kept below other windows.  When you change this value, you need to restart gphotoframe.</description>
+    </key>
+    <child name="format" schema="com.googlecode.gphotoframe.format"/>
+    <child name="filter" schema="com.googlecode.gphotoframe.filter"/>
+    <child name="geometry" schema="com.googlecode.gphotoframe.geometry"/>
+    <child name="plugins" schema="com.googlecode.gphotoframe.plugins"/>
+    <child name="recents" schema="com.googlecode.gphotoframe.recents"/>
+    <child name="ui" schema="com.googlecode.gphotoframe.ui"/>
+  </schema>
+  <schema id="com.googlecode.gphotoframe.geometry" path="/apps/gphotoframe/geometry/">
     <key name="max-height" type="i">
       <default>300</default>
       <summary>Photo image max height</summary>
@@ -70,26 +93,6 @@
       <summary>Photo frame window gravity</summary>
       <description>Defines the reference point of the window.  Possible values are "CENTER" and "NORTH_WEST"</description>
     </key>
-    <key name="window-fix" type="b">
-      <default>false</default>
-      <summary>Photo frame fix mode</summary>
-      <description>Fix the photo frame on the root window</description>
-    </key>
-    <key name="window-sticky" type="b">
-      <default>false</default>
-      <summary>Photo frame sticky mode</summary>
-      <description>Always on Visible Workspace</description>
-    </key>
-    <key name="window-keep-below" type="b">
-      <default>true</default>
-      <summary>Photo frame "keep-below" mode</summary>
-      <description>If true, the photo frame must be kept below other windows.  When you change this value, you need to restart gphotoframe.</description>
-    </key>
-    <child name="format" schema="com.googlecode.gphotoframe.format"/>
-    <child name="filter" schema="com.googlecode.gphotoframe.filter"/>
-    <child name="plugins" schema="com.googlecode.gphotoframe.plugins"/>
-    <child name="recents" schema="com.googlecode.gphotoframe.recents"/>
-    <child name="ui" schema="com.googlecode.gphotoframe.ui"/>
   </schema>
   <schema id="com.googlecode.gphotoframe.format" path="/apps/gphotoframe/format/">
     <key name="date-format" type="s">

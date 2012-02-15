@@ -2,7 +2,7 @@ import os
 from gi.repository import Gtk, Gdk
 
 from ..constants import SHARED_DATA_DIR
-from ..settings import SETTINGS, SETTINGS_RECENTS
+from ..settings import SETTINGS, SETTINGS_RECENTS, SETTINGS_GEOMETRY
 from ..plugins import PluginListStore
 from ..utils.autostart import AutoStart
 
@@ -26,18 +26,18 @@ class Preferences(object):
         self.prefs = gui.get_object('preferences')
         self.notebook = gui.get_object('notebook1')
 
-        width = SETTINGS.get_int('prefs-width')
-        height = SETTINGS.get_int('prefs-height')
+        width = SETTINGS_GEOMETRY.get_int('prefs-width')
+        height = SETTINGS_GEOMETRY.get_int('prefs-height')
         self.prefs.set_default_size(width, height)
 
-        parts = [['spinbutton1', 'interval'],
-                 ['spinbutton2', 'interval-fullscreen'],
-                 ['spinbutton_w', 'max-width'],
-                 ['spinbutton_h', 'max-height']]
+        parts = [['spinbutton1', SETTINGS.get_int('interval')],
+                 ['spinbutton2', SETTINGS.get_int('interval-fullscreen')],
+                 ['spinbutton_w', SETTINGS_GEOMETRY.get_int('max-width')],
+                 ['spinbutton_h', SETTINGS_GEOMETRY.get_int('max-height')]]
 
         for widget, key in parts:
             spinbutton = self.gui.get_object(widget)
-            spinbutton.set_value(SETTINGS.get_int(key))
+            spinbutton.set_value(key)
 
         checkbutton1 = gui.get_object('checkbutton1')
         sticky = SETTINGS.get_boolean('window-sticky')
@@ -77,11 +77,11 @@ class Preferences(object):
 
     def on_spinbutton_w_value_changed(self, widget):
         val = widget.get_value_as_int()
-        SETTINGS.set_int('max-width', val)
+        SETTINGS_GEOMETRY.set_int('max-width', val)
 
     def on_spinbutton_h_value_changed(self, widget):
         val = widget.get_value_as_int()
-        SETTINGS.set_int('max-height', val)
+        SETTINGS_GEOMETRY.set_int('max-height', val)
 
     def checkbutton1_toggled_cb(self, widget):
         "_sticky_toggled_cb"
@@ -98,8 +98,8 @@ class Preferences(object):
         SETTINGS_RECENTS.set_int('preferences', page)
 
         width, height = self.prefs.get_size()
-        SETTINGS.set_int('prefs-width', width)
-        SETTINGS.set_int('prefs-height', height)
+        SETTINGS_GEOMETRY.set_int('prefs-width', width)
+        SETTINGS_GEOMETRY.set_int('prefs-height', height)
 
         self.photolist.save_settings()
         self.plugin_liststore.save_settings()
