@@ -1,5 +1,6 @@
 2012-02-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 2.0-a1 release.
 	* es.po: Added new translation.  Thanks jorjuardo!
 	* com.googlecode.gphotoframe.schemas: Added new section 'geometry'.
 
