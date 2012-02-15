@@ -69,6 +69,7 @@ class PhotoFrame(object):
         if change:
             if not self.photoimage.set_photo(photo): return False
             borders = self.photoimage.window_border * 2
+            # self.window.resize(1, 1) # black magic?
             self.window.resize(self.photoimage.w + borders,
                                self.photoimage.h + borders)
 
