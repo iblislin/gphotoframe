@@ -27,6 +27,7 @@ class PhotoImage(object):
             return False
 
         self._set_tips(self.photo)
+        # self.window.resize(1, 1) # FIXME: black magic?
         self._set_photo_image(self.pixbuf.data)
         self.window_border = SETTINGS.get_int('border-width')
 
@@ -120,7 +121,7 @@ class PhotoImagePixbuf(object):
         pixbuf = pixbuf.rotate_simple(rotation)
 
         if not self._aspect_ratio_is_ok(pixbuf): return False
-        if not self._image_size_is_ok(pixbuf): return False
+        if not self._image_size_is_ok(org_h, org_w): return False
 
         # photo.get_exif()
 
@@ -206,14 +207,14 @@ class PhotoImagePixbuf(object):
         else:
             return True
 
-    def _image_size_is_ok(self, pixbuf):
+    def _image_size_is_ok(self, w, h):
+        if w is None or h is None:
+            print "no size!"
+            return True
 
         min_width = SETTINGS_FILTER.get_int('min-width') or 0
         min_height = SETTINGS_FILTER.get_int('min-height') or 0
         if min_width <= 0 or min_height <= 0: return True
-
-        w, h = pixbuf.get_width(), pixbuf.get_height()
-        # print w, h
 
         if w < min_width or h < min_height:
             print "Skip a small size image (%sx%s)." % (w, h)
