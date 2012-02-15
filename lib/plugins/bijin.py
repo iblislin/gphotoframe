@@ -4,9 +4,11 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# It requires gphotoframe 1.3 or later.  Put this file to the user
+# It requires gphotoframe 1.9 or later.  Put this file to the user
 # plguins directory (~/.config/gphotoframe/plugins/).
 #
+# 2011-12-29 Version 1.7.1
+# 2011-07-06 Version 1.7
 # 2011-03-15 Version 1.6
 # 2011-02-17 Version 1.5.2
 # 2010-12-28 Version 1.5.1
@@ -33,10 +35,10 @@ def info():
 class BijinPlugin(base.PluginBase):
 
     def __init__(self):
-        self.name = '美人時計'
+        self.name = u'美人時計'
         self.icon = BijinIcon
         self.hide_source_icon_on_image = True
-        self.info = { 'comments': '1min 自動更新時計サイト',
+        self.info = { 'comments': u'1min 自動更新時計サイト',
                       'copyright': 'Copyright © 2010-2011 Yoshizimi Endo',
                       'website': 'http://www.bijint.com/',
                       'authors': ['Yoshizimi Endo'], }
@@ -69,45 +71,54 @@ class BijinPhotoList(base.PhotoList):
         return base.Photo(data)
 
     def _select_clock(self, target):
-        if target != 'ランダム':
+        if target != u'ランダム':
             return target
 
-        list = [i[0] for i in self.tokei.list if i[1] and i[0]
-                not in self.conf.get_list('plugins/bijin/disabled')]
+#        list = [i[0] for i in self.tokei.list if i[1] and 
+#                i[0] not in self.conf.get_list('plugins/bijin/disabled')]
+        list = [i[0] for i in self.tokei.list if i[1]]
         return random.choice(list)
 
 class PhotoSourceBijinUI(ui.PhotoSourceUI):
 
     def _label(self):
         tokei = BijinTokeiList()
+
+#        return [i[0] for i in tokei.list 
+#                if i[0] not in self.conf.get_list('plugins/bijin/disabled')]
         return [i[0] for i in tokei.list]
 
 class BijinTokeiList(object):
+
+    delay_for_prepare = False
 
     def __init__(self):
         self.url_base = 'http://www.bijint.com/'
 
         self.list = [
-            ['ランダム', None],
-            ['美人時計', 'jp'],
-            ['美男時計', 'binan'],
-            ['サーキット時計', 'cc'],
-            ['カンバン娘時計', 'k-musume'],
-            ['韓国版', 'kr'],
-            ['香港版', 'hk'],
-            ['北海道版', 'hokkaido'],
-            ['仙台版', 'sendai'],
-            ['群馬版', 'gunma'],
-            ['新潟版', 'niigata'],
-            ['名古屋版', 'nagoya'],
-            ['金沢版', 'kanazawa'],
-            ['福井版', 'fukui'],
-            ['京都版', 'kyoto'],
-            ['大阪版', 'osaka'],
-            ['岡山版', 'okayama'],
-            ['香川版', 'kagawa'],
-            ['福岡版', 'fukuoka'],
-            ['鹿児島版', 'kagoshima'],
+            [u'ランダム', None],
+            [u'美人時計', 'jp'],
+            [u'美男時計', 'binan'],
+            [u'サーキット時計', 'cc'],
+            [u'カンバン娘時計', 'k-musume'],
+            [u'韓国版', 'kr'],
+            [u'香港版', 'hk'],
+            [u'北海道版', 'hokkaido'],
+            [u'秋田版', 'akita'],
+            [u'仙台版', 'sendai'],
+            [u'群馬版', 'gunma'],
+            [u'新潟版', 'niigata'],
+            [u'名古屋版', 'nagoya'],
+            [u'金沢版', 'kanazawa'],
+            [u'福井版', 'fukui'],
+            [u'京都版', 'kyoto'],
+            [u'大阪版', 'osaka'],
+            [u'岡山版', 'okayama'],
+            [u'香川版', 'kagawa'],
+            [u'福岡版', 'fukuoka'],
+            [u'熊本版', 'kumamoto'],
+            [u'鹿児島版', 'kagoshima'],
+            [u'沖縄版', 'okinawa'],
             ]
 
         self.dic = dict(self.list)
