@@ -21,6 +21,7 @@ It shows pictures from:
 - Python: 2.6 or 2.7
 - python-gobject
 - gir1.2-gtk-3.0
+- gir1.2-webkit-3.0
 - Twisted: twisted.internet & twisted.web
 - PyXDG: except v.0.16 which has a bug
 
@@ -32,7 +33,6 @@ It shows pictures from:
 
 - feedparser: for RSS plugin
 - python-libproxy: for Gnome Proxy Settings
-- gir1.2-webkit-3.0: for Facebook plugin
 - gir1.2-gtkclutter-1.0
 - gir1.2-champlain-0.12: for Photo Map
 
