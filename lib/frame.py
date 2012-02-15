@@ -4,7 +4,7 @@ from gi.repository import Gtk, Gdk, GObject, GLib
 
 import constants
 from image import *
-from settings import SETTINGS
+from settings import SETTINGS, SETTINGS_GEOMETRY
 from menu import PopUpMenu, PopUpMenuFullScreen
 from utils.gnomescreensaver import GsThemeWindow, is_screensaver_mode
 
@@ -43,7 +43,7 @@ class PhotoFrame(object):
 
         # a workaround for Xfwm bug (Issue #97)
         gravity = Gdk.Gravity.NORTH_WEST \
-            if SETTINGS.get_string('gravity') == 'NORTH_WEST' \
+            if SETTINGS_GEOMETRY.get_string('gravity') == 'NORTH_WEST' \
             else Gdk.Gravity.CENTER
 
         self.window = gui.get_object('window')
@@ -104,8 +104,8 @@ class PhotoFrame(object):
         return hasattr(self, 'screensaver')
 
     def _set_window_position(self):
-        self.window.move(SETTINGS.get_int('root-x'),
-                         SETTINGS.get_int('root-y'))
+        self.window.move(SETTINGS_GEOMETRY.get_int('root-x'),
+                         SETTINGS_GEOMETRY.get_int('root-y'))
         self.window.resize(1, 1)
         self.window.show_all()
         self.window.get_position()
@@ -192,8 +192,8 @@ class PhotoFrame(object):
                 x += w / 2
                 y += h / 2
 
-            SETTINGS.set_int('root-x', x)
-            SETTINGS.set_int('root-y', y)
+            SETTINGS_GEOMETRY.set_int('root-x', x)
+            SETTINGS_GEOMETRY.set_int('root-y', y)
 
         return False
 
@@ -226,13 +226,13 @@ class PhotoFrame(object):
         if hint == Gdk.WindowTypeHint.NORMAL:
             if self.window.get_gravity() == Gdk.Gravity.CENTER:
                 border = self.photoimage.window_border
-                x = SETTINGS.get_int('root-x') - self.photoimage.w / 2
-                y = SETTINGS.get_int('root-y') - self.photoimage.h / 2
+                x = SETTINGS_GEOMETRY.get_int('root-x') - self.photoimage.w / 2
+                y = SETTINGS_GEOMETRY.get_int('root-y') - self.photoimage.h / 2
                 self.window.move(int(x - border), int(y - border))
             else:
                 # a workaround for Xfwm bug (Issue #97)
-                x = SETTINGS.get_int('root-x')
-                y = SETTINGS.get_int('root-y')
+                x = SETTINGS_GEOMETRY.get_int('root-x')
+                y = SETTINGS_GEOMETRY.get_int('root-y')
                 self.window.move(int(x), int(y))
 
     def _change_fullscreen_cb(self, settings, key):

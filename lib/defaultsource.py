@@ -3,7 +3,7 @@ import os
 
 from gi.repository import Gdk, GLib
 
-from settings import SETTINGS
+from settings import SETTINGS_GEOMETRY
 from liststore import SaveListStore
 
 
@@ -14,8 +14,8 @@ def set_default_photo_source():
 
         monitor_w, monitor_h = get_geometry_first_monitor()
         if monitor_w > 800 and monitor_h > 600:
-            SETTINGS.set_int('root-x', monitor_w - 225)
-            SETTINGS.set_int('root-y', 200)
+            SETTINGS_GEOMETRY.set_int('root-x', monitor_w - 225)
+            SETTINGS_GEOMETRY.set_int('root-y', 200)
 
         folder = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES)
         sources = {0: {'source': 'Flickr', 'target': _('Interestingness')},
