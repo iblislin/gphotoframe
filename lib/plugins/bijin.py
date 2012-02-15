@@ -4,8 +4,8 @@
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# It requires gphotoframe 1.9 or later.  Put this file to the user
-# plguins directory (~/.config/gphotoframe/plugins/).
+# It requires gphotoframe 2.0 or later.  Put this file to the user
+# plguins directory (~/.local/share/gphotoframe/plugins/).
 #
 # 2011-12-29 Version 1.7.1
 # 2011-07-06 Version 1.7

@@ -4,8 +4,8 @@
 # Copyright (c) 2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
-# It requires gphotoframe 1.3 or later, python-feedparser and python-lxml.
-# Put this file to the user plguins directory (~/.config/gphotoframe/plugins/).
+# It requires gphotoframe 2.0 or later, python-feedparser and python-lxml.
+# Put this file to the user plguins directory (~/.local/share/gphotoframe/plugins/).
 #
 #   The Big Picture
 #   http://www.boston.com/bigpicture/
