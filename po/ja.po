@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 18:38+0900\n"
+"POT-Creation-Date: 2012-02-23 13:22+0900\n"
 "PO-Revision-Date: 2012-02-23 13:18+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
@@ -869,11 +869,11 @@ msgstr "未認証"
 msgid "Options"
 msgstr "オプション"
 
-#: ../lib/plugins/base/trash.py:58
+#: ../lib/plugins/base/trash.py:56
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "ファイルをゴミ箱に移動できません。今すぐ削除しますか?"
 
-#: ../lib/plugins/base/trash.py:60
+#: ../lib/plugins/base/trash.py:58
 #, python-format
 msgid "The file \"%s\" cannot be moved to the trash. "
 msgstr "ファイル %s はゴミ箱に移動できません。"
@@ -916,8 +916,8 @@ msgid "Your Groups"
 msgstr "Your Groups"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/picasa.py:186 ../lib/plugins/tumblr/ui.py:16
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:105
+#: ../lib/plugins/picasa.py:189 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "ユーザ(_U):"
 
@@ -948,8 +948,8 @@ msgstr "アカウントの変更"
 
 #: ../lib/plugins/flickr/authdialog.py:35
 msgid ""
-"GPhotoFrame needs your authorization in order to view private photos "
-"or to add photos to favorites list on your Flickr.com account. Press the "
+"GPhotoFrame needs your authorization in order to view private photos or to "
+"add photos to favorites list on your Flickr.com account. Press the "
 "\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
 msgstr ""
@@ -1027,7 +1027,7 @@ msgstr "評価"
 msgid "Period"
 msgstr "期間"
 
-#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:131
+#: ../lib/plugins/fspot/__init__.py:179 ../lib/plugins/shotwell.py:130
 msgid "_Tag:"
 msgstr "タグ(_T):"
 
@@ -1035,24 +1035,24 @@ msgstr "タグ(_T):"
 msgid "Social Network Service"
 msgstr "ソーシャル・ネットワーク・サービス"
 
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/facebook/__init__.py:107 ../lib/plugins/facebook/api.py:22
+#: ../lib/plugins/facebook/__init__.py:105
+#: ../lib/plugins/facebook/__init__.py:111 ../lib/plugins/facebook/api.py:22
 msgid "Wall"
 msgstr "ウォール"
 
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/__init__.py:116 ../lib/plugins/facebook/api.py:21
+#: ../lib/plugins/facebook/__init__.py:105
+#: ../lib/plugins/facebook/__init__.py:111
+#: ../lib/plugins/facebook/__init__.py:120 ../lib/plugins/facebook/api.py:21
 msgid "Albums"
 msgstr "アルバム"
 
-#: ../lib/plugins/facebook/__init__.py:103
 #: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/__init__.py:109 ../lib/plugins/facebook/api.py:23
+#: ../lib/plugins/facebook/__init__.py:111
+#: ../lib/plugins/facebook/__init__.py:113 ../lib/plugins/facebook/api.py:23
 msgid "News Feed"
 msgstr "ニュースフィード"
 
-#: ../lib/plugins/facebook/__init__.py:138
+#: ../lib/plugins/facebook/__init__.py:142
 msgid ""
 "To retrieve the album list, close this dialog once, please reopen after a "
 "while."
@@ -1094,22 +1094,22 @@ msgstr "Picasa Web"
 msgid "Certification Error"
 msgstr "認証エラーです"
 
-#: ../lib/plugins/picasa.py:144
+#: ../lib/plugins/picasa.py:147
 msgid "Album"
 msgstr "アルバム"
 
-#: ../lib/plugins/picasa.py:145 ../lib/plugins/picasa.py:186
-#: ../lib/plugins/picasa.py:192
+#: ../lib/plugins/picasa.py:148 ../lib/plugins/picasa.py:189
+#: ../lib/plugins/picasa.py:195
 msgid "Community Search"
 msgstr "コミュニティ写真の検索"
 
-#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:188
-#: ../lib/plugins/picasa.py:192
+#: ../lib/plugins/picasa.py:149 ../lib/plugins/picasa.py:191
+#: ../lib/plugins/picasa.py:195
 msgid "Featured"
 msgstr "注目の写真"
 
-#: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:153
-#: ../lib/plugins/picasa.py:186 ../lib/plugins/picasa.py:192
+#: ../lib/plugins/picasa.py:150 ../lib/plugins/picasa.py:156
+#: ../lib/plugins/picasa.py:189 ../lib/plugins/picasa.py:195
 #: ../lib/plugins/tumblr/__init__.py:73 ../lib/plugins/tumblr/__init__.py:79
 #: ../lib/plugins/tumblr/__init__.py:103 ../lib/plugins/tumblr/__init__.py:123
 #: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
@@ -1117,7 +1117,7 @@ msgstr "注目の写真"
 msgid "User"
 msgstr "ユーザ"
 
-#: ../lib/plugins/picasa.py:186
+#: ../lib/plugins/picasa.py:189
 msgid "_Keyword:"
 msgstr "キーワード(_K):"
 
@@ -1204,24 +1204,24 @@ msgstr "フォルダ"
 msgid "Local Folder"
 msgstr "ローカルフォルダ"
 
-#: ../lib/plugins/shotwell.py:44
+#: ../lib/plugins/shotwell.py:43
 msgid "Shotwell Photo Manager"
 msgstr "Shotwell 写真マネージャ"
 
-#: ../lib/plugins/shotwell.py:50
+#: ../lib/plugins/shotwell.py:49
 msgid "Set rating as rejected"
 msgstr "ブラックリストに追加する"
 
-#: ../lib/plugins/shotwell.py:53
+#: ../lib/plugins/shotwell.py:52
 msgid "Set rating as rejected?"
 msgstr "ブラックリストに追加しますか?"
 
-#: ../lib/plugins/shotwell.py:54
+#: ../lib/plugins/shotwell.py:53
 msgid ""
-"The rating of this photo will be set as rejected.  GPhotoFrame will "
-"skip rejected photos."
+"The rating of this photo will be set as rejected.  GPhotoFrame will skip "
+"rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
 
-#: ../lib/plugins/shotwell.py:133
+#: ../lib/plugins/shotwell.py:132
 msgid "_Description:"
 msgstr "説明(_D):"
