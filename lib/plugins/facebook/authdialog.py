@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Facebook Authentication UI module for GNOME Photo Frame
+# Facebook Authentication UI module for GPhotoFrame
 # Copyright (c) 2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
@@ -48,7 +48,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
     def _is_accessed_dialog(self):
         text = _('You are not logged into Facebook.  '
                  'If you would like to redo the authentication, '
-                 'you have to restart GNOME Photo Frame.')
+                 'you have to restart GPhotoFrame.')
         self._set_dialog(text, None, None, self._cancel_cb, self._quit_cb)
         self.button_p.set_sensitive(False)
         self.button_n.set_sensitive(True)
@@ -90,7 +90,7 @@ class PluginFacebookDialog(PluginFlickrDialog):
 
         text = _('You are logged into Facebook as %s.  ' 
                  'If you would like to redo the authentication, '
-                 'you have to restart GNOME Photo Frame.')
+                 'you have to restart GPhotoFrame.')
         self.label.set_text(text % self.full_name)
 
         self.vbox.remove(self.sw)

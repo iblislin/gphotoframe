@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Haikyo (廃墟時計) plugin for GNOME Photo Frame
+# Haikyo (廃墟時計) plugin for GPhotoFrame
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #

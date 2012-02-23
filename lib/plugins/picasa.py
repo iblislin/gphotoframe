@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Picasa Wb Album plugin for GNOME Photo Frame
+# Picasa Wb Album plugin for GPhotoFrame
 # Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 

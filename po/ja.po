@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-03 18:38+0900\n"
-"PO-Revision-Date: 2011-12-03 18:39+0900\n"
+"PO-Revision-Date: 2012-02-23 13:18+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -707,7 +707,7 @@ msgid "Show _History"
 msgstr "履歴を表示(_H)"
 
 #: ../lib/menu.py:146
-msgid "GNOME Photo Frame"
+msgid "GPhotoFrame"
 msgstr "GNOME 写真フレーム"
 
 #: ../lib/history/html.py:32
@@ -715,7 +715,7 @@ msgid "Screen Saver"
 msgstr "スクリーンセーバー"
 
 #: ../lib/history/html.py:35
-msgid "Gnome Photo Frame History"
+msgid "GPhotoFrame History"
 msgstr "GNOME 写真フレームの履歴"
 
 #. TRANSLATORS: %s is the name of the author of the photo
@@ -948,9 +948,9 @@ msgstr "アカウントの変更"
 
 #: ../lib/plugins/flickr/authdialog.py:35
 msgid ""
-"Gnome Photo Frame needs your authorization in order to view private photos "
+"GPhotoFrame needs your authorization in order to view private photos "
 "or to add photos to favorites list on your Flickr.com account. Press the "
-"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
 msgstr ""
 "Gnome 写真フレームで Flickr.com 上のプライベート写真を閲覧したり、お気に入り"
@@ -1072,7 +1072,7 @@ msgstr "ログアウト(_L)"
 #: ../lib/plugins/facebook/authdialog.py:49
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 "Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
 "起動する必要があります。"
@@ -1081,7 +1081,7 @@ msgstr ""
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 "Facebook にアカウント %s でログインしています。認証をやり直す場合は、GNOME 写"
 "真フレームを再起動する必要があります。"
@@ -1218,7 +1218,7 @@ msgstr "ブラックリストに追加しますか?"
 
 #: ../lib/plugins/shotwell.py:54
 msgid ""
-"The rating of this photo will be set as rejected.  Gnome photo frame will "
+"The rating of this photo will be set as rejected.  GPhotoFrame will "
 "skip rejected photos."
 msgstr "この写真の評価を「対象外」に設定し、今後表示しないようにします。"
 

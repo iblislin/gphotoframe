@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe 1.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-11 23:19+0900\n"
-"PO-Revision-Date: 2011-06-27 20:41+0100\n"
+"PO-Revision-Date: 2012-02-23 13:18+0900\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: italian <cri.penta@gmail.com>\n"
 "Language: \n"
@@ -657,7 +657,7 @@ msgid "Show _History"
 msgstr "Mostra _cronologia"
 
 #: ../lib/menu.py:146
-msgid "GNOME Photo Frame"
+msgid "GPhotoFrame"
 msgstr "Cornice fotografica di GNOME"
 
 #: ../lib/history/html.py:32
@@ -665,7 +665,7 @@ msgid "Screen Saver"
 msgstr "Salvaschermo"
 
 #: ../lib/history/html.py:35
-msgid "Gnome Photo Frame History"
+msgid "GPhotoFrame History"
 msgstr "Cronologia della cornice fotografica di GNOME"
 
 #. TRANSLATORS: %s is the name of the author of the photo
@@ -906,9 +906,9 @@ msgstr "_Cambia utente"
 
 #: ../lib/plugins/flickr/authdialog.py:35
 msgid ""
-"Gnome Photo Frame needs your authorization in order to view private photos "
+"GPhotoFrame needs your authorization in order to view private photos "
 "or to add photos to favorites list on your Flickr.com account. Press the "
-"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
 msgstr ""
 "La cornice fotografica di Gnome necessita dell'autorizzazione per poter "
@@ -1028,7 +1028,7 @@ msgstr "_Logout"
 #: ../lib/plugins/facebook/authdialog.py:49
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 "Non si è connessi a Facebook. Per effettuare di nuovo l'autenticazione, "
 "occorre riavviare la cornice fotografica di GNOME"
@@ -1037,7 +1037,7 @@ msgstr ""
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 "Si è connessi a Facebook come \"%s\". Per effettuare di nuovo la "
 "connessione, occorre riavviare la cornice fotografica di GNOME"
@@ -1174,7 +1174,7 @@ msgstr "Impostare il voto a scartata?"
 
 #: ../lib/plugins/shotwell.py:54
 msgid ""
-"The rating of this photo will be set as rejected.  Gnome photo frame will "
+"The rating of this photo will be set as rejected.  GPhotoFrame will "
 "skip rejected photos."
 msgstr ""
 "Il voto di questa foto verrà impostato a scartata. La cornice fotografica di "
