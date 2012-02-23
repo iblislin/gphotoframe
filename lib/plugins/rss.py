@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# RSS plugin for GNOME Photo Frame
+# RSS plugin for GPhotoFrame
 # Copyright (c) 2009-2012, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
