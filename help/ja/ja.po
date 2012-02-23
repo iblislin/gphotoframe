@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.1\n"
-"POT-Creation-Date: 2011-06-23 20:35+0900\n"
-"PO-Revision-Date: 2011-06-23 20:35+0900\n"
+"POT-Creation-Date: 2012-02-23 13:39+0900\n"
+"PO-Revision-Date: 2012-02-23 13:39+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -20,16 +20,16 @@ msgid "(Cristian Marchi)"
 msgstr "(Cristian Marchi)"
 
 #: C/gphotoframe-C.omf:6(title)
-msgid "GNOME Photo Frame Application Manual"
-msgstr "GNOME 写真フレームマニュアル"
+msgid "GPhotoFrame Application Manual"
+msgstr "GPhotoFrame マニュアル"
 
 #: C/gphotoframe-C.omf:7(date) C/gphotoframe.xml:96(date)
 msgid "2010-10-03"
 msgstr "2010-10-03"
 
 #: C/gphotoframe-C.omf:10(description)
-msgid "GNOME Photo Frame is an image viewer application for the GNOME desktop."
-msgstr "GNOME 写真フレームは GNOME デスクトップ向けの画像ビューアです。"
+msgid "GPhotoFrame is an image viewer application for the GNOME desktop."
+msgstr "GPhotoFrame は GNOME デスクトップ向けの画像ビューアです。"
 
 #: C/gphotoframe-C.omf:14(type)
 msgid "user's guide"
@@ -44,16 +44,16 @@ msgstr ""
 "@@image: 'figures/gphotoframe.png'; md5=2027e768aa7f2e6a66671a14494d3b66"
 
 #: C/gphotoframe.xml:18(title)
-msgid "<application>GNOME Photo Frame</application> Application Manual"
-msgstr "<application>GNOME 写真フレーム</application>マニュアル"
+msgid "<application>GPhotoFrame</application> Application Manual"
+msgstr "<application>GPhotoFrame</application> マニュアル"
 
 #: C/gphotoframe.xml:20(para)
 msgid ""
-"<application>GNOME Photo Frame</application> is an image viewer application "
-"for the GNOME desktop."
+"<application>GPhotoFrame</application> is an image viewer application for "
+"the GNOME desktop."
 msgstr ""
-"<application>GNOME 写真フレーム</application>は GNOME デスクトップ向けの画像"
-"ビューアです。"
+"<application>GPhotoFrame</application> は GNOME デスクトップ向けの画像ビュー"
+"アです。"
 
 #: C/gphotoframe.xml:25(year)
 msgid "2011"
@@ -99,8 +99,8 @@ msgstr ""
 "のマニュアルと一緒に配布された COPYING-DOCS を参照してください。"
 
 #: C/gphotoframe.xml:59(revnumber)
-msgid "GNOME Photo Frame Manual V1.4"
-msgstr "GNOME 写真フレームマニュアル 1.4"
+msgid "GPhotoFrame Manual V1.4"
+msgstr "GPhotoFrame マニュアル 1.4"
 
 #: C/gphotoframe.xml:60(date)
 msgid "2011-06-22"
@@ -113,36 +113,36 @@ msgid "Cristian Marchi <email>cri.penta@gmail.com</email>"
 msgstr "Cristian Marchi <email>cri.penta@gmail.com</email>"
 
 #: C/gphotoframe.xml:68(revnumber)
-msgid "GNOME Photo Frame Manual V1.3"
-msgstr "GNOME 写真フレームマニュアル 1.3"
+msgid "GPhotoFrame Manual V1.3"
+msgstr "GPhotoFrame マニュアル 1.3"
 
 #: C/gphotoframe.xml:69(date)
 msgid "2011-04-09"
 msgstr "2011-04-09"
 
 #: C/gphotoframe.xml:77(revnumber)
-msgid "GNOME Photo Frame Manual V1.2"
-msgstr "GNOME 写真フレームマニュアル 1.2"
+msgid "GPhotoFrame Manual V1.2"
+msgstr "GPhotoFrame マニュアル 1.2"
 
 #: C/gphotoframe.xml:78(date)
 msgid "2011-01-22"
 msgstr "2011-01-22"
 
 #: C/gphotoframe.xml:86(revnumber)
-msgid "GNOME Photo Frame Manual V1.1.1"
-msgstr "GNOME 写真フレームマニュアル 1.1.1"
+msgid "GPhotoFrame Manual V1.1.1"
+msgstr "GPhotoFrame マニュアル 1.1.1"
 
 #: C/gphotoframe.xml:87(date)
 msgid "2010-11-04"
 msgstr "2010-11-04"
 
 #: C/gphotoframe.xml:95(revnumber)
-msgid "GNOME Photo Frame Manual V1.1"
-msgstr "GNOME 写真フレームマニュアル 1.1"
+msgid "GPhotoFrame Manual V1.1"
+msgstr "GPhotoFrame マニュアル 1.1"
 
 #: C/gphotoframe.xml:104(releaseinfo)
-msgid "This manual describes version 1.4 of GNOME Photo Frame."
-msgstr "このマニュアルの対象は GNOME 写真フレームのバージョン 1.4 です。"
+msgid "This manual describes version 1.4 of GPhotoFrame."
+msgstr "このマニュアルの対象は GPhotoFrame のバージョン 1.4 です。"
 
 #: C/gphotoframe.xml:109(title)
 msgid "Introduction"
@@ -150,69 +150,69 @@ msgstr "概要"
 
 #: C/gphotoframe.xml:110(para)
 msgid ""
-"<application>GNOME Photo Frame</application> is an image viewer application "
-"for your GNOME desktop."
+"<application>GPhotoFrame</application> is an image viewer application for "
+"your GNOME desktop."
 msgstr ""
-"<application>GNOME 写真フレーム</application>は、GNOME デスクトップ向けの画像"
-"ビューアです。"
+"<application>GPhotoFrame</application> は、GNOME デスクトップ向けの画像ビュー"
+"アです。"
 
 #: C/gphotoframe.xml:115(para)
 msgid ""
-"The <application>GNOME Photo Frame</application> application is able to show "
-"a frame on your desktop in which are displayed images and photos gathered "
-"from user specified local and online sources."
+"The <application>GPhotoFrame</application> application is able to show a "
+"frame on your desktop in which are displayed images and photos gathered from "
+"user specified local and online sources."
 msgstr ""
-"<application>GNOME 写真フレーム</application>は、ユーザが指定するローカルある"
-"いはオンラインのソースから画像や写真を取得し、デスクトップ上のフレームに表示"
-"します。"
+"<application>GPhotoFrame</application> は、ユーザが指定するローカルあるいはオ"
+"ンラインのソースから画像や写真を取得し、デスクトップ上のフレームに表示しま"
+"す。"
 
 #: C/gphotoframe.xml:121(para)
 msgid ""
-"This manual describes how to set up and use the <application>GNOME Photo "
-"Frame</application> application."
+"This manual describes how to set up and use the <application>GPhotoFrame</"
+"application> application."
 msgstr ""
-"このマニュアルは <application>GNOME 写真フレーム</application>の設定と利用に"
-"ついて説明します。"
+"このマニュアルは <application>GPhotoFrame</application> の設定と利用について"
+"説明します。"
 
 #: C/gphotoframe.xml:127(title)
-msgid "Starting <application>GNOME Photo Frame</application>"
-msgstr "<application>GNOME 写真フレーム</application>の起動"
+msgid "Starting <application>GPhotoFrame</application>"
+msgstr "<application>GPhotoFrame</application> の起動"
 
 #: C/gphotoframe.xml:128(para)
 msgid ""
-"To start <application>GNOME Photo Frame</application> select the "
+"To start <application>GPhotoFrame</application> select the "
 "<menuchoice><guimenu>Applications</guimenu><guisubmenu>Graphics</"
 "guisubmenu><guimenuitem>Photo Frame</guimenuitem></menuchoice> entry from "
 "the main menu."
 msgstr ""
-"<application>GNOME 写真フレーム</application>を起動するには、メインメニューか"
-"ら、<menuchoice><guimenu>アプリケーション</guimenu><guisubmenu>グラフィックス"
-"</guisubmenu><guimenuitem>写真フレーム</guimenuitem></menuchoice>を選択してく"
-"ださい。"
+"<application>GPhotoFrame</application> を起動するには、メインメニューから、"
+"<menuchoice><guimenu>アプリケーション</guimenu><guisubmenu>グラフィックス</"
+"guisubmenu><guimenuitem>写真フレーム</guimenuitem></menuchoice>を選択してくだ"
+"さい。"
 
 #: C/gphotoframe.xml:133(para)
 msgid ""
-"Alternatively start <application>GNOME Photo Frame</application> from the "
-"shell with the <command>gphotoframe</command> command."
+"Alternatively start <application>GPhotoFrame</application> from the shell "
+"with the <command>gphotoframe</command> command."
 msgstr ""
 "あるいは、端末から <command>gphotoframe</command> コマンドを実行して、"
-"<application>GNOME 写真フレーム</application>を起動することもできます。"
+"<application>GPhotoFrame</application> を起動することもできます。"
 
 #: C/gphotoframe.xml:137(para)
 msgid ""
-"As the <application>GNOME Photo Frame</application> application is started "
-"and the <link linkend=\"gphotoframe-photo-frame\">photo frame</link> "
-"displayed, you can start to add sources. Do this in the following way:"
+"As the <application>GPhotoFrame</application> application is started and the "
+"<link linkend=\"gphotoframe-photo-frame\">photo frame</link> displayed, you "
+"can start to add sources. Do this in the following way:"
 msgstr ""
-"<application>GNOME 写真フレーム</application>を起動すると、<link linkend="
+"<application>GPhotoFrame</application> を起動すると、<link linkend="
 "\"gphotoframe-photo-frame\">写真フレーム</link>が表示されます。写真のソースの"
 "追加は、以下の手順で行います。"
 
 #: C/gphotoframe.xml:145(para)
 msgid ""
 "Right-click on the photo frame and select <guilabel>Preferences</guilabel> "
-"from the <link linkend=\"gphotoframe-mainmenu\"><application>GNOME Photo "
-"Frame</application> main menu</link>."
+"from the <link linkend=\"gphotoframe-mainmenu\"><application>GPhotoFrame</"
+"application> main menu</link>."
 msgstr ""
 "写真フレーム上で右クリックをし、表示される<link linkend=\"gphotoframe-"
 "mainmenu\">メインメニュー</link>から<guilabel>設定</guilabel>を選択してくださ"
@@ -257,11 +257,10 @@ msgstr "写真フレーム"
 
 #: C/gphotoframe.xml:179(para)
 msgid ""
-"The photo frame is the main window of <application>GNOME Photo Frame</"
-"application>."
+"The photo frame is the main window of <application>GPhotoFrame</application>."
 msgstr ""
-"写真フレームは、<application>GNOME 写真フレーム</application>のメインウィンド"
-"ウです。"
+"写真フレームは、<application>GPhotoFrame</application> のメインウィンドウで"
+"す。"
 
 #: C/gphotoframe.xml:182(para)
 msgid ""
@@ -419,16 +418,16 @@ msgstr ""
 "す。"
 
 #: C/gphotoframe.xml:299(title)
-msgid "<application>GNOME Photo Frame</application> Application Menu"
+msgid "<application>GPhotoFrame</application> Application Menu"
 msgstr "メインメニュー"
 
 #: C/gphotoframe.xml:300(para)
 msgid ""
-"The <application>GNOME Photo Frame</application> menu can be opened with a "
-"right click inside the photo frame."
+"The <application>GPhotoFrame</application> menu can be opened with a right "
+"click inside the photo frame."
 msgstr ""
-"写真フレーム上で右クリックすると、<application>GNOME 写真フレーム</"
-"application>のメインメニューが表示されます。"
+"写真フレーム上で右クリックすると、<application>GPhotoFrame</application> のメ"
+"インメニューが表示されます。"
 
 #: C/gphotoframe.xml:304(para)
 msgid "In the menu there are the following entries:"
@@ -486,11 +485,10 @@ msgstr "フルスクリーン表示"
 
 #: C/gphotoframe.xml:341(para)
 msgid ""
-"Toggle the fullscreen visualization of <application>GNOME Photo Frame</"
+"Toggle the fullscreen visualization of <application>GPhotoFrame</"
 "application>."
 msgstr ""
-"<application>GNOME 写真フレーム</application>のフルスクリーン表示を切り替えま"
-"す。"
+"<application>GPhotoFrame</application> のフルスクリーン表示を切り替えます。"
 
 #: C/gphotoframe.xml:347(guimenuitem)
 msgid "Fix photo frame"
@@ -506,11 +504,11 @@ msgstr ""
 
 #: C/gphotoframe.xml:354(para)
 msgid ""
-"When <application>GNOME Photo Frame</application> is in fix mode, all "
-"shortcut keys are invalid."
+"When <application>GPhotoFrame</application> is in fix mode, all shortcut "
+"keys are invalid."
 msgstr ""
-"<application>GNOME 写真フレーム</application>が固定されると、ショートカット"
-"キーはすべて無効になります。"
+"<application>GPhotoFrame</application> が固定されると、ショートカットキーはす"
+"べて無効になります。"
 
 #: C/gphotoframe.xml:360(guimenuitem)
 msgid "Preferences"
@@ -551,9 +549,8 @@ msgid "Quit"
 msgstr "終了"
 
 #: C/gphotoframe.xml:386(para)
-msgid ""
-"Terminates the <application>GNOME Photo Frame</application> application."
-msgstr "<application>GNOME 写真フレーム</application>を終了します。"
+msgid "Terminates the <application>GPhotoFrame</application> application."
+msgstr "<application>GPhotoFrame</application> を終了します。"
 
 #: C/gphotoframe.xml:392(title)
 msgid "Setting the Preferences"
@@ -579,10 +576,10 @@ msgstr "全般タブ"
 #: C/gphotoframe.xml:403(para)
 msgid ""
 "In the <guilabel>General</guilabel> tab you can set some general options for "
-"<application>GNOME Photo Frame</application>."
+"<application>GPhotoFrame</application>."
 msgstr ""
-"<guilabel>全般</guilabel>タブでは、<application>GNOME 写真フレーム</"
-"application>全般に関わるオプションを設定します。"
+"<guilabel>全般</guilabel>タブでは、<application>GPhotoFrame</application> 全"
+"般に関わるオプションを設定します。"
 
 #: C/gphotoframe.xml:407(para)
 msgid "The <guilabel>General</guilabel> tab is composed of three subsections:"
@@ -636,29 +633,28 @@ msgstr "デスクトップ"
 #: C/gphotoframe.xml:433(para)
 msgid ""
 "Enable the <guilabel>Visible on All Workspaces</guilabel> option to make "
-"<application>GNOME Photo Frame</application> visible on all workspaces."
+"<application>GPhotoFrame</application> visible on all workspaces."
 msgstr ""
 "<guilabel>すべてのワークスペースに配置する</guilabel>というオプションをチェッ"
-"クすると、すべてのワークスペースで<application>GNOME 写真フレーム</"
-"application>を表示します。"
+"クすると、すべてのワークスペースで <application>GPhotoFrame</application> を"
+"表示します。"
 
 #: C/gphotoframe.xml:437(para)
 msgid ""
 "Check the <guilabel>Auto Start</guilabel> option to load automatically "
-"<application>GNOME Photo Frame</application> on next system&rsquo;s startup."
+"<application>GPhotoFrame</application> on next system&rsquo;s startup."
 msgstr ""
 "<guilabel>ログイン時に自動起動する</guilabel>というオプションをチェックする"
-"と、ログイン時に<application>GNOME 写真フレーム</application>を自動起動しま"
-"す。"
+"と、ログイン時に <application>GPhotoFrame</application> を自動起動します。"
 
 #: C/gphotoframe.xml:445(para)
 msgid ""
-"The appearence and behavior of <application>GNOME Photo Frame</application> "
-"can be further customized by changing some <application>gconf</application> "
+"The appearence and behavior of <application>GPhotoFrame</application> can be "
+"further customized by changing some <application>gconf</application> "
 "parameters. For example if you want to change the frame color to black, run "
 "the following command in a terminal window:"
 msgstr ""
-"<application>GNOME 写真フレーム</application>のボーダーの色や幅は、"
+"<application>GPhotoFrame</application> のボーダーの色や幅は、"
 "<application>GConf</application>のパラメーターを変更することで、カスタマイズ"
 "できます。例えば、ボーダーの色を黒に変更するには以下のようにします。"
 
@@ -689,13 +685,13 @@ msgstr ""
 #: C/gphotoframe.xml:457(para)
 msgid ""
 "The <emphasis>plugins</emphasis> extends the capability of "
-"<application>GNOME Photo Frame</application> by making possible to get more "
+"<application>GPhotoFrame</application> by making possible to get more "
 "contents from various internet services as well as locally from your "
 "computer."
 msgstr ""
-"<emphasis>プラグイン</emphasis>は、<application>GNOME 写真フレーム</"
-"application>を拡張し、さまざまばローカルあるいはインターネットサービスの写真"
-"の取得・表示を可能にします。"
+"<emphasis>プラグイン</emphasis>は、<application>GPhotoFrame</application> を"
+"拡張し、さまざまばローカルあるいはインターネットサービスの写真の取得・表示を"
+"可能にします。"
 
 #: C/gphotoframe.xml:462(para)
 msgid ""
@@ -712,33 +708,33 @@ msgstr ""
 
 #: C/gphotoframe.xml:469(para)
 msgid ""
-"<application>GNOME Photo Frame</application> ships with the following pre-"
+"<application>GPhotoFrame</application> ships with the following pre-"
 "installed plugins:"
 msgstr ""
-"<application>GNOME 写真フレーム</application>には、以下のプラグインがあら\n"
+"<application>GPhotoFrame</application> には、以下のプラグインがあら\n"
 "かじめインストールされています。"
 
 #: C/gphotoframe.xml:474(para)
 msgid ""
-"<guilabel>F-Spot</guilabel>&mdash; shows in <application>GNOME Photo Frame</"
+"<guilabel>F-Spot</guilabel>&mdash; shows in <application>GPhotoFrame</"
 "application> the images in your <application>F-Spot</application> database."
 msgstr ""
 "<guilabel>F-Spot</guilabel>&mdash; <application>F-Spot</application> のデータ"
-"ベースに登録された写真を <application>GNOME 写真フレーム</application>に表示"
-"します。"
+"ベースに登録された写真を <application>GPhotoFrame</application> に表示しま"
+"す。"
 
 #: C/gphotoframe.xml:480(para)
 msgid ""
-"<guilabel>Facebook</guilabel>&mdash; shows in <application>GNOME Photo "
-"Frame</application> the images coming from your <emphasis>Facebook</"
-"emphasis> account. You can choose contents coming either from yours or a "
-"friend's <guilabel>Album</guilabel> or <guilabel>Wall</guilabel>, or the "
+"<guilabel>Facebook</guilabel>&mdash; shows in <application>GPhotoFrame</"
+"application> the images coming from your <emphasis>Facebook</emphasis> "
+"account. You can choose contents coming either from yours or a friend's "
+"<guilabel>Album</guilabel> or <guilabel>Wall</guilabel>, or the "
 "<guilabel>News Feeds</guilabel> you subscribed with your account."
 msgstr ""
 "<guilabel>Facebook</guilabel>&mdash; <emphasis>Facebook</emphasis> アカウント"
-"上の写真を <application>GNOME 写真フレーム</application>に表示します。"
-"<guilabel>アルバム</guilabel>や<guilabel>ウォール</guilabel>、<guilabel>"
-"ニュースフィード</guilabel>上の写真を取得できます。"
+"上の写真を <application>GPhotoFrame</application> に表示します。<guilabel>ア"
+"ルバム</guilabel>や<guilabel>ウォール</guilabel>、<guilabel>ニュースフィード"
+"</guilabel>上の写真を取得できます。"
 
 #: C/gphotoframe.xml:488(para)
 msgid ""
@@ -785,13 +781,12 @@ msgstr ""
 
 #: C/gphotoframe.xml:519(para)
 msgid ""
-"<guilabel>Shotwell</guilabel>&mdash; shows in <application>GNOME Photo "
-"Frame</application> the images in your <application>Shotwell</application> "
-"database."
+"<guilabel>Shotwell</guilabel>&mdash; shows in <application>GPhotoFrame</"
+"application> the images in your <application>Shotwell</application> database."
 msgstr ""
 "<guilabel>Shotwell</guilabel>&mdash; <application>Shotwell</application> の"
-"データベースに登録された写真を <application>GNOME 写真フレーム</application>"
-"に表示します。"
+"データベースに登録された写真を <application>GPhotoFrame</application> に表示"
+"します。"
 
 #: C/gphotoframe.xml:525(para)
 msgid ""
@@ -821,11 +816,11 @@ msgstr "ソースの追加"
 
 #: C/gphotoframe.xml:543(para)
 msgid ""
-"To add a source of contents to <application>GNOME Photo Frame</application>, "
-"click the <guibutton>New</guibutton> button."
+"To add a source of contents to <application>GPhotoFrame</application>, click "
+"the <guibutton>New</guibutton> button."
 msgstr ""
-"<application>GNOME 写真フレーム</application>にソースを追加するには、"
-"<guibutton>新規</guibutton>ボタンをクリックします。"
+"<application>GPhotoFrame</application> にソースを追加するには、<guibutton>新"
+"規</guibutton>ボタンをクリックします。"
 
 #: C/gphotoframe.xml:547(para)
 msgid ""
@@ -902,21 +897,21 @@ msgstr "写真をクリックすることで写真のソースを直接開きま
 
 #: C/gphotoframe.xml:594(para)
 msgid ""
-"<application>GNOME Photo Frame</application> allows you to see the history "
-"of displayed images in a web browser. Select <menuchoice><guimenu>Open "
-"Recent</guimenu><guimenuitem>Show History</guimenuitem></menuchoice> from "
-"the <application>GNOME Photo Frame</application><link linkend=\"gphotoframe-"
-"mainmenu\">Application Menu</link>. A web page will be opened in your "
-"default web browser that shows the latest ten images displayed, sorted in "
-"appearence order (from latest to oldest). For every image, you can see many "
-"information as the <emphasis>title</emphasis>, the <emphasis>source</"
-"emphasis>, the <emphasis>author&rsquo;s name</emphasis> and the "
-"<emphasis>date</emphasis> taken. <placeholder-1/>"
+"<application>GPhotoFrame</application> allows you to see the history of "
+"displayed images in a web browser. Select <menuchoice><guimenu>Open Recent</"
+"guimenu><guimenuitem>Show History</guimenuitem></menuchoice> from the "
+"<application>GPhotoFrame</application><link linkend=\"gphotoframe-mainmenu"
+"\">Application Menu</link>. A web page will be opened in your default web "
+"browser that shows the latest ten images displayed, sorted in appearence "
+"order (from latest to oldest). For every image, you can see many information "
+"as the <emphasis>title</emphasis>, the <emphasis>source</emphasis>, the "
+"<emphasis>author&rsquo;s name</emphasis> and the <emphasis>date</emphasis> "
+"taken. <placeholder-1/>"
 msgstr ""
-"<application>GNOME 写真フレーム</application>には最近表示した写真の履歴一覧を"
-"ブラウザに表示する機能があります。<application>GNOME 写真フレーム</"
-"application>の<link linkend=\"gphotoframe-mainmenu\">メインメニュー</link>か"
-"ら<menuchoice><guimenu>最近表示した写真</guimenu><guimenuitem>履歴を表示</"
+"<application>GPhotoFrame</application> には最近表示した写真の履歴一覧をブラウ"
+"ザに表示する機能があります。<application>GPhotoFrame</application> の<link "
+"linkend=\"gphotoframe-mainmenu\">メインメニュー</link>から"
+"<menuchoice><guimenu>最近表示した写真</guimenu><guimenuitem>履歴を表示</"
 "guimenuitem></menuchoice>を選択します。デフォルトのブラウザから最近表示した写"
 "真の一覧を確認することができます。<emphasis>タイトル</emphasis>、<emphasis>"
 "ソース</emphasis>、<emphasis>作者名</emphasis>、<emphasis>撮影日</emphasis>な"
@@ -929,11 +924,11 @@ msgstr "写真の削除"
 #: C/gphotoframe.xml:612(para)
 msgid ""
 "Removing a displayed image is accomplished by clicking on the icons that "
-"appears in the bottom left of the <application>GNOME Photo Frame</"
-"application> window when hovering over a displayed photo."
+"appears in the bottom left of the <application>GPhotoFrame</application> "
+"window when hovering over a displayed photo."
 msgstr ""
-"<application>GNOME 写真フレーム</application>のウィンドウ左下に表示されるアイ"
-"コンをクリックすることで写真の削除などが行えます。"
+"<application>GPhotoFrame</application> のウィンドウ左下に表示されるアイコンを"
+"クリックすることで写真の削除などが行えます。"
 
 #: C/gphotoframe.xml:618(emphasis)
 msgid "Move to the trash"
@@ -988,23 +983,24 @@ msgstr "オンラインサービスの利用"
 
 #: C/gphotoframe.xml:663(para)
 msgid ""
-"In <application>GNOME Photo Frame</application> is possible to get logged in "
-"to an online service listed in the <link linkend=\"pref-plugins\">Plugins "
-"tab</link> if you have an account."
+"In <application>GPhotoFrame</application> is possible to get logged in to an "
+"online service listed in the <link linkend=\"pref-plugins\">Plugins tab</"
+"link> if you have an account."
 msgstr ""
 "<link linkend=\"pref-plugins\">プラグインタブ</link>にはいくつかのオンライン"
-"サービスがありますが、そのアカウントをお持ちであれば、<application>GNOME 写真"
-"フレーム</application>でそのオンラインサービスにログインすることができます。"
+"サービスがありますが、そのアカウントをお持ちであれば、"
+"<application>GPhotoFrame/application> でそのオンラインサービスにログインする"
+"ことができます。"
 
 #: C/gphotoframe.xml:667(para)
 msgid ""
-"When <application>GNOME Photo Frame</application> is connected with your "
-"data to an online service, you can add displayed contents to your favorites, "
-"vote images and display photos from your account."
+"When <application>GPhotoFrame</application> is connected with your data to "
+"an online service, you can add displayed contents to your favorites, vote "
+"images and display photos from your account."
 msgstr ""
-"<application>GNOME 写真フレーム</application>が、オンラインサービスにログイン"
-"すれば、自分が登録したお気に入りの写真を表示したり、表示中の写真をお気に入り"
-"に登録したり、プライベートな写真を表示したりできます。"
+"<application>GPhotoFrame</application> が、オンラインサービスにログインすれ"
+"ば、自分が登録したお気に入りの写真を表示したり、表示中の写真をお気に入りに登"
+"録したり、プライベートな写真を表示したりできます。"
 
 #: C/gphotoframe.xml:672(para)
 msgid "To do so, follow these steps:"
@@ -1043,26 +1039,25 @@ msgstr ""
 #: C/gphotoframe.xml:703(para)
 msgid ""
 "Depending on the service you are logging in, a web browser window might be "
-"opened so that you can give <application>GNOME Photo Frame</application> the "
+"opened so that you can give <application>GPhotoFrame</application> the "
 "required permissions through the online service&rsquo;s webpages. When you "
-"terminate this task, go back to <application>GNOME Photo Frame</application> "
-"and follow the instructions in the dialog."
+"terminate this task, go back to <application>GPhotoFrame</application> and "
+"follow the instructions in the dialog."
 msgstr ""
 "ログインするサービスによっては、ウェブブラウザを開き、オンラインサービス上で "
-"<application>GNOME 写真フレーム</application>に権限の設定を行う場合もありま"
-"す。この場合、作業が終わったら <application>GNOME 写真フレーム</application>"
-"に戻り、ダイアログの指示に従ってください。"
+"<application>GPhotoFrame</application> に権限の設定を行う場合もあります。この"
+"場合、作業が終わったら <application>GPhotoFrame</application> に戻り、ダイア"
+"ログの指示に従ってください。"
 
 #: C/gphotoframe.xml:714(title)
-msgid "Using <application>GNOME Photo Frame</application> as Screensaver"
+msgid "Using <application>GPhotoFrame</application> as Screensaver"
 msgstr "スクリーンセーバーとしての利用"
 
 #: C/gphotoframe.xml:715(para)
-msgid ""
-"<application>GNOME Photo Frame</application> can also be used as screensaver."
+msgid "<application>GPhotoFrame</application> can also be used as screensaver."
 msgstr ""
-"<application>GNOME 写真フレーム</application>はスクリーンセーバーとしても利用"
-"できます。"
+"<application>GPhotoFrame</application> はスクリーンセーバーとしても利用できま"
+"す。"
 
 #: C/gphotoframe.xml:716(para)
 msgid ""
@@ -1075,44 +1070,43 @@ msgid ""
 "should see an entry named <guilabel>Photo Frame</guilabel>. Select it and "
 "that&rsquo;s all. The next time the screensaver will starts, the <link "
 "linkend=\"pref-photos\"> sources preferences</link> will be read as "
-"configured from the main window of <application>GNOME Photo Frame</"
-"application> and consequently will display the contents."
+"configured from the main window of <application>GPhotoFrame</application> "
+"and consequently will display the contents."
 msgstr ""
 "お使いのシステムでスクリーンセーバーの設定を開くと、<guilabel>写真フレーム</"
 "guilabel>というエントリがあるはずです。これを選択するだけです。設定後にスク"
-"リーンセーバーが起動すると、<application>GNOME 写真フレーム</application>での"
-"<link linkend=\"pref-photos\">ソースの設定</link>に従って、写真が表示されま"
-"す。"
+"リーンセーバーが起動すると、<application>GPhotoFrame</application> での<link "
+"linkend=\"pref-photos\">ソースの設定</link>に従って、写真が表示されます。"
 
 #: C/gphotoframe.xml:728(title)
-msgid "About <application>GNOME Photo Frame</application>"
-msgstr "<application>GNOME 写真フレーム</application>について"
+msgid "About <application>GPhotoFrame</application>"
+msgstr "<application>GPhotoFrame</application>について"
 
 #: C/gphotoframe.xml:729(para)
 msgid ""
-"<application>GNOME Photo Frame</application> was written by Yoshizumi Endo "
+"<application>GPhotoFrame</application> was written by Yoshizumi Endo "
 "<email>y-endo@ceres.dti.ne.jp</email>. To find more information about "
-"<application>GNOME Photo Frame</application>, please visit the <ulink url="
-"\"http://code.google.com/p/gphotoframe/\" type=\"http\"><application>GNOME "
-"Photo Frame</application> Web page</ulink>."
+"<application>GPhotoFrame</application>, please visit the <ulink url=\"http://"
+"code.google.com/p/gphotoframe/\" type=\"http\"><application>GPhotoFrame</"
+"application> Web page</ulink>."
 msgstr ""
-"<application>GNOME 写真フレーム</application>は Yoshizumi Endo <email>y-"
-"endo@ceres.dti.ne.jp</email> によって作成されました。<application>GNOME 写真"
-"フレーム</application>に関するより詳細な情報については、<ulink url=\"http://"
-"code.google.com/p/gphotoframe/\" type=\"http\"><application>GNOME 写真フレー"
-"ム</application>のウェブページ</ulink>をご覧ください。"
+"<application>GPhotoFrame</application> は Yoshizumi Endo <email>y-endo@ceres."
+"dti.ne.jp</email> によって作成されました。<application>GPhotoFrame</"
+"application> に関するより詳細な情報については、<ulink url=\"http://code."
+"google.com/p/gphotoframe/\" type=\"http\"><application>GPhotoFrame</"
+"application> のウェブページ</ulink>をご覧ください。"
 
 #: C/gphotoframe.xml:737(para)
 msgid ""
 "To report a bug or make a suggestion regarding this application or this "
 "manual, open a new issue in the <ulink url=\"http://code.google.com/p/"
-"gphotoframe/issues/list\" type=\"http\"><application>GNOME Photo Frame</"
+"gphotoframe/issues/list\" type=\"http\"><application>GPhotoFrame</"
 "application> issues page</ulink>."
 msgstr ""
 "このアプリケーションやマニュアルについてのバグ報告や提案は、<ulink url="
 "\"http://code.google.com/p/gphotoframe/issues/list\" type=\"http"
-"\"><application>GNOME 写真フレーム</application>のバグ報告</ulink>宛てにお願"
-"いします。"
+"\"><application>GPhotoFrame</application> のバグ報告</ulink>宛てにお願いしま"
+"す。"
 
 #: C/gphotoframe.xml:744(para)
 msgid ""
@@ -1153,7 +1147,5 @@ msgstr "Yoshizumi Endo <y-endo@ceres.dti.ne.jp>, 2010, 2011"
 #~ msgstr "ok"
 
 #~ msgid ""
-#~ "Shows <application>GNOME Photo Frame</application> application on GNOME "
-#~ "desktop"
-#~ msgstr ""
-#~ "GNOME デスクトップ上の <application>GNOME 写真フレーム</application>"
+#~ "Shows <application>GPhotoFrame</application> application on GNOME desktop"
+#~ msgstr "GNOME デスクトップ上の <application>GPhotoFrame</application>"

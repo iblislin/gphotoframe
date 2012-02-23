@@ -151,7 +151,7 @@ class AboutDialog(object):
         gui = Gtk.Builder()
         gui.add_from_file(constants.UI_FILE)
         about = gui.get_object('aboutdialog')
-        about.set_program_name(_('GNOME Photo Frame'))
+        about.set_name(_('GPhotoFrame'))
         about.set_property('version', constants.VERSION)
 
         about.run()

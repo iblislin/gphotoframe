@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY appname "GNOME Photo Frame">
+  <!ENTITY appname "GPhotoFrame">
   <!ENTITY appversion "1.4">
   <!ENTITY manrevision "1.4">]>
   

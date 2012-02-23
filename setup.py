@@ -17,7 +17,7 @@ makedoc.run()
 
 setup(name = 'gphotoframe',
       version = constants.VERSION,
-      description = 'Gnome Photo Frame',
+      description = 'GPhotoFrame',
       long_description = 'A Photo Frame Gadget for the GNOME Desktop.',
       author = 'Yoshizumi Endo',
       author_email = 'y-endo@ceres.dti.ne.jp',

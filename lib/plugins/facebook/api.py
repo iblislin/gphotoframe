@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Facebook API module for GNOME Photo Frame
+# Facebook API module for GPhotoFrame
 # Copyright (c) 2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 

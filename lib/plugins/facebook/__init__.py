@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Facebook plugin for GNOME Photo Frame
+# Facebook plugin for GPhotoFrame
 # Copyright (c) 2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
