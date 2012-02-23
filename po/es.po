@@ -1,26 +1,26 @@
 # Spanish translation for gphotoframe.
 # Copyright (C) 2009-2012 Yoshizumi Endo
 # This file is distributed under the same license as the gphotoframe package.
-# 
+#
 # Translators:
 # jorjuardo  <littlefoot87@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME Photo Frame\n"
-"Report-Msgid-Bugs-To: http://code.google.com/p/gphotoframe/issues\n"
-"POT-Creation-Date: 2011-12-05 23:25+0900\n"
-"PO-Revision-Date: 2012-02-15 13:50+0900\n"
+"Project-Id-Version: GPhotoFrame\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-23 13:22+0900\n"
+"PO-Revision-Date: 2012-02-23 14:56+0900\n"
 "Last-Translator: jorjuardo <littlefoot87@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../share/gphotoframe.desktop.in.h:1
 msgid "Image Viewer"
-msgstr "Visor de Imágenes "
+msgstr "Visor de Imágenes"
 
 #: ../share/gphotoframe.desktop.in.h:2
 #: ../share/gphotoframe-screensaver.desktop.in.h:2 ../lib/history/html.py:39
@@ -53,8 +53,8 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:5
 msgid ""
-"API reload interval minutes for meta groups (Your Groups or The Commons). It"
-" should be greater than 10 minutes."
+"API reload interval minutes for meta groups (Your Groups or The Commons). It "
+"should be greater than 10 minutes."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:6
@@ -117,8 +117,8 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:20
 msgid ""
-"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3:"
-" left-bottom."
+"Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: "
+"left-bottom."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:21
@@ -375,8 +375,8 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:79
 msgid ""
-"Set this to true if you have problems with Clutter library support. When you"
-" change this value, you need to restart gphotoframe."
+"Set this to true if you have problems with Clutter library support. When you "
+"change this value, you need to restart gphotoframe."
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:80
@@ -404,8 +404,8 @@ msgstr ""
 #: ../share/gphotoframe.schemas.in.h:85
 msgid ""
 "The Flickr plugin gets photos from latest to oldest via API with a page "
-"number. This value specifies the minimum percentage of showing photos of 1st"
-" page (latest photos)"
+"number. This value specifies the minimum percentage of showing photos of 1st "
+"page (latest photos)"
 msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:86
@@ -666,7 +666,7 @@ msgid "Show _History"
 msgstr "Mostrar_Historial"
 
 #: ../lib/menu.py:146
-msgid "GNOME Photo Frame"
+msgid "GPhotoFrame"
 msgstr ""
 
 #: ../lib/history/html.py:32
@@ -674,7 +674,7 @@ msgid "Screen Saver"
 msgstr "Salvapantallas"
 
 #: ../lib/history/html.py:35
-msgid "Gnome Photo Frame History"
+msgid "GPhotoFrame History"
 msgstr ""
 
 #. TRANSLATORS: %s is the name of the author of the photo
@@ -830,7 +830,8 @@ msgstr "Opciones"
 
 #: ../lib/plugins/base/trash.py:56
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "No se puede mover archivo a la papelera ¿lo quiere eliminar inmediatamente?"
+msgstr ""
+"No se puede mover archivo a la papelera ¿lo quiere eliminar inmediatamente?"
 
 #: ../lib/plugins/base/trash.py:58
 #, python-format
@@ -875,8 +876,8 @@ msgid "Your Groups"
 msgstr "Tus Grupos"
 
 #: ../lib/plugins/flickr/api.py:68 ../lib/plugins/flickr/api.py:201
-#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/picasa.py:186 ../lib/plugins/tumblr/ui.py:16
+#: ../lib/plugins/flickr/api.py:275 ../lib/plugins/facebook/__init__.py:105
+#: ../lib/plugins/picasa.py:189 ../lib/plugins/tumblr/ui.py:16
 msgid "_User:"
 msgstr "_Usuario:"
 
@@ -907,11 +908,14 @@ msgstr "_Cambiar de Usuario"
 
 #: ../lib/plugins/flickr/authdialog.py:35
 msgid ""
-"Gnome Photo Frame needs your authorization in order to view private photos "
-"or to add photos to favorites list on your Flickr.com account. Press the "
-"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"GPhotoFrame needs your authorization in order to view private photos or to "
+"add photos to favorites list on your Flickr.com account. Press the "
+"\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
-msgstr "Gnome Photo Frame necesita tu autorización para ver fotos privadas o agregar favoritos a tu cuenta de Flickr.com. Presiona el botón \"Autorizar\" para abrir un navegador y autorizar la aplicación"
+msgstr ""
+"GPhotoFrame necesita tu autorización para ver fotos privadas o agregar "
+"favoritos a tu cuenta de Flickr.com. Presiona el botón \"Autorizar\" para "
+"abrir un navegador y autorizar la aplicación"
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -922,7 +926,9 @@ msgstr "_Autorizar"
 msgid ""
 "Return to this dialog after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
-msgstr "Regresa a esta ventana después de haber finalizado el proceso en Flickr.com y haz click en el botón \"Completar Autorización\""
+msgstr ""
+"Regresa a esta ventana después de haber finalizado el proceso en Flickr.com "
+"y haz click en el botón \"Completar Autorización\""
 
 #: ../lib/plugins/flickr/authdialog.py:51
 msgid "_Complete Authorization"
@@ -989,24 +995,24 @@ msgstr ""
 msgid "Social Network Service"
 msgstr ""
 
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/facebook/__init__.py:107 ../lib/plugins/facebook/api.py:22
+#: ../lib/plugins/facebook/__init__.py:105
+#: ../lib/plugins/facebook/__init__.py:111 ../lib/plugins/facebook/api.py:22
 msgid "Wall"
 msgstr "Muro"
 
-#: ../lib/plugins/facebook/__init__.py:101
-#: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/__init__.py:116 ../lib/plugins/facebook/api.py:21
+#: ../lib/plugins/facebook/__init__.py:105
+#: ../lib/plugins/facebook/__init__.py:111
+#: ../lib/plugins/facebook/__init__.py:120 ../lib/plugins/facebook/api.py:21
 msgid "Albums"
 msgstr "Álbumes"
 
-#: ../lib/plugins/facebook/__init__.py:103
 #: ../lib/plugins/facebook/__init__.py:107
-#: ../lib/plugins/facebook/__init__.py:109 ../lib/plugins/facebook/api.py:23
+#: ../lib/plugins/facebook/__init__.py:111
+#: ../lib/plugins/facebook/__init__.py:113 ../lib/plugins/facebook/api.py:23
 msgid "News Feed"
 msgstr ""
 
-#: ../lib/plugins/facebook/__init__.py:138
+#: ../lib/plugins/facebook/__init__.py:142
 msgid ""
 "To retrieve the album list, close this dialog once, please reopen after a "
 "while."
@@ -1024,14 +1030,14 @@ msgstr "_Cerrar Sesión"
 #: ../lib/plugins/facebook/authdialog.py:49
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 
 #: ../lib/plugins/facebook/authdialog.py:91
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 
 #: ../lib/plugins/picasa.py:28
@@ -1042,22 +1048,22 @@ msgstr ""
 msgid "Certification Error"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:144
+#: ../lib/plugins/picasa.py:147
 msgid "Album"
 msgstr "Álbum"
 
-#: ../lib/plugins/picasa.py:145 ../lib/plugins/picasa.py:186
-#: ../lib/plugins/picasa.py:192
+#: ../lib/plugins/picasa.py:148 ../lib/plugins/picasa.py:189
+#: ../lib/plugins/picasa.py:195
 msgid "Community Search"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:146 ../lib/plugins/picasa.py:188
-#: ../lib/plugins/picasa.py:192
+#: ../lib/plugins/picasa.py:149 ../lib/plugins/picasa.py:191
+#: ../lib/plugins/picasa.py:195
 msgid "Featured"
 msgstr ""
 
-#: ../lib/plugins/picasa.py:147 ../lib/plugins/picasa.py:153
-#: ../lib/plugins/picasa.py:186 ../lib/plugins/picasa.py:192
+#: ../lib/plugins/picasa.py:150 ../lib/plugins/picasa.py:156
+#: ../lib/plugins/picasa.py:189 ../lib/plugins/picasa.py:195
 #: ../lib/plugins/tumblr/__init__.py:73 ../lib/plugins/tumblr/__init__.py:79
 #: ../lib/plugins/tumblr/__init__.py:103 ../lib/plugins/tumblr/__init__.py:123
 #: ../lib/plugins/tumblr/ui.py:16 ../lib/plugins/tumblr/ui.py:18
@@ -1065,7 +1071,7 @@ msgstr ""
 msgid "User"
 msgstr "Usuario"
 
-#: ../lib/plugins/picasa.py:186
+#: ../lib/plugins/picasa.py:189
 msgid "_Keyword:"
 msgstr ""
 
@@ -1166,8 +1172,8 @@ msgstr ""
 
 #: ../lib/plugins/shotwell.py:53
 msgid ""
-"The rating of this photo will be set as rejected.  Gnome photo frame will "
-"skip rejected photos."
+"The rating of this photo will be set as rejected.  GPhotoFrame will skip "
+"rejected photos."
 msgstr ""
 
 #: ../lib/plugins/shotwell.py:132
