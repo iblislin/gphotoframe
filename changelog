@@ -1,5 +1,6 @@
 2012-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* es.po: Added new translation. Thanks jorjuardo!
 	* gphotoframe: Renamed the product name from GNOME Photo Frame to
 	  GPhotoFrame (issue #104).
 
