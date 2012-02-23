@@ -32,9 +32,9 @@ class PluginFlickrDialog(PluginDialog):
         self._set_dialog(text, p_label, n_label, p_cb, n_cb)
 
     def _set_authorize_dialog(self, *args):
-        text = _("Gnome Photo Frame needs your authorization in order to view \
+        text = _("GPhotoFrame needs your authorization in order to view \
 private photos or to add photos to favorites list on your Flickr.com account. \
-Press the \"Authorize\" button to open a web browser and give Gnome Photo Frame \
+Press the \"Authorize\" button to open a web browser and give GPhotoFrame \
 the authorization. ")
         p_label = gtk.STOCK_CANCEL
         n_label = _('_Authorize')

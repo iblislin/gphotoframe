@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Shotwell plugin for GNOME Photo Frame
+# Shotwell plugin for GPhotoFrame
 # Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
@@ -51,7 +51,7 @@ class ShotwellPlugin(FSpotPlugin):
     def get_ban_messages(self, photo):
         return [ _('Set rating as rejected?'),
                  _('The rating of this photo will be set as rejected.  '
-                   'Gnome photo frame will skip rejected photos.') ]
+                   'GPhotoFrame will skip rejected photos.') ]
 
 class ShotwellPhotoList(FSpotPhotoList):
 

@@ -32,7 +32,7 @@ class HistoryHTML(object):
             screensaver_head = _('Screen Saver')
             screensaver_table = self._get_table(self.screensaver.get())
 
-        keyword = { 'title': _('Gnome Photo Frame History'),
+        keyword = { 'title': _('GPhotoFrame History'),
                     'stylesheet': css_file,
                     'javascript': self._get_js(),
 

@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME Photo Frame\n"
+"Project-Id-Version: GPhotoFrame\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-11 23:19+0900\n"
-"PO-Revision-Date: 2011-04-30 16:55+0000\n"
+"PO-Revision-Date: 2012-02-23 13:18+0900\n"
 "Last-Translator: Sergiy_Gavrylov <sergiovana@bigmir.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -645,16 +645,16 @@ msgid "Show _History"
 msgstr "Показати і_сторію"
 
 #: ../lib/menu.py:146
-msgid "GNOME Photo Frame"
-msgstr "GNOME Photo Frame"
+msgid "GPhotoFrame"
+msgstr "GPhotoFrame"
 
 #: ../lib/history/html.py:32
 msgid "Screen Saver"
 msgstr "Зберігач екрана"
 
 #: ../lib/history/html.py:35
-msgid "Gnome Photo Frame History"
-msgstr "Історія Gnome Photo Frame"
+msgid "GPhotoFrame History"
+msgstr "Історія GPhotoFrame"
 
 #. TRANSLATORS: %s is the name of the author of the photo
 #: ../lib/history/html.py:95 ../lib/image/tooltip.py:54
@@ -886,14 +886,14 @@ msgstr "_Змінити користувача"
 
 #: ../lib/plugins/flickr/authdialog.py:35
 msgid ""
-"Gnome Photo Frame needs your authorization in order to view private photos "
+"GPhotoFrame needs your authorization in order to view private photos "
 "or to add photos to favorites list on your Flickr.com account. Press the "
-"\"Authorize\" button to open a web browser and give Gnome Photo Frame the "
+"\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
 msgstr ""
 "Щоб переглядати особисті фото та додавати фото до улюблених у своєму "
-"обліковому записі Flickr.com, потрібно авторизувати Gnome Photo Frame. "
-"Натисніть кнопку «Авторизувати», щоб надати Gnome Photo Frame права доступу. "
+"обліковому записі Flickr.com, потрібно авторизувати GPhotoFrame. "
+"Натисніть кнопку «Авторизувати», щоб надати GPhotoFrame права доступу. "
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -1006,19 +1006,19 @@ msgstr "_Вийти"
 #: ../lib/plugins/facebook/authdialog.py:49
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 "Ви увійшли до Facebook.  Якщо хочете повторити автентифікацію, перезапустіть "
-"GNOME Photo Frame."
+"GPhotoFrame."
 
 #: ../lib/plugins/facebook/authdialog.py:91
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
-"authentication, you have to restart GNOME Photo Frame."
+"authentication, you have to restart GPhotoFrame."
 msgstr ""
 "Ви увійшли до Facebook як «%s». Якщо хочете повторити автентифікацію, "
-"перезапустіть GNOME Photo Frame."
+"перезапустіть GPhotoFrame."
 
 #: ../lib/plugins/picasa.py:28
 msgid "Picasa Web"
@@ -1152,10 +1152,10 @@ msgstr "Встановити оцінку, як відхилену?"
 
 #: ../lib/plugins/shotwell.py:54
 msgid ""
-"The rating of this photo will be set as rejected.  Gnome photo frame will "
+"The rating of this photo will be set as rejected.  GPhotoFrame will "
 "skip rejected photos."
 msgstr ""
-"Оцінка цього фото була відхилена. GNOME Photo Frame ігноруватиме оцінку "
+"Оцінка цього фото була відхилена. GPhotoFrame ігноруватиме оцінку "
 "таких фото."
 
 #: ../lib/plugins/shotwell.py:131
