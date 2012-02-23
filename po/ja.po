@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gphotoframe 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-23 13:22+0900\n"
-"PO-Revision-Date: 2012-02-23 13:18+0900\n"
+"PO-Revision-Date: 2012-02-23 13:27+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -247,7 +247,7 @@ msgid ""
 "this value, you need to restart gphotoframe."
 msgstr ""
 "TRUE にすると、写真フレームは他のウインドウの背面に置かれます。この値を変更し"
-"た場合、GNOME 写真フレームを再起動する必要があります。"
+"た場合、GPhotoFrame を再起動する必要があります。"
 
 #: ../share/gphotoframe.schemas.in.h:45
 msgid "If true, you can open Flickr photos on Flickr not on Tumbr."
@@ -409,7 +409,7 @@ msgid ""
 "change this value, you need to restart gphotoframe."
 msgstr ""
 "Clutter ライブラリのサポートに問題がある場合は、これを TRUE にしてください。"
-"この値を変更した場合、GNOME 写真フレームを再起動する必要があります。"
+"この値を変更した場合、GPhotoFrame を再起動する必要があります。"
 
 #: ../share/gphotoframe.schemas.in.h:80
 msgid ""
@@ -708,7 +708,7 @@ msgstr "履歴を表示(_H)"
 
 #: ../lib/menu.py:146
 msgid "GPhotoFrame"
-msgstr "GNOME 写真フレーム"
+msgstr "GPhotoFrame"
 
 #: ../lib/history/html.py:32
 msgid "Screen Saver"
@@ -716,7 +716,7 @@ msgstr "スクリーンセーバー"
 
 #: ../lib/history/html.py:35
 msgid "GPhotoFrame History"
-msgstr "GNOME 写真フレームの履歴"
+msgstr "写真フレームの履歴"
 
 #. TRANSLATORS: %s is the name of the author of the photo
 #: ../lib/history/html.py:95 ../lib/image/tooltip.py:55
@@ -953,9 +953,9 @@ msgid ""
 "\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
 msgstr ""
-"Gnome 写真フレームで Flickr.com 上のプライベート写真を閲覧したり、お気に入り"
-"への登録を行うためにはあなたの認証が必要です。\"認証\" ボタンをクリックして"
-"ウェブブラウザを開き、そちらで Gnome 写真フレームを認証してください。"
+"GPhotoFrame で Flickr.com 上のプライベート写真を閲覧したり、お気に入りへの登"
+"録を行うためにはあなたの認証が必要です。\"認証\" ボタンをクリックしてウェブブ"
+"ラウザを開き、そちらで GPhotoFrame を認証してください。"
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -1074,8 +1074,8 @@ msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GPhotoFrame."
 msgstr ""
-"Facebook にログインしていません。認証をやり直す場合は、GNOME 写真フレームを再"
-"起動する必要があります。"
+"Facebook にログインしていません。認証をやり直す場合は、GPhotoFrame を再起動す"
+"る必要があります。"
 
 #: ../lib/plugins/facebook/authdialog.py:91
 #, python-format
@@ -1083,8 +1083,8 @@ msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
 "authentication, you have to restart GPhotoFrame."
 msgstr ""
-"Facebook にアカウント %s でログインしています。認証をやり直す場合は、GNOME 写"
-"真フレームを再起動する必要があります。"
+"Facebook にアカウント %s でログインしています。認証をやり直す場合は、"
+"GPhotoFrame を再起動する必要があります。"
 
 #: ../lib/plugins/picasa.py:28
 msgid "Picasa Web"
