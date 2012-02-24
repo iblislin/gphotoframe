@@ -1,9 +1,10 @@
 import time
-from config import GConf
+from ..settings import SETTINGS_FORMAT
 
 def get_formatted_datatime(date):
 
-    conf = GConf()
-    format = conf.get_string('format/date_format') or "%x"
-    return date if isinstance(date, unicode) else \
+    format = SETTINGS_FORMAT.get_string('date-format') or "%x"
+
+    result = date if isinstance(date, unicode) else \
         time.strftime(format, time.gmtime(date))
+    return result.decode('utf_8')

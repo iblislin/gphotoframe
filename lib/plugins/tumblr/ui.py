@@ -4,11 +4,11 @@
 # Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from api import TumblrAuthenticate
 from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
-
+from ...settings import SETTINGS_TUMBLR
 
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
@@ -19,7 +19,7 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
         return label, state
 
     def _label(self):
-        if self.conf.get_string('plugins/tumblr/user_id'):
+        if SETTINGS_TUMBLR.get_string('user-id'):
             label = [_('Dashboard'), _('Likes'), _('User')]
         else:
             label = [_('User')]
@@ -30,8 +30,9 @@ class PluginTumblrDialog(PluginPicasaDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginTumblrDialog, self).__init__(parent, model_iter)
-        self.api = 'tumblr'
-        self.key_server = 'Tumblr'
+        self.key_label = 'Tumblr'
+        self.key_server = 'tumblr.com'
+        self.settings = SETTINGS_TUMBLR
 
     def _set_ui(self):
         super(PluginTumblrDialog, self)._set_ui()

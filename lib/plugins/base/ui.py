@@ -1,8 +1,7 @@
-import gtk
-from gettext import gettext as _
+from gi.repository import Gtk
+# from gettext import gettext as _
 
 from ... import constants
-from ...utils.config import GConf
 
 
 class PhotoSourceUI(object):
@@ -13,7 +12,6 @@ class PhotoSourceUI(object):
         self.gui = gui
         self.table = gui.get_object('table4')
         self.data = data
-        self.conf = GConf()
 
         if PhotoSourceUI.old_target_widget in self.table.get_children():
             self.table.remove(PhotoSourceUI.old_target_widget)
@@ -42,7 +40,7 @@ class PhotoSourceUI(object):
         pass
 
     def _build_target_widget(self):
-        self.target_widget = gtk.combo_box_new_text()
+        self.target_widget = Gtk.ComboBoxText.new()
         for text in self._label():
             self.target_widget.append_text(text)
         self.target_widget.set_active(0)
@@ -51,7 +49,7 @@ class PhotoSourceUI(object):
     def _attach_target_widget(self):
         self.target_widget.show()
         self.gui.get_object('label15').set_mnemonic_widget(self.target_widget)
-        self.table.attach(self.target_widget, 1, 2, 1, 2, yoptions=gtk.SHRINK)
+        self.table.attach(self.target_widget, 1, 2, 1, 2, yoptions=Gtk.AttachOptions.SHRINK)
         PhotoSourceUI.old_target_widget = self.target_widget
 
     def _set_target_sensitive(self, label=_('_Target:'), state=False):
@@ -72,7 +70,7 @@ class PhotoSourceUI(object):
     def _set_target_default(self):
         if self.data:
             try:
-                fr_num = self._label().index(self.data[2]) # liststore target
+                fr_num = self._label().index(self.data[2].decode('utf-8')) # liststore target # FIXME
             except ValueError:
                 fr_num = 0
 
@@ -94,10 +92,9 @@ class PhotoSourceOptionsUI(object):
     def __init__(self, gui, data):
         self.gui = gui
         self.data = data
-        self.conf = GConf()
 
         note = self.gui.get_object('notebook2')
-        label = gtk.Label(_('Options'))
+        label = Gtk.Label(label=_('Options'))
 
         self._set_ui()
         note.append_page(self.child, tab_label=label)
@@ -112,9 +109,8 @@ class PluginDialog(object):
     """Photo Source Dialog"""
 
     def __init__(self, parent, model_iter=None):
-        self.gui = gtk.Builder()
+        self.gui = Gtk.Builder()
         self.gui.add_from_file(constants.UI_FILE)
-        self.conf = GConf()
         self.model_iter = model_iter
 
         self._set_ui()
@@ -132,7 +128,7 @@ class PluginDialog(object):
         self._read_conf()
 
         response_id = self.dialog.run()
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             self._write_conf()
 
         self.dialog.destroy()

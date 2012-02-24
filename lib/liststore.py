@@ -1,21 +1,21 @@
 import os
 import glob
+import json
 
-import gtk
-import glib
+from gi.repository import Gtk, GdkPixbuf, GObject, GLib
 
 import plugins
-from constants import CACHE_DIR
+from constants import CACHE_DIR, CONFIG_HOME
+from settings import SETTINGS, SETTINGS_RECENTS
 from frame import PhotoFrameFactory
 from history import HistoryFactory
 from history.history import History
 from history.history import HistoryDB
-from utils.config import GConf
 from utils.wrandom import WeightedRandom
 from dbus.idlecheck import SessionIdle
 
 
-class PhotoListStore(gtk.ListStore):
+class PhotoListStore(Gtk.ListStore):
     """ListStore for Photo sources.
 
     0,    1,      2,        3,      4,       5,      6
@@ -24,11 +24,13 @@ class PhotoListStore(gtk.ListStore):
 
     def __init__(self):
         super(PhotoListStore, self).__init__(
-            gtk.gdk.Pixbuf, str, str, str, int, object, object)
+            GdkPixbuf.Pixbuf, str, str, str, int, object, object)
 
-        self.conf = GConf()
         self._delay_time = 0
-        self._load_gconf()
+
+        self.save = SaveListStore()
+        for entry in self.save.load():
+            self.append(entry, is_delay=True)
 
         self.queue = RecentQueue()
         self.ban_db = BlackList()
@@ -49,8 +51,9 @@ class PhotoListStore(gtk.ListStore):
         new_iter = self.insert_before(iter, list)
 
         # print d['source'], obj.delay_for_prepare, delay
+
         if is_delay and obj.delay_for_prepare:
-            glib.timeout_add_seconds(self._delay_time, obj.prepare)
+            GLib.timeout_add_seconds(self._delay_time, obj.prepare)
             self._delay_time += 5
         else:
             obj.prepare()
@@ -62,15 +65,18 @@ class PhotoListStore(gtk.ListStore):
         super(PhotoListStore, self).remove(iter)
 
     def next_photo(self, *args):
-        glib.source_remove(self._timer)
+        GObject.source_remove(self._timer)
         self._start_timer(change='force')
 
     def delete_photo(self, url):
         self.queue.remove(url)
         self.photoframe.remove_photo(url)
 
-        glib.source_remove(self._timer)
+        GObject.source_remove(self._timer)
         self._start_timer(False)
+
+    def save_settings(self):
+        self.save.save(self)
 
     def _start_timer(self, change=True):
         frame = self.photoframe
@@ -86,11 +92,11 @@ class PhotoListStore(gtk.ListStore):
             interval = 3
             # print "skip!"
         elif frame.is_fullscreen() or frame.is_screensaver():
-            interval = self.conf.get_int('interval_fullscreen', 10)
+            interval = SETTINGS.get_int('interval-fullscreen')
         else:
-            interval = self.conf.get_int('interval', 30)
+            interval = SETTINGS.get_int('interval')
 
-        self._timer = glib.timeout_add_seconds(interval, self._start_timer)
+        self._timer = GLib.timeout_add_seconds(interval, self._start_timer)
         return False
 
     def _change_photo(self):
@@ -120,56 +126,68 @@ class PhotoListStore(gtk.ListStore):
             self.recursion_depth += 1
             self._change_photo()
 
-    def _load_gconf(self):
-        weight = self.conf.get_int('default_weight', 3)
+class SaveListStore(object):
+
+    def __init__(self):
+
+        self.save_file = os.path.join(CONFIG_HOME, 'photo_sources.json')
+
+    def load(self):
+        weight = SETTINGS.get_int('default-weight')
         source_list = []
 
-        for dir in self.conf.all_dirs('sources'):
+        if not self.has_save_file():
+            return source_list
+
+        with open(self.save_file, 'r') as f:
+            entry = json.load(f)           
+
+        for dir in entry:
             data = { 'target' : '', 'argument' : '',
                      'weight' : weight, 'options' : {} }
 
-            for entry in self.conf.all_entries(dir):
-                value = self.conf.get_value(entry)
-
-                if value is not None:
-                    path = entry.get_key()
-                    key = path[ path.rfind('/') + 1: ]
-
-                    if key in ['source', 'target', 'argument', 'weight']:
-                        data[key] = value
-                    else:
-                        data['options'][key] = value
+            for key, value in entry[dir].items():
+                if key in ['source', 'target', 'argument', 'weight']:
+                    data[key] = value
+                else:
+                    data['options'][key] = value
 
             source_list.append(data)
 
         source_list.sort(cmp=lambda x,y: cmp(y['weight'], x['weight']))
-        for entry in source_list:
-            self.append(entry, is_delay=True)
+        return source_list
 
-    def save_gconf(self):
-        self.conf.recursive_unset('sources')
+    def save(self, liststore):
         data_list = ['source', 'target', 'argument', 'weight']
+        save_data = {}
 
-        for i, row in enumerate(self):
+        for i, row in enumerate(liststore):
+            save_data[i] = {}
             for num, key in enumerate(data_list):
                 value = row[num+1] # liststore except icon.
                 if value is not None:
-                    self._set_gconf(i, key, value)
+                    save_data[i][key] = value
 
             if row[5]: # liststore options
                 for key, value in row[5].iteritems():
-                    self._set_gconf(i, key, value)
+                    save_data[i][key] = value
                     # print key, value
+        
+        self.save_to_json(save_data)
 
-    def _set_gconf(self, i, key, value):
-        full_key = 'sources/%s/%s' % (i, key)
-        self.conf.set_value(full_key, value)
+    def save_to_json(self, save_data):
+        "for defaultsource.py"
+        with open(self.save_file, mode='w') as f:
+            json.dump(save_data, f)      
+
+    def has_save_file(self):
+        "for defaultsource.py"
+        return os.path.exists(self.save_file)
 
 class RecentQueue(list):
 
     def __init__(self):
         super(RecentQueue, self).__init__()
-        self.conf = GConf()
         self.clear_cache()
         self.history = HistoryFactory().create()
 
@@ -179,7 +197,7 @@ class RecentQueue(list):
 
         # print photo.get('page_url') or photo.get('url')
         self.history.add(photo)
-        num = self.conf.get_int('recents/queue_number', 30)
+        num = SETTINGS_RECENTS.get_int('queue-number')
         if len(self) > num:
             self.pop(0)
 
@@ -201,7 +219,7 @@ class RecentQueue(list):
                 os.remove(cache_fullpath)
         
     def menu_item(self):
-        num = self.conf.get_int('recents/queue_menu_number', 6) * -1
+        num = SETTINGS_RECENTS.get_int('queue-menu-number') * -1
         return self[num:]
 
     def clear_cache(self):
@@ -214,7 +232,7 @@ class RecentQueue(list):
         all_caches = cache_files + ['thumb_' + file for file in cache_files]
 
         for fullpath in glob.iglob(os.path.join(CACHE_DIR, '*')):
-            filename = os.path.basename(fullpath)
+            filename = os.path.basename(fullpath).decode('utf-8')
             if filename not in all_caches:
                 os.remove(fullpath)
 

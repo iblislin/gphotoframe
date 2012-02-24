@@ -1,16 +1,17 @@
 import sys
 from xml.sax.saxutils import escape
 
-from gettext import gettext as _
+# from gettext import gettext as _
+from gi.repository import Gio
+
 from ..utils.datetimeformat import get_formatted_datatime
-from ..utils.config import GConf
+from ..settings import SETTINGS_FORMAT
 
 
 class ToolTip(object):
 
     def __init__(self, widget):
         self.widget = widget
-        self.conf = GConf()
         self.icon = False
         self.photo = None
 
@@ -57,10 +58,10 @@ class ToolTip(object):
                 target = [x.rstrip(' ').lstrip(' ') for x in target]
                 text = ( '/'.join(target) if target[1] and 
                          target[1] != escape(owner) else target[0] )
-                tip += "%s\n" % escape(text)
-            if location and self.conf.get_bool('format/location_on_tooltip'):
+                tip += u"%s\n" % escape(text)
+            if location and SETTINGS_FORMAT.get_boolean('location-on-tooltip'):
                 tip += "%s\n" % escape(location)
-            if model and self.conf.get_bool('format/model_on_tooltip'):
+            if model and SETTINGS_FORMAT.get_boolean('model-on-tooltip'):
                 tip += "%s\n" % escape(model)
             if date:
                 tip += "%s\n" % get_formatted_datatime(date)
@@ -100,6 +101,6 @@ class ToolTip(object):
         for key, name, unit in tag:
             value = exif.get(key)
             if value:
-                tip += "%s: %s%s\n" % (name, value, unit)
+                tip += "%s: %s%s\n" % (name, value, unit) # FIXME unicode
 
         self.update_text(tip.rstrip())

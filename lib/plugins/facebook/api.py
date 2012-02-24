@@ -7,13 +7,11 @@
 import re
 import json
 import random
-from gettext import gettext as _
+# # from gettext import gettext as _
 
-import glib
-
+from gi.repository import GLib
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
-from ...utils.config import GConf
-
+from ...settings import SETTINGS_FACEBOOK
 
 class FacebookAPIfactory(object):
 
@@ -37,7 +35,6 @@ class FacebookAPI(object):
 
     def __init__(self, photolist):
         self.photolist = photolist
-        self.conf = GConf()
         self._set_url(photolist.argument)
 
     def access(self):
@@ -47,7 +44,7 @@ class FacebookAPI(object):
         pass
 
     def get_interval(self):
-        return self.conf.get_int('plugins/facebook/interval_default', 60)
+        return SETTINGS_FACEBOOK.get_int('interval-default')
 
 class FacebookAlbumsAPI(FacebookAPI):
 
@@ -56,7 +53,7 @@ class FacebookAlbumsAPI(FacebookAPI):
 
     def access(self):
         url = self.url + self.photolist._get_access_token()
-        urlget_with_autoproxy(url, cb=self._get_albumlist_cb)
+        urlget_with_autoproxy(str(url), cb=self._get_albumlist_cb)
 
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
@@ -91,7 +88,7 @@ class FacebookAlbumsAPI(FacebookAPI):
         for i, album in enumerate(albums.items()):
             id, name = album
             url = 'https://graph.facebook.com/%s/photos' % str(id)
-            glib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
+            GLib.timeout_add_seconds(i*5, self.photolist.prepare_cb, url, name)
 
 class FacebookHomeAPI(FacebookAPI):
 
@@ -99,7 +96,7 @@ class FacebookHomeAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/me/home'
 
     def get_interval(self):
-        return self.conf.get_int('plugins/facebook/interval_newsfeed', 30)
+        return SETTINGS_FACEBOOK.get_int('interval-newsfeed')
 
 class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
 
@@ -127,7 +124,7 @@ class FacebookWallAPI(FacebookAPI):
         self.url = 'https://graph.facebook.com/%s/feed' % argument
 
     def get_interval(self):
-        return self.conf.get_int('plugins/facebook/interval_wall', 45)
+        return SETTINGS_FACEBOOK.get_int('interval-wall')
 
 class FacebookWallAlbumAPI(FacebookWallAPI, FacebookHomeAlbumAPI):
     pass

@@ -1,7 +1,8 @@
 from __future__ import division
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from base import ActorIcon, IconTexture
+from ...settings import SETTINGS_UI_SOURCE
 
 class ActorSourceIcon(ActorIcon):
 
@@ -48,7 +49,7 @@ class ActorSourceIcon(ActorIcon):
         return self.photo.get_icon()
 
     def _get_ui_data(self):
-        self._set_ui_options('source', False, 1)
+        self._set_ui_options(SETTINGS_UI_SOURCE)
 
     def _on_button_press_cb(self, actor, event):
         self.photo.open()
