@@ -1,84 +1,109 @@
 import os
+# from gettext import gettext as _
 
-import gtk
-import pango
+from gi.repository import Gtk, Gdk, Pango
 from twisted.internet import reactor
-from gettext import gettext as _
 
 import constants
 from preferences import Preferences
 from history.html import HistoryHTML
-from utils.config import GConf
+from settings import SETTINGS
 from utils.iconimage import IconImage
 
 class PopUpMenu(object):
 
     def __init__(self, photolist, photoframe):
 
-        self.gui = gtk.Builder()
+        self.gui = Gtk.Builder()
         self.gui.add_from_file(os.path.join(constants.SHARED_DATA_DIR, 'menu.ui'))
-        self.is_show = False
 
         self.photoimage = photoframe.photoimage
         self.photolist = photolist
-        self.conf = GConf()
 
-        preferences = Preferences(photolist)
-        about = AboutDialog()
+        self.preferences = Preferences(photolist)
+        self.about = AboutDialog()
 
-        dic = {
-            "on_menuitem5_activate" : self.open_photo,
-            "on_next_photo"         : self.photolist.next_photo,
-            "on_menuitem6_toggled"  : self._fix_window_cb,
-            "on_menuitem8_toggled"  : self._full_screen_cb,
-            "on_menu_hide"          : self._on_hide_cb,
-            "on_prefs" : preferences.start,
-            "on_help"  : self.open_help,
-            "on_about" : about.start,
-            "on_quit"  : self.quit,
-            }
-        self.gui.connect_signals(dic)
+        self.is_show = False
 
     def start(self, widget, event):
         self.set_recent_menu()
 
-        if self.conf.get_bool('window_fix'):
+        if SETTINGS.get_boolean('window-fix'):
             self.gui.get_object('menuitem6').set_active(True)
 
         photo = self.photoimage.photo
         accessible = photo.can_open() if photo else False
         self.set_open_menu_sensitive(accessible)
 
-        is_fullscreen = self.conf.get_bool('fullscreen')
+        is_fullscreen = SETTINGS.get_boolean('fullscreen')
         self.gui.get_object('menuitem8').set_active(is_fullscreen)
 
+        self.gui.connect_signals(self)
+
         menu = self.gui.get_object('menu')
-        menu.popup(None, None, None, event.button, event.time)
+        menu.popup(None, None, None, None, event.button, event.time)
         self.is_show = True
 
-    def quit(self, *args):
+    def set_recent_menu(self):
+        RecentMenu(self.gui, self.photolist)
+
+    def set_open_menu_sensitive(self, state):
+        self.gui.get_object('menuitem5').set_sensitive(state)
+
+
+    def on_menuitem5_activate(self, *args):
+        "open_photo"
+        self.photoimage.photo.open()
+
+    def on_next_photo(self, *args):
+        self.photolist.next_photo(*args)
+
+    def on_menuitem8_toggled(self, widget, *args):
+        "_full_screen_cb"
+        SETTINGS.set_boolean('fullscreen', widget.get_active())
+
+    def on_menuitem6_toggled(self, widget):
+        "_fix_window_cb"
+        SETTINGS.set_boolean('window-fix', widget.get_active())
+
+    def on_prefs(self, *args):
+        self.preferences.start(*args)
+
+    def on_help(self, widget):
+        Gtk.show_uri(None, 'ghelp:gphotoframe', Gdk.CURRENT_TIME)
+
+    def on_about(self, *args):
+        self.about.start()
+
+    def on_quit(self, *args):
         self.photolist.queue.clear_cache()
         reactor.stop()
 
-    def open_photo(self, *args):
-        self.photoimage.photo.open()
+    def on_menu_hide(self, *args):
+        self.is_show = False
 
-    def open_help(self, widget):
-        gtk.show_uri(None, 'ghelp:gphotoframe', gtk.gdk.CURRENT_TIME)
+class PopUpMenuFullScreen(PopUpMenu):
 
-    def set_recent_menu(self):
-        recent = self.gui.get_object('menuitem10')
-        if recent.get_submenu(): recent.get_submenu().popdown()
-        recent.remove_submenu()
+    def __init__(self, photolist, photoframe):
+        super(PopUpMenuFullScreen, self).__init__(photolist, photoframe)
+        self.gui.get_object('menuitem6').set_sensitive(False)
 
-        menu = gtk.Menu()
-        recents = self.photolist.queue.menu_item()
+class RecentMenu(object):
+
+    def __init__(self, gui, photolist):
+        recent = gui.get_object('menuitem10')
+        if recent.get_submenu(): 
+            recent.get_submenu().popdown()
+        recent.set_submenu(None)
+
+        menu = Gtk.Menu()
+        recents = photolist.queue.menu_item()
         for photo in recents:
             item = RecentMenuItem(photo)
             menu.prepend(item)
 
         # history menuitem
-        sep = gtk.SeparatorMenuItem()
+        sep = Gtk.SeparatorMenuItem.new()
         history = HistoryMenuItem()
         for item in [sep, history]:
             menu.append(item)
@@ -88,25 +113,7 @@ class PopUpMenu(object):
         recent.set_sensitive(sensitive)
         menu.show_all()
 
-    def set_open_menu_sensitive(self, state):
-        self.gui.get_object('menuitem5').set_sensitive(state)
-
-    def _fix_window_cb(self, widget):
-        self.conf.set_bool('window_fix', widget.get_active())
-
-    def _full_screen_cb(self, widget, *args):
-        self.conf.set_bool('fullscreen', widget.get_active())
-
-    def _on_hide_cb(self, *args):
-        self.is_show = False
-
-class PopUpMenuFullScreen(PopUpMenu):
-
-    def __init__(self, photolist, photoframe):
-        super(PopUpMenuFullScreen, self).__init__(photolist, photoframe)
-        self.gui.get_object('menuitem6').set_sensitive(False)
-
-class RecentMenuItem(gtk.ImageMenuItem):
+class RecentMenuItem(Gtk.ImageMenuItem):
 
     def __init__(self, photo):
         title = photo.get_title() or "(%s)" % _('Untitled')
@@ -117,7 +124,7 @@ class RecentMenuItem(gtk.ImageMenuItem):
         label = self.get_child()
         label.set_use_underline(False)
         label.set_max_width_chars(20)
-        label.set_property('ellipsize', pango.ELLIPSIZE_END)
+        label.set_property('ellipsize', Pango.EllipsizeMode.END)
 
         icon = photo.get_icon() or IconImage()
         icon_img = icon.get_image()
@@ -126,11 +133,12 @@ class RecentMenuItem(gtk.ImageMenuItem):
         self.set_always_show_image(True)
         self.connect('activate', photo.open)
 
-class HistoryMenuItem(gtk.MenuItem):
+class HistoryMenuItem(Gtk.MenuItem):
 
     def __init__(self):
         title = _("Show _History")
         super(HistoryMenuItem, self).__init__(title)
+        self.set_use_underline(True)
         self.connect('activate', self._open)
 
     def _open(self, widget):
@@ -139,15 +147,12 @@ class HistoryMenuItem(gtk.MenuItem):
 
 class AboutDialog(object):
 
-    def start(self, *args):
-        gui = gtk.Builder()
+    def start(self):
+        gui = Gtk.Builder()
         gui.add_from_file(constants.UI_FILE)
         about = gui.get_object('aboutdialog')
         about.set_name(_('GPhotoFrame'))
         about.set_property('version', constants.VERSION)
-        gtk.about_dialog_set_url_hook(self._open_url)
+
         about.run()
         about.destroy()
-
-    def _open_url(self, about, url):
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)

@@ -4,9 +4,14 @@
 
 2012-02-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* es.po: Added new translation. Thanks jorjuardo!
 	* gphotoframe: Renamed the product name from GNOME Photo Frame to
 	  GPhotoFrame (issue #104).
+
+2012-02-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* NEWS: 2.0-a1 release.
+	* es.po: Added new translation.  Thanks jorjuardo!
+	* com.googlecode.gphotoframe.schemas: Added new section 'geometry'.
 
 2012-01-14  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -17,26 +22,63 @@
 2012-01-05  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5-rc1 release.
+	* actor/map.py: Avoid a problem of Champlain.NetworkTileSource.
+
+2011-12-29  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotoframe: Fixed gtkclutter no reactive problem.
+	* actor/map.py: Fixed_location method.
 
 2011-12-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* facebook/__init__.py (FacebookAlbumListStore): Fixed a bug.
+
+2011-12-28  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* keyring.py: Added support for Secret API.
+
+2011-12-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* dbus/networkstate.py, dbus/idelechck.py: Migrated to GDBus
+	  (issue #103).
+	* preferences/*, preferences.ui: Code refactoring.
+
+2011-12-25  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* facebook/authdialog.py: Added a loading spinner.
 
 2011-12-22  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5-b3 release.
 	* urlgetautoproxy.py: Improved error handling.
 	* html.py: Added size attributes on icon image tags.
+	* history/*, tooltip.py, liststore.py: Fixed many unicode enciding
+	  problems.
 
 2011-12-21  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5-b2 release.
 	* plugins/picasa.py: Picasa feeds have not included exif data.
 
+2011-12-20  Yoshizumi Endo  <yendo@ubuntu>
+
+	* config.py: Removed an obsolete module.
+	* settings.py: Ported from GConf to GSettings.
+
+2011-12-16  Yoshizumi Endo  <yendo@ubuntu>
+
+	* gphotoframe.schemas.in: Changed default_weight from 3 to 5.
+	* liststore.py: Save the liststore as JSON.
+
+2011-12-15  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* liststore.py: Code refactoring.
+
 2011-12-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5-b1 release.
 	* image/animation.py: Fixed a import error.
+	* image/animation.py: Fixed import errors.
 
 2011-12-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
@@ -58,6 +100,17 @@
 
 	* NEWS: 1.4.1 release.
 
+2011-11-26  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* utils/config.py: Use old gconf package. New one has bugs.
+	* gtkimage.py (PhotoImagePixbuf._no_image): Dropped GtkDrawable.
+
+2011-11-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* gphotofame: Renamed symbols from PyGTK 2 to PyGI GTK 3 with
+	  pygi-convert.sh.
+	* utils/gtk3reactor: Added new module for GTK 3.
+
 2011-11-23  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* config.py: Added support for gconf.VALUE_LIST.
@@ -74,7 +127,7 @@
 	  a Xfwm bug (issue #97).  Xfwm does not support GDK_GRAVITY
 	  correctly.  The frame window gravity needs be set to
 	  GDK_GRAVITY_NORTH_WEST forcelly.
-	
+
 2011-09-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* image/gtkimage.py: Improved loading speed for large image files
@@ -1340,3 +1393,6 @@
 	* gphotoframe (MakePhoto.rotate): EXIF.process_file ->
 	  pixbuf.get_option. Droped depend on EXIF.py
 	* gphotoframe, gphotoframe.glade: Initial import.
+
+	LocalWords:  refactoring
+	

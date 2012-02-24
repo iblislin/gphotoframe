@@ -1,7 +1,8 @@
-import gtk
-from gettext import gettext as _
+from gi.repository import Gtk
+# from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
+from ...settings import SETTINGS_UI_TRASH
 from info import ActorGeoIcon, ActorInfoIcon
 
 class ActorTrashIcon(ActorGeoIcon):
@@ -24,7 +25,7 @@ class ActorTrashIcon(ActorGeoIcon):
         return IconImage('user-trash')
 
     def _get_ui_data(self):
-        self._set_ui_options('trash', False, 3)
+        self._set_ui_options(SETTINGS_UI_TRASH)
 
     def _on_button_press_cb(self, actor, event):
         self.dialog.run(self.photo)
@@ -46,7 +47,7 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         return photo['trash'].check_delete_from_disk(filename)
 
     def _get_position(self):
-        return self.conf.get_int('ui/trash/position', 3)
+        return SETTINGS_UI_TRASH.get_int('position')
 
     def _check_photo(self):
         if not 'trash' in self.photo:
@@ -58,7 +59,7 @@ class ActorRemoveCatalogIcon(ActorTrashIcon, ActorInfoIcon):
         return IconImage('gtk-remove')
 
     def _get_ui_data(self):
-        self._set_ui_options('trash', False, 3)
+        self._set_ui_options(SETTINGS_UI_TRASH)
 
     def _enter_cb(self, w, e, tooltip):
         tip = self.photo.get('info')().get_ban_icon_tip(self.photo)
@@ -75,9 +76,9 @@ class TrashDialog(object):
         self._set_variable(photo)
         self.is_show = True
 
-        dialog = gtk.MessageDialog(
-            None, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, 
-            gtk.BUTTONS_YES_NO, self.text[0])
+        dialog = Gtk.MessageDialog(
+            None, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, 
+            Gtk.ButtonsType.YES_NO, self.text[0])
         dialog.set_title(title)
         dialog.format_secondary_text(self.text[1])
         dialog.connect('response', self._response_cb, photo)
@@ -89,7 +90,7 @@ class TrashDialog(object):
         self.command_method = photo['trash'].delete_from_disk
 
     def _response_cb(self, widget, response, photo):
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             self.command_method(photo)
         widget.destroy()
         self.is_show = False

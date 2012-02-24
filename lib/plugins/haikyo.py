@@ -17,7 +17,6 @@ import random
 import re
 
 from xml.etree import ElementTree as etree
-from gettext import gettext as _
 
 from base import *
 from ..utils.iconimage import WebIconImage

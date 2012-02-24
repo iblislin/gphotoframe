@@ -5,7 +5,7 @@ from stat import S_IMODE
 
 from xdg.BaseDirectory import *
 
-VERSION = '1.5.1'
+VERSION = '2.0-a2'
 APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(os.path.join(dirname(__file__), '../share'))
@@ -17,9 +17,7 @@ CACHE_DIR = "/tmp/gphotoframe-%s" % getpass.getuser()
 DATA_HOME = os.path.join(xdg_data_home, APP_NAME)
 CACHE_HOME = os.path.join(xdg_cache_home, APP_NAME)
 CONFIG_HOME = os.path.join(xdg_config_home, APP_NAME)
-PLUGIN_HOME = os.path.join(CONFIG_HOME, 'plugins')
-
-HAS_DATA_DIR = os.path.isdir(DATA_HOME) # for defaultsource.py
+PLUGIN_HOME = os.path.join(DATA_HOME, 'plugins')
 
 for dir in [CACHE_DIR, DATA_HOME, CACHE_HOME, CONFIG_HOME, PLUGIN_HOME]:
     if not os.path.isdir(dir):

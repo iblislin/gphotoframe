@@ -98,7 +98,7 @@ class FSpotTagList(object):
                 self._get_with_category_id(i[0])
 
 class FSpotPhotoTags(object):
-    "Sorted F-Spot photo tags for gtk.ComboBox"
+    "Sorted F-Spot photo tags for Gtk.ComboBox"
 
     def __init__(self):
         self.stags = []

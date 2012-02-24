@@ -4,18 +4,17 @@
 # Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
-from gettext import gettext as _
 import urllib
 import json
 
-import gtk
+from gi.repository import Gtk
 
 from base import *
 from ..constants import APP_NAME, VERSION
+from ..settings import SETTINGS_PICASA
 from ..utils.urlgetautoproxy import urlget_with_autoproxy, urlpost_with_autoproxy
 from ..utils.keyring import Keyring
 from ..utils.iconimage import WebIconImage
-from ..utils.config import GConf
 
 def info():
     return [PicasaPlugin, PicasaPhotoList, PhotoSourcePicasaUI,
@@ -27,33 +26,32 @@ class PicasaPlugin(base.PluginBase):
     def __init__(self):
         self.name = _('Picasa Web')
         self.icon = PicasaIcon
-        self.auth = 'plugins/picasa/user_id'
+        self.auth = [SETTINGS_PICASA, 'user-id']
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',
                       'authors': ['Yoshizimi Endo'], }
 
     def is_available(self):
-        username = GConf().get_string('plugins/picasa/user_id')
+        username = SETTINGS_PICASA.get_string('user-id')
         return bool(username)
 
 class PicasaPhotoList(base.PhotoList):
 
     def prepare(self):
         self.photos = []
-
-        self.username = self.conf.get_string('plugins/picasa/user_id')
+        self.username = SETTINGS_PICASA.get_string('user-id')
         if self.username:
-            key = Keyring('Google Account', protocol='http')
+            key = Keyring(server='google.com', protocol='http')
             key.get_passwd_async(self.username, self._google_auth_cb)
 
-            interval_min = self.conf.get_int('plugins/picasa/interval', 60)
+            interval_min = SETTINGS_PICASA.get_int('interval') or 60
             self._start_timer(interval_min)
 
     def _google_auth_cb(self, identity):
         "Get Google Auth Token (ClientLogin)."
 
-        if identity is None:
+        if not identity:
             print _("Certification Error")
             return
 
@@ -162,7 +160,7 @@ class PicasaPhotoList(base.PhotoList):
 class PicasaPhoto(base.Photo):
 
     def is_my_photo(self):
-        user_name = self.conf.get_string('plugins/picasa/user_id')
+        user_name = SETTINGS_PICASA.get_string('user-id')
         result = user_name and user_name == self['owner_name']
         return result
 
@@ -176,8 +174,7 @@ class PhotoSourcePicasaUI(ui.PhotoSourceUI):
         self.target_widget.connect('changed', self._widget_cb)
 
     def _widget_cb(self, widget):
-        target = widget.get_active_text()
-
+        target = widget.get_active_text().decode('utf-8') # FIXME
         label, state = self._check_argument_sensitive_for(target)
         self._set_argument_sensitive(label=label, state=state)
 
@@ -198,16 +195,17 @@ class PluginPicasaDialog(ui.PluginDialog):
 
     def __init__(self, parent, model_iter=None):
         super(PluginPicasaDialog, self).__init__(parent, model_iter)
-        self.api = 'picasa'
-        self.key_server = 'Google Account'
+        self.key_label = 'Google'
+        self.key_server = 'google.com'
+        self.settings = SETTINGS_PICASA
 
     def run(self):
-        user_id = self.conf.get_string('plugins/%s/user_id' % self.api) ##
+        user_id = self.settings.get_string('user-id')
         self.passwd = None
         self.entry3 = self.gui.get_object('entry3')
         self.entry4 = self.gui.get_object('entry4')
 
-        self.key = Keyring(self.key_server, protocol='http') ##
+        self.key = Keyring(server=self.key_server, protocol='http')
 
         if user_id != None:
             self.entry3.set_text(user_id)
@@ -221,18 +219,19 @@ class PluginPicasaDialog(ui.PluginDialog):
             self.entry4.set_text(self.passwd)
 
         response_id = self.dialog.run()
-        if response_id == gtk.RESPONSE_OK:
+        if response_id == Gtk.ResponseType.OK:
             self._write_conf()
         else:
             self.dialog.destroy()
 
     def _write_conf(self):
         user_id = self.entry3.get_text()
-        self.conf.set_string( 'plugins/%s/user_id' % self.api, user_id ) ##
+        self.settings.set_string('user-id', user_id)
 
         new_passwd = self.entry4.get_text()
         if self.passwd is None or self.passwd != new_passwd:
-            self.key.set_passwd_async(user_id, new_passwd, self._destroy_cb)
+            self.key.set_passwd_async(
+                user_id, new_passwd, self.key_label, self._destroy_cb)
         else:
             self._destroy_cb()
 

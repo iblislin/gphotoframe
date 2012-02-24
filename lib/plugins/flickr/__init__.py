@@ -7,9 +7,9 @@
 import random
 import time
 import json
-from gettext import gettext as _
 
 from ..base import *
+from ...settings import SETTINGS_FLICKR
 from ...utils.iconimage import WebIconImage
 from ...utils.urlgetautoproxy import urlget_with_autoproxy
 from api import *
@@ -25,7 +25,7 @@ class FlickrPlugin(base.PluginBase):
         self.name = 'Flickr'
         self.icon = FlickrIcon
         self.exif = FlickrEXIF
-        self.auth = 'plugins/flickr/user_name'
+        self.auth = [SETTINGS_FLICKR, 'user-name']
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
                       'website': 'http://www.flickr.com/',
@@ -54,7 +54,7 @@ class FlickrPhotoList(base.PhotoList):
         return random.choice(target_list)
 
     def _get_threshold(self):
-        min = self.conf.get_int('plugins/flickr/latest_photos_min_rate', 10)
+        min = SETTINGS_FLICKR.get_int('latest-photos-min-rate') or 10
         original = 100.0 / self.page_list.pages
         threshold = original if original > min else min
 
@@ -178,7 +178,7 @@ class FlickrPhoto(base.Photo):
         return url
 
     def is_my_photo(self):
-        user_name = self.conf.get_string('plugins/flickr/user_name')
+        user_name = SETTINGS_FLICKR.get_string('user-name')
         result = user_name and user_name == self['owner_name']
         return result
 

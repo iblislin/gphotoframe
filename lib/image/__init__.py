@@ -1,13 +1,12 @@
 from clutterimage import *
-from ..utils.config import GConf
+from ..settings import SETTINGS_UI
 
 class PhotoImageFactoryBase(object):
 
     def create(self, photoframe):
-        conf = GConf()
-        disable_clutter = conf.get_bool('ui/disable_clutter', False)
+        disable_clutter = SETTINGS_UI.get_boolean('disable-clutter')
 
-        cls = self.clutter if cluttergtk and not disable_clutter \
+        cls = self.clutter if GtkClutter and not disable_clutter \
             else self.gtkimage
         return cls(photoframe)
 

@@ -1,7 +1,8 @@
 from __future__ import division
-from gettext import gettext as _
+# from gettext import gettext as _
 
 from ...utils.iconimage import IconImage
+from ...settings import SETTINGS_UI_FAV
 from base import ActorIcon, IconTexture
 
 class ActorFavIcon(ActorIcon):
@@ -67,7 +68,7 @@ class ActorFavIcon(ActorIcon):
                 icon.show()
 
     def _get_ui_data(self):
-        self._set_ui_options('fav', False, 0)
+        self._set_ui_options(SETTINGS_UI_FAV)
 
 class ActorSubFavIcon(IconTexture):
 

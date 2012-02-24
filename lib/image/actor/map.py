@@ -1,19 +1,18 @@
 try:
-    import champlain
-    import clutter
+    from gi.repository import Clutter, Champlain
 except ImportError:
     from ...utils.nullobject import Null
-    champlain = Null()
-    clutter = Null()
+    Champlain = Null()
+    Clutter = Null()
 
 from base import Texture
 from ..animation import FadeAnimationTimeline
-from ...utils.config import GConf
+from ...settings import SETTINGS_UI_MAP
 
 class MapFactory(object):
 
     def create(self, stage, image):
-        obj = Map(stage, image) if champlain else Null()
+        obj = Map(stage, image) if Champlain else Null()
         return obj
 
 class Map(object):
@@ -25,12 +24,12 @@ class Map(object):
         self.rectangle = MapShadowRectangle()
         self.marker = PhotoMarker()
 
-        layer = champlain.Layer()
-        layer.add(self.marker)
+        layer = Champlain.MarkerLayer()
+        layer.add_marker(self.marker)
         self.view.add_layer(layer)
 
-        stage.add(self.rectangle)
-        stage.add(self.view)
+        stage.add_actor(self.rectangle)
+        stage.add_actor(self.view)
 
     def show(self, photo):
         lat, lon = photo['geo']
@@ -43,17 +42,18 @@ class Map(object):
         self.view.hide()
         self.rectangle.hide()
 
-class MapView(champlain.View):
+class MapView(Champlain.View):
 
     def __init__(self):
         super(MapView, self).__init__()
 
-        uri = GConf().get_string('ui/map/source_uri')
+        uri = SETTINGS_UI_MAP.get_string('source-uri')
+        uri = "http://tile.openstreetmap.org/#Z#/#X#/#Y#.png"
 
         if uri:
-            source = champlain.NetworkMapSource()
+            source = Champlain.NetworkTileSource()
             source.set_uri_format(uri)
-            self.set_map_source(source)
+            # self.set_map_source(source)
 
         self.timeline = FadeAnimationTimeline(self)
         self.timeline.timeline_fade_out.connect('completed', self._hide)
@@ -84,12 +84,15 @@ class MapView(champlain.View):
     def _hide(self, w):
         super(MapView, self).hide()
 
-class MapShadowRectangle(clutter.Rectangle):
+class MapShadowRectangle(Clutter.Rectangle):
 
     def __init__(self):
-        super(MapShadowRectangle, self).__init__(
-            clutter.color_from_string("black"))
+        super(MapShadowRectangle, self).__init__()
         self.timeline = FadeAnimationTimeline(self, end=200)
+
+        color = Clutter.Color()
+        color.from_string("black")
+        self.set_color(color)
 
         super(MapShadowRectangle, self).show()
         self.set_opacity(100)
@@ -128,7 +131,7 @@ class ZoomLevel(object):
     def get_default_zoom(self):
         return 12 if self.photo.is_my_photo() else 5
 
-class PhotoMarker(champlain.Marker):
+class PhotoMarker(Champlain.Label):
 
     def __init__(self):
         super(PhotoMarker, self).__init__()
@@ -138,7 +141,7 @@ class PhotoMarker(champlain.Marker):
         self.show()
 
     def change(self, image, lat, lon):
-        self.set_position(lat, lon)
+        self.set_location(lat,lon)
         self.set_text("")
         
         w, h = image.pixbuf.get_scale(image.w, image.h, 90, 90)

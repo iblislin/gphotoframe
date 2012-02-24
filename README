@@ -18,8 +18,10 @@ It shows pictures from:
 
 ** Depends
 
-- Python: 2.6 or later
-- PyGTK: 2.16 or later
+- Python: 2.6 or 2.7
+- python-gobject
+- gir1.2-gtk-3.0
+- gir1.2-webkit-3.0
 - Twisted: twisted.internet & twisted.web
 - PyXDG: except v.0.16 which has a bug
 
@@ -30,24 +32,25 @@ It shows pictures from:
 ** Recommends
 
 - feedparser: for RSS plugin
-- gnome-python-desktop (gnomekeyring): for Picasa Web and Tumblr plugins
-- python-webkit: for Facebook plugin
-- python-clutter-gtk
 - python-libproxy: for Gnome Proxy Settings
-- python-champlain: for Photo Map
+- gir1.2-gtkclutter-1.0
+- gir1.2-champlain-0.12: for Photo Map
 
 ** Suggests
 
 - python-numpy: for RSS plugin
-- python-dbus: for checking session idle status
 - jQuery: for photo history html
 
 ** Installation
 
+The gschema file must be installed.
+
+  sudo cp ./share/com.googlecode.gphotoframe.gschema.xml.in /usr/share/glib-2.0/schemas/com.googlecode.gphotoframe.gschema.xml
+  sudo sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
 You can install with the setup script.
 
   sudo python ./setup.py install --force
-  sudo gconf-schemas --register gphotoframe.schemas
 
 Or, you can launch without installation. (Some functions are restricted.)
 
