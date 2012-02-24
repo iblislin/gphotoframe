@@ -1,0 +1,845 @@
+<gconfschemafile>
+  <schemalist>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/border_color</key>
+      <applyto>/apps/gphotoframe/border_color</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Photo frame border color</short>
+        <long>Photo frame border color</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/border_width</key>
+      <applyto>/apps/gphotoframe/border_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>6</default>
+      <locale name="C">
+        <short>Photo frame border width</short>
+        <long>Photo frame border width</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/default_weight</key>
+      <applyto>/apps/gphotoframe/default_weight</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>3</default>
+      <locale name="C">
+        <short>Photo source default weight</short>
+        <long>Photo source default weight</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/fullscreen</key>
+      <applyto>/apps/gphotoframe/fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Photo frame full screen mode</short>
+        <long>Photo frame full screen mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/interval</key>
+      <applyto>/apps/gphotoframe/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>Interval seconds in window mode</short>
+        <long>Interval seconds in window mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/use_conn</key>
+      <applyto>/apps/gphotoframe/use_conn</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Connection managers should be used</short>
+        <long>Whether connectivity managers should be used for checking network connectivity.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/interval_fullscreen</key>
+      <applyto>/apps/gphotoframe/interval_fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>10</default>
+      <locale name="C">
+        <short>Interval seconds in full screen mode</short>
+        <long>Interval seconds in full screen mode</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/max_height</key>
+      <applyto>/apps/gphotoframe/max_height</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>300</default>
+      <locale name="C">
+        <short>Photo image max height</short>
+        <long>Photo image max height</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/max_width</key>
+      <applyto>/apps/gphotoframe/max_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>400</default>
+      <locale name="C">
+        <short>Photo image max width</short>
+        <long>Photo image max width</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/prefs_height</key>
+      <applyto>/apps/gphotoframe/prefs_height</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Preferences height</short>
+        <long>Preferences height</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/prefs_width</key>
+      <applyto>/apps/gphotoframe/prefs_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Preferences width</short>
+        <long>Preferences width</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/root_x</key>
+      <applyto>/apps/gphotoframe/root_x</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Photo frame X position</short>
+        <long>Photo frame X position</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/root_y</key>
+      <applyto>/apps/gphotoframe/root_y</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Photo frame Y position</short>
+        <long>Photo frame Y position</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/gravity</key>
+      <applyto>/apps/gphotoframe/gravity</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default>CENTER</default>
+      <locale name="C">
+        <short>Photo frame window gravity</short>
+        <long>Defines the reference point of the window.  Possible values are "CENTER" and "NORTH_WEST"</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/window_fix</key>
+      <applyto>/apps/gphotoframe/window_fix</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Photo frame fix mode</short>
+        <long>Fix the photo frame on the root window</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/window_sticky</key>
+      <applyto>/apps/gphotoframe/window_sticky</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Photo frame sticky mode</short>
+        <long>Always on Visible Workspace</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/window_keep_below</key>
+      <applyto>/apps/gphotoframe/window_keep_below</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Photo frame "keep-below" mode</short>
+        <long>If true, the photo frame must be kept below other windows.  When you change this value, you need to restart gphotoframe.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/format/date_format</key>
+      <applyto>/apps/gphotoframe/format/date_format</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default>%x</default>
+      <locale name="C">
+        <short>Date format</short>
+        <long>You can use conversion specifiers understood by strftime() to obtain a specific format. See the strftime() manual for more information.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/format/show_filename_suffix</key>
+      <applyto>/apps/gphotoframe/format/show_filename_suffix</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether to show filename suffix</short>
+        <long>If true, image filename suffixes (jpe?g|png|gif|bmp) are shown.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/format/location_on_tooltip</key>
+      <applyto>/apps/gphotoframe/format/location_on_tooltip</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to show locations on tooltip</short>
+        <long>If true, locations are shown on tooltip.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/format/model_on_tooltip</key>
+      <applyto>/apps/gphotoframe/format/model_on_tooltip</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Whether to show camera model names on tooltip</short>
+        <long>If true, camera model name are shown on tooltip.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/aspect_max</key>
+      <applyto>/apps/gphotoframe/filter/aspect_max</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Max aspect ratio for Photo</short>
+        <long>Max aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/aspect_min</key>
+      <applyto>/apps/gphotoframe/filter/aspect_min</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0.0</default>
+      <locale name="C">
+        <short>Minimum aspect ratio for Photo</short>
+        <long>Minimum aspect ratio for Photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/min_width</key>
+      <applyto>/apps/gphotoframe/filter/min_width</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Minimum image width</short>
+        <long>Minimum image width.  When this value is less than 0, image size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/min_height</key>
+      <applyto>/apps/gphotoframe/filter/min_height</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Minimum image height</short>
+        <long>Minimum image height.  When this value is less than 0, image size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/min_file_size_kb</key>
+      <applyto>/apps/gphotoframe/filter/min_file_size_kb</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Minimum image file size in KByte</short>
+        <long>Minimum image file size in KByte.  When this value is 0 or less, this image file size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/filter/max_file_size_mb</key>
+      <applyto>/apps/gphotoframe/filter/max_file_size_mb</applyto>
+      <owner>gphotoframe</owner>
+      <type>float</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Maximum image file size in MByte</short>
+        <long>Maximum image file size in MByte.  When this value is 0 or less, this image file size filter is disabled.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/access_token</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/access_token</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Auth token</short>
+        <long>Auth token</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/full_name</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/full_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User full name</short>
+        <long>User full name</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/interval_default</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/interval_default</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>Default API reload interval minutes</short>
+        <long>Default API reload interval minutes</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/interval_newsfeed</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/interval_newsfeed</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>API reload interval minutes for News Feed</short>
+        <long>API reload interval minutes for News Feed</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/facebook/interval_wall</key>
+      <applyto>/apps/gphotoframe/plugins/facebook/interval_wall</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>45</default>
+      <locale name="C">
+        <short>API reload interval minutes for Wall</short>
+        <long>API reload interval minutes for Wall</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/interval</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>API reload interval minutes</short>
+        <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/interval_for_meta_group</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/interval_for_meta_group</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>20</default>
+      <locale name="C">
+        <short>API reload interval minutes for meta groups</short>
+        <long>API reload interval minutes for meta groups (Your Groups or The Commons). It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/auth_token</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/auth_token</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Auth token</short>
+        <long>Auth token</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/full_name</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/full_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User full name</short>
+        <long>User full name</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/nsid</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/nsid</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>NSID</short>
+        <long>Flickr user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/user_name</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/user_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User name</short>
+        <long>User name</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/flickr/latest_photos_min_rate</key>
+      <applyto>/apps/gphotoframe/plugins/flickr/latest_photos_min_rate</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>10</default>
+      <locale name="C">
+        <short>Minimum rate of latest photos</short>
+        <long>The Flickr plugin gets photos from latest to oldest via API with a page number.  This value specifies the minimum percentage of showing photos of 1st page (latest photos)</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/picasa/interval</key>
+      <applyto>/apps/gphotoframe/plugins/picasa/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>API reload interval minutes</short>
+        <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/picasa/user_id</key>
+      <applyto>/apps/gphotoframe/plugins/picasa/user_id</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User ID</short>
+        <long>Google account user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/interval</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>API reload interval minutes</short>
+        <long>API reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/user_id</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/user_id</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>User ID</short>
+        <long>E-mail adress as user ID</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/blog_name</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/blog_name</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Tumblr blog name</short>
+        <long>Tumblr blog name</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/disable_delete_post</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/disable_delete_post</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Disable delete posts</short>
+        <long>If true, disable delete posts.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/enable_ban_liked</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/enable_ban_liked</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable ban icon for liked posts</short>
+        <long>If true, enable ban icon for liked posts.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/tumblr/enable_flickr_link</key>
+      <applyto>/apps/gphotoframe/plugins/tumblr/enable_flickr_link</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable direct links to Flickr photos</short>
+        <long>If true, you can open Flickr photos on Flickr not on Tumbr.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/rss/interval</key>
+      <applyto>/apps/gphotoframe/plugins/rss/interval</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>60</default>
+      <locale name="C">
+        <short>RSS reload interval minutes</short>
+        <long>RSS reload interval minutes. It should be greater than 10 minutes.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/rss/standard_deviation</key>
+      <applyto>/apps/gphotoframe/plugins/rss/standard_deviation</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Standard deviation of RSS feed random weights</short>
+        <long>If the RSS feed includes multiple RSS feeds, this value is used as the standard deviation for random weight of each RSS feed.  When this value is less than 0, the each weight is the number of total image included in each RSS feed.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/plugins/shotwell/use_description</key>
+      <applyto>/apps/gphotoframe/plugins/shotwell/use_description</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Enable description field</short>
+        <long>If true, description (identifier) field will be enabled on photo source dialog.  Users can use the field freely.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/preferences</key>
+      <applyto>/apps/gphotoframe/recents/preferences</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Recent opend preferences page number</short>
+        <long>Recent opend preferences page number</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/source</key>
+      <applyto>/apps/gphotoframe/recents/source</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Recent selected photo source</short>
+        <long>Recent selected photo source</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/queue_number</key>
+      <applyto>/apps/gphotoframe/recents/queue_number</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>The number of photo cache files</short>
+        <long>The field sets the number of photo cache files.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/recents/queue_menu_number</key>
+      <applyto>/apps/gphotoframe/recents/queue_menu_number</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>6</default>
+      <locale name="C">
+        <short>The number of recent photo menu items</short>
+        <long>The field sets the number of recent photo menu items.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/disable_clutter</key>
+      <applyto>/apps/gphotoframe/ui/disable_clutter</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Disable Clutter library support</short>
+        <long>Set this to true if you have problems with Clutter library support.  When you change this value, you need to restart gphotoframe.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/animate_icons</key>
+      <applyto>/apps/gphotoframe/ui/animate_icons</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Enable icon animations</short>
+        <long>If true, hiding and un-hiding of icons will be animated.  The program needs to be restarted to take effect the change of the setting.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/animate_fullscreen</key>
+      <applyto>/apps/gphotoframe/ui/animate_fullscreen</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Enable fullscreen mode animations</short>
+        <long>If true, changing of photo image in fullscreen mode will be animated.  The program needs to be restarted to take effect the change of the setting.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/icons_on_screensaver</key>
+      <applyto>/apps/gphotoframe/ui/icons_on_screensaver</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Show icons on screensaver</short>
+        <long>If true, icons will be shown on screensaver.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/source/always_show</key>
+      <applyto>/apps/gphotoframe/ui/source/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Always show the source icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/source/position</key>
+      <applyto>/apps/gphotoframe/ui/source/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Source icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/geo/always_show</key>
+      <applyto>/apps/gphotoframe/ui/geo/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the geo icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/geo/position</key>
+      <applyto>/apps/gphotoframe/ui/geo/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>2</default>
+      <locale name="C">
+        <short>Geo icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/info/always_show</key>
+      <applyto>/apps/gphotoframe/ui/info/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the info icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/fav/always_show</key>
+      <applyto>/apps/gphotoframe/ui/fav/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the fav icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/fav/position</key>
+      <applyto>/apps/gphotoframe/ui/fav/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Fav icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/share/always_show</key>
+      <applyto>/apps/gphotoframe/ui/share/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the share icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/share/position</key>
+      <applyto>/apps/gphotoframe/ui/share/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Share icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/trash/always_show</key>
+      <applyto>/apps/gphotoframe/ui/trash/always_show</applyto>
+      <owner>gphotoframe</owner>
+      <type>bool</type>
+      <default>False</default>
+      <locale name="C">
+        <short>Always show the trash icon</short>
+        <long>Set to "true" to always show the icon.  Set to "false" to only show the icon when the mouse pointer is over the photo frame.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/trash/position</key>
+      <applyto>/apps/gphotoframe/ui/trash/position</applyto>
+      <owner>gphotoframe</owner>
+      <type>int</type>
+      <default>3</default>
+      <locale name="C">
+        <short>Trash icon position</short>
+        <long>Determines the icon position, 0: left-top, 1: right-top, 2: right-bottom, 3: left-bottom.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gphotoframe/ui/map/source_uri</key>
+      <applyto>/apps/gphotoframe/ui/map/source_uri</applyto>
+      <owner>gphotoframe</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Map source URI</short>
+        <long>Defines a URI format used for URI creation when downloading tiles.</long>
+      </locale>
+    </schema>
+
+  </schemalist>
+</gconfschemafile>
