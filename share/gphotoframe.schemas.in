@@ -249,7 +249,7 @@
       <default>false</default>
       <locale name="C">
         <short>Whether to show camera model names on tooltip</short>
-        <long>If true, camera model name are shown on tooltip.</long>
+        <long>If true, camera model name is shown on tooltip.</long>
       </locale>
     </schema>
 
@@ -574,7 +574,7 @@
       <default>false</default>
       <locale name="C">
         <short>Enable direct links to Flickr photos</short>
-        <long>If true, you can open Flickr photos on Flickr not on Tumbr.</long>
+        <long>If true, you can open Flickr photos on Flickr not on Tumblr.</long>
       </locale>
     </schema>
 
