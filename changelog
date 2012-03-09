@@ -1,3 +1,9 @@
+2012-03-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* po/it.po, help/it/it.po: Updated Italian translation.
+	  Thanks Cristian Marchi!
+	* gphotoframe.schemas.in: Fixed typos.
+
 2012-02-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 1.5.1 release.
