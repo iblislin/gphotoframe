@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 # from gettext import gettext as _
 
 from ..constants import UI_FILE
@@ -54,7 +54,7 @@ class PhotoSourceTreeView(PreferencesTreeView):
         self.treeview.set_cursor(row, None, False)
 
     def on_treeview1_button_press_event(self, widget, event):
-        if event.type == Gdk._2BUTTON_PRESS:
+        if event.type == Gdk.EventType._2BUTTON_PRESS:
             self.on_button4_clicked(widget)
             return True
 

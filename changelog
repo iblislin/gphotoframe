@@ -1,3 +1,7 @@
+2012-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/plugin.py: Fixed an old symbol.
+
 2012-03-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* po/it.po, help/it/it.po: Updated Italian translation.
