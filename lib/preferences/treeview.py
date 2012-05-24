@@ -11,5 +11,6 @@ class PreferencesTreeView(object):
         self._set_button_sensitive(False)
 
     def on_treeview1_cursor_changed(self, widget):
-        if self.treeview.get_selection().get_selected()[1] != None:
+        selection = self.treeview.get_selection()
+        if selection and selection.get_selected()[1] != None:
             self._set_button_sensitive(True)
