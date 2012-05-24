@@ -1,5 +1,6 @@
 2012-05-24  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* preferences/plugin.py, preferences/treeview.py: Fixed minor bugs.
 	* preferences/plugin.py: Fixed an old symbol.
 
 2012-03-09  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
