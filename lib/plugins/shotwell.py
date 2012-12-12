@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 #
 # Shotwell plugin for GPhotoFrame
-# Copyright (c) 2010-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2010-2012, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 #
+# 2012-11-06 Version 0.1.7.3
 # 2011-12-20 Version 0.1.7.2
 # 2011-04-10 Version 0.1.7.1
 # 2011-03-11 Version 0.1.7
@@ -41,7 +42,7 @@ class ShotwellPlugin(FSpotPlugin):
         self.icon = ShotwellIcon
         self.db_class = ShotwellDB
         self.info = { 'comments': _('Shotwell Photo Manager'),
-                      'copyright': 'Copyright © 2010-2011 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2010-2012 Yoshizimi Endo',
                       'website': 'http://yorba.org/shotwell/',
                       'authors': ['Yoshizimi Endo'], }
 
@@ -158,8 +159,14 @@ class ShotwellIcon(LocalIconImage):
 class ShotwellDB(SqliteDB):
 
     def _get_db_file(self):
-        db_file_base = '.shotwell/data/photo.db'
+        db_file_base = '.local/share/shotwell/data/photo.db'
         db_file = os.path.join(os.environ['HOME'], db_file_base)
+
+        # for version 1.2 or older
+        if not os.access(db_file, os.R_OK):
+            db_file_base = '.shotwell/data/photo.db'
+            db_file = os.path.join(os.environ['HOME'], db_file_base)
+
         return db_file
 
 class ShotwellPhotoSQL(FSpotPhotoSQL):
