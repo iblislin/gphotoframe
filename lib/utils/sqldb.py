@@ -8,6 +8,7 @@ class SqliteDB(object):
     def __init__(self):
         db_file = self._get_db_file()
         if not os.access(db_file, os.R_OK):
+            print "Not found: ", db_file
             db_file = None
 
         self.is_accessible = bool(db_file)
