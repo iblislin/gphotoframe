@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 #
 # Tumblr plugin for GPhotoFrame
-# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2012, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
+
+CONSUMER_KEY = 'Ygjp6HoG7BCGGTVAamZj6pDJK4M1phyHH0jX7cDB6983VX5EDg'
+CONSUMER_SECRET = 'ychftk5UOQKaYn9NHVPKLQiDS8SqPAJZqNK0AbDaIEd5RtohTI'
 
 import re
 import urllib
-from xml.etree import ElementTree as etree
+import json
 
 from api import TumblrAccessBase, TumblrDelete, TumblrAuthenticate
 from ui import PhotoSourceTumblrUI, PluginTumblrDialog
@@ -27,7 +30,7 @@ class TumblrPlugin(base.PluginBase):
         self.icon = TumblrIcon
         self.auth = [SETTINGS_TUMBLR, 'user-id']
         self.info = { 'comments': _('Share Anything'),
-                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2012 Yoshizimi Endo',
                       'website': 'http://www.tumblr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
@@ -72,10 +75,11 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
             print _("Certification Error")
             return
 
-        values = {'type': 'photo', 'filter': 'text', 'num': 50}
+        # values = {'type': 'photo', 'filter': 'text', 'num': 50}
+        values = {}
 
         if self.target == _('User'):
-            url = 'http://%s.tumblr.com/api/read/?' % self.argument # user_id
+            url = 'http://api.tumblr.com/v2/blog/%s.tumblr.com/posts/photo?api_key=%s' % (self.argument, CONSUMER_KEY)
         elif self.target == _('Dashboard') or self.target == _('Likes'):
             target = 'dashboard' if self.target == _('Dashboard') else 'likes'
             if self.target == _('Dashboard'):
@@ -94,65 +98,61 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
         self._start_timer(interval_min)
 
     def _prepare_cb(self, data):
-        tree = etree.fromstring(data)
+        d = json.loads(data)
+
         re_nl = re.compile('\n+')
+        re_strip_html = re.compile(r'<.*?>')
         my_tumblelog = SETTINGS_TUMBLR.get_string('blog-name')
 
         if self.target == _('User'):
-            meta = tree.find('tumblelog')
-            owner = meta.attrib['name']
-            title = meta.attrib['title']
-            description = meta.text
+            blog = d['response']['blog']
+            owner = blog['name']
+            title = blog['title']
+            description = blog['description']
 
-        for post in tree.findall('posts/post'):
-            photo ={}
-
-            if post.attrib['type'] != 'photo':
+        for post in d['response']['posts']:
+            if post['type'] != 'photo':
                 continue
 
-            for child in post.getchildren():
-                key = 'photo-url-%s' % child.attrib['max-width'] \
-                    if child.tag == 'photo-url' else child.tag
-                photo[key] = child.text
-
-            url_m = photo['photo-url-500']
-            url_l = photo['photo-url-1280']
+            original_photo = post['photos'][0]['original_size']
+            url_m = str(post['photos'][0]['alt_sizes'][1]['url'])
+            url_l = str(original_photo['url'])
 
             if self.target != _('User'):
-                owner = post.attrib['tumblelog']
+                owner = post['blog_name']
 
-            caption = photo.get('photo-caption')
-            entry_title = re_nl.sub('\n', caption) if caption else None
-            is_liked = bool(post.attrib.get('liked'))
+            caption = post.get('caption')
+            entry_title = re_strip_html.sub('', caption) if caption else None
+            is_liked = bool(post.get('liked'))
             target_detail, page_url = self._check_flickr_link(
-                post.attrib['url'], photo.get('photo-link-url'))
+                post['post_url'], post.get('link_url'))
 
             data = {'info'       : TumblrPlugin,
                     'target'     : (self.target, target_detail),
                     'url'        : url_m,
-                    'id'         : post.attrib['id'],
-                    'reblog-key' : post.attrib['reblog-key'],
+                    'id'         : post['id'],
+                    'reblog-key' : post['reblog_key'],
                     'owner_name' : owner,
                     'title'      : entry_title,
                     'page_url'   : page_url,
-                    'is_private' : bool(post.attrib.get('private')),
+                    'is_private' : bool(post.get('private')),
                     'trash'      : TumblrTrash(self.photolist, is_liked)}
 
-            w, h = post.attrib.get('width'), post.attrib.get('height')
-            if w and h:        
+            w, h = original_photo.get('width'), original_photo.get('height')
+            if w and h:
                 data['size'] = int(w), int(h) 
 
             if url_m != url_l:
                 data['url_l'] = url_l
 
-            if hasattr(self, 'email') and (my_tumblelog != owner or is_liked):
-                like_arg = {'email'     : self.email,
-                            'password'  : self.password,
-                            'post-id'   : post.attrib['id'],
-                            'reblog-key': post.attrib['reblog-key']}
-
-                data['fav'] = TumblrFav(is_liked, like_arg)
-
+#            if hasattr(self, 'email') and (my_tumblelog != owner or is_liked):
+#                like_arg = {'email'     : self.email,
+#                            'password'  : self.password,
+#                            'post-id'   : post.attrib['id'],
+#                            'reblog-key': post.attrib['reblog-key']}
+#
+#                data['fav'] = TumblrFav(is_liked, like_arg)
+#
             photo = TumblrPhoto(data)
             self.photos.append(photo)
 
