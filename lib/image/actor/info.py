@@ -50,7 +50,7 @@ class ActorGeoIcon(ActorSourceIcon):
 
         url = "http://maps.google.com/maps?q=%s,%s+%%28%s%%29%s" % (
             lat, lon, urllib.quote(title), zoom)
-        Gtk.show_uri(None, url, event.get_time())
+        Gtk.show_uri(None, url, event.time)
 
     def _enter_cb(self, w, e, tooltip):
         if self.map:
