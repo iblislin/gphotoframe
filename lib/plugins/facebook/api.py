@@ -103,7 +103,7 @@ class FacebookHomeAlbumAPI(FacebookHomeAPI, FacebookAlbumsAPI):
     def _get_albumlist_cb(self, data):
         d = json.loads(data)
         albums = {}
-        re_aid = re.compile("http://www.facebook.com/photo.php?.*=a.([0-9]+)\\..*")
+        re_aid = re.compile("https://www.facebook.com/photo.php?.*=a.([0-9]+)\\..*")
 
         for entry in d['data']:
             type = entry.get('type')
