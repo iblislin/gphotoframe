@@ -60,7 +60,7 @@ class FacebookPhotoList(base.PhotoList):
     def _set_photo_cb(self, data, album_name):
         d = json.loads(data)
 
-        for entry in d['data']:
+        for entry in d.get('data') or []:
 
             type = entry.get('type')
             if type is not None and type != 'photo':
@@ -68,7 +68,7 @@ class FacebookPhotoList(base.PhotoList):
 
             if 'picture' not in entry:
                 continue
-            
+
             url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
 
             data = {'info'       : FacebookPlugin,
