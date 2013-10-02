@@ -120,7 +120,7 @@ class FacebookWebKitScrolledWindow(Gtk.ScrolledWindow):
 
         values = { 'client_id': 157351184320900,
                    'redirect_uri': 
-                   'http://www.facebook.com/connect/login_success.html',
+                   'https://www.facebook.com/connect/login_success.html',
                    'response_type': 'token',
                    'scope': 'user_photos,friends_photos,read_stream,offline_access',
                    'display': 'popup'}
@@ -138,7 +138,7 @@ class FacebookWebKitScrolledWindow(Gtk.ScrolledWindow):
         url = w.get_property('uri')
         re_token = re.compile('.*access_token=(.*)&.*')
         login_url = 'https://www.facebook.com/login.php?'
-        error_url = 'http://www.facebook.com/connect/login_success.html?error'
+        error_url = 'https://www.facebook.com/connect/login_success.html?error'
 
         if url.startswith(login_url):
             self.emit("login-started", None)
