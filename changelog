@@ -1,5 +1,6 @@
 2013-10-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* liststore.py (PhotoListStore.append): Fixed types of souce name.
 	* image/clutterimage.py (PhotoImageClutter): Fixed Clutter Color
 	  Settings for Clutter Stage.
 

@@ -39,12 +39,17 @@ class PhotoListStore(Gtk.ListStore):
         self._start_timer()
 
     def append(self, d, iter=None, is_delay=False):
-        if 'source' not in d or d['source'] not in plugins.MAKE_PHOTO_TOKEN:
+        # check for type of source names
+        source_name = d['source']
+        if isinstance(source_name, str):
+            source_name = source_name.decode('utf-8')
+
+        if 'source' not in d or source_name not in plugins.MAKE_PHOTO_TOKEN:
             return None
 
-        obj = plugins.MAKE_PHOTO_TOKEN[ d['source'] ](
+        obj = plugins.MAKE_PHOTO_TOKEN[ source_name ](
             d['target'], d['argument'], d['weight'], d['options'], self)
-        pixbuf = plugins.PLUGIN_INFO_TOKEN[d['source']]().get_icon_pixbuf()
+        pixbuf = plugins.PLUGIN_INFO_TOKEN[ source_name ]().get_icon_pixbuf()
         list = [ pixbuf, d['source'],
                  d['target'], d['argument'], d['weight'], d['options'], obj ]
 
