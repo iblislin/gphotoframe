@@ -80,12 +80,15 @@ class TumblrPhotoList(base.PhotoList, TumblrAccessBase):
 
         if self.target == _('User'):
             url = 'http://api.tumblr.com/v2/blog/%s.tumblr.com/posts/photo?api_key=%s' % (self.argument, CONSUMER_KEY)
+
         elif self.target == _('Dashboard') or self.target == _('Likes'):
             target = 'dashboard' if self.target == _('Dashboard') else 'likes'
             if self.target == _('Dashboard'):
                 values['likes'] = 1
-            url = 'http://www.tumblr.com/api/%s/?' % target
-            values.update( {'email': self.email, 'password': self.password} )
+#            url = 'http://www.tumblr.com/api/%s/?' % target
+#            values.update( {'email': self.email, 'password': self.password} )
+#            url = 'http://api.tumblr.com/v2/user/dashboard' % (self.argument, CONSUMER_KEY)
+
         else:
             print ( _("%(source)s: %(target)s is invalid target.") % 
                     {'source': 'Tumblr', 'target': self.target} )

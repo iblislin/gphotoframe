@@ -24,3 +24,6 @@ for dir in [CACHE_DIR, DATA_HOME, CACHE_HOME, CONFIG_HOME, PLUGIN_HOME]:
         os.makedirs(dir, 0700)
     elif S_IMODE(os.stat(dir).st_mode) != 0700:
         os.chmod(dir, 0700)
+
+def SHARED_DATA_FILE(file):
+    return os.path.join(SHARED_DATA_DIR, file)

@@ -10,6 +10,8 @@ from api import TumblrAuthenticate
 from ..picasa import PhotoSourcePicasaUI, PluginPicasaDialog
 from ...settings import SETTINGS_TUMBLR
 
+from assistant import TumblrAuthAssistant
+
 class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
     def _check_argument_sensitive_for(self, target):
@@ -26,20 +28,32 @@ class PhotoSourceTumblrUI(PhotoSourcePicasaUI):
 
         return label
 
-class PluginTumblrDialog(PluginPicasaDialog):
+class PluginTumblrDialog(object):
 
     def __init__(self, parent, model_iter=None):
-        super(PluginTumblrDialog, self).__init__(parent, model_iter)
-        self.key_label = 'Tumblr'
-        self.key_server = 'tumblr.com'
-        self.settings = SETTINGS_TUMBLR
+        TumblrAuthAssistant(parent=None, cb=self.assistant_cb)
 
-    def _set_ui(self):
-        super(PluginTumblrDialog, self)._set_ui()
-        user_label = self.gui.get_object('label_auth1')
-        user_label.set_text_with_mnemonic(_('_E-mail:'))
+    def run(self):
+        print "run!"
 
-    def _update_auth_status(self, email, password):
-        super(PluginTumblrDialog, self)._update_auth_status(email, password)
-        auth = TumblrAuthenticate()
-        auth.access()
+    def assistant_cb(self, data):
+        print "CB!", data
+
+
+#    def __init__(self, parent, model_iter=None):
+#        super(PluginTumblrDialog, self).__init__(parent, model_iter)
+#        self.key_label = 'Tumblr'
+#        self.key_server = 'tumblr.com'
+#        self.settings = SETTINGS_TUMBLR
+#
+#        print "YES"
+#
+#    def _set_ui(self):
+#        super(PluginTumblrDialog, self)._set_ui()
+#        user_label = self.gui.get_object('label_auth1')
+#        user_label.set_text_with_mnemonic(_('_E-mail:'))
+#
+#    def _update_auth_status(self, email, password):
+#        super(PluginTumblrDialog, self)._update_auth_status(email, password)
+#        auth = TumblrAuthenticate()
+#        auth.access()
