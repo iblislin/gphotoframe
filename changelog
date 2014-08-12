@@ -1,3 +1,7 @@
+2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* clutterimage.py: Avoid an old clutter bug.
+
 2013-10-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* liststore.py (PhotoListStore.append): Fixed types of souce name.
