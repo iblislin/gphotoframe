@@ -24,7 +24,7 @@ class DirPlugin(base.PluginBase):
         self.name = _('Folder')
         self.icon = FolderIcon
         self.info = { 'comments': _('Local Folder'),
-                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2014 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
 class DirPhotoList(base.LocalPhotoList):
@@ -105,7 +105,8 @@ class DirPhotoList(base.LocalPhotoList):
 
 class PhotoSourceDirUI(ui.PhotoSourceUI):
     def get(self):
-        return self.target_widget.get_current_folder()
+        folder = self.target_widget.get_uri().replace('file://', '')
+        return folder
 
     def get_options(self):
         return self.options_ui.get_value()

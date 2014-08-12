@@ -1,6 +1,7 @@
 2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
-	* NEWS: 2.0-a4 release.
+	* NEWS: 2.0-a5 release.
+	* plugins/folder.py: Fixed a bug (issue 111).
 	* image/geocoding.py: Updated a GeoNmaes API paramater.
 	* facebook/__init__.py: Updated photo URLs.
 	* plugins/flickr/: Flickr API requirs SSL connections.
