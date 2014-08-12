@@ -89,7 +89,7 @@ class GeoNamesGeoCoder(GeoCoderBase):
 
     def get_url(self, lat, lon):
         url = 'http://ws.geonames.org/findNearbyPlaceNameJSON?'
-        values = { 'lat': lat, 'lng': lon, }
+        values = { 'lat': lat, 'lng': lon, "username": "gphotoframe", }
         url += urllib.urlencode(values)
         return url
 
@@ -132,7 +132,7 @@ class FindsJPGeoCoder(GeoCoderBase):
 
 class GoogleGeoCoder(GeoCoderBase):
     """
-    Gooelge Geocoding API
+    Goolge Geocoding API
     http://code.google.com/apis/maps/documentation/geocoding/
     But, the licence is nout suitable for gphotoframe.
     """
