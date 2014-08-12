@@ -94,7 +94,7 @@ class PluginAboutDialog(object):
             except:
                 print "Error:", key, value
 
-        icon_file = '/usr/share/gedit-2/icons/gedit-plugin.png'
+        icon_file = '/usr/share/eog/icons/hicolor/32x32/actions/eog-plugin.png'
         if os.access(icon_file, os.R_OK):
             icon = LocalIconImage(icon_file)
             about.set_logo(icon.get_pixbuf(size=48))
