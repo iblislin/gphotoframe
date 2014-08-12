@@ -20,7 +20,9 @@ from ...utils.iconimage import WebIconImage
 from ...settings import SETTINGS_TUMBLR
 
 def info():
-    return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
+    return []
+# FIXME
+#    return [TumblrPlugin, TumblrPhotoList, PhotoSourceTumblrUI, PluginTumblrDialog]
 
 
 class TumblrPlugin(base.PluginBase):
