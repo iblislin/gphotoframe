@@ -1,5 +1,6 @@
 2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* image/geocoding.py: Updated a GeoNmaes API paramater.
 	* facebook/__init__.py: Updated photo URLs.
 	* plugins/flickr/: Flickr API requirs SSL connections.
 	* urlget.py: Fixed a twisted bug (issue 116).
