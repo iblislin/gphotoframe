@@ -42,7 +42,7 @@ class FlickrAPI(object):
         return False
 
     def get_url(self, argument, page=1, per_page=100):
-        url = 'http://api.flickr.com/services/rest/?'
+        url = 'https://api.flickr.com/services/rest/?'
 
         values = { 'api_key' : API_KEY,
                    'method'  : self.method,
@@ -73,7 +73,7 @@ class FlickrAPI(object):
     def get_url_for_nsid_lookup(self, arg):
         api = FlickrNSIDAPI()
         user = arg or SETTINGS_FLICKR.get_string('nsid')
-        url = api.get_url('http://www.flickr.com/photos/%s/' % user) \
+        url = api.get_url('https://www.flickr.com/photos/%s/' % user) \
             if user else None
         return url
 
@@ -93,7 +93,7 @@ class FlickrAPI(object):
         return SETTINGS_FLICKR.get_int('interval') or 60
 
     def get_page_url(self, owner, id, group=None):
-        url = "http://www.flickr.com/photos/%s/%s"
+        url = "https://www.flickr.com/photos/%s/%s"
         return url % (owner, id)
 
 class FlickrAuthFactory(object):
@@ -148,7 +148,7 @@ class FlickrContactsAuthAPI(FlickrContactsAPI):
         return self._add_auth_argument(values)
 
     def get_page_url(self, owner, id, nsid):
-        url = "http://www.flickr.com/photos/%s/%s/in/contacts/" 
+        url = "https://www.flickr.com/photos/%s/%s/in/contacts/" 
         return url % (owner, id)
 
 class FlickrFactoryFavoritesAPI(FlickrAuthFactory):
@@ -166,7 +166,7 @@ class FlickrFavoritesAPI(FlickrAPI):
         return True
 
     def get_page_url(self, owner, id, nsid):
-        url = "http://www.flickr.com/photos/%s/%s/in/faves-%s/"
+        url = "https://www.flickr.com/photos/%s/%s/in/faves-%s/"
         return url % (owner, id, nsid)
 
 class FlickrFavoritesAuthAPI(FlickrFavoritesAPI):
@@ -220,7 +220,7 @@ class FlickrGroupAPI(FlickrAPI):
 
     def get_url_for_nsid_lookup(self, group):
         api = FlickrGroupNSIDAPI()
-        url = api.get_url('http://www.flickr.com/groups/%s/' % group) \
+        url = api.get_url('https://www.flickr.com/groups/%s/' % group) \
             if group else None
         return url
 
@@ -229,7 +229,7 @@ class FlickrGroupAPI(FlickrAPI):
         return argument, None
 
     def get_page_url(self, owner, id, group):
-        url = "http://www.flickr.com/photos/%s/%s/in/pool-%s/"
+        url = "https://www.flickr.com/photos/%s/%s/in/pool-%s/"
         return url % (owner, id, group)
 
 class FlickrYourGroupsAPI(FlickrMetaGroupAPI, FlickrGroupAPI):

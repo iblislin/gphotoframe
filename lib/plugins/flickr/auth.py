@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# http://www.flickr.com/services/api/auth.howto.desktop.html
+# https://www.flickr.com/services/api/auth.howto.desktop.html
 
 import hashlib
 import urllib
@@ -32,12 +32,16 @@ class FlickrAuth(object):
     def _get_frob(self):
         """Get frob with flickr.auth.getFrob"""
 
-        base_url = 'http://api.flickr.com/services/rest/?'
+        base_url = 'https://api.flickr.com/services/rest/?'
         values = { 'method'  : 'flickr.auth.getFrob',
                    'api_key' : self.api_key, }
 
         values = add_api_sig(values, self.secret)
         url = base_url + urllib.urlencode(values)
+
+        print "_"*80
+        print url
+
         urlget_with_autoproxy(url, cb=self._get_token)
 
     def _get_token(self, data):
@@ -46,7 +50,7 @@ class FlickrAuth(object):
         element = etree.fromstring(data)
         self.frob = element.find('frob').text
 
-        base_url = 'http://flickr.com/services/auth/?'
+        base_url = 'https://flickr.com/services/auth/?'
         values = { 'api_key' : self.api_key,
                    'perms'   : self.perms,
                    'frob'    : self.frob, }
@@ -59,7 +63,7 @@ class FlickrAuth(object):
     def get_auth_token(self, cb):
         """Get token with flickr.auth.getToken"""
 
-        base_url = 'http://api.flickr.com/services/rest/?'
+        base_url = 'https://api.flickr.com/services/rest/?'
         values = { 'method'  : 'flickr.auth.getToken',
                    'api_key' : self.api_key,
                    'frob'    : self.frob, }
@@ -90,7 +94,7 @@ class FlickrAuth(object):
         def _check_cb(data):
             print data
 
-        base_url = 'http://api.flickr.com/services/rest/?'
+        base_url = 'https://api.flickr.com/services/rest/?'
         values = { 'method' : 'flickr.auth.checkToken',
                    'api_key' : self.api_key,
                    'auth_token' : auth_token, }

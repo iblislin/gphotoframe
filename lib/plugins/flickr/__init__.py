@@ -28,7 +28,7 @@ class FlickrPlugin(base.PluginBase):
         self.auth = [SETTINGS_FLICKR, 'user-name']
         self.info = { 'comments': _('Photo Share Service'),
                       'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
-                      'website': 'http://www.flickr.com/',
+                      'website': 'https://www.flickr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
 class FlickrPhotoList(base.PhotoList):
@@ -117,7 +117,7 @@ class FlickrPhotoList(base.PhotoList):
         for s in d['photos']['photo']:
             if s['media'] == 'video' or s['server'] is None: continue
 
-            url = "http://farm%s.static.flickr.com/%s/%s_%s.jpg" % (
+            url = "https://farm%s.static.flickr.com/%s/%s_%s.jpg" % (
                 s['farm'], s['server'], s['id'], s['secret'])
             nsid = self.nsid_argument if hasattr(self, "nsid_argument") else None
             page_url = self.api.get_page_url(s['owner'], s['id'], nsid)
@@ -272,4 +272,4 @@ class FlickrIcon(WebIconImage):
 
     def __init__(self):
         self.icon_name = 'flickr.ico'
-        self.icon_url = 'http://www.flickr.com/favicon.ico'
+        self.icon_url = 'https://www.flickr.com/favicon.ico'
