@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Picasa Wb Album plugin for GPhotoFrame
-# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2014, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import urllib
@@ -28,7 +28,7 @@ class PicasaPlugin(base.PluginBase):
         self.icon = PicasaIcon
         self.auth = [SETTINGS_PICASA, 'user-id']
         self.info = { 'comments': _('Photo Share Service'),
-                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2014 Yoshizimi Endo',
                       'website': 'http://picasaweb.google.com/',
                       'authors': ['Yoshizimi Endo'], }
 
@@ -155,7 +155,7 @@ class PicasaPhotoList(base.PhotoList):
         if max_result:
             url += '&max-results=%s' % max_result
 
-        return url
+        return str(url)
 
 class PicasaPhoto(base.Photo):
 
