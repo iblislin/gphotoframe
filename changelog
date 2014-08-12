@@ -1,5 +1,6 @@
 2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* facebook/__init__.py: Updated photo URLs.
 	* plugins/flickr/: Flickr API requirs SSL connections.
 	* urlget.py: Fixed a twisted bug (issue 116).
 	* clutterimage.py: Avoid an old clutter bug.
