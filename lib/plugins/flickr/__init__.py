@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Flickr plugin for GPhotoFrame
-# Copyright (c) 2009-2011, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2014, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import random
@@ -27,7 +27,7 @@ class FlickrPlugin(base.PluginBase):
         self.exif = FlickrEXIF
         self.auth = [SETTINGS_FLICKR, 'user-name']
         self.info = { 'comments': _('Photo Share Service'),
-                      'copyright': 'Copyright © 2009-2011 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2014 Yoshizimi Endo',
                       'website': 'https://www.flickr.com/',
                       'authors': ['Yoshizimi Endo'], }
 
