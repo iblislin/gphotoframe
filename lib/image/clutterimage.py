@@ -22,9 +22,16 @@ class PhotoImageClutter(PhotoImage):
         self.image = self.embed = GtkClutter.Embed.new()
         self.stage = self.embed.get_stage()
         color = self._get_border_color()
-        is_ok, clutter_color = Clutter.Color().from_string(color)
 
-        self.stage.set_color(clutter_color)
+        # for clutter bug in wheezy 
+        try:
+            is_ok, clutter_color = Clutter.Color().from_string(color)
+            self.stage.set_color(clutter_color)
+        except:
+            if color == 'black':
+                clutter_color = Clutter.Color.new(0,0,0,255)
+                self.stage.set_color(clutter_color)
+
         self.embed.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse(color))
         self.embed.show()
 
