@@ -56,9 +56,17 @@ class FacebookPhotoList(base.PhotoList):
 
         d = urlget_with_autoproxy(url)
         d.addCallback(self._set_photo_cb, album_name)
+        d.addErrback(self._ecb)
+
+    def _ecb(self,data):
+        print data
 
     def _set_photo_cb(self, data, album_name):
-        d = json.loads(data)
+        try:
+            d = json.loads(data)
+        except:
+            print "error", data, album_name
+            return
 
         for entry in d.get('data') or []:
 
@@ -69,11 +77,9 @@ class FacebookPhotoList(base.PhotoList):
             if 'picture' not in entry:
                 continue
 
-            url = str(entry['picture']).replace('_s.jpg', '_n.jpg')
-
             data = {'info'       : FacebookPlugin,
                     'target'     : (self.target, ''),
-                    'url'        : url,
+                    'url'        : str(entry['source']),
                     'id'         : entry['id'],
                     'owner_name' : entry['from']['name'],
                     'title'      : entry.get('name') or album_name,
