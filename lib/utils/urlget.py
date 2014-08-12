@@ -27,17 +27,18 @@ HTTP Client with proxy support.
 """
 
 import os
+from urlparse import urlunparse
 
 from twisted.web import client
 from twisted.internet import reactor
-
+from twisted.web import http
 
 class UrlGetWithProxy(object):
 
     def __init__(self, proxy=None):
         if proxy is None:
             proxy = os.environ.get('http_proxy') or ""
-        self.proxy_host, self.proxy_port = client._parse(proxy)[1:3]
+        self.proxy_host, self.proxy_port = self._parse(proxy)[1:3]
         self.use_proxy = bool(self.proxy_host and self.proxy_port)
 
     def getPage(self, url, contextFactory=None, *args, **kwargs):
@@ -51,7 +52,7 @@ class UrlGetWithProxy(object):
         return d
 
     def _urlget(self, factory, url, contextFactory=None):
-        scheme, host, port, path = client._parse(url)
+        scheme, host, port, path = self._parse(url)
         if self.use_proxy and scheme != 'https': # HTTPS proxy isn't supported.
             host, port = self.proxy_host, self.proxy_port
             factory.path = url
@@ -63,3 +64,41 @@ class UrlGetWithProxy(object):
         else:
             reactor.connectTCP(host, port, factory)
         return factory.deferred
+
+    def _parse(self, url, defaultPort=None):
+        """
+        Split the given URL into the scheme, host, port, and path.
+                
+        @type url: C{str}
+        @param url: An URL to parse.
+                        
+        @type defaultPort: C{int} or C{None}
+        @param defaultPort: An alternate value to use as the port if the URL does
+        not include one.
+    
+        @return: A four-tuple of the scheme, host, port, and path of the URL.  All
+        of these are C{str} instances except for port, which is an C{int}.
+        """
+        url = url.strip()
+        parsed = http.urlparse(url)
+        scheme = parsed[0]
+        path = urlunparse(('', '') + parsed[2:])
+    
+        if defaultPort is None:
+            if scheme == 'https':
+                defaultPort = 443
+            else:
+                defaultPort = 80
+    
+        host, port = parsed[1], defaultPort
+        if ':' in host:
+            host, port = host.split(':')
+            try:
+                port = int(port)
+            except ValueError:
+                port = defaultPort
+    
+        if path == '':
+            path = '/'
+    
+        return scheme, host, port, path

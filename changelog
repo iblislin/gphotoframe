@@ -1,5 +1,6 @@
 2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* urlget.py: Fixed a twisted bug (issue 116).
 	* clutterimage.py: Avoid an old clutter bug.
 
 2013-10-02  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
