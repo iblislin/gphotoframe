@@ -1,5 +1,6 @@
 2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* plugins/flickr/: Flickr API requirs SSL connections.
 	* urlget.py: Fixed a twisted bug (issue 116).
 	* clutterimage.py: Avoid an old clutter bug.
 
