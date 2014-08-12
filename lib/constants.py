@@ -5,7 +5,7 @@ from stat import S_IMODE
 
 from xdg.BaseDirectory import *
 
-VERSION = '2.0-a5'
+VERSION = '2.0'
 APP_NAME = 'gphotoframe'
 
 SHARED_DATA_DIR = abspath(os.path.join(dirname(__file__), '../share'))
