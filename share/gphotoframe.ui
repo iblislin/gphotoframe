@@ -63,11 +63,9 @@
     <child>
       <object class="GtkCheckButton" id="checkbutton_all_album">
         <property name="label" translatable="yes">_Include other photos in the same album</property>
-        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="xalign">0.5</property>
         <property name="active">True</property>
@@ -82,11 +80,9 @@
     <child>
       <object class="GtkCheckButton" id="checkbutton_select_album">
         <property name="label" translatable="yes">_Select albums</property>
-        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="xalign">0.5</property>
         <property name="draw_indicator">True</property>
@@ -170,11 +166,9 @@
     <child>
       <object class="GtkCheckButton" id="checkbutton_flickr_id">
         <property name="label" translatable="yes">_Specified other people's ID</property>
-        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="xalign">0.5</property>
         <property name="active">True</property>
@@ -189,11 +183,9 @@
     <child>
       <object class="GtkCheckButton" id="checkbutton_latest_roll">
         <property name="label" translatable="yes">Show only _latest photos</property>
-        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="xalign">0.5</property>
         <property name="draw_indicator">True</property>
@@ -212,11 +204,9 @@
     <child>
       <object class="GtkCheckButton" id="checkbutton_dir">
         <property name="label" translatable="yes">_Include subfolders</property>
-        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="xalign">0.5</property>
         <property name="active">True</property>
@@ -231,11 +221,9 @@
     <child>
       <object class="GtkCheckButton" id="checkbutton_hidden">
         <property name="label" translatable="yes">_Exclude hidden files and folders</property>
-        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">False</property>
-        <property name="use_action_appearance">False</property>
         <property name="use_underline">True</property>
         <property name="xalign">0.5</property>
         <property name="draw_indicator">True</property>
@@ -578,11 +566,9 @@
             <child>
               <object class="GtkButton" id="button9">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -594,11 +580,9 @@
             <child>
               <object class="GtkButton" id="button8">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -641,11 +625,9 @@
             <child>
               <object class="GtkButton" id="button_cancel">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -657,11 +639,9 @@
             <child>
               <object class="GtkButton" id="button_ok">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -780,11 +760,9 @@
             <child>
               <object class="GtkButton" id="button_netauth_p">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -796,11 +774,9 @@
             <child>
               <object class="GtkButton" id="button_netauth_n">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -887,6 +863,7 @@
     <property name="can_focus">False</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_STRUCTURE_MASK</property>
     <property name="has_tooltip">True</property>
+    <property name="title" translatable="yes">GPhotoFrame</property>
     <property name="icon_name">gphotoframe</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="decorated">False</property>
