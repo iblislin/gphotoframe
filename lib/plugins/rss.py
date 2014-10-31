@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # RSS plugin for GPhotoFrame
-# Copyright (c) 2009-2012, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
+# Copyright (c) 2009-2014, Yoshizumi Endo <y-endo@ceres.dti.ne.jp>
 # Licence: GPL3
 
 import re
@@ -32,7 +32,7 @@ class RSSPlugin(base.PluginBase):
         self.name = 'RSS'
         self.icon = RSSIcon
         self.info = { 'comments': _('RSS and Atom Feeds'),
-                      'copyright': 'Copyright © 2009-2012 Yoshizimi Endo',
+                      'copyright': 'Copyright © 2009-2014 Yoshizimi Endo',
                       'authors': ['Yoshizimi Endo'], }
 
 class RSSPhotoList(base.PhotoList):
@@ -76,7 +76,8 @@ class RSSPhotoList(base.PhotoList):
 
                 url = entry.media_content_attrs['url'] \
                     if hasattr(entry, 'media_content_attrs') else image[0]
-                title = re_del_tag.sub('', entry.title)
+                title = re_del_tag.sub('', entry.title) \
+                        if hasattr(entry, 'title') else ""
 
                 data = {'info'       : RSSPlugin,
                         'url'        : str(url),

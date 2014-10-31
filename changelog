@@ -1,3 +1,8 @@
+2014-10-31  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* plugins/rss.py (RSSPhotoList): Fixed a bug that an entry has no
+	  title causes a crash.
+
 2014-08-12  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* NEWS: 2.0 release.
