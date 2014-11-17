@@ -97,6 +97,8 @@ class PhotoImagePixbuf(object):
 
             if photo.get('size'):
                 org_w, org_h = photo['size']
+                if org_w == 0 or org_h == 0:
+                    return False
                 w, h = self.get_scale(org_w, org_h, 
                                       self.max_w, self.max_h, rotation)
                 # print org_w, org_h, w, h, " ", photo
@@ -151,6 +153,11 @@ class PhotoImagePixbuf(object):
         return rotate
 
     def get_scale(self, src_w, src_h, max_w, max_h, rotation=0):
+        if src_w == 0 or src_h == 0:
+            print "Error: Original picture size is 0x0."
+            self.max_src_size = src_w
+            return max_w, max_h
+
         if rotation:
             max_w, max_h = max_h, max_w
 
