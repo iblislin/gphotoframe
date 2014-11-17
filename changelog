@@ -1,5 +1,6 @@
 2014-11-17  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* po/nl_NL.po: Added new translation.  Thanks Heimen Stoffels!
 	* gtkimage.py (PhotoImagePixbuf): Fixed a bug related to photo
 	  image sizes (issue 114).
 
