@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: GPhotoFrame\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-23 15:23+0900\n"
-"PO-Revision-Date: 2014-10-27 19:23+0000\n"
+"PO-Revision-Date: 2014-11-17 12:42+0000\n"
 "Last-Translator: Heimen Stoffels <motionshot@vivaldi.net>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/projects/p/gphotoframe/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Een diavoorstelling weergeven van uw Photo Frame"
 
 #: ../share/gphotoframe.schemas.in.h:1
 msgid "API reload interval minutes"
-msgstr ""
+msgstr "Tussenposse in minuten van API-herladen"
 
 #: ../share/gphotoframe.schemas.in.h:2
 msgid "API reload interval minutes for News Feed"
@@ -49,17 +49,17 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:4
 msgid "API reload interval minutes for meta groups"
-msgstr ""
+msgstr "Tussenposse in minuten van API-herladen voor metadatagroepen"
 
 #: ../share/gphotoframe.schemas.in.h:5
 msgid ""
 "API reload interval minutes for meta groups (Your Groups or The Commons). It"
 " should be greater than 10 minutes."
-msgstr ""
+msgstr "Tussenposse in minuten van API-herladen voor metadatagroepen (uw groepen of de gebruikelijke). Het moet meer zijn dan 10 minuten."
 
 #: ../share/gphotoframe.schemas.in.h:6
 msgid "API reload interval minutes. It should be greater than 10 minutes."
-msgstr ""
+msgstr "Tussenposse in minuten van API-herladen. Het moet meer zijn dan 10 minuten."
 
 #: ../share/gphotoframe.schemas.in.h:7
 msgid "Always on Visible Workspace"
@@ -183,7 +183,7 @@ msgid ""
 "standard deviation for random weight of each RSS feed. When this value is "
 "less than 0, the each weight is the number of total image included in each "
 "RSS feed."
-msgstr ""
+msgstr "Als de RSS-feed over meerdere RSS-feeds beschikt, dan wordt deze waarde gebruikt als de standaard afwijking voor de totale diepte van elke RSS-feed. Wanneer deze waarde minder dan 0 is, is elk gewicht het nummer van de totaal afbeelding in de feed."
 
 #: ../share/gphotoframe.schemas.in.h:36
 msgid "If true, camera model name are shown on tooltip."
@@ -193,7 +193,7 @@ msgstr ""
 msgid ""
 "If true, changing of photo image in fullscreen mode will be animated. The "
 "program needs to be restarted to take effect the change of the setting."
-msgstr ""
+msgstr "Indien waar, zal het veranderen van afbeeldingen in volledige scherm-modus geanimeerd zijn. De applicatie moet herstart worden om deze verandering in werking te laden treden."
 
 #: ../share/gphotoframe.schemas.in.h:38
 msgid ""
@@ -213,15 +213,15 @@ msgstr ""
 msgid ""
 "If true, hiding and un-hiding of icons will be animated. The program needs "
 "to be restarted to take effect the change of the setting."
-msgstr ""
+msgstr "Indien waar, zal het verbergen en weergeven van pictogrammen geanimeerd zijn. De applicatie moet herstart worden om deze verandering in werking te laden treden."
 
 #: ../share/gphotoframe.schemas.in.h:42
 msgid "If true, icons will be shown on screensaver."
-msgstr ""
+msgstr "Indien waar, zullen pictogrammen worden weergegeven op de schermbeveiliging."
 
 #: ../share/gphotoframe.schemas.in.h:43
 msgid "If true, image filename suffixes (jpe?g|png|gif|bmp) are shown."
-msgstr ""
+msgstr "Indien waar, zullen bestandsextensies van afbeeldingen (jpe?g|png|gif|bmp) worden weergegeven."
 
 #: ../share/gphotoframe.schemas.in.h:44
 msgid "If true, locations are shown on tooltip."
@@ -239,11 +239,11 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:47
 msgid "Interval seconds in full screen mode"
-msgstr ""
+msgstr "Tussenposse in seconden in volledige scherm-modus"
 
 #: ../share/gphotoframe.schemas.in.h:48
 msgid "Interval seconds in window mode"
-msgstr ""
+msgstr "Tussenpose in seconden in venstermodus"
 
 #: ../share/gphotoframe.schemas.in.h:49
 msgid "Map source URI"
@@ -285,7 +285,7 @@ msgstr "Minimale afbeeldingshoogte"
 msgid ""
 "Minimum image height. When this value is less than 0, image size filter is "
 "disabled."
-msgstr ""
+msgstr "Minimale afbeeldingshoogte. Wanneer deze waarde minder dan 0 is, zal het afbeeldingsgrootte-filter uitgeschakeld worden."
 
 #: ../share/gphotoframe.schemas.in.h:58
 msgid "Minimum image width"
@@ -295,7 +295,7 @@ msgstr "Minimale afbeeldingsbreedte"
 msgid ""
 "Minimum image width. When this value is less than 0, image size filter is "
 "disabled."
-msgstr ""
+msgstr "Minimale afbeeldingsbreedte. Wanneer deze waarde minder dan 0 is, zal het afbeeldingsgrootte-filter uitgeschakeld worden."
 
 #: ../share/gphotoframe.schemas.in.h:60
 msgid "Minimum rate of latest photos"
@@ -363,15 +363,15 @@ msgstr "Voorkeurenbreedte"
 
 #: ../share/gphotoframe.schemas.in.h:76
 msgid "RSS reload interval minutes"
-msgstr ""
+msgstr "RSS-herlaadinterval in minuten"
 
 #: ../share/gphotoframe.schemas.in.h:77
 msgid "RSS reload interval minutes. It should be greater than 10 minutes."
-msgstr ""
+msgstr "RSS-herlaadinterval in minuten. Het moet meer zijn dan 10 minuten."
 
 #: ../share/gphotoframe.schemas.in.h:78
 msgid "Recent opend preferences page number"
-msgstr ""
+msgstr "Recent geopende instellingspaginanummer"
 
 #: ../share/gphotoframe.schemas.in.h:79
 msgid "Recent selected photo source"
@@ -403,7 +403,7 @@ msgstr "Positie van bronicoo"
 
 #: ../share/gphotoframe.schemas.in.h:85
 msgid "Standard deviation of RSS feed random weights"
-msgstr ""
+msgstr "Standaard afwijking van RSS-feed willekeurige diepts"
 
 #: ../share/gphotoframe.schemas.in.h:86
 msgid ""
@@ -414,19 +414,19 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:87
 msgid "The field sets the number of photo cache files."
-msgstr ""
+msgstr "Dit velt stelt het aantal te cachen afbeeldingsbestanden in."
 
 #: ../share/gphotoframe.schemas.in.h:88
 msgid "The field sets the number of recent photo menu items."
-msgstr ""
+msgstr "Dit veld stelt het aantal recente afbeeldingsmenu-items in."
 
 #: ../share/gphotoframe.schemas.in.h:89
 msgid "The number of photo cache files"
-msgstr ""
+msgstr "Het aantal te cachen afbeeldingsbestanden"
 
 #: ../share/gphotoframe.schemas.in.h:90
 msgid "The number of recent photo menu items"
-msgstr ""
+msgstr "Het aantal te cachen recente afbeeldingsmenu-items"
 
 #: ../share/gphotoframe.schemas.in.h:91
 msgid "Trash icon position"
@@ -460,7 +460,7 @@ msgstr ""
 
 #: ../share/gphotoframe.schemas.in.h:98
 msgid "Whether to show filename suffix"
-msgstr ""
+msgstr "Of de bestandsnaamextensie moeten worden getoond of niet"
 
 #: ../share/gphotoframe.schemas.in.h:99
 msgid "Whether to show locations on tooltip"
@@ -535,7 +535,7 @@ msgstr "_Argument:"
 
 #: ../share/gphotoframe.ui.h:16
 msgid "_Exclude hidden files and folders"
-msgstr ""
+msgstr "Verborgen mappen en bestanden _uitsluiten"
 
 #: ../share/gphotoframe.ui.h:17
 msgid "_Include other photos in the same album"
@@ -576,7 +576,7 @@ msgstr "_GebruikersID:"
 
 #: ../share/gphotoframe.ui.h:26
 msgid "_Weight:"
-msgstr ""
+msgstr "_Diepte:"
 
 #: ../share/gphotoframe.ui.h:27
 msgid "translator-credits"
@@ -588,11 +588,11 @@ msgstr "<b>Bureaublad</b>"
 
 #: ../share/preferences.ui.h:2
 msgid "<b>Interval</b>"
-msgstr ""
+msgstr "<b>Tussenpose</b>"
 
 #: ../share/preferences.ui.h:3
 msgid "<b>Maximum Display Size</b>"
-msgstr ""
+msgstr "<b>Maximale weergavegrootte</b>"
 
 #: ../share/preferences.ui.h:4
 msgid "<b>Photo Sources</b>"
@@ -632,7 +632,7 @@ msgstr "Naam"
 
 #: ../share/preferences.ui.h:14
 msgid "Photo Frame Preferences"
-msgstr ""
+msgstr "Fotoframe-instellingen"
 
 #: ../share/preferences.ui.h:15
 msgid "Photos"
@@ -644,7 +644,7 @@ msgstr "Plugins"
 
 #: ../share/preferences.ui.h:17
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
 #: ../share/preferences.ui.h:18
 msgid "Target"
@@ -652,7 +652,7 @@ msgstr "Doel"
 
 #: ../share/preferences.ui.h:19
 msgid "Weight"
-msgstr ""
+msgstr "Diepte"
 
 #: ../share/preferences.ui.h:20
 msgid "Wi_dth:"
@@ -680,15 +680,15 @@ msgstr ""
 
 #: ../share/menu.ui.h:2
 msgid "Open _Recent"
-msgstr ""
+msgstr "_Recente openen"
 
 #: ../share/menu.ui.h:3
 msgid "_Full Screen"
-msgstr ""
+msgstr "_Volledig scherm"
 
 #: ../share/menu.ui.h:4
 msgid "_Next Photo"
-msgstr ""
+msgstr "_Volgende foto"
 
 #: ../lib/menu.py:119 ../lib/history/html.py:93 ../lib/image/actor/info.py:43
 msgid "Untitled"
@@ -718,13 +718,13 @@ msgstr "door %s"
 
 #: ../lib/preferences/photosource.py:198
 msgid "The photo source should be ignored if the weight is 0."
-msgstr ""
+msgstr "De afbeeldingsbron zal worden genegeerd als de diepte 0 is."
 
 #. TRANSLATORS: %s is the name of the Plugin
 #: ../lib/preferences/plugin.py:86
 #, python-format
 msgid "%s Plugin"
-msgstr ""
+msgstr "%s-plugi"
 
 #: ../lib/image/actor/favicon.py:93
 msgid "Add to faves"
@@ -744,7 +744,7 @@ msgstr "De map openen"
 
 #: ../lib/image/actor/info.py:64
 msgid "Querying..."
-msgstr ""
+msgstr "Bezig met opvragen..."
 
 #: ../lib/image/actor/source.py:58
 msgid "Open this photo"
@@ -796,7 +796,7 @@ msgstr "m"
 
 #: ../lib/image/tooltip.py:92
 msgid "Exposure"
-msgstr ""
+msgstr "Belichting"
 
 #: ../lib/image/tooltip.py:92
 msgid "sec"
@@ -804,7 +804,7 @@ msgstr "sec"
 
 #: ../lib/image/tooltip.py:93
 msgid "Aperture"
-msgstr ""
+msgstr "Opening"
 
 #: ../lib/image/tooltip.py:94
 msgid "ISO"
@@ -812,7 +812,7 @@ msgstr "ISO"
 
 #: ../lib/image/tooltip.py:95
 msgid "Exposure Bias"
-msgstr ""
+msgstr "Belichtingsafwijking"
 
 #: ../lib/image/tooltip.py:96
 msgid "Flash"
@@ -820,7 +820,7 @@ msgstr "Flits"
 
 #: ../lib/image/tooltip.py:97
 msgid "Flash Bias"
-msgstr ""
+msgstr "Flitsafwijking"
 
 #: ../lib/plugins/base/base.py:33
 msgid "Not Authenticated"
@@ -832,21 +832,21 @@ msgstr "Voorkeuren"
 
 #: ../lib/plugins/base/trash.py:56
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
+msgstr "Kan bestanden niet naar de prullenbak verplaatsen. Wilt u ze direct verwijderen?"
 
 #: ../lib/plugins/base/trash.py:58
 #, python-format
 msgid "The file \"%s\" cannot be moved to the trash. "
-msgstr ""
+msgstr "Het bestand \"%s\" kan niet worden verplaatst naar de prullenbak."
 
 #: ../lib/plugins/__init__.py:30
 #, python-format
 msgid "Can't import %s plugin: %s."
-msgstr ""
+msgstr "Kan %s-plugin niet importeren: %s."
 
 #: ../lib/plugins/flickr/api.py:15
 msgid "Contacts Photos"
-msgstr ""
+msgstr "Afbeeldingen van contactpersonen"
 
 #: ../lib/plugins/flickr/api.py:16
 msgid "Favorites"
@@ -854,7 +854,7 @@ msgstr "Favorieten"
 
 #: ../lib/plugins/flickr/api.py:17
 msgid "Group Pool"
-msgstr ""
+msgstr "Groepsgemeenschap"
 
 #: ../lib/plugins/flickr/api.py:18 ../lib/defaultsource.py:21
 msgid "Interestingness"
@@ -870,7 +870,7 @@ msgstr "Foto's zoeken"
 
 #: ../lib/plugins/flickr/api.py:21
 msgid "The Commons"
-msgstr ""
+msgstr "De gebruikelijke"
 
 #: ../lib/plugins/flickr/api.py:22 ../lib/plugins/flickr/ui.py:50
 msgid "Your Groups"
@@ -884,7 +884,7 @@ msgstr "_Gebruiker:"
 
 #: ../lib/plugins/flickr/api.py:71
 msgid "Enter NSID or User Name in the URL"
-msgstr ""
+msgstr "Vul NSID of gebruikersnaam van de URL in"
 
 #: ../lib/plugins/flickr/api.py:215
 msgid "_Group:"
@@ -892,7 +892,7 @@ msgstr "_Groep:"
 
 #: ../lib/plugins/flickr/api.py:219
 msgid "Enter NSID or Group Name in the URL"
-msgstr ""
+msgstr "Vul NSID of groepsnaam van de URL i"
 
 #: ../lib/plugins/flickr/api.py:309
 msgid "_Tags:"
@@ -913,7 +913,7 @@ msgid ""
 "add photos to favorites list on your Flickr.com account. Press the "
 "\"Authorize\" button to open a web browser and give GPhotoFrame the "
 "authorization. "
-msgstr ""
+msgstr "GPhotoFrame heeft uw authenticatie nodig om privéfoto's te kunnen weergeven of foto's toe te voegen aan uw Flickr.com-account. Klik op de \"Authoriseren\"-knop om een webbrowser te openen en GPhotoFrame te authoriseren."
 
 #: ../lib/plugins/flickr/authdialog.py:40
 msgid "_Authorize"
@@ -924,7 +924,7 @@ msgstr "_Authoriseren"
 msgid ""
 "Return to this dialog after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
-msgstr ""
+msgstr "Keer terug naar dit dialoogvenster nadat u het authorisatie-proces op Flickr.com heeft afgerond en klik dan op de onderstaande \"Authorisatie afronden\"-knop."
 
 #: ../lib/plugins/flickr/authdialog.py:51
 msgid "_Complete Authorization"
@@ -938,7 +938,7 @@ msgstr "Foto-deeldienst"
 #: ../lib/plugins/tumblr/__init__.py:86
 #, python-format
 msgid "%(source)s: %(target)s is invalid target."
-msgstr ""
+msgstr "%(source)s: %(target)s is ongeldig doel."
 
 #: ../lib/plugins/flickr/__init__.py:78
 msgid "Flickr: invalid nsid API url."
@@ -951,7 +951,7 @@ msgstr "flickr: kan niet vinden,"
 #: ../lib/plugins/flickr/__init__.py:106
 #, python-format
 msgid "Flickr API Error (%s): %s"
-msgstr ""
+msgstr "Flickr API-fout (%s): %s"
 
 #: ../lib/plugins/fspot/__init__.py:29
 msgid "F-Spot Photo Manager"
@@ -977,11 +977,11 @@ msgstr "Laatste %s dagen"
 
 #: ../lib/plugins/fspot/__init__.py:110
 msgid "Rate"
-msgstr ""
+msgstr "Waarderen"
 
 #: ../lib/plugins/fspot/__init__.py:110
 msgid "Period"
-msgstr ""
+msgstr "Tijdsti"
 
 #: ../lib/plugins/fspot/__init__.py:178 ../lib/plugins/shotwell.py:130
 msgid "_Tag:"
@@ -1013,7 +1013,7 @@ msgstr "Nieuwsoverzicht"
 msgid ""
 "To retrieve the album list, close this dialog once, please reopen after a "
 "while."
-msgstr ""
+msgstr "Sluit dit dialoogvenster eenmaal en heropen het om de albumlijst te verkrijgen."
 
 #: ../lib/plugins/facebook/authdialog.py:48
 #, python-format
@@ -1028,14 +1028,14 @@ msgstr "_Uitloggen"
 msgid ""
 "You are not logged into Facebook.  If you would like to redo the "
 "authentication, you have to restart GPhotoFrame."
-msgstr ""
+msgstr "U bent niet ingelogd op Facebook. Als u de authenticatie opnieuw wilt doen, moet u GPhotoFrame herstarten."
 
 #: ../lib/plugins/facebook/authdialog.py:93
 #, python-format
 msgid ""
 "You are logged into Facebook as %s.  If you would like to redo the "
 "authentication, you have to restart GPhotoFrame."
-msgstr ""
+msgstr "U bent ingelogd op Facebook als %s. Als u de authenticatie opnieuw wilt doen, moet u GPhotoFrame herstarten."
 
 #: ../lib/plugins/picasa.py:27
 msgid "Picasa Web"
@@ -1171,7 +1171,7 @@ msgstr "Waardering instellen als afgewezen?"
 msgid ""
 "The rating of this photo will be set as rejected.  GPhotoFrame will skip "
 "rejected photos."
-msgstr ""
+msgstr "De waardering van deze afbeelding zal worden ingesteld als afgewezen. GPhotoFrame zal afgewezen afbeeldingen overslaan."
 
 #: ../lib/plugins/shotwell.py:132
 msgid "_Description:"
