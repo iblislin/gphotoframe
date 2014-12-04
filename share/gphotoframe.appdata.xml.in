@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014 Yoshizumi Endo <yendo0206@gmail.com> -->
+<component type="desktop">
+ <id>gphotoframe.desktop</id>
+ <metadata_license>CC0-1.0</metadata_license>
+ <project_license>GPL-3.0</project_license>
+ <name>GPhotoFrame</name>
+ <summary>Photo Frame Gadget</summary>
+ <description>
+  <_p>
+   GPhotoFrame is a photo frame gadget on your desktop.
+   It shows pictures from multiple sources:
+  </_p>
+  <ul>
+   <_li>Local folders</_li>
+   <_li>F-Spot database </_li>
+   <_li>Shotwell database</_li>
+   <_li>Facebook API </_li>
+   <_li>Flickr API </_li>
+   <_li>Picasa Web Album API </_li>
+   <_li>Tumblr API</_li>
+   <_li>Haikyo Clock</_li>
+   <_li>RSS</_li>
+  </ul>
+ </description>
+ <screenshots>
+  <screenshot type="default">
+   <image>http://gphotoframe.googlecode.com/hg/help/C/figures/gphotoframe.png</image>
+   <_caption>The photo frame window showing a picture with icons</_caption>
+  </screenshot>
+ </screenshots>
+ <url type="homepage">https://code.google.com/p/gphotoframe/</url>
+ <updatecontact>yendo0206@gmail.com</updatecontact>
+</component>

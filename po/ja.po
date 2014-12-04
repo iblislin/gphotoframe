@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gphotoframe 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-12 14:08+0900\n"
-"PO-Revision-Date: 2014-08-12 14:09+0900\n"
+"POT-Creation-Date: 2014-12-04 13:29+0900\n"
+"PO-Revision-Date: 2014-12-04 13:33+0900\n"
 "Last-Translator: Yoshizumi Endo <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <LL@li.org>\n"
 "Language: ja\n"
@@ -16,6 +16,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../share/gphotoframe.appdata.xml.in.h:1
+msgid ""
+"GPhotoFrame is a photo frame gadget on your desktop. It shows pictures from "
+"multiple sources:"
+msgstr ""
+"GPhotoFrame はデスクトップに写真フレームを表示するガジェットです。複数のソー"
+"スから写真を表示することができます。"
+
+#: ../share/gphotoframe.appdata.xml.in.h:2
+msgid "Local folders"
+msgstr "ローカルフォルダ"
+
+#: ../share/gphotoframe.appdata.xml.in.h:3
+msgid "F-Spot database"
+msgstr "F-Spot データベース"
+
+#: ../share/gphotoframe.appdata.xml.in.h:4
+msgid "Shotwell database"
+msgstr "Shotwell データベース"
+
+#: ../share/gphotoframe.appdata.xml.in.h:5
+msgid "Facebook API"
+msgstr "Facebook API"
+
+#: ../share/gphotoframe.appdata.xml.in.h:6
+msgid "Flickr API"
+msgstr "Flickr API"
+
+#: ../share/gphotoframe.appdata.xml.in.h:7
+msgid "Picasa Web Album API"
+msgstr "Picasa ウェブアルバム API"
+
+#: ../share/gphotoframe.appdata.xml.in.h:8
+msgid "Tumblr API"
+msgstr "Tumblr API"
+
+#: ../share/gphotoframe.appdata.xml.in.h:9 ../lib/plugins/haikyo.py:34
+msgid "Haikyo Clock"
+msgstr "廃墟時計"
+
+#: ../share/gphotoframe.appdata.xml.in.h:10
+msgid "RSS"
+msgstr "RSS"
+
+#: ../share/gphotoframe.appdata.xml.in.h:11
+msgid "The photo frame window showing a picture with icons"
+msgstr "写真とアイコンを表示する写真フレームのウィンドウ"
 
 #: ../share/gphotoframe.desktop.in.h:1
 #: ../share/gphotoframe-screensaver.desktop.in.h:1 ../lib/history/html.py:38
@@ -1177,22 +1225,18 @@ msgstr "この Tumblr の写真をリブログします。"
 msgid "RSS and Atom Feeds"
 msgstr "RSS や Atom フィード"
 
-#: ../lib/plugins/rss.py:134
+#: ../lib/plugins/rss.py:135
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
 #. argument widget
-#: ../lib/plugins/rss.py:137
+#: ../lib/plugins/rss.py:138
 msgid "_URL:"
 msgstr "URL(_U):"
 
 #: ../lib/plugins/haikyo.py:32
 msgid "Ruins Clock"
 msgstr "廃墟時計"
-
-#: ../lib/plugins/haikyo.py:34
-msgid "Haikyo Clock"
-msgstr "廃墟にたたずむ時計たちの写真"
 
 #: ../lib/plugins/folder.py:24 ../lib/defaultsource.py:22
 msgid "Folder"
