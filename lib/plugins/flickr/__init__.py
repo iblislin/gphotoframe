@@ -141,7 +141,7 @@ class FlickrPhotoList(base.PhotoList):
                     'is_private' : not bool(s['ispublic']),
                     'trash'      : trash.Ban(self.photolist)}
 
-            geo = [s['latitude'], s['longitude']]
+            geo = [float(s['latitude']), float(s['longitude'])]
             if geo != [0, 0]:
                 data['geo'] = geo
 

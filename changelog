@@ -1,3 +1,7 @@
+2015-01-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* actor/info.py, flickr/__init__.py: Fixed bugs of flickr map links.
+
 2014-12-04  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* share/gphotoframe.appdata.xml.in: Added AppData (issue 113).
