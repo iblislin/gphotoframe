@@ -42,7 +42,7 @@ class ActorGeoIcon(ActorSourceIcon):
 
         title = self.photo['title'] or _('Untitled')
         title = title.replace("(", "[").replace(")", "]") \
-            .replace("<", "").replace(">", "")
+            .replace("<", "").replace(">", "").encode("utf-8")
 
         zoom = 0 if self.photo.is_my_photo() else 6
         #zoom = SETTINGS_UI_GEO.get_int('zoom-level')
