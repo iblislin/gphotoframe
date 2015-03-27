@@ -1,5 +1,6 @@
 2015-03-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
+	* NEWS: 2.0.2 release.
 	* preferences/photosource.py (WeightEntry): Added new gsetting key
 	  for photo source max weight.
 
