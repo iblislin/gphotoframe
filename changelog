@@ -1,3 +1,8 @@
+2015-03-27  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
+
+	* preferences/photosource.py (WeightEntry): Added new gsetting key
+	  for photo source max weight.
+
 2015-01-08  Yoshizumi Endo  <y-endo@ceres.dti.ne.jp>
 
 	* actor/info.py, flickr/__init__.py: Fixed bugs of flickr map links.

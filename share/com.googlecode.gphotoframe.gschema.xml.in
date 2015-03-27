@@ -15,6 +15,11 @@
       <summary>Photo source default weight</summary>
       <description>Photo source default weight</description>
     </key>
+    <key name="max-weight" type="i">
+      <default>100</default>
+      <summary>Photo source max weight</summary>
+      <description>Photo source max weight</description>
+    </key>
     <key name="fullscreen" type="b">
       <default>false</default>
       <summary>Photo frame full screen mode</summary>

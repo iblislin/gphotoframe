@@ -189,13 +189,19 @@ class WeightEntry(object):
 
     def __init__(self, gui, photoliststore):
 
-        default_weight = SETTINGS.get_int('default-weight')
-        # liststore weight
-        weight = photoliststore[4] if photoliststore else default_weight 
         self.widget = gui.get_object('spinbutton3')
-        self.widget.set_value(weight)
         self.widget.set_tooltip_markup(
             _("The photo source should be ignored if the weight is 0."))
 
+        # liststore weight
+        default_weight = SETTINGS.get_int('default-weight')
+        weight = photoliststore[4] if photoliststore else default_weight 
+        self.widget.set_value(weight)
+
+        # max weight
+        max_weight = SETTINGS.get_int('max-weight')
+        self.widget.set_range(0, max_weight)
+
+        
     def get_value(self):
         return int(self.widget.get_value())
