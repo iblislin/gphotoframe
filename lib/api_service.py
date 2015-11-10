@@ -19,7 +19,6 @@ class APIServer(resource.Resource):
         resource.Resource.__init__(self, *args, **kwargs)
 
     def render_GET(self, request):
-        print(request.path)
         path = request.path
 
         if path.startswith('/cur') or path == '/':  # current
@@ -31,7 +30,8 @@ class APIServer(resource.Resource):
                     'url': self.yande_re_url(os.path.splitext(i['title'])[0]),
                     'filename': i['title'],
                 } for i in self.photo.queue]
-            return dumps(reversed(ls))
+            ls.reverse()
+            return dumps(ls)
 
         else:
             return ''
