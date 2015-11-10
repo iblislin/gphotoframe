@@ -26,17 +26,19 @@ except ImportError:
 gtk3reactor.install()
 
 from twisted.internet import reactor
+from twisted.web import server
 
-if os.access(
-    abspath(join(dirname(__file__), 'lib/liststore.py')), os.R_OK):
-    from lib.liststore import PhotoListStore
-    from lib.defaultsource import set_default_photo_source
-else:
-    from gphotoframe.liststore import PhotoListStore
-    from gphotoframe.defaultsource import set_default_photo_source
+
+from gphotoframe.liststore import PhotoListStore
+from gphotoframe.defaultsource import set_default_photo_source
+from gphotoframe.api_service import APIServer
+
 
 if __name__ == '__main__':
     set_default_photo_source()
+    photo = PhotoListStore()
 
-    PhotoListStore()
+    site = server.Site(APIServer(photo))
+
+    reactor.listenTCP(5000, site)
     reactor.run()
