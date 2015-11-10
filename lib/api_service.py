@@ -31,7 +31,7 @@ class APIServer(resource.Resource):
                     'url': self.yande_re_url(os.path.splitext(i['title'])[0]),
                     'filename': i['title'],
                 } for i in self.photo.queue]
-            return dumps(ls)
+            return dumps(reversed(ls))
 
         else:
             return ''
